@@ -1,0 +1,809 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View topic - Getting started with a multiplayer app</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '';
+	var base_url = '';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=18.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=18">C4 Engine Development</a> <strong>&#8249;</strong> <a href="viewforum.php-f=7.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=7">Networking and Multiplayer</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewtopic.php-f=7&t=4539.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=7&t=4539">Getting started with a multiplayer app</a></h2>
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body --><div style="display: none !important;">Topics about networking and multiplayer programming in the C4 Engine.<br /></div>
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=7&t=4539  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=7&t=4539%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=7&t=4539" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="search-box">
+			<form method="get" id="topic-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="Search this topic…" onclick="if(this.value=='Search this topic…')this.value='';" onblur="if(this.value=='')this.value='Search this topic…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="t" value="4539" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			8 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+
+</div>
+<div class="clear"></div>
+
+
+	<div id="p39102" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 class="first"><a href="#p39102">Getting started with a multiplayer app</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=39102  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=39102#p39102%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=39102#p39102"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1063.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1063" style="color: #0060C0;" class="username-coloured">Cthulhu</a></strong> &raquo; 13 Mar 2008, 04:52 </p>
+
+			
+
+			<div class="content">I'm currently trying to figure out how C4's multiplayer system works by trying to make an extended version of the SimpleChar tutorial work in a multiplayer environment. I'm pretty sure I've got the message sending and receiving bit properly done, but I don't think the game is actually receiving any messages. I've checked with breakpoints and the likes, and when pressing a button, the sendMessage method is sent (judging by the lines passed, the message should be sent to the local machine again, TheMessageMgr's receiveMessage is received after sending the message). However, the ReceiveMessage() method in the Game class is never called, so I doubt I have my stuff setup properly.<br /><br />So, what are the minimal requirements in code to set up a basic multiplayer environment? The first thing I want to achieve is that the local player is controlled by messages instead of direct control, but the game doesn't receive any messages (for shame). I've mainly been using stuff from the demo game, but there's so much stuff in there it's quite possible I missed some important bit. The documentation on the matter is quite thin as well, so I'm having trouble finding out what exactly is required.<br /><br />So, basic info about setting up a multiplayer game would be very useful. I'm pretty sure I start to grasp the concepts of sending and receiving messages, the main point now is getting the game itself to receive actual messages.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile39102">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1063.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1063"><img src="download/file.php-avatar=1063_1207125230.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1063_1207125230.gif" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1063.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1063" style="color: #0060C0;" class="username-coloured">Cthulhu</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 209</dd><dd><strong>Joined:</strong> 11 Feb 2008, 05:52</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p39106" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p39106">Re: Getting started with a multiplayer app</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=39106  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=39106#p39106%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=39106#p39106"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 13 Mar 2008, 05:12 </p>
+
+			
+
+			<div class="content">The API documentation for the Message Manager is actually some of the most complete function-level documentation for the engine, but it doesn't really give you a &quot;start here&quot; kind of explanation. The important thing to realize is that generic messages and controller messages are handled in different ways. Can we see some of your code so we can try to figure out what's going on?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile39106">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p39119" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p39119">Re: Getting started with a multiplayer app</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=39119  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=39119#p39119%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=39119#p39119"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1063.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1063" style="color: #0060C0;" class="username-coloured">Cthulhu</a></strong> &raquo; 13 Mar 2008, 05:40 </p>
+
+			
+
+			<div class="content">Sure thing, let's see now. Initialization of a multiplayer game is handled in the Game::LoadWorld() method as such:<br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>EngineResult Game::LoadWorld(const char *name)<br />{<br /><br />&nbsp; &nbsp; // load world<br />&nbsp; &nbsp; WorldResult result = TheWorldMgr-&gt;LoadWorld(name);<br />&nbsp; &nbsp; if (result == kWorldOkay)<br />&nbsp; &nbsp; {<br />&nbsp; &nbsp; &nbsp; &nbsp; // select a random spawn point in the world.<br />&nbsp; &nbsp; &nbsp; &nbsp; GameWorld *world = static_cast&lt;GameWorld *&gt;(TheWorldMgr-&gt;GetWorld());<br />&nbsp; &nbsp; &nbsp; &nbsp; const Marker *locator = world-&gt;GetRandomSpawnLocator();<br /><br />&nbsp; &nbsp; &nbsp; &nbsp;if (locator)<br />&nbsp; &nbsp; &nbsp; &nbsp;{<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // initialize network stuffs<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TheNetworkMgr-&gt;SetProtocol(kGameProtocol);<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TheNetworkMgr-&gt;SetPortNumber(kGamePort);<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TheNetworkMgr-&gt;SetBroadcastPortNumber(kGamePort);<br /><br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Start multiplayer game?<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TheMessageMgr-&gt;BeginMultiplayerGame(true);<br /><br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Insert player's character, assign controller and chuck into world.<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Entity *entity = Entity::Get(kEntitiySoldier);<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SoldierController *controller = new SoldierController(locator-&gt;GetWorldPosition());<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; entity-&gt;SetController(controller);<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TheGame-&gt;soldierController = controller;<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; locator-&gt;GetOwningZone()-&gt;AddNewSubnode(entity);<br /><br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // etc, create and add camera stuff follows.<br />}<br /></code></dd></dl><br /><br />The above is pretty much all of the network initialization code: I'm expecting something to miss or be wrong in there, but I'm not sure.<br /><br />From what I've gathered in the API's, the Application (or, Game in this case) needs to implement a ConstructMessage method and a ReceiveMessage method, as I've done in the next bit of code. This code appears in MGMultiplayer.cpp in the demo application, but considering it's a part of the Game class, I've put it in the same file as the Game class itself. Note that this is the method that isn't called, similar to the method after that.<br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code><br />Message *Game::ConstructMessage(MessageType type, Decompressor&amp; data) const<br />{<br />&nbsp; &nbsp; switch(type)<br />&nbsp; &nbsp; {<br />&nbsp; &nbsp; &nbsp; &nbsp; case kMessageClientMovementBegin:<br />&nbsp; &nbsp; &nbsp; &nbsp; case kMessageClientMovementEnd:<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return (new ClientMovementMessage(type));<br />&nbsp; &nbsp; &nbsp; &nbsp; default:<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return nullptr;<br /><br />&nbsp; &nbsp; }<br />}<br /><br /></code></dd></dl><br /><br />Next, the ReceiveMessage method. Is it required perhaps to do stuff with the Player object or is that not really required for the simplest of multiplayer games?<br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>void Game::ReceiveMessage(Player *from, const NetworkAddress&amp; address, const Message *message)<br />{<br />&nbsp; &nbsp; MessageType type = message-&gt;GetMessageType();<br />&nbsp; &nbsp; switch(type)<br />&nbsp; &nbsp; {<br />&nbsp; &nbsp; &nbsp; &nbsp; case kMessageClientMovementBegin:<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (soldierController) {&nbsp; // soldierController is a local field in the Game class -&gt; should be replaced by some controller lookup method or something for proper multiplayer games<br /><br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // ClientMovementMessage is the same as in the demo game.<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const ClientMovementMessage *m = static_cast&lt;const ClientMovementMessage *&gt;(message)l<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; soldierController-&gt;BeginMovement(m-&gt;GetMovementFlag(), m-&gt;GetMovementAzimuth, m-&gt;GetMovementAltitude());<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;break;<br />&nbsp; &nbsp; &nbsp; &nbsp;// similar case for kMessageClientMovementBegin.<br />&nbsp; &nbsp; }<br />}<br /></code></dd></dl><br /><br />Right, that's the basic game code. The BeginMovement method in the soldierController is pretty much the same as the one in MGFighter, in that it sets the player's movement flags as given in the message (which in turn gets executed in the player's travel / move methods). If required, I can go and post those, but I don't expect the problem being in one of those - considering the messages are simply not received by the engine.<br /><br />I hope you can see the problem in here. I'm thinking I'm forgetting some basic action or concept here really, probably something stupid.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile39119">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1063.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1063"><img src="download/file.php-avatar=1063_1207125230.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1063_1207125230.gif" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1063.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1063" style="color: #0060C0;" class="username-coloured">Cthulhu</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 209</dd><dd><strong>Joined:</strong> 11 Feb 2008, 05:52</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p39121" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p39121">Re: Getting started with a multiplayer app</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=39121  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=39121#p39121%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=39121#p39121"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 13 Mar 2008, 05:43 </p>
+
+			
+
+			<div class="content">Everything you've posted looks fine. I'd suggest using the debugger on the server to step into your SendMessage() or SendMessageAll() call to see where it's going.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile39121">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p39125" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p39125">Re: Getting started with a multiplayer app</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=39125  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=39125#p39125%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=39125#p39125"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1063.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1063" style="color: #0060C0;" class="username-coloured">Cthulhu</a></strong> &raquo; 13 Mar 2008, 06:13 </p>
+
+			
+
+			<div class="content">Ok, lessee if this is allright...<br /><br />Hrm, in the MessageMgr::ReceiveMessage method, the switch for the message type breaks at the 'ping' case, which causes the application's receiveMessage function to not work. Seems that I have to give the kMessageClientMovementBegin a value that is higher than 0 and not equal to any of the other 'system' message types, else the system will just see my movement message as a ping request (or something like that). Which is odd, considering the original demo doesn't assign any explicit values with those messages either. Perhaps it has something to do with the engine (or me) confusing system messages (such as the ping command) with 'user' messages?<br /><br />I'm pretty sure that's the cause. But as for the solution, I'm not sure. I could start giving the various message types my own numerical values, but wouldn't that cause conflicts with other identifiers I don't know about yet? Any regulations or standards about this issue?<br /><br />Edit: Wait, found it: <!-- l --><a class="postlink-local" href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=7&t=2322&p=19891&hilit=ping  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=7&t=2322&p=19891&hilit=ping#p19891%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=7&t=2322&p=19891&hilit=ping#p19891">viewtopic.php?f=7&amp;t=2322&amp;p=19891&amp;hilit=ping#p19891</a><!-- l --><br /><br /><blockquote class="uncited"><div>Well, there's your problem! That's the value used by the ping message. You have to start your message types at kMessageBaseCount as is done in MGMultiplayer.h.</div></blockquote><br /><br />in my messages enum, I didn't do that, so the count starts at 0 instead of the last value used by system messages. Bit of a trap there, let's see if it works as it should now.<br /><br />It does, the problem was in the starting number of the messages. Small issue, but it's sorted now. I should pay attention to such things more often. Thanks for the help anyways, &lt;4.<br /><br /><br />Edit 2: Not directly related to my problem, but something I noticed when looking through the demo code. When the demo Game class receives a movement message, it calls the BeginMovement method in the FighterController. In my own code, this sets the movement flag and gets stuff done. However, in the demo game, the FighterController creates another message (a FighterMovementMessage) which is then sent again. The ReceiveMessage in the FighterController takes that and translates it into movement, however it seems to me this is a bit double. The player presses a button, message is sent, message is received and command is sent to controller which in turn sends <span style="font-style: italic">another</span> message which is received again and finally translated into an actual movement - for one movement, two messages are sent. Is this correct, does this have a proper reason, or is this an error of sorts?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile39125">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1063.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1063"><img src="download/file.php-avatar=1063_1207125230.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1063_1207125230.gif" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1063.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1063" style="color: #0060C0;" class="username-coloured">Cthulhu</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 209</dd><dd><strong>Joined:</strong> 11 Feb 2008, 05:52</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p39170" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p39170">Re: Getting started with a multiplayer app</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=39170  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=39170#p39170%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=39170#p39170"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 13 Mar 2008, 14:11 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Cthulhu wrote:</cite>Is this correct, does this have a proper reason, or is this an error of sorts?</div></blockquote><br /><br />This is correct. A client machine is sending a message to the server that says &quot;I want to move&quot;. When the server receives that message, it sends a message to ALL clients saying &quot;Player X has begun moving&quot; so that everybody sees your character start running.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile39170">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p39992" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p39992">Re: Getting started with a multiplayer app</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=39992  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=39992#p39992%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=39992#p39992"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1058  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1058%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1058" style="color: #C06000;" class="username-coloured">prafulrana</a></strong> &raquo; 22 Mar 2008, 20:32 </p>
+
+			
+
+			<div class="content">I was just thinking, it would be really great if we get a tutorial on how to convert a SimpleChar to a 'Networked and multiplayer SimpleChar'. The 'Game ' code provided is really large and we don't quite understand it completely without spending more than one day (at least) just to understand that, even if we don't want...<br /><br />I setup the Network manager in the LoadWorld, but as I try to look into the example Game code, things are too interwoven in one another and it is too difficult to extract the exact functionality I want.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile39992">
+			<dt>
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1058  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1058%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1058" style="color: #C06000;" class="username-coloured">prafulrana</a>
+			</dt>
+
+			<dd>New User</dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 3</dd><dd><strong>Joined:</strong> 06 Feb 2008, 14:21</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p40633" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p40633">Re: Getting started with a multiplayer app</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=40633  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=40633#p40633%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=40633#p40633"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1063.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1063" style="color: #0060C0;" class="username-coloured">Cthulhu</a></strong> &raquo; 31 Mar 2008, 04:56 </p>
+
+			
+
+			<div class="content">I was actually thinking of writing a tutorial like that, once I have the multiplayer thing working myself. I haven't been able to work on it for a week (or two) due to our project having to do a step backwards, but I'm pretty sure we'll be able to move on now. Once I've got the bare minimals of a multiplayer SimpleChar working, I'll try and write a tutorial on the subject.<br /><br />So far, I've been able to make input commands send messages to the message manager and the message manager being able to control the player's character. Next up is allowing other players to join the game and walk around as well.<br /><br />I do know that it's quite a lot of work - pretty much everything and then some has to be converted to 'multiplayer-code', including player movement, player spawns, input, player management and everything. Once I have the thing done, I should figure out if there's an easier (read: less code-intensive) way of doing the mulitplayer business.<br /><br />Edit / update: Have been able to create console command to join a game, and have been able to join a game on the other side (based on console feedback). The connection is instantly severed though, so I have to figure out why that is.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile40633">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1063.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1063"><img src="download/file.php-avatar=1063_1207125230.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1063_1207125230.gif" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1063.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1063" style="color: #0060C0;" class="username-coloured">Cthulhu</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 209</dd><dd><strong>Joined:</strong> 11 Feb 2008, 05:52</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<form id="viewtopic" method="post" action="http://www.terathon.com/forums/viewtopic.php?f=7&t=4539">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		
+		<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+		
+	</fieldset>
+
+	</form>
+	<hr />
+
+
+<div class="topic-actions">
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=7&t=4539  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=7&t=4539%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=7&t=4539" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="pagination">
+			8 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+</div>
+
+
+	<p></p><p><a href="viewforum.php-f=7.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=7" class="left-box left" accesskey="r">Return to Networking and Multiplayer</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7" selected="selected">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: No registered users and 1 guest</p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class DeferredTask</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/TimeMgr/index.html">Time Manager</a> &#x25BA; <a href="DeferredTask.html" tppabs="http://www.c4engine.com/docs/TimeMgr/DeferredTask.html">class DeferredTask</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class DeferredTask</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Time.h</code></div>
+General base class for objects which can be scheduled to perform a task after a specific amount of time.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;DeferredTask&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;ListElement&lt;DeferredTask&gt;,&nbsp;<span style="color: #0000FF">public</span>&nbsp;Completable&lt;DeferredTask&gt;</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="DeferredTask_GetTaskFlags.html" tppabs="http://www.c4engine.com/docs/TimeMgr/DeferredTask_GetTaskFlags.html">DeferredTask::GetTaskFlags</a></code></td>
+<td class="tableright1">Returns the task flags.
+</td></tr>
+<tr><td class="tableleft"><code><a href="DeferredTask_SetTaskFlags.html" tppabs="http://www.c4engine.com/docs/TimeMgr/DeferredTask_SetTaskFlags.html">DeferredTask::SetTaskFlags</a></code></td>
+<td class="tableright">Sets the task flags.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>DeferredTask(CompletionCallback&nbsp;*callback,&nbsp;<span style="color: #0000FF">void</span>&nbsp;*cookie&nbsp;=&nbsp;<span style="color: #0000FF">nullptr</span>);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>callback</code></td>
+<td class="tableright1">The callback to invoke when the task is triggered.
+</td></tr>
+<tr><td class="tableleft"><code>cookie</code></td>
+<td class="tableright">The cookie that is passed to the trigger callback as its last parameter.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>DeferredTask</code> class encapsulates a callback function that is invoked at some future time when the deferred task object is triggered by some means. Once a deferred task or one of its subclasses has been created, it should be added to the Time Manager using the <code><a href="TimeMgr_AddTask.html" tppabs="http://www.c4engine.com/docs/TimeMgr/TimeMgr_AddTask.html">TimeMgr::AddTask</a></code> function. The callback function specified by the <code>callback</code> parameter should have the following prototype.
+<p><code><span style="color: #0000FF">typedef</span>&nbsp;<span style="color: #0000FF">void</span>&nbsp;CompletionCallback(DeferredTask&nbsp;*,&nbsp;<span style="color: #0000FF">void</span>&nbsp;*);</code></p>
+When the deferred task is triggered, the callback is invoked with the pointer specified by the <code>cookie</code> parameter passed to it as its second argument. By default, a deferred task is triggered only once and is then removed from the Time Manager. A deferred task can be made to be triggered repeatedly by setting the <code>kTaskRepeating</code> flag with the <code><a href="DeferredTask_SetTaskFlags.html" tppabs="http://www.c4engine.com/docs/TimeMgr/DeferredTask_SetTaskFlags.html">DeferredTask::SetTaskFlags</a></code> function.<br/><br/> The <code>DeferredTask</code> base class is always triggered, so the callback function will be invoked at the beginning of the next frame once the deferred task object has been registered using the <code><a href="TimeMgr_AddTask.html" tppabs="http://www.c4engine.com/docs/TimeMgr/TimeMgr_AddTask.html">TimeMgr::AddTask</a></code> function. See the <code><a href="Timer.html" tppabs="http://www.c4engine.com/docs/TimeMgr/Timer.html">Timer</a></code> class for a deferred task that is triggered after a specified period of time.<br/><br/> Deferred tasks can be persistent or nonpersistent. A persistent task continues to exist after it has been triggered, but a nonpersistent task is automatically destroyed after being triggered. By default, a deferred task is persistent. The persistence state can be changed using the <code><a href="DeferredTask_SetTaskFlags.html" tppabs="http://www.c4engine.com/docs/TimeMgr/DeferredTask_SetTaskFlags.html">DeferredTask::SetTaskFlags</a></code> function.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="../Utilities/ListElement.html" tppabs="http://www.c4engine.com/docs/Utilities/ListElement.html">ListElement&lt;DeferredTask&gt;</a></code></td>
+<td class="tableright1">Used internally by the Time Manager.
+</td></tr>
+<tr><td class="tableleft"><code><a href="../Utilities/Completable.html" tppabs="http://www.c4engine.com/docs/Utilities/Completable.html">Completable&lt;DeferredTask&gt;</a></code></td>
+<td class="tableright">The completion callback is called when the task is triggered.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="Timer.html" tppabs="http://www.c4engine.com/docs/TimeMgr/Timer.html">Timer</a></code>
+</p>
+<p><code><a href="TimeMgr_AddTask.html" tppabs="http://www.c4engine.com/docs/TimeMgr/TimeMgr_AddTask.html">TimeMgr::AddTask</a></code>
+</p>
+<p><code><a href="TimeMgr_RemoveTask.html" tppabs="http://www.c4engine.com/docs/TimeMgr/TimeMgr_RemoveTask.html">TimeMgr::RemoveTask</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

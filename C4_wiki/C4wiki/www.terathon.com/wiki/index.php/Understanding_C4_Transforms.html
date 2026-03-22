@@ -1,0 +1,881 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/Understanding_C4_Transforms by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="Understanding C4 Transforms,Jimbobjames" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>Understanding C4 Transforms - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Understanding_C4_Transforms";
+var wgTitle = "Understanding C4 Transforms";
+var wgAction = "view";
+var wgArticleId = "2251";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "8198";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Understanding_C4_Transforms">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Understanding C4 Transforms</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p><b>Note</b>: The code below has been updated to work with v2.7 of the engine.
+</p><p>This code below allows you to move and rotate a geometry and to see the effect of various actions on the World and Local Transform (4x4) matrices. You can choose to rotate using "SetRotationAbout" or by using "SetEulerAngles".
+</p><p>Note that the "local" transform here refers to the 4x4 matrix to transform from your entity (child node) to its parent node. So if your entity is directly attached the root node (and it probably will be), then the local and world transforms will be identical.
+</p><p><b>Steps:</b>
+</p>
+<ul><li>Make a new project as described in the HelloWorld Tutorial.
+</li><li>Use this code instead for your HelloWorld.h and HelloWorld.cpp files. I called the files TransformTest.h and TransformTest.cpp instead.
+</li><li>Compile
+</li><li>Add the following to your engine.cfg file (under Data/engine). Note that I'm using a German keyboard - use other keys (say "h","k","b","n") if you don't know the values for the arrow keys for your keyboard:
+</li></ul>
+<pre>
+bind &quot;NACH-RECHTS&quot;&nbsp;%trgt;
+bind &quot;NACH-LINKS&quot;&nbsp;%tlft;
+bind &quot;NACH-OBEN&quot;&nbsp;%tfwd;
+bind &quot;NACH-UNTEN&quot;&nbsp;%tbck;
+bind &quot;u&quot;&nbsp;%tnup;
+bind &quot;j&quot;&nbsp;%tdwn;
+bind &quot;r&quot;&nbsp;%rmde;
+bind &quot;t&quot;&nbsp;%tmde;
+bind &quot;e&quot;&nbsp;%eulr;
+</pre>
+<ul><li>Open (for example) tutorials/world/water.wld and place a Geometry in the world. Use the world editor's "transform page" - see the pages menu - to position it say at (X=10.0, Y=5.0, Z=3.0) with 0's for all rotations (or place it wherever you want!!). 
+</li><li>With the Geometry still selected, press Ctrl-I to open the Node Info dialog. Then go to the Controller tab and select the "Transform Test" Controller. Press OK to save that change.
+</li><li>Save your world under a name like TransformTest.wld. Its best not to overwrite the original Water.wld which you can use again later for other test projects.
+</li><li>Now choose World &gt; "Save and Play" from the menu (or press Ctrl-P) and use the keys described below to move and rotate your Geometry. 
+</li></ul>
+<p><b>Keys</b>:
+</p>
+<ul><li>"WASD" and mouse are as usual for camera control
+</li><li>"R" is to swith on and off rotation control
+</li><li>"T" is to switch on and off translation control
+</li><li>"E" is to toggle use of Euler angles in the transforms
+</li><li>Arrow Keys as well as "U" and "J" are for moving and rotating the entity.
+</li></ul>
+<p><b>Snap Shot</b>: Here is a picture showing the matrix info in the top left of the screen:
+</p><p><a href="Image_Transforms_In_C4.html" class="image" title="Image:Transforms_In_C4.jpg"><img alt="Image:Transforms_In_C4.jpg" src="../images/5/54/Transforms_In_C4.jpg" width="1000" height="750" border="0" /></a>
+</p><p>-- <a href="User_Jimbobjames.html" title="User:Jimbobjames">Jimbobjames</a>
+</p><p><b>TransformTest.h</b>
+</p>
+<pre>
+#ifndef TransformTest_h
+#define TransformTest_h
+
+#include &quot;C4Application.h&quot;
+#include &quot;C4Engine.h&quot;
+#include &quot;C4World.h&quot;
+#include &quot;C4Cameras.h&quot;
+#include &quot;C4Interface.h&quot;
+#include &quot;C4Input.h&quot;
+
+extern &quot;C&quot;
+{
+	C4MODULEEXPORT C4::Application *ConstructApplication(void);
+}
+
+namespace C4
+{
+    
+    enum
+    {
+        kActionForward          = 'frwd',
+        kActionBackward         = 'bkwd',
+        kActionLeft             = 'left',
+        kActionRight            = 'rght',
+        kActionUp               = 'jump',
+        kActionDown             = 'down',
+        kActionTranslateRight   = 'trgt',
+		kActionTranslateLeft   = 'tlft',
+        kActionTranslateForward   = 'tfwd',
+		kActionTranslateBack   = 'tbck',
+        kActionTranslateUp   = 'tnup',
+		kActionTranslateDown   = 'tdwn',
+        kActionTranslateMode   = 'tmde',
+		kActionRotateMode   = 'rmde',
+		kActionEulerMode   = 'eulr'
+    };
+    
+    enum
+    {
+		kEntityTest             = 'test'
+    };
+        
+    enum
+    {
+		kControllerTransform			= 'tfrm'
+    };
+   
+    enum
+    {
+        kLocatorSpectator       = 'spec'
+    };
+    
+    class MovementAction&nbsp;: public Action
+    {
+        private:
+            
+            unsigned long   movementFlag;
+            
+        public:
+            
+            MovementAction(unsigned long type, unsigned long flag);
+            ~MovementAction();
+            
+            void Begin(void);
+            void End(void);
+    };
+    
+class TransformController&nbsp;: public Controller
+{
+   private:
+
+        float			transformRate;
+		float			displacementX, displacementY, displacementZ;
+		float			rotationX, rotationY, rotationZ;
+		float			previousDisplacementX, previousDisplacementY, previousDisplacementZ;
+		float			previousRotationX, previousRotationY, previousRotationZ;
+        Transform4D		originalTransform;    // The target's original transform
+		Transform4D		translation;
+		Point3D			myTranslation;
+		TextWidget		*pText[4][4];
+		TextWidget		*pTextLocal[4][4];
+		TextWidget		*matrixTitleText[2]; //Names of the various matrices
+		TextWidget		*rotateText;
+		TextWidget		*translateText;
+		TextWidget		*eulerText;
+		
+   public:
+
+        TransformController();
+        ~TransformController();
+        static bool ValidNode(const Node *node);
+        void Preprocess(void);
+        void Move(void);
+		
+        TextWidget *DisplayText(char *pText, const float x, const float y);
+};   
+       
+    class GameWorld&nbsp;: public World
+    {
+        private:
+            
+            SpectatorCamera     spectatorCamera;
+        
+        public:
+            
+            GameWorld(const char *name);
+            ~GameWorld();
+            
+            SpectatorCamera *GetSpectatorCamera(void)
+            {
+                return (&amp;spectatorCamera);
+            }
+            
+            WorldResult Preprocess(void);
+            void Render(void);
+    };
+       
+    class Game&nbsp;: public Singleton&lt;Game&gt;, public Application
+    {
+        private:
+            
+            DisplayEventHandler             displayEventHandler;
+
+            ControllerReg&lt;TransformController&gt;   transformControllerReg;
+            ModelRegistration               testModelEntityReg;
+
+            LocatorRegistration             locatorReg;
+            
+            InputMgr::KeyProc               *prevEscapeProc;
+            void                            *prevEscapeData;
+            
+            MovementAction                  *forwardAction;
+            MovementAction                  *backwardAction;
+            MovementAction                  *leftAction;
+            MovementAction                  *rightAction;
+            MovementAction                  *upAction;
+            MovementAction                  *downAction;
+            MovementAction                  *translateRightAction;
+			MovementAction                  *translateLeftAction;
+            MovementAction                  *translateForwardAction;
+			MovementAction                  *translateBackAction;
+            MovementAction                  *translateUpAction;
+			MovementAction                  *translateDownAction;
+            MovementAction                  *translateModeAction;
+			MovementAction                  *rotateModeAction;
+			MovementAction                  *eulerModeAction;
+            
+            static World *ConstructWorld(const char *name, void *data);
+            
+            static void HandleDisplayEvent(const DisplayEventData *eventData, void *data);
+            
+            static void EscapeProc(void *data);
+        
+        public:
+            
+            Game();
+            ~Game();
+    };
+      
+    extern Game *TheGame;
+}
+
+#endif
+</pre>
+<p><b>TransformTest.cpp</b>
+</p>
+<pre>
+#include &quot;TransformTest.h&quot;
+
+using namespace C4;
+
+Game *C4::TheGame = nullptr;
+
+bool translateRight = false;
+bool translateLeft = false;
+bool translateForward = false;
+bool translateBack = false;
+bool translateMode = false;
+bool translateUp = false;
+bool translateDown = false;
+bool rotateMode = true;
+bool eulerMode = false;
+
+inline String&lt;5&gt; MyFloatToString(float num)	{
+			return (String&lt;5&gt;(num));
+}
+
+C4::Application *ConstructApplication(void)
+{
+    return (new Game);
+}
+
+MovementAction::MovementAction(unsigned long type, unsigned long flag)&nbsp;: Action(type)
+{  
+    movementFlag = flag;
+}
+
+MovementAction::~MovementAction()
+{
+}
+
+void MovementAction::Begin(void)
+{  
+    GameWorld *world = static_cast&lt;GameWorld *&gt;(TheWorldMgr-&gt;GetWorld());
+    if (world)
+    {       
+        SpectatorCamera *camera = world-&gt;GetSpectatorCamera();
+        camera-&gt;SetSpectatorFlags(camera-&gt;GetSpectatorFlags() | movementFlag);
+    }
+
+    switch (GetActionType())
+    {
+    case kActionTranslateRight:
+		translateRight = true;
+        break;
+	    
+	case kActionTranslateLeft:
+		translateLeft = true;
+        break;
+
+    case kActionTranslateForward:
+		translateForward = true;
+        break;
+	    
+	case kActionTranslateBack:
+		translateBack = true;
+        break;
+
+	case kActionTranslateUp:
+		translateUp = true;
+        break;
+
+    case kActionTranslateDown:
+		translateDown = true;
+        break;
+    }
+}
+
+void MovementAction::End(void)
+{    
+    GameWorld *world = static_cast&lt;GameWorld *&gt;(TheWorldMgr-&gt;GetWorld());
+    if (world)
+    {      
+        SpectatorCamera *camera = world-&gt;GetSpectatorCamera();
+        camera-&gt;SetSpectatorFlags(camera-&gt;GetSpectatorFlags() &amp; ~movementFlag);
+    }
+
+    switch (GetActionType())
+    {
+    case kActionTranslateRight:
+		translateRight = false;
+        break;
+
+    case kActionTranslateLeft:
+		translateLeft = false;
+        break;
+
+    case kActionTranslateForward:
+		translateForward = false;
+        break;
+
+    case kActionTranslateBack:
+		translateBack = false;
+        break;
+
+	case kActionTranslateUp:
+		translateUp = false;
+        break;
+
+    case kActionTranslateDown:
+		translateDown = false;
+        break;
+
+    case kActionRotateMode:
+		rotateMode =&nbsp;!rotateMode;
+        break;
+	    
+	case kActionTranslateMode:
+		translateMode =&nbsp;!translateMode;
+		break;
+
+	case kActionEulerMode:
+		eulerMode =&nbsp;!eulerMode;
+        break;
+    }
+}
+
+TransformController::TransformController()&nbsp;: Controller(kControllerTransform)
+{
+    transformRate = 0.005F;	
+}
+
+TransformController::~TransformController()
+{
+	for (int i = 0; i &lt; 4; i++)
+		for (int j = 0; j &lt; 4; j++) {
+			delete pText[i][j];
+			delete pTextLocal[i][j];
+		}
+	delete rotateText;
+	delete translateText;
+	delete eulerText;
+}
+
+bool TransformController::ValidNode(const Node *node)
+{
+    return (node-&gt;GetNodeType() == kNodeGeometry);
+}
+
+void TransformController::Preprocess(void)
+{
+    Controller::Preprocess();
+	
+	rotateText = new TextWidget(&quot;Rotate Mode OFF&quot;);
+	translateText = new TextWidget(&quot;Translate Mode OFF&quot;);
+	eulerText = new TextWidget(&quot;Euler Mode OFF&quot;);
+
+	matrixTitleText[0] = new TextWidget(&quot;World Transform Matrix:&quot;);
+	matrixTitleText[1] = new TextWidget(&quot;Local (Child to Parent) Transform Matrix:&quot;);
+    matrixTitleText[0]-&gt;SetWidgetPosition(Point3D(1.0f, 20.0f, 0.0f));
+    TheInterfaceMgr-&gt;AddWidget(matrixTitleText[0]);
+    matrixTitleText[1]-&gt;SetWidgetPosition(Point3D(1.0f, 130.0f, 0.0f));
+    TheInterfaceMgr-&gt;AddWidget(matrixTitleText[1]);
+
+	for (int i = 0;i &lt; 4; i++)
+		for (int j = 0; j &lt; 4; j++) {
+			pText [i][j] = new TextWidget(&quot;0.0&quot;);
+			pTextLocal [i][j] = new TextWidget(&quot;0.0&quot;);
+		}
+
+    // Grab the original transform of the target node
+    const Node *target = GetTargetNode();
+    originalTransform = target-&gt;GetNodeTransform();
+	
+	previousDisplacementX = previousDisplacementY = previousDisplacementZ = 0.0F;
+	previousRotationX = previousRotationY = previousRotationZ = 0.0F;
+	translation.SetIdentity();
+    myTranslation.x = myTranslation.y = myTranslation.z = 0.0F;
+	displacementX = displacementY = displacementZ = 0.0F;
+	rotationX  = rotationY = rotationZ = 0.0F;
+}
+
+void TransformController::Move(void)
+{
+    Matrix3D    rotator;
+
+    // Calculate the new transform angle based on how much time has passed
+
+	if (translateLeft) {
+		if (translateMode)
+			displacementX = previousDisplacementX + transformRate * TheTimeMgr-&gt;GetFloatDeltaTime();
+		if (rotateMode)
+			rotationX = previousRotationX + transformRate * TheTimeMgr-&gt;GetFloatDeltaTime();
+	}
+
+	if (translateRight) {
+		if (translateMode)
+			displacementX = previousDisplacementX - transformRate * TheTimeMgr-&gt;GetFloatDeltaTime();
+		if (rotateMode)
+			rotationX = previousRotationX - transformRate * TheTimeMgr-&gt;GetFloatDeltaTime();
+	}
+
+	if (translateBack) {
+		if (translateMode)
+			displacementY = previousDisplacementY + transformRate * TheTimeMgr-&gt;GetFloatDeltaTime();
+		if (rotateMode)
+			rotationY = previousRotationY + transformRate * TheTimeMgr-&gt;GetFloatDeltaTime();
+	}
+
+	if (translateForward) {
+		if (translateMode)
+			displacementY = previousDisplacementY - transformRate * TheTimeMgr-&gt;GetFloatDeltaTime();
+		if (rotateMode)
+			rotationY = previousRotationY - transformRate * TheTimeMgr-&gt;GetFloatDeltaTime();
+	}
+
+	if (translateUp) {
+		if (translateMode)
+			displacementZ = previousDisplacementZ + transformRate * TheTimeMgr-&gt;GetFloatDeltaTime();
+		if (rotateMode)
+			rotationZ = previousRotationZ + transformRate * TheTimeMgr-&gt;GetFloatDeltaTime();
+	}
+
+	if (translateDown) {
+		if (translateMode)
+			displacementZ = previousDisplacementZ - transformRate * TheTimeMgr-&gt;GetFloatDeltaTime();
+		if (rotateMode)
+			rotationZ = previousRotationZ - transformRate * TheTimeMgr-&gt;GetFloatDeltaTime();
+	}
+
+	previousDisplacementX = displacementX;	
+	previousDisplacementY = displacementY;
+	previousDisplacementZ = displacementZ;
+	previousRotationX = rotationX;	
+	previousRotationY = rotationY;	
+	previousRotationZ = rotationZ;	
+
+    Node *target = GetTargetNode();
+
+	if (translateMode) {
+	    myTranslation.x = displacementX;
+		myTranslation.y = displacementY;
+		myTranslation.z = displacementZ;
+		translation.SetTranslation(myTranslation);		    
+		target-&gt;SetNodeTransform(originalTransform * translation);
+	} 
+	
+    // Now make a 3x3 rotation matrix
+	if (rotateMode) {
+		rotator.SetRotationAboutZ(0.0F);
+		if (!eulerMode) {
+			if (translateRight || translateLeft)
+				rotator.SetRotationAboutZ(rotationX);
+			if (translateForward || translateBack)
+				rotator.SetRotationAboutX(rotationY);
+			if (translateUp || translateDown)
+				rotator.SetRotationAboutY(rotationZ);
+		} else {
+			target-&gt;SetNodeMatrix3D(Matrix3D().SetEulerAngles(rotationX, rotationY, rotationZ));
+		}
+	} else {
+		rotationX = rotationY = rotationZ = 0.0F;
+		rotator.SetRotationAboutX(0.0F);
+		rotator.SetRotationAboutY(0.0F);
+		rotator.SetRotationAboutZ(0.0F);
+	}
+
+    const Point3D&amp; worldCenter = target-&gt;GetBoundingSphere()-&gt;GetCenter();
+    Point3D objectCenter = target-&gt;GetInverseWorldTransform() * worldCenter; 
+
+    // Make a 3x4 transform that rotates about the center point
+    Transform4D transform(rotator, objectCenter - rotator * objectCenter);
+
+	//translation.SetIdentity();
+	//target-&gt;SetNodePosition(myTranslation);//
+	
+	if (!eulerMode)   
+		target-&gt;SetNodeTransform(originalTransform * translation * transform);
+	
+	Transform4D worldTransform = target-&gt;GetWorldTransform();
+	Transform4D localTransform = target-&gt;GetNodeTransform();
+
+	int verticalTextOffset = 10.0F;
+
+	String&lt;20&gt; rotateModeText = (rotateMode&nbsp;? &quot;Rotate ON&quot;&nbsp;: &quot;Rotate OFF&quot;);
+	String&lt;20&gt; translateModeText = (translateMode&nbsp;? &quot;Translate ON&quot;&nbsp;: &quot;Translate OFF&quot;);
+	String&lt;20&gt; eulerModeText = (eulerMode&nbsp;? &quot;Euler ON&quot;&nbsp;: &quot;Euler OFF&quot;);
+
+	Point3D worldPosition = worldTransform.GetTranslation();
+	Point3D localPosition = localTransform.GetTranslation();
+
+	for (int i = 0; i &lt; 4; i++)
+		for (int j = 0; j &lt; 4; j++)
+			delete pText[i][j];
+
+	delete rotateText;
+	delete translateText;
+	delete eulerText;
+
+	rotateText = this-&gt;DisplayText(rotateModeText, 1.0F, 2.0F);
+	translateText = this-&gt;DisplayText(translateModeText, 100.0F, 2.0F);
+	eulerText = this-&gt;DisplayText(eulerModeText, 200.0F, 2.0F);
+
+	for (int i = 0; i &lt; 3; i++) {
+		pText[i][0] = this-&gt;DisplayText(MyFloatToString(worldTransform[i].x) + &quot;  &quot;, 20.0F, verticalTextOffset + 30.0F + 20.0 * i);
+		pText[i][1] = this-&gt;DisplayText(MyFloatToString(worldTransform[i].y) + &quot;  &quot;, 90.0F, verticalTextOffset + 30.0F + 20.0 * i);
+		pText[i][2] = this-&gt;DisplayText(MyFloatToString(worldTransform[i].z) + &quot;  &quot;, 160.0F, verticalTextOffset + 30.0F + 20.0 * i);
+	}
+
+	//fourth row of a Transform4D is always (0,0,0,1)
+	pText[3][0] = this-&gt;DisplayText(&quot;0.0&quot;, 20.0F, verticalTextOffset + 90.0F);
+	pText[3][1] = this-&gt;DisplayText(&quot;0.0&quot;, 90.0F, verticalTextOffset + 90.0F);
+	pText[3][2] = this-&gt;DisplayText(&quot;0.0&quot;, 160.0F, verticalTextOffset + 90.0F);
+
+	//fourth column of Transform contains the translation (poistion)
+	pText[0][3] = this-&gt;DisplayText(MyFloatToString(worldPosition.x), 230.0F, verticalTextOffset + 30.0F);
+	pText[1][3] = this-&gt;DisplayText(MyFloatToString(worldPosition.y), 230.0F, verticalTextOffset + 50.0F);
+	pText[2][3] = this-&gt;DisplayText(MyFloatToString(worldPosition.z), 230.0F, verticalTextOffset + 70.0F);
+	pText[3][3] = this-&gt;DisplayText(&quot;1.0&quot;, 230.0F, verticalTextOffset + 90.0F);
+
+	//now for the local transform
+
+	for (int i = 0; i &lt; 4; i++)
+		for (int j = 0; j &lt; 4; j++)
+			delete pTextLocal[i][j];
+		
+	for (int i = 0; i &lt; 3; i++) {
+		pTextLocal[i][0] = this-&gt;DisplayText(MyFloatToString(localTransform[i].x) + &quot;  &quot;, 20.0F, verticalTextOffset + 140.0F + 20.0 * i);
+		pTextLocal[i][1] = this-&gt;DisplayText(MyFloatToString(localTransform[i].y) + &quot;  &quot;, 90.0F, verticalTextOffset + 140.0F + 20.0 * i);
+		pTextLocal[i][2] = this-&gt;DisplayText(MyFloatToString(localTransform[i].z) + &quot;  &quot;, 160.0F, verticalTextOffset + 140.0F + 20.0 * i);
+		//pTextLocal[i][3] = this-&gt;DisplayText(&quot;0.0, &quot;, 220.0F, 30.0F + 20.0 * i);
+	}
+
+	//fourth row of a Transform4D is always (0,0,0,1)
+	pTextLocal[3][0] = this-&gt;DisplayText(&quot;0.0&quot;, 20.0F, verticalTextOffset + 200.0F);
+	pTextLocal[3][1] = this-&gt;DisplayText(&quot;0.0&quot;, 90.0F, verticalTextOffset + 200.0F);
+	pTextLocal[3][2] = this-&gt;DisplayText(&quot;0.0&quot;, 160.0F, verticalTextOffset + 200.0F);
+	//pTextLocal[3][3] = this-&gt;DisplayText(&quot;1.0&quot;, 220.0F, 90.0F);
+
+	//fourth column of Transform contains the translation (poistion)
+	pTextLocal[0][3] = this-&gt;DisplayText(MyFloatToString(localPosition.x), 230.0F, verticalTextOffset + 140.0F);
+	pTextLocal[1][3] = this-&gt;DisplayText(MyFloatToString(localPosition.y), 230.0F, verticalTextOffset + 160.0F);
+	pTextLocal[2][3] = this-&gt;DisplayText(MyFloatToString(localPosition.z), 230.0F, verticalTextOffset + 180.0F);
+	pTextLocal[3][3] = this-&gt;DisplayText(&quot;1.0&quot;, 230.0F, verticalTextOffset + 200.0F);
+
+    // Invalidate the target node so that it gets updated properly
+    target-&gt;Invalidate();
+}
+
+TextWidget *TransformController::DisplayText(char *pText, const float x, const float y)
+{
+    TextWidget *pTextWidget = new TextWidget(Vector2D(80.0f,16.0f),pText);
+	pTextWidget-&gt;SetFont(&quot;font/Bold&quot;);
+	pTextWidget-&gt;SetWidgetColor(ColorRGBA(0.0f, 0.0f, 1.0f));
+    pTextWidget-&gt;SetWidgetPosition(Point3D(x, y, 0.0f));
+    TheInterfaceMgr-&gt;AddWidget(pTextWidget);
+    return pTextWidget;
+}
+
+GameWorld::GameWorld(const char *name)&nbsp;:
+        World(name),
+        spectatorCamera(2.0F, 1.0F, 0.3F)
+{
+}
+
+GameWorld::~GameWorld()
+{
+}
+
+WorldResult GameWorld::Preprocess(void)
+{
+   
+    WorldResult result = World::Preprocess();
+    if (result&nbsp;!= kWorldOkay) return (result);
+        
+    Zone *zone = GetRootNode();
+    if (zone)
+    {      
+        const Marker *marker = zone-&gt;GetFirstMarker();
+        while (marker)
+        {
+            MarkerType type = marker-&gt;GetMarkerType();
+            if (type == kMarkerLocator)
+            {
+                if (static_cast&lt;const LocatorMarker *&gt;(marker)-&gt;GetLocatorType() == kLocatorSpectator)
+                {
+                   
+                    const Vector3D direction = marker-&gt;GetWorldTransform()[0];
+                    float azimuth = Atan(direction.y, direction.x);
+                    float altitude = Atan(direction.z, Sqrt(direction.x * direction.x + direction.y * direction.y));
+                    
+                    spectatorCamera.SetCameraAzimuth(azimuth);
+                    spectatorCamera.SetCameraAltitude(altitude);
+                    spectatorCamera.SetNodePosition(marker-&gt;GetWorldPosition());
+                }
+            }
+                      
+            marker = marker-&gt;ListElement&lt;Marker&gt;::Next();
+        }
+    }
+    else
+    {
+        spectatorCamera.SetNodePosition(Point3D(0.0F, 0.0F, 1.0F));
+    }
+      
+    SetCamera(&amp;spectatorCamera);
+    
+    return (kWorldOkay);
+}
+
+void GameWorld::Render(void)
+{    
+    World::Render();
+}
+
+
+Game::Game()&nbsp;:
+       
+        Singleton&lt;Game&gt;(TheGame),
+        displayEventHandler(&amp;HandleDisplayEvent),
+		testModelEntityReg(kEntityTest, nullptr, &quot;model/testModel&quot;, kModelPrecache, kControllerTransform),
+        transformControllerReg(kControllerTransform, &quot;Test Model&quot;),
+        locatorReg(kLocatorSpectator, &quot;Spectator Camera&quot;)
+{  
+    TheDisplayMgr-&gt;InstallDisplayEventHandler(&amp;displayEventHandler);
+    prevEscapeProc = TheInputMgr-&gt;GetEscapeProc();
+    prevEscapeData = TheInputMgr-&gt;GetEscapeData();
+    TheInputMgr-&gt;SetEscapeProc(&amp;EscapeProc, this);
+    TheWorldMgr-&gt;SetWorldConstructor(&amp;ConstructWorld);
+
+    forwardAction = new MovementAction(kActionForward, kSpectatorMoveForward);
+    backwardAction = new MovementAction(kActionBackward, kSpectatorMoveBackward);
+    leftAction = new MovementAction(kActionLeft, kSpectatorMoveLeft);
+    rightAction = new MovementAction(kActionRight, kSpectatorMoveRight);
+    upAction = new MovementAction(kActionUp, kSpectatorMoveUp);
+    downAction = new MovementAction(kActionDown, kSpectatorMoveDown);
+    translateRightAction = new MovementAction(kActionTranslateRight, 0);
+    translateLeftAction = new MovementAction(kActionTranslateLeft, 0);
+    translateForwardAction = new MovementAction(kActionTranslateForward, 0);
+    translateBackAction = new MovementAction(kActionTranslateBack, 0);
+    translateUpAction = new MovementAction(kActionTranslateUp, 0);
+    translateDownAction = new MovementAction(kActionTranslateDown, 0);
+    rotateModeAction = new MovementAction(kActionRotateMode, 0);
+    translateModeAction = new MovementAction(kActionTranslateMode, 0);
+    eulerModeAction = new MovementAction(kActionEulerMode, 0);
+    
+    TheInputMgr-&gt;AddAction(forwardAction);
+    TheInputMgr-&gt;AddAction(backwardAction);
+    TheInputMgr-&gt;AddAction(leftAction);
+    TheInputMgr-&gt;AddAction(rightAction);
+    TheInputMgr-&gt;AddAction(upAction);
+    TheInputMgr-&gt;AddAction(downAction);
+
+	TheInputMgr-&gt;AddAction(translateRightAction);
+	TheInputMgr-&gt;AddAction(translateLeftAction);
+    TheInputMgr-&gt;AddAction(translateForwardAction);
+	TheInputMgr-&gt;AddAction(translateBackAction);
+    TheInputMgr-&gt;AddAction(translateUpAction);
+	TheInputMgr-&gt;AddAction(translateDownAction);
+    TheInputMgr-&gt;AddAction(translateModeAction);
+	TheInputMgr-&gt;AddAction(rotateModeAction);
+	TheInputMgr-&gt;AddAction(eulerModeAction);
+
+	TheInterfaceMgr-&gt;SetInputManagementMode(kInputManagementAutomatic);
+    TheMessageMgr-&gt;BeginSinglePlayerGame();
+}
+
+Game::~Game()
+{
+    TheWorldMgr-&gt;UnloadWorld();
+    TheWorldMgr-&gt;SetWorldConstructor(nullptr);
+
+	TheMessageMgr-&gt;EndGame();
+    
+    delete downAction;
+    delete upAction;
+    delete rightAction;
+    delete leftAction;
+    delete backwardAction;
+    delete forwardAction;
+	delete translateRightAction;
+	delete translateLeftAction;
+	delete translateForwardAction;
+	delete translateBackAction;
+	delete translateUpAction;
+	delete translateDownAction;
+	delete translateModeAction;
+	delete rotateModeAction;
+	delete eulerModeAction;
+    
+    TheInputMgr-&gt;SetEscapeProc(prevEscapeProc, prevEscapeData);
+}
+
+World *Game::ConstructWorld(const char *name, void *data)
+{
+    return (new GameWorld(name));
+}
+
+void Game::HandleDisplayEvent(const DisplayEventData *eventData, void *data)
+{
+	// This function is called when a display event occurs (because we
+	// registered it in the Game constructor).
+	
+	if (eventData-&gt;eventType == kEventDisplayChange)
+	{
+		// The screen resolution has changed. Handle accordingly.
+	}
+}
+
+void Game::EscapeProc(void *data)
+{
+}
+</pre>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 10/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:2251-0!1!0!!en!2!edit=0 and timestamp 20150119070320 -->
+<div class="printfooter">
+Retrieved from "<a href="Understanding_C4_Transforms.html">http://www.terathon.com/wiki/index.php/Understanding_C4_Transforms</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="Understanding_C4_Transforms.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:Understanding_C4_Transforms&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=Understanding_C4_Transforms&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=Understanding_C4_Transforms&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="User_46.53.162.html" title="The user page for the ip you&#039;re editing as [.]" accesskey="." class="new">46.53.162.27</a></li>
+				<li id="pt-anontalk"><a href="User_talk_46.53.162.html" title="Discussion about edits from this ip address [n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=Understanding_C4_Transforms" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Understanding_C4_Transforms.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Understanding_C4_Transforms.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=Understanding_C4_Transforms&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=Understanding_C4_Transforms&amp;oldid=8198" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 30 December 2011, at 17:36.</li>
+				<li id="viewcount">This page has been accessed 4,611 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.744 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/Understanding_C4_Transforms by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:49 GMT -->
+</html>

@@ -1,0 +1,1204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View topic - Creating New Window with Elements</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '';
+	var base_url = '';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=18.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=18">C4 Engine Development</a> <strong>&#8249;</strong> <a href="viewforum.php-f=8.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8">User Interface</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewtopic.php-f=8&t=5703.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=5703">Creating New Window with Elements</a></h2>
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body --><div style="display: none !important;">Topics about the user interface system, including windows, dialogs, scoreboards, etc.<br /></div>
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=8&t=5703  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=8&t=5703%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=8&t=5703" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="search-box">
+			<form method="get" id="topic-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="Search this topic…" onclick="if(this.value=='Search this topic…')this.value='';" onblur="if(this.value=='')this.value='Search this topic…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="t" value="5703" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			18 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+
+</div>
+<div class="clear"></div>
+
+
+	<div id="p50753" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 class="first"><a href="#p50753">Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=50753  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=50753#p50753%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=50753#p50753"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a></strong> &raquo; 08 Oct 2008, 10:20 </p>
+
+			
+
+			<div class="content">Hello,<br /><br />1.) How do I attach elements such as EditableTextElement, IconButtonElement, etc. to a window? Is there a way to group the elements and make them part of the window? So when I move the window, all other elements inside move as well.<br /><br />2.) My EditableTextElement does allow me to edit the text, I cannot type in text when I click on it. Is there something I'm missing? It seems it cannot get focus.<br /><br />3.) My window is being created in Game::LoadWorld(). After I load the world in the console with 'load world/myWorld' the window is shown, but I cannot press the escape key anymore to close the menu bar that says 'Tools'. It seems the new window takes focus and key presses and therefore ignored form the main window. If I press the tilde key, the console window pops up and takes focus, but if I try to press escape here, the console window closes, and the new window I created regains focus, and therefore I cannot press escape to close the menu bar. Even if I click on the EditableTextElement which is not part of the new window I created, the new window will not lose focus.<br /><br />Thanks,<br />Salchichasa</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile50753">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 48</dd><dd><strong>Joined:</strong> 17 Sep 2008, 15:47</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p50754" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p50754">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=50754  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=50754#p50754%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=50754#p50754"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=7.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=7" style="color: #8000C0;" class="username-coloured">David Vasquez</a></strong> &raquo; 08 Oct 2008, 12:42 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>salchichasa wrote:</cite>1.) How do I attach elements such as EditableTextElement, IconButtonElement, etc. to a window? Is there a way to group the elements and make them part of the window? So when I move the window, all other elements inside move as well.</div></blockquote><br /><br />In your window's constructor function, call AddSubnode(yourElement) to add and group elements with the window.<br /><br /><blockquote><div><cite>salchichasa wrote:</cite>2.) My EditableTextElement does allow me to edit the text, I cannot type in text when I click on it. Is there something I'm missing? It seems it cannot get focus.</div></blockquote><br /><br />Take a look at the PlayerSettingsWindow constructor, which created an EditableTextElement for the player's name.<br /><br /><blockquote><div><cite>salchichasa wrote:</cite>3.) My window is being created in Game::LoadWorld(). After I load the world in the console with 'load world/myWorld' the window is shown, but I cannot press the escape key anymore to close the menu bar that says 'Tools'. It seems the new window takes focus and key presses and therefore ignored form the main window. If I press the tilde key, the console window pops up and takes focus, but if I try to press escape here, the console window closes, and the new window I created regains focus, and therefore I cannot press escape to close the menu bar. Even if I click on the EditableTextElement which is not part of the new window I created, the new window will not lose focus.</div></blockquote><br /><br />What happens if you choose World &gt; Save and Play World instead of using the Command Console to run your world?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile50754">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=7.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=7"><img src="download/file.php-avatar=7_1240796310.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=7_1240796310.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=7.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=7" style="color: #8000C0;" class="username-coloured">David Vasquez</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 4096</dd><dd><strong>Joined:</strong> 17 Apr 2006, 19:00</dd><dd><strong>Location:</strong> Las Vegas, Nevada</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p50758" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p50758">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=50758  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=50758#p50758%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=50758#p50758"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a></strong> &raquo; 08 Oct 2008, 15:18 </p>
+
+			
+
+			<div class="content">Thanks Huidafa,<br /><br />I got (1) to work with the AddSubnode method you suggested.<br /><br />I got (2) to work as well. It seems you need to have the EditableTextElement inside a Window. you can't just add it as an element to TheInterfaceMgr like this TheInterfaceMgr-&gt;AddElement(my_EditableTextElement). Why is this?<br /><br />As for (3), if I use your method to load the world, the menu bar won't be there, but I still have the same problem as before, where I can't give anything else focus since the window takes the focus. Until I close the window, only then can I click on other things. What I'm trying to do is have a window open with text that gets updated while the user is playing.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile50758">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 48</dd><dd><strong>Joined:</strong> 17 Sep 2008, 15:47</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p50759" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p50759">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=50759  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=50759#p50759%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=50759#p50759"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 08 Oct 2008, 15:48 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>salchichasa wrote:</cite>I got (2) to work as well. It seems you need to have the EditableTextElement inside a Window. you can't just add it as an element to TheInterfaceMgr like this TheInterfaceMgr-&gt;AddElement(my_EditableTextElement). Why is this?</div></blockquote><br /><br />Events get sent to windows, so elements that are just sitting around by themselves can't get input.<br /><br /><blockquote><div><cite>salchichasa wrote:</cite>As for (3), if I use your method to load the world, the menu bar won't be there, but I still have the same problem as before, where I can't give anything else focus since the window takes the focus. Until I close the window, only then can I click on other things. What I'm trying to do is have a window open with text that gets updated while the user is playing.</div></blockquote><br /><br />There are two things you can do:<br /><br />a) specify the kWindowNoInput flag when you create your window. This tells the Interface Manager not to route input events to your window, and it will let the Input Manager stay in gameplay mode while your window is visible.<br /><br />b) Instead of creating a Window, create an Interface. An Interface is an extra-light version of a window and does receive any input. You can use it as a container for showing other elements. The demo game uses interfaces for showing things like your score and weapon ammo.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile50759">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p50816" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p50816">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=50816  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=50816#p50816%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=50816#p50816"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a></strong> &raquo; 10 Oct 2008, 09:59 </p>
+
+			
+
+			<div class="content">Great, thanks Eric.<br /><br />Salchichasa</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile50816">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 48</dd><dd><strong>Joined:</strong> 17 Sep 2008, 15:47</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p50820" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p50820">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=50820  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=50820#p50820%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=50820#p50820"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a></strong> &raquo; 10 Oct 2008, 11:45 </p>
+
+			
+
+			<div class="content">(1) There's another problem. For simply displaying text on the screen, I have that working. But I'm not sure how I would implement accepting input from the user via a EditableTextElement. For this I need a window, but if I have a window it takes over the focus, and then I can't even play the game. My idea was to start the window disabled, and then in the game accept input via Actions, this could call a function that enables the window, so now the window has focus. Once the window has focus, it can be disabled again through keyboard events via HandleKeyboardEvent. Is this the best way to do this?<br /><br />(2) Another problem is for some reason, the HandleKeyboardEvent produces a stack overflow error when I press a key. Does anyone know why this is happening?<br /><br />Salchichasa</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile50820">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 48</dd><dd><strong>Joined:</strong> 17 Sep 2008, 15:47</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p50824" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p50824">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=50824  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=50824#p50824%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=50824#p50824"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 10 Oct 2008, 14:56 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>salchichasa wrote:</cite>(2) Another problem is for some reason, the HandleKeyboardEvent produces a stack overflow error when I press a key. Does anyone know why this is happening?</div></blockquote><br /><br />This sounds like an infinite recursion. Are you calling the HandleKeyboardEvent() function from with the HandleKeyboardEvent() function?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile50824">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p50973" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p50973">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=50973  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=50973#p50973%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=50973#p50973"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a></strong> &raquo; 14 Oct 2008, 09:09 </p>
+
+			
+
+			<div class="content">Yes for some reason I was returning HandleKeyboardEvent(eventType, key, modifiers) in the HandleKeyboardEvent(eventType, key, modifiers) function, I must have forgotten to remove it when I copied it from the C4 engine code. Well I removed it, and it solved problem (1) and (2).<br /><br />Thanks,<br />Salchichasa</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile50973">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 48</dd><dd><strong>Joined:</strong> 17 Sep 2008, 15:47</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p51067" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p51067">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=51067  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=51067#p51067%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=51067#p51067"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a></strong> &raquo; 16 Oct 2008, 12:02 </p>
+
+			
+
+			<div class="content">If I create a class that contains an EditableTextElement, and also overrides the HandleKeyboardEvent function, then do I need to manually implement the interface to the EditableTextElement? In other words, do I need to specify what happens when the user hits backspace, delete, selects text, etc., if the focus element is the EditableTextElement?<br /><br />Is there not a way to preserve the normal functionality of the EditableTextElement such as when the HandleKeyboardEvent function is not overridden?<br /><br />Thanks,<br />Salchichasa</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile51067">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 48</dd><dd><strong>Joined:</strong> 17 Sep 2008, 15:47</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p51073" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p51073">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=51073  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=51073#p51073%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=51073#p51073"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 16 Oct 2008, 14:14 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>salchichasa wrote:</cite>If I create a class that contains an EditableTextElement, and also overrides the HandleKeyboardEvent function, then do I need to manually implement the interface to the EditableTextElement? In other words, do I need to specify what happens when the user hits backspace, delete, selects text, etc., if the focus element is the EditableTextElement?<br /><br />Is there not a way to preserve the normal functionality of the EditableTextElement such as when the HandleKeyboardEvent function is not overridden?</div></blockquote><br /><br />When your override gets to the point where it just wants the normal functionality to take over, you should insert the following code:<br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>return (EditableTextElement::HandleKeyboardEvent(eventType, key, modifiers));<br /></code></dd></dl></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile51073">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p51113" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p51113">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=51113  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=51113#p51113%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=51113#p51113"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a></strong> &raquo; 17 Oct 2008, 10:52 </p>
+
+			
+
+			<div class="content">Ah, yes, that would work.<br /><br />Thanks,<br />Salchichasa</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile51113">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 48</dd><dd><strong>Joined:</strong> 17 Sep 2008, 15:47</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p51894" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p51894">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=51894  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=51894#p51894%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=51894#p51894"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a></strong> &raquo; 28 Oct 2008, 11:34 </p>
+
+			
+
+			<div class="content">When adding a new window via the interface manager, my application loads and runs correctly, but when it is closed, an access violation error occurs.<br /><br />I have the following line in the constructor of my Application sub class (Game):<br /><br />TheInterfaceMgr-&gt;AddElement(new myWindowClass);<br /><br /><br />This loads a window when the main program loads.<br /><br />When the application exits I get an 'access violation' error resulting in the ListBase::Purge method in the C4List.cpp file. Whis is this happening?<br /><br />Salchichasa</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile51894">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 48</dd><dd><strong>Joined:</strong> 17 Sep 2008, 15:47</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p51896" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p51896">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=51896  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=51896#p51896%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=51896#p51896"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 28 Oct 2008, 12:08 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>salchichasa wrote:</cite>When adding a new window via the interface manager, my application loads and runs correctly, but when it is closed, an access violation error occurs.<br /><br />I have the following line in the constructor of my Application sub class (Game):<br /><br />TheInterfaceMgr-&gt;AddElement(new myWindowClass);<br /><br /><br />This loads a window when the main program loads.<br /><br />When the application exits I get an 'access violation' error resulting in the ListBase::Purge method in the C4List.cpp file. Whis is this happening?<br /><br />Salchichasa</div></blockquote><br /><br />The problem is that your application is exiting before the window it created is being destroyed. At the time the destructor for your window class is called, the actual code for that destructor has already been removed from memory because your game DLL has been unloaded. What you need to do is keep track of the windows you've created and make sure you delete them all in your application subclass's destructor. The demo game subclasses all of its custom windows types from GameWindow, and these are all stored in a list. The Game class destructor purges this list so that the windows are destroyed before the DLL is unloaded.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile51896">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p51904" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p51904">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=51904  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=51904#p51904%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=51904#p51904"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a></strong> &raquo; 28 Oct 2008, 14:37 </p>
+
+			
+
+			<div class="content">Great thanks, it's now fixed.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile51904">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1449.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1449" style="color: #0060C0;" class="username-coloured">salchichasa</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 48</dd><dd><strong>Joined:</strong> 17 Sep 2008, 15:47</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p88754" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p88754">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=88754  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=88754#p88754%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=88754#p88754"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2188.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2188" style="color: #0060C0;" class="username-coloured">tbutts</a></strong> &raquo; 01 Sep 2010, 14:11 </p>
+
+			
+
+			<div class="content">How did you fix this?<br /><br />How do you destroy an interface?<br /><br />Do you destroy an interface in that classes destructor, or in the destructor that interface is in?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile88754">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2188.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2188" style="color: #0060C0;" class="username-coloured">tbutts</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19</dd><dd><strong>Joined:</strong> 22 Oct 2009, 10:32</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p88782" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p88782">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=88782  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=88782#p88782%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=88782#p88782"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2188.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2188" style="color: #0060C0;" class="username-coloured">tbutts</a></strong> &raquo; 02 Sep 2010, 09:56 </p>
+
+			
+
+			<div class="content">Much like my above questions, I am confused on something regarding an Interface.<br /><br />If you have a Window lets say, and you have buttons and other things inside that window, they are grouped inside that window.  So, if you move that Windows location, the items of course will go with it.<br /><br />I have an interface with (I think) items grouped inside it, but when i move this Interface the items don't move with it.  Therefore, i don't think I actually have an interface.  Tell me if this code is correct for creating a new interface.<br /><br />.h file<br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>&nbsp; &nbsp;class TopMenuInterface : public Interface, public Singleton&lt;TopMenuInterface&gt;<br />&nbsp; &nbsp;{<br />&nbsp; &nbsp;private:<br /><br />&nbsp; &nbsp;&nbsp; &nbsp;OutlineElement&nbsp; &nbsp;&nbsp; &nbsp;TopMenuInterfaceOutline;<br />&nbsp; &nbsp;&nbsp; &nbsp;TextElement&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TopMenuInterfaceTitle;<br />&nbsp; &nbsp;&nbsp; &nbsp;TextElement&nbsp; &nbsp;&nbsp; &nbsp;TopMenuInterfaceControl;<br />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<br />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<br />&nbsp; &nbsp;&nbsp; &nbsp;<br />&nbsp; &nbsp;&nbsp; &nbsp;public:<br />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;TopMenuInterface();<br />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;~TopMenuInterface();<br />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<br />&nbsp; &nbsp;};</code></dd></dl><br /><br />.cpp file<br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>TopMenuInterface::TopMenuInterface() : Singleton&lt;TopMenuInterface&gt;(TheTopMenuInterface),<br />&nbsp; &nbsp;TopMenuInterfaceOutline(800.0F, 25.0F),<br />&nbsp; &nbsp;TopMenuInterfaceTitle(&quot;This is the Top Menu&quot;, AutoReleaseFont(&quot;font/Gui&quot;))<br /><br />{<br />&nbsp; &nbsp;static const ConstColorRGBA headingColor = {1.0F, 1.0F, 0.0F, 1.0F};<br />&nbsp; &nbsp;static const ConstColorRGBA gradientColor = {1.0F, 0.7F, 0.1F, 1.0F};<br />&nbsp; &nbsp;const ConstColorRGBA kWindowBackgroundColor = {0.0F, 0.0F, 0.0F, 0.375F};<br /><br />&nbsp; &nbsp;AutoReleaseFont pFont(&quot;font/Gui&quot;);<br />&nbsp; &nbsp;TextElement *pText = new TextElement(&quot;This is the first @#! Menu Interface&quot;, pFont);<br />&nbsp; &nbsp;pText-&gt;SetElementPosition(Point3D(0.0F, 50.0F, 0.0F));<br />&nbsp; &nbsp;TheInterfaceMgr-&gt;AddElement(pText);<br /><br />&nbsp; &nbsp;TopMenuInterfaceOutline.SetOutlineColor(ColorRGBA(0.0F, 0.0F, 0.0F, 1.0F));<br />&nbsp; &nbsp;TopMenuInterfaceOutline.SetElementPosition(Point3D(0.0F, 25.0F, 0.0F));<br />&nbsp; &nbsp;AddSubnode(&amp;TopMenuInterfaceOutline);<br /><br />&nbsp; &nbsp;TopMenuInterfaceTitle.SetTextColor(K::white);<br />&nbsp; &nbsp;TopMenuInterfaceTitle.SetTextAlignment(kTextAlignCenter);<br />&nbsp; &nbsp;TopMenuInterfaceTitle.SetElementPosition(Point3D(100.0F, 8.0F, 0.0F));<br />&nbsp; &nbsp;AddSubnode(&amp;TopMenuInterfaceTitle);<br />}<br /><br />TopMenuInterface::~TopMenuInterface()<br />{<br /><br />}</code></dd></dl><br /><br />Thanks</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile88782">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2188.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2188" style="color: #0060C0;" class="username-coloured">tbutts</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19</dd><dd><strong>Joined:</strong> 22 Oct 2009, 10:32</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p88788" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p88788">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=88788  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=88788#p88788%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=88788#p88788"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1203.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1203" style="color: #0060C0;" class="username-coloured">Mr. Bowser</a></strong> &raquo; 02 Sep 2010, 12:37 </p>
+
+			
+
+			<div class="content">Try replacing the line:<br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>TheInterfaceMgr-&gt;AddElement(pText);</code></dd></dl><br /><br />with:<br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>AddSubnode(pText);</code></dd></dl><br /><br /><br />TheInterfaceMgr-&gt;AddElement adds the element passed into it as an interface, but what you want is to have the TextElement added as a control/element to the window/interface. So by using AddSubnode you're adding the element passed in as a child element of the interface.</div>
+
+			<div id="sig88788" class="signature">Smoke me a kipper, I'll be back for breakfast!<br /><br />-Previously known as DarthDie</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile88788">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1203.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1203"><img src="download/file.php-avatar=1203_1240461271.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1203_1240461271.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1203.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1203" style="color: #0060C0;" class="username-coloured">Mr. Bowser</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 224</dd><dd><strong>Joined:</strong> 12 May 2008, 12:48</dd><dd><strong>Location:</strong> Currently in Mississippi</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p88790" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p88790">Re: Creating New Window with Elements</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=88790  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=88790#p88790%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=88790#p88790"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2188.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2188" style="color: #0060C0;" class="username-coloured">tbutts</a></strong> &raquo; 02 Sep 2010, 13:26 </p>
+
+			
+
+			<div class="content">ah ok.  That makes sense.<br /><br />1.  How do you Destroy windows/Interfaces?<br />2.  Is an Interface movable?  If so, How in code?<br />3.  Is an Interface Sizeable?  If so, How in code?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile88790">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2188.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2188" style="color: #0060C0;" class="username-coloured">tbutts</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19</dd><dd><strong>Joined:</strong> 22 Oct 2009, 10:32</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<form id="viewtopic" method="post" action="http://www.terathon.com/forums/viewtopic.php?f=8&t=5703">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		
+		<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+		
+	</fieldset>
+
+	</form>
+	<hr />
+
+
+<div class="topic-actions">
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=8&t=5703  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=8&t=5703%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=8&t=5703" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="pagination">
+			18 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+</div>
+
+
+	<p></p><p><a href="viewforum.php-f=8.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8" class="left-box left" accesskey="r">Return to User Interface</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8" selected="selected">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: No registered users and 2 guests</p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

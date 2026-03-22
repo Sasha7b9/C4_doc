@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Teleport_Tutorial&amp;feed=atom&amp;action=history</id>
+	<title>Teleport Tutorial - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Teleport_Tutorial&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Teleport_Tutorial&amp;action=history"/>
+	<updated>2024-09-21T18:28:32Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Teleport_Tutorial&amp;diff=187&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;This tutorial describes the method used to create an indirect portal that can see another part of a level, apply a material with animated waves to the portal, and make the destination image float up and down. This tutorial doesn't have you modify a world, but instead examines what has been done in a fully functional example.  To follow this tutorial, you need the &lt;code&gt;Data/Tutorial/world/Teleport.wld&lt;/code&gt; file that is included in the C4 Engine distribution.  To enlarg...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Teleport_Tutorial&amp;diff=187&amp;oldid=prev"/>
+		<updated>2023-07-15T11:23:25Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;This tutorial describes the method used to create an indirect portal that can see another part of a level, apply a material with animated waves to the portal, and make the destination image float up and down. This tutorial doesn&amp;#039;t have you modify a world, but instead examines what has been done in a fully functional example.  To follow this tutorial, you need the &amp;lt;code&amp;gt;Data/Tutorial/world/Teleport.wld&amp;lt;/code&amp;gt; file that is included in the C4 Engine distribution.  To enlarg...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;This tutorial describes the method used to create an indirect portal that can see another part of a level, apply a material with animated waves to the portal, and make the destination image float up and down. This tutorial doesn't have you modify a world, but instead examines what has been done in a fully functional example.&lt;br /&gt;
+&lt;br /&gt;
+To follow this tutorial, you need the &amp;lt;code&amp;gt;Data/Tutorial/world/Teleport.wld&amp;lt;/code&amp;gt; file that is included in the C4 Engine distribution.&lt;br /&gt;
+&lt;br /&gt;
+To enlarge any of the screenshots below, click on the thumbnail icon below the image.&lt;br /&gt;
+&lt;br /&gt;
+== Step A: Open Teleport.wld ==&lt;br /&gt;
+&lt;br /&gt;
+Open &amp;lt;code&amp;gt;Data/Tutorial/world/Teleport.wld&amp;lt;/code&amp;gt; in the [[World Editor]] by typing Ctrl-O or by entering &amp;lt;code&amp;gt;world world/Teleport&amp;lt;/code&amp;gt; into the [[Command Console]]. The World Editor will display the scene shown in Figure 1 where the camera is inside one of two big rooms connected by long hallways. The remote portal is visible right away as a doorway with a wavy greenish material through which you can see the other big room in the level.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Teleport1.png|thumb|center|960px|'''Figure 1.''' The teleport tutorial world looks like this when it's first opened in the [[World Editor]].]]&lt;br /&gt;
+&lt;br /&gt;
+Take a moment to play the world by typing Ctrl-P in the editor. (You'll need to be running the demo game in order to walk the player through the level.) Walk the player up to the portal using the standard WSAD keys and mouse to move. Notice that the material has a greenish tint and that animated waves are distorting the image of a distant room that can be seen through the portal. The image is also slowly floating up and down because an [[Oscillation Controller]] has been assigned to the destination marker (see Step C below).&lt;br /&gt;
+&lt;br /&gt;
+In the demo game, the player can teleport to the other room by running into the portal. This particular behavior is defined by game-specific code and is not built into the core engine. There are several examples of how to teleport characters and projectiles in the source code for the demo game.&lt;br /&gt;
+&lt;br /&gt;
+To return to the World Editor, open the console with the tilde key and type Ctrl-Shift-P.&lt;br /&gt;
+&lt;br /&gt;
+== Step B: Examine the Indirect Portal ==&lt;br /&gt;
+&lt;br /&gt;
+The image of the other room is rendered into the refraction buffer through an indirect portal in the world. In this step, we will look at the settings that have been applied to this portal in order to render the image we want.&lt;br /&gt;
+&lt;br /&gt;
+First, we need to select the indirect portal. It's embedded in the geometry for the doorway, so we need to deselect the geometry type from the current selection mask. The [[Node Management Page]] can be found under the Editor tab, and it lists all of the various types of nodes. Unchecking the Geometry type indicates that geometries can no longer be selected. Now switch to the Top viewport by typing Ctrl-1, and zoom in a little on the doorway that can be seen on the left wall of the rightmost large room. There is a purple line with arrows pointing to the left. This is the indirect portal. Click on the line to select it, and the editor window should appear as shown in Figure 2.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Teleport2.png|thumb|center|960px|'''Figure 2.''' The indirect portal has been selected in the Top viewport.]]&lt;br /&gt;
+&lt;br /&gt;
+Once the indirect portal has been selected, type Ctrl-I to open the Node Info window. The settings under the Portal tab should appear as shown in Figure 3. All of the settings use the default values except for two. First, the '''Portal target buffer''' setting has been set to '''Refraction'''. This tells the engine to render the image seen through the portal into a separate frame buffer that holds the image accessed when an ambient refraction color is specified by a material. Second, the '''Camera uses oblique frustum''' box has been checked. This tells the engine to use a special projection matrix trick to align the near plane of the indirect camera frustum with the plane of the portal to clip geometry that would otherwise stick out in front of the plane.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Teleport3.png|thumb|center|960px|'''Figure 3.''' These are the settings under the Portal tab for the indirect portal node.]]&lt;br /&gt;
+&lt;br /&gt;
+Now click on the Connectors tab in the Node Info window, and you will see the settings shown in Figure 4. The indirect portal uses one built-in connector named &amp;lt;code&amp;gt;%Zone&amp;lt;/code&amp;gt; and two custom connectors named '''Local''' and '''Remote'''. The &amp;lt;code&amp;gt;%Zone&amp;lt;/code&amp;gt; connector is used to link the portal to the destination zone, and the '''Local''' and '''Remote''' connectors are linked to markers that define the transform between the portal's local coordinate system and the destination where the image will actually be rendered. These are discussed in the next step.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Teleport4.png|thumb|center|960px|'''Figure 4.''' These are the settings under the Connectors tab for the indirect portal node.]]&lt;br /&gt;
+&lt;br /&gt;
+== Step C: Examine the Locator Markers ==&lt;br /&gt;
+&lt;br /&gt;
+Close the Node Info window by clicking the Cancel button or hitting the Escape key. Select the Connect Tool by clicking on it at the top of the editor window or using the 5 key as a shortcut. The three connectors attached to the indirect portal will appear along with lines of arrows showing what nodes they are connected to, as shown in Figure 5. Zoom out a little to see all of the connected nodes.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Teleport5.png|thumb|center|960px|'''Figure 5.''' The indirect portal is connected to three other nodes in the level.]]&lt;br /&gt;
+&lt;br /&gt;
+You can double-click on any of the connectors to select the node that it is connected to. The &amp;lt;code&amp;gt;%Zone&amp;lt;/code&amp;gt; connector is connected to the zone that contains the big room on the left side of the level. This connection tells the engine that the indirect camera should be placed in this zone when rendering the image that can be seen through the portal. The '''Local''' and '''Remote''' connectors are connected to locator markers that, taken together as a pair, tell the engine how to transform the main camera into the coordinate system in which the destination image will be rendered. The marker connected to the '''Local''' connector specifies a reference point and orientation on the portal itself, and the marker connected to the '''Remote''' connector specifies the corresponding point and orientation at the destination. The marker at the destination can be moved or rotated to instantly change the camera transform for the image seen through the portal.&lt;br /&gt;
+&lt;br /&gt;
+If you select the locator marker connected to the '''Remote''' connector by double-clicking on the connector, then you can see that it has two connectors of its own named '''Start''' and '''Finish'''. These are used in conjunction with an [[Oscillation Controller]] that has been assigned to the marker that makes it float up and down for added effect. See the [[Oscillation Tutorial]] for more information about oscillating nodes.&lt;br /&gt;
+&lt;br /&gt;
+== Step D: Examine the Portal Material ==&lt;br /&gt;
+&lt;br /&gt;
+Change the main viewport to the Perspective view by typing Ctrl-4, and switch to the ordinary Select Tool by selecting it at the top of the editor window or using the 1 key as a shortcut. Re-enable geometry node selection by checking the Geometry type in the Node Management Page, and disable portal node selection by unchecking the Portal type. Now click on the geometry covering the interior of the doorway where the indirect portal is. You should now see a rectangular geometry selected as shown in Figure 6.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Teleport6.png|thumb|center|960px|'''Figure 6.''' The geometry covering the indirect portal has been selected.]]&lt;br /&gt;
+&lt;br /&gt;
+Select the Material Pickup tool from the [[Material Page]], and click on the selected geometry to change the current material to the material used by the geometry. (We didn't actually have to select the geometry first, but doing so makes it obvious where to click to grab the material.) The material used on the portal geometry just uses the standard attribute settings and does not require that you use the [[Shader Editor]].&lt;br /&gt;
+&lt;br /&gt;
+Open the [[Material Editor]] by double-clicking on the selected material.&lt;br /&gt;
+&lt;br /&gt;
+Under the Diffuse tab, shown in Figure 7, the Diffuse color attribute has been set to the green color that is responsible for the green tint seen in the portal. The Normal map (primary) and Normal map (secondary) attributes have been set to two water wave textures that can be found in the &amp;lt;code&amp;gt;Data/The31st/texture/&amp;lt;/code&amp;gt; directory. Notice that the two normal maps use different texture coordinates. These are animated independently so that the normal maps are combined in a random-looking way.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Teleport7.png|thumb|center|960px|'''Figure 7.''' The Diffuse tab for the portal material shows the diffuse reflection color and normal maps.]]&lt;br /&gt;
+&lt;br /&gt;
+Under the Ambient tab, shown in Figure 8, the Refraction color attribute has been set to a brighter greenish color. This is multiplied by the colors in the refraction image to determine how much light gets through and what color it is. The Refraction offset scale attribute determines how large the distortion caused by the normal maps is. Higher numbers correspond to a more intense distortion effect.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Teleport8.png|thumb|center|960px|'''Figure 8.''' The Ambient tab for the portal material shows the refraction color and offset scale.]]&lt;br /&gt;
+&lt;br /&gt;
+Under the Texcoords tab, shown in Figure 9, the scales of both sets of texture coordinates has been set to 0.25. Smaller numbers here correspond to larger waves. Animation has been enabled for both sets of texture coordinates, and the direction and speed have been set to different values so that the textures move in different directions. These values can be changed freely to modify the animation of the wavy effect.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Teleport9.png|thumb|center|960px|'''Figure 9.''' The Texcoords tab for the portal material shows the texture map animation parameters.]]&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[Oscillation Tutorial]]&lt;br /&gt;
+* [[World Editor]]&lt;br /&gt;
+* [[Material Editor]]&lt;br /&gt;
+* [[Connectors]]&lt;br /&gt;
+&lt;br /&gt;
+[[Category:Tutorials]]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

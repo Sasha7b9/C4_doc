@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class BatchJob</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/System/index.html">System Utilities</a> &#x25BA; <a href="BatchJob.html" tppabs="http://www.c4engine.com/docs/System/BatchJob.html">class BatchJob</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class BatchJob</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Threads.h</code></div>
+The <code>BatchJob</code> class represents a single job that can be part of a batch.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;BatchJob&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;Job,&nbsp;<span style="color: #0000FF">public</span>&nbsp;ListElement&lt;BatchJob&gt;</code></p>
+<div class="heading">Constructor</div>
+<p><code>BatchJob(ExecuteCallback&nbsp;*execCallback,&nbsp;<span style="color: #0000FF">void</span>&nbsp;*cookie&nbsp;=&nbsp;<span style="color: #0000FF">nullptr</span>,&nbsp;<span style="color: #0000FF">uint32</span>&nbsp;flags&nbsp;=&nbsp;0);</code></p>
+<p><code>BatchJob(ExecuteCallback&nbsp;*execCallback,&nbsp;FinalizeCallback&nbsp;*finalCallback,&nbsp;<span style="color: #0000FF">void</span>&nbsp;*cookie&nbsp;=&nbsp;<span style="color: #0000FF">nullptr</span>,&nbsp;<span style="color: #0000FF">uint32</span>&nbsp;flags&nbsp;=&nbsp;0);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>execCallback</code></td>
+<td class="tableright1">The main execution function for the job.
+</td></tr>
+<tr><td class="tableleft"><code>finalCallback</code></td>
+<td class="tableright">The finalization function for the job.
+</td></tr>
+<tr><td class="tableleft"><code>cookie</code></td>
+<td class="tableright">A pointer to user-defined data that is passed to the job's execution function.
+</td></tr>
+<tr><td class="tableleft"><code>flags</code></td>
+<td class="tableright">The job flags. See below for possible values.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>BatchJob</code> class is used to encapsulate the execution function and data for a single job. Batch jobs are queued for execution by one of the Thread Manager's worker threads by calling the <code><a href="ThreadMgr_SubmitJob.html" tppabs="http://www.c4engine.com/docs/System/ThreadMgr_SubmitJob.html">ThreadMgr::SubmitJob</a></code> function and specifying a <code><a href="Batch.html" tppabs="http://www.c4engine.com/docs/System/Batch.html">Batch</a></code> object.<br/><br/> The functions specified by the <code>execCallback</code> and <code>finalCallback</code> parameters should have the following signatures.
+<p><code><span style="color: #0000FF">typedef</span>&nbsp;<span style="color: #0000FF">void</span>&nbsp;ExecuteCallback(Job&nbsp;*,&nbsp;<span style="color: #0000FF">void</span>&nbsp;*);</code></p>
+<p><code><span style="color: #0000FF">typedef</span>&nbsp;<span style="color: #0000FF">void</span>&nbsp;FinalizeCallback(Job&nbsp;*,&nbsp;<span style="color: #0000FF">void</span>&nbsp;*);</code></p>
+The first parameter passed to the execution function is a pointer to the <code>Job</code> object itself, and the second parameter is the <code>cookie</code> parameter that was passed to the <code>Job</code> constructor.<br/><br/> The <code>flags</code> parameter can be a combination (through logical OR) of the following constants.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kJobNonpersistent</code></td>
+<td class="tableright1">The job is nonpersistent. If this flag is set, then the job is automatically destroyed when its batch is finished.
+</td></tr>
+</table>
+If the <code>kJobNonpersistent</code> flag is specified, then the <code>BatchJob</code> object is automatically destroyed by the <code><a href="ThreadMgr_FinishBatch.html" tppabs="http://www.c4engine.com/docs/System/ThreadMgr_FinishBatch.html">ThreadMgr::FinishBatch</a></code> function after a batch has finished executing.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="Job.html" tppabs="http://www.c4engine.com/docs/System/Job.html">Job</a></code></td>
+<td class="tableright1">A batch job is a specialized type of job.
+</td></tr>
+<tr><td class="tableleft"><code><a href="../Utilities/ListElement.html" tppabs="http://www.c4engine.com/docs/Utilities/ListElement.html">ListElement&lt;BatchJob&gt;</a></code></td>
+<td class="tableright">Used internally by the Thread Manager.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="Batch.html" tppabs="http://www.c4engine.com/docs/System/Batch.html">Batch</a></code>
+</p>
+<p><code><a href="ThreadMgr.html" tppabs="http://www.c4engine.com/docs/System/ThreadMgr.html">ThreadMgr</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

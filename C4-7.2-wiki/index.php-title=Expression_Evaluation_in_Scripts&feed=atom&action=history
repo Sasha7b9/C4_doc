@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Expression_Evaluation_in_Scripts&amp;feed=atom&amp;action=history</id>
+	<title>Expression Evaluation in Scripts - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Expression_Evaluation_in_Scripts&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Expression_Evaluation_in_Scripts&amp;action=history"/>
+	<updated>2024-09-21T18:24:48Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Expression_Evaluation_in_Scripts&amp;diff=436&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ A  script in the C4 Engine can contain methods of the type '''Evaluate Expression''', sometimes called an ''expression method'' for short. An expression method holds a text string representing a mathematical expression that gets evaluated when script execution reaches the method.  For an expression method, a text box is displayed on the left side of the Method Info window where a textual expression may be entered. (The Method Info window is o...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Expression_Evaluation_in_Scripts&amp;diff=436&amp;oldid=prev"/>
+		<updated>2023-07-15T12:03:18Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ A &lt;a href=&quot;/wiki/index.php?title=Script_Editor&quot; title=&quot;Script Editor&quot;&gt; script&lt;/a&gt; in the C4 Engine can contain methods of the type &amp;#039;&amp;#039;&amp;#039;Evaluate Expression&amp;#039;&amp;#039;&amp;#039;, sometimes called an &amp;#039;&amp;#039;expression method&amp;#039;&amp;#039; for short. An expression method holds a text string representing a mathematical expression that gets evaluated when script execution reaches the method.  For an expression method, a text box is displayed on the left side of the Method Info window where a textual expression may be entered. (The Method Info window is o...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+A [[Script Editor | script]] in the C4 Engine can contain methods of the type '''Evaluate Expression''', sometimes called an ''expression method'' for short. An expression method holds a text string representing a mathematical expression that gets evaluated when script execution reaches the method.&lt;br /&gt;
+&lt;br /&gt;
+For an expression method, a text box is displayed on the left side of the Method Info window where a textual expression may be entered. (The Method Info window is opened by selecting a method and then typing Ctrl-I.) A field for designating an output variable also appears in the lower-left corner of the Method Info window.&lt;br /&gt;
+&lt;br /&gt;
+If there is a syntax error in an expression, then the method is colored yellow in the script viewport.&lt;br /&gt;
+&lt;br /&gt;
+== Operators ==&lt;br /&gt;
+&lt;br /&gt;
+Expressions can use any of the operators from the following list. They are listed in order of evaluation precedence, which matches the precedence rules for C++. Parentheses can be used to group subexpressions.&lt;br /&gt;
+&lt;br /&gt;
+{| {{Table}}&lt;br /&gt;
+{{Tablehead4|Operator|Description|Variable types accepted|Notes}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;.&amp;lt;/code&amp;gt;|'''Member Access'''|color, vector, point|Returns a scalar component of type float.&lt;br /&gt;
+&lt;br /&gt;
+For colors, one of &amp;lt;code&amp;gt;r&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;g&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;b&amp;lt;/code&amp;gt;, or &amp;lt;code&amp;gt;a&amp;lt;/code&amp;gt; can appear to the right of the dot operator.&lt;br /&gt;
+&lt;br /&gt;
+For vectors and points, one of &amp;lt;code&amp;gt;x&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;y&amp;lt;/code&amp;gt;, or &amp;lt;code&amp;gt;z&amp;lt;/code&amp;gt; can appear to the right of the dot operator.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;~&amp;lt;/code&amp;gt;|'''Bitwise NOT'''|boolean, integer|This is a unary operator.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;*&amp;lt;/code&amp;gt;|'''Multiply'''|boolean, integer, float, color, vector, point|Colors can only be multiplied by other colors or by floating-point, integer, or boolean scalar values.&lt;br /&gt;
+&lt;br /&gt;
+Vectors and points can only be multiplied by other vectors and points or by floating-point, integer, or boolean scalar values.&lt;br /&gt;
+&lt;br /&gt;
+Multiplication is componentwise for colors, vectors, and points.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;/&amp;lt;/code&amp;gt;|'''Divide'''|boolean, integer, float, color, vector, point|A color, vector, or point type can only appear as the left operand, and they can be divided by floating-point, integer, or boolean scalar values.&lt;br /&gt;
+&lt;br /&gt;
+Integer division by zero is defined to be zero.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;%&amp;lt;/code&amp;gt;|'''Modulo'''|boolean, integer|If the right operand is zero, then the result is defined to be zero.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;+&amp;lt;/code&amp;gt;|'''Plus'''|boolean, integer, float, string, color, vector, point|Colors can only be added to other colors.&lt;br /&gt;
+&lt;br /&gt;
+Vectors and points can only be added to other vectors and points.&lt;br /&gt;
+&lt;br /&gt;
+A unary plus is accepted and performs no operation.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;&amp;amp;minus;&amp;lt;/code&amp;gt;|'''Minus''' or '''Negate'''|boolean, integer, float, color, vector, point|Colors can only be subtracted from other colors.&lt;br /&gt;
+&lt;br /&gt;
+Vectors and points can only be subtracted from other vectors and points.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;&amp;amp;lt;&amp;amp;lt;&amp;lt;/code&amp;gt;|'''Shift Left'''|boolean, integer|}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;&amp;amp;gt;&amp;amp;gt;&amp;lt;/code&amp;gt;|'''Shift Right'''|boolean, integer|The shift is always signed.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;&amp;amp;lt;&amp;lt;/code&amp;gt;|'''Less Than'''|boolean, integer, float|Always returns a boolean result.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;&amp;amp;gt;&amp;lt;/code&amp;gt;|'''Greater Than'''|boolean, integer, float|Always returns a boolean result.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;&amp;amp;lt;&amp;amp;#x3D;&amp;lt;/code&amp;gt;|'''Less Than or Equal'''|boolean, integer, float|Always returns a boolean result.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;&amp;amp;gt;&amp;amp;#x3D;&amp;lt;/code&amp;gt;|'''Greater Than or Equal'''|boolean, integer, float|Always returns a boolean result.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;&amp;amp;#x3D;&amp;amp;#x3D;&amp;lt;/code&amp;gt;|'''Equal'''|boolean, integer, float, string|Always returns a boolean result.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;!&amp;amp;#x3D;&amp;lt;/code&amp;gt;|'''Not Equal'''|boolean, integer, float, string|Always returns a boolean result.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;&amp;amp;amp;&amp;lt;/code&amp;gt;|'''Bitwise AND'''|boolean, integer|}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;^&amp;lt;/code&amp;gt;|'''Bitwise XOR'''|boolean, integer|}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow4|&amp;lt;code&amp;gt;&amp;amp;#x7C;&amp;lt;/code&amp;gt;|'''Bitwise OR'''|boolean, integer|}}&lt;br /&gt;
+|}&lt;br /&gt;
+&lt;br /&gt;
+Note that the logical operators &amp;lt;code&amp;gt;&amp;amp;&amp;amp;&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;||&amp;lt;/code&amp;gt; are not present in the table. These were intentionally left out of the scripting language because they are not necessary. The same results can be attained by using the &amp;lt;code&amp;gt;&amp;amp;&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;|&amp;lt;/code&amp;gt; operators instead. If the evaluation semantics of &amp;lt;code&amp;gt;&amp;amp;&amp;amp;&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;||&amp;lt;/code&amp;gt; are needed, then you can use conditional execution to evaluate the expression in pieces.&lt;br /&gt;
+&lt;br /&gt;
+== Operands ==&lt;br /&gt;
+&lt;br /&gt;
+Each operand in an expression can be any of the following:&lt;br /&gt;
+&lt;br /&gt;
+* The boolean value &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt; or &amp;lt;code&amp;gt;false&amp;lt;/code&amp;gt;.&lt;br /&gt;
+* An integer literal value using any features from the [http://openddl.org/ OpenDDL syntax]. This includes underscores separating digits, support for binary, octal, and hexadecimal literals (using the prefixes &amp;lt;code&amp;gt;0b&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;0o&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;0x&amp;lt;/code&amp;gt;, respectively), and character literals enclosed in single quotes. Integers are always stored as signed 32-bit quantities.&lt;br /&gt;
+* A floating-point literal value matching the OpenDDL syntax, with the exception that it must be decimal and contain one of the characters '&amp;lt;code&amp;gt;.&amp;lt;/code&amp;gt;', '&amp;lt;code&amp;gt;e&amp;lt;/code&amp;gt;', or '&amp;lt;code&amp;gt;E&amp;lt;/code&amp;gt;' (decimal point or exponent indicator). Floats are always stored as 32-bit quantities.&lt;br /&gt;
+* A literal string matching the OpenDDL syntax. Escape characters and Unicode are supported.&lt;br /&gt;
+* The name of any variable defined for the script, possibly followed by the dot operator to access an individual component of a color, vector, or point.&lt;br /&gt;
+&lt;br /&gt;
+In any binary operation appearing in an expression, a mismatch between the types of the two operands causes one of the operands to be promoted to the type of the other. The possible promotions are those in the following list:&lt;br /&gt;
+&lt;br /&gt;
+* Boolean can be promoted to integer, float, or string.&lt;br /&gt;
+* Integer can be promoted to float or string.&lt;br /&gt;
+* Float can be promoted to string.&lt;br /&gt;
+&lt;br /&gt;
+== Result ==&lt;br /&gt;
+&lt;br /&gt;
+An expression always produces an output value, and the boolean result for the expression method reflects the value of the expression. If the output value is not stored in a variable, then the boolean result is still valid. If the value of the expression is not boolean, then one of the following conversions is made to arrive at a boolean result:&lt;br /&gt;
+&lt;br /&gt;
+* For an integer, the value 0 becomes false, and any other value becomes true.&lt;br /&gt;
+* For a float, the value 0.0 becomes false, and any other value becomes true.&lt;br /&gt;
+* For a string, the empty string becomes false, and any other string becomes true.&lt;br /&gt;
+&lt;br /&gt;
+== Expression Grammar ==&lt;br /&gt;
+&lt;br /&gt;
+The following grammar provides a formal description of exactly how expressions are parsed.&lt;br /&gt;
+&lt;br /&gt;
+&amp;lt;pre&amp;gt;&lt;br /&gt;
+identifier                 ::= [A-Za-z_] [0-9A-Za-z_]*&lt;br /&gt;
+&lt;br /&gt;
+hex-digit                  ::= [0-9A-Fa-f]&lt;br /&gt;
+&lt;br /&gt;
+escape-char                ::= '\&amp;quot;' | &amp;quot;\'&amp;quot; | &amp;quot;\?&amp;quot; | &amp;quot;\\&amp;quot; | &amp;quot;\a&amp;quot; | &amp;quot;\b&amp;quot; | &amp;quot;\f&amp;quot; | &amp;quot;\n&amp;quot; | &amp;quot;\r&amp;quot; | &amp;quot;\t&amp;quot; | &amp;quot;\v&amp;quot;&lt;br /&gt;
+                             | &amp;quot;\x&amp;quot; hex-digit hex-digit&lt;br /&gt;
+&lt;br /&gt;
+bool-literal               ::= &amp;quot;false&amp;quot; | &amp;quot;true&amp;quot;&lt;br /&gt;
+&lt;br /&gt;
+decimal-literal            ::= [0-9] (&amp;quot;_&amp;quot;? [0-9])*&lt;br /&gt;
+&lt;br /&gt;
+hex-literal                ::= (&amp;quot;0x&amp;quot; | &amp;quot;0X&amp;quot;) hex-digit (&amp;quot;_&amp;quot;? hex-digit)*&lt;br /&gt;
+&lt;br /&gt;
+octal-literal              ::= (&amp;quot;0o&amp;quot; | &amp;quot;0O&amp;quot;) [0-7] (&amp;quot;_&amp;quot;? [0-7])*&lt;br /&gt;
+&lt;br /&gt;
+binary-literal             ::= (&amp;quot;0b&amp;quot; | &amp;quot;0B&amp;quot;) (&amp;quot;0&amp;quot; | &amp;quot;1&amp;quot;) (&amp;quot;_&amp;quot;? (&amp;quot;0&amp;quot; | &amp;quot;1&amp;quot;))*&lt;br /&gt;
+&lt;br /&gt;
+char-literal               ::= &amp;quot;'&amp;quot; ([#x20-#x26#x28-#x5B#x5D-#x7E] | escape-char)+ &amp;quot;'&amp;quot;&lt;br /&gt;
+&lt;br /&gt;
+integer-literal            ::= decimal-literal | hex-literal | octal-literal | binary-literal | char-literal&lt;br /&gt;
+&lt;br /&gt;
+float-literal              ::= (([0-9] (&amp;quot;_&amp;quot;? [0-9])* &amp;quot;.&amp;quot; ([0-9] (&amp;quot;_&amp;quot;? [0-9])*)? | ([0-9] (&amp;quot;_&amp;quot;? [0-9])*)? &amp;quot;.&amp;quot; [0-9] (&amp;quot;_&amp;quot;? [0-9])*)&lt;br /&gt;
+                                   ((&amp;quot;e&amp;quot; | &amp;quot;E&amp;quot;) (&amp;quot;+&amp;quot; | &amp;quot;-&amp;quot;)? [0-9] (&amp;quot;_&amp;quot;? [0-9])*)?&lt;br /&gt;
+                             | [0-9] (&amp;quot;_&amp;quot;? [0-9])* (&amp;quot;e&amp;quot; | &amp;quot;E&amp;quot;) (&amp;quot;+&amp;quot; | &amp;quot;-&amp;quot;)? [0-9] (&amp;quot;_&amp;quot;? [0-9])*)&lt;br /&gt;
+&lt;br /&gt;
+string-literal             ::= ('&amp;quot;' ([#x20-#x21#x23-#x5B#x5D-#x7E#xA0-#xD7FF#xE000-#xFFFD#x010000-#x10FFFF] | escape-char&lt;br /&gt;
+                             | &amp;quot;\u&amp;quot; hex-digit hex-digit hex-digit hex-digit&lt;br /&gt;
+                             | &amp;quot;\U&amp;quot; hex-digit hex-digit hex-digit hex-digit hex-digit hex-digit)* '&amp;quot;')+&lt;br /&gt;
+&lt;br /&gt;
+primary-expression         ::= (&amp;quot;+&amp;quot; | &amp;quot;-&amp;quot; | &amp;quot;~&amp;quot;)? (identifier (&amp;quot;.&amp;quot; identifier)? | integer-literal | float-literal | string-literal | &amp;quot;(&amp;quot; or-expression &amp;quot;)&amp;quot;)&lt;br /&gt;
+&lt;br /&gt;
+multiplicative-expression  ::= (multiplicative-expression &amp;quot;*&amp;quot; | multiplicative-expression &amp;quot;/&amp;quot; | multiplicative-expression &amp;quot;%&amp;quot;)? primary-expression&lt;br /&gt;
+&lt;br /&gt;
+additive-expression        ::= (additive-expression &amp;quot;+&amp;quot; | additive-expression &amp;quot;-&amp;quot;)? multiplicative-expression&lt;br /&gt;
+&lt;br /&gt;
+shift-expression           ::= (shift-expression &amp;quot;&amp;lt;&amp;lt;&amp;quot; | shift-expression &amp;quot;&amp;gt;&amp;gt;&amp;quot;)? additive-expression&lt;br /&gt;
+&lt;br /&gt;
+relational-expression      ::= (relational-expression &amp;quot;&amp;lt;&amp;quot; | relational-expression &amp;quot;&amp;gt;&amp;quot; | relational-expression &amp;quot;&amp;lt;&amp;lt;&amp;quot; | relational-expression &amp;quot;&amp;gt;&amp;gt;&amp;quot;)? shift-expression&lt;br /&gt;
+&lt;br /&gt;
+equality-expression        ::= (equality-expression &amp;quot;==&amp;quot; | equality-expression &amp;quot;!=&amp;quot;)? relational-expression&lt;br /&gt;
+&lt;br /&gt;
+and-expression             ::= (and-expression &amp;quot;&amp;amp;&amp;quot;)? equality-expression&lt;br /&gt;
+&lt;br /&gt;
+xor-expression             ::= (xor-expression &amp;quot;^&amp;quot;)? and-expression&lt;br /&gt;
+&lt;br /&gt;
+or-expression              ::= (or-expression &amp;quot;|&amp;quot;)? xor-expression&lt;br /&gt;
+&amp;lt;/pre&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[Script Editor]]&lt;br /&gt;
+&lt;br /&gt;
+[[Category:Scripts]]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

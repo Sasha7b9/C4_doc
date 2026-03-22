@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=String_Importer&amp;feed=atom&amp;action=history</id>
+	<title>String Importer - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=String_Importer&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=String_Importer&amp;action=history"/>
+	<updated>2024-09-21T18:27:55Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=String_Importer&amp;diff=401&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;The '''String Importer''' is a plugin that ships with the C4 Engine, and it generates string table resources in the engine's proprietary &lt;code&gt;.str&lt;/code&gt; file format.  The String Importer can be run by choosing '''Import String Table''' from the C4 Menu or by typing &lt;code&gt;istring [''name'']&lt;/code&gt; in the Command Console. If the '''Import String Table''' menu item is selected (or name is omitted from the console command), then a dialog appears to let you select a...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=String_Importer&amp;diff=401&amp;oldid=prev"/>
+		<updated>2023-07-15T11:33:14Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;The &amp;#039;&amp;#039;&amp;#039;String Importer&amp;#039;&amp;#039;&amp;#039; is a plugin that ships with the C4 Engine, and it generates string table resources in the engine&amp;#039;s proprietary &amp;lt;code&amp;gt;.str&amp;lt;/code&amp;gt; file format.  The String Importer can be run by choosing &amp;#039;&amp;#039;&amp;#039;Import String Table&amp;#039;&amp;#039;&amp;#039; from the &lt;a href=&quot;/wiki/index.php?title=C4_Menu&quot; title=&quot;C4 Menu&quot;&gt;C4 Menu&lt;/a&gt; or by typing &amp;lt;code&amp;gt;istring [&amp;#039;&amp;#039;name&amp;#039;&amp;#039;]&amp;lt;/code&amp;gt; in the &lt;a href=&quot;/wiki/index.php?title=Command_Console&quot; title=&quot;Command Console&quot;&gt;Command Console&lt;/a&gt;. If the &amp;#039;&amp;#039;&amp;#039;Import String Table&amp;#039;&amp;#039;&amp;#039; menu item is selected (or name is omitted from the console command), then a dialog appears to let you select a...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;The '''String Importer''' is a plugin that ships with the C4 Engine, and it generates string table resources in the engine's proprietary &amp;lt;code&amp;gt;.str&amp;lt;/code&amp;gt; file format.&lt;br /&gt;
+&lt;br /&gt;
+The String Importer can be run by choosing '''Import String Table''' from the [[C4 Menu]] or by typing &amp;lt;code&amp;gt;istring [''name'']&amp;lt;/code&amp;gt; in the [[Command Console]]. If the '''Import String Table''' menu item is selected (or name is omitted from the console command), then a dialog appears to let you select a text file from the Import directory.&lt;br /&gt;
+&lt;br /&gt;
+The text file to be imported must conform to the [[OpenDDL]] format. A single data structure type called &amp;lt;code&amp;gt;Entry&amp;lt;/code&amp;gt; is used to declare each string together with its ID as follows.&lt;br /&gt;
+&lt;br /&gt;
+ Entry (id = 'abcd') {string {&amp;quot;The string.&amp;quot;}}&lt;br /&gt;
+&lt;br /&gt;
+The &amp;lt;code&amp;gt;id&amp;lt;/code&amp;gt; property accepts a 32-bit unsigned integer that is usually expressed as a four-character code, as in the above example. The identifiers are used to select strings in the imported resource.&lt;br /&gt;
+&lt;br /&gt;
+Strings may be organized into a hierarchy that is up to five levels deep by including &amp;lt;code&amp;gt;Entry&amp;lt;/code&amp;gt; structures inside the data payloads of other &amp;lt;code&amp;gt;Entry&amp;lt;/code&amp;gt; structures as in the following example.&lt;br /&gt;
+&lt;br /&gt;
+ Entry (id = 'type')&lt;br /&gt;
+ {&lt;br /&gt;
+     string {&amp;quot;Top-level string&amp;quot;}&lt;br /&gt;
+     Entry (id = 'abcd') {string {&amp;quot;Substring 1&amp;quot;}}&lt;br /&gt;
+     Entry (id = 'efgh') {string {&amp;quot;Substring 2&amp;quot;}}&lt;br /&gt;
+ }&lt;br /&gt;
+&lt;br /&gt;
+Here, the string with ID equal to &amp;lt;code&amp;gt;StringID('type')&amp;lt;/code&amp;gt; is &amp;quot;Top-level string&amp;quot;, the string with ID equal to &amp;lt;code&amp;gt;StringID('type', 'abcd')&amp;lt;/code&amp;gt; is &amp;quot;Substring 1&amp;quot;, and the string with ID equal to &amp;lt;code&amp;gt;StringID('type', 'efgh')&amp;lt;/code&amp;gt; is &amp;quot;Substring 2&amp;quot;.&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[String Tables]]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

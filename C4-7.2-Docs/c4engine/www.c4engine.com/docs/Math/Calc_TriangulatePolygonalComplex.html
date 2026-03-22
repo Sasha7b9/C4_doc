@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Calc::TriangulatePolygonalComplex</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/Math/index.html">Math Library</a> &#x25BA; <a href="Calc.html" tppabs="http://www.c4engine.com/docs/Math/Calc.html">namespace Calc</a></div>
+</td></tr></table>
+<div class="content">
+<h2>Calc::TriangulatePolygonalComplex</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Computation.h</code></div>
+Triangulates a convex or concave polygon having nonzero genus.
+<div class="heading">Prototype</div>
+<p><code><span style="color: #0000FF">int32</span>&nbsp;TriangulatePolygonalComplex(<span style="color: #0000FF">int32</span>&nbsp;windingCount,&nbsp;<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">int32</span>&nbsp;*vertexCount,&nbsp;<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">uint16</span>&nbsp;*<span style="color: #0000FF">const</span>&nbsp;*vertexIndex,</code></p>
+<p style="padding-left: 32px;"><code><span style="color: #0000FF">const</span>&nbsp;Point3D&nbsp;*vertex,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;normal,&nbsp;Point3D&nbsp;*<span style="color: #0000FF">restrict</span>&nbsp;result,&nbsp;Triangle16&nbsp;*<span style="color: #0000FF">restrict</span>&nbsp;triangle);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>windingCount</code></td>
+<td class="tableright1">The number of closed loops defining the shape of the polygonal complex. The first winding specifies the outside boundary of the positive polygon and should be wound counterclockwise. The remaining windings specify the boundaries of negative polygons representing holes that are cut out of the positive polygon and should be wound clockwise.
+</td></tr>
+<tr><td class="tableleft"><code>vertexCount</code></td>
+<td class="tableright">An array of vertex counts specifying the number of vertices in each winding.
+</td></tr>
+<tr><td class="tableleft"><code>vertexIndex</code></td>
+<td class="tableright">An array of pointers to arrays containing the vertex indexes of the vertices used by each winding. For each winding, there is one pointer in this array that points to an array of indexes whose size is equal to the number of vertices belonging to the winding, as specified by the corresponding entry in the <code>vertexCount</code> array. The vertex indexes refer to entries in the vertex array specified by the <code>vertex</code> parameter.
+</td></tr>
+<tr><td class="tableleft"><code>vertex</code></td>
+<td class="tableright">An array containing all of the vertices belonging to all of the windings. The entries of the <code>vertexCount</code> and <code>vertexIndex</code> arrays specify the number and first index of the vertices belong to each winding.
+</td></tr>
+<tr><td class="tableleft"><code>normal</code></td>
+<td class="tableright">The normal direction of the polygonal complex.
+</td></tr>
+<tr><td class="tableleft"><code>result</code></td>
+<td class="tableright">An array that receives the vertex positions in the final triangulation. This array should be large enough to hold the number of vertices equal to the sum of the values in the <code>vertexCount</code> array.
+</td></tr>
+<tr><td class="tableleft"><code>triangle</code></td>
+<td class="tableright">An array to which the triangles are written. This must be large enough to hold <i>n</i>&#x202F;&minus;&#x202F;2&#x202F;+&#x202F;2<i>g</i> triangles, where <i>n</i> is the sum of the values in the <code>vertexCount</code> array, and <i>g</i> is the genus of the complex (which is one less than the value given by the <code>windingCount</code> parameter).
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>TriangulatePolygonalComplex</code> function takes an arbitrary planar polygon having any number of polygonal holes cut out of it, triangulates it, and returns the number of triangles that were generated. The polygonal complex is specified by one or more windings representing the boundary of the interior area. Except in cases in which there are degenerate vertices, the number of triangles generated will be <i>n</i>&#x202F;&minus;&#x202F;2&#x202F;+&#x202F;2<i>g</i>, where <i>n</i> is the sum of the values in the <code>vertexCount</code> array, and <i>g</i> is the genus of the complex, equal to one less than the value of the <code>windingCount</code> parameter.<br/><br/> Each of the windings may be convex or concave and may contain sets of collinear vertices. The first winding, whose vertices are specified by the first entries of the <code>vertexCount</code> and <code>vertexIndex</code> arrays, represents the (positive) outer boundary of the complex. It should be wound counterclockwise about the normal direction specified by the <code>normal</code> parameter. The remaining windings represent the boundaries of the (negative) holes that are cut out of the complex. These windings should be wound clockwise (so that the interior of the complex is always on the left-hand side when travelling along any winding). The negative windings must not intersect or enclose any other winding, and each must be completely contained within the positive winding. If these requirements are not met, then the results are undefined.<br/><br/> The results are undefined if any input winding is self-intersecting or if the vertices do not lie in a plane that is perpendicular to the normal direction specified by the <code>normal</code> parameter. If any array of vertices contains degenerate entries (a pair of vertices that are very close to each other), then the result may be a subset of the fully triangulated polygonal complex, indicated by the return value being less than <i>n</i>&#x202F;&minus;&#x202F;2&#x202F;+&#x202F;2<i>g</i>.<br/><br/> The resulting triangles are returned in the array specified by the <code>triangle</code> parameter. The input vertices are reordered and stored in the array specified by the <code>result</code> parameter. The indexes contained in the <code>triangle</code> array refer to vertices in the <code>result</code> array.<br/><br/> If the <code>windingCount</code> parameter is 1 (the minimum value), then this function behaves exactly like the <code><a href="Calc_TriangulatePolygon.html" tppabs="http://www.c4engine.com/docs/Math/Calc_TriangulatePolygon.html">Calc::TriangulatePolygon</a></code> function.
+<div class="heading">See Also</div>
+<p><code><a href="Calc_TriangulatePolygon.html" tppabs="http://www.c4engine.com/docs/Math/Calc_TriangulatePolygon.html">Calc::TriangulatePolygon</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

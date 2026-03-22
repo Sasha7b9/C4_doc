@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Interpolator::UpdateValue</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/TimeMgr/index.html">Time Manager</a> &#x25BA; <a href="Interpolator.html" tppabs="http://www.c4engine.com/docs/TimeMgr/Interpolator.html">class Interpolator</a></div>
+</td></tr></table>
+<div class="content">
+<h2>Interpolator::UpdateValue</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Time.h</code></div>
+Updates an interpolator.
+<div class="heading">Prototype</div>
+<p><code><span style="color: #0000FF">float</span>&nbsp;UpdateValue(SubrangeData&nbsp;*subrangeData&nbsp;=&nbsp;<span style="color: #0000FF">nullptr</span>);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>subrangeData</code></td>
+<td class="tableright1">An optional pointer to a structure that receives information about what subranges were covered.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>UpdateValue</code> function changes the current value of an interpolator based on the current rate, mode, and range. The current mode must include either the <code>kInterpolatorForward</code> flag or <code>kInterpolatorBackward</code> flag in order for any change to be made.<br/><br/> The current mode may be changed if the current value reaches either the minimum or maximum value of the interpolator's range. For example, if the current mode is <code>kInterpolateForward</code> and the current value reaches the maximum value of the range, then the value is pinned at the maximum value and the mode is changed to <code>kInterpolatorStop</code>.<br/><br/> If the interpolator mode is changed to <code>kInterpolatorStop</code>, which happens when a non-looping interpolator reaches one of the ends of the current range, then the completion callback function is invoked for the interpolator if one is installed. See the <code><a href="../Utilities/Completable.html" tppabs="http://www.c4engine.com/docs/Utilities/Completable.html">Completable</a></code> base class. It is safe to destroy an interpolator from inside the completion callback function.<br/><br/> If the current mode includes the <code>kInterpolatorLoop</code> flag and the interpolator loops by passing one end of the current range and wrapping around to the other, then the loop callback function is invoked if one is installed. See the <code><a href="Interpolator_SetLoopCallback.html" tppabs="http://www.c4engine.com/docs/TimeMgr/Interpolator_SetLoopCallback.html">Interpolator::SetLoopCallback</a></code> function. It is safe to destroy an interpolator from inside the loop callback function.<br/><br/> If the <code>subrangeData</code> parameter is not <code><span style="color: #0000FF">nullptr</span></code>, then the structure it points to is filled in with information about what ranges of values were covered during the update. For a stopped interpolator, this structure will always indicate no subranges. Otherwise, this structure will contain either one or two subranges depending on whether any looping or oscillation occurred. The minimum value in each subrange always corresponds to the value attained by the interpolator earlier in time. For any subrange over which the interpolator increased in value, the minimum value will be less than or equal to the maximum value, but for any subrange over which the interpolator decreased in value, the minimum value will be greater than or equal to the maximum value.
+<div class="heading">See Also</div>
+<p><code><a href="Interpolator_GetValue.html" tppabs="http://www.c4engine.com/docs/TimeMgr/Interpolator_GetValue.html">Interpolator::GetValue</a></code>
+</p>
+<p><code><a href="Interpolator_SetValue.html" tppabs="http://www.c4engine.com/docs/TimeMgr/Interpolator_SetValue.html">Interpolator::SetValue</a></code>
+</p>
+<p><code><a href="Interpolator_SetState.html" tppabs="http://www.c4engine.com/docs/TimeMgr/Interpolator_SetState.html">Interpolator::SetState</a></code>
+</p>
+<p><code><a href="SubrangeData.html" tppabs="http://www.c4engine.com/docs/TimeMgr/SubrangeData.html">SubrangeData</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

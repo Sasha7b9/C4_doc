@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Node::SetPerspectiveExclusionMask</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/WorldMgr/index.html">World Manager</a> &#x25BA; <a href="Node.html" tppabs="http://www.c4engine.com/docs/WorldMgr/Node.html">class Node</a></div>
+</td></tr></table>
+<div class="content">
+<h2>Node::SetPerspectiveExclusionMask</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Node.h</code></div>
+Sets the perspective exclusion mask.
+<div class="heading">Prototype</div>
+<p><code><span style="color: #0000FF">void</span>&nbsp;SetPerspectiveExclusionMask(<span style="color: #0000FF">uint32</span>&nbsp;mask);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>mask</code></td>
+<td class="tableright1">The new perspective exclusion mask.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>SetPerspectiveExclusionMask</code> function sets the perspective exclusion mask that determines from what camera perspectives the node is enabled to the value specified by the <code>mask</code> parameter. The mask can be a combination (through logical OR) of the following constants.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kPerspectivePrimary</code></td>
+<td class="tableright1">The perspective of the primary camera used to render the world.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectiveReflection</code></td>
+<td class="tableright">The perspective of a camera used to render into the reflection buffer.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectiveRefraction</code></td>
+<td class="tableright">The perspective of a camera used to render into the refraction buffer.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectiveIlluminanceSpace</code></td>
+<td class="tableright">The perspective of a camera used to generate an illuminance space texture map.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectiveDirectMask</code></td>
+<td class="tableright">A mask that includes all direct perspectives (primary camera, reflection buffer, and refraction buffer). A node having these bits set will never be rendered from the direct perspective.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectiveCameraWidgetMask</code></td>
+<td class="tableright">A mask that includes all camera widget perspectives. A node having these bits set will never be rendered from the camera widget perspective.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectiveDirectShadowMask</code></td>
+<td class="tableright">A mask that includes all direct shadow perspectives. A node having these bits set will never cast a shadow from the direct perspective.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectiveCameraWidgetShadowMask</code></td>
+<td class="tableright">A mask that includes all camera widget shadow perspectives. A node having these bits set will never cast a shadow from the camera widget perspective.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectivePrimaryMask</code></td>
+<td class="tableright">A mask that includes all primary camera perspectives (direct, remote portal, and camera widget). A node having these bits set will never be rendered through the primary camera.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectiveReflectionMask</code></td>
+<td class="tableright">A mask that includes all reflection buffer perspectives. A node having these bits set will never be rendered in the reflection buffer.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectiveRefractionMask</code></td>
+<td class="tableright">A mask that includes all refraction buffer perspectives. A node having these bits set will never be rendered in the refraction buffer.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectivePrimaryShadowMask</code></td>
+<td class="tableright">A mask that includes all primary camera shadow perspectives (direct, remote portal, and camera widget). A node having these bits set will never cast a shadow through the primary camera.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectiveReflectionShadowMask</code></td>
+<td class="tableright">A mask that includes all reflection buffer shadow perspectives. A node having these bits set will never cast a shadow in the reflection buffer.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectiveRefractionShadowMask</code></td>
+<td class="tableright">A mask that includes all refraction buffer shadow perspectives. A node having these bits set will never cast a shadow in the refraction buffer.
+</td></tr>
+</table>
+For any bits that are set in the perspective exclusion mask, the node is not enabled for cameras having the matching perspective. The initial value of the mask is 0, meaning that the node is enabled from all camera perspectives.<br/><br/> There are three different perspective classifications defined by the engine for two different camera classifications, and each combination of these classifications can apply to geometry rendering or shadow rendering. The three perspective classifications correspond to the primary rendering buffer, the reflection buffer, and the refraction buffer. The two camera classifications correspond to direct rendering and rendering through a camera widget in a panel effect. The bits corresponding to the three perspective classifications for direct rendering are the values <code>kPerspectivePrimary</code>, <code>kPerspectiveReflection</code>, and <code>kPerspectiveRefraction</code>. For the other camera classifications and for shadows, these three bit values can be shifted by one of the following constants.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kPerspectiveCameraWidgetShift</code></td>
+<td class="tableright1">The shift value for the camera widget classification.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectiveDirectShadowShift</code></td>
+<td class="tableright">The shift value for the direct shadow classification.
+</td></tr>
+<tr><td class="tableleft"><code>kPerspectiveCameraWidgetShadowShift</code></td>
+<td class="tableright">The shift value for the camera widget shadow classification. For example, to prevent a node from being rendered or casting a shadow in reflections seen through a camera widget, the perspective exclusion mask should be set to <code>(kPerspectiveReflection&nbsp;&lt;&lt;&nbsp;kPerspectiveCameraWidgetShift)&nbsp;|&nbsp;(kPerspectiveReflection&nbsp;&lt;&lt;&nbsp;kPerspectiveCameraWidgetShadowShift)</code>
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="Node_GetPerspectiveExclusionMask.html" tppabs="http://www.c4engine.com/docs/WorldMgr/Node_GetPerspectiveExclusionMask.html">Node::GetPerspectiveExclusionMask</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

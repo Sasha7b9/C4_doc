@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=The_C4_Rendering_Pipeline&amp;feed=atom&amp;action=history</id>
+	<title>The C4 Rendering Pipeline - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=The_C4_Rendering_Pipeline&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=The_C4_Rendering_Pipeline&amp;action=history"/>
+	<updated>2024-09-21T18:20:50Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=The_C4_Rendering_Pipeline&amp;diff=124&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;'''Figure 1.''' The major stages of the C4 Engine rendering pipeline. The C4 Engine executes a complex sequence of rendering operations during each frame of gameplay. This article gives a high-level overview of the various components of the C4 Engine rendering pipeline so that users of the engine, having some knowledge of its internal processes, can achieve more efficient results. The following sections describe the rendering stages exec...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=The_C4_Rendering_Pipeline&amp;diff=124&amp;oldid=prev"/>
+		<updated>2023-07-15T10:51:42Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;&lt;a href=&quot;/wiki/index.php?title=File:Pipeline.png&quot; title=&quot;File:Pipeline.png&quot;&gt;right|frame|&amp;#039;&amp;#039;&amp;#039;Figure 1.&amp;#039;&amp;#039;&amp;#039; The major stages of the C4 Engine rendering pipeline.&lt;/a&gt; The C4 Engine executes a complex sequence of rendering operations during each frame of gameplay. This article gives a high-level overview of the various components of the C4 Engine rendering pipeline so that users of the engine, having some knowledge of its internal processes, can achieve more efficient results. The following sections describe the rendering stages exec...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;[[File:Pipeline.png|right|frame|'''Figure 1.''' The major stages of the C4 Engine rendering pipeline.]]&lt;br /&gt;
+The C4 Engine executes a complex sequence of rendering operations during each frame of gameplay. This article gives a high-level overview of the various components of the C4 Engine rendering pipeline so that users of the engine, having some knowledge of its internal processes, can achieve more efficient results. The following sections describe the rendering stages executed by the engine in the order that they occur.&lt;br /&gt;
+&lt;br /&gt;
+== Structure Pass ==&lt;br /&gt;
+&lt;br /&gt;
+The engine first goes through the scene (using the portal system and cell graph) to determine what objects are visible to the current camera. Once these have been collected, the appropriate detail levels are determined, and the objects are rendered with a special shader to the ''structure buffer''. The structure buffer is a four-channel 16-bit floating-point buffer that holds a 32-bit per-pixel camera-space depth and two 16-bit per-pixel derivatives of this depth, giving a screen-space gradient. This information is used in later stages of the rendering pipeline that need it to perform specific calculations with it. If [[Motion Blur | motion blur]] is enabled, then an additional two-channel 8-bit integer ''velocity buffer'' is rendered at the same time. The velocity buffer holds the per-pixel screen-space velocity of each surface in the scene, and it is used in the postprocessing stage to apply the motion blur effect.&lt;br /&gt;
+&lt;br /&gt;
+== SSAO Generation ==&lt;br /&gt;
+&lt;br /&gt;
+If screen-space ambient occlusion (SSAO) is enabled, then the engine renders a full-screen pass that calculates an approximate ambient occlusion at each pixel using the information in the structure buffer. The resulting ambient occlusion data is stored in a texture map that's used later to modify the intensity of the ambient lighting.&lt;br /&gt;
+&lt;br /&gt;
+== Cascaded Shadow Map ==&lt;br /&gt;
+&lt;br /&gt;
+If an infinite light is visible to the camera, then a [[Cascaded Shadow Mapping | cascaded shadow map]] is rendered next. The results are stored in an array texture that is used to draw shadows in the unified lighting pass.&lt;br /&gt;
+&lt;br /&gt;
+== Unified Lighting Pass ==&lt;br /&gt;
+&lt;br /&gt;
+The unified lighting pass renders either the combined contribution of the ambient light and the infinite light or just the ambient light if no infinite light (with unified lighting enabled) is visible to the camera. Most of the major shading for the entire scene takes place here. The ambient light takes SSAO and radiosity spaces into account, and the infinite light uses the previously-rendered cascaded shadow map to draw shadows. The infinite light typically affects everything in an outside environment, but there are situations in which part of the scene is rendered with unified lighting and part is rendered with only ambient lighting. (For example, if the camera is inside a building and looking outside through a door or window.)&lt;br /&gt;
+&lt;br /&gt;
+If a [[Skyboxes | skybox]] is visible, then it is the last thing rendered in the unified lighting pass. This maximizes efficient use of hierarchical z-buffering hardware.&lt;br /&gt;
+&lt;br /&gt;
+Effect visibility is determined during the unified lighting pass, but effects are not rendered until a later stage.&lt;br /&gt;
+&lt;br /&gt;
+== Additional Lighting Passes ==&lt;br /&gt;
+&lt;br /&gt;
+If there are more light sources visible to the camera, then their contributions are rendered after the unified lighting pass. The engine uses a complicated algorithm to determine which lights in the scene affect regions that are visible to the camera. For each of these lights, the engine also figures out which objects in the scene may cast shadows into visible regions, and this usually includes objects that are not directly visible and thus never actually rendered.&lt;br /&gt;
+&lt;br /&gt;
+For each visible light, the engine first renders shadows for all of the possible shadow castors for that light. For a point light, this involves rendering a cube shadow map, and for a spot light, this involves rendering a 2D shadow map. (There can also be additional infinite lights that involve rendering cascaded shadow maps.) Then the engine renders all objects that are both visible and illuminated by the light, being sure to prevent light from reaching surfaces that are in shadow. An object has a different shader for each of the different types of light supported by the engine.&lt;br /&gt;
+&lt;br /&gt;
+== Effect Pass ==&lt;br /&gt;
+&lt;br /&gt;
+Once the unified lighting pass and all additional lighting passes have been rendered, the special effects that were previously determined to be visible are rendered. There are a few different effect rendering stages. The first stage renders opaque effects, such as scorch mark decals, that are always applied to previously rendered opaque objects. In the second stage, transparent effects that need to be sorted, such as fire and smoke, are rendered from furthest to nearest. Finally, in the third stage, other transparent effects, such as certain particle systems that don't need to be sorted, are rendered.&lt;br /&gt;
+&lt;br /&gt;
+Some effects use the depth information in the structure buffer to modify their appearance. For example, particles are able to use the depth to soften themselves when they get close to solid geometry so that clipping artifacts are not visible.&lt;br /&gt;
+&lt;br /&gt;
+== Multisample Resolve ==&lt;br /&gt;
+&lt;br /&gt;
+After everything in the scene has been rendered, the multisampled rendering buffer is resolved into a single-sampled buffer to apply antialiasing.&lt;br /&gt;
+&lt;br /&gt;
+== Postprocess Effects ==&lt;br /&gt;
+&lt;br /&gt;
+The final pass rendered by the engine takes care of postprocess effects. These are applied to the entire screen and have a constant performance cost that does not depend on the number of visible objects. The postprocess effects rendered by the engine at this point in the rendering pipeline are [[Motion Blur | motion blur]], glow and bloom, distortion effects, and a final color transformation.&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[Lights and Shadows]]&lt;br /&gt;
+* [[Cascaded Shadow Mapping]]&lt;br /&gt;
+* [[Motion Blur]]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

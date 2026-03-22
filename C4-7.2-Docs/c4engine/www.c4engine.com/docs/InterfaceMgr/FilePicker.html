@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class FilePicker</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/InterfaceMgr/index.html">Interface Manager</a> &#x25BA; <a href="FilePicker.html" tppabs="http://www.c4engine.com/docs/InterfaceMgr/FilePicker.html">class FilePicker</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class FilePicker</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4FilePicker.h</code></div>
+A <code>FilePicker</code> class encapsulates a file picker box.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;FilePicker&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;Window,&nbsp;<span style="color: #0000FF">public</span>&nbsp;LinkTarget&lt;FilePicker&gt;,&nbsp;<span style="color: #0000FF">public</span>&nbsp;Completable&lt;FilePicker&gt;</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="FilePicker_GetFileNameCount.html" tppabs="http://www.c4engine.com/docs/InterfaceMgr/FilePicker_GetFileNameCount.html">FilePicker::GetFileNameCount</a></code></td>
+<td class="tableright1">Returns the number of files that are currently selected.
+</td></tr>
+<tr><td class="tableleft"><code><a href="FilePicker_GetFileName.html" tppabs="http://www.c4engine.com/docs/InterfaceMgr/FilePicker_GetFileName.html">FilePicker::GetFileName</a></code></td>
+<td class="tableright">Returns the name of the file that is currently selected.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>FilePicker(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*title,&nbsp;<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*directory,&nbsp;<span style="color: #0000FF">uint32</span>&nbsp;flags&nbsp;=&nbsp;0,&nbsp;<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*panel&nbsp;=&nbsp;<span style="color: #0000FF">nullptr</span>);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>title</code></td>
+<td class="tableright1">The file picker's displayed title.
+</td></tr>
+<tr><td class="tableleft"><code>directory</code></td>
+<td class="tableright">The path to the directory that is initially displayed by the file picker.
+</td></tr>
+<tr><td class="tableleft"><code>flags</code></td>
+<td class="tableright">Flags that affect the appearance and behavior of the file picker. See below for a list of possible values.
+</td></tr>
+<tr><td class="tableleft"><code>panel</code></td>
+<td class="tableright">The name of the panel resource to use for the picker dialog. To use the default file picker, this should be set to <code><span style="color: #0000FF">nullptr</span></code>.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>FilePicker</code> class provides a standard interface for selecting files. When the user selects a file, the file picker's completion callback is called. The completion callback can then retrieve the path to the selected file by calling the <code><a href="FilePicker_GetFileName.html" tppabs="http://www.c4engine.com/docs/InterfaceMgr/FilePicker_GetFileName.html">FilePicker::GetFileName</a></code> function.<br/><br/> Options that control the appearance and behavior of the file picker can be controlled by specifying a combination (through logical OR) of the following constants in the <code>flags</code> parameter.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kFilePickerSave</code></td>
+<td class="tableright1">Display an editable text field where the file name can be typed in.
+</td></tr>
+<tr><td class="tableleft"><code>kFilePickerMultipleSelection</code></td>
+<td class="tableright">Allow multiple files to be selected in the file list simultaneously. This should not be set if the <code>kFilePickerSave</code> flag is set.
+</td></tr>
+<tr><td class="tableleft"><code>kFilePickerEnableRootDirectory</code></td>
+<td class="tableright">Causes the root directory name to be included in the file name. If the <code>kFilePickerSave</code> flag is set, then this flag also allows a file to be specified in the root directory.
+</td></tr>
+<tr><td class="tableleft"><code>kFilePickerStayInsideRootDirectory</code></td>
+<td class="tableright">Don't allow navigation outside (above) the root directory.
+</td></tr>
+</table>
+The <code>directory</code> parameter specifies the directory for which a list of files is initially displayed. If the <code>kFilePickerNoDirectories</code> flag is not specified, then the user can navigate to any directory beneath the initial directory. If the <code>kFilePickerSubdirectory</code> flag is specified, the user can also navigate upward one level from the initial directory (and subsequently to any directory beneath that level).<br/><br/> If the <code>kFilePickerSave</code> flag is specified, then an editable text box is displayed in which the user can enter a file name. This is useful for allowing new files to be created.<br/><br/> If the file picker is cancelled, then the completion callback is not called.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="Window.html" tppabs="http://www.c4engine.com/docs/InterfaceMgr/Window.html">Window</a></code></td>
+<td class="tableright1">The <code>FilePicker</code> class is a specific type of window.
+</td></tr>
+<tr><td class="tableleft"><code><a href="../Utilities/LinkTarget.html" tppabs="http://www.c4engine.com/docs/Utilities/LinkTarget.html">LinkTarget&lt;FilePicker&gt;</a></code></td>
+<td class="tableright">File pickers support smart linking with the <code><a href="../Utilities/Link.html" tppabs="http://www.c4engine.com/docs/Utilities/Link.html">Link</a></code> class.
+</td></tr>
+<tr><td class="tableleft"><code><a href="../Utilities/Completable.html" tppabs="http://www.c4engine.com/docs/Utilities/Completable.html">Completable&lt;FilePicker&gt;</a></code></td>
+<td class="tableright">The completion callback is called when the file picker is dismissed.
+</td></tr>
+</table>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,621 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/Creating_an_Enemy_Unit by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:47:46 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="Creating an Enemy Unit,Defining a Custom Controller,Mouse Input - Unit Movement" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>Creating an Enemy Unit - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Creating_an_Enemy_Unit";
+var wgTitle = "Creating an Enemy Unit";
+var wgAction = "view";
+var wgArticleId = "2263";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "7784";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+<style type="text/css">/*<![CDATA[*/
+.source-cpp {line-height: normal;}
+.source-cpp li, .source-cpp pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for cpp
+ * CSS class: source-cpp, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.cpp.source-cpp .de1, .cpp.source-cpp .de2 {font: normal normal 10pt/12pt monospace; margin:0; padding:0; background:none; vertical-align:top; -moz-tab-size: 4; -webkit-tab-size: 4; -o-tab-size: 4; tab-size: 4;}
+.cpp.source-cpp  {font-family:monospace;}
+.cpp.source-cpp .imp {font-weight: bold; color: red;}
+.cpp.source-cpp li, .cpp.source-cpp .li1 {font-weight: normal; vertical-align:top;}
+.cpp.source-cpp .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.cpp.source-cpp .li2 {font-weight: bold; vertical-align:top;}
+.cpp.source-cpp .kw1 {color: #0000ff;}
+.cpp.source-cpp .kw2 {color: #0000ff;}
+.cpp.source-cpp .kw3 {color: #0000ff;}
+.cpp.source-cpp .kw4 {color: #0000ff;}
+.cpp.source-cpp .co1 {color: #666666;}
+.cpp.source-cpp .co2 {color: #666666;}
+.cpp.source-cpp .coMULTI {color: #666666;}
+.cpp.source-cpp .es0 {color: #000000;}
+.cpp.source-cpp .br0 {color: #000000;}
+.cpp.source-cpp .sy0 {color: #000000;}
+.cpp.source-cpp .sy1 {color: #000000;}
+.cpp.source-cpp .sy2 {color: #000000;}
+.cpp.source-cpp .sy3 {color: #000000;}
+.cpp.source-cpp .sy4 {color: #000000;}
+.cpp.source-cpp .st0 {color: #000000;}
+.cpp.source-cpp .nu0 {color: #000000;}
+.cpp.source-cpp .nu6 {color: #000000;}
+.cpp.source-cpp .nu8 {color: #000000;}
+.cpp.source-cpp .nu12 {color: #000000;}
+.cpp.source-cpp .nu16 {color:#000000;}
+.cpp.source-cpp .nu17 {color:#000000;}
+.cpp.source-cpp .nu18 {color:#000000;}
+.cpp.source-cpp .nu19 {color:#000000;}
+.cpp.source-cpp .me1 {color: #000000;}
+.cpp.source-cpp .me2 {color: #000000;}
+.cpp.source-cpp .ln-xtra, .cpp.source-cpp li.ln-xtra, .cpp.source-cpp div.ln-xtra {background-color: #ffc;}
+.cpp.source-cpp span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Geshi.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+/*]]>*/
+</style>		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Creating_an_Enemy_Unit">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Creating an Enemy Unit</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p><b>Previous section:</b> <a href="Mouse_Input_-_Unit_Movement.html" title="Mouse Input - Unit Movement">Mouse Input - Unit Movement</a>
+</p><p>In this section, we’ll add an enemy tank unit, and we’ll also add turret rotation so that the tanks can aim at a target.  
+</p>
+<table id="toc" class="toc" summary="Contents"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1"><a href="#The_.E2.80.9CPlayer-Controlled.E2.80.9D_Flag_and_Setting"><span class="tocnumber">1</span> <span class="toctext">The “Player-Controlled” Flag and Setting</span></a></li>
+<li class="toclevel-1"><a href="#But_Why_Isn.27t_the_Setting_Getting_Saved.3F"><span class="tocnumber">2</span> <span class="toctext">But Why Isn't the Setting Getting Saved?</span></a></li>
+<li class="toclevel-1"><a href="#Drop_in_a_Red_Enemy_Tank"><span class="tocnumber">3</span> <span class="toctext">Drop in a Red Enemy Tank</span></a></li>
+<li class="toclevel-1"><a href="#Turret_Rotation"><span class="tocnumber">4</span> <span class="toctext">Turret Rotation</span></a></li>
+<li class="toclevel-1"><a href="#Next_Step"><span class="tocnumber">5</span> <span class="toctext">Next Step</span></a></li>
+</ul>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="The_.E2.80.9CPlayer-Controlled.E2.80.9D_Flag_and_Setting"></a><h2> <span class="mw-headline">The “Player-Controlled” Flag and Setting</span></h2>
+<p>First step is adding a flag to the <code>TankController</code> to mark it as either a player-controlled tank or an enemy tank.  
+</p><p><b>&lt;Tank.h&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw2">class</span> TankController <span class="sy4">:</span> <span class="kw2">public</span> Controller
+<span class="br0">&#123;</span>
+	<span class="kw2">private</span><span class="sy4">:</span>
+		...
+		<span class="kw4">unsigned</span> <span class="kw4">long</span> playerControlled<span class="sy4">;</span>
+		...
+	<span class="kw2">public</span><span class="sy4">:</span>
+		...
+		<span class="kw4">bool</span> IsPlayerControlled<span class="br0">&#40;</span><span class="br0">&#41;</span>
+		<span class="br0">&#123;</span>
+			<span class="kw1">return</span> playerControlled<span class="sy4">;</span>
+		<span class="br0">&#125;</span>
+		...
+<span class="br0">&#125;</span><span class="sy4">;</span></pre></div></div>
+<p><br />
+Initialize the flag in the <code>TankController</code> constructor’s initialization list:
+</p><p><b>&lt;Tank.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1">TankController<span class="sy4">::</span><span class="me2">TankController</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy4">:</span> 
+	...
+	<span class="me1">playerControlled</span><span class="br0">&#40;</span><span class="kw2">false</span><span class="br0">&#41;</span>
+	...
+<span class="br0">&#123;</span>
+	...
+<span class="br0">&#125;</span></pre></div></div>
+<p><br />
+After creating a flag for this, we can allow a level designer to mark the tank as player-controlled by adding a setting to the <code>TankController</code>.  (See the article <a href="Defining_a_Custom_Controller.html" title="Defining a Custom Controller">Defining a Custom Controller</a> if you are unfamiliar with settings in a controller.)
+</p><p>Add the following function declarations and definitions for adding controller settings (Note also that <code>C4Configuration.h</code> is included for all Settings-related types):
+</p><p><b>&lt;Tank.h&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1">...
+<span class="kw3">#include</span> <span class="st0">&quot;C4Configuration.h&quot;</span>
+...
+<span class="kw2">class</span> TankController <span class="sy4">:</span> <span class="kw2">public</span> Controller
+<span class="br0">&#123;</span>
+	<span class="kw2">private</span><span class="sy4">:</span>
+		...			
+	<span class="kw2">public</span><span class="sy4">:</span>
+		...
+		<span class="kw4">long</span> GetSettingCount<span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span> <span class="kw4">const</span><span class="sy4">;</span>
+		Setting <span class="sy2">*</span>GetSetting<span class="br0">&#40;</span><span class="kw4">long</span> index<span class="br0">&#41;</span> <span class="kw4">const</span><span class="sy4">;</span>
+		<span class="kw4">void</span> SetSetting<span class="br0">&#40;</span><span class="kw4">const</span> Setting <span class="sy2">*</span>setting<span class="br0">&#41;</span><span class="sy4">;</span>
+		...
+<span class="br0">&#125;</span><span class="sy4">;</span></pre></div></div>
+<p><br />
+<b>&lt;Tank.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw4">long</span> TankController<span class="sy4">::</span><span class="me2">GetSettingCount</span><span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span> <span class="kw4">const</span>
+<span class="br0">&#123;</span>
+	<span class="kw1">return</span> <span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+Setting<span class="sy2">*</span> TankController<span class="sy4">::</span><span class="me2">GetSetting</span><span class="br0">&#40;</span><span class="kw4">long</span> index<span class="br0">&#41;</span> <span class="kw4">const</span>
+<span class="br0">&#123;</span>
+	<span class="kw1">if</span><span class="br0">&#40;</span>index <span class="sy1">==</span> <span class="nu0">0</span><span class="br0">&#41;</span>
+	<span class="br0">&#123;</span>
+		<span class="kw1">return</span> <span class="br0">&#40;</span><span class="kw1">new</span> BooleanSetting<span class="br0">&#40;</span><span class="st0">'pctl'</span>, playerControlled, <span class="st0">&quot;Player Controlled&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+	<span class="br0">&#125;</span>
+	<span class="kw1">return</span> <span class="br0">&#40;</span><span class="kw2">nullptr</span><span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw4">void</span> TankController<span class="sy4">::</span><span class="me2">SetSetting</span><span class="br0">&#40;</span><span class="kw4">const</span> Setting <span class="sy2">*</span>setting<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	<span class="kw1">if</span><span class="br0">&#40;</span>setting<span class="sy2">-</span><span class="sy1">&gt;</span>GetSettingIdentifier<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy1">==</span> <span class="st0">'pctl'</span><span class="br0">&#41;</span>
+	<span class="br0">&#123;</span>
+		playerControlled <span class="sy1">=</span> <span class="br0">&#40;</span><span class="kw2">static_cast</span><span class="sy1">&lt;</span><span class="kw4">const</span> BooleanSetting<span class="sy2">*</span><span class="sy1">&gt;</span><span class="br0">&#40;</span>setting<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy2">-</span><span class="sy1">&gt;</span>GetBooleanValue<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+	<span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p><br />
+With this, a level designer can go into the World Editor and click on the <b>Player Controlled</b> checkbox to mark a tank as a player tank or an enemy tank.  You can try this now if you’d like.  Fire up C4, open up the world by typing “world rts” in the Command Console, selecting the tank entity, and then clicking on <b>Node-&gt;Get Info</b>.  Click on the <b>Controllers</b> tab, and you will see that the new <b>Player Controlled</b> setting is now associated with the <code>TankController</code>.
+</p><p><a href="Image_Rts_player_controlled_setting.html" class="image" title="Image: rts_player_controlled_setting.jpg"><img alt="Image: rts_player_controlled_setting.jpg" src="../images/4/43/Rts_player_controlled_setting.jpg" width="573" height="205" border="0" /></a>
+</p><p><br />
+You can click on it, but that’s about all it does at this point, because we haven’t hooked up the <code>playerControlled</code> flag to do anything yet.
+</p>
+<a name="But_Why_Isn.27t_the_Setting_Getting_Saved.3F"></a><h2> <span class="mw-headline">But Why Isn't the Setting Getting Saved?</span></h2>
+<p>Before we add any functionality to the <code>playerControlled</code> flag, there is one more thing that needs to be done.  As it is right now, when you quit out of C4, the Player Controlled flag does not stick and your setting is lost.  Let’s finish up the support code by adding serialization for this new setting by modifying the <code>Pack</code> and <code>Unpack</code> functions, and adding a new private function called <code>UnpackChunk</code>.
+</p><p><b>&lt;Tank.h&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw2">class</span> TankController <span class="sy4">:</span> <span class="kw2">public</span> Controller
+<span class="br0">&#123;</span>
+	<span class="kw2">private</span><span class="sy4">:</span>
+		...
+		<span class="co1">// Add the following line</span>
+		<span class="kw4">bool</span> UnpackChunk<span class="br0">&#40;</span><span class="kw4">const</span> ChunkHeader <span class="sy2">*</span>chunkHeader, Unpacker<span class="sy3">&amp;</span> data, <span class="kw4">unsigned</span> <span class="kw4">long</span> unpackFlags<span class="br0">&#41;</span><span class="sy4">;</span>
+	<span class="kw2">public</span><span class="sy4">:</span>
+		...
+		<span class="co1">// These functions already exist, but we will be editing their definitions</span>
+		<span class="kw4">void</span> Pack<span class="br0">&#40;</span>Packer<span class="sy3">&amp;</span> data, <span class="kw4">unsigned</span> <span class="kw4">long</span> packFlags<span class="br0">&#41;</span> <span class="kw4">const</span><span class="sy4">;</span>
+		<span class="kw4">void</span> Unpack<span class="br0">&#40;</span>Unpacker<span class="sy3">&amp;</span> data, <span class="kw4">unsigned</span> <span class="kw4">long</span> unpackFlags<span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="br0">&#125;</span><span class="sy4">;</span></pre></div></div>
+<p><br />
+Serialization can sometimes be a delicate situation to deal with.  For instance, if this next part is not done carefully, we can very well end up with a game world that can be difficult to recover.  We want the data to be read in properly, but if the new serialization code attempts to read old data that expects to be new data, it has a potential for crashing.  Modify the <code>Pack</code> function as follows:
+</p><p><b>&lt;Tank.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw4">void</span> TankController<span class="sy4">::</span><span class="me2">Pack</span><span class="br0">&#40;</span>Packer<span class="sy3">&amp;</span> data, <span class="kw4">unsigned</span> <span class="kw4">long</span> packFlags<span class="br0">&#41;</span> <span class="kw4">const</span>
+<span class="br0">&#123;</span>
+Controller<span class="sy4">::</span><span class="me2">Pack</span><span class="br0">&#40;</span>data, packFlags<span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+	data <span class="sy1">&lt;&lt;</span> TerminatorChunk<span class="sy4">;</span>	<span class="co1">// &lt;-- Add this line</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p><br />
+Now, open up the “rts” world in C4, and SAVE IT, so that the new <code>TankController</code> writes the terminator chunk to the world file.  After that’s done, the format of the <code>TankController</code> in your world file has changed, so the <code>Unpack</code> function has to handle this:
+</p><p><b>&lt;Tank.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw4">void</span> TankController<span class="sy4">::</span><span class="me2">Unpack</span><span class="br0">&#40;</span>Unpacker<span class="sy3">&amp;</span> data, <span class="kw4">unsigned</span> <span class="kw4">long</span> unpackFlags<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	Controller<span class="sy4">::</span><span class="me2">Unpack</span><span class="br0">&#40;</span>data, unpackFlags<span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+	UnpackChunkList<span class="sy1">&lt;</span>TankController<span class="sy1">&gt;</span><span class="br0">&#40;</span>data, unpackFlags, <span class="sy3">&amp;</span>TankController<span class="sy4">::</span><span class="me2">UnpackChunk</span><span class="br0">&#41;</span><span class="sy4">;</span>	<span class="co1">// &lt;-- Add this line</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p><br />
+You will notice that this is a little different from how the <a href="Defining_a_Custom_Controller.html" title="Defining a Custom Controller">Defining a Custom Controller</a> article packs and unpacks serialized data.  The <code>Unpack</code> function accepts a function pointer to the <code>UnpackChunk</code> function to handle chunk-specific data.  Here is what <code>UnpackChunk</code> looks like:
+</p><p><b>&lt;Tank.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw4">bool</span> TankController<span class="sy4">::</span><span class="me2">UnpackChunk</span><span class="br0">&#40;</span><span class="kw4">const</span> C4<span class="sy4">::</span><span class="me2">ChunkHeader</span> <span class="sy2">*</span>chunkHeader, C4<span class="sy4">::</span><span class="me2">Unpacker</span> <span class="sy3">&amp;</span>data, <span class="kw4">unsigned</span> <span class="kw4">long</span> unpackFlags<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	<span class="kw1">switch</span><span class="br0">&#40;</span>chunkHeader<span class="sy2">-</span><span class="sy1">&gt;</span>chunkType<span class="br0">&#41;</span>
+	<span class="br0">&#123;</span>
+		<span class="kw1">case</span> <span class="st0">'pctl'</span><span class="sy4">:</span>
+			data <span class="sy1">&gt;&gt;</span> playerControlled<span class="sy4">;</span>
+			<span class="kw1">return</span> <span class="kw2">true</span><span class="sy4">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+	<span class="kw1">return</span> <span class="br0">&#40;</span><span class="kw2">false</span><span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p><br />
+In <code>UnpackChunk</code>, the chunk type is checked, and if it matches a specific chunk type, it processes data specific to that chunk (Reminds me of the FLI format.  I miss that format).  Now that we can read in the <code>‘pctl’</code> chunk type, let’s write out the <code>‘pctl’</code> chunk type to the file:
+</p><p><b>&lt;Tank.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw4">void</span> TankController<span class="sy4">::</span><span class="me2">Pack</span><span class="br0">&#40;</span>Packer<span class="sy3">&amp;</span> data, <span class="kw4">unsigned</span> <span class="kw4">long</span> packFlags<span class="br0">&#41;</span> <span class="kw4">const</span>
+<span class="br0">&#123;</span>
+	Controller<span class="sy4">::</span><span class="me2">Pack</span><span class="br0">&#40;</span>data, packFlags<span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+	data <span class="sy1">&lt;&lt;</span> ChunkHeader<span class="br0">&#40;</span><span class="st0">'pctl'</span>, <span class="nu0">4</span><span class="br0">&#41;</span><span class="sy4">;</span>	<span class="co1">// &lt;-- Add this line</span>
+		data <span class="sy1">&lt;&lt;</span> playerControlled<span class="sy4">;</span>	<span class="co1">// &lt;-- Add this line</span>
+&nbsp;
+	data <span class="sy1">&lt;&lt;</span> TerminatorChunk<span class="sy4">;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p><br />
+With the <code>Pack</code> function, we write out the <code>‘pctl’</code> chunk type, which contains the value of <code>playerControlled</code>, and then we read that value back in with the <code>Unpack</code> function via the <code>‘pctl’</code> chunk type.  When you save and load the world, the value of <code>playerControlled</code> for each tank entity in the world is now maintained.
+</p><p>Now we’re set up to use the <code>playerControlled</code> flag.  Look for this line in <code>TankController::Preprocess</code>:
+</p><p><b>&lt;Tank.cpp&gt;</b>
+</p>
+<pre>
+diffuse.SetAttributeColor(ColorRGB(0.5f, 0.5f, 1.0f));
+</pre>
+<p>We’ll change this line so that the enemy tank will be red instead of blue:
+</p><p><b>&lt;Tank.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw1">if</span><span class="br0">&#40;</span>playerControlled<span class="br0">&#41;</span>
+	diffuse.<span class="me1">SetAttributeColor</span><span class="br0">&#40;</span>ColorRGB<span class="br0">&#40;</span><span class="nu17">0.5f</span>, <span class="nu17">0.5f</span>, <span class="nu17">1.0f</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="kw1">else</span>
+	diffuse.<span class="me1">SetAttributeColor</span><span class="br0">&#40;</span>ColorRGB<span class="br0">&#40;</span><span class="nu17">1.0f</span>, <span class="nu17">0.5f</span>, <span class="nu17">0.5f</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span></pre></div></div>
+<p><br />
+One other place that we’ll check for player control at this time is in the <code>RTSCommandAction</code> class.  In the <code>EntitySelect</code> function, we check if the tank is currently selected before actually selecting it:
+</p><p><b>&lt;CommandAction.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw4">void</span> RTSCommandAction<span class="sy4">::</span><span class="me2">EntitySelect</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	...
+	<span class="kw1">if</span><span class="br0">&#40;</span>tankEntity<span class="br0">&#41;</span>
+	<span class="br0">&#123;</span>
+		tankController <span class="sy1">=</span> <span class="kw2">static_cast</span><span class="sy1">&lt;</span>TankController<span class="sy2">*</span><span class="sy1">&gt;</span><span class="br0">&#40;</span>tankEntity<span class="sy2">-</span><span class="sy1">&gt;</span>GetController<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+		<span class="kw1">if</span><span class="br0">&#40;</span><span class="sy3">!</span>tankController<span class="sy2">-</span><span class="sy1">&gt;</span>IsSelected<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+			tankController<span class="sy2">-</span><span class="sy1">&gt;</span>SetSelected<span class="br0">&#40;</span><span class="kw2">true</span><span class="br0">&#41;</span><span class="sy4">;</span>
+	<span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p><br />
+Add the <code>playerControlled</code> flag to this check so that the user is only allowed to select player tanks:
+</p><p><b>&lt;CommandAction.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw4">void</span> RTSCommandAction<span class="sy4">::</span><span class="me2">EntitySelect</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	...
+	<span class="kw1">if</span><span class="br0">&#40;</span>tankEntity<span class="br0">&#41;</span>
+	<span class="br0">&#123;</span>
+		tankController <span class="sy1">=</span> <span class="kw2">static_cast</span><span class="sy1">&lt;</span>TankController<span class="sy2">*</span><span class="sy1">&gt;</span><span class="br0">&#40;</span>tankEntity<span class="sy2">-</span><span class="sy1">&gt;</span>GetController<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+		<span class="kw1">if</span><span class="br0">&#40;</span><span class="sy3">!</span>tankController<span class="sy2">-</span><span class="sy1">&gt;</span>IsSelected<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy3">&amp;&amp;</span> tankController<span class="sy2">-</span><span class="sy1">&gt;</span>IsPlayerControlled<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+			tankController<span class="sy2">-</span><span class="sy1">&gt;</span>SetSelected<span class="br0">&#40;</span><span class="kw2">true</span><span class="br0">&#41;</span><span class="sy4">;</span>
+	<span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<a name="Drop_in_a_Red_Enemy_Tank"></a><h2> <span class="mw-headline">Drop in a Red Enemy Tank</span></h2>
+<p>Now let’s see what an enemy tank looks like.  Start up C4, and load up the world by typing “world rts” in the Command Console.
+</p><p>Scroll to the <b>Entities</b> page (again, you may have to open it by clicking on <b>Page -&gt; Entities</b> in the menu bar).  Click on <b>tank</b> and then click somewhere on top of the playfield in the upper left viewport to create a new tank entity.  Again, you may have to click on reset transform to get the tank oriented correctly.  At this point, feel free to move the tanks around to whatever starting position you would like:
+</p><p><a href="Image_Rts_opposing_tank_initial_positions.html" class="image" title="Image: rts_opposing_tank_initial_positions.jpg"><img alt="Image: rts_opposing_tank_initial_positions.jpg" src="../images/7/71/Rts_opposing_tank_initial_positions.jpg" width="680" height="528" border="0" /></a>
+</p><p>If you haven’t done so after we changed the <code>Pack</code> and <code>Unpack</code> functions, turn on the <b>Player Controlled</b> flag for the first tank.  Select the first tank entity (you can select it by either clicking on the blue box that represents the first tank entity or switch to the Scene Graph viewport and select the Entity node), click on <b>Node -&gt; Get Info</b>, switch to the <b>Controllers</b> tab and enable the <b>Player Controlled</b> setting.
+</p><p>Save the world (because the world is always in trouble), fire up C4, and the game should look something like this:
+</p><p><a href="Image_Rts_in_game_enemy_tank.html" class="image" title="Image: rts_in_game_enemy_tank.jpg"><img alt="Image: rts_in_game_enemy_tank.jpg" src="../images/e/e9/Rts_in_game_enemy_tank.jpg" width="680" height="528" border="0" /></a>
+</p><p>Nice.  We now have a red enemy tank in the game, but otherwise, it’s not that much fun.  Check out the next part for adding some turret rotation to the tanks.
+</p><p><br />
+</p>
+<a name="Turret_Rotation"></a><h2> <span class="mw-headline">Turret Rotation</span></h2>
+<p>Turret rotation is not related to adding an enemy tank in any way, but it’s completely related to being able to fire a projectile at it, which will be covered in the next section.  This part is mainly an exercise in applying transformations on a subnode (turret) of a transformed node (tank).
+</p><p>Let’s start off with adding variables and function declarations as usual:
+</p><p><b>&lt;Tank.h&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw2">class</span> TankController <span class="sy4">:</span> <span class="kw2">public</span> Controller
+<span class="br0">&#123;</span>
+	<span class="kw2">private</span><span class="sy4">:</span>
+		...
+		<span class="kw4">float</span> curTurretRotation<span class="sy4">;</span>
+		<span class="kw4">float</span> reqTurretRotation<span class="sy4">;</span>
+&nbsp;
+		Transform4D initialTurretTransform<span class="sy4">;</span>
+&nbsp;
+		<span class="kw4">bool</span> moving<span class="sy4">;</span>
+&nbsp;
+		<span class="kw4">void</span> MoveTurret<span class="br0">&#40;</span>Entity <span class="sy2">*</span>entity, <span class="kw4">float</span> dt<span class="br0">&#41;</span><span class="sy4">;</span>
+		...
+	<span class="kw2">public</span><span class="sy4">:</span>
+		...
+<span class="br0">&#125;</span><span class="sy4">;</span></pre></div></div>
+<p><br />
+And then initialize the variables in the constructor:
+</p><p><b>&lt;Tank.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1">TankController<span class="sy4">::</span><span class="me2">TankController</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy4">:</span> 
+	...
+	<span class="me1">curTurretRotation</span><span class="br0">&#40;</span><span class="nu0">0</span><span class="br0">&#41;</span>,
+	reqTurretRotation<span class="br0">&#40;</span><span class="nu0">0</span><span class="br0">&#41;</span>,
+initialTurretTransform<span class="br0">&#40;</span>K<span class="sy4">::</span><span class="me2">identity_4D</span><span class="br0">&#41;</span>,
+moving<span class="br0">&#40;</span><span class="kw2">false</span><span class="br0">&#41;</span>
+...
+<span class="br0">&#123;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p><br />
+The variable <code>initialTurretTransform</code> is meant to keep track of the initial position of the turret in relation to the tank.  It is initialized in the constructor merely to give it some stable values, but the real initialization occurs in the <code>Preprocess</code> function.  Look for the last block of code in the <code>Preprocess</code> function that gets a hold of the turret geometry:
+</p><p><b>&lt;Tank.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1">Geometry<span class="sy2">*</span> turret <span class="sy1">=</span> <span class="kw2">static_cast</span><span class="sy1">&lt;</span>Geometry<span class="sy2">*</span><span class="sy1">&gt;</span><span class="br0">&#40;</span>tankGeo<span class="sy2">-</span><span class="sy1">&gt;</span>GetFirstSubnode<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="kw1">if</span><span class="br0">&#40;</span>turret<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	turret<span class="sy2">-</span><span class="sy1">&gt;</span>SetMaterialObject<span class="br0">&#40;</span><span class="nu0">0</span>, matObject<span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p><br />
+Since we have a pointer to the turret here, add a line to correctly initialize <code>initialTurretTransform</code>:
+</p><p><b>&lt;Tank.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1">Geometry<span class="sy2">*</span> turret <span class="sy1">=</span> <span class="kw2">static_cast</span><span class="sy1">&lt;</span>Geometry<span class="sy2">*</span><span class="sy1">&gt;</span><span class="br0">&#40;</span>tankGeo<span class="sy2">-</span><span class="sy1">&gt;</span>GetFirstSubnode<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="kw1">if</span><span class="br0">&#40;</span>turret<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	turret<span class="sy2">-</span><span class="sy1">&gt;</span>SetMaterialObject<span class="br0">&#40;</span><span class="nu0">0</span>, matObject<span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+	this<span class="sy2">-</span><span class="sy1">&gt;</span>initialTurretTransform <span class="sy1">=</span> turret<span class="sy2">-</span><span class="sy1">&gt;</span>GetNodeTransform<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>	<span class="co1">// &lt;-- Add this line</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p><br />
+And then in <code>TankController::Move()</code>, call the <code>MoveTurret(..)</code> function:
+</p><p><b>&lt;Tank.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw4">void</span> TankController<span class="sy4">::</span><span class="me2">Move</span><span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	<span class="kw4">float</span> dt <span class="sy1">=</span> TheTimeMgr<span class="sy2">-</span><span class="sy1">&gt;</span>GetFloatDeltaTime<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy2">*</span> <span class="nu17">0.001f</span><span class="sy4">;</span>
+&nbsp;
+	Node <span class="sy2">*</span>node <span class="sy1">=</span> this<span class="sy2">-</span><span class="sy1">&gt;</span>GetTargetNode<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+	<span class="kw1">if</span><span class="br0">&#40;</span>node<span class="br0">&#41;</span>
+	<span class="br0">&#123;</span>
+		Entity <span class="sy2">*</span>entity <span class="sy1">=</span> <span class="kw2">static_cast</span><span class="sy1">&lt;</span>Entity<span class="sy2">*</span><span class="sy1">&gt;</span><span class="br0">&#40;</span>node<span class="br0">&#41;</span><span class="sy4">;</span>
+		<span class="kw1">if</span><span class="br0">&#40;</span>entity<span class="br0">&#41;</span>
+		<span class="br0">&#123;</span>
+			MoveTank<span class="br0">&#40;</span>entity, dt<span class="br0">&#41;</span><span class="sy4">;</span>
+			MoveTurret<span class="br0">&#40;</span>entity, dt<span class="br0">&#41;</span><span class="sy4">;</span>	<span class="co1">// &lt;--  Add this line</span>
+&nbsp;
+			entity<span class="sy2">-</span><span class="sy1">&gt;</span>Invalidate<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+		<span class="br0">&#125;</span>
+	<span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p><br />
+Then, set the <code>moving</code> flag at the end of the <code>MoveTank(..)</code> function.  The <code>moving</code> flag is used in the <code>MoveTurret(..)</code> function to determine how to rotate the turret while the tank is moving and while it is not moving.
+</p><p><b>&lt;Tank.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw4">void</span> TankController<span class="sy4">::</span><span class="me2">MoveTank</span><span class="br0">&#40;</span>Entity<span class="sy2">*</span> entity, <span class="kw4">float</span> dt<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	...
+	<span class="me1">moving</span> <span class="sy1">=</span> <span class="br0">&#40;</span>travelDistance <span class="sy1">&gt;</span> <span class="nu17">0.1f</span> <span class="sy3">||</span> <span class="sy3">!</span>rotationArrived<span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p><br />
+<code>travelDistance</code> and <code>rotationArrived</code> are variables that were previously defined in the <a href="Mouse_Input_-_Unit_Movement.html" title="Mouse Input - Unit Movement">Mouse Input - Unit Movement</a> section.  The tank’s <code>moving</code> flag is true if the <code>travelDistance</code> to the waypoint is beyond a certain small distance or if the tank has not completely rotated toward the waypoint.
+</p><p><br />
+And finally, the definition of the <code>MoveTurret(..)</code> function:
+</p><p><b>&lt;Tank.cpp&gt;</b>
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw4">void</span> TankController<span class="sy4">::</span><span class="me2">MoveTurret</span><span class="br0">&#40;</span>Entity <span class="sy2">*</span>entity, <span class="kw4">float</span> dt<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	<span class="kw1">if</span><span class="br0">&#40;</span><span class="sy3">!</span>entity <span class="sy3">||</span> <span class="br0">&#40;</span>entity<span class="sy2">-</span><span class="sy1">&gt;</span>GetEntityType<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy3">!</span><span class="sy1">=</span> kEntityTank<span class="br0">&#41;</span><span class="br0">&#41;</span>
+		<span class="kw1">return</span><span class="sy4">;</span>
+&nbsp;
+	TankController <span class="sy2">*</span>myController <span class="sy1">=</span> <span class="kw2">static_cast</span><span class="sy1">&lt;</span>TankController<span class="sy2">*</span><span class="sy1">&gt;</span><span class="br0">&#40;</span>entity<span class="sy2">-</span><span class="sy1">&gt;</span>GetController<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+	<span class="kw1">if</span><span class="br0">&#40;</span><span class="sy3">!</span>myController<span class="br0">&#41;</span>
+		<span class="kw1">return</span><span class="sy4">;</span>
+&nbsp;
+	Geometry<span class="sy2">*</span> tankGeo <span class="sy1">=</span> <span class="kw2">static_cast</span><span class="sy1">&lt;</span>Geometry<span class="sy2">*</span><span class="sy1">&gt;</span><span class="br0">&#40;</span>entity<span class="sy2">-</span><span class="sy1">&gt;</span>GetFirstSubnode<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+	<span class="kw1">if</span><span class="br0">&#40;</span>tankGeo<span class="br0">&#41;</span>
+	<span class="br0">&#123;</span>
+		Geometry<span class="sy2">*</span> turret <span class="sy1">=</span> <span class="kw2">static_cast</span><span class="sy1">&lt;</span>Geometry<span class="sy2">*</span><span class="sy1">&gt;</span><span class="br0">&#40;</span>tankGeo<span class="sy2">-</span><span class="sy1">&gt;</span>GetFirstSubnode<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+		<span class="kw1">if</span><span class="br0">&#40;</span>turret<span class="br0">&#41;</span>
+		<span class="br0">&#123;</span>
+			CombatWorld <span class="sy2">*</span>world <span class="sy1">=</span> <span class="kw2">static_cast</span><span class="sy1">&lt;</span>CombatWorld<span class="sy2">*</span><span class="sy1">&gt;</span><span class="br0">&#40;</span>TheWorldMgr<span class="sy2">-</span><span class="sy1">&gt;</span>GetWorld<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+			C4<span class="sy4">::</span><span class="me2">Array</span><span class="sy1">&lt;</span>Entity<span class="sy2">*</span><span class="sy1">&gt;</span> <span class="sy2">*</span>tanks<span class="sy4">;</span>
+&nbsp;
+			<span class="kw1">if</span><span class="br0">&#40;</span>world<span class="br0">&#41;</span>
+			<span class="br0">&#123;</span>
+				tanks <span class="sy1">=</span> world<span class="sy2">-</span><span class="sy1">&gt;</span>GetEntityTanks<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+			<span class="br0">&#125;</span>
+&nbsp;
+			Entity <span class="sy2">*</span>targetTank <span class="sy1">=</span> <span class="kw2">nullptr</span><span class="sy4">;</span>
+&nbsp;
+			<span class="kw1">for</span><span class="br0">&#40;</span><span class="kw4">long</span> i <span class="sy1">=</span> <span class="nu0">0</span><span class="sy4">;</span> i <span class="sy1">&lt;</span> tanks<span class="sy2">-</span><span class="sy1">&gt;</span>GetElementCount<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span> i<span class="sy2">++</span><span class="br0">&#41;</span>
+			<span class="br0">&#123;</span>
+				targetTank <span class="sy1">=</span> <span class="kw2">static_cast</span><span class="sy1">&lt;</span>Entity<span class="sy2">*</span><span class="sy1">&gt;</span><span class="br0">&#40;</span><span class="br0">&#40;</span><span class="sy2">*</span>tanks<span class="br0">&#41;</span><span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+				<span class="kw1">if</span><span class="br0">&#40;</span>targetTank <span class="sy3">&amp;&amp;</span> <span class="br0">&#40;</span>targetTank<span class="sy2">-</span><span class="sy1">&gt;</span>GetEntityType<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy1">==</span> kEntityTank<span class="br0">&#41;</span> <span class="sy3">&amp;&amp;</span> <span class="br0">&#40;</span>targetTank <span class="sy3">!</span><span class="sy1">=</span> entity<span class="br0">&#41;</span><span class="br0">&#41;</span>
+				<span class="br0">&#123;</span>
+					TankController <span class="sy2">*</span>controller <span class="sy1">=</span> <span class="kw2">static_cast</span><span class="sy1">&lt;</span>TankController<span class="sy2">*</span><span class="sy1">&gt;</span><span class="br0">&#40;</span>targetTank<span class="sy2">-</span><span class="sy1">&gt;</span>GetController<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+					<span class="kw1">if</span><span class="br0">&#40;</span>controller<span class="br0">&#41;</span>
+					<span class="br0">&#123;</span>
+						<span class="kw1">if</span><span class="br0">&#40;</span>this<span class="sy2">-</span><span class="sy1">&gt;</span>IsPlayerControlled<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy3">!</span><span class="sy1">=</span> controller<span class="sy2">-</span><span class="sy1">&gt;</span>IsPlayerControlled<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+							<span class="kw1">break</span><span class="sy4">;</span>
+					<span class="br0">&#125;</span>
+				<span class="br0">&#125;</span>
+				targetTank <span class="sy1">=</span> <span class="kw2">nullptr</span><span class="sy4">;</span>
+			<span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+			Vector3D targetDirVector<span class="br0">&#40;</span><span class="nu17">0.0f</span>, <span class="nu17">0.0f</span>,<span class="nu17">0.0f</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+			<span class="kw1">if</span><span class="br0">&#40;</span>targetTank<span class="br0">&#41;</span>
+			<span class="br0">&#123;</span>
+				targetDirVector <span class="sy1">=</span> targetTank<span class="sy2">-</span><span class="sy1">&gt;</span>GetNodePosition<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy2">-</span> entity<span class="sy2">-</span><span class="sy1">&gt;</span>GetNodePosition<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+				targetDirVector.<span class="me1">Normalize</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+			<span class="br0">&#125;</span>
+&nbsp;
+			<span class="kw1">if</span><span class="br0">&#40;</span><span class="sy3">!</span>moving<span class="br0">&#41;</span>
+			<span class="br0">&#123;</span>
+				reqTurretRotation <span class="sy1">=</span> C4<span class="sy4">::</span><span class="me2">Atan</span><span class="br0">&#40;</span>targetDirVector.<span class="me1">y</span>, targetDirVector.<span class="me1">x</span><span class="br0">&#41;</span><span class="sy4">;</span>
+			<span class="br0">&#125;</span>
+			<span class="kw1">else</span>
+			<span class="br0">&#123;</span>
+				reqTurretRotation <span class="sy1">=</span> curRotation<span class="sy4">;</span>
+			<span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+			<span class="kw4">float</span> deltaRotation <span class="sy1">=</span> reqTurretRotation <span class="sy2">-</span> curTurretRotation<span class="sy4">;</span>
+&nbsp;
+			<span class="kw1">while</span><span class="br0">&#40;</span>deltaRotation <span class="sy1">&lt;</span> <span class="sy2">-</span>K<span class="sy4">::</span><span class="me2">pi</span><span class="br0">&#41;</span>
+				deltaRotation <span class="sy2">+</span><span class="sy1">=</span> K<span class="sy4">::</span><span class="me2">two_pi</span><span class="sy4">;</span>
+&nbsp;
+			<span class="kw1">while</span><span class="br0">&#40;</span>deltaRotation <span class="sy1">&gt;</span> K<span class="sy4">::</span><span class="me2">pi</span><span class="br0">&#41;</span>
+				deltaRotation <span class="sy2">-</span><span class="sy1">=</span> K<span class="sy4">::</span><span class="me2">two_pi</span><span class="sy4">;</span>
+&nbsp;
+			<span class="co1">// Check if delta rotation is larger than threshold</span>
+			<span class="kw1">if</span><span class="br0">&#40;</span>C4<span class="sy4">::</span><span class="me2">Fabs</span><span class="br0">&#40;</span>deltaRotation<span class="br0">&#41;</span> <span class="sy1">&gt;</span> <span class="nu17">0.1f</span><span class="br0">&#41;</span>
+			<span class="br0">&#123;</span>
+				<span class="kw1">if</span><span class="br0">&#40;</span>deltaRotation <span class="sy1">&lt;</span> <span class="nu0">0</span><span class="br0">&#41;</span>
+				<span class="br0">&#123;</span>
+					curTurretRotation <span class="sy2">-</span><span class="sy1">=</span> <span class="nu17">1.0f</span> <span class="sy2">*</span> dt<span class="sy4">;</span>
+				<span class="br0">&#125;</span>
+				<span class="kw1">else</span> <span class="kw1">if</span><span class="br0">&#40;</span>deltaRotation <span class="sy1">&gt;</span> <span class="nu0">0</span><span class="br0">&#41;</span>
+				<span class="br0">&#123;</span>
+					curTurretRotation <span class="sy2">+</span><span class="sy1">=</span> <span class="nu17">1.0f</span> <span class="sy2">*</span> dt<span class="sy4">;</span>
+				<span class="br0">&#125;</span>
+			<span class="br0">&#125;</span>
+&nbsp;
+			Transform4D nodeTransform <span class="sy1">=</span> initialTurretTransform<span class="sy4">;</span>
+&nbsp;
+			Matrix3D turretTransform<span class="sy4">;</span>
+			turretTransform.<span class="me1">SetRotationAboutZ</span><span class="br0">&#40;</span>curTurretRotation <span class="sy2">-</span> curRotation<span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+			nodeTransform <span class="sy2">*</span><span class="sy1">=</span> turretTransform<span class="sy4">;</span>
+&nbsp;
+			turret<span class="sy2">-</span><span class="sy1">&gt;</span>SetNodeTransform<span class="br0">&#40;</span>nodeTransform<span class="br0">&#41;</span><span class="sy4">;</span>
+		<span class="br0">&#125;</span>
+	<span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p><br />
+All right, let’s run through the code.  First thing the function does is punk out if the <code>entity</code> pointer is bad, if <code>entity</code> is not of type <code>kEntityTank</code>, or if there is no controller attached to the <code>entity</code>.  Then we move on by getting the <code>entity</code>’s first subnode’s first subnode (whew!) which should be the turret geometry as defined by the node hierarchy:
+</p><p><a href="Image_Rts_tank_heirarchy.html" class="image" title="Image: rts_tank_heirarchy.jpg"><img alt="Image: rts_tank_heirarchy.jpg" src="../images/5/56/Rts_tank_heirarchy.jpg" width="569" height="59" border="0" /></a>
+</p><p><br />
+Once we have a hold of the <code>turret</code> pointer, we loop through each <code>Entity</code> tank in the world, get a hold of its <code>TankController</code>, and do a comparison with this <code>TankController</code>.  
+</p><p>We break out of the loop once we’ve found a <code>TankController</code> whose <code>playerControlled</code> flag is not the same as this <code>TankController</code>’s <code>playerControlled</code> flag.  It’s not the best algorithm for finding an opposing tank (you may also want to check range and closeness), but it suits our needs for this scenario, in which there is only one player tank and one enemy tank.  The value of <code>reqTurretRotation</code> depends on the value of the <code>moving</code> flag.  If the tank is moving, the <code>reqTurretRotation</code> is set to the tank’s current rotation so that the turret “resets” its rotation to match with the tank. If the tank is no longer moving, we get the angle of rotation to the target by utilizing the direction vector to the target, and <code>reqTurretRotation</code> is set to this angle so that the turret will rotate toward the target tank.
+</p><p>The last part of this function generates an appropriate transformation for the turret.  We start by setting <code>nodeTransform</code> to the <code>initialTurretTransform</code> (which, remember, is the turret’s position in relation to the tank when it is first initialized).  Then we multiply the <code>nodeTransform</code> with the <code>turretTransform</code>, which is simply the difference in rotation between the <code>curTurretRotation</code> and the tank’s <code>curRotation</code>.  After the math is done, we set the node transform to the turret geometry.  Whew!  That wasn’t the best explanation for what’s going on, but nothing beats reading the actual code to describe what the code actually does!
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:283px;"><a href="Image_Rts_turret_rotation.html" class="image" title="&quot;What are YOU looking at?&quot;"><img alt="&quot;What are YOU looking at?&quot;" src="../images/5/5e/Rts_turret_rotation.jpg" width="281" height="217" border="0" class="thumbimage" /></a>  <div class="thumbcaption">"What are YOU looking at?"</div></div></div>
+<a name="Next_Step"></a><h2> <span class="mw-headline">Next Step</span></h2>
+<p>Now that we’ve got an enemy tank in the game and turret rotation working, the next logical step is to attack the enemy.  The next section Attacking the Enemy covers projectiles.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 137/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:2263-0!1!0!!en!2!edit=0 and timestamp 20150119084133 -->
+<div class="printfooter">
+Retrieved from "<a href="Creating_an_Enemy_Unit.html">http://www.terathon.com/wiki/index.php/Creating_an_Enemy_Unit</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="Creating_an_Enemy_Unit.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:Creating_an_Enemy_Unit&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=Creating_an_Enemy_Unit&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=Creating_an_Enemy_Unit&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="User_46.53.162.html" title="The user page for the ip you&#039;re editing as [.]" accesskey="." class="new">46.53.162.27</a></li>
+				<li id="pt-anontalk"><a href="User_talk_46.53.162.html" title="Discussion about edits from this ip address [n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=Creating_an_Enemy_Unit" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Creating_an_Enemy_Unit.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Creating_an_Enemy_Unit.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=Creating_an_Enemy_Unit&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=Creating_an_Enemy_Unit&amp;oldid=7784" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 16 June 2011, at 06:19.</li>
+				<li id="viewcount">This page has been accessed 7,028 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 1.584 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/Creating_an_Enemy_Unit by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:47:46 GMT -->
+</html>

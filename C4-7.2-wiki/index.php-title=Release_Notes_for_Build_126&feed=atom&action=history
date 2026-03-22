@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_126&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Build 126 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_126&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_126&amp;action=history"/>
+	<updated>2024-09-21T18:44:07Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_126&amp;diff=33&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' August 31, 2006  * '''IMPORTANT:''' In the unlikely case that you have world or model resources that have not been saved in build 113 or later, you need to open them and save them in build 125 before opening them in build 126.   * '''IMPORTANT:''' Because of some format changes in this build, it's recommended that you open and save all worlds and models to update your resources. In most cases, resources will shrink in size slightly.   * '''I...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_126&amp;diff=33&amp;oldid=prev"/>
+		<updated>2023-07-15T09:37:30Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; August 31, 2006  * &amp;#039;&amp;#039;&amp;#039;IMPORTANT:&amp;#039;&amp;#039;&amp;#039; In the unlikely case that you have world or model resources that have not been saved in build 113 or later, you need to open them and save them in build 125 before opening them in build 126.   * &amp;#039;&amp;#039;&amp;#039;IMPORTANT:&amp;#039;&amp;#039;&amp;#039; Because of some format changes in this build, it&amp;#039;s recommended that you open and save all worlds and models to update your resources. In most cases, resources will shrink in size slightly.   * &amp;#039;&amp;#039;&amp;#039;I...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' August 31, 2006&lt;br /&gt;
+&lt;br /&gt;
+* '''IMPORTANT:''' In the unlikely case that you have world or model resources that have not been saved in build 113 or later, you need to open them and save them in build 125 before opening them in build 126. &lt;br /&gt;
+&lt;br /&gt;
+* '''IMPORTANT:''' Because of some format changes in this build, it's recommended that you open and save all worlds and models to update your resources. In most cases, resources will shrink in size slightly. &lt;br /&gt;
+&lt;br /&gt;
+* '''IMPORTANT:''' Changes in this build have largely removed the need for the concept of &amp;quot;group space&amp;quot; in the engine. Plans are to remove group space functionality in the next build, so please update any geometries using group space by merging all such geometries in each group together into a single object (more below). &lt;br /&gt;
+&lt;br /&gt;
+* Implemented support for multiple materials on a single renderable object. The &amp;lt;code&amp;gt;Renderable&amp;lt;/code&amp;gt; class now supports multiple ''render segments'' represented by the &amp;lt;code&amp;gt;RenderSegment&amp;lt;/code&amp;gt; class. Each segment corresponds to a separate material and has its own material attributes and shading data. The first segment is built into the &amp;lt;code&amp;gt;Renderable&amp;lt;/code&amp;gt; class, and additional segments can be attached by a higher-level object.&lt;br /&gt;
+&lt;br /&gt;
+* The higher-level object normally attaching additional render segments is the &amp;lt;code&amp;gt;Geometry&amp;lt;/code&amp;gt; class, which now supports multiple materials. The &amp;lt;code&amp;gt;GetMaterialObject()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;SetMaterialObject()&amp;lt;/code&amp;gt; functions now take a material index to identify a material slot. The number of material slots for a geometry is always at least 1 and can be set using the &amp;lt;code&amp;gt;SetMaterialCount()&amp;lt;/code&amp;gt; function. The granularity at which multiple materials can be applied is based on the division of a geometry into surfaces. Surfaces are groups of polygons that are isolated with respect to normal smoothing, bump mapping, etc. These have been supported by the engine for some time, but now each surface can designate a separate material. When a geometry is built, all sets of surfaces sharing a common material are combined to form a single segment, so the number of render segments is always less than or equal to the number of surfaces.&lt;br /&gt;
+&lt;br /&gt;
+* The Collada Importer tool will now apply multiple materials to meshes that have multiple surfaces referencing different materials. Each occurrence of a &amp;lt;code&amp;gt;&amp;lt;polygons&amp;gt;, &amp;lt;polylist&amp;gt;,&amp;lt;/code&amp;gt; or &amp;lt;code&amp;gt;&amp;lt;triangles&amp;gt;&amp;lt;/code&amp;gt; element within a &amp;lt;code&amp;gt;&amp;lt;mesh&amp;gt;&amp;lt;/code&amp;gt; element generates a separate surface to which a distinct material may be applied. &lt;br /&gt;
+&lt;br /&gt;
+* Changed the behavior of the Merge Geometry command in the World Editor. Previously, this would merge the selected geometries and apply the current material to the result. Now, it generates a single geometry that has all of the original materials applied to it. The number of surfaces in the resulting geometry is the sum of the numbers of surfaces in the input geometries. If surfaces of multiple input geometries use the same material, then they are combined into the same segment of the resulting geometry, but the surfaces remain separate. &lt;br /&gt;
+&lt;br /&gt;
+* Changed the behavior of the CSG operations in the World Editor so that they now always produce a single geometry with multiple materials. All surviving surfaces of a CSG operation between two geometries are combined into a single geometry, and only the materials used by the surviving surfaces are applied to the new geometry. &lt;br /&gt;
+&lt;br /&gt;
+* CSG operations now generate as many LODs as the maximum number possessed by the two input geometries, whereas previously, only the minimum number of LODs were generated. This is useful if you do something like subtract a two-LOD cylinder from a single-LOD box and still want two LODs in the result. &lt;br /&gt;
+&lt;br /&gt;
+* Completed the in-game interface panel system. Under the markers/triggers/effects panel in the World Editor, there is a new effect called &amp;quot;Panel Effect&amp;quot; that lets you draw a rectangular interface panel. This effect automatically has a panel controller assigned to it that can be configured under the Controller pane in the Get Info dialog. There are two sliders here that control the resolution of the interface panelâ€”these are independent of the size of the panel effect in the editor viewport. Clicking on the Edit Panel button opens the Panel Editor window where the contents of the interface can be designed.&lt;br /&gt;
+&lt;br /&gt;
+* The Panel Editor window contains tools similar to those that would typically be found in a 2D drawing application. In this build, there are two types of items that can be placed in an interface panel: images and text. A future build will also include a viewport item that can display a rendered image from another camera in the world. An image or text item is placed in the interface by selecting one of the drawing tools in the upper-left part of the window and dragging out a rectangle. The texture applied to an image item is the one selected on the left side of the window. The texture palette displays all of the textures in the &amp;lt;code&amp;gt;Data/tex/panels/&amp;lt;/code&amp;gt; directory (but any texture can be applied to an image by changing it after it's drawn).&lt;br /&gt;
+&lt;br /&gt;
+* When a single item is selected in the Panel Editor, its properties can be edited on the right side of the window. The item identifier is a four-character code that can be used to identify different items from a scriptâ€”they do not need to be unique, so it's possible to identify a group of items using the same value. The Disabled and Hidden check boxes determine whether an item is initially clickable or initially hidden, respectively.&lt;br /&gt;
+&lt;br /&gt;
+* A panel item can be made interactive by assigned a script to it. To do so, select the item and click the Edit Script button at the bottom of the window. The script will run each time the panel item is clicked. Note that the Interaction property must be assigned to a panel in order for it to receive interaction events (see below).&lt;br /&gt;
+&lt;br /&gt;
+* Panel items can be animated by assigning one or more ''mutators'' to them. The popup menu on the right side of the window contains the available mutators for a selected panel item, and the list box next to it displays the mutators that are currently assigned to the item. A new mutator is added to a panel item by selecting it from the menu and clicking the Add button. Like a panel item, each mutator also has a four-character identifier that can be used to identify it from a script.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;PanelController&amp;lt;/code&amp;gt; class exposes a number of functions that can be called from a script. Each function takes a panel item identifier as a parameter that determines which items are affected. A blank identifier is a wildcard and matches all panel items. For functions that operate on mutators, a separate mutator identifier is also specified, and a blank identifier is a wildcard that matches all mutators.&lt;br /&gt;
+&lt;br /&gt;
+* Implemented an interaction event system that's used to communicate user interaction information to the controllers of interactive objects in a world. Currently, any geometry node or panel effect node can be made interactive by assigning the new Interaction property to it in the Get Info window. (In particular, this property must be assigned to a panel effect before anything in the panel can be clicked.)&lt;br /&gt;
+&lt;br /&gt;
+* Interactions are reported through the &amp;lt;code&amp;gt;Interactor&amp;lt;/code&amp;gt; class. An application can define subclasses of the &amp;lt;code&amp;gt;Interactor&amp;lt;/code&amp;gt; class and add them to a world in order to detect interactions between a given line segment and any interactive nodes in the world. When the line segment probe first hits an interactive node, a &amp;lt;code&amp;gt;kInteractionEventEngage&amp;lt;/code&amp;gt; event is sent to the &amp;lt;code&amp;gt;Interactor&amp;lt;/code&amp;gt; class. As long as the probe remains in contact with the interactive node, the &amp;lt;code&amp;gt;Interactor&amp;lt;/code&amp;gt; class continues receiving &amp;lt;code&amp;gt;kInteractionEventTrack&amp;lt;/code&amp;gt; events. When the probe later misses the interactive node, the &amp;lt;code&amp;gt;Interactor&amp;lt;/code&amp;gt; class receives the &amp;lt;code&amp;gt;kInteractionEventDisengage&amp;lt;/code&amp;gt; event. The application-defined subclass can handle these in any manner necessary.&lt;br /&gt;
+&lt;br /&gt;
+* Controllers now have a &amp;lt;code&amp;gt;HandleInteractionEvent&amp;lt;/code&amp;gt; function for handling interaction events. Normally, a subclass of &amp;lt;code&amp;gt;Interactor&amp;lt;/code&amp;gt; will pass interaction events to the controller attached to the interactive node that has been engaged. There are two additional events, &amp;lt;code&amp;gt;kInteractionEventActivate&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;kInteractionEventDeactivate&amp;lt;/code&amp;gt;, that can be sent to a controller when the user explicitly generates some kind of input indicating that they want to activate the node that they're currently passively engaged to. This needs to be handled by the Application Module.&lt;br /&gt;
+&lt;br /&gt;
+* Implemented an associative key-value container called &amp;lt;code&amp;gt;Map&amp;lt;/code&amp;gt;. It works like the &amp;lt;code&amp;gt;List&amp;lt;/code&amp;gt; class in that there is also a &amp;lt;code&amp;gt;MapElement&amp;lt;/code&amp;gt; class from which objects stored in a map need to be derived and the map owns its members. As with the list container, there is no memory allocation done when an object is inserted into a mapâ€”all of the linking pointers are part of the object itself. This also has the advantage that destroying an object automatically removes it from any map it is a member of.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Map&amp;lt;/code&amp;gt; class uses an AVL tree implementation to maintain a balanced binary tree. This provides 1.44Ã—O(log ''n'') time searches in the worst possible case, where n is the number of objects in the map. (A red-black tree, used by most STL implementations, will take 2Ã—O(log ''n'') time in the worst case.)&lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;Terminate&amp;lt;/code&amp;gt; function to the &amp;lt;code&amp;gt;ScriptController&amp;lt;/code&amp;gt; class. This terminates all scripts currently running on the controller. &lt;br /&gt;
+&lt;br /&gt;
+* Added a flag to fog spaces that causes their boundary planes to become collision barriers for cameras. &lt;br /&gt;
+&lt;br /&gt;
+* Added a small feature to the &amp;lt;code&amp;gt;MarkingEffect&amp;lt;/code&amp;gt; class that causes a marking to exist for exactly one frame. This is useful if you're using a marking for something like a blob shadow. To specify that a marking lives for only one frame, the &amp;lt;code&amp;gt;lifeTime&amp;lt;/code&amp;gt; field of the &amp;lt;code&amp;gt;MarkingData&amp;lt;/code&amp;gt; structure should be set to -1. &lt;br /&gt;
+&lt;br /&gt;
+* Added a flag to light nodes that cause them to connect to a shadow space in the referencing world when they are included through a reference marker. If the &amp;quot;Connect to shadow space in referencing world&amp;quot; box is checked in a light's Get Info dialog, then the light will look for a SHAD connector on the reference marker that caused it to be included in another world. If that connector is found and is connected to a shadow space, then the light will automatically connect to that shadow space. &lt;br /&gt;
+&lt;br /&gt;
+* Added a node flag that causes a node's object not to be shared when the node is replicated. In order for this flag to be effective, the object attached to the node must support replication. Currently, only light objects can be replicated, and a new check box has been added to the Get Info dialog that turns this flag on. This is used to force lights in referenced worlds to have independent objects so that controllers can animate them separately for things like flickering effects. &lt;br /&gt;
+&lt;br /&gt;
+* Shadow spaces can now be used with infinite lights and depth lights. As with point lights, shadows rendered for a light connected to a shadow space can be restricted by the engine to the volume bounded by the shadow space as a performance optimization. &lt;br /&gt;
+&lt;br /&gt;
+* Made significant improvements to the shadow culling code for spot lights. Some areas of the demo world got a 10-15% speed-up.&lt;br /&gt;
+ &lt;br /&gt;
+* The graphics stats window (accessed by the &amp;lt;code&amp;gt;graf&amp;lt;/code&amp;gt; console command) has been expanded to display a lot more information. It now shows the number of faces and the number of drawing commands used for normal rendering, shadows, and the special effect buffer. It also displays more information about the higher-level visibility statistics, such as number of objects visible, number of shadows visible, and various portal counts. &lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Cursor&amp;lt;/code&amp;gt; class no longer holds a hotspot position. Instead, the center position of a cursor is now specified in the cursor's texture. The Texture Importer tool has been updated to allow a center point to be specified. &lt;br /&gt;
+&lt;br /&gt;
+* Connectors in the World Editor can now be set to link only to entities (in addition to all the other node types that were already there). &lt;br /&gt;
+&lt;br /&gt;
+* The Collada Importer tool will now recognize texture names with spaces in them. It will also recognize the substring &amp;quot;/Import/tga/&amp;quot; and treat anything that comes after it as the full path to a texture image so that the imported material has the correct corresponding path in the &amp;lt;code&amp;gt;Data/tex/&amp;lt;/code&amp;gt; directory. &lt;br /&gt;
+&lt;br /&gt;
+* The Collada Importer tool can now apply textures for which a material attribute references a sampler instead of directly referencing the texture image. &lt;br /&gt;
+&lt;br /&gt;
+* Added a check box to the Font Generator tool that enables mipmap generation for font textures. This should be enabled for fonts that are to be used for in-game interface panels. &lt;br /&gt;
+&lt;br /&gt;
+* Added specializations to the &amp;lt;code&amp;gt;&amp;lt;&amp;lt;&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;&amp;gt;&amp;gt;&amp;lt;/code&amp;gt; operators in the &amp;lt;code&amp;gt;Packer&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;Unpacker&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;Compressor&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;Decompressor&amp;lt;/code&amp;gt; classes to explicitly handle the &amp;lt;code&amp;gt;bool&amp;lt;/code&amp;gt; type correctly. When packing into a file, a &amp;lt;code&amp;gt;bool&amp;lt;/code&amp;gt; is always saved as four bytes (for alignment). When compressing into a network message, a &amp;lt;code&amp;gt;bool&amp;lt;/code&amp;gt; is always written as one byte. &lt;br /&gt;
+&lt;br /&gt;
+* Made a shader optimization that reduces the number of interpolants needed when fog is used. This allows all possible combinations of shading attributes to be applied with fog. (Previously, combinations such as depth light + dual texcoords + specular + fog would overflow the available interpolants by one.) &lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;kGeometryStaticShadowInhibit&amp;lt;/code&amp;gt; flag has been renamed to &amp;lt;code&amp;gt;kGeometryDynamic&amp;lt;/code&amp;gt;. This flag means a geometry might move, so the engine will not do things like cache shadow volumes for a geometry having this flag set. &lt;br /&gt;
+&lt;br /&gt;
+* Resolved a problem in which motion blur would &amp;quot;stick&amp;quot; and cause screen trashing when decals were visible. There is an unrelated motion blur problem occurring only on GeForce 7x00 hardware which is currently under investigation at Nvidia as bug #251255. ''UPDATE: A zero-cost workaround has been found, so motion blur should be rendering correctly on all graphics cards now.'' &lt;br /&gt;
+&lt;br /&gt;
+* Fixed a problem in which dual texcoords were not working if a material used a parallax map. &lt;br /&gt;
+&lt;br /&gt;
+* Fixed a problem that could cause a stopped sound source to start playing when a game is saved and restored. &lt;br /&gt;
+&lt;br /&gt;
+* Fixed a crash that would occur if the cloth controller was removed from a cloth geometry.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.5&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 2.5 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.5&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.5&amp;action=history"/>
+	<updated>2024-09-21T18:41:17Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.5&amp;diff=68&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' February 12, 2011  == Core Engine ==  === Interface Manager ===  * The systems for rendering on-screen interfaces and in-game panel effects have been unified into a single architecture that uses the &lt;code&gt;[http://c4engine.com/docs/InterfaceMgr/Widget.html Widget]&lt;/code&gt; class hierarchy. The &lt;code&gt;Element&lt;/code&gt; class hierarchy has been removed from the engine, and there is now a &lt;code&gt;Widget&lt;/code&gt; subclass corresponding to each &lt;code&gt;Elemen...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.5&amp;diff=68&amp;oldid=prev"/>
+		<updated>2023-07-15T10:04:43Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; February 12, 2011  == Core Engine ==  === Interface Manager ===  * The systems for rendering on-screen interfaces and in-game panel effects have been unified into a single architecture that uses the &amp;lt;code&amp;gt;[http://c4engine.com/docs/InterfaceMgr/Widget.html Widget]&amp;lt;/code&amp;gt; class hierarchy. The &amp;lt;code&amp;gt;Element&amp;lt;/code&amp;gt; class hierarchy has been removed from the engine, and there is now a &amp;lt;code&amp;gt;Widget&amp;lt;/code&amp;gt; subclass corresponding to each &amp;lt;code&amp;gt;Elemen...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' February 12, 2011&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+=== Interface Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The systems for rendering on-screen interfaces and in-game panel effects have been unified into a single architecture that uses the &amp;lt;code&amp;gt;[http://c4engine.com/docs/InterfaceMgr/Widget.html Widget]&amp;lt;/code&amp;gt; class hierarchy. The &amp;lt;code&amp;gt;Element&amp;lt;/code&amp;gt; class hierarchy has been removed from the engine, and there is now a &amp;lt;code&amp;gt;Widget&amp;lt;/code&amp;gt; subclass corresponding to each &amp;lt;code&amp;gt;Element&amp;lt;/code&amp;gt; subclass that previously existed. The functionality in many of the new &amp;lt;code&amp;gt;Widget&amp;lt;/code&amp;gt; subclasses has been enhanced compared to the corresponding &amp;lt;code&amp;gt;Element&amp;lt;/code&amp;gt; subclass.&lt;br /&gt;
+&lt;br /&gt;
+* Several new types of widgets have been added that have no &amp;lt;code&amp;gt;Element&amp;lt;/code&amp;gt; counterpart. These are the line, border, password, text button, and hyperlink widgets.&lt;br /&gt;
+&lt;br /&gt;
+* A new type of resource, the panel resource with extension &amp;lt;code&amp;gt;.pan&amp;lt;/code&amp;gt;, has been defined for holding interface layouts. A panel resource can be loaded under any widget, so it may contain an entire window's layout or just smaller sections.&lt;br /&gt;
+&lt;br /&gt;
+* The Interface Manager now displays a &amp;quot;strip&amp;quot; at the bottom of the screen that is similar to the Windows task bar. Certain types of windows have buttons associated with them in the strip so that it's easy to switch among multiple editors (for example). The Tools menu that was previously displayed in a menu bar at the top of the screen is now accessible from the C4 button displayed at the left end of the strip, and there is no global menu bar. (Menu bars are now contained inside windows.)&lt;br /&gt;
+&lt;br /&gt;
+* Any widget can have a help balloon assigned to it that either displays a text message or loads an entire panel resource.&lt;br /&gt;
+&lt;br /&gt;
+* The Interface Manager now starts in manual input management mode. A call to the &amp;lt;code&amp;gt;InterfaceMgr::SetInputManagementMode()&amp;lt;/code&amp;gt; function is necessary if you want the input devices to automatically switch to gameplay (active) mode when all interactive windows are closed.&lt;br /&gt;
+&lt;br /&gt;
+* Some functionality for widget animation (including color changes for things like hover events) have been deferred to the next release because the design of the system that was going to handle this has been expanded.&lt;br /&gt;
+&lt;br /&gt;
+=== Graphics ===&lt;br /&gt;
+&lt;br /&gt;
+* New object-space and world-space vertex position interpolants have been exposed in the Shader Editor.&lt;br /&gt;
+&lt;br /&gt;
+* The subdivisions setting has been removed from the skybox node. Each of the six faces of a skybox is now always rendered as one quad.&lt;br /&gt;
+&lt;br /&gt;
+* The engine now uses the Nvidia API to detect the driver version, and it disables the &amp;lt;code&amp;gt;GL_EXT_direct_state_access&amp;lt;/code&amp;gt; extension automatically if old drivers known to be buggy are installed.&lt;br /&gt;
+&lt;br /&gt;
+=== Physics ===&lt;br /&gt;
+&lt;br /&gt;
+* All collision detection code in the physics system now runs as a set of jobs so that it can take advantage of all available CPU cores.&lt;br /&gt;
+&lt;br /&gt;
+* Shapes now have a flag that causes them to be ignored for collision detection, but still lets them affect the mass distribution of a rigid body. A shape with this flag set would typically be put inside another shape to weight an object down in a certain place.&lt;br /&gt;
+&lt;br /&gt;
+* The cloth controller has been upgraded to work with the new physics system. Cloth now uses the global gravity acceleration stored in the physics controller attached to the physics node for a world. Cloth is also affected by wind force fields.&lt;br /&gt;
+&lt;br /&gt;
+* An &amp;amp;ldquo;exclusive&amp;amp;rdquo; flag can now be set for force fields. This prevents the field from being applied to all rigid bodies globally. Instead, an exclusive field must be explicitly used by a controller designed to recognize a force field to which its target node is connected. The cloth controller recognizes a &amp;lt;code&amp;gt;WIND&amp;lt;/code&amp;gt; connector on its target node and applies the wind generated by any wind force field to which it's connected. (So a cloth geometry can be connected to an exclusive wind force field in order to receive the wind without anything else being affected.)&lt;br /&gt;
+&lt;br /&gt;
+* A new gravity force type has been added to the physics system so that force fields that modify the global gravity can be created.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;kRigidBodyLocalSimulation&amp;lt;/code&amp;gt; has been added for rigid bodies. If set, then the rigid body is only simulated on the local machine, and the server does not transmit information about the rigid body to the clients. This is useful for debris objects that only exist for a short time and have no effect on gameplay if they're simulated differently on different machines.&lt;br /&gt;
+&lt;br /&gt;
+=== Math Library ===&lt;br /&gt;
+&lt;br /&gt;
+* A new high-performance function called &amp;lt;code&amp;gt;Math::CosSin()&amp;lt;/code&amp;gt; has been added for calculating sine and cosine simultaneously for the same angle. It returns a &amp;lt;code&amp;gt;Vector2D&amp;lt;/code&amp;gt; object with the cosine in the &amp;lt;code&amp;gt;x&amp;lt;/code&amp;gt; coordinate and the sine in the &amp;lt;code&amp;gt;y&amp;lt;/code&amp;gt; coordinate.&lt;br /&gt;
+&lt;br /&gt;
+=== Utility Library ===&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;InsertReplace()&amp;lt;/code&amp;gt; function has been added to the &amp;lt;code&amp;gt;Map&amp;lt;/code&amp;gt; class. This inserts an element into the map and replaces any existing element with the same key that is already in the map.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;HashTable&amp;lt;/code&amp;gt; class now guarantees that elements having the same key are stored consecutively. This lets you iterate through all elements having the same key by finding the first element and then calling &amp;lt;code&amp;gt;Next()&amp;lt;/code&amp;gt; until the key changes or no elements are left.&lt;br /&gt;
+&lt;br /&gt;
+=== System Utilities ===&lt;br /&gt;
+&lt;br /&gt;
+* Support for 3Dconnexion devices (like SpaceNavigator) has been implemented in the engine. Multiaxis mouse movement is currently supported in the World Editor.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;OpenExternalWebBrowser()&amp;lt;/code&amp;gt; function has been added to the &amp;lt;code&amp;gt;Engine&amp;lt;/code&amp;gt; class. This launches the default web browser and goes to the specified URL. This function works on all platforms supported by the engine, but it can take 10 seconds or more to execute under Windows XP.&lt;br /&gt;
+&lt;br /&gt;
+* The engine can now switch among game DLLs without restarting. When the value of the &amp;lt;code&amp;gt;$gameModuleName&amp;lt;/code&amp;gt; system variable changes, the current application object is destroyed, the game DLL is unloaded, and a new game DLL is loaded and initialized.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+* The Panel Editor has gained a number of new capabilities that include a transform type-in, nudge tools, alignment functions, and grouping functions.&lt;br /&gt;
+&lt;br /&gt;
+* The Panel Editor, Script Editor, Shader Editor, and Model Viewer now use the page system for organizing tools and information on the left side of their windows.&lt;br /&gt;
+&lt;br /&gt;
+* The Texture Importer can now apply S3TC compression to externally-created normal maps. If the &amp;quot;Treat RGB channels as vector&amp;quot; box and &amp;quot;Use S3TC compression&amp;quot; box are both checked, then the red channel is copied to the alpha channel, and then the red and blue channels are cleared to zero before the texture is compressed. (This is the format expected by the shaders when a compressed normal map is used.)&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;amp;ldquo;Bleed colors for alpha test&amp;amp;rdquo; setting in the Texture Importer now also increases alpha values by 50% for each mipmap level. This has the effect of preventing thin features in alpha-tested textures from vanishing as the geometry to which they're applied gets farther away from the camera.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new option when importing animations that freezes the model's root node to its current position.&lt;br /&gt;
+&lt;br /&gt;
+== Tutorials ==&lt;br /&gt;
+&lt;br /&gt;
+* Trigger activation has been added to the SimpleChar game.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

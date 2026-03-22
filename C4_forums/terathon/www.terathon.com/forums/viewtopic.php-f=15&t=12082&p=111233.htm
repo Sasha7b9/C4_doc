@@ -1,0 +1,1316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View topic - looking for advice on Level of Detail with Blender workflow</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '';
+	var base_url = '';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=18.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=18">C4 Engine Development</a> <strong>&#8249;</strong> <a href="viewforum.php-f=15.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=15">Artist Central</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewtopic.php-f=15&t=12082.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=15&t=12082">looking for advice on Level of Detail with Blender workflow</a></h2>
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body --><div style="display: none !important;">Topics about the art pipeline and external content creation.<br /></div>
+	<div class="rules">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		
+			<strong>Forum rules</strong><br />
+			Advertisements for products and services are <span style="font-weight: bold">not allowed</span> unless you are a licensed user of C4 and you have been given permission to post them.
+		
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12082  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12082%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12082" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="search-box">
+			<form method="get" id="topic-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="Search this topic…" onclick="if(this.value=='Search this topic…')this.value='';" onblur="if(this.value=='')this.value='Search this topic…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="t" value="12082" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			19 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+
+</div>
+<div class="clear"></div>
+
+
+	<div id="p109836" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 class="first"><a href="#p109836">looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=109836  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=109836#p109836%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=109836#p109836"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2837.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2837" style="color: #8000C0;" class="username-coloured">Baalfeus</a></strong> &raquo; 31 Jul 2012, 02:53 </p>
+
+			
+
+			<div class="content">Hi all.<br /><br />Im struggeling a bit with creating LoD versions of my models in Blender and am looking for a good workflow to make them, maybe someone has some tipps. I'm using the latest version of Blender (2.63). Here's some of my thoughts, what I found out so far and some questions that arose:<br /><br />1. From high to low poly:<br />I didn't yet find a good way to reduce polys from my LoD0 to create lower detail meshes. The decimate modifier messes up the UV-Layout. In blender i can then unwrap the lower level model and bake new textures, but I think C4 needs all LoD-meshes to share the same textures (correct me if I'm wrong) and thus texturing gets messed up once I import the model and combine the LoD's. Another approach would be to manually edge-slide some loops towards the next closest loop and remove doubles then. My problem with this is, that I didn't find a way, that the edges slide on the UV too and thus leaving holes in the UV, so this isn't a viable option either. The new dissolve-tool works to some extent, but the mesh it creates is rather ugly too and only would work maybe for LoD1, but not 2 and 3. The only working way I found out so far would be to manually merge vertices, but that would be a pain to do for every model.<br /><br />2. From low to high poly:<br />So if poly-reduction is such a problem, maybe the other way would be better, but there too are problems. My first thought was to create the LoD3 first and then use the multires modifier to create the higher resolution models. But with multires i can only tab-edit the lowest resolution model really and the higher LoD's would be limited to sculpting, which takes away control over the resulting mesh mostly. Also i see problems with animating the models then, as some details in the higher versions might not get animated properly and with texturing, as higher detailed versions might need some adjustments to the UV's. Another big problem is, what happens if I want to change the model later, to maybe make a variation of a model. I would have to redo all LoD's manually again.<br /><br />Maybe I miss something, so it would be interesting to hear, how you guys do this with blender.<br /><br />What I really would like, is a way to create the high-res model first with all the details and animations and then let the software reduce polys while keeping the UV-layout and animations. But maybe Blender is just not there yet, which leads me to my last question:<br /><br />3. Maybe use another tool:<br />Thinking about buying 3ds max if I don't find a good solution to do LoD's with blender, but the price is rather high, if it was only for creating LoD's. What are your experiences with 3ds, is it worth the money? Which other tools can you suggest that are suited for creating graphics and models for C4?<br /><br />Thanks and best regards<br />Baalfeus</div>
+
+			<div id="sig109836" class="signature"><a href="javascript:if(confirm(%27http://www.baalfeus.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/%27" tppabs="http://www.baalfeus.com/" class="postlink">http://www.baalfeus.com</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile109836">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2837.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2837" style="color: #8000C0;" class="username-coloured">Baalfeus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 95</dd><dd><strong>Joined:</strong> 11 Sep 2011, 10:58</dd><dd><strong>Location:</strong> Austria</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.baalfeus.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/%27" tppabs="http://www.baalfeus.com/" title="WWW: http://www.baalfeus.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p109840" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p109840">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=109840  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=109840#p109840%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=109840#p109840"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a></strong> &raquo; 31 Jul 2012, 11:38 </p>
+
+			
+
+			<div class="content">3ds Max has ability to render to normal maps, ambient occlusion maps, and also to simplify polygonal geometry. However, it's mostly useful for rendered movie stand-ins; it's not robust enough for game LODs.<br />Typically, you'll want a tool like Simplygon or Granny3D to do this. If you have budget, I recommend looking at both those options!</div>
+
+			<div id="sig109840" class="signature">~~<br />   <a href="viewtopic.php-f=3&t=4689.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=3&t=4689" class="postlink">Z-down For Teh W1n!</a><br />   Core i7 4702HQ, 8GB DDR3L-1600, 3GB NVIDIA GTX 870M, 512 GB SSD</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile109840">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187"><img src="download/file.php-avatar=187_1201906842.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=187_1201906842.png" width="62" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1892</dd><dd><strong>Joined:</strong> 30 Jul 2006, 22:29</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.enchantedage.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.enchantedage.com/%27" tppabs="http://www.enchantedage.com/" title="WWW: http://www.enchantedage.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p109852" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p109852">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=109852  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=109852#p109852%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=109852#p109852"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1114.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1114" style="color: #404040;" class="username-coloured">Argoon</a></strong> &raquo; 31 Jul 2012, 19:13 </p>
+
+			
+
+			<div class="content">I'm not a blender user so i can't help you there but it is normal for the uvmaps to be modified by using a decimation tool because they are the exact same polygons just in a flat arrangement, if you take them from the model you will take them from the uv info. About the messing up of the uv's, you only have two options or your remake them by hand after the decimation work or you try to find a tool that tries to maintain the original uvmap configuration (with less polys of course) the better it can. That is what jwatte has recommended.<br /><br />The tool that i use luxology Modo has a nice decimation tool and the uvmaps are modified in real time when you delete or include more polys, it tries to maintain the uvmap configuration without messing them up much.</div>
+
+			<div id="sig109852" class="signature"><a href="javascript:if(confirm(%27http://s275.photobucket.com/albums/jj304/Argoon/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://s275.photobucket.com/albums/jj304/Argoon/%27" tppabs="http://s275.photobucket.com/albums/jj304/Argoon/" class="postlink">My 3D gallery</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile109852">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1114.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1114"><img src="download/file.php-avatar=1114_1256930362.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1114_1256930362.gif" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1114.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1114" style="color: #404040;" class="username-coloured">Argoon</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 252</dd><dd><strong>Joined:</strong> 06 Mar 2008, 23:03</dd><dd><strong>Location:</strong> Braga Portugal</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p109856" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p109856">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=109856  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=109856#p109856%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=109856#p109856"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 31 Jul 2012, 23:29 </p>
+
+			
+
+			<div class="content">You might want to try the demo of this one. <br /><br /><!-- m --><a class="postlink" href="javascript:if(confirm(%27http://3d-coat.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://3d-coat.com/%27" tppabs="http://3d-coat.com/">http://3d-coat.com/</a><!-- m --><br /><br />If you are not going to sell your game, its only $99.</div>
+
+			<div id="sig109856" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile109856">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p109902" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p109902">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=109902  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=109902#p109902%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=109902#p109902"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=144.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=144" style="color: #8000C0;" class="username-coloured">Javier Moya</a></strong> &raquo; 02 Aug 2012, 04:11 </p>
+
+			
+
+			<div class="content">I can't tell you about blender, but as it's been said already, if you don't have an automatic polygon reduction tool, you'll have to go to the classic approach to get the lower LOD meshes: Make the first LOD, then unwrap, make the second LOD, then unwrap ... 3ds Max keeps the uv layout, so you just have to relocate some vertexes in the lower lods, maybe Blender does it in the same way.<br /><br />3ds Max is a very powerful tool, hence its price. It has a modifier called 'Multires', which reduces the polygon count automatically and keeps the uv map. You can see it in action in this tutorial from the wiki:<br /><br /><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Creating_Levels_of_Detail  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Creating_Levels_of_Detail%27" tppabs="http://www.terathon.com/wiki/index.php/Creating_Levels_of_Detail" class="postlink">http://www.terathon.com/wiki/index.php/Creating_Levels_of_Detail</a><br /><br />Personally, I like to control the resulting mesh, so I don't mind using a non-automated approach. I often use this modifier just for organic-shaped meshes. And it is really interesting combined with the 'Skin Wrap' modifier, for skinned models.<br /><br />It's true that Max price is really high if you just want that feature. Maybe, a programmer can make a 'Multires' tool for Blender for that money <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":)" title="Smile" />.<br /><br />Btw, I'm not trying to sell you Max. I really want to check Blender (I'm pretty sick of the Microsoft-Autodesk-Adobe tandem, as many others).<br /><br />Hope it helps.</div>
+
+			<div id="sig109902" class="signature">Videogame artist - <a href="javascript:if(confirm(%27http://www.javy3d.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.javy3d.com/%27" tppabs="http://www.javy3d.com/" class="postlink">http://www.javy3d.com/</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile109902">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=144.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=144" style="color: #8000C0;" class="username-coloured">Javier Moya</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 228</dd><dd><strong>Joined:</strong> 05 Jul 2006, 10:57</dd><dd><strong>Location:</strong> Granada (Spain)</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.javy3d.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.javy3d.com/%27" tppabs="http://www.javy3d.com/" title="WWW: http://www.javy3d.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p109911" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p109911">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=109911  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=109911#p109911%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=109911#p109911"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2608  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2608%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2608" style="color: #0060C0;" class="username-coloured">Robert</a></strong> &raquo; 02 Aug 2012, 16:02 </p>
+
+			
+
+			<div class="content">There are some great blender tutorials around. However, most of them are video tutorials - call me old-fashioned, but i'm not truly a fan of those.  <img src="images/smilies/icon_biggrin.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_biggrin.gif" alt=":D" title="Very Happy" /></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile109911">
+			<dt>
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2608  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2608%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2608" style="color: #0060C0;" class="username-coloured">Robert</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 473</dd><dd><strong>Joined:</strong> 05 Dec 2010, 15:07</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p109917" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p109917">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=109917  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=109917#p109917%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=109917#p109917"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2837.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2837" style="color: #8000C0;" class="username-coloured">Baalfeus</a></strong> &raquo; 03 Aug 2012, 04:41 </p>
+
+			
+
+			<div class="content">Thanks all for the tipps. Downloaded trial of 3ds max and started learning. If other features help me improve my workflow too, it might be worth it...<br /><br />As for Blender: after about 1 week of research and trying around, I don't think there is a good way to do LoD's at the moment. All the videos and tutorials didn't help me. While there are ways to reduce polys, I didn't find a solution for the UV's. All the poly-reduction techniques I found either mess up or completely lose the UV's. If I separately build models for each LoD, they don't share the UV-map and I would have to manually unwrap each LoD and manually adjust the UV-mesh to the Texture, which isn't really a good solution for me either. Plus I guess the animations would need some tuning too, so even more work...<br /><br />I guess it's only a matter of time, till blender gets some better ways to handle LoD's, but at the moment I can't see a good workflow that suites me.<br /><br />So anyways, thanks for the tipps, will try 3ds max now and see, if I can find a nice workflow there.</div>
+
+			<div id="sig109917" class="signature"><a href="javascript:if(confirm(%27http://www.baalfeus.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/%27" tppabs="http://www.baalfeus.com/" class="postlink">http://www.baalfeus.com</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile109917">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2837.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2837" style="color: #8000C0;" class="username-coloured">Baalfeus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 95</dd><dd><strong>Joined:</strong> 11 Sep 2011, 10:58</dd><dd><strong>Location:</strong> Austria</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.baalfeus.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/%27" tppabs="http://www.baalfeus.com/" title="WWW: http://www.baalfeus.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p109963" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p109963">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=109963  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=109963#p109963%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=109963#p109963"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2608  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2608%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2608" style="color: #0060C0;" class="username-coloured">Robert</a></strong> &raquo; 06 Aug 2012, 15:03 </p>
+
+			
+
+			<div class="content">As far as i understood, you might be able to use one texture file for several UV maps, and have the different models use different coordinates of said map. However, i don't know if that works with C4. It might require manual placement and sizing of the unwrapped parts in blender (but it could also be possible to unwrap several different opbects to the same map automatically, i haven't tried though).<br />If that works, and if the UVs for the different objects overlap matchingly, perhaps then the same files can be used without wasting place ?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile109963">
+			<dt>
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2608  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2608%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2608" style="color: #0060C0;" class="username-coloured">Robert</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 473</dd><dd><strong>Joined:</strong> 05 Dec 2010, 15:07</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p109969" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p109969">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=109969  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=109969#p109969%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=109969#p109969"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a></strong> &raquo; 07 Aug 2012, 03:31 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Robert wrote:</cite>As far as i understood, you might be able to use one texture file for several UV maps, and have the different models use different coordinates of said map. However, i don't know if that works with C4. It might require manual placement and sizing of the unwrapped parts in blender (but it could also be possible to unwrap several different opbects to the same map automatically, i haven't tried though).<br />If that works, and if the UVs for the different objects overlap matchingly, perhaps then the same files can be used without wasting place ?</div></blockquote><br /><br />C4 actually uses &quot;many maps in a map&quot; for its terrain material. Doing that well is pretty hard, because filtering and tiling has to be moved partly to the shader. Perhaps you can find a way to re-use that work from the terrain material?<br /><br />Another option is to just build it all yourself in the shader. You have all the data and operations you need to do it, but it would be a pretty large shader.<br /><br />Finally, you could probably find some script for Blender to put all the textures into a single large texure atlas, and change the UV coordinates. Typically, you'll need to use a bigger atlas than just summing up the textures, because you need some amount of repeat of the texture along each edge, to make filtering of tiling work out right. The script would also have to cut up the geometry at texture tiles (where U/V cross 1, 2, 3, ...) so it could be re-projected into the atlas, so high tiling factors would generate lots of extra vertices.</div>
+
+			<div id="sig109969" class="signature">~~<br />   <a href="viewtopic.php-f=3&t=4689.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=3&t=4689" class="postlink">Z-down For Teh W1n!</a><br />   Core i7 4702HQ, 8GB DDR3L-1600, 3GB NVIDIA GTX 870M, 512 GB SSD</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile109969">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187"><img src="download/file.php-avatar=187_1201906842.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=187_1201906842.png" width="62" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1892</dd><dd><strong>Joined:</strong> 30 Jul 2006, 22:29</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.enchantedage.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.enchantedage.com/%27" tppabs="http://www.enchantedage.com/" title="WWW: http://www.enchantedage.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p109970" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p109970">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=109970  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=109970#p109970%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=109970#p109970"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 07 Aug 2012, 03:46 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>jwatte wrote:</cite>C4 actually uses &quot;many maps in a map&quot; for its terrain material.</div></blockquote><br /><br />Only if texture arrays are not available.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile109970">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p109975" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p109975">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=109975  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=109975#p109975%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=109975#p109975"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a></strong> &raquo; 07 Aug 2012, 07:30 </p>
+
+			
+
+			<div class="content">Speaking of which: The emulation of the arrays sounds like something that would make a fantastic shader building block, by the way, for cases similar to this.<br />I don't have a need for it myself, so I wouldn't prioritize it high, but if it's an easy thing, then it would be a gain for users of the shader editor -- another &quot;it just works&quot; tool in the toolbox!</div>
+
+			<div id="sig109975" class="signature">~~<br />   <a href="viewtopic.php-f=3&t=4689.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=3&t=4689" class="postlink">Z-down For Teh W1n!</a><br />   Core i7 4702HQ, 8GB DDR3L-1600, 3GB NVIDIA GTX 870M, 512 GB SSD</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile109975">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187"><img src="download/file.php-avatar=187_1201906842.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=187_1201906842.png" width="62" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1892</dd><dd><strong>Joined:</strong> 30 Jul 2006, 22:29</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.enchantedage.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.enchantedage.com/%27" tppabs="http://www.enchantedage.com/" title="WWW: http://www.enchantedage.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p109991" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p109991">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=109991  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=109991#p109991%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=109991#p109991"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 07 Aug 2012, 16:15 </p>
+
+			
+
+			<div class="content">The array emulation stuff has some serious drawbacks, so I'd prefer it not be used in general. You lose anisotropic filtering, and a lot of texture space gets wasted due to the wrapping boundaries. If we could dump DX9 support, then I would get rid of the array emulation altogether.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile109991">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110419" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110419">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110419  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110419#p110419%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110419#p110419"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2837.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2837" style="color: #8000C0;" class="username-coloured">Baalfeus</a></strong> &raquo; 24 Aug 2012, 05:00 </p>
+
+			
+
+			<div class="content">Hi all.<br /><br />Got another problem with LoD's. I switched to 3ds max 2013 and after some learning and watching tutorials started to import my blender models to there. I only imported the mesh and stripped out all rigging and animation data and rebuilt it in 3ds, so I get a hopefully clean file then, on which I can build up. I followed the tutorial from the wiki and applied a multires and skin-wrap modifier to create the LoD's. When I now export to collada and import to C4, the single LoD's look fine, but once I combine them the model gets completely messed up. I built a barrel in 3ds for practice and created the LoD's and it worked fine with C4, so I guess it has either to do with the import of the blender file to 3ds or with the animation, as the barrel was static. Maybe someone with more experience in using 3ds with c4 knows what the problem is, i uploaded a zip with the 3ds, collada and diff-texture files and a screenshot of how it looks when I combine them in C4: <a href="javascript:if(confirm(%27http://www.baalfeus.com/sonstiges/rat.zip  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/sonstiges/rat.zip%27" tppabs="http://www.baalfeus.com/sonstiges/rat.zip" class="postlink">http://www.baalfeus.com/sonstiges/rat.zip</a><br /><br />Would be great if someone had a hint for me what the problem could be.<br /><br />Thanks and best regards<br />Baalfeus</div>
+
+			<div id="sig110419" class="signature"><a href="javascript:if(confirm(%27http://www.baalfeus.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/%27" tppabs="http://www.baalfeus.com/" class="postlink">http://www.baalfeus.com</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110419">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2837.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2837" style="color: #8000C0;" class="username-coloured">Baalfeus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 95</dd><dd><strong>Joined:</strong> 11 Sep 2011, 10:58</dd><dd><strong>Location:</strong> Austria</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.baalfeus.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/%27" tppabs="http://www.baalfeus.com/" title="WWW: http://www.baalfeus.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110456" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110456">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110456  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110456#p110456%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110456#p110456"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=144.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=144" style="color: #8000C0;" class="username-coloured">Javier Moya</a></strong> &raquo; 26 Aug 2012, 11:02 </p>
+
+			
+
+			<div class="content">I've been unable to open the max file because I'm currently working with Max 2011, but I was able to import the dae file. The first thing that I've noticed is that the model it's been exported with the autodesk built-in dae exporter. I recommended you to use the opencollada exporter, though I'm not sure if there is a version for Max2013. Other problems that I see:<br /><br />-Both models, Lod0 and Lod1, should have an identical list of the bones in the skin modifier (the same order). When the skinwrap modifier is applied and converted into skin, it automatically sets the same list of bones as the source model, so there must be something wrong there.<br />-If I remove the skin modifier from the modifier stack, both models are scaled down to a 10% and turned down 90 degrees so the mouth points downwards. It's always recommeded to use the 'reset xform' tool from utilities panel before start working with bones.<br /><br />Despite all of this, I was able to have the model working in the C4 model editor (animation included). The only problem that I've had is that it showed first Lod1 mesh instead of Lod0 mesh. This is because the LOD system finds more vertex in Lod1 mesh than in Lod0 mesh, which is weird.<br /><br />My usual workflow is this:<br /><br />-I make the model, first a rough model and then I make a fine tuning.<br />-Unwrap the UV map.<br />-If I'm happy with the model, I use the STL check modifier to look for errors on the mesh, and then I apply the reset xform tool.<br />-Then, I make the rig setup (max bones, biped or you can animated the parts too, as I did with the spider and skeleton models of The 31st).<br />-When the model is correctly weighted (skin modifier), you can create the LOD meshes, but I prefer to work on the animations first.<br />-At the end, I make the LOD meshes. If it is an organic model, I usually use the multires modifier (for mechanical models, I prefer to make the LOD meshes manually). Then, I use the skin wrap modifier and convert it to skin through the option 'convert to skin'.<br /><br />Hope it helps.</div>
+
+			<div id="sig110456" class="signature">Videogame artist - <a href="javascript:if(confirm(%27http://www.javy3d.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.javy3d.com/%27" tppabs="http://www.javy3d.com/" class="postlink">http://www.javy3d.com/</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110456">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=144.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=144" style="color: #8000C0;" class="username-coloured">Javier Moya</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 228</dd><dd><strong>Joined:</strong> 05 Jul 2006, 10:57</dd><dd><strong>Location:</strong> Granada (Spain)</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.javy3d.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.javy3d.com/%27" tppabs="http://www.javy3d.com/" title="WWW: http://www.javy3d.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110464" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110464">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110464  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110464#p110464%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110464#p110464"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2371.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2371" style="color: #0060C0;" class="username-coloured">BlindLuke</a></strong> &raquo; 27 Aug 2012, 01:25 </p>
+
+			
+
+			<div class="content">@Baalfeus<br />In Blender I would use high to low approach. Use a decimate a bit, until it tries to remove important edges. Then merge vertices by hand. Broken UV layout  (as long as it does not need to be seamless) can be unwrapped automatically and texture can be baked from hi-res to low-res. <br /><br />To make additional very-hi-res Lod, for organic models, you can use Multires modifier to subdivision surface (it stores UV only in first level, others are interpolated)<br /><br />There should be some script, to mark important edges and preserve them during decimate.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110464">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2371.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2371"><img src="download/file.php-avatar=2371_1298391502.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2371_1298391502.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2371.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2371" style="color: #0060C0;" class="username-coloured">BlindLuke</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 111</dd><dd><strong>Joined:</strong> 25 Feb 2010, 04:14</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110468" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110468">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110468  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110468#p110468%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110468#p110468"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2837.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2837" style="color: #8000C0;" class="username-coloured">Baalfeus</a></strong> &raquo; 27 Aug 2012, 04:39 </p>
+
+			
+
+			<div class="content">Thanks for the replies. <br /><br />Will try it out tomorrow when I'm back in office.<br /><br />Best regards<br />Baalfeus</div>
+
+			<div id="sig110468" class="signature"><a href="javascript:if(confirm(%27http://www.baalfeus.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/%27" tppabs="http://www.baalfeus.com/" class="postlink">http://www.baalfeus.com</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110468">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2837.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2837" style="color: #8000C0;" class="username-coloured">Baalfeus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 95</dd><dd><strong>Joined:</strong> 11 Sep 2011, 10:58</dd><dd><strong>Location:</strong> Austria</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.baalfeus.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/%27" tppabs="http://www.baalfeus.com/" title="WWW: http://www.baalfeus.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110488" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110488">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110488  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110488#p110488%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110488#p110488"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2837.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2837" style="color: #8000C0;" class="username-coloured">Baalfeus</a></strong> &raquo; 28 Aug 2012, 05:25 </p>
+
+			
+
+			<div class="content">Hi again.<br /><br />Ok, I guess I'm one step closer, still got problems with the LOD's. Did reset the xform, when i export just the meshes i get the LOD's to work, so it must be a problem with the skins. Opencollada is not (yet) available for 3ds max 2013, so I guess i have to use the built in exporter. <br /><br />For the LOD's I use the multires-modifier, then edit-normals modifier to fix the normals on the new mesh, collapse all and add a skinwrap modifier to it. When combining the LOD's in C4 it seems fine at first, no more deforms in the world-editor after combine LOD's, but when i then save to model and view it in model viewer, LOD 0 seems fine, but LOD 1 is still messed up.<br /><br />Uploaded a new zip, also saved to 3ds max 2011 (file Rat2011.max). Maybe you could take another look at it.<br /><br /><a href="javascript:if(confirm(%27http://www.baalfeus.com/sonstiges/Rat1.zip  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/sonstiges/Rat1.zip%27" tppabs="http://www.baalfeus.com/sonstiges/Rat1.zip" class="postlink">http://www.baalfeus.com/sonstiges/Rat1.zip</a><br /><br />Thanks and best regards<br />Baalfeus<br /><br />Edit:<br />Tried around a bit more, still don't get it to work. The mesh itself imports fine. I tried to solve the problem by doing a step-by-step approach. Reset-xform, created a new rig, added only one bone for the hips worked. Next step I added the back legs and the mesh (Lod1) is screwed after combining detail levels in C4 (LoD0 displays fine). Do I have to do something to the bones before adding the skin modifier? - Like reset xform for bones or something like that? Tried Animation-Bone Tools-Reset Stretch/Scale, but that messes up the Rig, might there be a problem?<br /><br />Thanks and regards<br />Baalfeus<br /><br />Edit:<br />After talking to autodesk support I'll prolly get a subscription, so I can download 3ds max 2011 in addition to 2013. Hopefully it will work with that then.</div>
+
+			<div id="sig110488" class="signature"><a href="javascript:if(confirm(%27http://www.baalfeus.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/%27" tppabs="http://www.baalfeus.com/" class="postlink">http://www.baalfeus.com</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110488">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2837.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2837" style="color: #8000C0;" class="username-coloured">Baalfeus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 95</dd><dd><strong>Joined:</strong> 11 Sep 2011, 10:58</dd><dd><strong>Location:</strong> Austria</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.baalfeus.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/%27" tppabs="http://www.baalfeus.com/" title="WWW: http://www.baalfeus.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110657" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110657">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110657  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110657#p110657%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110657#p110657"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=144.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=144" style="color: #8000C0;" class="username-coloured">Javier Moya</a></strong> &raquo; 02 Sep 2012, 14:22 </p>
+
+			
+
+			<div class="content">Sorry for the late reply, I couldn't see the model until the weekend.<br /><br />I've been able to open the max2011 file but it showed some error messages saying something about different CAT versions and that some bones are corrupted (probably because the CAT versions are different).<br /><br />Anyway, I've imported the DAE file into max2011 and the LOD0 mesh shows several problems. It has the mesh element duplicated (or triplicated, I'm not sure). I mean, it has two or three elements inside the object, and the vertex are not welded. I don't know if this comes from the modeling stage due to any process you used, or it is because I imported the model using the autodesk built-in DAE importer (OpenCollada doesn't work with this file). The LOD0 object has 10866 triangles and LOD1 has 8122, however, in the max2011 file, LOD0 has 3622 triangles and LOD1 has 2704. At the end, C4 uses the information present in the DAE file, and there's something wrong there.<br /><br />A couple of advices about 3ds Max (and I guess they are still valid for other 3d big applications):<br /><br />-Don't trust what you see in the viewports. A lot of things are going to work inside max, and it is great when the output is video editing, but it doesn't mean that they are going to work inside C4.<br />-I don't know the pros of using Max CAT plugin, but I would avoid using special and advanced tools while working for C4 (and videogame engines in general). I recommend to work with the basic bones tools. It's always better to keep things as simple as possible.<br /><br /><blockquote class="uncited"><div>Do I have to do something to the bones before adding the skin modifier? - Like reset xform for bones or something like that? Tried Animation-Bone Tools-Reset Stretch/Scale, but that messes up the Rig, might there be a problem?<br /></div></blockquote><br />If you did correctly the rig setup, you shouldn't need to do this. The bone tools are useful for the rigging, before skinning. Once you have the skin applied, it is a pain in the ass trying to fix the bones after skinning, so plan your rigs carefully before skinning.<br /><br />Sorry if this doesn't help you, but I don't know what else I can do for you. Keep us informed.</div>
+
+			<div id="sig110657" class="signature">Videogame artist - <a href="javascript:if(confirm(%27http://www.javy3d.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.javy3d.com/%27" tppabs="http://www.javy3d.com/" class="postlink">http://www.javy3d.com/</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110657">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=144.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=144" style="color: #8000C0;" class="username-coloured">Javier Moya</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 228</dd><dd><strong>Joined:</strong> 05 Jul 2006, 10:57</dd><dd><strong>Location:</strong> Granada (Spain)</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.javy3d.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.javy3d.com/%27" tppabs="http://www.javy3d.com/" title="WWW: http://www.javy3d.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p111233" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p111233">Re: looking for advice on Level of Detail with Blender workflow</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=111233  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=111233#p111233%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=111233#p111233"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2837.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2837" style="color: #8000C0;" class="username-coloured">Baalfeus</a></strong> &raquo; 28 Sep 2012, 04:40 </p>
+
+			
+
+			<div class="content">Short update. I meanwhile subscribed to autodesk and downloaded 2011 version of 3ds max. Works nicely now with the opencollada exporter, finally I get my level of details <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":)" title="Smile" /> Uploaded a short video to my homepage at <!-- w --><a class="postlink" href="javascript:if(confirm(%27http://www.baalfeus.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/%27" tppabs="http://www.baalfeus.com/">http://www.baalfeus.com</a><!-- w --> with a spruce I modelled and animated in 3ds, including level of detail.<br /><br />Best regards<br />Baalfeus</div>
+
+			<div id="sig111233" class="signature"><a href="javascript:if(confirm(%27http://www.baalfeus.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/%27" tppabs="http://www.baalfeus.com/" class="postlink">http://www.baalfeus.com</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile111233">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2837.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2837" style="color: #8000C0;" class="username-coloured">Baalfeus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 95</dd><dd><strong>Joined:</strong> 11 Sep 2011, 10:58</dd><dd><strong>Location:</strong> Austria</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.baalfeus.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.baalfeus.com/%27" tppabs="http://www.baalfeus.com/" title="WWW: http://www.baalfeus.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<form id="viewtopic" method="post" action="http://www.terathon.com/forums/viewtopic.php?f=15&t=12082">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		
+		<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+		
+	</fieldset>
+
+	</form>
+	<hr />
+
+
+<div class="topic-actions">
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12082  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12082%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12082" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="pagination">
+			19 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+</div>
+
+
+	<p></p><p><a href="viewforum.php-f=15.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=15" class="left-box left" accesskey="r">Return to Artist Central</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15" selected="selected">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: No registered users and 1 guest</p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

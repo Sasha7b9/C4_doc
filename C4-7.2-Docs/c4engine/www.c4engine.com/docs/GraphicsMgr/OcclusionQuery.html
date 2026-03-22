@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class OcclusionQuery</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/index.html">Graphics Manager</a> &#x25BA; <a href="OcclusionQuery.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/OcclusionQuery.html">class OcclusionQuery</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class OcclusionQuery</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Renderable.h</code></div>
+The <code>OcclusionQuery</code> class represents an occlusion query operation.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;OcclusionQuery&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;ListElement&lt;OcclusionQuery&gt;</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="OcclusionQuery_GetRenderCookie.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/OcclusionQuery_GetRenderCookie.html">OcclusionQuery::GetRenderCookie</a></code></td>
+<td class="tableright1">Returns the cookie stored in an occlusion query object.
+</td></tr>
+<tr><td class="tableleft"><code><a href="OcclusionQuery_SetRenderCallback.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/OcclusionQuery_SetRenderCallback.html">OcclusionQuery::SetRenderCallback</a></code></td>
+<td class="tableright">Sets the render callback function for an occlusion query object.
+</td></tr>
+<tr><td class="tableleft"><code><a href="OcclusionQuery_GetUnoccludedArea.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/OcclusionQuery_GetUnoccludedArea.html">OcclusionQuery::GetUnoccludedArea</a></code></td>
+<td class="tableright">Returns the area that was unoccluded during an occlusion query.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>OcclusionQuery(RenderCallback&nbsp;*callback,&nbsp;<span style="color: #0000FF">void</span>&nbsp;*cookie);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>callback</code></td>
+<td class="tableright1">A pointer to the occlusion query's render callback function.
+</td></tr>
+<tr><td class="tableleft"><code>cookie</code></td>
+<td class="tableright">The cookie that is passed to the render callback function as its last parameter.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>OcclusionQuery</code> class represents an occlusion query operation that can be attached to a renderable object. When such a renderable object is rendered as an effect, the GPU counts how many fragments pass the depth test. This information is reported through a render callback function later so that it can be used to alter the appearance of some other renderable object. The render callback function is specified by the <code>callback</code> parameter, which must point to a function having the following signature defined by the <code>RenderCallback</code> type.
+<p><code><span style="color: #0000FF">typedef</span>&nbsp;<span style="color: #0000FF">void</span>&nbsp;RenderCallback(OcclusionQuery&nbsp;*,&nbsp;List&lt;Renderable&gt;&nbsp;*,&nbsp;<span style="color: #0000FF">void</span>&nbsp;*);</code></p>
+The <code>cookie</code> parameter specifies a user-defined pointer that is passed to the render callback function as its last parameter.<br/><br/> An occlusion query is attached to a <code><a href="Renderable.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Renderable.html">Renderable</a></code> object by calling the <code><a href="Renderable_SetOcclusionQuery.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Renderable_SetOcclusionQuery.html">Renderable::SetOcclusionQuery</a></code> function before the renderable object is first rendered. The renderable object is typically created with the render flags <code>kRenderDepthTest</code>, <code>kRenderColorInhibit</code>, and <code>kRenderDepthInhibit</code> all set so that the depth test is performed, but nothing is written to the color buffer or depth buffer.<br/><br/> When the render callback function is called, the first parameter is a pointer to the occlusion query object, and the second parameter points to a list of renderable objects. The render callback function should call the <code><a href="OcclusionQuery_GetUnoccludedArea.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/OcclusionQuery_GetUnoccludedArea.html">OcclusionQuery::GetUnoccludedArea</a></code> function to determine the normalized viewport area that passed the depth test when the occlusion query was rendered and optionally add items to the list of renderable objects after making adjustments to their appearance as necessary depending on the outcome of the occlusion query.<br/><br/> The occluded area returned by the <code>GetUnoccludedArea</code> function is reported as the fraction of the entire viewport area corresponding to the number of fragments that passed the depth test. It is always in the range [0.0,&#x202F;1.0], where a value of 0.0 means that no fragments passed the depth test, and a value of 1.0 means that the entire viewport was filled with fragments that did pass the depth test.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="../Utilities/ListElement.html" tppabs="http://www.c4engine.com/docs/Utilities/ListElement.html">ListElement&lt;OcclusionQuery&gt;</a></code></td>
+<td class="tableright1">Used internally by the Graphics Manager.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="Renderable_GetOcclusionQuery.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Renderable_GetOcclusionQuery.html">Renderable::GetOcclusionQuery</a></code>
+</p>
+<p><code><a href="Renderable_SetOcclusionQuery.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Renderable_SetOcclusionQuery.html">Renderable::SetOcclusionQuery</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

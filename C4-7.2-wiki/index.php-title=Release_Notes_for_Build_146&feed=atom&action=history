@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_146&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Build 146 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_146&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_146&amp;action=history"/>
+	<updated>2024-09-21T18:42:30Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_146&amp;diff=53&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' February 7, 2008  * With this release, we begin officially supporting the Intel GMA X3000 series of graphics chips under Windows. Some driver issues are currently preventing us from supporting these chips on the Mac.  * A new post-processing effect has been implemented that enables distortion effects such as heat haze. Any effect can be configured so that it renders into the distortion buffer instead of into the main scene by using the &lt;code...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_146&amp;diff=53&amp;oldid=prev"/>
+		<updated>2023-07-15T09:52:26Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; February 7, 2008  * With this release, we begin officially supporting the Intel GMA X3000 series of graphics chips under Windows. Some driver issues are currently preventing us from supporting these chips on the Mac.  * A new post-processing effect has been implemented that enables distortion effects such as heat haze. Any effect can be configured so that it renders into the distortion buffer instead of into the main scene by using the &amp;lt;code...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' February 7, 2008&lt;br /&gt;
+&lt;br /&gt;
+* With this release, we begin officially supporting the Intel GMA X3000 series of graphics chips under Windows. Some driver issues are currently preventing us from supporting these chips on the Mac.&lt;br /&gt;
+&lt;br /&gt;
+* A new post-processing effect has been implemented that enables distortion effects such as heat haze. Any effect can be configured so that it renders into the distortion buffer instead of into the main scene by using the &amp;lt;code&amp;gt;[http://c4engine.com/docs/EffectMgr/Effect_SetEffectListIndex.html Effect::SetEffectListIndex()]&amp;lt;/code&amp;gt; function to set the effect list to &amp;lt;code&amp;gt;kEffectListDistortion&amp;lt;/code&amp;gt; and by setting the &amp;lt;code&amp;gt;kShaderDistortion&amp;lt;/code&amp;gt; shader flag. The &amp;lt;code&amp;gt;[http://c4engine.com/docs/EffectMgr/Effect_SetDistortionState.html Effect::SetDistortionState()]&amp;lt;/code&amp;gt; function has been provided to set all of the necessary state for rendering into the distortion buffer.&lt;br /&gt;
+&lt;br /&gt;
+* When an effect is rendered into the distortion buffer, only the red and green channels of the texture color matter, and they encode horizontal and vertical offsets, respectively. A value of 128 in either channel means no offset, while 0 means the largest possible negative offset, and 255 means the largest possible positive offset. Offsets are accumulated in the distortion buffer so that multiple effect nodes can have an additive effect on the amount of distortion visible at a particular point. The alpha channel of the vertex color can be used to modulate the intensity of the offset values after RG decoding. See the &amp;lt;code&amp;gt;ShimmerSystem&amp;lt;/code&amp;gt; class in the demo game for an example of a particle system that renders heat waves into the distortion buffer.&lt;br /&gt;
+&lt;br /&gt;
+* It is now possible to render effect nodes in the lighting passes so that all of the shading capabilities of the engine can be applied to the effect. This is accomplished by using the &amp;lt;code&amp;gt;Effect::SetEffectListIndex()&amp;lt;/code&amp;gt; function to set the effect list to &amp;lt;code&amp;gt;kEffectListLight&amp;lt;/code&amp;gt;. An effect must have normal and tangent arrays in order to render correctly in the lighting passes. The marking effect has been extended to create these arrays automatically and set the effect list index. To use this functionality, the &amp;lt;code&amp;gt;kMarkingLight&amp;lt;/code&amp;gt; flag should be specified when creating a new &amp;lt;code&amp;gt;[http://c4engine.com/docs/EffectMgr/MarkingData.html MarkingData]&amp;lt;/code&amp;gt; structure. The demo game now uses this flag for blood splatters.&lt;br /&gt;
+&lt;br /&gt;
+* The engine now supports a hierarchical relationship among plugins, and it is now possible for a plugin to depend on the existence of other plugins. The way this works is through the use of subdirectories inside the Plugins directory. All plugins in a particular directory are loaded before any plugins in the subdirectories of that directory, so if plugin B depends on plugin A, then plugin B should be in a subdirectory inside the directory containing plugin A.&lt;br /&gt;
+&lt;br /&gt;
+* It is no longer necessary to define &amp;lt;code&amp;gt;C4MODULE&amp;lt;/code&amp;gt; when compiling the application module or any plugin modules. Instead, the engine project defines &amp;lt;code&amp;gt;C4ENGINEMODULE&amp;lt;/code&amp;gt; so that it can be determined that the engine is being compiled as opposed to any other module.&lt;br /&gt;
+&lt;br /&gt;
+* All of the movie code has been moved into a new Movies plugin. All dependencies on QuickTime are now isolated to this plugin, and the plugin can simply be omitted if movie playing capabilities are not needed. The MoviePlayer plugin depends on the Movies plugin.&lt;br /&gt;
+&lt;br /&gt;
+* A new plugin called Extras has been created that contains functionality that may not be needed by every game, but is general enough to be made available outside the application module. Currently, the Extras plugin includes the rotation controller and the star field particle system. More functionality will be moved to the Extras plugin in the future.&lt;br /&gt;
+&lt;br /&gt;
+* New path editing tools have been added to the World Editor. A path is made up of a series of components that can be any of the types linear, elliptical, or Bezier. A linear component is simply a straight line that connects two endpoints, an elliptical component is a 90-degree elliptical arc between two endpoints, and a Bezier component is a single cubic Bezier curve with four control points (two endpoints and two off-curve control points). Paths are created by using the three tools in the Paths page corresponding to linear, elliptical, and Bezier components. Switching among the tools allows the user to add different types of components to the same path. Whenever a single path node is selected, using the path tools will add to that path.&lt;br /&gt;
+&lt;br /&gt;
+* The path tools will snap to the beginning endpoint of the current path so that perfectly closed paths can be created. The snap can be disabled by holding in the Control key (Command key on Mac).&lt;br /&gt;
+&lt;br /&gt;
+* Control points along a curve can be selected with the ordinary selection tools. Shift-clicking adds or subtracts from a selection. A Control-click (Command-click on the Mac) will cause control points along the tangent to be selected in addition to an on-curve control point in a single click. If an off-curve control point is moved for a Bezier component, then it's opposing control point in any adjacent Bezier component is moved in the opposite direction unless it is also selected or the Control key is held in (Command key on Mac).&lt;br /&gt;
+&lt;br /&gt;
+* Three new geometric primitives based on paths have been added to the engine and are available in the Geometries page inside the World Editor. They are called path tube, path extrusion, and path revolution. Each of these primitives can be created when a path is selected in the editor to define the shape of a tube, the base shape of an extrusion, or the lateral surface shape of a revolution. When creating a tube geometry, you drag out a disk representing the shape of the tube's cross section. When creating an extrusion or revolution, the drawing tools behave like a box and a cylinder, respectively so that you can create geometries with the shape of the path, but at any size.&lt;br /&gt;
+&lt;br /&gt;
+* A new effect type called a tube effect has been added to the engine. It is similar to the beam effect, except that it follows a path instead of a straight line. The tube effect is drawn as a circular disk representing the cross-sectional shape. The actual effect can only be seen in the perspective view with lighting turned on.&lt;br /&gt;
+&lt;br /&gt;
+* When a tube (geometry or effect), extrusion, or revolution is created, the path from which it was made is copied into the geometry or effect node so that the original path is not needed in order to rebuild the node (for example, with different subdivision settings). A link to the original path is also stored in a built-in connector of type PATH. When the original path is edited, the node linking to it will not be updated automatically, but any such node can be explicitly rebuilt using the linked path by choosing the Rebuild with New Path command under the Geometry menu.&lt;br /&gt;
+&lt;br /&gt;
+* Several improvements have been made to the in-game interface panels and the Panel Editor:&lt;br /&gt;
+** It is now possible to create and register custom panel items.&lt;br /&gt;
+** There is a new stock panel item that encapsulates editable text.&lt;br /&gt;
+** The selection tool in the Panel Editor now functions as a box select tool once the cursor has been dragged a few pixels. The shift key can be used to add to the current selection when dragging out a box.&lt;br /&gt;
+** It is now possible to modify settings for multiple items simultaneously in the Panel Editor.&lt;br /&gt;
+** A new mutator called Animate has been implemented which plays frames of animation out of a texture by changing the texture coordinates of an image item. The mutator is configured by specifying the horizontal and vertical grid dimensions for subdividing the texture, the total number of frames, and the frame rate.&lt;br /&gt;
+&lt;br /&gt;
+* Script method registrations now take only a single name string instead of the two name strings previously taken. When a script method name is displayed in the Script Editor, lines will automatically be broken at a space, hyphen, or forward slash, if necessary, or at any newline character (represented by \n).&lt;br /&gt;
+&lt;br /&gt;
+* In the World Editor, the types of entities, locator markers, and reference markers are now displayed in the Info page for the node to which the gizmo is attached.&lt;br /&gt;
+&lt;br /&gt;
+* A new command called Bake Transform into Vertices has been added to the Geometry menu in the World Editor. This applies the node transform of a geometry node to each of its vertices, and then sets the node transform to the identity.&lt;br /&gt;
+&lt;br /&gt;
+* Another new command called Reposition Mesh Origin has been added to the Geometry menu. When this is selected, a dialog appears that lets you select min, center, or max for each of the three axes, where these refer to the bounding box. The node position for each selected mesh will be moved to the specified location, and the vertices of the mesh will be translated the same distance in the opposite direction. This has the effect of moving the object origin without actually moving the world-space vertex positions.&lt;br /&gt;
+&lt;br /&gt;
+* A new command called Move Viewport Camera to Node has been added to the Node menu. This command moves the camera in all perspective viewports to the position of the selected node and faces it along the node's z-axis. The camera still obeys the ordinary restrictions on the viewport camera, so it will not roll side to side or tilt up or down more than about 83 degrees from the horizontal.&lt;br /&gt;
+&lt;br /&gt;
+* Another new command called Open Referenced World has been added to the Node menu. This command opens the world resource referenced by each selected reference marker in a separate editor window.&lt;br /&gt;
+&lt;br /&gt;
+* A new camera speed slider has been added to the Viewports page in the World Editor. This controls the maximum speed of the free camera in the perspective viewports.&lt;br /&gt;
+&lt;br /&gt;
+* When the Invert Geometry command (Ctrl-Shift-I) is used in the World Editor to invert a primitive geometry node, it will now also flip the &amp;quot;Build inverted&amp;quot; flag from the Get Info dialog automatically. This will cause the geometry to continue rebuilding in the inverted state if it's altered at a later point in time.&lt;br /&gt;
+&lt;br /&gt;
+* When placing a locator marker in the World Editor, the marker will now keep the identity transform until the mouse has been dragged several pixels away from the click point. This prevents random rotations if the mouse is clicked and released at the same point.&lt;br /&gt;
+&lt;br /&gt;
+* The Markers page now displays a list of registered locator types. Selecting one of these lets you place a locator in the scene with the registered type already set.&lt;br /&gt;
+&lt;br /&gt;
+* The Memory Manager has been largely rewritten and there is an enormous performance improvement in general allocation speed.&lt;br /&gt;
+&lt;br /&gt;
+* Screenshots saved using the shot command are now saved as compressed TGA files (whereas before they were not compressed).&lt;br /&gt;
+&lt;br /&gt;
+* All interface elements now have common functions for getting and setting their sizes. These functions are &amp;lt;code&amp;gt;GetElementWidth()&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;GetElementHeight()&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;SetElementSize()&amp;lt;/code&amp;gt;. Also, the origin for the push button element is now at the left edge of the button at the vertical position for the button text.&lt;br /&gt;
+&lt;br /&gt;
+* When a radio button is selected by the user, it will now automatically unselect all other radio buttons having the same parent element.&lt;br /&gt;
+&lt;br /&gt;
+* It is no longer necessary to type the full path name when opening a world, texture, or sound using the command line. The top-level virtual directory name should be left off.&lt;br /&gt;
+&lt;br /&gt;
+* All resource names may now contain the names of system variables, and these will be replaced by the value of each variable before the Resource Manager tries to locate a resource. The syntax is ($name). For example, if you try to load a resource with the name textures/($season)/leaves, and the value of the variable $season is &amp;quot;summer&amp;quot;, then the Resource Manager will load the resource named textures/summer/leaves. A resource name may contain any number of variable names. In any case when the right syntax isn't used or the variable doesn't exist, the resource name is not altered.&lt;br /&gt;
+&lt;br /&gt;
+* The Xcode projects for the Mac have been changed significantly. Everything now builds as a dynamic library instead of a bundle. The engine module also builds as a dynamic library because it's not possible to link against both an executable and another plugin on the Mac, and this is necessary for plugins that depend on other plugins. A small executable that contains only the main() function is now built as a wrapper for the engine module.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

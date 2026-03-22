@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 2.10 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10&amp;action=history"/>
+	<updated>2024-09-21T18:40:29Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10&amp;diff=78&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' November 16, 2012  == Core Engine ==  * The engine can now be compiled for 64-bit Windows. New project files for Visual Studio 2012 are included, and they have 64-bit configurations in addition to 32-bit.  * Several parts of the Mac OS X code in the engine have been rewritten to use the Cocoa API. The engine no longer calls any deprecated API functions, and it can compile with the latest Mac SDK for 32-bit and 64-bit targets.  * The &lt;code&gt;fl...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10&amp;diff=78&amp;oldid=prev"/>
+		<updated>2023-07-15T10:11:21Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; November 16, 2012  == Core Engine ==  * The engine can now be compiled for 64-bit Windows. New project files for Visual Studio 2012 are included, and they have 64-bit configurations in addition to 32-bit.  * Several parts of the Mac OS X code in the engine have been rewritten to use the Cocoa API. The engine no longer calls any deprecated API functions, and it can compile with the latest Mac SDK for 32-bit and 64-bit targets.  * The &amp;lt;code&amp;gt;fl...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' November 16, 2012&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+* The engine can now be compiled for 64-bit Windows. New project files for Visual Studio 2012 are included, and they have 64-bit configurations in addition to 32-bit.&lt;br /&gt;
+&lt;br /&gt;
+* Several parts of the Mac OS X code in the engine have been rewritten to use the Cocoa API. The engine no longer calls any deprecated API functions, and it can compile with the latest Mac SDK for 32-bit and 64-bit targets.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;float4&amp;lt;/code&amp;gt; type has been renamed to &amp;lt;code&amp;gt;vec_float&amp;lt;/code&amp;gt;, and new types &amp;lt;code&amp;gt;vec_int8&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;vec_int16&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;vec_int32&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;vec_unsigned_int8&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;vec_unsigned_int16&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;vec_unsigned_int32&amp;lt;/code&amp;gt; have been added. This affects your code only if you are directly using the engine's SIMD functions.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;align_address&amp;lt;/code&amp;gt; macro has been renamed to &amp;lt;code&amp;gt;alignas&amp;lt;/code&amp;gt; to be consistent with the new C++11 keyword.&lt;br /&gt;
+&lt;br /&gt;
+* The Extras plugin has been eliminated, and most of the functionality it contained has been moved to the core engine (star field particle system, flash controller, rotation controller, and shock wave effect).&lt;br /&gt;
+&lt;br /&gt;
+=== Movie Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The Movies plugin based on QuickTime has been removed from the engine and replaced by a new proprietary cross-platform movie format. Movie compression and playback functionality is now part of the core engine in a new Movie Manager component, and it is available on all platforms supported by the engine.&lt;br /&gt;
+&lt;br /&gt;
+* Movie data is stored in a resource file with the extension &amp;lt;code&amp;gt;.mvi&amp;lt;/code&amp;gt;. Movies can contain both video and audio tracks.&lt;br /&gt;
+&lt;br /&gt;
+* Video tracks are compressed using standard DCT and block truncation methods followed by a bit encoding that is optimized for fast decompression. This is a lossy compression technique with a variable quality level that can be controlled at the time a movie is generated. Pixel data is decompressed into the YCbCr 4:2:0 format, which is transformed into filtered RGB 4:4:4 format on the GPU using shader code.&lt;br /&gt;
+&lt;br /&gt;
+* The video codec supports key frames and delta frames for temporal compression. The frequency of key frames can be controlled at the time a movie is generated.&lt;br /&gt;
+&lt;br /&gt;
+* Audio tracks are compressed using a lossless technique to preserve perfect fidelity.&lt;br /&gt;
+&lt;br /&gt;
+* The Movie Manager uses an integer time base for which there are exactly 36000 ticks per second. This number was chosen because it is evenly divisible by the following numbers (plus others): 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 18, 20, 24, 25, 30, 32, 36, 40, 45, 48, 50, 60, 72, 75, 80, 90, 96, 100, 120.&lt;br /&gt;
+&lt;br /&gt;
+* Movies can be recorded inside the engine by using the &amp;lt;code&amp;gt;record&amp;lt;/code&amp;gt; console command. This causes the engine to generate one or more &amp;quot;sequence&amp;quot; files containing raw video data and a single wave file containing raw audio data. These can be imported through the Movie Tool to create a compressed movie resource.&lt;br /&gt;
+&lt;br /&gt;
+=== Interface Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* There is a new movie widget that is used to display movies in a panel or window. Movie widgets can be controlled from a script using the Play Movie, Stop Movie, Get Movie Time, and Set Movie Time controller functions.&lt;br /&gt;
+&lt;br /&gt;
+* A movie widget belonging to a panel effect can specify that its audio track be played through a connected source node. This allows the audio for a movie to be fully spatialized in a scene just like any other sound.&lt;br /&gt;
+&lt;br /&gt;
+* Paint widgets now have settings that can be used to specify the initial properties of the paint brush: radius, fuzziness, opacity, and color.&lt;br /&gt;
+&lt;br /&gt;
+=== Graphics Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The Combine Normals shader process has been extended so it can take an optional interpolation parameter. If the port named &amp;quot;t&amp;quot; has an input, then the normal &amp;quot;N1&amp;quot; is weighted by 1&amp;amp;nbsp;&amp;amp;minus;&amp;amp;nbsp;''t'' and the normal &amp;quot;N2&amp;quot; is weighted by ''t''.&lt;br /&gt;
+&lt;br /&gt;
+=== Physics Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;quot;mover&amp;quot; controller has been redesigned and replaced by the &amp;quot;movement&amp;quot; controller. The movement controller moves a node between a start and finish location at a constant speed with optional acceleration and deceleration at the beginning and end. The node to which a movement controller is assigned must have connectors that link to other nodes (usually markers) specifying the start and finish positions, and the connector keys used for this are specified in the controller settings.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;quot;rotation&amp;quot; controller previously in the Extras plugin has also been redesigned and moved into the core engine. The functionality has been split into two separate types of controllers: a &amp;quot;rotation&amp;quot; controller that is used for nodes that rotate in between two specific angles, and a &amp;quot;spin&amp;quot; controller that is used for nodes that rotate continuously about a given axis. The node to which either of these controllers is assigned must have a connector that links to another node (usually a marker) specifying the center and axis of rotation, and the connector key used for this is specified in the controller settings. Rotation takes place in the counterclockwise direction about the object-space ''z'' axis of the center node (which is shown in blue inside the World Editor). This means that reversing the direction of the ''z'' axis (by rotating the node 180 degrees about the ''x'' or ''y'' axes) causes the rotation to reverse direction.&lt;br /&gt;
+&lt;br /&gt;
+=== World Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The perspective exclusion mask for geometries, portals, and fog spaces has been modified so that visibility in the primary, reflection, and refraction perspectives can be controlled separately for direct rendering, rendering through a remote portal (that is not rendered into the reflection or refraction buffer), and rendering through a camera widget.&lt;br /&gt;
+&lt;br /&gt;
+* The perspective exclusion mask settings for the portal object and fog space object have been moved to the portal node and fog space node.&lt;br /&gt;
+&lt;br /&gt;
+* A perspective exclusion mask can now be set for all effect nodes, which include particle systems.&lt;br /&gt;
+&lt;br /&gt;
+=== Scripting ===&lt;br /&gt;
+&lt;br /&gt;
+* The previously existing method called Fade Ambient Source has been renamed to Vary Source Volume, and it can now be used on any type of source node to smoothly vary the playback volume.&lt;br /&gt;
+&lt;br /&gt;
+* A new script method called Vary Source Frequency has been added, and it can be used to smoothly increase or decrease the relative playback frequency of a source node.&lt;br /&gt;
+&lt;br /&gt;
+* If an instance node is the target of a Call Controller Function script method and the instanced world contains a rigid body, then the Script Editor now displays the available functions for the rigid body instead of the instance node. This makes sense because the rigid body inside an instanced world is always extracted and placed in the referencing world, and the instance node is deleted.&lt;br /&gt;
+&lt;br /&gt;
+=== File Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;FileMgr::BuildFileList()&amp;lt;/code&amp;gt; function has been replaced by the &amp;lt;code&amp;gt;FileMgr::BuildFileMap()&amp;lt;/code&amp;gt; function. File names are now sorted on all platforms such that letter case is ignored and numerical parts of the names are sorted numerically instead of lexicographically.&lt;br /&gt;
+&lt;br /&gt;
+=== Resource Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The Resource Manager is now 100% thread-safe. Any type of resource can be loaded outside the main thread without risk of corrupting internal data structures.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+=== Movie Tool ===&lt;br /&gt;
+&lt;br /&gt;
+* There is a new Movie Tool plugin that contains a movie player window and the movie generation functionality. The movie player can be opened by selecting Open Movie from the [[C4 Menu]], and a movie can be generated by selection Import Movie from the C4 Menu.&lt;br /&gt;
+&lt;br /&gt;
+* The movie generator can import a sequence of individual frames from TGA files and/or a group of sequence files that were recorded by the engine. (Each sequence file contains multiple frames.) Audio data for a movie is specified by a separate wave file.&lt;br /&gt;
+&lt;br /&gt;
+=== World Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* A check box has been added to the [[Worlds Page]] that let's you click through instances already in the main world when placing a new instance node.&lt;br /&gt;
+&lt;br /&gt;
+* A modifier preset list has been added to the [[Worlds Page]]. A modifier preset stores a list of modifiers that can be assigned to instance nodes, and whenever a preset is selected, the modifiers stored in it are automatically assigned to each new instance that is placed in the scene. A modifier preset is created by selecting an instance node in the scene that already has modifiers assigned to it and selecting New Modifier Preset from the popup menu in the Worlds Page. Another menu command, Replace Modifiers, can also replace the modifiers for all currently selected instance nodes with the modifiers stored in the currently selected modifier preset.&lt;br /&gt;
+&lt;br /&gt;
+* A random Z offset range has been added to the [[Placement Page]]. This causes a node to be offset by a random distance in the specified range along the node's local ''z'' axis after the other placement adjustments have been made. This is useful for sinking objects into the ground by random amounts.&lt;br /&gt;
+&lt;br /&gt;
+=== Script Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* The OK and Cancel buttons have been removed from the [[Script Editor]]. There are now items named Close and Save Script under the Script menu.&lt;br /&gt;
+&lt;br /&gt;
+* Boxes that display the letters &amp;quot;T&amp;quot; or &amp;quot;F&amp;quot; are now displayed on conditional fibers in a script that execute only if the result of the starting method is true or false. The fibers also still retain the green and red colors.&lt;br /&gt;
+&lt;br /&gt;
+=== Shader Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* The OK and Cancel buttons have been removed from the [[Shader Editor]]. There are now items named Close and Save Shader under the Shader menu.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

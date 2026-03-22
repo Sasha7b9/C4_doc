@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class String</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/Utilities/index.html">Utility Library</a> &#x25BA; <a href="String.html" tppabs="http://www.c4engine.com/docs/Utilities/String.html">class String</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class String</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>TSString.h</code></div>
+The <code>String</code> class template encapsulates a character string having a fixed maximum length.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">template</span>&nbsp;&lt;<span style="color: #0000FF">int32</span>&nbsp;len&nbsp;=&nbsp;0&gt;&nbsp;<span style="color: #0000FF">class</span>&nbsp;String</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="String_GetStringLength.html" tppabs="http://www.c4engine.com/docs/Utilities/String_GetStringLength.html">String::GetStringLength</a></code></td>
+<td class="tableright1">Returns the length of a string.
+</td></tr>
+<tr><td class="tableleft"><code><a href="String_ConvertToLowerCase.html" tppabs="http://www.c4engine.com/docs/Utilities/String_ConvertToLowerCase.html">String::ConvertToLowerCase</a></code></td>
+<td class="tableright">Converts each alphabetic character to lower case.
+</td></tr>
+<tr><td class="tableleft"><code><a href="String_ConvertToUpperCase.html" tppabs="http://www.c4engine.com/docs/Utilities/String_ConvertToUpperCase.html">String::ConvertToUpperCase</a></code></td>
+<td class="tableright">Converts each alphabetic character to upper case.
+</td></tr>
+</table>
+<div class="heading">Template Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>len</code></td>
+<td class="tableright1">The maximum length of the string, excluding the null terminator.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>String();</code></p>
+<p><code>String(<span style="color: #0000FF">const</span>&nbsp;String&lt;len&gt;&amp;&nbsp;s);</code></p>
+<p><code>String(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*s);</code></p>
+<p><code>String(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*s,&nbsp;<span style="color: #0000FF">int32</span>&nbsp;length);</code></p>
+<p><code><span style="color: #0000FF">explicit</span>&nbsp;String(<span style="color: #0000FF">int32</span>&nbsp;n);</code></p>
+<p><code><span style="color: #0000FF">explicit</span>&nbsp;String(<span style="color: #0000FF">float</span>&nbsp;n);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>s</code></td>
+<td class="tableright1">A reference to another <code>String</code> object or a pointer to a null-terminated string that initializes the new <code>String</code> object.
+</td></tr>
+<tr><td class="tableleft"><code>length</code></td>
+<td class="tableright">If specified, then the string is initialized with the character string pointed to by the <code>s</code> parameter, but at most <code>length</code> characters are copied.
+</td></tr>
+<tr><td class="tableleft"><code>n</code></td>
+<td class="tableright">A signed integer or floating-point value that is converted to a decimal string to initialize the new <code>String</code> object.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>String</code> class template can be used to store and manipulate strings. The <code>len</code> parameter establishes the maximum length of the string, excluding the null terminator. If the <code>len</code> parameter is zero (the default if the parameter is not specified), then the string has unlimited length, and allocation for the memory used by the string is automatically managed.<br/><br/> If the <code>len</code> parameter is not zero, then the default constructor leaves the contents of the string undefined (and unterminated). If the <code>len</code> parameter is zero, then the <code>String</code> object is initially set to the empty string.<br/><br/> <code>String</code> objects can always be implicitly converted to a pointer to <code><span style="color: #0000FF">char</span></code> and thus can be accepted by any function expecting a parameter of type <code><span style="color: #0000FF">char</span>&nbsp;*</code>. In addition to the member functions of the <code>String</code> class, the <code><a href="Text.html" tppabs="http://www.c4engine.com/docs/Utilities/Text.html">Text</a></code> namespace contains several functions that are useful for manipulating character strings.
+<div class="heading">Overloaded Operators</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><span style="color: #0000FF">operator</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*(<span style="color: #0000FF">void</span>);</code></td>
+<td class="tableright1">A <code>String</code> object can be implicitly converted to an array of <code><span style="color: #0000FF">char</span></code>.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">operator</span>&nbsp;<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*(<span style="color: #0000FF">void</span>)&nbsp;<span style="color: #0000FF">const</span>;</code></td>
+<td class="tableright">A <code><span style="color: #0000FF">const</span>&nbsp;String</code> object can be implicitly converted to an array of <code><span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span></code>.
+</td></tr>
+<tr><td class="tableleft"><code>String&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;=(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*s);</code></td>
+<td class="tableright">Sets the contents of the <code>String</code> object to the string pointed to by <code>s</code>. If necessary, the string is truncated to the maximum length given by <code>len</code>.
+</td></tr>
+<tr><td class="tableleft"><code>String&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;+=(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*s);</code></td>
+<td class="tableright">Appends the string pointed to by <code>s</code> to the <code>String</code> object, truncating to the maximum length given by <code>len</code>.
+</td></tr>
+<tr><td class="tableleft"><code>String&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;+=(<span style="color: #0000FF">int32</span>&nbsp;n);</code></td>
+<td class="tableright">Converts the signed integer <code>n</code> to a decimal string and appends it to the <code>String</code> object, truncating to the maximum length given by <code>len</code>.
+</td></tr>
+<tr><td class="tableleft"><code>String&nbsp;<span style="color: #0000FF">operator</span>&nbsp;+(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*s)&nbsp;<span style="color: #0000FF">const</span>;</code></td>
+<td class="tableright">Returns a new <code>String</code> object containing the concatenation with the string pointed to by <code>s</code>. If necessary, the new string is truncated to the maximum length given by <code>len</code>.
+</td></tr>
+<tr><td class="tableleft"><code>String&nbsp;<span style="color: #0000FF">operator</span>&nbsp;+(<span style="color: #0000FF">int32</span>&nbsp;n)&nbsp;<span style="color: #0000FF">const</span>;</code></td>
+<td class="tableright">Returns a new <code>String</code> object containing the concatenation with the decimal string corresponding to &n&. If necessary, the new string is truncated to the maximum length given by <code>len</code>.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">bool</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;==(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*s)&nbsp;<span style="color: #0000FF">const</span>;</code></td>
+<td class="tableright">Returns a boolean value indicating whether two strings have equal contents.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">bool</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;!=(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*s)&nbsp;<span style="color: #0000FF">const</span>;</code></td>
+<td class="tableright">Returns a boolean value indicating whether two strings have differing contents.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">bool</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*s)&nbsp;<span style="color: #0000FF">const</span>;</code></td>
+<td class="tableright">Returns a boolean value indicating whether the text in the <code>String</code> object precedes the text pointed to by <code>s</code> in lexicographical order.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">bool</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*s)&nbsp;<span style="color: #0000FF">const</span>;</code></td>
+<td class="tableright">Returns a boolean value indicating whether the text in the <code>String</code> object follows the text pointed to by <code>s</code> in lexicographical order.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">bool</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;=(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*s)&nbsp;<span style="color: #0000FF">const</span>;</code></td>
+<td class="tableright">Returns a boolean value indicating whether the text in the <code>String</code> object precedes the text pointed to by <code>s</code> in lexicographical order or the two strings are equal.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">bool</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;=(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*s)&nbsp;<span style="color: #0000FF">const</span>;</code></td>
+<td class="tableright">Returns a boolean value indicating whether the text in the <code>String</code> object follows the text pointed to by <code>s</code> in lexicographical order or the two strings are equal.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="Text.html" tppabs="http://www.c4engine.com/docs/Utilities/Text.html">Text</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

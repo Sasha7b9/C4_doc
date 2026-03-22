@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class Decompressor</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/MessageMgr/index.html">Message Manager</a> &#x25BA; <a href="Decompressor.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Decompressor.html">class Decompressor</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class Decompressor</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Messages.h</code></div>
+Decompresses data for a message.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;Decompressor</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="Decompressor_GetDataSize.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Decompressor_GetDataSize.html">Decompressor::GetDataSize</a></code></td>
+<td class="tableright1">Returns the total size of the compressed data.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Decompressor_ReadData.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Decompressor_ReadData.html">Decompressor::ReadData</a></code></td>
+<td class="tableright">Reads arbitrary data from the internal buffer.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>Decompressor(<span style="color: #0000FF">char</span>&nbsp;*ptr);</code></p>
+<code>Decompressor</code> objects should be constructed only by the Message Manager.
+<div class="heading">Description</div>
+A <code>Decompressor</code> object is passed to the <code><a href="Message_DecompressMessage.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Message_DecompressMessage.html">Message::DecompressMessage</a></code> function after the Message Manager receives a message. The message object should use the <code>&gt;&gt;</code> operator or the <code><a href="Decompressor_ReadData.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Decompressor_ReadData.html">Decompressor::ReadData</a></code> function to read its data from the <code>Decompressor</code> object's internal buffer. Data read by the <code>&gt;&gt;</code> operator is always converted from big endian order to the native endian of the local machine so that messages can be sent between machines having different native endians.
+<div class="heading">Overloaded Operators</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(<span style="color: #0000FF">char</span>&amp;&nbsp;x);</code></td>
+<td class="tableright1">Reads a single 8-bit character from the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(<span style="color: #0000FF">int8</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Reads a single 8-bit byte from the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(<span style="color: #0000FF">uint8</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Reads a single 8-bit unsigned byte from the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(<span style="color: #0000FF">int16</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Reads a single 16-bit integer from the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(<span style="color: #0000FF">uint16</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Reads a single 16-bit unsigned integer from the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(<span style="color: #0000FF">int32</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Reads a single 32-bit integer from the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(<span style="color: #0000FF">uint32</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Reads a single 32-bit unsigned integer from the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(<span style="color: #0000FF">int64</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Reads a single 64-bit integer from the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(<span style="color: #0000FF">uint64</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Reads a single 64-bit unsigned integer from the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(<span style="color: #0000FF">float</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Reads a single 32-bit floating-point value from the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(Vector2D&amp;&nbsp;v);</code></td>
+<td class="tableright">Reads two 32-bit floating-point values from the internal buffer and stores them in the vector <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(Vector3D&amp;&nbsp;v);</code></td>
+<td class="tableright">Reads three 32-bit floating-point values from the internal buffer and stores them in the vector <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(Vector4D&amp;&nbsp;v);</code></td>
+<td class="tableright">Reads four 32-bit floating-point values from the internal buffer and stores them in the vector <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(Quaternion&amp;&nbsp;q);</code></td>
+<td class="tableright">Reads four 32-bit floating-point values from the internal buffer and stores them in the quaternion <code>q</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(ColorRGB&amp;&nbsp;c);</code></td>
+<td class="tableright">Reads three 32-bit floating-point values from the internal buffer and stores them in the color <code>c</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(ColorRGBA&amp;&nbsp;c);</code></td>
+<td class="tableright">Reads four 32-bit floating-point values from the internal buffer and stores them in the color <code>c</code>.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">template</span>&nbsp;&lt;<span style="color: #0000FF">int32</span>&nbsp;len&gt;&nbsp;Decompressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&gt;&gt;(String&lt;len&gt;&amp;&nbsp;text);</code></td>
+<td class="tableright">Reads a null-terminated text string from the internal buffer.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="Message_DecompressMessage.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Message_DecompressMessage.html">Message::DecompressMessage</a></code>
+</p>
+<p><code><a href="Compressor.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Compressor.html">Compressor</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class StarField</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/EffectMgr/index.html">Effect Manager</a> &#x25BA; <a href="StarField.html" tppabs="http://www.c4engine.com/docs/EffectMgr/StarField.html">class StarField</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class StarField</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Particles.h</code></div>
+The <code>StarField</code> class renders a star field particle system at infinity.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;StarField&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;InfinitePointParticleSystem</code></p>
+<div class="heading">Constructor</div>
+<p><code>StarField(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*name);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>name</code></td>
+<td class="tableright1">The name of the star field resource to use. If this is <code><span style="color: #0000FF">nullptr</span></code>, then the default star field <code>engine/Stars</code> is used.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>StarField</code> class represents a particle system consisting of stars rendered infinitely far from the camera. The positions and brightnesses of the stars are read from the star field resource specified by the <code>name</code> parameter. A maximum of 12000 stars are rendered.<br/><br/> A star field resource has the file extension <code>.sfd</code> and contains a 20-byte header followed by a <code>StarData</code> structure for each star. Bytes 0 through 3 of a star field resource must contain the 32-bit value <code>kEngineInternalSignature</code>, and bytes 4 through 8 must contain the 32-bit value <code>kEngineInternalVersion</code>. Bytes 8 through 11 must contain the string <code>&quot;sfd&quot;</code> with a null terminator, and bytes 12 through 15 must contain zeros. Finally, bytes 16 through 19 of the header must contain the total number of stars in the resource as a 32-bit value. Little endian byte order must be used throughout the file. Following the 20-byte header is an array of <code>StarData</code> structures containing information about each star. A single <code>StarData</code> structure is 12 bytes in size and contains three 32-bit floating-point fields in the following order: (1) the right ascension of the star, in hours east of the vernal equinox, (2) the declination of the star, in degrees north of the celestial equator, and (3) the apparent magnitude of the star.<br/><br/> The default star field resource <code>engine/Stars</code> contains data for the 12000 brightest stars visible from Earth.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="InfinitePointParticleSystem.html" tppabs="http://www.c4engine.com/docs/EffectMgr/InfinitePointParticleSystem.html">InfinitePointParticleSystem</a></code></td>
+<td class="tableright1">A star field is a particle system that is rendered at infinity.
+</td></tr>
+</table>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

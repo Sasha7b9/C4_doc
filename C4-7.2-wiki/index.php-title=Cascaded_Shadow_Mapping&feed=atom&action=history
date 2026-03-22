@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Cascaded_Shadow_Mapping&amp;feed=atom&amp;action=history</id>
+	<title>Cascaded Shadow Mapping - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Cascaded_Shadow_Mapping&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Cascaded_Shadow_Mapping&amp;action=history"/>
+	<updated>2024-09-21T18:21:11Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Cascaded_Shadow_Mapping&amp;diff=129&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ Cascaded shadow mapping is the method used by the C4 Engine to cast real-time dynamic shadows over very large areas for an infinite light source. This article describes the settings that control the sizes of the cascades and the transition areas between them, which affect the resolution of the shadows and the smoothness involved in changing from one cascade to another.  == Shadow Settings ==  The infinite light generates up to four separate shadows maps during...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Cascaded_Shadow_Mapping&amp;diff=129&amp;oldid=prev"/>
+		<updated>2023-07-15T10:54:10Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ Cascaded shadow mapping is the method used by the C4 Engine to cast real-time dynamic shadows over very large areas for an infinite light source. This article describes the settings that control the sizes of the cascades and the transition areas between them, which affect the resolution of the shadows and the smoothness involved in changing from one cascade to another.  == Shadow Settings ==  The infinite light generates up to four separate shadows maps during...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+Cascaded shadow mapping is the method used by the C4 Engine to cast real-time dynamic shadows over very large areas for an infinite light source. This article describes the settings that control the sizes of the cascades and the transition areas between them, which affect the resolution of the shadows and the smoothness involved in changing from one cascade to another.&lt;br /&gt;
+&lt;br /&gt;
+== Shadow Settings ==&lt;br /&gt;
+&lt;br /&gt;
+The infinite light generates up to four separate shadows maps during every frame in which it is visible. These four shadow maps are rendered at different resolutions for four ''cascades'' of space corresponding to increasing distance ranges from the camera position. This concept is illustrated in the following diagram, where the camera is located at the position '''c''' and points to the right.&lt;br /&gt;
+&lt;br /&gt;
+[[Image:Cascades.png]]&lt;br /&gt;
+&lt;br /&gt;
+The sizes of the cascades are specified by four maximum distance settings in the Node Info window for the infinite light. As shown in the figure, these four distances determine the far planes for the four shadow cascades. Shadow maps for cascades closer to the camera are rendered at higher resolutions, and the distance between adjacent lower numbered cascades is typically lower than the distance between adjacent higher numbered cascades. If smaller distances are used, then the shadows are rendered at higher resolution, but the coverage of the shadowing is reduced as well.&lt;br /&gt;
+&lt;br /&gt;
+The four cascades overlap by a little bit so that a smooth transition from one resolution to the next can be rendered for objects that straddle a cascade boundary. The three transition lengths specify how much distance each cascade extends into the one preceding it. A short distance means a quick transition, and longer distances mean more gradual transitions. The transition length can be any distance smaller than the higher-resolution cascade's overall size, but it typically covers only a fraction of the whole cascade.&lt;br /&gt;
+&lt;br /&gt;
+== Shadow Casting and Receiving ==&lt;br /&gt;
+&lt;br /&gt;
+Each cascade has its own shadow map. Because cascades overlap, shadow castors may contribute to more than one of these shadow maps, and in fact could contribute to all of the cascades. An object must be rendered into the shadow map ''n'' times if it crosses into ''n'' cascades, so this should be considered when designing your worlds.&lt;br /&gt;
+&lt;br /&gt;
+An object can also receive shadows in all four shadow cascades. Which shadow map to use is determined on a per-pixel basis in the shader, so the highest-resolution shadow map covering an object is always used wherever possible. In the transition area between cascades, samples from both cascades' shadow maps are blended together in order to produce a smooth transition from one resolution to the next. The number of cascades into which a shadow-receiving object crosses does not affect rendering performance. Whether an object falls completely in one cascade or extends through all four cascades, the rendering speed is the same.&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[Lights and Shadows]]&lt;br /&gt;
+&lt;br /&gt;
+== Further Reading ==&lt;br /&gt;
+&lt;br /&gt;
+* [http://foundationsofgameenginedev.com/ Lengyel, Eric. ''Foundations of Game Engine Development, Volume 2: Rendering'', Terathon Software, 2019. Section 8.3.3.]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

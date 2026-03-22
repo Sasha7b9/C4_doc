@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class Bivector3D</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/Math/index.html">Math Library</a> &#x25BA; <a href="Bivector3D.html" tppabs="http://www.c4engine.com/docs/Math/Bivector3D.html">class Bivector3D</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class Bivector3D</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>TSBivector3D.h</code></div>
+The <code>Bivector3D</code> class encapsulates a 3D bivector.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;Bivector3D&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;Antivec3D&lt;TypeBivector3D&gt;</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="Bivector3D_Set.html" tppabs="http://www.c4engine.com/docs/Math/Bivector3D_Set.html">Bivector3D::Set</a></code></td>
+<td class="tableright1">Sets all three components of a bivector.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>Bivector3D();</code></p>
+<p><code>Bivector3D(<span style="color: #0000FF">float</span>&nbsp;a,&nbsp;<span style="color: #0000FF">float</span>&nbsp;b,&nbsp;<span style="color: #0000FF">float</span>&nbsp;c);</code></p>
+<p><code>Bivector3D(<span style="color: #0000FF">const</span>&nbsp;Point2D&amp;&nbsp;p,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Point2D&amp;&nbsp;q);</code></p>
+<p><code>Bivector3D(<span style="color: #0000FF">const</span>&nbsp;Point2D&amp;&nbsp;p,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Vector2D&amp;&nbsp;v);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>a</code></td>
+<td class="tableright1">The value of the <b>e</b><sub>23</sub> coordinate.
+</td></tr>
+<tr><td class="tableleft"><code>b</code></td>
+<td class="tableright">The value of the <b>e</b><sub>31</sub> coordinate.
+</td></tr>
+<tr><td class="tableleft"><code>c</code></td>
+<td class="tableright">The value of the <b>e</b><sub>12</sub> coordinate.
+</td></tr>
+<tr><td class="tableleft"><code>p,q</code></td>
+<td class="tableright">Two 2D points that lie on the line.
+</td></tr>
+<tr><td class="tableleft"><code>v</code></td>
+<td class="tableright">A 2D direction vector.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>Bivector3D</code> class is used to store a three-dimensional bivector having three floating-point components named <code>x</code>, <code>y</code>, and <code>z</code>.<br/><br/> The default constructor leaves the components of the bivector undefined.<br/><br/> If points <code>p</code> and <code>q</code> are specified, then the bivector is initialized to the wedge product between homogeneous extensions of <code>p</code> and <code>q</code> with <i>z</i> coordinates set to 1, giving a representation of the 2D line containing both points. If the point <code>p</code> and the direction <code>v</code> are specified, then the line contains the point <code>p</code> and runs parallel to the direction <code>v</code>.
+<div class="heading">Overloaded Operators</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>Bivector3D&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;+=(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;v);</code></td>
+<td class="tableright1">Adds the bivector <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Bivector3D&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;-=(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;v);</code></td>
+<td class="tableright">Subtracts the bivector <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Bivector3D&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;*=(<span style="color: #0000FF">float</span>&nbsp;n);</code></td>
+<td class="tableright">Multiplies by the scalar <code>n</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Bivector3D&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;/=(<span style="color: #0000FF">float</span>&nbsp;n);</code></td>
+<td class="tableright">Multiplies by the inverse of the scalar <code>n</code>.
+</td></tr>
+</table>
+<div class="heading">Nonmember Operations</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><span style="color: #0000FF">bool</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;==(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;a,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;b);</code></td>
+<td class="tableright1">Returns a boolean value indicating whether the two bivectors <code>a</code> and <code>b</code> are equal.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">bool</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;!=(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;a,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;b);</code></td>
+<td class="tableright">Returns a boolean value indicating whether the two bivectors <code>a</code> and <code>b</code> are not equal.
+</td></tr>
+<tr><td class="tableleft"><code>Bivector3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;!(<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;v);</code></td>
+<td class="tableright">Returns the complement of the vector <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Vector3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;!(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;v);</code></td>
+<td class="tableright">Returns the complement of the bivector <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Bivector3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;-(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;v);</code></td>
+<td class="tableright">Returns the negation of the bivector <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Bivector3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;+(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;a,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;b);</code></td>
+<td class="tableright">Returns the sum of the bivectors <code>a</code> and <code>b</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Bivector3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;-(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;a,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;b);</code></td>
+<td class="tableright">Returns the difference of the bivectors <code>a</code> and <code>b</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Bivector3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;*(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;v,&nbsp;<span style="color: #0000FF">float</span>&nbsp;n);</code></td>
+<td class="tableright">Returns the product of the bivector <code>v</code> and the scalar <code>n</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Bivector3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;*(<span style="color: #0000FF">float</span>&nbsp;n,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;v);</code></td>
+<td class="tableright">Returns the product of the bivector <code>v</code> and the scalar <code>n</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Bivector3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;/(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;v,&nbsp;<span style="color: #0000FF">float</span>&nbsp;n);</code></td>
+<td class="tableright">Returns the product of the bivector <code>v</code> and the inverse of the scalar <code>n</code>.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">bool</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;==(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;a,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;b);</code></td>
+<td class="tableright">Returns a boolean value indicating whether the two bivectors <code>a</code> and <code>b</code> are equal.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">bool</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;!=(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;a,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;b);</code></td>
+<td class="tableright">Returns a boolean value indicating whether the two bivectors <code>a</code> and <code>b</code> are not equal.
+</td></tr>
+<tr><td class="tableleft"><code>Bivector3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;a,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;b);</code></td>
+<td class="tableright">Returns the wedge product of the vectors <code>a</code> and <code>b</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Bivector3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Point2D&amp;&nbsp;p,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Point2D&amp;&nbsp;q);</code></td>
+<td class="tableright">Returns the wedge product of the 2D points <code>p</code> and <code>q</code>. The <i>z</i> coordinates of <code>p</code> and <code>q</code> are assumed to be 1.
+</td></tr>
+<tr><td class="tableleft"><code>Bivector3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Point2D&amp;&nbsp;p,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Vector2D&amp;&nbsp;v);</code></td>
+<td class="tableright">Returns the wedge product of the 2D point <code>p</code> and the 2D vector <code>v</code>. The <i>z</i> coordinate of <code>p</code> is assumed to be 1.
+</td></tr>
+<tr><td class="tableleft"><code>Vector3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;a,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;b);</code></td>
+<td class="tableright">Returns the antiwedge product of the bivectors <code>a</code> and <code>b</code>.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">float</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;a,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;b);</code></td>
+<td class="tableright">Returns the antiwedge product of the bivector <code>a</code> and the vector <code>b</code>.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">float</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;a,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;b);</code></td>
+<td class="tableright">Returns the antiwedge product of the vector <code>a</code> and the bivector <code>b</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Vector3D&nbsp;Project(<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;a,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;b);</code></td>
+<td class="tableright">Returns (<b>b&#x0332;</b>&#x202F;&#x2227;&#x202F;<b>a</b>)&#x202F;&#x2228;&#x202F;<b>b</b>, which is the projection of <code>a</code> onto <code>b</code> under the assumption that the magnitude of <code>b</code> is one.
+</td></tr>
+</table>
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>Antivec3D</code></td>
+<td class="tableright1">Antivectors use a generic base class to store their components.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="Vector3D.html" tppabs="http://www.c4engine.com/docs/Math/Vector3D.html">Vector3D</a></code>
+</p>
+<p><code><a href="Vector2D.html" tppabs="http://www.c4engine.com/docs/Math/Vector2D.html">Vector2D</a></code>
+</p>
+<p><code><a href="Point2D.html" tppabs="http://www.c4engine.com/docs/Math/Point2D.html">Point2D</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

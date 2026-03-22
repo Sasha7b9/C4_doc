@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class HashTable</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/Utilities/index.html">Utility Library</a> &#x25BA; <a href="HashTable.html" tppabs="http://www.c4engine.com/docs/Utilities/HashTable.html">class HashTable</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class HashTable</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>TSHash.h</code></div>
+The <code>HashTable</code> class encapsulates a dynamically resizable hash table.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">template</span>&nbsp;&lt;<span style="color: #0000FF">class</span>&nbsp;type&gt;&nbsp;<span style="color: #0000FF">class</span>&nbsp;HashTable&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;HashTableBase</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="HashTable_GetHashTableElementCount.html" tppabs="http://www.c4engine.com/docs/Utilities/HashTable_GetHashTableElementCount.html">HashTable::GetHashTableElementCount</a></code></td>
+<td class="tableright1">Returns the number of elements in a hash table.
+</td></tr>
+<tr><td class="tableleft"><code><a href="HashTable_InsertHashTableElement.html" tppabs="http://www.c4engine.com/docs/Utilities/HashTable_InsertHashTableElement.html">HashTable::InsertHashTableElement</a></code></td>
+<td class="tableright">Inserts an element into a hash table.
+</td></tr>
+<tr><td class="tableleft"><code><a href="HashTable_RemoveHashTableElement.html" tppabs="http://www.c4engine.com/docs/Utilities/HashTable_RemoveHashTableElement.html">HashTable::RemoveHashTableElement</a></code></td>
+<td class="tableright">Removes a particular element from a hash table.
+</td></tr>
+<tr><td class="tableleft"><code><a href="HashTable_RemoveAllHashTableElements.html" tppabs="http://www.c4engine.com/docs/Utilities/HashTable_RemoveAllHashTableElements.html">HashTable::RemoveAllHashTableElements</a></code></td>
+<td class="tableright">Removes all elements from a hash table.
+</td></tr>
+<tr><td class="tableleft"><code><a href="HashTable_PurgeHashTable.html" tppabs="http://www.c4engine.com/docs/Utilities/HashTable_PurgeHashTable.html">HashTable::PurgeHashTable</a></code></td>
+<td class="tableright">Deletes all elements in a hash table.
+</td></tr>
+<tr><td class="tableleft"><code><a href="HashTable_FindHashTableElement.html" tppabs="http://www.c4engine.com/docs/Utilities/HashTable_FindHashTableElement.html">HashTable::FindHashTableElement</a></code></td>
+<td class="tableright">Finds an element in a hash table.
+</td></tr>
+</table>
+<div class="heading">Template Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>type</code></td>
+<td class="tableright1">The type of the class that can be stored in the hash table. The class specified by this parameter should inherit directly from the <code><a href="HashTableElement.html" tppabs="http://www.c4engine.com/docs/Utilities/HashTableElement.html">HashTableElement</a></code> class using the same template parameter.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>HashTable(<span style="color: #0000FF">int32</span>&nbsp;initialBucketCount,&nbsp;<span style="color: #0000FF">int32</span>&nbsp;maxAverageDepth);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>initialBucketCount</code></td>
+<td class="tableright1">The number of buckets initially used by the hash table. This must be a power of two.
+</td></tr>
+<tr><td class="tableleft"><code>maxAverageDepth</code></td>
+<td class="tableright">The maximum average size of each bucket allowed before the hash table is expanded.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>HashTable</code> class template is a container used to organize a homogeneous set of objects. The class type of objects that are to be stored in the hash table must be a subclass of the <code><a href="HashTableElement.html" tppabs="http://www.c4engine.com/docs/Utilities/HashTableElement.html">HashTableElement</a></code> class template using the same template parameter as the <code>HashTable</code> container. A particular object can be a member of only one hash table at a time.<br/><br/> Upon construction, a <code>HashTable</code> object is empty. The initial number of buckets used by the hash table is specified by the <code>initialBucketCount</code> parameter, which must be a power of two in size. When the average size of all the buckets exceeds the value specified by the <code>maxAverageDepth</code> parameter, the number of buckets is doubled, and the elements of the hash table are redistributed among the larger set of buckets.<br/><br/> When a <code>HashTable</code> object is destroyed, all of the members of the hash table are also destroyed. To avoid deleting the members of a hash table when a <code>HashTable</code> object is destroyed, first call the <code><a href="HashTable_RemoveAllHashTableElements.html" tppabs="http://www.c4engine.com/docs/Utilities/HashTable_RemoveAllHashTableElements.html">HashTable::RemoveAllHashTableElements</a></code> function to remove all of the hash table's members.<br/><br/> The class specified by the <code>type</code> template parameter must define a type named <code>KeyType</code> and a function named <code>GetKey</code> that has one of the following two prototypes.
+<div class="sourcebox">KeyType&nbsp;GetKey(<span style="color: #0000FF">void</span>)&nbsp;<span style="color: #0000FF">const</span>;<br/><span style="color: #0000FF">const</span>&nbsp;KeyType&amp;&nbsp;GetKey(<span style="color: #0000FF">void</span>)&nbsp;<span style="color: #0000FF">const</span>;
+</div>
+This function should return the key associated with the object for which it is called. The <code>KeyType</code> type must be capable of being compared to other key values using the <code>==</code> operator.<br/><br/> The class specified by the <code>type</code> template parameter must also define a function named <code>Hash</code> that has one of the following two prototypes.
+<div class="sourcebox"><span style="color: #0000FF">static</span>&nbsp;<span style="color: #0000FF">uint32</span>&nbsp;Hash(KeyType&nbsp;key);<br/><span style="color: #0000FF">static</span>&nbsp;<span style="color: #0000FF">uint32</span>&nbsp;Hash(<span style="color: #0000FF">const</span>&nbsp;KeyType&amp;&nbsp;key);
+</div>
+This function should return a 32-bit hash value corresponding to the key passed to it.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>HashTableBase</code></td>
+<td class="tableright1">Used internally to encapsulate common functionality that is independent of the template parameter.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="HashTableElement.html" tppabs="http://www.c4engine.com/docs/Utilities/HashTableElement.html">HashTableElement</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

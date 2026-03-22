@@ -1,0 +1,519 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/Handling_User_Input by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="Handling User Input,Coding Conventions,File Locations,Introduction - &#039;Hello World&#039;" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>Handling User Input - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Handling_User_Input";
+var wgTitle = "Handling User Input";
+var wgAction = "view";
+var wgArticleId = "3183";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "9227";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+<style type="text/css">/*<![CDATA[*/
+.source-cpp {line-height: normal;}
+.source-cpp li, .source-cpp pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for cpp
+ * CSS class: source-cpp, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.cpp.source-cpp .de1, .cpp.source-cpp .de2 {font: normal normal 10pt/12pt monospace; margin:0; padding:0; background:none; vertical-align:top; -moz-tab-size: 4; -webkit-tab-size: 4; -o-tab-size: 4; tab-size: 4;}
+.cpp.source-cpp  {font-family:monospace;}
+.cpp.source-cpp .imp {font-weight: bold; color: red;}
+.cpp.source-cpp li, .cpp.source-cpp .li1 {font-weight: normal; vertical-align:top;}
+.cpp.source-cpp .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.cpp.source-cpp .li2 {font-weight: bold; vertical-align:top;}
+.cpp.source-cpp .kw1 {color: #0000ff;}
+.cpp.source-cpp .kw2 {color: #0000ff;}
+.cpp.source-cpp .kw3 {color: #0000ff;}
+.cpp.source-cpp .kw4 {color: #0000ff;}
+.cpp.source-cpp .co1 {color: #666666;}
+.cpp.source-cpp .co2 {color: #666666;}
+.cpp.source-cpp .coMULTI {color: #666666;}
+.cpp.source-cpp .es0 {color: #000000;}
+.cpp.source-cpp .br0 {color: #000000;}
+.cpp.source-cpp .sy0 {color: #000000;}
+.cpp.source-cpp .sy1 {color: #000000;}
+.cpp.source-cpp .sy2 {color: #000000;}
+.cpp.source-cpp .sy3 {color: #000000;}
+.cpp.source-cpp .sy4 {color: #000000;}
+.cpp.source-cpp .st0 {color: #000000;}
+.cpp.source-cpp .nu0 {color: #000000;}
+.cpp.source-cpp .nu6 {color: #000000;}
+.cpp.source-cpp .nu8 {color: #000000;}
+.cpp.source-cpp .nu12 {color: #000000;}
+.cpp.source-cpp .nu16 {color:#000000;}
+.cpp.source-cpp .nu17 {color:#000000;}
+.cpp.source-cpp .nu18 {color:#000000;}
+.cpp.source-cpp .nu19 {color:#000000;}
+.cpp.source-cpp .me1 {color: #000000;}
+.cpp.source-cpp .me2 {color: #000000;}
+.cpp.source-cpp .ln-xtra, .cpp.source-cpp li.ln-xtra, .cpp.source-cpp div.ln-xtra {background-color: #ffc;}
+.cpp.source-cpp span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Geshi.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+/*]]>*/
+</style>		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Handling_User_Input">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Handling User Input</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p>In this tutorial, you will learn the basic concepts behind handling user input from the keyboard and mouse. This tutorial builds off concepts previously established in the <a href="Introduction_-_%27Hello_World%27.html" title="Introduction - 'Hello World'"> Hello World</a> tutorial and will attempt to stay OS neutral. If you haven't yet, look over that tutorial before continuing.  The program we will create will react to the WASD keys and the mouse button.  Upon each key stroke, a message will display with the count of how many times the button was pressed. Upon a mouse click, a 'zap!' message will appear.
+</p><p><br />
+</p>
+<table id="toc" class="toc" summary="Contents"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1"><a href="#Preperations"><span class="tocnumber">1</span> <span class="toctext">Preperations</span></a></li>
+<li class="toclevel-1"><a href="#Actions"><span class="tocnumber">2</span> <span class="toctext">Actions</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Defining"><span class="tocnumber">2.1</span> <span class="toctext">Defining</span></a></li>
+<li class="toclevel-2"><a href="#Configuration_File"><span class="tocnumber">2.2</span> <span class="toctext">Configuration File</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#The_Code"><span class="tocnumber">3</span> <span class="toctext">The Code</span></a></li>
+<li class="toclevel-1"><a href="#The_Action_Class"><span class="tocnumber">4</span> <span class="toctext">The Action Class</span></a>
+<ul>
+<li class="toclevel-2"><a href="#The_Con.2FDe-structor"><span class="tocnumber">4.1</span> <span class="toctext">The Con/De-structor</span></a></li>
+<li class="toclevel-2"><a href="#GameAction::Begin.28.29"><span class="tocnumber">4.2</span> <span class="toctext">GameAction::Begin()</span></a></li>
+<li class="toclevel-2"><a href="#GameAction::End.28.29"><span class="tocnumber">4.3</span> <span class="toctext">GameAction::End()</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#The_Game_Class"><span class="tocnumber">5</span> <span class="toctext">The Game Class</span></a>
+<ul>
+<li class="toclevel-2"><a href="#The_Con.2FDe-structor_2"><span class="tocnumber">5.1</span> <span class="toctext">The Con/De-structor</span></a></li>
+<li class="toclevel-2"><a href="#Game::Display.28.29"><span class="tocnumber">5.2</span> <span class="toctext">Game::Display()</span></a></li>
+<li class="toclevel-2"><a href="#Game::UnDisplay.28.29"><span class="tocnumber">5.3</span> <span class="toctext">Game::UnDisplay()</span></a></li>
+<li class="toclevel-2"><a href="#ATTENTION:"><span class="tocnumber">5.4</span> <span class="toctext">ATTENTION:</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Summary"><span class="tocnumber">6</span> <span class="toctext">Summary</span></a></li>
+</ul>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Preperations"></a><h2> <span class="mw-headline">Preperations</span></h2>
+<p>Before we begin the tutorial, you should have a new blank C4 project opened and ready to code. If you're confused on how to do that, please return to the <a href="Introduction_-_%27Hello_World%27.html" title="Introduction - 'Hello World'"> Hello World</a> tutorial. Though you may use what ever project and class name that you'd like, for the purposes of this tutorial the project will be named <code>ActionsDemo</code> while the main game class will be named <code>Game</code>. Don't forget to update <code>game.cfg</code> with the new project name for <code>$gameModuleName</code>.
+</p><p><br />
+</p>
+<a name="Actions"></a><h2> <span class="mw-headline">Actions</span></h2>
+<p>When a user hits a key or button, the program's corresponding reaction is referred to as an action.  Each possible key press will be assigned to it's own action.  Since our program will read four keys (WASD) and a mouse button, we will have five total actions. To define these actions, we'll create an <code>enum</code> list which must correlate with our configuration file. The guts of these actions will then be coded with the given C4 class <code>Action</code>.
+</p>
+<a name="Defining"></a><h3> <span class="mw-headline">Defining</span></h3>
+<p>First we must decide upon the name for each of our actions. We can use anything we want so long as its value is four characters long.  For our program we will use the following:
+</p>
+<pre>
+enum
+{
+	kActionForward	= 'frwd',
+	kActionBackward	= 'bkwd',
+	kActionLeft	= 'left',
+	kActionRight	= 'rght',
+	kActionZap	= 'zap!'
+};
+</pre>
+<p>This will be a globally defined <code>enum</code>. If you're wondering why each enumeration begins with a 'k', please refer to C4's <a href="Coding_Conventions.html" title="Coding Conventions">Coding Conventions</a>.  As you can see, each four character value is almost like an abbreviation for its given action. These will be very important to remember for our configuration file.  Don't worry about typing this code yet. The entire contents of each <code>game.h</code> and <code>game.cpp</code> will be given later.
+</p>
+<a name="Configuration_File"></a><h3> <span class="mw-headline">Configuration File</span></h3>
+<p>The configuration file, <code>input.cfg</code>, is where our actions are bound to their associated button or key. Its location varies based on each operating system. Please refer to <a href="File_Locations.html" title="File Locations">File Locations</a> to learn where yours is.  The file <code>input.cfg</code> will define a device followed by the binding for its keys.  Here we can add, remove, and modify as needed for our program.  Scanning through the file, you'll see that most of our action's are already bound by default:
+</p>
+<pre>
+bind &quot;W&quot;&nbsp;%frwd;
+bind &quot;A&quot;&nbsp;%left;
+bind &quot;S&quot;&nbsp;%bkwd;
+bind &quot;D&quot;&nbsp;%rght;
+</pre>
+<p>Notice how the four character coding after each '%' matches with a value in our enumerations. This is extremely important, else the key bindings will not work as expected. We still need to bind our left mouse button to the <code>zap!</code> action. Look for the line that starts with:
+</p>
+<pre>
+bind &quot;Button 1&quot;
+</pre>
+<p>Its probably binded to the action <code>%fire</code>. Go a head and change that line to read as:
+</p>
+<pre>
+bind &quot;Button 1&quot;&nbsp;%zap!
+</pre>
+<p>With our configuration file completed, lets move on to the coding.
+</p>
+<a name="The_Code"></a><h2> <span class="mw-headline">The Code</span></h2>
+<p>Copy the following into your <code>Game.h</code> file:
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw3">#ifndef</span> GAME_H
+<span class="kw3">#define</span> GAME_H
+&nbsp;
+<span class="kw3">#include</span> <span class="st0">&quot;C4Application.h&quot;</span>
+<span class="kw3">#include</span> <span class="st0">&quot;C4Input.h&quot;</span>
+<span class="kw3">#include</span> <span class="st0">&quot;C4Interface.h&quot;</span>
+<span class="kw3">#include</span> <span class="st0">&quot;C4String.h&quot;</span>
+&nbsp;
+<span class="kw4">extern</span> <span class="st0">&quot;C&quot;</span>
+<span class="br0">&#123;</span>
+	C4MODULEEXPORT C4<span class="sy4">::</span><span class="me2">Application</span><span class="sy2">*</span> ConstructApplication<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw2">using</span> <span class="kw2">namespace</span> C4<span class="sy4">;</span>
+&nbsp;
+<span class="kw2">enum</span>
+<span class="br0">&#123;</span>
+	kActionForward	<span class="sy1">=</span> <span class="st0">'frwd'</span>,
+	kActionBackward	<span class="sy1">=</span> <span class="st0">'bkwd'</span>,
+	kActionLeft	<span class="sy1">=</span> <span class="st0">'left'</span>,
+	kActionRight	<span class="sy1">=</span> <span class="st0">'rght'</span>,
+	kActionZap	<span class="sy1">=</span> <span class="st0">'zap!'</span>
+<span class="br0">&#125;</span><span class="sy4">;</span>
+&nbsp;
+<span class="kw2">namespace</span> HW
+<span class="br0">&#123;</span>
+	<span class="kw2">class</span> GameAction <span class="sy4">:</span> <span class="kw2">public</span> Action
+	<span class="br0">&#123;</span>
+	<span class="kw2">private</span><span class="sy4">:</span>
+		<span class="kw4">unsigned</span> <span class="kw4">long</span> count<span class="sy4">;</span>
+		String<span class="sy1">&lt;&gt;</span> defaultText<span class="sy4">;</span>
+		TextWidget <span class="sy2">*</span>tWidget<span class="sy4">;</span>
+&nbsp;
+	<span class="kw2">public</span><span class="sy4">:</span>
+		GameAction<span class="br0">&#40;</span><span class="kw4">unsigned</span> <span class="kw4">long</span> type, <span class="kw4">const</span> <span class="kw4">char</span> <span class="sy2">*</span>text, <span class="kw4">unsigned</span> <span class="kw4">int</span> xLoc, <span class="kw4">unsigned</span> <span class="kw4">int</span> yLoc<span class="br0">&#41;</span><span class="sy4">;</span>
+		~GameAction<span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+		<span class="kw4">void</span> Begin<span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span><span class="sy4">;</span>
+		<span class="kw4">void</span> End<span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span><span class="sy4">;</span>
+	<span class="br0">&#125;</span><span class="sy4">;</span>
+&nbsp;
+	<span class="kw2">class</span> Game <span class="sy4">:</span> <span class="kw2">public</span> Singleton<span class="sy1">&lt;</span>Game<span class="sy1">&gt;</span>, <span class="kw2">public</span> Application
+	<span class="br0">&#123;</span>
+	<span class="kw2">private</span><span class="sy4">:</span>
+		GameAction <span class="sy2">*</span>forwardAction<span class="sy4">;</span>
+		GameAction <span class="sy2">*</span>backwardAction<span class="sy4">;</span>
+		GameAction <span class="sy2">*</span>leftAction<span class="sy4">;</span>
+		GameAction <span class="sy2">*</span>rightAction<span class="sy4">;</span>
+		GameAction <span class="sy2">*</span>zapAction<span class="sy4">;</span>
+&nbsp;
+	<span class="kw2">public</span><span class="sy4">:</span>
+		Game<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+		~Game<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+		<span class="kw4">void</span> Display<span class="br0">&#40;</span>TextWidget<span class="sy2">*</span> tWidget<span class="br0">&#41;</span><span class="sy4">;</span>
+		<span class="kw4">void</span> UnDisplay<span class="br0">&#40;</span>TextWidget<span class="sy2">*</span> tWidget<span class="br0">&#41;</span><span class="sy4">;</span>
+	<span class="br0">&#125;</span><span class="sy4">;</span>
+&nbsp;
+	<span class="kw4">extern</span> Game<span class="sy2">*</span> TheGame<span class="sy4">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw3">#endif</span> <span class="co1">// GAME_H</span></pre></div></div>
+<p><br />
+Copy the following into <code>Game.cpp</code>:
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw3">#include</span> <span class="st0">&quot;Game.h&quot;</span>
+&nbsp;
+<span class="kw2">using</span> <span class="kw2">namespace</span> C4<span class="sy4">;</span>
+<span class="kw2">using</span> <span class="kw2">namespace</span> HW<span class="sy4">;</span>
+&nbsp;
+Game<span class="sy2">*</span> HW<span class="sy4">::</span><span class="me2">TheGame</span> <span class="sy1">=</span> <span class="kw2">nullptr</span><span class="sy4">;</span>
+&nbsp;
+C4<span class="sy4">::</span><span class="me2">Application</span><span class="sy2">*</span> ConstructApplication<span class="br0">&#40;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	<span class="kw1">return</span> <span class="br0">&#40;</span><span class="kw1">new</span> Game<span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+Game<span class="sy4">::</span><span class="me2">Game</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy4">:</span> Singleton<span class="sy1">&lt;</span>Game<span class="sy1">&gt;</span><span class="br0">&#40;</span>TheGame<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>	
+	<span class="co1">//Creates our custom actions</span>
+	forwardAction <span class="sy1">=</span> <span class="kw1">new</span> GameAction<span class="br0">&#40;</span>kActionForward, <span class="st0">&quot;Forward: &quot;</span>, <span class="nu0">200</span>, <span class="nu0">150</span><span class="br0">&#41;</span><span class="sy4">;</span>
+	backwardAction <span class="sy1">=</span> <span class="kw1">new</span> GameAction<span class="br0">&#40;</span>kActionBackward, <span class="st0">&quot;Backward: &quot;</span>, <span class="nu0">200</span>, <span class="nu0">250</span><span class="br0">&#41;</span><span class="sy4">;</span>
+	leftAction <span class="sy1">=</span> <span class="kw1">new</span> GameAction<span class="br0">&#40;</span>kActionLeft, <span class="st0">&quot;Left: &quot;</span>, <span class="nu0">100</span>, <span class="nu0">200</span><span class="br0">&#41;</span><span class="sy4">;</span>
+	rightAction <span class="sy1">=</span> <span class="kw1">new</span> GameAction<span class="br0">&#40;</span>kActionRight, <span class="st0">&quot;Right: &quot;</span>, <span class="nu0">300</span>, <span class="nu0">200</span><span class="br0">&#41;</span><span class="sy4">;</span>
+	zapAction <span class="sy1">=</span> <span class="kw1">new</span> GameAction<span class="br0">&#40;</span>kActionZap, <span class="st0">&quot;ZAP!!!&quot;</span>, <span class="nu0">200</span>, <span class="nu0">200</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+	<span class="co1">//Register our custom actions with the Input Manager</span>
+	TheInputMgr<span class="sy2">-</span><span class="sy1">&gt;</span>AddAction<span class="br0">&#40;</span>forwardAction<span class="br0">&#41;</span><span class="sy4">;</span>
+	TheInputMgr<span class="sy2">-</span><span class="sy1">&gt;</span>AddAction<span class="br0">&#40;</span>backwardAction<span class="br0">&#41;</span><span class="sy4">;</span>
+	TheInputMgr<span class="sy2">-</span><span class="sy1">&gt;</span>AddAction<span class="br0">&#40;</span>leftAction<span class="br0">&#41;</span><span class="sy4">;</span>
+	TheInputMgr<span class="sy2">-</span><span class="sy1">&gt;</span>AddAction<span class="br0">&#40;</span>rightAction<span class="br0">&#41;</span><span class="sy4">;</span>
+	TheInputMgr<span class="sy2">-</span><span class="sy1">&gt;</span>AddAction<span class="br0">&#40;</span>zapAction<span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+	<span class="co1">//Tells the Input Manager to accept input from the keyboard and mouse</span>
+	TheInputMgr<span class="sy2">-</span><span class="sy1">&gt;</span>SetInputMode<span class="br0">&#40;</span>kInputKeyboardActive <span class="sy3">|</span> kInputMouseActive<span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+	<span class="co1">//Automatically releases keyboard and mouse from game when '~' is hit</span>
+	TheInterfaceMgr<span class="sy2">-</span><span class="sy1">&gt;</span>SetInputManagementMode<span class="br0">&#40;</span>kInputManagementAutomatic<span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+Game<span class="sy4">::</span>~Game<span class="br0">&#40;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	<span class="co1">//Nesseccary to clean up pointers, else program crashes on exit</span>
+	<span class="kw1">delete</span> forwardAction<span class="sy4">;</span>
+	<span class="kw1">delete</span> backwardAction<span class="sy4">;</span>
+	<span class="kw1">delete</span> leftAction<span class="sy4">;</span>
+	<span class="kw1">delete</span> rightAction<span class="sy4">;</span>
+	<span class="kw1">delete</span> zapAction<span class="sy4">;</span>
+<span class="br0">&#125;</span>
+<span class="kw4">void</span> Game<span class="sy4">::</span><span class="me2">Display</span><span class="br0">&#40;</span>TextWidget<span class="sy2">*</span> tWidget<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	<span class="co1">//Adds widget to the screen</span>
+	TheInterfaceMgr<span class="sy2">-</span><span class="sy1">&gt;</span>AddWidget<span class="br0">&#40;</span>tWidget<span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw4">void</span> Game<span class="sy4">::</span><span class="me2">UnDisplay</span><span class="br0">&#40;</span>TextWidget<span class="sy2">*</span> tWidget<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	<span class="co1">//Removes widget from the screen</span>
+	TheInterfaceMgr<span class="sy2">-</span><span class="sy1">&gt;</span>RemoveWidget<span class="br0">&#40;</span>tWidget<span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+GameAction<span class="sy4">::</span><span class="me2">GameAction</span><span class="br0">&#40;</span><span class="kw4">unsigned</span> <span class="kw4">long</span> type, <span class="kw4">const</span> <span class="kw4">char</span> <span class="sy2">*</span>text, <span class="kw4">unsigned</span> <span class="kw4">int</span> xLoc, <span class="kw4">unsigned</span> <span class="kw4">int</span> yLoc<span class="br0">&#41;</span> <span class="sy4">:</span> Action<span class="br0">&#40;</span>type<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	<span class="co1">//Creates new widget which will be used to display to the screen</span>
+	tWidget <span class="sy1">=</span> <span class="kw1">new</span> TextWidget<span class="br0">&#40;</span>Vector2D<span class="br0">&#40;</span><span class="nu17">100.0F</span>, <span class="nu17">16.0F</span><span class="br0">&#41;</span>, text<span class="br0">&#41;</span><span class="sy4">;</span>
+	tWidget<span class="sy2">-</span><span class="sy1">&gt;</span>SetFont<span class="br0">&#40;</span><span class="st0">&quot;font/Bold&quot;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+	tWidget<span class="sy2">-</span><span class="sy1">&gt;</span>SetWidgetColor<span class="br0">&#40;</span>ColorRGBA<span class="br0">&#40;</span><span class="nu17">0.0f</span>, <span class="nu17">0.0f</span>, <span class="nu17">1.0f</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+	tWidget<span class="sy2">-</span><span class="sy1">&gt;</span>SetWidgetPosition<span class="br0">&#40;</span>Point3D<span class="br0">&#40;</span>xLoc, yLoc, <span class="nu0">0</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+	defaultText <span class="sy1">=</span> text<span class="sy4">;</span>		<span class="co1">//Saves for when we need to reset default display string</span>
+	count <span class="sy1">=</span> <span class="nu0">0</span><span class="sy4">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+GameAction<span class="sy4">::</span>~GameAction<span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span> 
+<span class="br0">&#123;</span>
+	<span class="kw1">delete</span> tWidget<span class="sy4">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">//An action key has been released.</span>
+<span class="kw4">void</span> GameAction<span class="sy4">::</span><span class="me2">End</span><span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	TheGame<span class="sy2">-</span><span class="sy1">&gt;</span>UnDisplay<span class="br0">&#40;</span>tWidget<span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">//An action key is pressed. Holding the key down doesn't result in multiple function calls.</span>
+<span class="kw4">void</span> GameAction<span class="sy4">::</span><span class="me2">Begin</span><span class="br0">&#40;</span><span class="kw4">void</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+	String<span class="sy1">&lt;&gt;</span> temp<span class="sy4">;</span>	<span class="co1">//Final string that will get displayed</span>
+        String<span class="sy1">&lt;&gt;</span> int2str<span class="sy4">;</span>
+&nbsp;
+	<span class="kw1">switch</span> <span class="br0">&#40;</span><span class="br0">&#40;</span><span class="kw4">unsigned</span> <span class="kw4">long</span><span class="br0">&#41;</span>GetActionType<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+	<span class="br0">&#123;</span>
+		<span class="kw1">case</span> kActionZap<span class="sy4">:</span>	<span class="co1">//If mouse button pressed</span>
+			temp <span class="sy1">=</span> defaultText<span class="sy4">;</span>
+			<span class="kw1">break</span><span class="sy4">;</span>
+&nbsp;
+		<span class="kw1">default</span><span class="sy4">:</span>	<span class="co1">//Else keyboard button was pressed</span>
+			temp <span class="sy1">=</span> defaultText<span class="sy4">;</span>
+			count <span class="sy2">+</span><span class="sy1">=</span> <span class="nu0">1</span><span class="sy4">;</span>
+                        int2str <span class="sy1">=</span> <span class="br0">&#40;</span><span class="kw4">char</span><span class="br0">&#41;</span>count<span class="sy4">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+	<span class="co1">//Update widget text, display to screen</span>
+	tWidget<span class="sy2">-</span><span class="sy1">&gt;</span>SetText<span class="br0">&#40;</span>temp<span class="sy2">+</span>int2str<span class="br0">&#41;</span><span class="sy4">;</span>
+	TheGame<span class="sy2">-</span><span class="sy1">&gt;</span>Display<span class="br0">&#40;</span>tWidget<span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="br0">&#125;</span></pre></div></div>
+<p>Go ahead and run the program to ensure everything works correctly.  Play around with hitting the buttons or click the mouse to get a feel of what's happening. When your ready, continue reading for an explanation of what the code is doing.
+</p>
+<a name="The_Action_Class"></a><h2> <span class="mw-headline">The Action Class</span></h2>
+<p>Though C4 provides an <code>Action</code> class for reacting to user input, we must create our own subclass in order to suit our needs.  Thus our <code>GameAction</code> class inherits from the <code>Action</code> class.  Since each action will result in a message displayed to the screen with a count the following variables are created:
+</p>
+<ul><li>count - Will keep count of how many times the action is executed.
+</li><li>defaultText - The standard message string (forward, backward, etc) that will display to the screen for each action.
+</li><li>tWidget - Text Widget that is outputted to screen.
+</li></ul>
+<p><br />
+You'll also notice a <code>Begin()</code> and <code>End()</code> function.  When a user hits a key, its corresponding action will execute the <code>Begin()</code> function. When the user releases said key, the <code>End()</code> function will then be called.
+</p>
+<a name="The_Con.2FDe-structor"></a><h3> <span class="mw-headline">The Con/De-structor</span></h3>
+<p>The code here should look very familiar as it was lifted almost directly from the <a href="Introduction_-_%27Hello_World%27.html" title="Introduction - 'Hello World'"> Hello World</a> tutorial. Minor differences include a slightly larger widget to hold our text and initialization of the <code>count</code> and <code>defaultText</code> variables.
+</p>
+<a name="GameAction::Begin.28.29"></a><h3> <span class="mw-headline">GameAction::Begin()</span></h3>
+<p>This is where most of the meat and potatoes of our program resides. Remember, for every key stroke, this function will be called.  The <code>switch</code> statement is used for determining whether the mouse button was clicked or a key was pressed. This is to handle the slightly different display of the two.  If the mouse is clicked, a string is assembled with the default text. If a keyboard button was pressed, a string is assembled with the default text and the count combined.  
+</p><p>From there the text widget is updated with the newly assembled string and passed to our <code>Game</code> class to display it.
+</p>
+<a name="GameAction::End.28.29"></a><h3> <span class="mw-headline">GameAction::End()</span></h3>
+<p>Remember, this function is only called when a key is released. Our function does one thing, pass the text widget to our <code>Game</code>, signalling it should be removed from the screen.  This will result in each action's string message only appearing when its corresponding key is being pressed.
+</p><p><br />
+</p>
+<a name="The_Game_Class"></a><h2> <span class="mw-headline">The Game Class</span></h2>
+<p>This main class inherits from both C4's <code>Singleton</code> class and the <code>Application</code> class. The former ensures only one instance of our program is created while the latter pertains to allowing the engine to link to our program.  Our class also handles the displaying of text widgets and houses five <code>GameAction</code> objects. They are:
+</p>
+<ul><li>forwardAction - Which corresponds to the 'w' key.
+</li><li>backwardAction - Which corresponds to the 'd' key.
+</li><li>leftAction - Which corresponds to the 'a' key.
+</li><li>rightAction - Which corresponds to the 'd' key.
+</li><li>zapAction - Which corresponds to the left mouse button.
+</li></ul>
+<a name="The_Con.2FDe-structor_2"></a><h3> <span class="mw-headline">The Con/De-structor</span></h3>
+<p>First we instantiate each of our five <code>GameAction</code> variables. We pass in the action type to which it will represent, along with the default text to display, and the x and y location of its text widget.
+</p><p>Next we add each action into the <code>TheInputMgr</code>. This allows us to register our custom actions with C4's Input Manager. Following this, we ensure the input manager knows which input devices it will use. Here we pass in both the keyboard and mouse flags.
+</p><p>Finally we set the input management to be handled automatically with the interface manager. This line is needed because the input manager now has control of the mouse and keyboard.  In the <a href="Introduction_-_%27Hello_World%27.html" title="Introduction - 'Hello World'"> Hello World</a> tutorial, there was still a mouse cursor that you could use to close the application. Once we passed <code>kInputMouseActive</code> and <code>kInputKeyboardActive</code>into the <code>TheInputMgr</code> the game takes focus of those devices. Even when you hit '~' to enter console mode, control of the mouse and keyboard stays with the game. Including this line fixes that. To further understand, go ahead and comment out this line. Then recompile and run the game. Press '~' and you'll see how you can't type or use the mouse, nor exit the console by hitting '~' again.
+</p><p>The destructor is pretty straightforward. Cleans up all dynamically allocated memory.
+</p>
+<a name="Game::Display.28.29"></a><h3> <span class="mw-headline">Game::Display()</span></h3>
+<p>Fairly simple class that takes a text widget parameter and adds it to the interface manager which in turn will display it.
+</p>
+<a name="Game::UnDisplay.28.29"></a><h3> <span class="mw-headline">Game::UnDisplay()</span></h3>
+<p>Fairly simple class that takes a text widget parameter and removes it from the interface manager which in turn will remove it from the screen.
+</p>
+<a name="ATTENTION:"></a><h3> <span class="mw-headline"> ATTENTION: </span></h3>
+<p>You MUST define the actions in the Game's constructor, BEFORE the engine can carry out it's Engine::HandleBindCommand() function in C4Commands.cpp. Once that function was called during startup, any additional command with TheInputMgr-&gt;AddAction() will be ignored
+</p>
+<a name="Summary"></a><h2> <span class="mw-headline">Summary</span></h2>
+<p>This tutorial talked through the entire process of creating actions which are used in response to key presses.  It then talked you through the given code on what was happening.  Though there are a few steps in getting actions to work, its pretty easy once you get the idea. Just remember the following when handling user input:
+</p>
+<ul><li><code>input.cfg</code> binds keys to action types.
+</li><li>Action types are defined by enumerations and <b>MUST</b> be four characters long.
+</li><li>Instantiate a custom <code>Action</code> class for each action type.
+</li><li>Register each custom action with <code>TheInputMgr</code>.
+</li><li>The action class Begin() function is called when its key is pressed.
+</li><li>The action class End() function is called when its key is released.
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 72/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:3183-0!1!0!!en!2!edit=0 and timestamp 20150119010545 -->
+<div class="printfooter">
+Retrieved from "<a href="Handling_User_Input.html">http://www.terathon.com/wiki/index.php/Handling_User_Input</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="Handling_User_Input.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:Handling_User_Input&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=Handling_User_Input&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=Handling_User_Input&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=Handling_User_Input" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Handling_User_Input.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Handling_User_Input.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=Handling_User_Input&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=Handling_User_Input&amp;oldid=9227" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 7 March 2013, at 01:53.</li>
+				<li id="viewcount">This page has been accessed 5,414 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.539 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/Handling_User_Input by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:26 GMT -->
+</html>

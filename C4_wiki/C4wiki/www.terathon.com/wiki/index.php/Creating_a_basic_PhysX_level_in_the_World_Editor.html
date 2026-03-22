@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/Creating_a_basic_PhysX_level_in_the_World_Editor by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="Creating a basic PhysX level in the World Editor" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>Creating a basic PhysX level in the World Editor - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Creating_a_basic_PhysX_level_in_the_World_Editor";
+var wgTitle = "Creating a basic PhysX level in the World Editor";
+var wgAction = "view";
+var wgArticleId = "2151";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "5269";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Creating_a_basic_PhysX_level_in_the_World_Editor">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Creating a basic PhysX level in the World Editor</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p><i>In this tutorial we will create a basic map that contains a stack of boxes that are then smashed by a heavy marble.</i>
+</p><p>If you are new or unsure about map creation in C4 I recommend you read through <a href="http://www.terathon.com/wiki/index.php?title=World_Editor_Overview" class="external text" title="http://www.terathon.com/wiki/index.php?title=World_Editor_Overview">this overview</a> first
+</p>
+<hr />
+<p><b>You will need:</b>
+</p>
+<ul><li> <a href="http://www.terathon.com/wiki/index.php?title=PhysXGame_Download_and_Installation" class="external text" title="http://www.terathon.com/wiki/index.php?title=PhysXGame_Download_and_Installation">JamesH’s PhysX Integration</a>
+</li><li> <a href="http://developer.nvidia.com/object/physx_downloads.html" class="external text" title="http://developer.nvidia.com/object/physx_downloads.html">Latest Ageia PhysX Drivers</a>
+</li><li> C4 build 143 or higher (also you can use the <a href="http://www.terathon.com/c4engine/download.php" class="external text" title="http://www.terathon.com/c4engine/download.php">demo</a>)
+</li></ul>
+<hr />
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:568px;"><a href="Image_Clip_image002.html" class="image" title="This is a simple diagram of the final level."><img alt="This is a simple diagram of the final level." src="../images/1/10/Clip_image002.jpg" width="566" height="262" border="0" class="thumbimage" /></a>  <div class="thumbcaption">This is a simple diagram of the final level.</div></div></div></div>
+<hr />
+<ul><li> After starting up C4 press Escape, ~ (`) and then Ctrl-O. Navigate through to Data/PhysX/world and load PhysX-Base.wld
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:294px;"><a href="Image_Clip_image001.html" class="image" title="Clip image001.jpg"><img alt="" src="../images/4/48/Clip_image001.jpg" width="292" height="255" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> Click “Page” located on the top toolbar, then click “Transform”. Transform is handy for scaling an object by entering a number in the fields.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:91px;"><a href="Image_Clip_image003.html" class="image" title="Clip image003.jpg"><img alt="" src="../images/0/0e/Clip_image003.jpg" width="89" height="213" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> For organisational purposes right click on the bottom right viewport and select “Front” to change the viewport mode to face frontwards. 
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:473px;"><a href="Image_Clip_image004.html" class="image" title="Clip image004.jpg"><img alt="" src="../images/a/aa/Clip_image004.jpg" width="471" height="319" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> Located on the left is a Geometry pane. Click the cube shape.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:169px;"><a href="Image_Clip_image005.html" class="image" title="Clip image005.jpg"><img alt="" src="../images/3/31/Clip_image005.jpg" width="167" height="182" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> Drag out the box through the front viewport.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:672px;"><a href="Image_Clip_image006.html" class="image" title="Clip image006.jpg"><img alt="" src="../images/0/0d/Clip_image006.jpg" width="670" height="419" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> Because the barriers are going to be in our way when designing the level switch to selection mouse mode (Hotkey - 0) and select the top area of the box, make sure you do not select the cube we have just created.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:504px;"><a href="Image_Clip_image007.html" class="image" title="Clip image007.jpg"><img alt="" src="../images/3/3d/Clip_image007.jpg" width="502" height="324" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> To hide the selection press Ctrl-H
+</li></ul>
+<ul><li> Select the cube just created (Selection Mode Hotkey – Press 1) In the Transform view change all the fields to the following:
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:165px;"><a href="Image_Clip_image008.html" class="image" title="Clip image008.jpg"><img alt="" src="../images/a/a7/Clip_image008.jpg" width="163" height="300" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> Now that there is a ramp we need to add is some physics driven boxes to be smashed by a marble.  With the cube drawing tool used earlier to place a cube. For the purpose of this tutorial we will make use of the “major lines” to help us to create a wall of cubes. 
+</li></ul>
+<ul><li> Draw the cube through any view port, press 4 to switch to the “Scale Codes” tool. Scale the box to fit in between the major lines to form a perfect cube.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:672px;"><a href="Image_Clip_image009.html" class="image" title="Clip image009.jpg"><img alt="" src="../images/a/a6/Clip_image009.jpg" width="670" height="433" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> With the cube selected press Ctrl-I. Click the “Properties” tab, and change the following fields
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:673px;"><a href="Image_Clip_image010.html" class="image" title="Clip image010.jpg"><img alt="" src="../images/1/1e/Clip_image010.jpg" width="671" height="447" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> Click the “Controller” tab, and choose “PhysX Rigid Body” in the controller type.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:673px;"><a href="Image_Clip_image011.html" class="image" title="Clip image011.jpg"><img alt="" src="../images/4/4b/Clip_image011.jpg" width="671" height="447" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> Press Ctrl-D to duplicate the box. To move the box in between the next major line tile press 2. Make sure that the box has been positioned correct in each viewport. Continue duplicating the cube to you finish with three perfectly aligned cubes.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:672px;"><a href="Image_Clip_image012.html" class="image" title="Clip image012.jpg"><img alt="" src="../images/b/bc/Clip_image012.jpg" width="670" height="432" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> Switch to selection mode (Hotkey – 0). Select the three boxes, duplicating and positioning (remember to use the “Move Nodes” function, hotkey - 2.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:672px;"><a href="Image_Clip_image013.html" class="image" title="Clip image013.jpg"><img alt="" src="../images/4/40/Clip_image013.jpg" width="670" height="432" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> You will find there is only one missing spot, simple select a single box (press 1) and duplicate it to fill the empty box.
+</li></ul>
+<ul><li> Select the row from the front viewport (in this case the bottom left). Duplicate and place it above the row.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:672px;"><a href="Image_Clip_image014.html" class="image" title="Clip image014.jpg"><img alt="" src="../images/0/0e/Clip_image014.jpg" width="670" height="432" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<center>Make sure you use all viewports to line the boxes correctly. Notice that in the image above the second layer of boxes are out of place.</center>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:672px;"><a href="Image_Clip_image015.html" class="image" title="Clip image015.jpg"><img alt="" src="../images/2/22/Clip_image015.jpg" width="670" height="432" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> Continue doing this until you make roughly 8 rows though this is not very important.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:672px;"><a href="Image_Clip_image016.html" class="image" title="Clip image016.jpg"><img alt="" src="../images/3/3e/Clip_image016.jpg" width="670" height="432" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> In the geometries pane there is a ball shape, draw the ball anywhere and change the transforming fields to the following:
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:158px;"><a href="Image_Clip_image020.html" class="image" title="Clip image020.jpg"><img alt="" src="../images/f/fc/Clip_image020.jpg" width="156" height="288" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<center>This will become a marble that rolls down a ramp and smashes down the stack of boxes.</center>
+<ul><li> With the cube selected press Ctrl-I. Click the “Properties” tab, and change the following fields. Make sure you adjust the Mass to 500.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:673px;"><a href="Image_Clip_image021.html" class="image" title="Clip image021.jpg"><img alt="" src="../images/2/27/Clip_image021.jpg" width="671" height="447" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<ul><li> Click the “Controller” tab, and choose “PhysX Rigid Body” in the controller type.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:673px;"><a href="Image_Clip_image019.html" class="image" title="Clip image019.jpg"><img alt="" src="../images/9/9a/Clip_image019.jpg" width="671" height="447" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<p>Now save the world and play. Alternatively you can simply press Ctrl-P.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:672px;"><a href="Image_Clip_image022.html" class="image" title="Clip image022.jpg"><img alt="" src="../images/4/41/Clip_image022.jpg" width="670" height="419" border="0" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div></div>
+<p>If you want to go a step further and change the textures of each object read <a href="http://www.terathon.com/wiki/index.php?title=Creating_a_New_Material" class="external text" title="http://www.terathon.com/wiki/index.php?title=Creating_a_New_Material">this overview</a>.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 3/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:2151-0!1!0!!en!2!edit=0 and timestamp 20150118164727 -->
+<div class="printfooter">
+Retrieved from "<a href="Creating_a_basic_PhysX_level_in_the_World_Editor.html">http://www.terathon.com/wiki/index.php/Creating_a_basic_PhysX_level_in_the_World_Editor</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="Creating_a_basic_PhysX_level_in_the_World_Editor.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:Creating_a_basic_PhysX_level_in_the_World_Editor&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=Creating_a_basic_PhysX_level_in_the_World_Editor&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=Creating_a_basic_PhysX_level_in_the_World_Editor&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=Creating_a_basic_PhysX_level_in_the_World_Editor" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Creating_a_basic_PhysX_level_in_the_World_Editor.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Creating_a_basic_PhysX_level_in_the_World_Editor.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=Creating_a_basic_PhysX_level_in_the_World_Editor&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=Creating_a_basic_PhysX_level_in_the_World_Editor&amp;oldid=5269" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 20 December 2008, at 05:02.</li>
+				<li id="viewcount">This page has been accessed 6,114 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.537 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/Creating_a_basic_PhysX_level_in_the_World_Editor by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:27 GMT -->
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class Texture</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/index.html">Graphics Manager</a> &#x25BA; <a href="Texture.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Texture.html">class Texture</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class Texture</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Textures.h</code></div>
+The <code>Texture</code> class encapsulates a texture map.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;Texture&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;Render::TextureObject,&nbsp;<span style="color: #0000FF">public</span>&nbsp;Shared,&nbsp;<span style="color: #0000FF">public</span>&nbsp;ListElement&lt;Texture&gt;</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="Texture_GetTexture.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Texture_GetTexture.html">Texture::GetTexture</a></code></td>
+<td class="tableright1">Returns a reference to a texture object.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Texture_GetTextureWidth.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Texture_GetTextureWidth.html">Texture::GetTextureWidth</a></code></td>
+<td class="tableright">Returns the width of a texture map.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Texture_GetTextureHeight.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Texture_GetTextureHeight.html">Texture::GetTextureHeight</a></code></td>
+<td class="tableright">Returns the height of a texture map.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Texture_GetTextureHeader.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Texture_GetTextureHeader.html">Texture::GetTextureHeader</a></code></td>
+<td class="tableright">Returns the <code><a href="TextureHeader.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/TextureHeader.html">TextureHeader</a></code> data structure for a texture object.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Texture_GetImagePointer.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Texture_GetImagePointer.html">Texture::GetImagePointer</a></code></td>
+<td class="tableright">Returns a pointer to the image data for a texture object.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>Texture(TextureResource&nbsp;*resource);</code></p>
+<p><code>Texture(<span style="color: #0000FF">const</span>&nbsp;TextureHeader&nbsp;*header,&nbsp;<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">void</span>&nbsp;*image&nbsp;=&nbsp;<span style="color: #0000FF">nullptr</span>);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>name</code></td>
+<td class="tableright1">The name of the texture resource.
+</td></tr>
+<tr><td class="tableleft"><code>header</code></td>
+<td class="tableright">A pointer to a <code><a href="TextureHeader.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/TextureHeader.html">TextureHeader</a></code> structure describing the texture.
+</td></tr>
+<tr><td class="tableleft"><code>image</code></td>
+<td class="tableright">A pointer to the pixel image for the texture. If this is <code><span style="color: #0000FF">nullptr</span></code>, then the location of the image is given by the information in the texture header.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>Texture</code> class encapsulates a texture map that is either stored in a resource or created in memory. Since textures are reference-counted shared objects that could be used by multiple parts of the engine, they cannot be created using the <code><span style="color: #0000FF">new</span></code> operator. They should instead be created by calling the <code><a href="Texture_GetTexture.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Texture_GetTexture.html">Texture::GetTexture</a></code> function.<br/><br/> A texture should be released by calling the <code><a href="../Utilities/Shared_Release.html" tppabs="http://www.c4engine.com/docs/Utilities/Shared_Release.html">Shared::Release</a></code> function.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>Render::TextureObject</code></td>
+<td class="tableright1">Used internally by the Graphics Manager.
+</td></tr>
+<tr><td class="tableleft"><code><a href="../Utilities/Shared.html" tppabs="http://www.c4engine.com/docs/Utilities/Shared.html">Shared</a></code></td>
+<td class="tableright">Texture objects are reference counted.
+</td></tr>
+<tr><td class="tableleft"><code><a href="../Utilities/ListElement.html" tppabs="http://www.c4engine.com/docs/Utilities/ListElement.html">ListElement&lt;Texture&gt;</a></code></td>
+<td class="tableright">Used internally by the Graphics Manager.
+</td></tr>
+</table>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

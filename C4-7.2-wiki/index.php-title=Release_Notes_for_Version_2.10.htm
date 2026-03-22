@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>Release Notes for Version 2.10 - C4 Engine Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"Zu8KU0hzjDcBpeHdQL92YQAAAMc","wgCSPNonce":false,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"http://www.c4engine.com/wiki/Release_Notes_for_Version_2.10","wgTitle":"http://www.c4engine.com/wiki/Release Notes for Version 2.10","wgCurRevisionId":78,"wgRevisionId":78,"wgArticleId":76,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"http://www.c4engine.com/wiki/Release_Notes_for_Version_2.10","wgRelevantArticleId":76,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"simpleBatchUploadMaxFilesPerBatch"
+:{"*":1000},"wgVector2022PreviewPages":[]};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","skins.vector.legacy.js"/*tpa=http://www.c4engine.com/wiki/skins.vector.legacy.js*/];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});});});</script>
+<link rel="stylesheet" href="load.php-lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector.css" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector"/>
+<script async="" src="load.php-lang=en&modules=startup&only=scripts&raw=1&skin=vector.js" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector"></script>
+<meta name="generator" content="MediaWiki 1.40.0"/>
+<meta name="robots" content="max-image-preview:standard"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="viewport" content="width=1000"/>
+<link rel="icon" href="../favicon.ico.css" tppabs="http://www.c4engine.com/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://c4engine.com/wiki/api.php?action=rsd"/>
+<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Release_Notes_for_Version_2_10 rootpage-Release_Notes_for_Version_2_10 skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Release Notes for Version 2.10</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From C4 Engine Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="en" dir="ltr"><div class="mw-parser-output"><p><b>Release date:</b> November 16, 2012
+</p>
+<h2><span class="mw-headline" id="Core_Engine">Core Engine</span></h2>
+<ul><li>The engine can now be compiled for 64-bit Windows. New project files for Visual Studio 2012 are included, and they have 64-bit configurations in addition to 32-bit.</li></ul>
+<ul><li>Several parts of the Mac OS X code in the engine have been rewritten to use the Cocoa API. The engine no longer calls any deprecated API functions, and it can compile with the latest Mac SDK for 32-bit and 64-bit targets.</li></ul>
+<ul><li>The <code>float4</code> type has been renamed to <code>vec_float</code>, and new types <code>vec_int8</code>, <code>vec_int16</code>, <code>vec_int32</code>, <code>vec_unsigned_int8</code>, <code>vec_unsigned_int16</code>, and <code>vec_unsigned_int32</code> have been added. This affects your code only if you are directly using the engine's SIMD functions.</li></ul>
+<ul><li>The <code>align_address</code> macro has been renamed to <code>alignas</code> to be consistent with the new C++11 keyword.</li></ul>
+<ul><li>The Extras plugin has been eliminated, and most of the functionality it contained has been moved to the core engine (star field particle system, flash controller, rotation controller, and shock wave effect).</li></ul>
+<h3><span class="mw-headline" id="Movie_Manager">Movie Manager</span></h3>
+<ul><li>The Movies plugin based on QuickTime has been removed from the engine and replaced by a new proprietary cross-platform movie format. Movie compression and playback functionality is now part of the core engine in a new Movie Manager component, and it is available on all platforms supported by the engine.</li></ul>
+<ul><li>Movie data is stored in a resource file with the extension <code>.mvi</code>. Movies can contain both video and audio tracks.</li></ul>
+<ul><li>Video tracks are compressed using standard DCT and block truncation methods followed by a bit encoding that is optimized for fast decompression. This is a lossy compression technique with a variable quality level that can be controlled at the time a movie is generated. Pixel data is decompressed into the YCbCr 4:2:0 format, which is transformed into filtered RGB 4:4:4 format on the GPU using shader code.</li></ul>
+<ul><li>The video codec supports key frames and delta frames for temporal compression. The frequency of key frames can be controlled at the time a movie is generated.</li></ul>
+<ul><li>Audio tracks are compressed using a lossless technique to preserve perfect fidelity.</li></ul>
+<ul><li>The Movie Manager uses an integer time base for which there are exactly 36000 ticks per second. This number was chosen because it is evenly divisible by the following numbers (plus others): 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 18, 20, 24, 25, 30, 32, 36, 40, 45, 48, 50, 60, 72, 75, 80, 90, 96, 100, 120.</li></ul>
+<ul><li>Movies can be recorded inside the engine by using the <code>record</code> console command. This causes the engine to generate one or more "sequence" files containing raw video data and a single wave file containing raw audio data. These can be imported through the Movie Tool to create a compressed movie resource.</li></ul>
+<h3><span class="mw-headline" id="Interface_Manager">Interface Manager</span></h3>
+<ul><li>There is a new movie widget that is used to display movies in a panel or window. Movie widgets can be controlled from a script using the Play Movie, Stop Movie, Get Movie Time, and Set Movie Time controller functions.</li></ul>
+<ul><li>A movie widget belonging to a panel effect can specify that its audio track be played through a connected source node. This allows the audio for a movie to be fully spatialized in a scene just like any other sound.</li></ul>
+<ul><li>Paint widgets now have settings that can be used to specify the initial properties of the paint brush: radius, fuzziness, opacity, and color.</li></ul>
+<h3><span class="mw-headline" id="Graphics_Manager">Graphics Manager</span></h3>
+<ul><li>The Combine Normals shader process has been extended so it can take an optional interpolation parameter. If the port named "t" has an input, then the normal "N1" is weighted by 1&#160;&#8722;&#160;<i>t</i> and the normal "N2" is weighted by <i>t</i>.</li></ul>
+<h3><span class="mw-headline" id="Physics_Manager">Physics Manager</span></h3>
+<ul><li>The "mover" controller has been redesigned and replaced by the "movement" controller. The movement controller moves a node between a start and finish location at a constant speed with optional acceleration and deceleration at the beginning and end. The node to which a movement controller is assigned must have connectors that link to other nodes (usually markers) specifying the start and finish positions, and the connector keys used for this are specified in the controller settings.</li></ul>
+<ul><li>The "rotation" controller previously in the Extras plugin has also been redesigned and moved into the core engine. The functionality has been split into two separate types of controllers: a "rotation" controller that is used for nodes that rotate in between two specific angles, and a "spin" controller that is used for nodes that rotate continuously about a given axis. The node to which either of these controllers is assigned must have a connector that links to another node (usually a marker) specifying the center and axis of rotation, and the connector key used for this is specified in the controller settings. Rotation takes place in the counterclockwise direction about the object-space <i>z</i> axis of the center node (which is shown in blue inside the World Editor). This means that reversing the direction of the <i>z</i> axis (by rotating the node 180 degrees about the <i>x</i> or <i>y</i> axes) causes the rotation to reverse direction.</li></ul>
+<h3><span class="mw-headline" id="World_Manager">World Manager</span></h3>
+<ul><li>The perspective exclusion mask for geometries, portals, and fog spaces has been modified so that visibility in the primary, reflection, and refraction perspectives can be controlled separately for direct rendering, rendering through a remote portal (that is not rendered into the reflection or refraction buffer), and rendering through a camera widget.</li></ul>
+<ul><li>The perspective exclusion mask settings for the portal object and fog space object have been moved to the portal node and fog space node.</li></ul>
+<ul><li>A perspective exclusion mask can now be set for all effect nodes, which include particle systems.</li></ul>
+<h3><span class="mw-headline" id="Scripting">Scripting</span></h3>
+<ul><li>The previously existing method called Fade Ambient Source has been renamed to Vary Source Volume, and it can now be used on any type of source node to smoothly vary the playback volume.</li></ul>
+<ul><li>A new script method called Vary Source Frequency has been added, and it can be used to smoothly increase or decrease the relative playback frequency of a source node.</li></ul>
+<ul><li>If an instance node is the target of a Call Controller Function script method and the instanced world contains a rigid body, then the Script Editor now displays the available functions for the rigid body instead of the instance node. This makes sense because the rigid body inside an instanced world is always extracted and placed in the referencing world, and the instance node is deleted.</li></ul>
+<h3><span class="mw-headline" id="File_Manager">File Manager</span></h3>
+<ul><li>The <code>FileMgr::BuildFileList()</code> function has been replaced by the <code>FileMgr::BuildFileMap()</code> function. File names are now sorted on all platforms such that letter case is ignored and numerical parts of the names are sorted numerically instead of lexicographically.</li></ul>
+<h3><span class="mw-headline" id="Resource_Manager">Resource Manager</span></h3>
+<ul><li>The Resource Manager is now 100% thread-safe. Any type of resource can be loaded outside the main thread without risk of corrupting internal data structures.</li></ul>
+<h2><span class="mw-headline" id="Tools">Tools</span></h2>
+<h3><span class="mw-headline" id="Movie_Tool">Movie Tool</span></h3>
+<ul><li>There is a new Movie Tool plugin that contains a movie player window and the movie generation functionality. The movie player can be opened by selecting Open Movie from the <a href="index.php-title=C4_Menu.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Menu" title="C4 Menu">C4 Menu</a>, and a movie can be generated by selection Import Movie from the C4 Menu.</li></ul>
+<ul><li>The movie generator can import a sequence of individual frames from TGA files and/or a group of sequence files that were recorded by the engine. (Each sequence file contains multiple frames.) Audio data for a movie is specified by a separate wave file.</li></ul>
+<h3><span class="mw-headline" id="World_Editor">World Editor</span></h3>
+<ul><li>A check box has been added to the <a href="index.php-title=Worlds_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Worlds_Page" title="Worlds Page">Worlds Page</a> that let's you click through instances already in the main world when placing a new instance node.</li></ul>
+<ul><li>A modifier preset list has been added to the <a href="index.php-title=Worlds_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Worlds_Page" title="Worlds Page">Worlds Page</a>. A modifier preset stores a list of modifiers that can be assigned to instance nodes, and whenever a preset is selected, the modifiers stored in it are automatically assigned to each new instance that is placed in the scene. A modifier preset is created by selecting an instance node in the scene that already has modifiers assigned to it and selecting New Modifier Preset from the popup menu in the Worlds Page. Another menu command, Replace Modifiers, can also replace the modifiers for all currently selected instance nodes with the modifiers stored in the currently selected modifier preset.</li></ul>
+<ul><li>A random Z offset range has been added to the <a href="index.php-title=Placement_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Placement_Page" title="Placement Page">Placement Page</a>. This causes a node to be offset by a random distance in the specified range along the node's local <i>z</i> axis after the other placement adjustments have been made. This is useful for sinking objects into the ground by random amounts.</li></ul>
+<h3><span class="mw-headline" id="Script_Editor">Script Editor</span></h3>
+<ul><li>The OK and Cancel buttons have been removed from the <a href="index.php-title=Script_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Script_Editor" title="Script Editor">Script Editor</a>. There are now items named Close and Save Script under the Script menu.</li></ul>
+<ul><li>Boxes that display the letters "T" or "F" are now displayed on conditional fibers in a script that execute only if the result of the starting method is true or false. The fibers also still retain the green and red colors.</li></ul>
+<h3><span class="mw-headline" id="Shader_Editor">Shader Editor</span></h3>
+<ul><li>The OK and Cancel buttons have been removed from the <a href="index.php-title=Shader_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Shader_Editor" title="Shader Editor">Shader Editor</a>. There are now items named Close and Save Shader under the Shader menu.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20240921180259
+Cache expiry: 86400
+Reduced expiry: false
+Complications: [no‐toc‐conversion]
+CPU time usage: 0.022 seconds
+Real time usage: 0.023 seconds
+Preprocessor visited node count: 47/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+
+<!-- Saved in parser cache with key c4_wiki:pcache:idhash:76-0!canonical and timestamp 20240921180259 and revision id 78. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10&oldid=78  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10&oldid=78%27" tppabs="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10&oldid=78">https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10&amp;oldid=78</a>"</div></div>
+		<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="vector-menu mw-portlet mw-portlet-personal vector-user-menu-legacy" aria-labelledby="p-personal-label" role="navigation"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="pt-login" class="mw-list-item"><a href="index.php-title=Special-UserLogin&returnto=Release+Notes+for+Version+2.10.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:UserLogin&returnto=Release+Notes+for+Version+2.10" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li></ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="vector-menu mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-namespaces-label" role="navigation"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected mw-list-item"><a href="index.php-title=Release_Notes_for_Version_2.10.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Version_2.10  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Version_2.10%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Version_2.10&action=edit&redlink=1" rel="discussion" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="vector-menu mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	/>
+	<label
+		id="p-variants-label"
+		 aria-label="Change language variant"
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="vector-menu mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-views-label" role="navigation"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-view" class="selected mw-list-item"><a href="index.php-title=Release_Notes_for_Version_2.10.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Version_2.10&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10&action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Version_2.10&action=history.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10&action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="vector-menu mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown" aria-labelledby="p-cactions-label" role="navigation"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	/>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<div>
+		<form action="http://www.c4engine.com/wiki/index.php" id="searchform"
+			class="vector-search-box-form">
+			<div id="simpleSearch"
+				class="vector-search-box-inner"
+				 data-search-loc="header-navigation">
+				<input class="vector-search-box-input"
+					 type="search" name="search" placeholder="Search C4 Engine Wiki" aria-label="Search C4 Engine Wiki" autocapitalize="sentences" title="Search C4 Engine Wiki [f]" accesskey="f" id="searchInput"
+				>
+				<input type="hidden" name="title" value="Special:Search">
+				<input id="mw-searchButton"
+					 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+				<input id="searchButton"
+					 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+			</div>
+		</form>
+	</div>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="vector-menu mw-portlet mw-portlet-navigation vector-menu-portal portal" aria-labelledby="p-navigation-label" role="navigation"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="n-mainpage-description" class="mw-list-item"><a href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="javascript:if(confirm(%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents%27" tppabs="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="vector-menu mw-portlet mw-portlet-tb vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="t-whatlinkshere" class="mw-list-item"><a href="index.php-title=Special-WhatLinksHere-Release_Notes_for_Version_2.10.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:WhatLinksHere/Release_Notes_for_Version_2.10" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Version_2.10  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Version_2.10%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Version_2.10" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="index.php-title=Special-SpecialPages.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Version_2.10&oldid=78.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10&oldid=78" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Version_2.10&action=info.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.10&action=info" title="More information about this page"><span>Page information</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" role="contentinfo" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 15 July 2023, at 10:11.</li>
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About">About C4 Engine Wiki</a></li>
+	<li id="footer-places-disclaimers"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-poweredbyico"><a href="javascript:if(confirm(%27https://www.mediawiki.org/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/%27" tppabs="https://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" tppabs="http://www.c4engine.com/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/></a></li>
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":181,"wgPageParseReport":{"limitreport":{"cputime":"http://www.c4engine.com/wiki/0.022","walltime":"http://www.c4engine.com/wiki/0.023","ppvisitednodes":{"value":47,"limit":1000000},"postexpandincludesize":{"value":0,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":2,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20240921180259","ttl":86400,"transientcontent":false}}});});</script>
+</body>
+</html>

@@ -1,0 +1,1335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View topic - Paths and curved geometry</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '';
+	var base_url = '';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=18.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=18">C4 Engine Development</a> <strong>&#8249;</strong> <a href="viewforum.php-f=9.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9">Editor and Tools</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewtopic.php-f=9&t=9331.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=9331">Paths and curved geometry</a></h2>
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body --><div style="display: none !important;">Topics about the World Editor and other C4 Engine tools.<br /></div>
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=9&t=9331  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=9&t=9331%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=9&t=9331" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="search-box">
+			<form method="get" id="topic-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="Search this topic…" onclick="if(this.value=='Search this topic…')this.value='';" onblur="if(this.value=='')this.value='Search this topic…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="t" value="9331" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			21 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+
+</div>
+<div class="clear"></div>
+
+
+	<div id="p85202" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 class="first"><a href="#p85202">Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85202  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85202#p85202%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85202#p85202"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a></strong> &raquo; 16 Jun 2010, 20:27 </p>
+
+			
+
+			<div class="content">Can anyone share some hints about how paths and curved geometry are supposed to work?  If I want to have piece of wall arc in 90 degrees, it seems like I should layout a path, and then extrude it with the path extrusion tool... but the results I get seem completely random.  I can't make heads or tails of what the relationship is between the path and what gets extruded.  The resulting curved wall is not where I put the path, is not bending at the same degree, and sometimes it isn't even close to the same size.  It is a total mystery to me.  If there is a wiki page on how to do this, can someone point me to it?</div>
+
+			<div id="sig85202" class="signature">CALLING ALL ARTISTS!  Please contribute to the Content Creation wiki with your experiences accumulated while importing assets in to C4!<br /><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs%27" tppabs="http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs" class="postlink">*** Content Creation WIKI ***</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85202">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 478</dd><dd><strong>Joined:</strong> 26 Mar 2009, 13:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85204" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85204">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85204  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85204#p85204%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85204#p85204"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a></strong> &raquo; 16 Jun 2010, 22:49 </p>
+
+			
+
+			<div class="content">Nevermind... after digging through a whole bunch of forum posts, I finally figured it out.<br /><br />I don't have anything nice to say about that tool at all, so I'm going to say nothing.   <img src="images/smilies/icon_confused.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_confused.gif" alt=":?" title="Confused" /></div>
+
+			<div id="sig85204" class="signature">CALLING ALL ARTISTS!  Please contribute to the Content Creation wiki with your experiences accumulated while importing assets in to C4!<br /><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs%27" tppabs="http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs" class="postlink">*** Content Creation WIKI ***</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85204">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 478</dd><dd><strong>Joined:</strong> 26 Mar 2009, 13:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85243" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85243">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85243  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85243#p85243%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85243#p85243"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a></strong> &raquo; 17 Jun 2010, 09:57 </p>
+
+			
+
+			<div class="content">Bleh... I was in a pretty bad mood last night when I wrote this, so I apologize.  A lot of the problems with that tool stem from a generalized problem with picking in the World Editor.  It is very hard to work around the geometry in your scene because of the way C4 picks &quot;closest&quot; to the camera.   This leads to a lot of clicking trying to get to the object you want, and then toggling masks to try to eliminate what you don't want to select.  If the object you want to select is hidden by another object of the same kind, the masks don't work and you have to start doing a bunch of hiding.  <br /><br />I think it would be better if an object wasn't considered &quot;closest&quot; if none of the verts that make up the object are visible in the viewport.  In otherwords, if you zoom in close enough to the object you really want to select, the verts for other objects &quot;on top of them&quot; would be out of the viewport and thus the blocking object would not be picked.<br /><br />Sorry for the negativity.  Selecting is sometimes very, very frustrating... feeling like it takes 10 clicks to select the geometry I really want to work with.  The more developed the scene, the worse the problem gets.  For outside environments, I guess this isn't as much of a problem.  But inside closed rooms, it is murder.</div>
+
+			<div id="sig85243" class="signature">CALLING ALL ARTISTS!  Please contribute to the Content Creation wiki with your experiences accumulated while importing assets in to C4!<br /><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs%27" tppabs="http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs" class="postlink">*** Content Creation WIKI ***</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85243">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 478</dd><dd><strong>Joined:</strong> 26 Mar 2009, 13:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85259" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85259">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85259  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85259#p85259%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85259#p85259"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2178.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2178" style="color: #0060C0;" class="username-coloured">Oleg</a></strong> &raquo; 17 Jun 2010, 13:11 </p>
+
+			
+
+			<div class="content">The old annoying problem with paths(and not only paths) is hardly selectable handles. Trying to drag a handle often deselects it. Zooming in very much helps in this case (even if the handle size didn't grow). There is a buggy difference in visual size of a handle and its active aria.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85259">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2178.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2178" style="color: #0060C0;" class="username-coloured">Oleg</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 87</dd><dd><strong>Joined:</strong> 10 Oct 2009, 07:26</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85289" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85289">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85289  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85289#p85289%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85289#p85289"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 17 Jun 2010, 17:35 </p>
+
+			
+
+			<div class="content">The editor used to be set up so that clicking on a selected item would always grab that item, even if something else was closer. A million people complained about is, so we changed it. Now, a million people are complaining about the new behavior, so we'll have to come up with something else.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85289">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85294" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85294">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85294  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85294#p85294%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85294#p85294"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a></strong> &raquo; 17 Jun 2010, 19:12 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Eric Lengyel wrote:</cite>The editor used to be set up so that clicking on a selected item would always grab that item, even if something else was closer. A million people complained about is, so we changed it. Now, a million people are complaining about the new behavior, so we'll have to come up with something else.</div></blockquote><br /><br />Haven't run the engine in a couple weeks, but what I noticed is that you can finally select the correct item in wireframe mode (via clicking on the wireframe edge of the object you're interested in). Now, this is great! Oleg and Zitheral mentioned the handles, however, which still exhibits the problem that if you are not perfectly clicking inside the handle, you end up deselecting the object. I think I mentioned somewhere that it would help if the collision bounds for the handle are larger than the visible handle.</div>
+
+			<div id="sig85294" class="signature">Intel Core2 Quad Q8200 @ 2.33GHz, 4 GB RAM, nVidia 9800 GT 512 MB, Win 7 64, Visual C++ 2010 Express</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85294">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282"><img src="download/file.php-avatar=282_1354835571.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=282_1354835571.png" width="60" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2947</dd><dd><strong>Joined:</strong> 25 Sep 2006, 21:35</dd><dd><strong>Location:</strong> CA, USA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85295" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85295">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85295  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85295#p85295%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85295#p85295"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1876.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1876" style="color: #0060C0;" class="username-coloured">TheRhinoDude</a></strong> &raquo; 17 Jun 2010, 19:26 </p>
+
+			
+
+			<div class="content">For most of the commonly invoke UI interactions, everybody will have their favorite solution that leads to maximum personal productivity, and it is important if possible to cater to  most of them through bindings, as this will lead to the most overall productivity.<br /><br />Unfortunately, it's the most complex solution to build, and a PITA to maintain, and it clearly adds a new layer of complexity to dealing with UI-related support incidents.  In short, it's the kind of feature that could eat up a lot of the working day, despite how nice it is.<br /><br />But once you have this, you can easily build a &quot;select-a-binding&quot; settings file feature, so that the community and make and share binding templates that mirror their favorite applications (Maya bindings, 3DS bindings, etc.), and users can easily select between multiple bindings, and even use different bindings for different workflow scenarios with a way to quickly switch between them via drop-down in the toolbar.<br /><br />This feature would be a huge selling point among developres who care about their productivity, and I can see it used heavily.  Over time Terathon could choose to support a few &quot;official&quot; bindings, within reason.  Having the ability to save your bindings to a single template file also allows you to minimize the impact of the support incident issue.  When submitting a UI bug, people would either state the official binding they are using, or post their binding settings file.<br /><br />Not suprisingly, the features that are the big wins are the ones that take a lot of time.  This feature would add a ton of polish, I think it would be quite welcome, but it sure would be a lot of work over time...<br /><br />The logical time to add this type of support would be as part of 2.1 since that's all about the new GUI system, or at least it would ideally need to be taken into account during all of the UI redesign work that is going into 2.1.<br /><br />Rhino</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85295">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1876.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1876" style="color: #0060C0;" class="username-coloured">TheRhinoDude</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 352</dd><dd><strong>Joined:</strong> 16 Apr 2009, 10:25</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85296" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85296">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85296  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85296#p85296%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85296#p85296"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a></strong> &raquo; 17 Jun 2010, 19:55 </p>
+
+			
+
+			<div class="content">Yeah... would be nice if ESC deselected too.  C4 has so many kick ass features -- there are just a few things that make me want to tear my hair out <img src="images/smilies/icon_biggrin.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_biggrin.gif" alt=":D" title="Very Happy" /></div>
+
+			<div id="sig85296" class="signature">CALLING ALL ARTISTS!  Please contribute to the Content Creation wiki with your experiences accumulated while importing assets in to C4!<br /><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs%27" tppabs="http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs" class="postlink">*** Content Creation WIKI ***</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85296">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 478</dd><dd><strong>Joined:</strong> 26 Mar 2009, 13:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85297" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85297">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85297  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85297#p85297%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85297#p85297"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 17 Jun 2010, 19:57 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>TheRhinoDude wrote:</cite>The logical time to add this type of support would be as part of 2.1 since that's all about the new GUI system, or at least it would ideally need to be taken into account during all of the UI redesign work that is going into 2.1.</div></blockquote><br /><br />I agree, and that's the plan.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85297">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85305" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85305">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85305  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85305#p85305%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85305#p85305"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1789.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1789" style="color: #0060C0;" class="username-coloured">Twisted Helix</a></strong> &raquo; 17 Jun 2010, 23:41 </p>
+
+			
+
+			<div class="content">Excellent ! (of course it won't stop the whining <img src="images/smilies/icon_wink.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_wink.gif" alt=";)" title="Wink" /> )</div>
+
+			<div id="sig85305" class="signature">Project Reality - Arma2 : Wins Player Choice &quot;<a href="javascript:if(confirm(%27http://www.moddb.com/events/2010-mod-of-the-year-awards/features/players-choice-upcoming-modification-2010  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.moddb.com/events/2010-mod-of-the-year-awards/features/players-choice-upcoming-modification-2010%27" tppabs="http://www.moddb.com/events/2010-mod-of-the-year-awards/features/players-choice-upcoming-modification-2010" class="postlink">Best Upcoming Mod of 2010</a>&quot; - ModDB</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85305">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1789.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1789" style="color: #0060C0;" class="username-coloured">Twisted Helix</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 836</dd><dd><strong>Joined:</strong> 19 Feb 2009, 05:45</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.realitymod.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.realitymod.com/%27" tppabs="http://www.realitymod.com/" title="WWW: http://www.realitymod.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85306" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85306">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85306  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85306#p85306%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85306#p85306"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1796.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1796" style="color: #8000C0;" class="username-coloured">ca$per</a></strong> &raquo; 18 Jun 2010, 01:03 </p>
+
+			
+
+			<div class="content">I had to increase handle size from code... otherwise it is almost impossible to edit a curve.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85306">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1796.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1796" style="color: #8000C0;" class="username-coloured">ca$per</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1257</dd><dd><strong>Joined:</strong> 26 Feb 2009, 08:15</dd><dd><strong>Location:</strong> Russia</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85308" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85308">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85308  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85308#p85308%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85308#p85308"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 18 Jun 2010, 01:37 </p>
+
+			
+
+			<div class="content">It's still not as bad as Illustrator. <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":)" title="Smile" /></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85308">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85310" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85310">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85310  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85310#p85310%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85310#p85310"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a></strong> &raquo; 18 Jun 2010, 02:01 </p>
+
+			
+
+			<div class="content">I find it difficult to get the any primitives that I use a transform on to fit together nicely.  If I do a 90 degree or 180 degree transform, it is common for me to end up with 179.948573 degrees.  And then there is a gap I can see through between two primitives... even with snap to grid on.  Am I missing something for keeping transforms from ending up this way?  This happens even when I enter numbers directly instead of using the rotation tool.</div>
+
+			<div id="sig85310" class="signature">CALLING ALL ARTISTS!  Please contribute to the Content Creation wiki with your experiences accumulated while importing assets in to C4!<br /><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs%27" tppabs="http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs" class="postlink">*** Content Creation WIKI ***</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85310">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 478</dd><dd><strong>Joined:</strong> 26 Mar 2009, 13:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85312" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85312">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85312  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85312#p85312%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85312#p85312"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1796.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1796" style="color: #8000C0;" class="username-coloured">ca$per</a></strong> &raquo; 18 Jun 2010, 02:40 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Eric Lengyel wrote:</cite>It's still not as bad as Illustrator. <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":)" title="Smile" /></div></blockquote><br />I guess it's good for me i've never used it...</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85312">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1796.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1796" style="color: #8000C0;" class="username-coloured">ca$per</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1257</dd><dd><strong>Joined:</strong> 26 Feb 2009, 08:15</dd><dd><strong>Location:</strong> Russia</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85340" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85340">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85340  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85340#p85340%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85340#p85340"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a></strong> &raquo; 18 Jun 2010, 12:27 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Eric Lengyel wrote:</cite>It's still not as bad as Illustrator. <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":)" title="Smile" /></div></blockquote><br /><br />Actually, I guess you've got a point. And the handles in the pen tool in Photoshop aren't that easily manipulated either.</div>
+
+			<div id="sig85340" class="signature">Intel Core2 Quad Q8200 @ 2.33GHz, 4 GB RAM, nVidia 9800 GT 512 MB, Win 7 64, Visual C++ 2010 Express</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85340">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282"><img src="download/file.php-avatar=282_1354835571.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=282_1354835571.png" width="60" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2947</dd><dd><strong>Joined:</strong> 25 Sep 2006, 21:35</dd><dd><strong>Location:</strong> CA, USA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85354" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85354">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85354  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85354#p85354%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85354#p85354"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1040.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1040" style="color: #0060C0;" class="username-coloured">Nilithius</a></strong> &raquo; 18 Jun 2010, 22:47 </p>
+
+			
+
+			<div class="content">Why not make handles increase in size when your mouse hovers over them?</div>
+
+			<div id="sig85354" class="signature"><a href="javascript:if(confirm(%27http://c2.com/cgi/wiki?SpecializationIsForInsects  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c2.com/cgi/wiki?SpecializationIsForInsects%27" tppabs="http://c2.com/cgi/wiki?SpecializationIsForInsects" class="postlink">Specialization is for insects.</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85354">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1040.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1040"><img src="download/file.php-avatar=1040_1264648723.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1040_1264648723.png" width="79" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1040.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1040" style="color: #0060C0;" class="username-coloured">Nilithius</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1030</dd><dd><strong>Joined:</strong> 30 Jan 2008, 10:00</dd><dd><strong>Location:</strong> Winter Park, Florida</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.neverevenstudios.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.neverevenstudios.com/%27" tppabs="http://www.neverevenstudios.com/" title="WWW: http://www.neverevenstudios.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85427" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85427">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85427  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85427#p85427%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85427#p85427"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2178.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2178" style="color: #0060C0;" class="username-coloured">Oleg</a></strong> &raquo; 21 Jun 2010, 02:23 </p>
+
+			
+
+			<div class="content">The problem with the handles is not its small size (actually they are quite big, bigger than in most applications ). <br />Steps to reproduce the problem: <br />-Draw a Bezier path<br />- zoom out far away (not too much, so than handles could still be good visible)<br />- try to select an <span style="text-decoration: underline">unselected</span> handle multiple times, path lose focus with a  big chance<br /><br />handles have a dead area in the lower - right corner: (G - good, D - dead)<br /><br />GGGGGDDD<br />GGGGGDDD<br />GGGGGDDD<br />GGGGGDDD<br />DDDDDDDD<br />DDDDDDDD<br /><br />the more you zoom in, the smaller is the dead area.<br /><br /><span style="text-decoration: underline">Selected</span> handles do not have a dead area<br /><br />This small bug makes me very nervous while editing paths.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85427">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2178.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2178" style="color: #0060C0;" class="username-coloured">Oleg</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 87</dd><dd><strong>Joined:</strong> 10 Oct 2009, 07:26</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85465" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85465">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85465  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85465#p85465%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85465#p85465"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2447.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2447" style="color: #0060C0;" class="username-coloured">techtech</a></strong> &raquo; 21 Jun 2010, 15:32 </p>
+
+			
+
+			<div class="content">May be unrelated, but the click area of each rotation handle seems to be smaller than the visible area when I'm trying to rotate something in the C4 World Editor. Like if I click on an edge of a handle it deselects instead of grabbing and rotating. Either that or my aim is much worse than I think.</div>
+
+			<div id="sig85465" class="signature">C/C++ coder w/20 years experience: Looking for startups in Austin TX, or telecommute.<br />::Phenom II X4 965 3.4 ghz, 8 GB DDR3 1333 mhz, Radeon HD 5770 1 GB, Win 7 64-bit::</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85465">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2447.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2447"><img src="download/file.php-avatar=2447_1276890795.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2447_1276890795.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2447.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2447" style="color: #0060C0;" class="username-coloured">techtech</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 126</dd><dd><strong>Joined:</strong> 21 May 2010, 08:34</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85500" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85500">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85500  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85500#p85500%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85500#p85500"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2178.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2178" style="color: #0060C0;" class="username-coloured">Oleg</a></strong> &raquo; 22 Jun 2010, 01:43 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>techtech wrote:</cite>May be unrelated, but the click area of each rotation handle seems to be smaller than the visible area when I'm trying to rotate something in the C4 World Editor. Like if I click on an edge of a handle it deselects instead of grabbing and rotating. Either that or my aim is much worse than I think.</div></blockquote><br /><br />yes, the problem I described above could be seen on all handles (move, scale, rotate), not always though.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85500">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2178.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2178" style="color: #0060C0;" class="username-coloured">Oleg</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 87</dd><dd><strong>Joined:</strong> 10 Oct 2009, 07:26</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p85506" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p85506">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=85506  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=85506#p85506%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=85506#p85506"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=144.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=144" style="color: #8000C0;" class="username-coloured">Javier Moya</a></strong> &raquo; 22 Jun 2010, 06:06 </p>
+
+			
+
+			<div class="content">One thing that may help is to implement something similar to the 3DS Max snapping tool behavior. This tool allows you to make transformations precisely using multiple elements (grid, mesh sub-objects...). It has a value called 'Snap radius'. You can type here a number of pixels which is the radius of an area around the element you want to work with, the grid for example. When the cursor is in that area, it moves automatically to the closest appropiate element. And as it is in pixels, it doesn't matter what level of zoom we have.<br />Another thing that may help is to lock the path with the lock tool (ctrl+k) but leaving the handles free. This way, if you want to modify the handles, don't loose the selection, and if you want to move the path just use the transform gizmo (the colored arrows I mean).<br /><br />And speaking about the level editor, remember that we have the 'Selection Mask' and 'Visibility' tools, which are a great general filter. We can select any group and hide their elements (ctrl+down, ctrl+h), including terrains. The same can be done with zones. We can make temporary groups just for keeping the thing well organized. And you can select objects with the same material too. For precise selections I use the perspective viewport.<br /><br />Hope it helps.</div>
+
+			<div id="sig85506" class="signature">Videogame artist - <a href="javascript:if(confirm(%27http://www.javy3d.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.javy3d.com/%27" tppabs="http://www.javy3d.com/" class="postlink">http://www.javy3d.com/</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile85506">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=144.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=144" style="color: #8000C0;" class="username-coloured">Javier Moya</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 228</dd><dd><strong>Joined:</strong> 05 Jul 2006, 10:57</dd><dd><strong>Location:</strong> Granada (Spain)</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.javy3d.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.javy3d.com/%27" tppabs="http://www.javy3d.com/" title="WWW: http://www.javy3d.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p95777" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p95777">Re: Paths and curved geometry</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=95777  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=95777#p95777%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=95777#p95777"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a></strong> &raquo; 26 Feb 2011, 01:06 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>a2k wrote:</cite><blockquote><div><cite>Eric Lengyel wrote:</cite>The editor used to be set up so that clicking on a selected item would always grab that item, even if something else was closer. A million people complained about is, so we changed it. Now, a million people are complaining about the new behavior, so we'll have to come up with something else.</div></blockquote><br /><br />... but what I noticed is that you can finally select the correct item in wireframe mode (via clicking on the wireframe edge of the object you're interested in). Now, this is great! ...</div></blockquote><br /><br />I'm going to have to retract this statement because it turns out that this is no longer the case. If a geometry is in front of another geometry in a viewport, you cannot select anything behind it using a wireframe edge of that object.<br /><div class="inline-attachment"><!-- ia0 -->unselectable_wireframe.png<!-- ia0 --></div><br />I'd actually like to know what you interpreted &quot;clicking on a selected item would always grab that item, even if something else was closer&quot; to be like. I may not have read every post on the forums, but I'm hoping you are not interpreting this as the &quot;selection lock&quot; that people have requested. This is different from what you stated.</div>
+
+			<div id="sig95777" class="signature">Intel Core2 Quad Q8200 @ 2.33GHz, 4 GB RAM, nVidia 9800 GT 512 MB, Win 7 64, Visual C++ 2010 Express</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile95777">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282"><img src="download/file.php-avatar=282_1354835571.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=282_1354835571.png" width="60" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2947</dd><dd><strong>Joined:</strong> 25 Sep 2006, 21:35</dd><dd><strong>Location:</strong> CA, USA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<form id="viewtopic" method="post" action="http://www.terathon.com/forums/viewtopic.php?f=9&t=9331">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		
+		<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+		
+	</fieldset>
+
+	</form>
+	<hr />
+
+
+<div class="topic-actions">
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=9&t=9331  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=9&t=9331%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=9&t=9331" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="pagination">
+			21 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+</div>
+
+
+	<p></p><p><a href="viewforum.php-f=9.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9" class="left-box left" accesskey="r">Return to Editor and Tools</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9" selected="selected">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: <span style="color: #9E8DA7;" class="username-coloured">Yahoo [Bot]</span> and 2 guests</p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

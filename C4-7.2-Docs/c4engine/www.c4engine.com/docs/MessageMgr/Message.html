@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class Message</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/MessageMgr/index.html">Message Manager</a> &#x25BA; <a href="Message.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Message.html">class Message</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class Message</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Messages.h</code></div>
+Base class for all message types.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;Message&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;ListElement&lt;Message&gt;,&nbsp;<span style="color: #0000FF">public</span>&nbsp;Memory&lt;MessageMgr&gt;</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="Message_GetMessageType.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Message_GetMessageType.html">Message::GetMessageType</a></code></td>
+<td class="tableright1">Returns the dynamic type identifier of a message.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Message_GetMessageFlags.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Message_GetMessageFlags.html">Message::GetMessageFlags</a></code></td>
+<td class="tableright">Returns flags indicating whether a message requires special handling.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Message_SetMessageFlags.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Message_SetMessageFlags.html">Message::SetMessageFlags</a></code></td>
+<td class="tableright">Sets flags indicating whether a message requires special handling.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Message_CompressMessage.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Message_CompressMessage.html">Message::CompressMessage</a></code></td>
+<td class="tableright">Called by the Message Manager to compress and serialize message data into a memory buffer.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Message_DecompressMessage.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Message_DecompressMessage.html">Message::DecompressMessage</a></code></td>
+<td class="tableright">Called by the Message Manager to decompress and validate message data stored in a memory buffer.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Message_HandleMessage.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Message_HandleMessage.html">Message::HandleMessage</a></code></td>
+<td class="tableright">Called by the Message Manager to respond to a received message.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>Message(MessageType&nbsp;type,&nbsp;<span style="color: #0000FF">uint32</span>&nbsp;flags&nbsp;=&nbsp;0);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>type</code></td>
+<td class="tableright1">The type of message.
+</td></tr>
+<tr><td class="tableleft"><code>flags</code></td>
+<td class="tableright">The message flags.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+Every type of message is encapsulated by a subclass of the <code>Message</code> class. The <code>type</code> parameter passed to the <code>Message</code> constructor identifies the type of message being constructed and should be passed in from the constructor of a subclass.<br/><br/> Each subclass of the <code>Message</code> class must implement the following three functions. <ol> <li>A default constructor that takes no parameters. When the Message Manager receives a message having an application-defined type, it calls the <code><a href="../System/Application_CreateMessage.html" tppabs="http://www.c4engine.com/docs/System/Application_CreateMessage.html">Application::CreateMessage</a></code> function with the message type, and this function should return a newly created <code>Message</code> subclass corresponding to that type. The default constructor should not initialize any data fields because the Message Manager subsequently calls the object's <code>DecompressMessage</code> function to initialize the object using data from the received network packet.</li> <li>A <code>CompressMessage</code> function. The Message Manager calls this function to compress and serialize the message into a buffer that will be sent as a data packet.</li> <li>A <code>DecompressMessage</code> function. The Message Manager calls this function to decompress a data packet into the message object and validate its contents.</li> </ol> Subclasses of the <code>Message</code> class may have, in addition to the default constructor, constructors that take initializers. Such a constructor would be useful for creating a new message that is to be sent to another machine.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="../Utilities/ListElement.html" tppabs="http://www.c4engine.com/docs/Utilities/ListElement.html">ListElement&lt;Message&gt;</a></code></td>
+<td class="tableright1">Used internally by the Message Manager.
+</td></tr>
+<tr><td class="tableleft"><code><a href="../MemoryMgr/Memory.html" tppabs="http://www.c4engine.com/docs/MemoryMgr/Memory.html">Memory&lt;MessageMgr&gt;</a></code></td>
+<td class="tableright">Memory for <code>Message</code> objects is allocated in the Message Manager's heap.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="MessageMgr.html" tppabs="http://www.c4engine.com/docs/MessageMgr/MessageMgr.html">MessageMgr</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

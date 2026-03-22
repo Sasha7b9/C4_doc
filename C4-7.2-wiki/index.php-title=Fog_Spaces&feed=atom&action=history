@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Fog_Spaces&amp;feed=atom&amp;action=history</id>
+	<title>Fog Spaces - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Fog_Spaces&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Fog_Spaces&amp;action=history"/>
+	<updated>2024-09-21T18:21:23Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Fog_Spaces&amp;diff=135&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;In the C4 Engine, a '''fog space''' is a node that causes fog to be rendered in a scene. It's actually a half-space because all space is divided in half by a single boundary plane, and fog is rendered on one side of the plane.  == Creating a Fog Space ==  right A fog space is placed in a world using the Fog Space tool in the Atmosphere Page (shown to the right) in the World Editor under the Object tab. This tool draws a rectangular...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Fog_Spaces&amp;diff=135&amp;oldid=prev"/>
+		<updated>2023-07-15T10:57:13Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;In the C4 Engine, a &amp;#039;&amp;#039;&amp;#039;fog space&amp;#039;&amp;#039;&amp;#039; is a node that causes fog to be rendered in a scene. It&amp;#039;s actually a half-space because all space is divided in half by a single boundary plane, and fog is rendered on one side of the plane.  == Creating a Fog Space ==  &lt;a href=&quot;/wiki/index.php?title=File:Editor_atmosphere.png&quot; title=&quot;File:Editor atmosphere.png&quot;&gt;right&lt;/a&gt; A fog space is placed in a world using the Fog Space tool in the &lt;a href=&quot;/wiki/index.php?title=Atmosphere_Page&quot; title=&quot;Atmosphere Page&quot;&gt;Atmosphere Page&lt;/a&gt; (shown to the right) in the &lt;a href=&quot;/wiki/index.php?title=World_Editor&quot; title=&quot;World Editor&quot;&gt;World Editor&lt;/a&gt; under the Object tab. This tool draws a rectangular...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;In the C4 Engine, a '''fog space''' is a node that causes fog to be rendered in a scene. It's actually a half-space because all space is divided in half by a single boundary plane, and fog is rendered on one side of the plane.&lt;br /&gt;
+&lt;br /&gt;
+== Creating a Fog Space ==&lt;br /&gt;
+&lt;br /&gt;
+[[File:Editor_atmosphere.png|right]]&lt;br /&gt;
+A fog space is placed in a world using the Fog Space tool in the [[Atmosphere Page]] (shown to the right) in the [[World Editor]] under the Object tab. This tool draws a rectangular region that represents the top boundary of a fog volume. Fog is rendered everywhere beneath the entire plane containing this rectangle in the zone to which the fog space belongs. Fog is not rendered above the plane, but the plane can always be raised above the whole scene if the desired effect is to fog everything. When the camera is above the fog plane, the rectangular plate representing the fog space must be visible in order for fog to be rendered, so it should be drawn large enough to cover the entire area that should be affected by fog. When the camera is below the fog plane in a zone affected by the fog space, fog is always rendered.&lt;br /&gt;
+&lt;br /&gt;
+The boundary plane of a fog space does not have to be horizontal and can placed in any orientation. An example use of a vertical fog plane is one that coincides with a doorway leading into a fogged area from an unfogged area.&lt;br /&gt;
+&lt;br /&gt;
+== Density Functions ==&lt;br /&gt;
+&lt;br /&gt;
+[[File:Constantfog.jpg|right|frame|'''Figure 1.''' Fog with a constant density function.]]&lt;br /&gt;
+[[File:Linearfog.jpg|right|frame|'''Figure 2.''' Fog with a linear density function.]]&lt;br /&gt;
+In the Node Info dialog for a fog space, a fog color and density function can be selected. A fog space can use a constant fog density or a linear fog density. The difference is shown in the images to the right. When constant density is used, the density of the fog is the same everywhere beneath the boundary plane. When linear density is used, the density of the fog is zero at the boundary plane and increases linearly with distance beneath the plane. Typical density values for both modes are usually in the range of 0.001 to 0.1, where higher densities correspond to thicker fog.&lt;br /&gt;
+&lt;br /&gt;
+== Fog Space Settings ==&lt;br /&gt;
+&lt;br /&gt;
+A fog space node can be configured under the Fog tab in the Node Info window. The specific settings are described in the following table.&lt;br /&gt;
+&lt;br /&gt;
+{| {{Table}}&lt;br /&gt;
+{{Tablehead|Setting|Description}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Fog&amp;amp;nbsp;color'''|The color of the fog space. When the amount of fog is calculated at each pixel, the fraction of light that does not make it through the fog is replaced by this color.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Fog&amp;amp;nbsp;density'''|The constant density of the fog, or the rate at which the linear density increases. This is usually a small value less than 1.0.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Density&amp;amp;nbsp;function'''|Selects whether the fog uses a constant density function or a linear density function.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Apply&amp;amp;nbsp;distance&amp;amp;nbsp;occlusion'''|An optimization for thick fog that culls objects that are fully fogged based on their distance from the camera in the direction parallel to the fog plane. This should be enabled only if the fog ever becomes thick enough in the scene so that objects can't be seen beyond some horizontal distance.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Apply&amp;amp;nbsp;depth&amp;amp;nbsp;occlusion'''|An optimization for thick fog that culls objects that are fully fogged based on their distance from the camera in the direction perpendicular to the fog plane. This should be enabled only if the fog ever becomes thick enough in the scene so that objects can't be seen beyond some vertical distance.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Occlusion&amp;amp;nbsp;fog&amp;amp;nbsp;intensity'''|If either distance occlusion or depth occlusion is enabled, this value specifies the fog intensity at which objects are considered invisible. Higher values correspond to thicker fog being required to obscure an object. For bright fog colors, this value can usually be lower because the human eye cannot distinguish among bright colors as well as dark colors.}}&lt;br /&gt;
+|}&lt;br /&gt;
+&lt;br /&gt;
+== Using a Fog Space in Multiple Zones ==&lt;br /&gt;
+&lt;br /&gt;
+A single fog space may be used to apply fog in multiple zones. A fog space automatically applies to the zone containing it in the transform hierarchy. Each zone node has a built-in [[Connectors | connector]] labeled &amp;lt;code&amp;gt;%Fog&amp;lt;/code&amp;gt; that can be connected to a fog space in another zone. Every zone connected to a particular fog space is affected by the fog as long as the camera can see the fog plane or is inside the fog itself. It is okay for a fog space to extend beyond the boundary of its containing zone.&lt;br /&gt;
+&lt;br /&gt;
+Only one fog space should be visible at once for each perspective (primary, reflection, and refraction). If more than one fog space can be seen by the camera in a single perspective, then any one of them could be chosen to be applied to the scene, and this could change with the camera position.&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [http://c4engine.com/docs/WorldMgr/FogSpace.html &amp;lt;code&amp;gt;FogSpace&amp;lt;/code&amp;gt;] class&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

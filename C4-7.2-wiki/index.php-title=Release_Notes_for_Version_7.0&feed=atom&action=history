@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_7.0&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 7.0 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_7.0&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_7.0&amp;action=history"/>
+	<updated>2024-09-21T18:38:39Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_7.0&amp;diff=97&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' March 22, 2023  == Core Engine ==  * The &lt;code&gt;Color4C&lt;/code&gt; class has been renamed to [http://c4engine.com/docs/Math/Color4U.html &lt;code&gt;Color4U&lt;/code&gt;] to reflect the fact that it has unsigned components. There are also new classes called [http://c4engine.com/docs/Math/Color2U.html &lt;code&gt;Color2U&lt;/code&gt;], [http://c4engine.com/docs/Math/Color2S.html &lt;code&gt;Color2S&lt;/code&gt;], and [http://c4engine.com/docs/Math/Color4S.html &lt;code&gt;Color4S&lt;/code&gt;],...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_7.0&amp;diff=97&amp;oldid=prev"/>
+		<updated>2023-07-15T10:25:30Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; March 22, 2023  == Core Engine ==  * The &amp;lt;code&amp;gt;Color4C&amp;lt;/code&amp;gt; class has been renamed to [http://c4engine.com/docs/Math/Color4U.html &amp;lt;code&amp;gt;Color4U&amp;lt;/code&amp;gt;] to reflect the fact that it has unsigned components. There are also new classes called [http://c4engine.com/docs/Math/Color2U.html &amp;lt;code&amp;gt;Color2U&amp;lt;/code&amp;gt;], [http://c4engine.com/docs/Math/Color2S.html &amp;lt;code&amp;gt;Color2S&amp;lt;/code&amp;gt;], and [http://c4engine.com/docs/Math/Color4S.html &amp;lt;code&amp;gt;Color4S&amp;lt;/code&amp;gt;],...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' March 22, 2023&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Color4C&amp;lt;/code&amp;gt; class has been renamed to [http://c4engine.com/docs/Math/Color4U.html &amp;lt;code&amp;gt;Color4U&amp;lt;/code&amp;gt;] to reflect the fact that it has unsigned components. There are also new classes called [http://c4engine.com/docs/Math/Color2U.html &amp;lt;code&amp;gt;Color2U&amp;lt;/code&amp;gt;], [http://c4engine.com/docs/Math/Color2S.html &amp;lt;code&amp;gt;Color2S&amp;lt;/code&amp;gt;], and [http://c4engine.com/docs/Math/Color4S.html &amp;lt;code&amp;gt;Color4S&amp;lt;/code&amp;gt;], where the number 2 or 4 indicates the number of channels, and the letter U or S indicates unsigned or signed.&lt;br /&gt;
+&lt;br /&gt;
+* Support for the Open Data Description Language (OpenDDL) has been updated to version 3.0.&lt;br /&gt;
+&lt;br /&gt;
+* The unbounded string class &amp;lt;code&amp;gt;String&amp;amp;lt;&amp;amp;gt;&amp;lt;/code&amp;gt; can now store any string that occupies 16 bytes or less (including terminator) without having to allocate additional memory.&lt;br /&gt;
+&lt;br /&gt;
+=== Graphics Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* Complete support for proper sRGB color handling has been implemented throughout the engine.&lt;br /&gt;
+&lt;br /&gt;
+* The engine now renders into a 16-bit floating-point multisampled frame buffer to support HDR lighting. Tone mapping occurs when this frame buffer is resolved into the a single-sampled image.&lt;br /&gt;
+&lt;br /&gt;
+* Histogram-based exposure has been added to the engine. This uses a compute shader to calculate an average log luminance of the scene from which an exposure scale is derived. The luminances of the final render are scaled by this amount before tone mapping is applied. Special effects are counter-exposed by the reciprocal of the exposure scale of the previous frame so they don't become insanely bright in dark scenes.&lt;br /&gt;
+&lt;br /&gt;
+* The term ''radiosity'' has been replaced by ''illuminance'' to reflect the fact that we are dealing with visible light, and not general radiation.&lt;br /&gt;
+&lt;br /&gt;
+* The format of illuminance spaces has been changed so that color luminance is stored in an RGB9E5 texture format, allowing high dynamic range. Chromaticity is now stored in an RGBA4444 texture format, and there is a 1:1 correspondence with each luminance sample.&lt;br /&gt;
+&lt;br /&gt;
+* The game rendering resolution has been decoupled from the resolution of the display. The world is now rendered at a fixed resolution, specified by the application or chosen by the user, and scaled to the size of the window or display. The user interface is always rendered on top at the full display resolution.&lt;br /&gt;
+&lt;br /&gt;
+* Many of the rendering techniques in the engine have been improved. These include screen-space ambient occlusion, parallax mapping, cascaded shadow maps, and halo effects. The details about how most of these work can be found in [https://foundationsofgameenginedev.com/ ''Foundations of Game Engine Development, Volume 2: Rendering''] (FGED2).&lt;br /&gt;
+&lt;br /&gt;
+* A new atmospheric shadowing effect has been added to the engine. This renders light beams / god rays using the information in the cascaded shadow map. This technique is also described in detail in FGED2.&lt;br /&gt;
+&lt;br /&gt;
+* Wherever possible, shading now takes place in a coordinate system aligned to the world-space axes.&lt;br /&gt;
+&lt;br /&gt;
+* The shader LOD capabilities have been removed from the engine. They were rarely worth the effort.&lt;br /&gt;
+&lt;br /&gt;
+=== Animation ===&lt;br /&gt;
+&lt;br /&gt;
+* The engine now supports dual quaternion skinning. This can be enabled in the [[Skin Controller]] to perform higher quality vertex interpolation that tends to preserve volume better at a slightly higher computational cost.&lt;br /&gt;
+&lt;br /&gt;
+=== Interface Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The full capabilities of [[Slug]] 6.5 have been integrated into the engine. All text goes through Slug, and widgets for icons and picture albums are available.&lt;br /&gt;
+&lt;br /&gt;
+* Mutators have been renamed to [[Sprockets]]. Sprockets are attached to widgets in order to animate them in some way.&lt;br /&gt;
+&lt;br /&gt;
+=== Effect Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* There are new icon and picture effects that can be used to apply Slug-based content to other surfaces.&lt;br /&gt;
+&lt;br /&gt;
+=== World Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The impostor system has received a major upgrade.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+=== World Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* All editor icons have been updated to vector graphics.&lt;br /&gt;
+&lt;br /&gt;
+* Paint space now support flow maps. These can be drawn in the World Editor using the new tools in the [[Paint Page]].&lt;br /&gt;
+&lt;br /&gt;
+* When illuminance spaces are being generated, the overall progress is now shown in taskbar.&lt;br /&gt;
+&lt;br /&gt;
+=== Texture Tool ===&lt;br /&gt;
+&lt;br /&gt;
+* The texture import tool has been divided into two parts, one that handles ordinary texture maps and one that handles normal, parallax, and horizon maps. There are different console commands, &amp;lt;code&amp;gt;itexture&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;inormal&amp;lt;/code&amp;gt;, to invoke these importers.&lt;br /&gt;
+&lt;br /&gt;
+=== Shader Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* Interpolant processes are now colored blue to make them easier to identify in a shader graph.&lt;br /&gt;
+&lt;br /&gt;
+* The Minimum and Maximum processes can now take an optional third operand. If three operands are supplied, then the result is the least or greatest of all three inputs.&lt;br /&gt;
+&lt;br /&gt;
+=== Font Importer ===&lt;br /&gt;
+&lt;br /&gt;
+* Font importing capabilities have been upgraded to [[Slug]] 6.5. In particular, &amp;lt;code&amp;gt;.otf&amp;lt;/code&amp;gt; files are supported in addition to &amp;lt;code&amp;gt;.ttf&amp;lt;/code&amp;gt; files.&lt;br /&gt;
+&lt;br /&gt;
+== In Progress ==&lt;br /&gt;
+&lt;br /&gt;
+There are several new features that are in progress as of this release:&lt;br /&gt;
+&lt;br /&gt;
+* The engine is transitioning from OpenGL to Vulkan. Some code is present in version 7.0, but it is not complete.&lt;br /&gt;
+&lt;br /&gt;
+* A new physically-based metallic material attribute is in progress.&lt;br /&gt;
+&lt;br /&gt;
+* A new fur shader is in progress.&lt;br /&gt;
+&lt;br /&gt;
+* The way that terrain is textured is being updated.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

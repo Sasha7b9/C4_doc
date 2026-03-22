@@ -1,0 +1,1370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View topic - Cant import textures with model</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '';
+	var base_url = '';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=18.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=18">C4 Engine Development</a> <strong>&#8249;</strong> <a href="viewforum.php-f=15.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=15">Artist Central</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewtopic.php-f=15&t=12159.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=15&t=12159">Cant import textures with model</a></h2>
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body --><div style="display: none !important;">Topics about the art pipeline and external content creation.<br /></div>
+	<div class="rules">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		
+			<strong>Forum rules</strong><br />
+			Advertisements for products and services are <span style="font-weight: bold">not allowed</span> unless you are a licensed user of C4 and you have been given permission to post them.
+		
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12159  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12159%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12159" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="search-box">
+			<form method="get" id="topic-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="Search this topic…" onclick="if(this.value=='Search this topic…')this.value='';" onblur="if(this.value=='')this.value='Search this topic…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="t" value="12159" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			22 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+
+</div>
+<div class="clear"></div>
+
+
+	<div id="p110536" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 class="first"><a href="#p110536">Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110536  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110536#p110536%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110536#p110536"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138" style="color: #0060C0;" class="username-coloured">Andrew75</a></strong> &raquo; 29 Aug 2012, 12:34 </p>
+
+			
+
+			<div class="content">Hey guys , Its been awhile since I've used C4, <br />Anyhow I cant seem to import textures along with when i import my model, not sure what I'm doing wrong.<br />I checked the box for import texture but nothing happens.</div>
+
+			<div id="sig110536" class="signature">Core i7 5960 X8 core CPU @4.5GHZ Water cooled.<br /> 16 GB G-skill RipJaws4 DDR4 @ 3100 HMZ Quad channel Memory<br /> 2x EVGA GTX Titan superclocked Signature GPUs in SLI,<br /> 3x SATA III OCZ Vertex 4 512GB Solid State Drives in Raid 0<br /> 2x Dell UltraSharp U2713H 1440P</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110536">
+			<dt>
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138"><img src="download/file.php-avatar=138_1240579845.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=138_1240579845.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138" style="color: #0060C0;" class="username-coloured">Andrew75</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 367</dd><dd><strong>Joined:</strong> 03 Jul 2006, 20:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110538" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110538">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110538  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110538#p110538%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110538#p110538"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 29 Aug 2012, 12:48 </p>
+
+			
+
+			<div class="content">+1 on this -- I've never been successful at getting the texture imported or even properly referenced if I re-import the model. I always have to use the material editor to bring back in the texture to the model. I've tried editing the collada file directly to ensure proper folder referencing, but to no avail.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110538">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110540" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110540">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110540  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110540#p110540%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110540#p110540"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138" style="color: #0060C0;" class="username-coloured">Andrew75</a></strong> &raquo; 29 Aug 2012, 13:07 </p>
+
+			
+
+			<div class="content">I think it worked awhile back in an older C4 build.<br />Anyhow i have a model with multiple textures and texture IDs that needs to be brought in.<br />(and yes Ive even attempted this with a model that has 1 material ID and material.<br /><br />Recently i have been working in udk on a project since i didn't have a C++ programmer, <br />I have one now, and may be coming back to C4, ( he is also interested in buying a C4 license, although currently he is using my second license seat to get into C4 and see if he would like to use it)<br />however this time after coming back i forgot how hard it is to get assets into C4, like textures and models .<br /><br />I think C4 really needs a better way to Handel content.<br />UDK has a very nice work flow for doing this. by dragging and dropping assets right off your desktop into a content browser, which will batch import them.<br />after you get assets into this browser you can drag them right into the world, or place them by right clicking the world and adding them if they are selected in the content browser.<br /><br />To be honest if i cant get my assets into C4 quick enough, i may not be coming back to C4. <br />Sure its a programmers dream but a little bit on the nightmare side for us level builders.<br />I have 100s of textures and 100s models to bring in, some models have 6 or so texture IDs<br />It will be a real pain to work with C4 if i need to bring in each texture 1 at a time.  <img src="images/smilies/icon_sad.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_sad.gif" alt=":(" title="Sad" /><br /><br />Edit:<br />Another thing that bugs me is the way Prefabs are created, <br />its to bad that there are no ways to batch import and instantly make prefabs ( this would be handy when bringing in modular pieces to build levels with)</div>
+
+			<div id="sig110540" class="signature">Core i7 5960 X8 core CPU @4.5GHZ Water cooled.<br /> 16 GB G-skill RipJaws4 DDR4 @ 3100 HMZ Quad channel Memory<br /> 2x EVGA GTX Titan superclocked Signature GPUs in SLI,<br /> 3x SATA III OCZ Vertex 4 512GB Solid State Drives in Raid 0<br /> 2x Dell UltraSharp U2713H 1440P</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110540">
+			<dt>
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138"><img src="download/file.php-avatar=138_1240579845.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=138_1240579845.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138" style="color: #0060C0;" class="username-coloured">Andrew75</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 367</dd><dd><strong>Joined:</strong> 03 Jul 2006, 20:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110546" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110546">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110546  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110546#p110546%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110546#p110546"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 29 Aug 2012, 15:17 </p>
+
+			
+
+			<div class="content">One model I am constantly working with and re-importing has 4 materials/textures. Since the textures are separately imported, one of them is being recognized, however I still have to re-enter the attributes of the material. This is using Jack's Blender to C4 exporter.<br /><br />The issue came up recently in another post in the forums, which degraded into a gripefest. The artwork pipeline was brought up. Actually, I just looked up the post, and where it discussed new features, I see your handle weighed in, so you know what I'm talking about.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110546">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110550" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110550">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110550  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110550#p110550%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110550#p110550"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138" style="color: #0060C0;" class="username-coloured">Andrew75</a></strong> &raquo; 29 Aug 2012, 15:43 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>mschifter wrote:</cite>One model I am constantly working with and re-importing has 4 materials/textures. Since the textures are separately imported, one of them is being recognized, however I still have to re-enter the attributes of the material. This is using Jack's Blender to C4 exporter.<br /><br />The issue came up recently in another post in the forums, which degraded into a gripefest. The artwork pipeline was brought up. Actually, I just looked up the post, and where it discussed new features, I see your handle weighed in, so you know what I'm talking about.</div></blockquote><br />Oh yeah that was a long while back, wasn't it?<br />I remember Eric was going to add in a batch texture feature, perhaps it was also in that post.<br />I hope it makes it to the next build ! (But i won't hold my breath)</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110550">
+			<dt>
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138"><img src="download/file.php-avatar=138_1240579845.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=138_1240579845.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138" style="color: #0060C0;" class="username-coloured">Andrew75</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 367</dd><dd><strong>Joined:</strong> 03 Jul 2006, 20:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110551" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110551">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110551  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110551#p110551%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110551#p110551"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 29 Aug 2012, 15:59 </p>
+
+			
+
+			<div class="content">I've picked up the 2nd edition beginner's guide to c4 -- when I head home tonight I'd like to check it and see if there's a procedure that's been eked out. Eric has mentioned that collada exporters typically handle some items incorrectly. I'll update this post tomorrow.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110551">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110552" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110552">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110552  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110552#p110552%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110552#p110552"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a></strong> &raquo; 29 Aug 2012, 16:54 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Andrew75 wrote:</cite>however this time after coming back i forgot how hard it is to get assets into C4, like textures and models .</div></blockquote><br /><blockquote><div><cite>Andrew75 wrote:</cite>I think C4 really needs a better way to [handle] content.<br />UDK has a very nice work flow for doing this. by dragging and dropping assets right off your desktop into a content browser, which will batch import them. after you get assets into this browser you can drag them right into the world, or place them by right clicking the world and adding them if they are selected in the content browser.</div></blockquote><br /><blockquote><div><cite>Andrew75 wrote:</cite>To be honest if i cant get my assets into C4 quick enough, i may not be coming back to C4. <br />Sure its a programmers dream but a little bit on the nightmare side for us level builders.<br /></div></blockquote><br /><br />There has been at least one major serious thread on this subject during your inactive stint.<br /><!-- l --><a class="postlink-local" href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=24&t=11918&st=0&sk=t&sd=a&start=25  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=24&t=11918&st=0&sk=t&sd=a&start=25%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=24&t=11918&st=0&sk=t&sd=a&start=25">viewtopic.php?f=24&amp;t=11918&amp;st=0&amp;sk=t&amp;sd=a&amp;start=25</a><!-- l --><br /><br /><blockquote><div><cite>Andrew75 wrote:</cite>Another thing that bugs me is the way Prefabs are created, its to bad that there are no ways to batch import and instantly make prefabs ( this would be handy when bringing in modular pieces to build levels with)</div></blockquote><br /><br />There are user tools that have done this, or plan on doing this, but the problem is, the developers for them have stopped developing or maintaining them, or it's not completed yet. As usual.</div>
+
+			<div id="sig110552" class="signature">Intel Core2 Quad Q8200 @ 2.33GHz, 4 GB RAM, nVidia 9800 GT 512 MB, Win 7 64, Visual C++ 2010 Express</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110552">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282"><img src="download/file.php-avatar=282_1354835571.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=282_1354835571.png" width="60" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2947</dd><dd><strong>Joined:</strong> 25 Sep 2006, 21:35</dd><dd><strong>Location:</strong> CA, USA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110553" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110553">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110553  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110553#p110553%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110553#p110553"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a></strong> &raquo; 29 Aug 2012, 17:11 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Andrew75 wrote:</cite>I remember Eric was going to add in a batch texture feature, perhaps it was also in that post.</div></blockquote><br /><br />I believe this feature has been available in C4 for quite a while, but it's so unintuitive to use for non-programmers, that I don't think many people use it.</div>
+
+			<div id="sig110553" class="signature">Intel Core2 Quad Q8200 @ 2.33GHz, 4 GB RAM, nVidia 9800 GT 512 MB, Win 7 64, Visual C++ 2010 Express</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110553">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282"><img src="download/file.php-avatar=282_1354835571.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=282_1354835571.png" width="60" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2947</dd><dd><strong>Joined:</strong> 25 Sep 2006, 21:35</dd><dd><strong>Location:</strong> CA, USA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110554" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110554">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110554  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110554#p110554%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110554#p110554"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a></strong> &raquo; 29 Aug 2012, 18:35 </p>
+
+			
+
+			<div class="content">I'm going to probably state the obvious for those attempting, but I just want to start *somewhere*. Also, I haven't imported a model with textures in a while, so it may actually have been changed or broken.<br />For me:<br />The key to getting the textures to automatically import is, in the DAE file, your texture refs should contain the directory name &quot;Import&quot; in them, which serves as the search point of the base path to which your models and textures are stored.<br /><br />That last statement is loaded with a lot of stipulation as to how you can work with your file paths.<br /><br />- To start with, this means that, it doesn't actually matter what the parent directories beyond this is.<br />     It could be &quot;d:\myimages\Import\...&quot;, or &quot;d:\downloads\textures\Import\...&quot;, etc.<br />     However, to ease any problems with this, I typically:<br />           - have the C4\Import directory as my working art directory,<br />           - specify absolute paths when exporting DAEs. (I'm using Maya with ColladaMaya)<br /><br />- The more important item to follow is of course, the subdirectory tree.<br />    Supposing you have &quot;d:\C4\Import\Game\models\model.dae&quot; which references &quot;D:\c4\Import\Game\textures\tex1.tga&quot;<br />    Clearly, tex1.tga must be in C4\Import\Game\textures\...<br />    This is another reason why I have C4\import as my working art directory.<br />    <br />If things haven't changed in a while, this should still hold.<br /><br />On a semi-related note, developers may be curious about using C4\Import\Game as the working art directory, because if you have numerous projects, you'll have C4\Import\Game1..., C4\Import\Game2.., C4\Import\Game3\..., all in the same source control repository, where it would be more intuitive to have those source art files separated by project. Well, I actually map the C4\Import\&lt;Game&gt; directory to a different tree in Perforce //depot/&lt;Game&gt;/art/Import/... This way, the Perforce tree is separated by project rather than lumped together as C4 projects.<br /><br />Please take this with a grain of salt though, because again, I haven't done this in a while, but may do so when I get home tonight.</div>
+
+			<div id="sig110554" class="signature">Intel Core2 Quad Q8200 @ 2.33GHz, 4 GB RAM, nVidia 9800 GT 512 MB, Win 7 64, Visual C++ 2010 Express</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110554">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282"><img src="download/file.php-avatar=282_1354835571.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=282_1354835571.png" width="60" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2947</dd><dd><strong>Joined:</strong> 25 Sep 2006, 21:35</dd><dd><strong>Location:</strong> CA, USA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110555" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110555">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110555  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110555#p110555%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110555#p110555"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138" style="color: #0060C0;" class="username-coloured">Andrew75</a></strong> &raquo; 29 Aug 2012, 18:43 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>a2k wrote:</cite><blockquote><div><cite>Andrew75 wrote:</cite>I remember Eric was going to add in a batch texture feature, perhaps it was also in that post.</div></blockquote><br /><br />I believe this feature has been available in C4 for quite a while, but it's so unintuitive to use for non-programmers, that I don't think many people use it.</div></blockquote><br />Thanks for all the useful info A2K, I'll have to try your directories thing tomorrow perhaps. <br />I'm so busy making models now hahah.<br /><br />Also the unintuitive batch thing, i couldn't seem to locate any documentation on that, am i missing something on the wiki?</div>
+
+			<div id="sig110555" class="signature">Core i7 5960 X8 core CPU @4.5GHZ Water cooled.<br /> 16 GB G-skill RipJaws4 DDR4 @ 3100 HMZ Quad channel Memory<br /> 2x EVGA GTX Titan superclocked Signature GPUs in SLI,<br /> 3x SATA III OCZ Vertex 4 512GB Solid State Drives in Raid 0<br /> 2x Dell UltraSharp U2713H 1440P</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110555">
+			<dt>
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138"><img src="download/file.php-avatar=138_1240579845.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=138_1240579845.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138" style="color: #0060C0;" class="username-coloured">Andrew75</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 367</dd><dd><strong>Joined:</strong> 03 Jul 2006, 20:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110556" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110556">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110556  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110556#p110556%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110556#p110556"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=992.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=992" style="color: #0060C0;" class="username-coloured">wtblife</a></strong> &raquo; 29 Aug 2012, 18:53 </p>
+
+			
+
+			<div class="content"><blockquote class="uncited"><div>Also the unintuitive batch thing, i couldn't seem to locate any documentation on that, am i missing something on the wiki?</div></blockquote><br /><br />Basically you can create a .cfg file that can contain a bunch of import texture commands like this:<br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>itexture &quot;texture1&quot; -compress<br />itexture &quot;texture2&quot; -compress<br />itexture &quot;texture3&quot; -compress</code></dd></dl></div>
+
+			
+				<div class="notice">Last edited by <a href="memberlist.php-mode=viewprofile&u=992.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=992" style="color: #0060C0;" class="username-coloured">wtblife</a> on 30 Aug 2012, 11:59, edited 3 times in total.
+					
+				</div>
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110556">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=992.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=992"><img src="download/file.php-avatar=992_1244167116.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=992_1244167116.jpg" width="75" height="75" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=992.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=992" style="color: #0060C0;" class="username-coloured">wtblife</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 974</dd><dd><strong>Joined:</strong> 03 Jan 2008, 17:43</dd><dd><strong>Location:</strong> VA, USA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110557" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110557">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110557  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110557#p110557%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110557#p110557"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138" style="color: #0060C0;" class="username-coloured">Andrew75</a></strong> &raquo; 29 Aug 2012, 18:54 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>wtblife wrote:</cite><blockquote class="uncited"><div>Also the unintuitive batch thing, i couldn't seem to locate any documentation on that, am i missing something on the wiki?</div></blockquote><br /><br />Basically you can create a .cfg file that can contain a bunch of import texture commands like this:<br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>itexture &quot;texture1&quot; -compress<br />itexture &quot;texture2&quot; -compress<br />itexture &quot;texture3&quot; -compress</code></dd></dl></div></blockquote><br /><br /><br />Dear Lord  ,  <img src="images/smilies/icon_razz.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_razz.gif" alt=":P" title="Razz" /></div>
+
+			<div id="sig110557" class="signature">Core i7 5960 X8 core CPU @4.5GHZ Water cooled.<br /> 16 GB G-skill RipJaws4 DDR4 @ 3100 HMZ Quad channel Memory<br /> 2x EVGA GTX Titan superclocked Signature GPUs in SLI,<br /> 3x SATA III OCZ Vertex 4 512GB Solid State Drives in Raid 0<br /> 2x Dell UltraSharp U2713H 1440P</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110557">
+			<dt>
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138"><img src="download/file.php-avatar=138_1240579845.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=138_1240579845.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138" style="color: #0060C0;" class="username-coloured">Andrew75</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 367</dd><dd><strong>Joined:</strong> 03 Jul 2006, 20:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110559" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110559">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110559  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110559#p110559%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110559#p110559"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a></strong> &raquo; 29 Aug 2012, 19:00 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Andrew75 wrote:</cite>Also the unintuitive batch thing, i couldn't seem to locate any documentation on that, am i missing something on the wiki?</div></blockquote><br /><br />On the wiki, it's described in the <a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Importing_a_Texture  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Importing_a_Texture%27" tppabs="http://www.terathon.com/wiki/index.php/Importing_a_Texture" class="postlink">Command Line section of Importing a Texture (at the bottom)</a>. However, the description is so terse, that it's hard to make anything out of it.<br /><br />EDIT: &lt;blah blah, as wtblife mentioned...&gt;<br /><br />But clearly, this would require some effort to set up for each texture, and it would break the artist's workflow compared to being able to click on things and hit &quot;export&quot;. Seriously, I understand how this can really kill the artist's creative drive.<br /><br />There have been a few attempts at GUIfying this batch process, but they are no longer maintained.<br /><br />EDIT:<br />Here is the most recent one: <a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=28&t=5806  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=28&t=5806%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=28&t=5806" class="postlink">Texture Batch Conversion and Import</a><br />It looks really slick, but you still have to call it from the C4 command line.<br />A few people (including myself) have created C4 command line utilities that can essentially execute these export commands without having to launch C4 itself. I actually have mine hooked up to Maya, so that I can just click on &quot;Export DAE&quot; and it will save the .ma as a .DAE, then launch C4 command line, convert the dae to a C4 mdl file, all in one go. I'm considering releasing it once I get it to a working state after several months of inactivity.</div>
+
+			
+				<div class="notice">Last edited by <a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a> on 29 Aug 2012, 19:09, edited 2 times in total.
+					
+				</div>
+			<div id="sig110559" class="signature">Intel Core2 Quad Q8200 @ 2.33GHz, 4 GB RAM, nVidia 9800 GT 512 MB, Win 7 64, Visual C++ 2010 Express</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110559">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282"><img src="download/file.php-avatar=282_1354835571.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=282_1354835571.png" width="60" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2947</dd><dd><strong>Joined:</strong> 25 Sep 2006, 21:35</dd><dd><strong>Location:</strong> CA, USA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110561" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110561">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110561  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110561#p110561%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110561#p110561"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 29 Aug 2012, 19:05 </p>
+
+			
+
+			<div class="content">Hi Andrew75,<br /><br />I looked thru the book, which is partly authored by a2k, and found the itexture command and other information he already presented. Note that ALL texture options are available thru this command.<br /><br />With regards to the .dae editing, I've tried it with a bunch of variants and could not get it to work in the past two releases. Depending on what a2k turns up, I think it's time for a bug report. I looked thru mantis and it is not reported as an issue.<br /><br /><br />Regards,<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110561">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110571" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110571">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110571  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110571#p110571%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110571#p110571"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a></strong> &raquo; 29 Aug 2012, 23:58 </p>
+
+			
+
+			<div class="content">If you build an &quot;export&quot; button in 3ds Max, it could actually write the cfg file for you, as well as export the COLLADA file to the right place, and copy the input textures into the right place (perhaps converting to TGA on the way.) MaxScript is a really powerful way of building custom export workflows, using building blocks that already exist.</div>
+
+			<div id="sig110571" class="signature">~~<br />   <a href="viewtopic.php-f=3&t=4689.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=3&t=4689" class="postlink">Z-down For Teh W1n!</a><br />   Core i7 4702HQ, 8GB DDR3L-1600, 3GB NVIDIA GTX 870M, 512 GB SSD</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110571">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187"><img src="download/file.php-avatar=187_1201906842.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=187_1201906842.png" width="62" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1892</dd><dd><strong>Joined:</strong> 30 Jul 2006, 22:29</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.enchantedage.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.enchantedage.com/%27" tppabs="http://www.enchantedage.com/" title="WWW: http://www.enchantedage.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110579" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110579">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110579  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110579#p110579%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110579#p110579"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138" style="color: #0060C0;" class="username-coloured">Andrew75</a></strong> &raquo; 30 Aug 2012, 08:29 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>jwatte wrote:</cite>If you build an &quot;export&quot; button in 3ds Max, it could actually write the cfg file for you, as well as export the COLLADA file to the right place, and copy the input textures into the right place (perhaps converting to TGA on the way.) MaxScript is a really powerful way of building custom export workflows, using building blocks that already exist.</div></blockquote><br />Man i still love this comunity, lot of input here ! <br />hmm actually thats not a half bad idea ! <br />I've only ever been able to do the basic of the basic when it comes to max script. lol<br />If someone could wright something like this , id be willing to pay a little something for it.</div>
+
+			<div id="sig110579" class="signature">Core i7 5960 X8 core CPU @4.5GHZ Water cooled.<br /> 16 GB G-skill RipJaws4 DDR4 @ 3100 HMZ Quad channel Memory<br /> 2x EVGA GTX Titan superclocked Signature GPUs in SLI,<br /> 3x SATA III OCZ Vertex 4 512GB Solid State Drives in Raid 0<br /> 2x Dell UltraSharp U2713H 1440P</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110579">
+			<dt>
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138"><img src="download/file.php-avatar=138_1240579845.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=138_1240579845.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=138" style="color: #0060C0;" class="username-coloured">Andrew75</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 367</dd><dd><strong>Joined:</strong> 03 Jul 2006, 20:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110583" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110583">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110583  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110583#p110583%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110583#p110583"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a></strong> &raquo; 30 Aug 2012, 11:10 </p>
+
+			
+
+			<div class="content">This seemed to work for me.<br /><br />What I used:<br />Photoshop CS5<br />64x64 Texture -&gt; saved to D:\a2k\c4\Import\a2k\tex\face.tga<br /><br />Maya 2012<br />Simple cube<br />Lambert Material with Image Name &quot;D:\a2k\c4\Import\a2k\tex\face.tga&quot;<br />Planar map<br />-&gt; Export Selection, DAE_FBX export (I used to use ColladaMaya, but I haven't gotten it working with Maya 2012 yet, nor do I think it will work).<br />saved as D:\a2k\c4\Import\a2k\mdl\madface.dae<br /><br />The DAE has a node in it as such:<br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>&nbsp; &lt;library_images&gt;<br />&nbsp; &nbsp; &lt;image id=&quot;file1-image&quot; name=&quot;file1&quot;&gt;<br />&nbsp; &nbsp; &nbsp; &lt;init_from&gt;file://D:/a2k/c4/Import/a2k/tex/face.tga&lt;/init_from&gt;<br />&nbsp; &nbsp; &lt;/image&gt;<br />&nbsp; &lt;/library_images&gt;<br /></code></dd></dl><br /><br />C4 2.9.1<br />Import Scene, with Import Texture Maps<br /><br />I admit that the test may be a lot more simple than your guys' models, but I can be sure that this at least works.</div>
+
+			<div id="sig110583" class="signature">Intel Core2 Quad Q8200 @ 2.33GHz, 4 GB RAM, nVidia 9800 GT 512 MB, Win 7 64, Visual C++ 2010 Express</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110583">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282"><img src="download/file.php-avatar=282_1354835571.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=282_1354835571.png" width="60" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2947</dd><dd><strong>Joined:</strong> 25 Sep 2006, 21:35</dd><dd><strong>Location:</strong> CA, USA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110586" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110586">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110586  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110586#p110586%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110586#p110586"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 30 Aug 2012, 11:53 </p>
+
+			
+
+			<div class="content">a2k/Andrew75,<br /><br />Well I gave it a try using Blender, and like a2k I saved the unimported textures and model file in the Import folder. It didn't work for me. I got 3 of 4 materials with correctly named textures in the C4 model file, but without any material name in its slot.<br /><br />Material attributes are mostly incorrect, requiring manual setup every time.<br /><br />Regards,<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110586">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110596" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110596">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110596  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110596#p110596%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110596#p110596"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a></strong> &raquo; 30 Aug 2012, 14:11 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>mschifter wrote:</cite>a2k/Andrew75,<br /><br />Well I gave it a try using Blender, and like a2k I saved the unimported textures and model file in the Import folder. It didn't work for me. I got 3 of 4 materials with correctly named textures in the C4 model file, but without any material name in its slot.<br /><br />Material attributes are mostly incorrect, requiring manual setup every time.<br /><br />Regards,<br /><br />Matt</div></blockquote><br /><br />What were the paths to the textures in the DAE file?</div>
+
+			<div id="sig110596" class="signature">Intel Core2 Quad Q8200 @ 2.33GHz, 4 GB RAM, nVidia 9800 GT 512 MB, Win 7 64, Visual C++ 2010 Express</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110596">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282"><img src="download/file.php-avatar=282_1354835571.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=282_1354835571.png" width="60" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2947</dd><dd><strong>Joined:</strong> 25 Sep 2006, 21:35</dd><dd><strong>Location:</strong> CA, USA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110597" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110597">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110597  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110597#p110597%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110597#p110597"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 30 Aug 2012, 14:27 </p>
+
+			
+
+			<div class="content">Hi a2k,<br /><br />I saved the .blend after moving the .tga and .cfg files under Import/TRex/Marines/.<br /><br />Then I exported using Jack's exporter (which has been otherwise reliable for me). The path is simply the name of the texture. I also see that there is a library material for the 4th, missing texture, but no library_images entry.<br /><br />    &lt;init_from&gt;usmarine-01.tga&lt;/init_from&gt;<br /><br />Regards,<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110597">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110598" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110598">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110598  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110598#p110598%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110598#p110598"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a></strong> &raquo; 30 Aug 2012, 14:34 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>mschifter wrote:</cite>Hi a2k,<br /><br />I saved the .blend after moving the .tga and .cfg files under Import/TRex/Marines/.<br /><br />Then I exported using Jack's exporter (which has been otherwise reliable for me). The path is simply the name of the texture. I also see that there is a library material for the 4th, missing texture, but no library_images entry.<br /><br />    &lt;init_from&gt;usmarine-01.tga&lt;/init_from&gt;<br /><br />Regards,<br /><br />Matt</div></blockquote><br /><br />It sounds more like the exporter is your problem. I would have thought that the DAE referencing the image that resides in the same directory would have been enough to get it to work, but perhaps since there is no /Import/ path, the .tex file is being written somewhere else in the /Data/ directory? However, I can also see this failing because there is no virtual folder specified (the first folder after /Import/), which is needed by C4. In this case, I'd think it should be /TRex/, but now the tex has no idea where it is.<br />I remember actually reading last night, underneath the option to Import textures, that it mentions that the importer looks for the /Import/ directory.</div>
+
+			<div id="sig110598" class="signature">Intel Core2 Quad Q8200 @ 2.33GHz, 4 GB RAM, nVidia 9800 GT 512 MB, Win 7 64, Visual C++ 2010 Express</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110598">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282"><img src="download/file.php-avatar=282_1354835571.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=282_1354835571.png" width="60" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2947</dd><dd><strong>Joined:</strong> 25 Sep 2006, 21:35</dd><dd><strong>Location:</strong> CA, USA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110600" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110600">Re: Cant import textures with model</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110600  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110600#p110600%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110600#p110600"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 30 Aug 2012, 15:20 </p>
+
+			
+
+			<div class="content">Hi a2k,<br /><br />I agree, it's the exporter in this case. The default collada exporter does add in the missing 4th texture (although the entire file is not viable for c4 import).<br /><br />I'm considering an increase in my financial dedication to my project with the purchase of the latest modo. Hopefully David Vasquez has been involved with updating the pipeline and c4 transfer is viable.<br /><br />Thanks for looking into this for me. Hopefully this will be resolved at some point.<br /><br />Regards,<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110600">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<form id="viewtopic" method="post" action="http://www.terathon.com/forums/viewtopic.php?f=15&t=12159">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		
+		<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+		
+	</fieldset>
+
+	</form>
+	<hr />
+
+
+<div class="topic-actions">
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12159  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12159%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12159" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="pagination">
+			22 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+</div>
+
+
+	<p></p><p><a href="viewforum.php-f=15.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=15" class="left-box left" accesskey="r">Return to Artist Central</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15" selected="selected">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: No registered users and 1 guest</p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

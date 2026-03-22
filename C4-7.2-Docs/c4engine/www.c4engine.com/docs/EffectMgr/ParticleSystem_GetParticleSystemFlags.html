@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ParticleSystem::GetParticleSystemFlags</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/EffectMgr/index.html">Effect Manager</a> &#x25BA; <a href="ParticleSystem.html" tppabs="http://www.c4engine.com/docs/EffectMgr/ParticleSystem.html">class ParticleSystem</a></div>
+</td></tr></table>
+<div class="content">
+<h2>ParticleSystem::GetParticleSystemFlags</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Particles.h</code></div>
+Returns the particle system flags.
+<div class="heading">Prototype</div>
+<p><code><span style="color: #0000FF">uint32</span>&nbsp;GetParticleSystemFlags(<span style="color: #0000FF">void</span>)&nbsp;<span style="color: #0000FF">const</span>;</code></p>
+<div class="heading">Description</div>
+The <code>GetParticleSystemFlags</code> function returns the particle system flags, which can be a combination (through logical OR) of the following constants.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kParticleSystemSelfDestruct</code></td>
+<td class="tableright1">The particle system should delete itself once all the particles have died.
+</td></tr>
+<tr><td class="tableleft"><code>kParticleSystemNonpersistent</code></td>
+<td class="tableright">The particles are not saved when the particle system is serialized.
+</td></tr>
+<tr><td class="tableleft"><code>kParticleSystemStaticBoundingBox</code></td>
+<td class="tableright">The particle system has a static bounding box that is calculated by the specific subclass, and the bounding box should bot be recalculated automatically based on the actual particle positions. If this flag is set, then the subclass must override the <code><a href="../WorldMgr/Node_CalculateBoundingBox.html" tppabs="http://www.c4engine.com/docs/WorldMgr/Node_CalculateBoundingBox.html">Node::CalculateBoundingBox</a></code> function.
+</td></tr>
+<tr><td class="tableleft"><code>kParticleSystemFreezeInvisible</code></td>
+<td class="tableright">The particle system is not animated when it was not rendered on the previous frame.
+</td></tr>
+<tr><td class="tableleft"><code>kParticleSystemUnfreezeDynamic</code></td>
+<td class="tableright">The particle system is always animated if it has been invalidated since the previous frame.
+</td></tr>
+<tr><td class="tableleft"><code>kParticleSystemObjectSpace</code></td>
+<td class="tableright">The particle positions are given in object-space coordinates, and the <code><a href="../GraphicsMgr/Renderable_SetTransformable.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Renderable_SetTransformable.html">Renderable::SetTransformable</a></code> function has been used to set the transformable to the particle system itself.
+</td></tr>
+<tr><td class="tableleft"><code>kParticleSystemSoftDepth</code></td>
+<td class="tableright">The particles fade out as they get close to scene geometry to avoid depth-testing artifacts.
+</td></tr>
+<tr><td class="tableleft"><code>kParticleSystemDepthRamp</code></td>
+<td class="tableright">The particles fade out within a range of camera-space depths to avoid blinking out when they pass through the near plane.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="ParticleSystem_SetParticleSystemFlags.html" tppabs="http://www.c4engine.com/docs/EffectMgr/ParticleSystem_SetParticleSystemFlags.html">ParticleSystem::SetParticleSystemFlags</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

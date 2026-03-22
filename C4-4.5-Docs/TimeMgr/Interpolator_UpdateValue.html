@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Interpolator::UpdateValue</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../doco.css" /></meta>
+</head>
+<body>
+<div class="body">
+<div style="position: relative; height: 96px; background-image: url(../image/banner.jpg); background-position: center 148px;">
+<div style="position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+<a href="http://www.terathon.com/"><img src="../image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+<h1><a href="http://www.terathon.com/">C4 Engine</a></h1>
+<div style="position: absolute; right: 16px; bottom: 24px;">
+<a href="http://www.facebook.com/c4engine"><img src="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+<a href="https://twitter.com/C4Engine"><img src="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+<a href="http://www.youtube.com/user/C4Engine"><img src="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+<a href="http://plus.google.com/+Terathon"><img src="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+<a href="http://www.indiedb.com/engines/c4-engine/"><img src="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+</div>
+</div>
+<div class="navbar">
+<table style="margin-left: auto; margin-right: auto;"><tr>
+<td class="menu"><a href="http://www.terathon.com/news.php">News</a></td>
+<td class="menu"><a href="http://www.terathon.com/explore.php">Explore</a>
+<table>
+<tr><td><a href="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+<tr><td><a href="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+<tr><td><a href="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+<tr><td><a href="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+<tr><td><a href="http://www.terathon.com/video.php">Video</a></td></tr>
+</table>
+</td>
+<td class="menu"><a href="http://www.terathon.com/support.php">Support</a>
+<table>
+<tr><td><a href="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+<tr><td><a href="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+<tr><td><a href="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+<tr><td><a href="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+</table>
+</td>
+<td class="menu"><a href="https://www.terathon.com/order.php">Purchase</a></td>
+<td class="menu"><a href="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+</tr></table>
+</div>
+<div class="content">
+<div class="apinav"><a href="../index.html">API Documentation</a> &#x25BA; <a href="index.html">Time Manager</a> &#x25BA; <a href="Interpolator.html">class Interpolator</a></div>
+<h2>Interpolator::UpdateValue</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Time.h</code></div>
+Updates an interpolator.
+<div class="heading">Prototype</div>
+<p><code><span style="color: #0000FF">float</span>&nbsp;UpdateValue(SubrangeData&nbsp;*subrangeData&nbsp;=&nbsp;<span style="color: #0000FF">nullptr</span>);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>subrangeData</code></td>
+<td class="tableright1">An optional pointer to a structure that receives information about what subranges were covered.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>UpdateValue</code> function changes the current value of an interpolator based on the current rate, mode, and range. The current mode must include either the <code>kInterpolatorForward</code> flag or <code>kInterpolatorBackward</code> flag in order for any change to be made.<br/><br/> The current mode may be changed if the current value reaches either the minimum or maximum value of the interpolator's range. For example, if the current mode is <code>kInterpolateForward</code> and the current value reaches the maximum value of the range, then the value is pinned at the maximum value and the mode is changed to <code>kInterpolatorStop</code>.<br/><br/> If the interpolator mode is changed to <code>kInterpolatorStop</code>, which happens when a non-looping interpolator reaches one of the ends of the current range, then the completion procedure is invoked for the interpolator if one is installed. See the <code><a href="../Utilities/Completable.html">Completable</a></code> base class. It is safe to destroy an interpolator from inside the completion procedure.<br/><br/> If the current mode includes the <code>kInterpolatorLoop</code> flag and the interpolator loops by passing one end of the current range and wrapping around to the other, then the loop callback procedure is invoked if one is installed. See the <code><a href="Interpolator_SetLoopProc.html">Interpolator::SetLoopProc</a></code> function. It is safe to destroy an interpolator from inside the loop callback procedure.<br/><br/> If the <code>subrangeData</code> parameter is not <code><span style="color: #0000FF">nullptr</span></code>, then the structure it points to is filled in with information about what ranges of values were covered during the update. For a stopped interpolator, this structure will always indicate no subranges. Otherwise, this structure will contain either one or two subranges depending on whether any looping or oscillation occurred. The minimum value in each subrange always corresponds to the value attained by the interpolator earlier in time. For any subrange over which the interpolator increased in value, the minimum value will be less than or equal to the maximum value, but for any subrange over which the interpolator decreased in value, the minimum value will be greater than or equal to the maximum value.
+<div class="heading">See Also</div>
+<p><code><a href="Interpolator_GetValue.html">Interpolator::GetValue</a></code>
+</p>
+<p><code><a href="Interpolator_SetValue.html">Interpolator::SetValue</a></code>
+</p>
+<p><code><a href="Interpolator_Set.html">Interpolator::Set</a></code>
+</p>
+<p><code><a href="SubrangeData.html">SubrangeData</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+<table class="footer"><tr>
+<td><a href="http://www.terathon.com/terathon.php">Company</a></td>
+<td><a href="http://www.terathon.com/contact.php">Contact</a></td>
+<td><a href="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+<td><a href="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 4.5</b>, 21-Mar-2015, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

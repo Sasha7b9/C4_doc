@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_127&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Build 127 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_127&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_127&amp;action=history"/>
+	<updated>2024-09-21T18:44:01Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_127&amp;diff=34&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' September 15, 2006  * Implemented a large amount of new multiplayer functionality. The overall system is a work in progress and will be completed in build 128. The primary enhancement in this release is a new message journal that stores certain controller messages. The journal is sent to client machines when they join a game in order to update the state of various controllers before the current world is displayed. When a client machine recei...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_127&amp;diff=34&amp;oldid=prev"/>
+		<updated>2023-07-15T09:38:03Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; September 15, 2006  * Implemented a large amount of new multiplayer functionality. The overall system is a work in progress and will be completed in build 128. The primary enhancement in this release is a new message journal that stores certain controller messages. The journal is sent to client machines when they join a game in order to update the state of various controllers before the current world is displayed. When a client machine recei...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' September 15, 2006&lt;br /&gt;
+&lt;br /&gt;
+* Implemented a large amount of new multiplayer functionality. The overall system is a work in progress and will be completed in build 128. The primary enhancement in this release is a new message journal that stores certain controller messages. The journal is sent to client machines when they join a game in order to update the state of various controllers before the current world is displayed. When a client machine receives the messages in the journal, it plays them as if it had been connected to the server all along, ensuring that the correct state is set for controllers that have changed since the game was started.&lt;br /&gt;
+&lt;br /&gt;
+* A controller message is added to the Message Manager's journal when it is sent from the server using the &amp;lt;code&amp;gt;MessageMgr::SendMessageJournal&amp;lt;/code&amp;gt; function instead of the &amp;lt;code&amp;gt;SendMessageAll&amp;lt;/code&amp;gt; function. Journaled messages are also tracked on a per-controller basis, and new messages may override previous messages in the journal for the same controller. The &amp;lt;code&amp;gt;ControllerMessage&amp;lt;/code&amp;gt; class now has a virtual function named &amp;lt;code&amp;gt;ControllerMessage::OverridesMessage&amp;lt;/code&amp;gt; that is called once for each message in the journal that was previously sent to the same controller. It can inspect the previous message object and return true to knock the previous message out of the journal.&lt;br /&gt;
+&lt;br /&gt;
+* It is now possible to assign a generic controller to a node. The only purpose of the generic controller is to receive built-in controller messages used by the built-in script methods (such as Enable Node and Disable Node). Any node that is the target of a built-in script method must have a controller assigned to it in order to receive the messages send to it by the script. Any type of controller will do, but if the node doesn't have a controller assigned to it for any other purpose, then it will need a generic controller. &lt;br /&gt;
+&lt;br /&gt;
+* Scripts now always run only on the server machine. The &amp;quot;script runs on server only&amp;quot; flag has been removed. &lt;br /&gt;
+&lt;br /&gt;
+* Split the color for light sources into a diffuse color and a specular color. Ordinarily, these are the same, but you can now set a separate specular color for a light source that will be used in the specular component of the shading formula. &lt;br /&gt;
+&lt;br /&gt;
+* Added a brightness scale box to the Get Info dialog for lights. The overall brightness of a light is scaled by whatever number is entered, as long as it's greater than 1.0. &lt;br /&gt;
+&lt;br /&gt;
+* Added a beam effect node that renders a cylindrical beam between two points. The beam is rendered as a quad that always faces the camera. The beam may have a custom texture assigned to it that repeats a given number of times along the beam, or it can use a default built-in texture. &lt;br /&gt;
+&lt;br /&gt;
+* Implemented the Convert to Generic Mesh command in the World Editor. This independently converts each selected geometry into a generic mesh geometry. This will be useful for future vertex/face editing tools because they will only operate on mesh geometries and not primitive geometries. &lt;br /&gt;
+&lt;br /&gt;
+* The Merge Geometry and Convert to Generic Mesh commands now perform internal T-junction elimination. This is very useful if you build up a multi-material mesh by creating several different components that don't necessarily all share the same vertex positions. &lt;br /&gt;
+&lt;br /&gt;
+* The concept of group space has been removed from the engine. Vertex coordinates for a geometry are now always stored in either object space or world space. &lt;br /&gt;
+&lt;br /&gt;
+* Added command line parsing. The same commands that can be put in a &amp;lt;code&amp;gt;CFG&amp;lt;/code&amp;gt; file can now be appended to the command line, and these are executed immediately after the &amp;lt;code&amp;gt;Variables.cfg&amp;lt;/code&amp;gt; file is executed. Commands are separated by semicolons, and variables begin with a dollar sign. As an example, the following line resets the display resolution to 1024Ã—768 and sets the application module to &amp;lt;code&amp;gt;Skeleton.dll&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+    &amp;lt;code&amp;gt;C4.exe $displayWidth=1024; $displayHeight=768; $applicName=&amp;quot;Skeleton&amp;quot;&amp;lt;/code&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+* Further improved the Collada Importer's ability to locate texture files. It will now recognize the substring &amp;quot;/../tga/&amp;quot; and treat anything that comes after it as the full path to a texture image. &lt;br /&gt;
+&lt;br /&gt;
+* The Collada Importer will now recognize multiple objects being instanced for a single node. It's a bit odd for a Collada file to have this (and its legality is questionable), but Google SketchUp likes to do it. &lt;br /&gt;
+&lt;br /&gt;
+* (Bug #0000078) The Collada Importer now imports lights specified in the manner defined by Collada 1.4. &lt;br /&gt;
+&lt;br /&gt;
+* Added two new built-in script methods that enable and disable interactivity for a node. &lt;br /&gt;
+&lt;br /&gt;
+* Added a script function to the panel controller that changes the text for a panel item. &lt;br /&gt;
+&lt;br /&gt;
+* (Bug #0000001) Fixed a problem in the demo game module that would cause a weapon to get stuck in the firing mode if you engaged an interactive object while firing. Interaction events are now simply ignored if you're firing your weapon. &lt;br /&gt;
+&lt;br /&gt;
+* (Bug #0000035) Fixed a problem in the material manager that was not correctly invalidating changed materials on a mesh with multiple materials. &lt;br /&gt;
+&lt;br /&gt;
+* (Bug #0000057) Fixed a problem that prevented subfolders from being created on the Mac when new resources were imported.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

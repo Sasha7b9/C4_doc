@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.7&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 2.7 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.7&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.7&amp;action=history"/>
+	<updated>2024-09-21T18:40:52Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.7&amp;diff=73&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' September 30, 2011  '''IMPORTANT:''' The model animation format has changed in this version of the engine, and all animation resources (with the &lt;code&gt;.anm&lt;/code&gt; extension) must be converted to the new format before they can be used. To convert your animations, run version 2.7 of the engine, open the command console, and type &lt;code&gt;convert&lt;/code&gt;. This will automatically convert all of the animation resources in your entire &lt;code&gt;Data&lt;/code...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.7&amp;diff=73&amp;oldid=prev"/>
+		<updated>2023-07-15T10:08:33Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; September 30, 2011  &amp;#039;&amp;#039;&amp;#039;IMPORTANT:&amp;#039;&amp;#039;&amp;#039; The model animation format has changed in this version of the engine, and all animation resources (with the &amp;lt;code&amp;gt;.anm&amp;lt;/code&amp;gt; extension) must be converted to the new format before they can be used. To convert your animations, run version 2.7 of the engine, open the command console, and type &amp;lt;code&amp;gt;convert&amp;lt;/code&amp;gt;. This will automatically convert all of the animation resources in your entire &amp;lt;code&amp;gt;Data&amp;lt;/code...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' September 30, 2011&lt;br /&gt;
+&lt;br /&gt;
+'''IMPORTANT:''' The model animation format has changed in this version of the engine, and all animation resources (with the &amp;lt;code&amp;gt;.anm&amp;lt;/code&amp;gt; extension) must be converted to the new format before they can be used. To convert your animations, run version 2.7 of the engine, open the command console, and type &amp;lt;code&amp;gt;convert&amp;lt;/code&amp;gt;. This will automatically convert all of the animation resources in your entire &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; folder. Be sure to backup your data before running the conversion utility in case something goes wrong.&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+=== Graphics ===&lt;br /&gt;
+&lt;br /&gt;
+* A new material format has been introduced so that materials can be loaded from resources by the engine. The new resource format uses the &amp;lt;code&amp;gt;.mtl&amp;lt;/code&amp;gt; extension, and the previous format that used the &amp;lt;code&amp;gt;.mat&amp;lt;/code&amp;gt; extension is now obsolete. A material can be loaded from a resource by calling the &amp;lt;code&amp;gt;MaterialObject::Get()&amp;lt;/code&amp;gt; function.&lt;br /&gt;
+&lt;br /&gt;
+* The concept of ''substances'' has been added to the engine. A substance represents the composition of an object, such as wood or metal, and it can be used in a game to provide different effects when interacting with objects made of different substances. Any material object or physics shape can have a substance type assigned to it, and this type can be retrieved alongside the data for a collision. An application can register any number of substances with the engine by creating &amp;lt;code&amp;gt;Substance&amp;lt;/code&amp;gt; objects, and then these appear in the World Editor.&lt;br /&gt;
+&lt;br /&gt;
+* The motion blur postprocessing effect has been modified so that the blur is lessened for small velocities. This makes the image sharper when the camera is moving slowly, and it prevents sudden blurring when the camera starts moving from a stationary position.&lt;br /&gt;
+&lt;br /&gt;
+=== Physics ===&lt;br /&gt;
+&lt;br /&gt;
+* The accuracy of collision detection with generic meshes (including terrain) has been improved significantly.&lt;br /&gt;
+&lt;br /&gt;
+* Physics shapes can now have a negative density. This can be useful for removing volume from a hollow or open object. Shapes with negative densities never participate in collision detection.&lt;br /&gt;
+&lt;br /&gt;
+=== Effects ===&lt;br /&gt;
+&lt;br /&gt;
+* The particle system functionality previously all contained in the &amp;lt;code&amp;gt;ParticleSystem&amp;lt;/code&amp;gt; class has been split into several subclasses named &amp;lt;code&amp;gt;PointParticleSystem&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;InfinitePointParticleSystem&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;LineParticleSystem&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;QuadParticleSystem&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;PolyboardParticleSystem&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;FireParticleSystem&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;BlobParticleSystem&amp;lt;/code&amp;gt;. Any subclass that previously inherited directly from the &amp;lt;code&amp;gt;ParticleSystem&amp;lt;/code&amp;gt; class needs to be changed so that it inherits from one of these new subclasses (and care should be taken to call base-class functions such as &amp;lt;code&amp;gt;Preprocess()&amp;lt;/code&amp;gt; for these subclasses instead of &amp;lt;code&amp;gt;ParticleSystem&amp;lt;/code&amp;gt;). The particle style has been removed from the constructors because it is no longer needed.&lt;br /&gt;
+&lt;br /&gt;
+* A new type of particle system supporting animated texture coordinates has been added through the &amp;lt;code&amp;gt;TexcoordPointParticleSystem&amp;lt;/code&amp;gt;. This particle system uses the extended particle structure &amp;lt;code&amp;gt;TexcoordParticle&amp;lt;/code&amp;gt; to hold a scale and offset for each particle that is applied to the texture coordinates.&lt;br /&gt;
+&lt;br /&gt;
+* A new voxel-based blob particle system has been added to the engine. Particles in a blob system are individual ellipsoids that merge together when they are in contact with each other to form larger complex blobs, and they are rendered as fully-lit triangle meshes. The triangle meshes are generated by a finely-tuned fixed-polarity marching cubes implementation that uses the Job Manager and island determination to distribute its work across all available processor cores.&lt;br /&gt;
+&lt;br /&gt;
+* A new flag called &amp;lt;code&amp;gt;kMarkingClipRange&amp;lt;/code&amp;gt; has been added to marking effects. Setting this flag lets you specify the range of depths, with respect to the center and normal direction of the marking, to which the marking is clipped independently from the marking's radius.&lt;br /&gt;
+&lt;br /&gt;
+* The separate marking effect nodes created for a single surface marking can now be grouped into a new &amp;lt;code&amp;gt;MarkingList&amp;lt;/code&amp;gt; container. This makes it possible to iterate over the pieces of a single surface marking, to delete an entire surface marking, and to be notified when all pieces of a single surface marking have been destroyed.&lt;br /&gt;
+&lt;br /&gt;
+* The obsolete fluid geometry and fluid controller classes have been removed from the engine.&lt;br /&gt;
+&lt;br /&gt;
+=== World Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* Referenced worlds containing other referenced worlds are now supported four levels deep.&lt;br /&gt;
+&lt;br /&gt;
+* Two new built-in modifiers have been added to the engine, and they are called &amp;quot;Remove Lights&amp;quot; and &amp;quot;Remove Sources&amp;quot;. These prevent light nodes and source nodes from being copied into the referenced world instances to which the modifiers are applied.&lt;br /&gt;
+&lt;br /&gt;
+=== Animation System ===&lt;br /&gt;
+&lt;br /&gt;
+* An animation is now bound to a model's nodes when the animation is used, as opposed to when it is imported. This means that the arrangement of nodes within a model can change without it being necessary to re-import any animations that have already been imported for the model. This feature only works with animations that are imported with version 2.7 or later. (The extra information needed to implement this feature is not added when animations are converted from an earlier version.)&lt;br /&gt;
+&lt;br /&gt;
+* Animation resources can now contain cue tracks, and the &amp;lt;code&amp;gt;FrameAnimator&amp;lt;/code&amp;gt; class can be observed for cue events. A cue event is simply a 32-bit identifier that gets reported to the observer when a playing animation passes a cue's time value. The game code can handle cue events to do things like play sounds, apply damage, or trigger separate actions.&lt;br /&gt;
+&lt;br /&gt;
+=== Job Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* A job can now determine which worker thread it is running in by calling the &amp;lt;code&amp;gt;Job::GetThreadIndex()&amp;lt;/code&amp;gt; function.&lt;br /&gt;
+&lt;br /&gt;
+* The Job Manager has a new &amp;lt;code&amp;gt;Batch&amp;lt;/code&amp;gt; class that can hold many jobs that need to finish as a group. The &amp;lt;code&amp;gt;JobMgr::JobMgr::FinishBatch()&amp;lt;/code&amp;gt; function efficiently blocks the calling thread until all of the jobs in a batch have completed their work.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;SetReservedProcessorCount()&amp;lt;/code&amp;gt; function has been added to the Job Manager. It can be called before the Job Manager is initialized to reduce the number of worker threads created for processing jobs.&lt;br /&gt;
+&lt;br /&gt;
+=== Scripts ===&lt;br /&gt;
+&lt;br /&gt;
+* Character literals can now be used in Expression methods. A character literal is a sequence of one to four characters enclosed in single quotes.&lt;br /&gt;
+&lt;br /&gt;
+=== Math Library ===&lt;br /&gt;
+&lt;br /&gt;
+* New faster versions of the &amp;lt;code&amp;gt;Floor()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Ceil()&amp;lt;/code&amp;gt; functions have been implemented. There are also new functions called &amp;lt;code&amp;gt;PositiveFloor()&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;NegativeFloor()&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;PositiveCeil()&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;NegativeCeil()&amp;lt;/code&amp;gt; that are faster if the input value is known to be positive or negative (but both work properly with an input of zero as well). The functions &amp;lt;code&amp;gt;FloorCeil()&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;PositiveFloorCeil()&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;NegativeFloorCeil()&amp;lt;/code&amp;gt; functions calculate both the floor and ceiling of the input in about half the time of calling floor and ceiling functions separately. &lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;CosSin()&amp;lt;/code&amp;gt; function has been moved out of the &amp;lt;code&amp;gt;Math&amp;lt;/code&amp;gt; namespace and into the enclosing &amp;lt;code&amp;gt;C4&amp;lt;/code&amp;gt; namespace.&lt;br /&gt;
+&lt;br /&gt;
+== Plugins ==&lt;br /&gt;
+&lt;br /&gt;
+=== Browser Plugin ===&lt;br /&gt;
+&lt;br /&gt;
+* The Browser Plugin has been updated to work with Awesomium version 1.6.2. The plugin will no longer work with earlier versions of Awesomium.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+=== Model Viewer ===&lt;br /&gt;
+&lt;br /&gt;
+* The Model Viewer now displays a cue track below the animation slider. A cue can be inserted, deleted, and edited for the frame at which the animation is currently stopped. Cues can be dragged to change their locations. After cues have been inserted or changed, the animation resource can be saved with the cue track by selecting &amp;quot;Save animation&amp;quot; from the Model menu or typing Ctrl-S (Cmd-S on the Mac).&lt;br /&gt;
+&lt;br /&gt;
+=== Collada Importer ===&lt;br /&gt;
+&lt;br /&gt;
+* The Collada Importer can now import splines, and they are turned into path nodes in C4. Only B&amp;amp;eacute;zier splines are supported at this time.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

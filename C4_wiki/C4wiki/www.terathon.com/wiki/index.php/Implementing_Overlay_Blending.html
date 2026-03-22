@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/Implementing_Overlay_Blending by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="Implementing Overlay Blending,Using the Shader Editor" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>Implementing Overlay Blending - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Implementing_Overlay_Blending";
+var wgTitle = "Implementing Overlay Blending";
+var wgAction = "view";
+var wgArticleId = "2455";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "5444";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Implementing_Overlay_Blending">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Implementing Overlay Blending</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<a name="Implementing_overlay_blending"></a><h2> <span class="mw-headline"> Implementing overlay blending </span></h2>
+<table align="right">
+<tr>
+<td> <table id="toc" class="toc" summary="Contents"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1"><a href="#Implementing_overlay_blending"><span class="tocnumber">1</span> <span class="toctext">Implementing overlay blending</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Why_a_blend_mode.3F"><span class="tocnumber">1.1</span> <span class="toctext">Why a blend mode?</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Overlay_overview"><span class="tocnumber">2</span> <span class="toctext">Overlay overview</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Texture_input"><span class="tocnumber">2.1</span> <span class="toctext">Texture input</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Building_the_blend"><span class="tocnumber">3</span> <span class="toctext">Building the blend</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Section_1:_The_multiply_blend"><span class="tocnumber">3.1</span> <span class="toctext">Section 1: The multiply blend</span></a></li>
+<li class="toclevel-2"><a href="#Section_2:_The_intensity_mask"><span class="tocnumber">3.2</span> <span class="toctext">Section 2: The intensity mask</span></a></li>
+<li class="toclevel-2"><a href="#Section_3:_The_additive_blend"><span class="tocnumber">3.3</span> <span class="toctext">Section 3: The additive blend</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#The_final_steps"><span class="tocnumber">4</span> <span class="toctext">The final steps</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Compositing"><span class="tocnumber">4.1</span> <span class="toctext">Compositing</span></a></li>
+<li class="toclevel-2"><a href="#One_step_further"><span class="tocnumber">4.2</span> <span class="toctext">One step further</span></a></li>
+<li class="toclevel-2"><a href="#A_few_more_steps_beyond"><span class="tocnumber">4.3</span> <span class="toctext">A few more steps beyond</span></a></li>
+<li class="toclevel-2"><a href="#Fixing_the_light_pass"><span class="tocnumber">4.4</span> <span class="toctext">Fixing the light pass</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+</td></tr></table>The purpose of this tutorial is to guide you through the process of building a custom shader, that lets you combine two different textures in a way that mimics the overlay mode in Photoshop. It is fairly verbose, <i>mea culpa</i>, but that is mostly because I want to make sure that even absolute beginners are able to understand the fundamental reasons behind using a particular set of nodes connected in a certain way to solve a specific part of a problem. I also want to avoid a blind click-and-drool exercise where you might end up with something that <i>works</i>, but you have no idea <i>why</i>.
+<p>I have tried to split the process into a large number of small, easily digestible steps, which has the side-effect of making things somewhat lengthy. Essentially, I want to put the "why" before the "how", and that tends to add some bulk to kind of instruction. Users who may never have been exposed to things like node-based compositors or shader editors like, for instance, the shader network in XSI before, should hopefully be able to understand each step we take in the C4 shader editor, if it is already perfectly obvious <i>why</i> those steps are even taken in the first place. 
+</p><p>If you have ever opened up a complex graph that someone else has built, you probably know the effects of that initial confusion when you stumble in the dark, trying to figure out how everything fits together, or even what it is meant to do anyway - you might end up assuming that there is some sort of dark voodoo involved where the original author of the graph simply threw a bunch of nodes and chicken bones in a glass jar, gave it a shake and poured everything on the floor hoping to get something useful out of it. Of course, the old infinite-monkeys-and-typewriters theory suggests that the above method would work too, given enough time, but that's an entirely different story.
+</p><p>In order to learn something about shader creation, it is far better (in my humble opinion) to start out with a blank slate instead: <i>no graph</i> at all, just a <i>problem</i> to solve. Then add just a little bit at a time with full knowledge of what each bit should do, and things will become crystal clear - even if you eventually end up with something big and voodoo-like anyway, but at that point you already understand everything about it. You work on the problem itself rather than nodes and routes.
+</p>
+<a name="Why_a_blend_mode.3F"></a><h3> <span class="mw-headline"> Why a blend mode? </span></h3>
+<p>When thinking about custom shaders, it is quite possible that the first things that spring to mind might not necessarily be boring stuff like blending modes - and besides, surely it must be better to do that in Photoshop instead? As far as I'm concerned, the answer to that question is - yes, frequently, but not always. Since the introduction of the shader editor in C4 1.5, there are many good reasons to rethink what choices you have when approaching the large-scale logistics involved in making textures and creating materials for your game assets, and texture blending is only one of many options to consider. 
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:322px;"><a href="Image_Illo_basic_blending.html" class="image" title="The standard blending options."><img alt="The standard blending options." src="../images/2/2c/Illo_basic_blending.png" width="320" height="397" border="0" class="thumbimage" /></a>  <div class="thumbcaption">The standard blending options.</div></div></div>While some basic blending has since long been possible in the standard material manager, even prior to release 1.5, it is limited to two textures and four modes: add, average, multiply and alpha. Furthermore, it is only available for diffuse color maps and normal maps respectively. Using the shader editor, on the other hand, you can blend with any kind of exotic method you want (provided you can come up with a shader graph that performs it), as many textures as you like (that is, until you reach the maximum number of texture units allowed by the hardware) and for almost any material property (including properties that didn't even exist until you invented them, such as the classic "random-pepperoni-distribution-map" or the "CRT-screen-mask-anglebased-blur-map").
+<p>Consider for a second the following scenario: you have two textures, A and B, currently in use for a few different models. While playing around with them in your 2D application of choice, you notice that you can produce a very interesting texture C by blending A and B in a certain way, perhaps with a grayscale grunge map thrown in for good measure. The standard way of handling this, is to save that newly combined texture C out to a targa file, and import it (and the grunge map) into C4 for further use. However, by doing so you have effectively increased the distribution size of your project, and texture C will of course also eat up additional graphics memory when loaded along with your other textures. Now apply this sequence of events to a real-world situation, with hundreds of textures, and the potential impact on storage requirements is quite apparent.
+</p><p>One alternative here is to combine the original textures A and B in a shader instead, and have that produce texture C on the fly, directly in the GPU. Texture C wouldn't even exist other than as single pixels as they are rendered on screen. You would only need to import the grayscale grunge map, and thereby you have saved storage and precious GPU memory. Your pool of "potential recombination textures" increases exponentially without affecting storage at all. You can extend this idea to a lot of similar scenarios where "live" recombination of certain textures means that one particular texture could be used for hundreds of different models instead of only a handful. Of course, as with everything else, you do not want to abuse and overuse this approach, but you have to find a good balance between different resource concerns. Overly complex shaders cost GPU processor time, so sooner or later you reach a breaking point where performance will become a bigger problem than storage and graphics memory. In short, if you get too cute, there will be negative consequences eventually. All of these large-scale considerations are outside the scope of this article however. 
+</p><p>With all of that front matter above out of the way, it's time to move on and deal with the main topic - overlay blending.
+</p>
+<a name="Overlay_overview"></a><h2> <span class="mw-headline"> Overlay overview </span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:152px;"><a href="Image_Illo_ps_overlay.html" class="image" title="The overlay mode, Photoshop version."><img alt="The overlay mode, Photoshop version." src="../images/3/30/Illo_ps_overlay.png" width="150" height="511" border="0" class="thumbimage" /></a>  <div class="thumbcaption">The overlay mode, Photoshop version.</div></div></div>The overlay blending mode, as you know it from Photoshop or maybe other 2D applications, is a relatively complex combination of two different operations, which are selectively applied depending on the intensity of the background layer. The first of those two operations is similar to the screen mode, which is mainly additive and has a brightening effect on the result. When used in the context of standard overlay blending, this additive process is used only when the intensity of the background layer is equal to, or larger than 0.5. The second type of operation is essentially a multiplication, making the result darker, and the overlay blending mode uses this multiplication only when the intensity of the background layer is less than 0.5.
+<p>To rephrase and simplify: foreground and background are multiplied where the background is dark, but added together where the background is bright. The resulting image therefore is one of strong contrast and enhanced colour, and that is the main reason I decided to implement the overlay mode rather than any of the others - it is just such an extremely nice and versatile mode. 
+</p><p>In order to make a shader out of the conceptual description above, we can initially conclude that there are three different sections to build: the additive blend, the multiply blend, and a mask defined by the intensity of the background texture (that would be the result of the comparison to 0.5 above). To round things off, we then need to composite the output from those different blends, and finally perhaps add the equivalent of an opacity slider to allow the result to be tweaked. Aside from this divide-and-conquer approach, we also need some formal definitions of the mathematics involved for these different bits and pieces, but then we are all set. 
+</p><p><br />
+</p><p><br />
+</p>
+<a name="Texture_input"></a><h3> <span class="mw-headline"> Texture input </span></h3>
+<p>Prior to building the components required for the actual blending, we definitely need some input textures first, so setting those up will make a good starting point for this exercise. Before we continue, I have to point out an important fact about the screendumps you will see below: I have moved the nodes around a bit at some stages, only to avoid having to show huge images simply because some of the connected nodes happen to be very far from each other. In other words, if you find that your layout does not exactly match the screendumps, there is no cause for alarm - your layout is fine.
+</p><p>If this is your first time using the shader editor, you might want to familiarize yourself with the basic tools before moving on. The official overview can be studied in <a href="Using_the_Shader_Editor.html" class="mw-redirect" title="Using the Shader Editor"> The User Manual for the Shader Editor</a>  
+</p><p>Now let's get on with it:  first create a new material in the material editor, and click "Edit Shader" right away to open the shader editor. On its Ambient page, delete the default constant colour node to get a clean canvas, then add two Basic/Texture Map processes, and one Interpolants/Texcoord 1 process, then press '9' on your keyboard to get the Draw Route tool and connect the nodes like this:
+</p><p><a href="Image_Impover1.html" class="image" title="Image:impover1.png"><img alt="Image:impover1.png" src="../images/4/47/Impover1.png" width="685" height="306" border="0" /></a>
+</p><p><br />
+</p><p>To draw a route, click straight in the middle of the node you want to take data from, then drag to the desired input tab of the node you want to send that data to, and release the mouse button. That's it. As you can see in this example, we will simply use two textures already available in the Data/Demo/texture directory: "BiohazardSign" for the foreground layer, and "Bark2" for the background layer. Change to the select or move tool and double-click the texture nodes, assign those textures, and type "Background" and "Foreground" respectively in their comment fields: 
+</p><p><a href="Image_Impover2.html" class="image" title="Image:impover2.png"><img alt="Image:impover2.png" src="../images/b/be/Impover2.png" width="516" height="184" border="0" /></a>
+</p><p><br />
+</p><p>If you are using the demo version of C4, you may have to type the texture path yourself, as shown above. In the licensed version, just click the blue arrow button to get a filepicker. Needless to say, you can of course use any textures you want here.  
+</p><p>The reason for starting out in the ambient pass of the shader, is because that makes it easier to see clean and constantly lit results in the world editor, without having to mess around with any light source objects. Once the whole setup is finished, we can just paste a copy of everything into the light pass. As you may already know, the nodes in the ambient pass define how the material should look in the presence of ambient light, while the nodes in the light pass defines how the material should react to local light sources such as point lights and spotlights. There is nothing stopping you from having entirely different setups in these two passes, but most of the time you will want them fairly similar.
+</p>
+<a name="Building_the_blend"></a><h2> <span class="mw-headline"> Building the blend </span></h2>
+<a name="Section_1:_The_multiply_blend"></a><h3> <span class="mw-headline"> Section 1: The multiply blend </span></h3>
+<p>The multiplication is quite simple, so let us take care of that right away. First off, the formal definition of this particular section is as follows:
+</p><p><b>Output = FG * ( BG / 0.5 )</b>
+</p><p>where <b>FG</b> is the foreground layer, and <b>BG</b> the background layer. Since it is usually recommended to use multiplication rather than division, for performance reasons, we can change and reduce this to:
+</p><p><b>Output = FG * ( BG * ( 1 / 0.5 ) ) = FG * BG * 2</b>
+</p><p>Thus, the first calculation we want to translate into shader nodes is as simple as:
+</p><p><b>FG * BG * 2</b>
+</p><p>which means we need two Math/Multiply nodes (there are two *-signs above) and one Basic/Constant Scalar node (there's one constant number). Set them up like this:
+</p><p><a href="Image_Impover3.html" class="image" title="Image:impover3.png"><img alt="Image:impover3.png" src="../images/4/47/Impover3.png" width="361" height="240" border="0" /></a>
+</p><p><br />
+</p><p>To change the default <b>1.0</b> in the constant scalar node, double-click it while the select or move tool is active, set the value to <b>2</b> and click OK. Use the Draw Route tool to connect the left multiply node to the A-port on the right multiply node, then the constant scalar to the B-port on the right multiply node:
+</p><p><a href="Image_Impover4.html" class="image" title="Image:impover4.png"><img alt="Image:impover4.png" src="../images/2/28/Impover4.png" width="361" height="240" border="0" /></a>
+</p><p><br />
+</p><p>Of course, the order of the terms does not matter here - we just want to keep a neat layout whenever we can (because the term <i>spaghetti code</i> can take on a whole new meaning in the shader editor if you're not careful).
+</p><p>To complete this section, draw a route from the foreground and background texture nodes to the A and B ports respectively on the left multiply node. The right multiply node can now be considered the output node for the entire multiply blend section. You can double-click the node and type something like "Output" in the comment field to indicate this. To keep things clearly readable further down the road, it's also a good idea to frame individual sections using the Draw Section tool:
+</p><p><a href="Image_Impover5.html" class="image" title="Image:impover5.png"><img alt="Image:impover5.png" src="../images/e/e2/Impover5.png" width="556" height="262" border="0" /></a>
+</p><p><br />
+</p><p>Double-click the gray top bar of the section (with select or move tool) and type "Multiply Blend" in the comment field, then click OK. Note that neither node comments nor sections affect the execution of the shader in any way, they are only there to make things easier to read and follow.
+</p><p>At this point it might be a good idea to see what the result looks like so far. To avoid influence from lights at this point, click the Light tab, select the Diffuse Reflection node and hit delete. We will put it back later. Then go back to the ambient pass and draw a route from the right multiply node to the RGB input on the green Lighting Output node to the far right in the editor:
+</p><p><a href="Image_Impover6.html" class="image" title="Image:impover6.png"><img alt="Image:impover6.png" src="../images/1/17/Impover6.png" width="349" height="133" border="0" /></a>
+</p><p><br />
+</p><p>The result at this point should just be fairly dark, like this:
+</p><p><a href="Image_Impover7.html" class="image" title="Image:impover7.png"><img alt="Image:impover7.png" src="../images/e/ef/Impover7.png" width="160" height="193" border="0" /></a>
+</p><p><br />
+</p>
+<a name="Section_2:_The_intensity_mask"></a><h3> <span class="mw-headline"> Section 2: The intensity mask </span></h3>
+<p>This part is slightly more involved than the previous section. Remember, our goal is to render the result of one of the two blending methods <i>based on the intensity of the background texture</i>. The intensity breakpoint value in the original specification for overlay blending is <b>0.5</b>, which means that:
+</p>
+<ul>
+<li><b>If the BG intensity is less than 0.5: render the result of the multiply blend</b>
+<li><b>If the BG intensity is 0.5 or more: render the result of the additive blend</b>
+</ul>
+<p>All of this of course assumes that the full range is 0.0 - 1.0, so the 0.5 is simply the exact middle of the intensity range. There are a few different ways to calculate intensity (one channel) from an RGB value (three channels), but to keep things straight-forward we are just going to use the most obvious method - calculating the sum of the individual colour components in a fully linear fashion where all three channels are considered equally important. Then we can compare this sum to the constant 0.5. However, since the the full range of the sum of three channels is 0.0 - 3.0 (in a white pixel, all three components are 1.0), we will change the constant to <b>1.5</b> instead, as that is the midpoint of this new range. The natural thing to do here would otherwise be to divide the sum by 3 first to get the value back into the 0 - 1 range, but that would actually be a redundant step, thus a waste of GPU cycles when simply changing the constant instead yields the same end result.
+</p><p>In the shader editor's Math category we find a process called Set If Less Than, a handy node that can be used to perform the comparison to 1.5 and create the mask we need. Add the Math/Set If Less Than node and a Constant Scalar node (to hold the 1.5) somewhere beneath the previously built multiply blend section:
+</p><p><a href="Image_Impover8.html" class="image" title="Image:impover8.png"><img alt="Image:impover8.png" src="../images/5/5d/Impover8.png" width="336" height="178" border="0" /></a>
+</p><p><br />
+</p><p>Now set the constant to 1.5, and connect it to the B-port of the Set If Less Than node. To calculate the sum of the individual components of the background texture, i.e. <b>R + B + G</b>, we need to insert two Math/Add nodes. Connect the output of the first Add node to the A-port of the second Add node, and the output of that in turn to the A-port of the Set If Less Than node:
+</p><p><a href="Image_Impover9.html" class="image" title="Image:impover9.png"><img alt="Image:impover9.png" src="../images/6/67/Impover9.png" width="556" height="314" border="0" /></a>
+</p><p><br />
+</p><p>With that done, we need to feed the background texture output into these Add nodes to calculate the sum of the three colour channels. However, the default route from a texture node contains a vector with three values, for R, G and B respectively, and the optional fourth value for the alpha channel, but since we are currently only interested in the individual scalar components if this vector, we will need to use swizzles to get what we want. 
+</p><p>Start by drawing multiple routes from the background texture node to both the A and B ports in the first Add node, and to the B-port of the second Add node: 
+</p><p><a href="Image_Impoverx10.html" class="image" title="Image:impoverx10.png"><img alt="Image:impoverx10.png" src="../images/8/86/Impoverx10.png" width="608" height="194" border="0" /></a>
+</p><p><br />
+</p><p>Then change to the select tool, and double-click on the first of the new routes - on the route itself that is, rather than any of the nodes. In the Route Info dialog that pops up at this point, change the swizzle to <b>r</b> (R):
+</p><p><a href="Image_Impoverx11.html" class="image" title="Image:impoverx11.png"><img alt="Image:impoverx11.png" src="../images/d/d9/Impoverx11.png" width="431" height="254" border="0" /></a>
+</p><p><br />
+</p><p>This effectively causes the route to carry only the red component instead of the full vector, which is exactly what we want here. Now change the remaining two routes too, but use swizzles <b>g</b> and <b>b</b> respectively to get the green and blue channels. The order in which they appear does not really matter, just make sure they are all accounted for:
+</p><p><a href="Image_Impoverx12.html" class="image" title="Image:impoverx12.png"><img alt="Image:impoverx12.png" src="../images/5/5c/Impoverx12.png" width="547" height="190" border="0" /></a>
+</p><p><br />
+</p><p>If you temporarily draw a route from the Set If Less Than to the RGB-port of the green lighting output node, you should now be able to see that the shader preview shows bright pixels in the areas where the original background texture is dark (darker than 0.5) and black everywhere else. When used like this, the Set If Less Than node will simply output white where the condition is true, and black where it is not. The preview appears to show a shade of gray rather than white, but that is due to the fact that the ambient light is not set very high in the preview panel:
+</p><p><a href="Image_Impoverx13.html" class="image" title="Image:impoverx13.png"><img alt="Image:impoverx13.png" src="../images/4/42/Impoverx13.png" width="258" height="315" border="0" /></a>
+</p><p><br />
+</p><p>This means that the intensity mask is finished, and that the Set If Less Than node is our output for this particular section. Go ahead and mark it as such by adding some text in the comment field of the node. Also, for clarity, add a frame around these nodes using the Draw Section tool. We will use this mask output shortly when setting up nodes for the final compositing, where everything comes together.
+</p>
+<a name="Section_3:_The_additive_blend"></a><h3> <span class="mw-headline"> Section 3: The additive blend </span></h3>
+<p>This last piece of the puzzle is somewhat complicated compared to the previous bits. The formal definition of the additive section of the overlay mode is as follows:
+</p><p><b>Output = ( FG * ( ( 1 - BG ) / 0.5 ) ) + ( BG - ( 1 - BG ) )</b>
+</p><p><b>FG</b> and <b>BG</b> still means foreground and background respectively. Again, we might want to get rid of the division by 0.5 and replace that with<br /> 
+a multiplication by 2:
+</p><p><b>Output = ( FG * ( 1 - BG ) * 2 ) + ( BG - ( 1 - BG ) )</b>
+</p><p>Now, if we take a second look at this, we see that inversion of the background value <b>( 1 - BG )</b> appears twice. This means that we can set up one single inversion, and then route that result to two different places. Compute once, use twice - that's always a good thing.
+</p><p>Inversion turns out to be such a common operation, that there's actually a specific node available to perform it in one single blow. Add a Math/Invert node somewhere above your old multiply section, then draw a route from the background texture to the A-port on the Invert node:
+</p><p><a href="Image_Impoverx14.html" class="image" title="Image:impoverx14.png"><img alt="Image:impoverx14.png" src="../images/a/ab/Impoverx14.png" width="351" height="193" border="0" /></a>
+</p><p><br />
+</p><p>That will take care of both instances of ( 1 - BG ) in the formula above. Moving on, we find that the first instance of the inverse is to be multiplied by <b>2</b>, so we add a Math/Multiply node and a Basic/Constant Scalar node, and connect them like this:
+</p><p><a href="Image_Impoverx15.html" class="image" title="Image:impoverx15.png"><img alt="Image:impoverx15.png" src="../images/c/cc/Impoverx15.png" width="531" height="294" border="0" /></a>
+</p><p><br />
+</p><p>Do not forget to change the scalar to <b>2.0</b>.
+</p><p>That's the whole ( 1 - BG ) * 2 bit taken care of. The second instance of the inverse BG is found in the last half of the formula: ( BG - ( 1 - BG ) ). In other words we should subtract the inverse background value from the original background value, so we need to add a Math/Subtract node as well. Draw a route from the background texture node to the A-port of the Subtract node, then another route from the Invert node to the B-port of the Subtract node:
+</p><p><a href="Image_Impoverx16.html" class="image" title="Image:impoverx16.png"><img alt="Image:impoverx16.png" src="../images/0/05/Impoverx16.png" width="547" height="371" border="0" /></a>
+</p><p><br />
+</p><p>At this point, we have now translated most of the formula - except for one multiplication and one addition: the (1-BG)*2 should be multiplied by FG, and then we want to add the (BG-(1-B)) to the result. Those last steps are best handled using a compund node called (not surprisingly) Multiply Add. While I have no facts or benchmarks to back it up, it's probably safe to assume that the monolithic Multiply Add executes slightly faster than one Multiply node followed by an Add node, and even if it does not, it is evident that using it will at least help reduce clutter.
+</p><p>So, lets add that Math/Multiply Add node, and connect to its A-port the output from the previous "plain" Multiply node. The result of the subtraction we added earlier should be routed to the C-port (because this was the part we wanted to add to the result of the final multiplication). To complete the multiplication portion of the Multiply Add, connect to its B-port the output from the foreground texture node:
+</p><p><a href="Image_Impoverx17.html" class="image" title="Image:impoverx17.png"><img alt="Image:impoverx17.png" src="../images/d/d4/Impoverx17.png" width="555" height="379" border="0" /></a>
+</p><p><br />
+</p><p>With that done, the entire additive blend formula is in place, and the Multiply Add node is the output of the whole section. Name the node accordingly by typing something in the comment field, and draw a section named "Additive Blend" around it.
+</p>
+<a name="The_final_steps"></a><h2> <span class="mw-headline"> The final steps </span></h2>
+<a name="Compositing"></a><h3> <span class="mw-headline"> Compositing </span></h3>
+<p>If we zoom out now and take a look at what we have assembled so far, we have three different nodes called "Output" (or whatever you named them) for our three sections: the additive and multiply blends, and the intensity mask. Those three output nodes (highlighted with yellow boxes in the screendump below) are the only things we need to worry about from now on.
+</p><p><a href="Image_Impoverx18.html" class="image" title="Image:impoverx18.png"><img alt="Image:impoverx18.png" src="../images/b/bb/Impoverx18.png" width="800" height="872" border="0" /></a>
+</p><p><br />
+</p><p>The final output colour for the entire graph, i.e. the complete overlay process, is essentially a matter of performing a mutually exclusive mix between the additive and the multiply section, using the black-white signal from the intensity mask section to control where each blend should go. A formal definition would look something like this:
+</p><p><b>Output = A * ( 1 - I ) + ( I * M )</b>
+</p><p>where <b>A</b> means Additive blend, <b>I</b> means Intensity mask, and <b>M</b> means Multiply blend. This function follows the general form of a linear interpolation, but to avoid having to convert some of the inputs, we will build the expression using discrete nodes rather than the monolithic Linear Interpolation node.
+</p><p>One of the first things we notice is the inversion <b>( 1 - I )</b>. Yep, they really do show up all the time.
+</p><p>Let's add a Math/Invert somewhere to the right of all the previous nodes, then draw to its A-port a route from the Intensity Mask output node. It is perfectly safe to invert the output from the Set If Less Than node, since it is clamped to a 0 - 1 range. So, even though it is fed our RGB sum which has a 0 - 3 range, the result of the logical test is a boolean, limited to either 0 or 1 for each tested component.
+</p><p>The second half of the formula, after the plus sign, tells us to multiply the I and M - so we add a Math/Multiply node and connect the outputs from the Intensity Mask and the Multiply Blend sections to its A and B ports respectively. The result at this point should look like this:
+</p><p><a href="Image_Impoverx19.html" class="image" title="Image:impoverx19.png"><img alt="Image:impoverx19.png" src="../images/c/c2/Impoverx19.png" width="353" height="243" border="0" /></a>
+</p><p><br />
+</p><p>All that remains is to multiply the A with the invert node output, and add the output from the previous multiply node to the result. Looks familiar? Indeed, it's another job for the compound Multiply Add node. So, put one of those to the right of the recently created nodes, and connect the additive blend section's output to the Multiply Add's A-port, the Invert node's output to its B-port, and finally the last multiply node's output to its C-port. 
+</p><p>If you draw a route from the Multiply Add node to the RGB-port of the green Lighting Output at this point, you should be able to see the final result of the foreground texture overlay blended with the background texture. These final nodes and routes should look like this:
+</p><p><a href="Image_Impoverx20.html" class="image" title="Image:impoverx20.png"><img alt="Image:impoverx20.png" src="../images/7/74/Impoverx20.png" width="557" height="487" border="0" /></a>
+</p><p><br />
+</p><p>This is a good time to name the output node (the Multiply Add process) and perhaps draw a section box around this final compositing section as shown above. Name the section "Final Composite".
+</p>
+<a name="One_step_further"></a><h3> <span class="mw-headline"> One step further </span></h3>
+<p>We could of course settle for what we have done above, but it might be useful to add a few more things to let us control exactly how much impact we want the foreground layer to have on the background layer. Something similar to the layer opacity control in Photoshop. The easiest way to do that is to use a linear interpolation node and an additional scalar to control the interpolation.
+</p><p>First put a Math/Linear Interpolate node and a Basic/Constant Scalar node to the right of all the other nodes, then draw a route from the scalar 1.0 to the t-port of the Linear Interpolate node. Connect the final composite output node to the B-port on the linear interpolator, and the background texture output to the A-port:
+</p><p><a href="Image_Impoverx21.html" class="image" title="Image:impoverx21.png"><img alt="Image:impoverx21.png" src="../images/f/fd/Impoverx21.png" width="348" height="367" border="0" /></a>
+</p><p><br />
+</p><p>With the scalar value at 1.0, the foreground texture is fully overlaid. If you change the scalar to 0.0, the foreground is completely gone (in Photoshop terminology, its opacity is 0%). Any other value between 0 and 1 will give you a more or less visible foreground blend - in other words, it's just an opacity slider. 
+</p><p>The Linear interpolation node can be used for any type of data, and it's very handy whenever you want to get some datapoint that sits somewhere between two different endpoint values in any context. If you're a programmer or mathematician, you already know all there is to know about the versatility of this particular function, affectionately known as a "lerp" by those who are in a position to come up with something as strange as affectionate names for mathematical functions.
+</p><p>At any rate, the C4-version of Overlay blending is now completed. The full graph should look something like this (click to view full resolution):
+</p><p><a href="Image_Impoverx23.html" class="image" title="Impoverx23.png"><img alt="" src="../images/thumb/1/1a/Impoverx23.png/800px-Impoverx23.png" width="800" height="513" border="0" /></a>
+</p>
+<a name="A_few_more_steps_beyond"></a><h3> <span class="mw-headline"> A few more steps beyond </span></h3>
+<p>At this point, we can do all sorts of experiments. One obvious tweak is to replace the scalar value feeding the linear interpolator with some other source instead of a constant - for instance another texture's alpha channel, or any other channel for that matter. Anything you plug into the t-port of the linear interpolator can control its output, so it is really quite easy to get all sorts of interesting results.
+</p><p><a href="Image_Impoverx22.html" class="image" title="Image:impoverx22.png"><img alt="Image:impoverx22.png" src="../images/8/80/Impoverx22.png" width="648" height="220" border="0" /></a>
+</p><p><br />
+</p><p>Or, if you keep the constant scalar node in the t-port, you can change its parameter slot (double-click the node to get the process info) to one of the numbered parameter 0 - 7 options, which will let you control this value, and by that the blend opacity, from a script somewhere else. That means you could for example have a trigger somewhere in your world affect the blending. There's tons of peculiar possibilities to explore along those lines, all of which are outside the scope of this tutorial.
+</p><p>Another option is to change some of the other constants within the graph. For example, the 1.5 in the intensity mask section, which defines the breakpoint between the two different blends, can be changed to anything in the 0 - 3 range for some dramatically different results. Doing so is however likely to cause severely clipped output values under certain circumstances, since the rest of the calculations are balanced for the original value of 1.5 - but then again, it's not rocket science, so it's perfectly safe to make things that go horribly wrong!
+</p>
+<a name="Fixing_the_light_pass"></a><h3> <span class="mw-headline"> Fixing the light pass </span></h3>
+<p>The very last thing to do, regardless of what sort of inhuman torture you subjected your graph to while reading the previous paragraphs, is to select all the nodes, copy them, jump to the light pass tab and paste them in there too. This, of course, is based on the assumption that you want the same look when the surface is exposed to actual light sources. 
+</p><p>To get a standard diffuse lighting response here, just multiply the final output from your newly pasted graph with the output from a Complex/Diffuse Reflection node and route the result to the Lighting Output node. You should be able to do this yourself by now, without any screendumps to guide you. Add specular reflection too if you like ("add" being the keyword), and anything else you might need. Let simmer for 20 minutes, serve with rice, soy sauce and a cold beer.
+</p><p>Enjoy.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 18/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:2455-0!1!0!!en!2!edit=0 and timestamp 20150118203931 -->
+<div class="printfooter">
+Retrieved from "<a href="Implementing_Overlay_Blending.html">http://www.terathon.com/wiki/index.php/Implementing_Overlay_Blending</a>"</div>
+			<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks"><a href="Special_Categories.html" title="Special:Categories">Category</a>:&#32;<span dir='ltr'><a href="Category_Shader_Library.html" title="Category:Shader Library">Shader Library</a></span></div></div>			<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="Implementing_Overlay_Blending.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:Implementing_Overlay_Blending&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=Implementing_Overlay_Blending&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=Implementing_Overlay_Blending&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="User_46.53.162.html" title="The user page for the ip you&#039;re editing as [.]" accesskey="." class="new">46.53.162.27</a></li>
+				<li id="pt-anontalk"><a href="User_talk_46.53.162.html" title="Discussion about edits from this ip address [n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=Implementing_Overlay_Blending" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Implementing_Overlay_Blending.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Implementing_Overlay_Blending.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=Implementing_Overlay_Blending&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=Implementing_Overlay_Blending&amp;oldid=5444" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 21 January 2009, at 12:14.</li>
+				<li id="viewcount">This page has been accessed 7,124 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.553 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/Implementing_Overlay_Blending by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:52 GMT -->
+</html>

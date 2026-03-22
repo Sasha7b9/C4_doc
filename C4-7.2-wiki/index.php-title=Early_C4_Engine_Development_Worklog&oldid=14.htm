@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>Early C4 Engine Development Worklog - C4 Engine Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"Zu8OBqvNqlZ1qevUjy-sNwAAAcg","wgCSPNonce":false,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Early_C4_Engine_Development_Worklog","wgTitle":"Early C4 Engine Development Worklog","wgCurRevisionId":14,"wgRevisionId":14,"wgArticleId":12,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Early_C4_Engine_Development_Worklog","wgRelevantArticleId":12,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],
+"simpleBatchUploadMaxFilesPerBatch":{"*":1000},"wgVector2022PreviewPages":[]};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","mediawiki.action.styles":"ready","mediawiki.interface.helpers.styles":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","skins.vector.legacy.js"/*tpa=http://www.c4engine.com/wiki/skins.vector.legacy.js*/];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});});});</script>
+<link rel="stylesheet" href="load.php-lang=en&modules=mediawiki.action.styles-mediawiki.interface.helpers.styles-skins.vector.styles.legacy&only=styles&skin=vector.css" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=mediawiki.action.styles%7Cmediawiki.interface.helpers.styles%7Cskins.vector.styles.legacy&only=styles&skin=vector"/>
+<script async="" src="load.php-lang=en&modules=startup&only=scripts&raw=1&skin=vector.js" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector"></script>
+<meta name="generator" content="MediaWiki 1.40.0"/>
+<meta name="robots" content="noindex,nofollow,max-image-preview:standard"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="viewport" content="width=1000"/>
+<link rel="icon" href="../favicon.ico.css" tppabs="http://www.c4engine.com/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://c4engine.com/wiki/api.php?action=rsd"/>
+<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Early_C4_Engine_Development_Worklog rootpage-Early_C4_Engine_Development_Worklog skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Early C4 Engine Development Worklog</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From C4 Engine Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"><div class="mw-message-box-warning mw-revision mw-message-box"><div id="mw-revision-info">Revision as of 09:20, 15 July 2023 by <a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=User:Eric_Lengyel  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=User:Eric_Lengyel%27" tppabs="http://www.c4engine.com/wiki/index.php?title=User:Eric_Lengyel&action=edit&redlink=1" class="new mw-userlink" title="User:Eric Lengyel (page does not exist)" data-mw-revid="14"><bdi>Eric Lengyel</bdi></a> <span class="mw-usertoollinks">(<a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=User_talk:Eric_Lengyel  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=User_talk:Eric_Lengyel%27" tppabs="http://www.c4engine.com/wiki/index.php?title=User_talk:Eric_Lengyel&action=edit&redlink=1" class="new mw-usertoollinks-talk" title="User talk:Eric Lengyel (page does not exist)">talk</a> | <a href="index.php-title=Special-Contributions-Eric_Lengyel.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Contributions/Eric_Lengyel" class="mw-usertoollinks-contribs" title="Special:Contributions/Eric Lengyel">contribs</a>)</span> <span class="comment">(Created page with &quot;­__NOTOC__ == July 3, 2003 ==  * Completely redesigned the collision detection architecture. All geometries are now handled uniformly by a general collision detection algorithm. Swept sphere collisions can now occur with arbitrary geometrical shapes. * Removed the restriction that the torus primitive be circular. It can now be elliptical. * Added a flag that forces tangent fields to be calculated numerically for primitive geometries instead of analytically. * Added a ge...&quot;)</span></div><div id="mw-revision-nav">(diff) ← Older revision | Latest revision (diff) | Newer revision → (diff)</div></div></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="en" dir="ltr"><div class="mw-parser-output"><p>­
+</p>
+<h2><span id="July_3.2C_2003"></span><span class="mw-headline" id="July_3,_2003">July 3, 2003</span></h2>
+<ul><li>Completely redesigned the collision detection architecture. All geometries are now handled uniformly by a general collision detection algorithm. Swept sphere collisions can now occur with arbitrary geometrical shapes.</li>
+<li>Removed the restriction that the torus primitive be circular. It can now be elliptical.</li>
+<li>Added a flag that forces tangent fields to be calculated numerically for primitive geometries instead of analytically.</li>
+<li>Added a geometry space identifier to the <code>GeometryObject</code> class that indicates into what coordinate space its vertices have been transformed. Geometry can exist in world space, object space, or group space.</li>
+<li>Implemented portal vertex insertion and removal tools in the World Editor.</li>
+<li>Implemented registration mechanisms for controller, property, entity, and effect construction procedures. Templatized the classes encapsulating the construction procedures.</li>
+<li>Added a <code>World</code> pointer to the <code>Node</code> class. Every node now knows in what world it exists.</li>
+<li>Created subclasses for the World Editor's node info window that are specific to geometries, lights, etc.</li>
+<li>Added recognition of spawn location and spectator location markers in the Game Module.</li>
+<li>Implemented undo for the Replace Material command in the World Editor.</li>
+<li>Added a list of particle systems to the <code>World</code> class so that particle systems now belong to the world in which they exist instead of being stored in a global list by the Particle Manager.</li>
+<li>Implemented a diagnostic mode that displays certain collision detection data.</li>
+<li>Fixed a very minor glitch in the color picker window.</li>
+<li>Wrote a tridiagonal linear system solver that will be used for cubic splines. A discussion of both of these will appear in the 2nd edition of <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://mathfor3dgameprogramming.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://mathfor3dgameprogramming.com/%27" tppabs="http://mathfor3dgameprogramming.com/"><i>Mathematics for 3D Game Programming &amp; Computer Graphics</i></a>.</li>
+<li>Implemented microfacet shading (both isotropic and anisotropic) for metallic surfaces. This code will also appear in the 2nd edition of <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://mathfor3dgameprogramming.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://mathfor3dgameprogramming.com/%27" tppabs="http://mathfor3dgameprogramming.com/"><i>Mathematics for 3D Game Programming &amp; Computer Graphics</i></a>.</li></ul>
+<h2><span id="May_22.2C_2003"></span><span class="mw-headline" id="May_22,_2003">May 22, 2003</span></h2>
+<ul><li>Created a Math Utilities library and moved various standalone math routines into the <code>Math</code> namespace.</li>
+<li>Moved the 256-entry sine and cosine tables from the Particle Manager to the Math Utilities.</li>
+<li>Implemented the <code>Manipulator</code> class hierarchy. Manipulators encapsulate all of the object interaction functionality used by the World Editor. Manipulators also contain any extra rendering code used to display non-geometric objects, editor handles, light ranges, etc. This code was previously split between Node subclasses and an <code>EditorData</code> chunk stored within each node. The <code>EditorData</code> structure has now been removed.</li>
+<li><code>Object</code> subclasses have been created for all primitive geometries, portals, and zones.</li>
+<li>An generic auxiliary object slot has been added to the <code>InfiniteZone</code> class to accommodate the need for the World Editor to store data somewhere.</li>
+<li>Implemented a geometric primitive that represents a rectangular plate with an elliptical hole cut out of it.</li>
+<li>Implemented a geometric primitive that represents a right rectangular pyramid.</li>
+<li>Removed the texture map resources used to render portals and zones. They are now stored directly in the code (the textures are very simple).</li>
+<li>Implemented a mechanism through which an object construction procedure can be registered. This allows different modules to define their own object types and construct them when a world resource is loaded.</li>
+<li>The World Editor and Model Importer have been split out into standalone plugin modules. These were the last tools still left in the core engineâ€”all tools now reside in their own modules.</li>
+<li>Made some significant changes to the Resource Manager to better accommodate the definition of new resource types in plugin modules. [If the C++ standard had better defined the intended behavior of the <code>export</code> keyword, and compilers actually implemented it, a lot of trouble would have been avoided here.]</li>
+<li>Implemented separate panes for geometries, lights, portals/zones, and markers in the World Editor. Also created better icons.</li>
+<li>A toggle has been implemented that allows certain geometric primitives to be automatically capped when they are drawn in the World Editor. The box and cylinder geometries receive both a bottom endcap and a top endcap. The pyramid, cone, and dome geometries receive only a bottom endcap. When multiple primitives are created through automatic capping, they are also grouped as required by the shadowing system.</li>
+<li>Redesigned the resizing algorithm in the World Editor. Capped geometries can now be resized as a single object.</li>
+<li>Implemented automatic multiple selection for groups that contain a geometry with caps.</li>
+<li>Added a safety mechanism to the World Editor that will delete empty groups if everything in them is deleted. Of course, the groups come back if the operation is undone.</li>
+<li>Implemented portal vertex manipulation in the World Editor.</li>
+<li>Created base classes for several of the template utility classes and moved code not dependent on template parameters down so that it doesn't get duplicated. This reduced overall code size by more than 10 percent.</li>
+<li>Implemented a mechanism through which manipulators can cache rendering data that remains constant as long as the viewport it's rendering into isn't changing.</li>
+<li>Added support for line strip and indexed lines render types in the Graphics Manager. Also added a render state bit for line smoothing.</li>
+<li>Completed all light source and sound source tools in the World Editor.</li>
+<li>Implemented location marker and cube map marker tools in the World Editor.</li>
+<li>Implemented preliminary support for the <code>GL_ARB_vertex_buffer_object</code> extension.</li>
+<li>Cancelled plans to support the <code>GL_NV_vertex_array_range</code> extension.</li></ul>
+<h2><span id="April_11.2C_2003"></span><span class="mw-headline" id="April_11,_2003">April 11, 2003</span></h2>
+<ul><li>The sound buffer position notification mechanism in DirectX 9.0a is totally broken. The Sound Manager's dependency on this necessary-for-streaming feature has been removed and replaced by a slightly less elegant timer that fires several times over the span of the main mixing buffer and polls the play position.</li>
+<li>Removed upward dependencies from the Input Manager. Hooks are now exposed where the Input Manager needs to call into higher-level code such as the input configuration window.</li>
+<li>Made some significant revisions to the new Resource Manager.</li>
+<li>Implemented full support for S3TC texture compression.</li>
+<li>Implemented optimized support for multiple texture formats in a single texture resource. Only the format that is actually used is loaded into memory.</li>
+<li>Texture images loaded from resources are now removed from memory after being transferred to OpenGL. This reduces RAM usage by a ton. The only drawback is that a graphics system restart takes longer now because textures have to be loaded from the disk again.</li>
+<li>Added a filter procedure to the <code>FileMgr::BuildFileList()</code> function.</li>
+<li>Expanded the <code>ListBox</code> functionality so that it can handle multiple selected items.</li>
+<li>Exposed the <code>ListItem</code> class so that it could be subclassed. List items can now draw themselves however they want.</li>
+<li>Added a resource catalog for imported resource types. Targa files, text files, and 3DSMax exports now reside in the Import folder.</li>
+<li>Redesigned the texture import dialog. It now allows specification of S3TC compression, HILO bump maps, and the recently added texture flags.</li>
+<li>The following tools have been split out into Tool Manager plugin modules:
+<ul><li>Sound Player</li>
+<li>Movie Player</li>
+<li>Model Viewer</li>
+<li>Texture Viewer</li>
+<li>Texture Importer</li>
+<li>String Importer</li>
+<li>Font Generator</li></ul></li>
+<li>Added support for HILO textures in the Texture Viewer tool.</li>
+<li>Mipmaps can now be viewed in the Texture Viewer tool by hitting Ctrl-M (PC) or Cmd-M (Mac).</li>
+<li>Made some performance improvements in the Sound Player tool.</li>
+<li>Made several code design improvements in the World Editor.</li>
+<li>Fixed a bug in the World Editor's rectangle zoom tool.</li>
+<li>Fixed a minor glitch that would cause the extension-enabled flag to be ignored for any extensions that were core features of the currently installed OpenGL implementation (e.g., it would be impossible to turn off texture compression under OpenGL 1.3 or higher).</li>
+<li>Fixed a minor bug in the fragment shader code for point light sources (affects ATI hardware only).</li></ul>
+<h2><span id="March_28.2C_2003"></span><span class="mw-headline" id="March_28,_2003">March 28, 2003</span></h2>
+<ul><li>The engine now requires support for the <code>GL_EXT_draw_range_elements</code> extension. (As a core feature of OpenGL 1.2, this extension is supported by all vendors that we care about.)</li>
+<li>Added support for the <code>GL_SGIS_generate_mipmap</code> extension. A new texture flag has been defined to indicate that mipmaps should be automatically generated by OpenGL.</li>
+<li>Added support for subtractive blending modes using the <code>GL_EXT_blend_subtract</code> extension.</li>
+<li>Removed support for the <code>GL_EXT_compiled_vertex_array</code> extension. Superseded by the <code>glDrawRangeElements</code> function and future support for vertex array range functionality.</li>
+<li>Removed support for the <code>GL_EXT_secondary_color</code> extension â€” it's no longer being used.</li>
+<li>Whether trilinear filtering is used is now controlled by the <code>textureTrilinear</code> system variable. A new texture flag has been defined to force a texture to used trilinear filtering.</li>
+<li>Implemented support for per-pass face culling state. This enables special effect algorithms to render back-facing polygons on one pass and front-facing polygons on another pass.</li>
+<li>Created a translucency material attribute. Currently experimenting with the translucency effect.</li>
+<li>Changed the Movie Manager functions <code>Activate()</code> and <code>Deactivate()</code> to <code>Initialize()</code> and <code>Terminate()</code> to be consistent with the same functions in the Network Manager.</li>
+<li>Made some minor changes to the Movie Manager necessary to support playback of audio files. Any audio file in a format recognized by QuickTime can now be played as a movie.</li>
+<li>Added duration and position queries to the <code>Movie</code> class.</li>
+<li>Completely rewrote the Resource Manager.
+<ul><li>The location of resources is now determined by the <i>catalog</i> in which they reside. Catalogs allow related resources to be collected in the same place. A single type of catalog is defined in the Resource Manager that encapsulates a root path leading to a group of resources. Game modules may define additional catalog types that grab resources from arbitrary locations. For example, an application might define a catalog that extracts resources from a pack-file.</li>
+<li>The current resource layout hasn't been changed, but the organization in future builds will take advantage of the packaging capabilities.</li>
+<li>Resource types may now indicate whether resource names include an extension. Movie resource names must now specify the extension used in the file name since different formats are supported.</li>
+<li>Applications may register catalogs with the Resource Manager so that they can be selected when importing various types of data. Import dialogs in future builds will display a target catalog list.</li></ul></li>
+<li>The Graphics Manager now uses conventional vertex arrays with vertex programs. This reduces the overhead of switching in and out of vertex program mode and makes ARB vertex programs easier to read. It also seems to be liked by drivers more.</li>
+<li>The MacOS build now requires a G4 processor.</li></ul>
+<h2><span id="March_19.2C_2003"></span><span class="mw-headline" id="March_19,_2003">March 19, 2003</span></h2>
+<ul><li>Changed the internal texture format passed to <code>glTexImage()</code> to force 8 bits per component. ATI drivers were dropping down to something less, causing ugly banding.</li>
+<li>Changed binding to vertex attribute arrays in ARB vertex programs to be conformant with the spec.</li>
+<li>Added more robust error reporting to the vertex/fragment program loading code.</li>
+<li>Fixed an overflow problem that showed up when using <code>GL_ATI_fragment_shader</code> to perform environment-mapped bump mapping.</li></ul>
+<h2><span id="March_7.2C_2003"></span><span class="mw-headline" id="March_7,_2003">March 7, 2003</span></h2>
+<ul><li>Added support for rectangle textures using the <code>GL_NV_texture_rectangle</code> extension. Rectangle textures are not restricted to power-of-two sizes, but cannot have mipmaps and cannot use repeating wrap modes.</li>
+<li>Added support for the <code>GL_ATI_separate_stencil</code> extension. This enables an optimization on ATI hardware that is equivalent to the functionality provided by the <code>GL_EXT_stencil_two_side</code> extension. Both allow stencil shadow volumes to be rendered in a single pass by using separate stencil operations for front-facing and back-facing polygons.</li>
+<li>Added occlusion query functionality to the Graphics Manager and the World Manager using the <code>GL_NV_occlusion_query</code> extension. An occlusion query can now be performed during the ambient rendering pass, and its result can be used after the lighting passes to render special effects.</li>
+<li>Added support for the <code>GL_NV_point_sprite</code> extension. Particle systems may now specify the <code>particlePointSprite</code> flag indicating that its particles should be rendered as point sprites, if available. This allows a 75% reduction in vertex processing for some particle systems.</li>
+<li>Added support for anisotropic texture filtering using the <code>GL_EXT_texture_filter_anisotropic</code> extension. The maximum anisotropy used during filtering is controlled by the <code>textureAnisotropy</code> system variable. A value of 1 corresponds to no anisotropic filtering.</li>
+<li>Updated texture format and added support for compressed texture images. Changed texture resource extension to <code>.tex</code>.</li>
+<li>Developed a Tool Manager class and implemented a tool plugin architecture. The texture viewer utility has now been split out into a plugin, and other built-in tools will follow.</li></ul>
+<h2><span id="March_27.2C_2002"></span><span class="mw-headline" id="March_27,_2002">March 27, 2002</span></h2>
+<ul><li>The game module is now present in the executable download. Spectator camera controls have now been moved there, and it is now possible to insert a player into the world. Issuing the "spawn" command in the command console will put the player in the world, and issuing the "spectate" command will take him out.</li>
+<li>The game play menus have not yet been added, but certain setup dialogs can be accessed through the command console. Type "display" to bring up the Display Setup dialog, and type "input" to bring up the Setup Controls dialog.</li>
+<li>The player can fire the plasma gun at this time. No other weapons are implemented yet.</li>
+<li>No collision detection is implemented at this time, so the player can run through anything, and the plasma bursts will never hit anything either.</li>
+<li>This build still uses a single hard-wired light source. Build 14 will use the actual light sources placed in the world with the world editor.</li>
+<li>Shadow-casting set determination will not be implemented until build 14, so objects that are not visible themselves will not cast a shadow. If you see shadows blinking out, that's why.</li>
+<li>The shadow faceting sometimes visible on the character is a known issue with the stencil shadow design. Ways to eliminate this artifact will be explored in the future.</li>
+<li>The executables and data are now separate downloads. They just need to be unzipped into the same directory.</li>
+<li>This fixes all previously know world editor bugs.</li>
+<li>Grouping has been implemented in the world editor. There currently is no visual indication that a group exists (there will be), and ungrouping is not yet implemented (grouping can be undone, however). Grouping is necessary for two things: 1) level of detail synchronization, and 2) connected shadow volume consistency (this allows a really nice optimization).</li>
+<li>It is now REQUIRED that objects sharing edges belong to the same group. For instance, if you create a cylinder and two endcaps, you must select all three objects and then group them. I'm thinking that in the future objects will be created as a group with their endcaps already present, but this will not be implemented for a few more builds.</li>
+<li>The world format in this build is not backwards compatible.</li>
+<li>The world editor will now pick selected objects before unselected objects when you click in a viewport. In some cases, this may prevent you from selecting an object for which another (already selected) object covers the same space in the viewport. Just deselect the other object first.</li></ul>
+<h2><span id="January_26.2C_2002"></span><span class="mw-headline" id="January_26,_2002">January 26, 2002</span></h2>
+<ul><li>Added auto-panning to the world editor so that viewports will pan when the cursor goes out-of-bounds while drawing, moving, rotating, or resizing.</li>
+<li>Implemented the multiple undo architecture for the level editor.</li>
+<li>Implemented selection picking in the world editor.</li>
+<li>Implemented the move and rotate tools in the world editor.</li>
+<li>Added constraints to the move and rotate tools so that holding down shift only allows an object to be moved horizontally or vertically or rotated in increments of 45 degrees.</li>
+<li>Added handles to the world editor. Objects can only be rotated or resized by grabbing handles -- they also determine the center of rotation and constraints on what dimensions of an object get resized.</li>
+<li>Implemented the pulldown menus for the world editor.</li>
+<li>Added checkmarks and command keys to the <code>MenuItem</code> class.</li>
+<li>Added load and save functionality to the world editor. The same functionality is used to load worlds for actual gameplay.</li>
+<li>Added a name box to the file picker for saving files.</li>
+<li>Implemented the undo mechanism for resizing objects in the world editor.</li></ul>
+<h2><span id="January_12.2C_2002"></span><span class="mw-headline" id="January_12,_2002">January 12, 2002</span></h2>
+<ul><li>Redesigned the entire shading system. The graphics manager is quickly moving towards a real-time global lighting and shadowing engine.</li>
+<li>Wrote the ambient shader setup code. This handles anything that does not involve an actual light source, including ambient illumination, emission, and environmental reflections. Environment-mapped bump mapping also happens here.</li>
+<li>Added ambient light transition zones to the ambient shader. This allows objects straddling the boundary between two zones to have a gradually changing ambient light color.</li>
+<li>Implemented an algorithm that clips an arbitrary convex polyhedron against a plane. The algorithm maintains edge connectivity and face adjacency information.</li>
+<li>Implemented a new polygon triangulation algorithm that handles polygons having three or more collinear vertices. This arises during T-junction elimination. This algorithm will appear in the article "T-Junction Elimination and Retriangulation", in <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://gameenginegems.com/gemsdb/book.php?id=5  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://gameenginegems.com/gemsdb/book.php?id=5%27" tppabs="http://gameenginegems.com/gemsdb/book.php?id=5"><i>Game Programming Gems 3</i></a> to be published in July, 2002.</li>
+<li>Wrote an extension to the polygon triangulation algorithm so that it can handle concave polygons and arbitrary planar regions having nonzero genus.</li>
+<li>Updated the particle system code and improved the way that line particles are rendered.</li>
+<li>Implemented a new node enumeration mechanism that iterates through all of the subnodes having particular type of a given root node.</li>
+<li>Updated the surface marking code to use the new node enumeration code.</li>
+<li>Implemented a transform and bounding volume invalidation mechanism for the global node tree.</li>
+<li>Removed support for the <code>WGL_3DFX_gamma_control</code> extension.</li>
+<li>Improved the texture hashing scheme so that it is more robust and treats texture resources and procedurally-generated textures the same way.</li>
+<li>Rewrote the Resource Manager. It is now more general and resource locations can be customized to support things like packfiles.</li>
+<li>Designed a general vertex program for rendering volumetric fog.</li>
+<li>Implemented the infinite light shader setup code.</li>
+<li>Designed a system for allocating and calculating vertex attribute arrays on the CPU for machines that don't have a GPU with programmable vertex shader capabilities.</li>
+<li>Began writing the C4 World Editor.</li>
+<li>Implemented orthographic and perspective viewports for the world editor.</li>
+<li>Implemented gridline rendering in the world editor.</li>
+<li>Implemented viewport pan and zoom tools in the world editor.</li>
+<li>Implemented viewport configuration controls in the world editor.</li>
+<li>Implemented geometry drawing tools in the world editor.</li>
+<li>Added a snap-to-grid toggle for geometry drawing in the world editor.</li>
+<li>Added a draw-from-center toggle for geometry drawing in the world editor.</li>
+<li>Improved the window centering code for the internal interface system.</li>
+<li>Designed a new texture map format that allows multiple image formats to exist in the same resource. The format chosen at run time depends on the graphics hardware capabilities.</li>
+<li>Updated the skybox rendering code.</li></ul>
+<h2><span id="August_4.2C_2001"></span><span class="mw-headline" id="August_4,_2001">August 4, 2001</span></h2>
+<ul><li>Wrote the Movie Manager. A QuickTime Movie can now be played into any window or any texture map. The Movie Manager can also be used to stream audio tracks in any format that QuickTime supports.</li>
+<li>Enhanced the texture map resource format so that multiple images can be stored in a single texture. This is good for things like cube texture maps, which require six images.</li>
+<li>Added flags to the Ray structure which can be used to control what kinds of objects the ray can intersect. This is useful for ignoring objects which do not cast shadows or should not appear in an environment map.</li>
+<li>Added support for the <code>GL_EXT_abgr</code>, <code>GL_EXT_bgra</code> and <code>GL_EXT_packed_pixels</code> extensions.</li>
+<li>Upgraded the Input Manager under Windows to use DirectInput 8.</li>
+<li>Improved the way that the Input Manager handles being switched into the background.</li></ul>
+<h2><span id="July_28.2C_2001"></span><span class="mw-headline" id="July_28,_2001">July 28, 2001</span></h2>
+<ul><li>Made dozens of small enhancements and fixes that accumulated into a long list while I was working on the book.</li>
+<li>Changed usage of MacOS <code>FSSpec</code> records to the recommended method.</li>
+<li>Added diagnostic tools which allow normal and tangent vectors to be seen in real-time.</li>
+<li>Implemented a direct reflection color for environment mapping.</li>
+<li>Improved bump map construction code.</li>
+<li>Changed default shader blend mode to replace.</li>
+<li>Added the EAX environment size field to the Sound Manager.</li></ul>
+<h2><span id="July_18.2C_2001"></span><span class="mw-headline" id="July_18,_2001">July 18, 2001</span></h2>
+<ul><li>Finished writing the book <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://mathfor3dgameprogramming.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://mathfor3dgameprogramming.com/%27" tppabs="http://mathfor3dgameprogramming.com/"><i>Mathematics for 3D Game Programming &amp; Computer Graphics</i></a>, to be published by Charles River Media in December.</li>
+<li>Implemented the Cook-Torrance BRDF physically-based lighting model in the shader system. This enables accurate isotropic and anisotropic reflections based on surface roughness and specular properties. A detailed analysis of this lighting model is presented in Chapter 6 of my book.</li>
+<li>Rewrote the fluid surface simulation code. It is now very clean and based entirely on the 2D wave equation with viscous damping. The new model now correctly takes wave speed and viscosity into account. The entire final chapter of my book provides a thorough discussion of the technique that is now used in the engine.</li>
+<li>Added support for different types of ADPCM wave files that are floating around out there.</li>
+<li>Added hooks to the Resource Manager that allow custom resource loading routines to be installed.</li></ul>
+<h2><span id="March_24.2C_2001"></span><span class="mw-headline" id="March_24,_2001">March 24, 2001</span></h2>
+<ul><li>Finished implementing complete support for the following lighting equation on Nvidia GeForce and ATI Radeon hardware.</li></ul>
+<pre>     color = [D * T * (N Â· L) + S * G * (N Â· H)4] * X + A * T + E * M
+</pre>
+<pre>         D = diffuse reflection color * primary light color
+         S = specular reflection color * primary light color
+         A = diffuse reflection color * ambient light color
+         E = emission color
+         T = primary texture color
+         G = gloss map color
+         X = shadow map color
+         M = emission map color
+         N = bump map normal vector
+         L = vertex space direction to light
+         H = vertex space halfway vector
+</pre>
+<ul><li>Components of the above equation can be used in any combination. The G term can be a separate texture map or it can be stored in the alpha channel of another texture. The N Â· H term can be replaced by an environment map to achieve true environment-mapped bump mapping (GeForce 3 only). The shader system renders objects using per-pixel lighting with as few passes as possible. Almost everything can be done in a single pass on GeForce 3 hardware. Vertex programs are used where appropriate to perform vertex space basis calculations and texture shader setup.</li>
+<li>Designed a new architecture for assigning texture mapping coordinates to world structures. Textures are now transformed in 2D texture space and then wrapped onto a structure using a structure-specific function. This method also makes vertex space basis calculations very easy.</li>
+<li>Added support for emission maps in the 3DSMax geometry export plugin and in the model import dialog.</li></ul>
+<h2><span id="March_17.2C_2001"></span><span class="mw-headline" id="March_17,_2001">March 17, 2001</span></h2>
+<ul><li>Added code which stores complex register combiner settings in OpenGL display lists.</li>
+<li>Implemented complete support for emission maps.</li>
+<li>Added the ability for a normal map to contain an alpha channel gloss map.</li>
+<li>Redesigned the shader initialization code for per-pixel lighting. Shaders now assemble themselves out of much simpler components.</li>
+<li>Implemented environment-mapped bump mapping using the <code>GL_NV_texture_shader</code> extension.</li>
+<li>Moved the <code>SmokeTrail</code> particle system code to the Game Module.</li>
+<li>Implemented support for the <code>GL_NV_mac_get_proc_address</code> extension.</li></ul>
+<h2><span id="March_10.2C_2001"></span><span class="mw-headline" id="March_10,_2001">March 10, 2001</span></h2>
+<ul><li>Implemented a complete pulldown menu system.</li>
+<li>Moved all of the title window functionality into pulldown menus.</li>
+<li>Added a Tools menu which provides access to utility windows and import functionality.</li>
+<li>Added an <code>ImportMgr</code> class and separated all of the actual import code from the user interface code for the import windows.</li>
+<li>Made various improvements to the Window Manager and dialog element classes.</li>
+<li>Implemented support for anisotropic texture filtering using the <code>GL_EXT_anisotropic_texture_filter</code> extension.</li>
+<li>Added a color array to the surface marking class so that marking edges will fade based on their vertex normals. This eliminates the hard edges that could previously appear on highly curved surfaces.</li></ul>
+<h2><span id="March_3.2C_2001"></span><span class="mw-headline" id="March_3,_2001">March 3, 2001</span></h2>
+<ul><li>Upgraded the 3DSMax geometry plugin so that it exports gloss map and bump map information.</li>
+<li>Added vertex space basis calculations to the model importer and to the real-time mesh deformation code.</li>
+<li>Added the ability for the alpha channel of a texture map to be used as a gloss map.</li>
+<li>Added a sort function to the <code>ListBox</code> interface element.</li>
+<li>Made massive improvements to the model import dialogs. Users can now deactivate parts of an exported geometry, change diffuse, emission, and specular colors, and select texture maps, bump maps, and gloss maps for each part.</li></ul>
+<h2><span id="February_24.2C_2001"></span><span class="mw-headline" id="February_24,_2001">February 24, 2001</span></h2>
+<ul><li>Made several improvements to the terrain code. Terrain collision detection and shadow generation are now more accurate.</li>
+<li>Improved the code which blends the seams between neighboring lightmaps.</li>
+<li>Updated the model format and model import code so that it possesses the same general attribute array and texture map capabilities that world structures now support.</li>
+<li>Moved all edge finding code for shadows into the model import code so that those calculations are no longer necessary when a shadow is added to a model.</li>
+<li>Implemented multiple levels of detail for shadow volumes. Previously, the shadow always corresponded to a model's lowest level of detail.</li></ul>
+<h2><span id="January_27.2C_2001"></span><span class="mw-headline" id="January_27,_2001">January 27, 2001</span></h2>
+<ul><li>Improved the transparent object distance sorting algorithm.</li>
+<li>Changed the way that light map saturation is handled so that color hues are not altered.</li>
+<li>Added a format field to texture maps.</li>
+<li>Added a user-configurable desktop color to the Window Manager.</li>
+<li>Implemented stream classes for loading and saving resource data. This encapsulates information such as endianness, making load/save code simpler.</li>
+<li>Added a flag to the <code>LightSource</code> class in the Ray Tracer which inhibits the light source's participation in light map generation. This is useful for placing a single light in the world that is used for real-time illumination in place of several other lights which may exist for higher-detail lightmaps.</li></ul>
+<h2><span id="January_20.2C_2001"></span><span class="mw-headline" id="January_20,_2001">January 20, 2001</span></h2>
+<ul><li>Changed the rendering order of shadow volumes so that they are rendered before the object to which they are attached.</li>
+<li>Reduced the amount of data written to a world resource for invisible geometries.</li>
+<li>Removed the intermediary classes <code>PlanarStructure</code> and <code>CylindricalStructure</code> and moved their specialized visibility tests into the base <code>Structure</code> class.</li>
+<li>Added spherical and cylindrical geometry placeholders for special effects. This allows the visibility of certain effects to be determined using the global zone/portal and BSP tree algorithms.</li>
+<li>Added a rising smoke effect to the Game Module which is attached to torches.</li>
+<li>Implemented a new sorting algorithm for transparent objects. The new system allows transparent objects to be attached to other transparent objects so that they're rendered consecutively. This is nice for things like scorch marks on transparent surfaces.</li>
+<li>Added a two-sided flag to the 3DSMax geometry export plugin so that parts of a model may have backfaces rendered in the engine.</li>
+<li>Improved the way that input elements are deactivated when the input mode is changed; for example, when switching from game controls to user interface input.</li></ul>
+<h2><span id="January_13.2C_2001"></span><span class="mw-headline" id="January_13,_2001">January 13, 2001</span></h2>
+<ul><li>Added a texgen light map flag to the <code>Geometry</code> class which will suppress the generation of light map coordinates for geometries that generate them at run time (e.g., the fluid geometry).</li>
+<li>Improved light map sample coordinate generation for primitives whose geometry doesn't cover the entire area that its light map covers. This eliminates many edge darkening artifacts on some of the curved surfaces.</li>
+<li>Restructured the layout of zone and environment classes so that they use the same code to define the volumes of space that they affect.</li>
+<li>Added sphere and cylinder volume types which can be used as zones or environments.</li>
+<li>Added clipping planes to the zone and environment volumes so that they can be carved into more flexible shapes.</li>
+<li>Added file name type-out matching to the file picker dialog box.</li>
+<li>Added an auto-scroll option to the <code>ListBox</code> dialog element that will display the current selection when it is changed.</li>
+<li>Added default text and window colors to the Window Manager which can be changed by the user.</li></ul>
+<h2><span id="January_6.2C_2001"></span><span class="mw-headline" id="January_6,_2001">January 6, 2001</span></h2>
+<ul><li>Added code that handles cases in which static light map sampling points fall outside a geometry's clipping planes. Projecting the sampling point onto the plane eliminates darkening artifacts that can occur in corners where mutually clipped geometries meet.</li>
+<li>Added a natural plane function to all of the geometry classes in the Ray Tracer. These are useful for clipping adjacent geometries to the planes formed naturally by a primitive (such as the end planes of a cylinder).</li>
+<li>Added a flag which indicates whether the sky box should be rendered when a certain zone is rendered. Previously, the sky box was only rendered when the topmost zone in the hierarchy was visible.</li>
+<li>Implemented the vertex lighting option for world geometry as an alternative to static light mapping. This really helps load time and rendering performance in outdoor environments where there may be hundreds of trees which don't really need light maps for anything other than their trunks.</li>
+<li>Finalized the Ray Tracer intersection code for the terrain geometry.</li></ul>
+<h2><span id="December_23.2C_2000"></span><span class="mw-headline" id="December_23,_2000">December 23, 2000</span></h2>
+<ul><li>Made several general enhancements to the terrain collision detection code.</li>
+<li>Began implementing the Ray Tracer intersection code for terrain geometry.</li>
+<li>Added the Information component class to the Ray Tracer. This is used to store general types of data which is shared among more than one component in a scene.</li>
+<li>Added the ability to create multiple terrain geometry objects which draw from the same height field data. This is useful for dividing a large outdoor area into smaller blocks which may reside in different zones. It also improves dynamic lighting performance considerably.</li>
+<li>Implemented a light map expansion technique which helps eliminate discontinuities visible in the light maps of adjacent geometries.</li>
+<li>Added an origin point to the <code>BoxZone</code> class so that nodes containing such a zone don't need to have a translation.</li>
+<li>Added code to the World Builder which compares multiple bounding spheres for a structure (calculated through different methods) and selects the best one.</li></ul>
+<h2><span id="December_16.2C_2000"></span><span class="mw-headline" id="December_16,_2000">December 16, 2000</span></h2>
+<ul><li>Simplified most of the conventional lighting code in the main rendering pipeline.</li>
+<li>Upgraded the quality of light map generation for terrain geometry.</li>
+<li>Implemented the collision detection algorithm for terrain geometry.</li>
+<li>Added simple collision detection to chase cameras so that they won't go through walls.</li>
+<li>Added a mechanism to the character collision code which makes uphill motion appear much smoother.</li>
+<li>Modified the Macintosh versions of the Sound Manager and Network Manager so that they are able to run in the Carbon environment.</li></ul>
+<h2><span id="December_9.2C_2000"></span><span class="mw-headline" id="December_9,_2000">December 9, 2000</span></h2>
+<ul><li>Added bump mapping flags to the <code>Shader</code> class which control certain lighting variables and specify optimization hints.</li>
+<li>Implemented bump mapping for point and spot light sources.</li>
+<li>Wrote vertex programs for bump mapping with point and spot light source attenuation.</li>
+<li>Implemented a mechanism for invalidating vertex space light direction and halfway vectors for bump-mapped objects which do not have the <code>bumpDynamic</code> flag set.</li>
+<li>Wrote a vertex program component assembler for generating vertex programs at run time. This replaces the combinatorial explosion of canned programs that was starting to materialize. Small pieces of vertex program code are now stored in the executable and put together at run time to create a complete program that fits a shader's needs.</li>
+<li>Removed the <code>VertexProgramResource</code> resource type.</li>
+<li>Consolidated infinite, point, and spot light types into a single light class.</li>
+<li>Extended the <code>Environment</code> class so that it describes a lighting model for a region of the world in addition to the acoustic properties that it previously maintained. Ambient light settings and all static light sources now belong to environments.</li></ul>
+<h2><span id="December_2.2C_2000"></span><span class="mw-headline" id="December_2,_2000">December 2, 2000</span></h2>
+<ul><li>Implemented the convention of texture map slots in the shader system. Instead of just having a list of texture maps, each renderable object now possesses a table of texture maps whose entries may be zero. Particular indexes within the table have semantic meaning such as ordinary texture map, light map, normal map, and gloss map.</li>
+<li>Implemented register combiner state settings for all 21 possible types of rendering passes for per-pixel bump mapping. The pass(es) chosen for an object depend on the number of available texture units, number of available general combiner stages, and whether the object is to be rendered with a texture map, specularity, gloss map, and/or shadow map.</li>
+<li>Implemented vertex programs for each of the 21 bump mapping passes which calculate vertex space light direction and halfway vectors.</li>
+<li>Added support for per-stage constant color inputs for register combiners.</li>
+<li>Added a scroll size to the <code>ScrollBar</code> class which lets you specify how far to scroll when the user clicks the up or down arrows.</li></ul>
+<h2><span id="November_18.2C_2000"></span><span class="mw-headline" id="November_18,_2000">November 18, 2000</span></h2>
+<ul><li>Added separate conventional array state and vertex attribute array state flags to the Graphics Manager.</li>
+<li>Added specialized shader structures for several different lighting configurations.</li>
+<li>Added a control panel that allows you to enable/disable any OpenGL extensions. This works without having to restart the engine.</li>
+<li>Implemented more versatile support for conventional OpenGL lighting. The engine now supports diffuse, specular, and emission material colors for every renderable object.</li>
+<li>Added support for multiple light maps in the World Builder. This is needed to provide different light maps which are used depending on what hardware features are available. For instance, the N Â· L term should not be included in the light map when performing per-pixel bump mapping.</li>
+<li>Expanded the world and model resources so that objects can have an arbitrarily number of textures applied to them. Each texture also carries a type such as light map or bump map.</li></ul>
+<h2><span id="November_11.2C_2000"></span><span class="mw-headline" id="November_11,_2000">November 11, 2000</span></h2>
+<ul><li>Added a blending mode for modulating by the contents of the destination alpha channel. This is used for the smooth self-shadowing term during the specular pass for per-pixel bump mapping.</li>
+<li>Added a scale factor to the normal map generator allowing one to control how pronounced the bumps in a normal map are.</li>
+<li>Implemented bump mapping for the ATI Radeon using the <code>GL_EXT_texture_env_dot3</code> extension and three texture units.</li>
+<li>Implemented NV20 vertex programs for vertex space light direction and halfway vector calculations.</li>
+<li>Began writing a book tentatively entitled <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://mathfor3dgameprogramming.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://mathfor3dgameprogramming.com/%27" tppabs="http://mathfor3dgameprogramming.com/"><i>Mathematics for 3D Game Programming and Computer Graphics</i></a> which will be published by Charles River Media (the same company who published <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://gameenginegems.com/gemsdb/book.php?id=3  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://gameenginegems.com/gemsdb/book.php?id=3%27" tppabs="http://gameenginegems.com/gemsdb/book.php?id=3"><i>Game Programming Gems</i></a>).</li></ul>
+<h2><span id="November_4.2C_2000"></span><span class="mw-headline" id="November_4,_2000">November 4, 2000</span></h2>
+<ul><li>Overhauled the way in which attributes are applied in the Ray Tracer. Each of a geometry's attributes now modify the surface shading state in a single function.</li>
+<li>Rearranged and simplified parts of the Ray Tracer which work with attributes.</li>
+<li>Rewrote most of the real-time shader architecture. Shaders can now hold multiple textures, they have their own set of vertex attribute arrays, and they can be invoked for multiple passes. The first time that a particular shader is used, it calculates the number of passes that it needs and which textures should be used on each pass. This removes some computation from the old rendering pipeline and turns it into precomputed data.</li>
+<li>Moved the remaining light setup code out of the main rendering execution pipeline. This is now completely precomputed on a per-view basis.</li>
+<li>Moved the wireframe rendering pass to a separate subroutine.</li>
+<li>Implemented support for the <code>GL_EXT_texture_env_combine</code> and <code>GL_EXT_texture_env_dot3</code> extensions.</li></ul>
+<h2><span id="October_28.2C_2000"></span><span class="mw-headline" id="October_28,_2000">October 28, 2000</span></h2>
+<ul><li>Finished client-to-server multiplayer communications code.</li>
+<li>Added a <code>SpectatorCamera</code> class to the Game Module.</li>
+<li>Refined the wave propagation code for fluid surfaces.</li>
+<li>Added normal map generation to the texture importer (this is used to import bump maps).</li>
+<li>Added a component count to the texture coordinate array in the <code>Shader</code> class so that 3D coordinates could be specified. This will be used for 3D textures as well as vector arrays for per-pixel lighting effects.</li>
+<li>Implemented shaders for per-pixel bump mapping. Full bump mapping is done in two parts: a diffuse reflection pass and a specular reflection pass.</li>
+<li>Added a tangent vector to the Ray Tracer's hit data structure so that a local tangent space coordinate system could be derived from a ray intersection.</li>
+<li>Added the <code>BumpMapAttribute</code> class to the Ray Tracer and implemented normal vector perturbation.</li></ul>
+<h2><span id="October_21.2C_2000"></span><span class="mw-headline" id="October_21,_2000">October 21, 2000</span></h2>
+<ul><li>Implemented a general property list architecture allows arbitrary data to be associated with any structure in the world.</li>
+<li>Ripped out the old material data structures and replaced them with properties.</li>
+<li>Added a default property list to the World Manager. If a structure does not have a property of a certain type, then the default property can be used instead.</li>
+<li>Added an overridable collision function to the <code>Character</code> class similar to the function which already exists for the <code>Projectile</code> class. This allows the Game Module to implement a custom response whenever a character collides with a structure.</li>
+<li>Added a teleport destination property to the Game Module. This property is attached to structures which teleport characters when they collide with it.</li>
+<li>Finished moving all world building functionality to World Editor window.</li>
+<li>Implemented full support for the <code>GL_NV_vertex_program</code> extension.</li>
+<li>Implemented preliminary support for some yet-to-be-disclosed Nvidia extensions.</li></ul>
+<h2><span id="October_14.2C_2000"></span><span class="mw-headline" id="October_14,_2000">October 14, 2000</span></h2>
+<ul><li>Implemented general plane clipping in the World Builder. Any geometry can now be clipped by an arbitrary number of planes, and the new vertices are automatically fused to adjacent structures in the world.</li>
+<li>Implemented a calculation which determines how large a light map should be for a geometry after it is clipped.</li>
+<li>Added a general normal vector and winding reversal subroutine to the World Builder which operates on any of the possible render types (such as triangle fans or quad strips).</li>
+<li>Added a light map flags field to the <code>Geometry</code> class.</li>
+<li>Modified the <code>TextureMapAttribute</code> class so that it can still be used even if the texture map that it references is not available.</li>
+<li>Implemented several generic texture mapping topologies. Geometries can now be auto-mapped using planar, radial, cylindrical, polar, or toric mappings.</li>
+<li>Changed the primitive type for the revolved cubic spline geometry from indexed triangles to indexed quads.</li>
+<li>Made some of the interactions between the World Builder and each geometry class a little cleaner.</li>
+<li>Implemented preliminary support for the <code>GL_NV_vertex_array_range</code> and <code>GL_NV_fence</code> extensions.</li></ul>
+<h2><span id="October_7.2C_2000"></span><span class="mw-headline" id="October_7,_2000">October 7, 2000</span></h2>
+<ul><li>Added a generalized global variable system to the engine core. This system manages persistent variables which can be created at any time by the engine or by the Game Module. These variables are written to a config file, and they can be edited by the user in the command console.</li>
+<li>Removed the old Preferences Manager and replaced it with global variables and a config file which is executed at startup.</li>
+<li>Generalized the input element binding functionality so that any element can be bound to an action or to a series of commands.</li>
+<li>Implemented a generic file selection dialog.</li>
+<li>Implemented a general pixel map blitting function (along with an Altivec accelerated version).</li>
+<li>Implemented a new layout for the Host Game dialog in the Game Module which now includes a picture of the selected world.</li>
+<li>Improved collision detection efficiency a little bit.</li>
+<li>Added full support for elliptical geometry to the Ray Tracer and the World Manager.</li>
+<li>Removed all half- and quarter-geometry primitives in favor of absorbing them into the general clipping plane architecture. Efficiency is reduced slightly, but it makes a negligible difference at run time -- the savings in less code duplication and a simpler geometry hierarchy more than pays for it.</li></ul>
+<h2><span id="September_30.2C_2000"></span><span class="mw-headline" id="September_30,_2000">September 30, 2000</span></h2>
+<ul><li>Implemented automatic global vertex fusion. This ensures that coincident vertices belonging to adjacent structures actually have the same exact global coordinates, which is the first step in preventing seams.</li>
+<li>Implemented automatic global T-junction elimination. Whenever a vertex belonging to one structure falls on an edge of an adjacent structure, a new vertex is added to the adjacent structure at the exact same coordinates. This makes every world absolutely free of seams.</li>
+<li>Made surface markings more memory efficient by implementing a multiple-size vertex array.</li>
+<li>Added a flag to the Model class which suppresses rendering of the model through the normal world view. This is useful for rendering the local player model in an FPS since the model shouldn't be rendered from the player's perspective, but should still appear in mirrors and portals.</li>
+<li>Added a collision padding parameter to the Zone class so that structures that stick out of the zone a little bit are still considered for collision detection within a certain distance of the zone boundary.</li>
+<li>Added the ability for any geometry in the World Builder to link to another detail group which doesn't contain it. This allows a level designer to indicate that the geometry should change detail level at the same time as the group.</li>
+<li>Added an altitude angle to the <code>LocationMarker</code> class.</li>
+<li>Added a minimum alpha setting to the <code>TunnelMarker</code> class.</li>
+<li>Added collision detection to the spectator camera in the Game Module.</li>
+<li>Added a location type to the Game Module which indicates where the spectator camera should be placed when a world is loaded.</li>
+<li>Implemented window minimization functionality in the Window Manager.</li>
+<li>Implemented a texture viewer window.</li>
+<li>Made massive changes to the Resource Manager. Everything has now been changed from number based to name based.</li>
+<li>Removed the <code>CursorType</code> type -- cursors are now identified by their texture map name.</li>
+<li>Removed constants for selecting fonts -- fonts are now identified by their resource name.</li>
+<li>Added an extended version of the <code>FileMgr::BuildFileSpecList()</code> function which builds a list of files whose names begin with a given string.</li>
+<li>Moved the animation import functionality to the Model Viewer window. Animations for a specific model are now identified by names which start with the model's name.</li></ul>
+<h2><span id="September_23.2C_2000"></span><span class="mw-headline" id="September_23,_2000">September 23, 2000</span></h2>
+<ul><li>Implemented a geometry class for soft light cones around spot lights.</li>
+<li>Added a parameter to the <code>Geometry</code> class which controls the minimum number of subdivisions that a curved surface must always have.</li>
+<li>Added a flag to the Geometry class which allows certain structures to live in their own object space instead of global space.</li>
+<li>Implemented the <code>EmissionAttribute</code> class in the Ray Tracer. This attribute provides a way for a surface to appear to give off light.</li>
+<li>Implemented invisible geometries, which exist for the purposes of collision detection, but don't render anything.</li>
+<li>Added collision flags to every structure in the world so that geometry may be penetrable to some types of objects but solid to others.</li>
+<li>Added specialized visibility test functions to the <code>Structure</code> classes to achieve more efficient culling.</li>
+<li>Improved the collision detection algorithm for torus-based structures and revolved cubic spline structures.</li>
+<li>Added a post-processing function to the light map generation code in the World Builder.</li>
+<li>Added an application-definable type field to location markers.</li>
+<li>Added a callback function to tunnel markers so that applications can modify a tunnel's transform during gameplay to get floating effects, etc.</li>
+<li>Moved all rendering options from the Graphics Manager to the World Manager.</li>
+<li>Added more rendering options to the Display Settings dialog.</li>
+<li>Added code to disable Alt-Tab and the Start menu on Windows systems.</li></ul>
+<h2><span id="September_16.2C_2000"></span><span class="mw-headline" id="September_16,_2000">September 16, 2000</span></h2>
+<ul><li>Implemented a better solution to the degeneracy problems that can arise during portal clipping.</li>
+<li>Implemented the <code>Torus</code> geometry class in the Ray Tracer and the World Builder.</li>
+<li>Added support for dark lights (lights which subtract color from the surfaces that they illuminate) in the Ray Tracer.</li>
+<li>Added primitive geometry classes to the Ray Tracer corresponding to the first quadrant of each of the circular geometries. Using these is a bit more efficient than chopping down a larger primitive with a clipping plane.</li>
+<li>Added an optional tangent array to all geometry classes which can be used when a single tangent vector does not provide enough information to calculate tangent planes at every vertex. This was necessary to correctly apply dynamic lights to geometries such as domes and tori.</li>
+<li>Implemented line particles and added a flag to the <code>ParticleSystem</code> class which causes particles to render as a line connecting their current positions to their previous positions.</li>
+<li>Implemented preliminary support for the <code>GL_NV_vertex_program</code> extension.</li></ul>
+<h2><span id="September_9.2C_2000"></span><span class="mw-headline" id="September_9,_2000">September 9, 2000</span></h2>
+<ul><li>Implemented analytical root solvers for arbitrary cubic and quartic polynomials.</li>
+<li>Implemented a general revolved cubic spline geometry class. This allows a level designer to specify a set of points which represent the radius of a cylindrically symmetrical object at various heights above the object's base. The World Builder calculates a smooth cubic spline connecting the given points and revolves the spline about the local z-axis. Ray intersection calculations involving this geometry class are mathematically precise. The object isn't just surrounded by a bounding cylinder for collision detection -- the points of intersection of a line with the actual cubic surface are determined allowing accurate interaction with other objects.</li>
+<li>Added adaptive subdivision to the revolved cubic spline geometry. This puts the vertical subdivisions where they need to be (where the curvature is the greatest) in order to give the object the best possible appearance.</li>
+<li>Upgraded the input configuration window so that it uses the recently implemented hierarchical interface context architecture.</li>
+<li>Tweaked the Game Module code which controls the conditions under which a grenade comes to a rest.</li></ul>
+<h2><span id="September_2.2C_2000"></span><span class="mw-headline" id="September_2,_2000">September 2, 2000</span></h2>
+<ul><li>Implemented sky boxes -- boxes with up to six sides which move with the camera and contain a distant background image. When rendering a scene, the World Manager keeps track of which portions of the skybox can be seen through portals leading to the outside world and then renders only those parts which are visible.</li>
+<li>Added sky box parameters to the World Builder, including rotation parameters for creating outer space effects.</li>
+<li>Added sky box support to the Ray Tracer so that environment maps pick up the sky box texture maps instead of just the background color when a ray doesn't hit anything.</li>
+<li>Added the ability to specify color arrays for <code>Renderable</code> objects using 4-byte colors in addition to 4-float colors.</li>
+<li>Improved the appearance of dynamic lights when they are very close to curved surfaces.</li>
+<li>Implemented automatic mirror detection in the <code>TunnelView</code> class and added a winding direction state to the Graphics Manager which is flipped when rendering through a mirror.</li>
+<li>Tweaked several special effects so that they render symmetrically through mirrors.</li>
+<li>Implemented automatic texture coordinate alignment in the World Editor.</li>
+<li>Added a rocket exhaust glow effect to the Game Module.</li></ul>
+<h2><span id="August_26.2C_2000"></span><span class="mw-headline" id="August_26,_2000">August 26, 2000</span></h2>
+<ul><li>Implemented a subfrustum projection matrix calculation for the <code>TunnelView</code> class which enables optimal use of hardware clipping for remotely rendered scenes through portals and mirrors.</li>
+<li>Added fading parameters to the <code>TunnelMarker</code> class so that the transparency of the structure covering the tunnel can be adjusted based on the camera's distance from the tunnel.</li>
+<li>Finished all optimizations for portal and tunnel rendering. The engine now performs very optimal geometry visibility culling through portals.</li>
+<li>Added a portal count to the graphics stats window.</li>
+<li>Added a function to the World Manager which enumerates all structures which intersect a given sphere. This is now used to determine what structures are illuminated by dynamic lights and what structures to which surface markings need to be applied.</li>
+<li>Implemented a primitive geometry class in the Ray Tracer for an inverted disk (a plate with a hole cut out of it).</li>
+<li>Added primitive geometry classes to the Ray Tracer corresponding to the positive halves of each of the circular geometries.</li></ul>
+<h2><span id="August_19.2C_2000"></span><span class="mw-headline" id="August_19,_2000">August 19, 2000</span></h2>
+<ul><li>Ripped out the enhanced BSP tree code. It wasn't working out as well as I had hoped.</li>
+<li>Implemented a generalized <code>View</code> class (and specialized subclasses) which represent the viewer. These will allow easier implementation of remote scene rendering (e.g., areas visible through teleporters or viewscreens). These also make the architecture for switching between the World Manager views, the Window Manager views, and any <code>Viewport</code> interface elements a lot cleaner.</li>
+<li>Implemented a remote rendering architecture which allows a scene to be rendered from multiple perspectives. This is used to produce effects such as video screens, mirrors, and teleporters through which the player can see distance regions of the world.</li>
+<li>Added the <code>TunnelMarker</code> class to the World Editor which specifies the location, shape, and target region for a remote rendering portal.</li>
+<li>Added the <code>SoundMarker</code> class to the World Editor which indicates that a sound should emanate from a specific location in the World.</li>
+<li>Added a list of sound sources to the Volume class. Sound sources belong to the smallest volume which contains their audible ranges.</li>
+<li>Added more precise distance functions to each structure so that dynamic lights would illuminate fewer objects that were outside their ranges.</li>
+<li>Added a focal length setting (which controls the field of view) to the World Manager.</li></ul>
+<h2><span id="August_12.2C_2000"></span><span class="mw-headline" id="August_12,_2000">August 12, 2000</span></h2>
+<ul><li>Implemented an entirely new architecture for large-scale geometry management, collision detection, and visibility determination. Worlds are now organized into a hierarchical tree of disjoint zones, each of which has its own BSP tree storing the geometry contained in the zone. When rendering, the World Manager determines inside which zone the camera lies and renders that zone's BSP tree first.</li>
+<li>Implemented a portal architecture which connects zones to other zones at the same level in the tree or to enclosing zones. After the BSP tree for the zone containing the camera is rendered, the World Manager scans through the list of portals for that zone. If a portal is visible, then the zone to which that portal connects is rendered in a recursive manner, but restricted to the view volume determined by the camera position and the vertices of the portal. (Thus, all world geometry rendered during a single frame must be connected to the zone containing the camera through a path of visible portals.)</li>
+<li>Enhanced the BSP tree design so that structures which intersect another structure's splitting plane are no longer referenced by both the positive and negative subspaces. Instead, the set of structures which intersect the splitting plane for a particular BSP tree node are further organized into another mini-BSP tree using a splitting plane perpendicular to the original splitting plane. This can happen a third time using the splitting plane perpendicular to the first two, but any geometry remaining after that (which must intersect the structure which originally split it) is just crammed onto the same BSP node.</li>
+<li>Implemented the following Zone subclasses: <code>InfiniteZone</code>, <code>PolyhedronZone</code>, <code>CylinderZone</code>, <code>SphereZone</code>, and <code>BoxZone</code>.</li>
+<li>Generalized the sphere-frustum and cylinder-frustum intersection tests to work with the arbitrary polyhedral view volumes created by portals.</li>
+<li>Upgraded the obstruction, collision, and sound occlusion detection code to operate on the new zone hierarchy and BSP tree format.</li>
+<li>Removed the BSP tree for environmental volumes and replaced it with a hierarchical volume tree.</li>
+<li>Added an <code>InfiniteVolume</code> class to act as the top level volume in the environmental volume tree.</li>
+<li>Added geometry flags for indicating whether structures can receive surface markings or dynamic lighting.</li></ul>
+<h2><span id="August_5.2C_2000"></span><span class="mw-headline" id="August_5,_2000">August 5, 2000</span></h2>
+<ul><li>Improved the surface marking triangle generation algorithm. It now creates an optimal set of triangles corresponding to the intersection of a surface with the marking boundaries.</li>
+<li>Implemented a generalized shader architecture. Multiple texture layers and special effects on all renderable objects are now represented by a series of <code>Shader</code> classes.</li>
+<li>Implemented high-quality dynamic light sources using the new shader architecture.</li>
+<li>Improved the method by which lists of renderable objects are sorted. It is now possible to specify for each renderable object which shader (and thus which texture map) to sort by.</li>
+<li>Added an optimization to the <code>ChainStructure</code> rendering code.</li>
+<li>Added the rocket launcher code and the <code>Rocket</code> projectile class to the Game Module.</li>
+<li>Added dynamic lighting effects to the Game Module.</li></ul>
+<h2><span id="July_29.2C_2000"></span><span class="mw-headline" id="July_29,_2000">July 29, 2000</span></h2>
+<ul><li>Created a special <code>ChainGeometry</code> class which, during a world build, organizes a group of appropriately positioned transparent geometries into a one-sided BSP tree, or "chain". During gameplay, the corresponding <code>ChainStructure</code> class is then able to render all of the transparent faces in back-to-front order. This will be used primarily to render plantlife, whose texture maps generally contain a lot of transparent regions.</li>
+<li>Rewrote most of the Display Manager. The DirectDraw code has been replaced by the equivalent Win32 function calls, the MacOS DrawSprocket code has been simplified, and the gamma loading subroutine can now be overridden (allowing the OpenGL context to install its own gamma loader).</li>
+<li>Added support for the <code>WGL_3DFX_gamma_control</code> extension.</li>
+<li>Implemented display fading functionality for the Windows build (it's been Mac-only for a while).</li>
+<li>Added the <code>Global</code> base class template which provides a more elegant way to clean up a global pointer to an object when an exception is thrown from its constructor.</li>
+<li>Added the <code>ObjectWrapper</code>, <code>SharedWrapper</code>, and <code>ArrayWrapper</code> classes to encapsulate safe pointers to normal objects, reference counted objects, and arrays, respectively.</li></ul>
+<h2><span id="July_22.2C_2000"></span><span class="mw-headline" id="July_22,_2000">July 22, 2000</span></h2>
+<ul><li>Gave the Window Manager a major overhaul. The <code>Window</code> class and <code>InterfaceElement</code> class are now derived from a new <code>InterfaceContext</code> class, which is itself derived from the <code>DrawContext</code> class.</li>
+<li>Implemented a hierarchical interface element architecture. Every interface element now exists in its own local coordinate space. This will allow for easy implementation of scrolling control panels in the World Editor.</li>
+<li>Added the <code>ColorBox</code> interface element and the associated <code>ColorPicker</code> dialog box to serve as a standard interface for choosing RGBA colors in the World Editor.</li>
+<li>Added the ability to insert division lines into the <code>PopupMenu</code> interface element.</li>
+<li>Added the Build Settings panel to the World Editor.</li>
+<li>Added a clip rectangle stack to the <code>DrawContext</code> class.</li>
+<li>Implemented 2D clipping in text renderer.</li>
+<li>Added underwater behavior for the grenades in the game module.</li>
+<li>Implemented support for the <code>GL_NV_fog_distance</code> extension.</li></ul>
+<h2><span id="July_15.2C_2000"></span><span class="mw-headline" id="July_15,_2000">July 15, 2000</span></h2>
+<ul><li>Designed <code>Link</code> and <code>LinkTarget</code> classes to provide a leak-proof general mechanism for cross linking between different objects.</li>
+<li>Added boundary and interior points to the water ripple effect. Water geometry can now be carved into any arbitrary shape.</li>
+<li>Improved light map and environment map generation in the Ray Tracer.</li>
+<li>Started implementing the terrain classes in the Ray Tracer and the World Manager.</li>
+<li>Fixed a collision detection problem for characters when running into surfaces forming an acute angle with the ground.</li>
+<li>Implemented auto-scrolling for the <code>PopupMenu</code> interface element.</li>
+<li>Finally decided that it was necessary to add general 2D draw contexts to the Window Manager. Added the <code>DrawContext</code> class which encapsulates a pixel map, a current color, a current pattern, and a clipping rectangle. It also has a movable origin.</li>
+<li>Implemented clipping for all 2D drawing primitives. Everything is now clipped to the draw context bounds and the current clipping rectangle.</li></ul>
+<h2><span id="July_8.2C_2000"></span><span class="mw-headline" id="July_8,_2000">July 8, 2000</span></h2>
+<ul><li>Moved the water and fire effects into their own Structure classes and added corresponding geometry classes to the Ray Tracer and World Builder.</li>
+<li>Implemented per-vertex light map displacement for liquid surfaces. This allows shadows to be mapped onto the waves in the correct manner.</li>
+<li>Added water collision reactions to the game module. Lobbing a grenade into the water now creates waves emanating from the point of impact.</li>
+<li>Added generalized support for texture coordinate generation. TexGen modes currently supported are object linear, sphere map, normal vector, and reflection vector.</li>
+<li>Implemented support for the <code>GL_EXT_secondary_color</code> extension.</li>
+<li>Implemented support for the <code>GL_NV_register_combiners</code> extension.</li>
+<li>Rewrote the multipass/multitexture management portion of the main <code>Renderable</code> execution pipeline so that it could handle arbitrary register combinations.</li>
+<li>Implemented per-pixel light map modulated specular highlight (phong) shading and applied it to the water effect.</li>
+<li>Added the <code>ReflectionAttribute</code> class to the Ray Tracer.</li>
+<li>Added the <code>CubeMapMarker</code> class to the Ray Tracer and World Builder. This object is used to mark locations where cube environment maps should be ray traced when a world is built. These maps can then be referenced by geometry having the reflection attribute.</li></ul>
+<h2><span id="July_1.2C_2000"></span><span class="mw-headline" id="July_1,_2000">July 1, 2000</span></h2>
+<ul><li>Added a special object structure to the BSP tree building code which allows special effects such as fire to exist in the global tree, and thus drawn in the correct back-to-front order with respect to other transparent structures.</li>
+<li>Designed the mechanism for loading and saving world editor data and implemented C++ class serialization for all Ray Tracer objects.</li>
+<li>Implemented support for the <code>GL_EXT_texture_edge_clamp</code> extension.</li>
+<li>Added support for command shortcut keys in the Window Manager.</li>
+<li>Implemented the ability to resize windows with real-time feedback.</li>
+<li>Implemented texture map copy-back from the frame buffer. This will be used to copy the contents of a 3D viewport back into a window's texture array whenever the viewport is updated.</li>
+<li>Added orthographic projection support to the 3D viewport dialog element.</li>
+<li>Changed the MacOS sound streaming thread from cooperative to preemptive, now that the operating system can handle file access in preemptive threads.</li>
+<li>Improved operating system event handling for both Windows and MacOS builds.</li>
+<li>Made the necessary changes to build the engine with Visual C++. Going from a standard-conformant compiler to Microsoft's lame compiler is a royal pain.</li>
+<li>Finished the File Manager reference documentation.</li></ul>
+<h2><span id="June_24.2C_2000"></span><span class="mw-headline" id="June_24,_2000">June 24, 2000</span></h2>
+<ul><li>Implemented dynamic level of detail for all world structures. The level of detail is chosen based on the size of each structure, its distance from the camera, and a user-defined bias.</li>
+<li>Implemented BSP tree order rendering for transparent world structures. Transparent structures are now rendered in back to front order after all opaque structures and after all movable objects.</li>
+<li>Added flags field to the <code>Node</code> class in the World Builder. These flags let the World Builder know that each subnode shares some special property with the other subnodes on the same branch. For instance, this allows one to create a detail group in which every object must change its level of detail at the same time.</li>
+<li>Added flag to the <code>Geometry</code> class which controls whether mipmaps are generated for its light map.</li>
+<li>Added scorch marks for grenade explosions in the game module.</li></ul>
+<h2><span id="June_17.2C_2000"></span><span class="mw-headline" id="June_17,_2000">June 17, 2000</span></h2>
+<ul><li>Added <code>Cone</code> geometry class to the World Builder.</li>
+<li>Implemented collision detection for cone structures.</li>
+<li>Added maximum slope cut-off in the collision detection system. This prevents characters from walking up inclines that are too steep.</li>
+<li>Added better controls for curved surface subdivision to the World Builder.</li>
+<li>Added support for alternate texture map and light map natural parameterizations to the World Builder.</li>
+<li>Improved Sound Manager performance a bit.</li></ul>
+<h2><span id="June_10.2C_2000"></span><span class="mw-headline" id="June_10,_2000">June 10, 2000</span></h2>
+<ul><li>Implemented general surface marking system. Scorch marks and blood splatters can now be applied to any surface in the game.</li>
+<li>Added normalize render state to the <code>Renderable</code> class. This enables or disables the <code>GL_NORMALIZE</code> state.</li>
+<li>Moved the following windows to the game module: Title, Host Game, Join Game, Setup Player, Chat, and Scoreboard.</li>
+<li>Added notification function to the game module that lets it know when it's queried for server information.</li>
+<li>Improved Memory Manager copy and fill performance.</li>
+<li>Wrote reference documentation for the game module functions which are called from the Message Manager.</li></ul>
+<h2><span id="June_3.2C_2000"></span><span class="mw-headline" id="June_3,_2000">June 3, 2000</span></h2>
+<ul><li>Modified the Message Manager sending algorithm to better handle high volume outgoing message traffic.</li>
+<li>Added automatic port selection to the Network Manager.</li>
+<li>Added message flags to the Message class which specify special properties such as whether the message should be sent reliably.</li>
+<li>Finished the Network Manager reference documentation.</li>
+<li>Worked on reference documentation for the File Manager, Time Manager, and Utility Library.</li></ul>
+<h2><span id="May_27.2C_2000"></span><span class="mw-headline" id="May_27,_2000">May 27, 2000</span></h2>
+<ul><li>Added a network status window which displays the state of the network packet buffers.</li>
+<li>Beefed up security in the Network Manager to better handle junk packet attacks.</li>
+<li>Worked around an evil nasty bug in WinSock that can cause the wrong data to get sent across the wire.</li>
+<li>Added the protocol number to the server query broadcast message.</li>
+<li>Finished the Message Manager reference documentation.</li>
+<li>Started the Network Manager reference documentation.</li></ul>
+<h2><span id="May_20.2C_2000"></span><span class="mw-headline" id="May_20,_2000">May 20, 2000</span></h2>
+<ul><li>Added 32-bit parameter to network control packets.</li>
+<li>Moved protocol check to the Network Manager level.</li>
+<li>Moved max connections check to the Network Manager level.</li>
+<li>Improved packet encryption architecture a little bit.</li>
+<li>Added settings for reliable packet resend attempts.</li>
+<li>Beefed up network file transfer architecture.</li>
+<li>Added file request and transfer completion code to the download window.</li>
+<li>Moved chat message display code into the game module.</li>
+<li>Improved handling of connection timeouts.</li></ul>
+<h2><span id="May_13.2C_2000"></span><span class="mw-headline" id="May_13,_2000">May 13, 2000</span></h2>
+<ul><li>Finalized client-server network topology implementation.</li>
+<li>Added connect, disconnect, and timeout messages for notifying other players when someone enters or leaves a game.</li>
+<li>Added client orientation state update messages which are sent to the server at regular intervals.</li>
+<li>Fixed a rare problem in which the wrong texture map can get used right after another texture map is updated.</li>
+<li>Fixed a problem in which repetitively hitting the escape or tilde key could cause these keys to stop being recognized.</li></ul>
+<h2><span id="May_6.2C_2000"></span><span class="mw-headline" id="May_6,_2000">May 6, 2000</span></h2>
+<ul><li>Added a function to the World Manager which places a sound source in the world and applies all of the necessary spatialization effects.</li>
+<li>Added a modifier matrix to the <code>Bone</code> class. This allows an additional transform to be applied to a bone after the animation transform is applied.</li>
+<li>Added spine twisting to the <code>Soldier</code> class. No matter what animation is playing, the soldier now smoothly twists his upper body to point in the direction that the player is looking.</li>
+<li>Implemented tumbling motion for the <code>Grenade</code> projectile.</li>
+<li>Added a small random delay to sounds attached to a Fire object so that if someone spawns or teleports into an area where they can hear a bunch of torches, the sounds aren't all in phase.</li>
+<li>Implemented random spawn location selection.</li>
+<li>Fixed a small problem with the OpenGL material state change code in the <code>Renderable</code> execution pipeline.</li></ul>
+<h2><span id="April_29.2C_2000"></span><span class="mw-headline" id="April_29,_2000">April 29, 2000</span></h2>
+<ul><li>Finished complete support for EAX environmental audio extensions.</li>
+<li>Added Environment component class to the world editor. Environments define certain properties, such as acoustics, that apply to a region of the world.</li>
+<li>Implemented secondary BSP tree for environment volumes. EAX listener properties are now modified depending on which environment the camera is located in.</li>
+<li>Added <code>Material</code> class to the world editor. Material information is now referenced by every piece of geometry in the world and describes characteristics such as elasticity, frictional properties, and acoustical properties.</li>
+<li>Implemented sound source obstruction effects. When a spatialized sound is played, the material of any structure between the sound source and the listener is used to apply obstruction effects to the sound.</li>
+<li>Added <code>Location</code> marker class to the world editor. This is used for things like spawn locations and teleport destinations.</li>
+<li>Moved most byte-swapping code into the structures on which they operate.</li>
+<li>Added better diagnostics to engine initialization code.</li>
+<li>Improved default scorch mark texture map.</li>
+<li>Added Audio Settings window.</li></ul>
+<h2><span id="April_22.2C_2000"></span><span class="mw-headline" id="April_22,_2000">April 22, 2000</span></h2>
+<ul><li>Added "Anchor to Origin" option to animation import dialog. This allows you to force a character to remain at the same position throughout an animation which would normally carry the character away from the origin.</li>
+<li>Implemented Fighter player class in the game module. This class serves as a base for the other player classes and takes care of simple motion sequences such as running, jumping, and turning.</li>
+<li>Added <code>MaterializeEffect</code> particle system to the game module.</li>
+<li>Redesigned default particle texture map -- looks much better now.</li>
+<li>Added support for material diffuse colors to the <code>Renderable</code> class.</li>
+<li>Added fading functionality to the <code>Model</code> class.</li>
+<li>Expanded input configuration window to support an unlimited number of controls.</li>
+<li>Implemented basic support for EAX environmental audio extensions.</li></ul>
+<h2><span id="April_15.2C_2000"></span><span class="mw-headline" id="April_15,_2000">April 15, 2000</span></h2>
+<ul><li>Implemented line-of-sight obstruction determination. This is similar to collision detection, but doesn't look for the nearest collision and doesn't return any information about the point of collision itself. It's just a yes or no answer to the question "Can I see point A from point B?".</li>
+<li>Wrote surface marking system for scorch marks, blood splatters, etc.</li>
+<li>Added collision handling routines for projectiles.</li>
+<li>Implemented character-environment interactive collision detection, including sliding on walls and climbing stairs.</li>
+<li>Wrote <code>ChaseCamera</code> camera class for following players around.</li>
+<li>Added <code>Grenade</code> projectile class to the game module.</li>
+<li>Added weapon switching controls to the game module.</li>
+<li>Implemented multiple world editor viewport configurations.</li>
+<li>Added routine to the math library that takes an arbitrary 3D vector and returns another vector which is perpendicular to it.</li></ul>
+<h2><span id="April_8.2C_2000"></span><span class="mw-headline" id="April_8,_2000">April 8, 2000</span></h2>
+<ul><li>Implemented global collision detection.</li>
+<li>Ripped out animation sequencing code -- I'm not happy with it.</li>
+<li>Added frustum primitive geometry type (for visualizing cylinder-frustum intersection tests).</li>
+<li>Added shadow outline display for model debugging purposes.</li>
+<li>Beefed up shadow edge finder to handle edges shared by more than two triangles.</li>
+<li>Implemented weapon swapping code in the <code>Soldier</code> class.</li></ul>
+<h2><span id="April_1.2C_2000"></span><span class="mw-headline" id="April_1,_2000">April 1, 2000</span></h2>
+<ul><li>Added build progress window.</li>
+<li>Began working on the world editor window.</li>
+<li>Added code to clamp the cursor to the active monitor's rectangle.</li>
+<li>Fixed case when fog settings would not get restored after changing monitor resolutions.</li>
+<li>Added minimum and maximum values to <code>Animator</code> class.</li>
+<li>Added automatic transform/position updating to the <code>Model</code> class. This is used for animation loops and transitions in which the model has been moved away from the origin. The position and orientation of the model is smoothly updated at the point that the animation loops or blends into another animation sequence.</li>
+<li>Added <code>Soldier</code> player class to the game module.</li>
+<li>Added <code>PlasmaGun</code> weapon class to the game module.</li></ul>
+<h2><span id="March_25.2C_2000"></span><span class="mw-headline" id="March_25,_2000">March 25, 2000</span></h2>
+<ul><li>Improved BSP tree construction so that fewer nodes are created.</li>
+<li>Added ability to have a projectile with no model so that projectiles made completely out of particles could be used.</li>
+<li>Took out <code>ParticleType</code> data type and changed <code>ParticleSystem</code> class so that you have to explicitly specify a texture map.</li>
+<li>Implemented plasma burst projectile.</li>
+<li>Added input action for firing your gun.</li>
+<li>Wrote animation sequencing system. This includes all animation transitions and all frame-based events (for things like sound effects).</li></ul>
+<h2><span id="March_18.2C_2000"></span><span class="mw-headline" id="March_18,_2000">March 18, 2000</span></h2>
+<ul><li>Added a stats windows that lists how many vertices, faces, structures, etc., were rendered in a single frame.</li>
+<li>Removed sub-namespace for the Ray Tracer components and renamed some classes to avoid conflicts with class names in the C4 namespace.</li>
+<li>Added plane-frustum intersection test to the Camera class.</li>
+<li>Implemented BSP tree visibility culling.</li>
+<li>Added subclasses to the Structure class to accommodate specialized collision detection.</li></ul>
+<h2><span id="March_11.2C_2000"></span><span class="mw-headline" id="March_11,_2000">March 11, 2000</span></h2>
+<ul><li>Implemented cylinder-frustum intersection test. This algorithm will appear in the forthcoming book <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://gameenginegems.com/gemsdb/book.php?id=3  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://gameenginegems.com/gemsdb/book.php?id=3%27" tppabs="http://gameenginegems.com/gemsdb/book.php?id=3"><i>Game Programming Gems</i></a>.</li>
+<li>Applied cylinder visibility test to shadow volumes.</li>
+<li>Finished BSP tree construction code in the World Builder.</li>
+<li>Put separate AltiVec build back into the project.</li>
+<li>Added cylinder primitive geometry type (for bounding volume display).</li>
+<li>Added plate primitive geometry type (for splitting plane display).</li>
+<li>Added <code>Vector4D</code> class which is now used to represent planes.</li></ul>
+<h2><span id="March_4.2C_2000"></span><span class="mw-headline" id="March_4,_2000">March 4, 2000</span></h2>
+<ul><li>Started game module project and moved all game-specific code to it.</li>
+<li>Had to roll my own run-time libraries to get cross-module exception handling to work.</li>
+<li>Updated config window to work with new input system features.</li>
+<li>Implemented cube environment map generation in the World Builder.</li>
+<li>Added supersampling settings to the Ray Tracer.</li></ul>
+<h2><span id="February_26.2C_2000"></span><span class="mw-headline" id="February_26,_2000">February 26, 2000</span></h2>
+<ul><li>Hooked up input to the local player.</li>
+<li>Generalized input system so that game-specific actions could be added.</li>
+<li>Implemented spectator mode for when there is no local player.</li>
+<li>Added precalculated per-frame bounding volumes to the animation resource.</li>
+<li>Designed system for dynamically loaded game modules.</li></ul>
+<h2><span id="February_19.2C_2000"></span><span class="mw-headline" id="February_19,_2000">February 19, 2000</span></h2>
+<ul><li>Implemented projection matrix based polygon offset. This technique will appear in the forthcoming book <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://gameenginegems.com/gemsdb/book.php?id=3  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://gameenginegems.com/gemsdb/book.php?id=3%27" tppabs="http://gameenginegems.com/gemsdb/book.php?id=3"><i>Game Programming Gems</i></a>.</li>
+<li>Generalized the system for run-time generated textures.</li>
+<li>Established a division between general engine code and game-specific code.</li>
+<li>Added rendering options to the Mesh class to allow the enabling or disabling of things like shadows.</li>
+<li>Added light source attenuation factors.</li>
+<li>Removed Pair template.</li>
+<li>Added ability to install new console commands.</li></ul>
+<h2><span id="February_12.2C_2000"></span><span class="mw-headline" id="February_12,_2000">February 12, 2000</span></h2>
+<ul><li>Added plasma particle type.</li>
+<li>Designed generated texture for plasma flow.</li>
+<li>Added even more texture mapping support to the 3D Studio MAX plugins.</li>
+<li>Added animation modes to the model window.</li></ul>
+<h2><span id="February_5.2C_2000"></span><span class="mw-headline" id="February_5,_2000">February 5, 2000</span></h2>
+<ul><li>Beefed up 3D Studio MAX plugins to greatly increase support for different texture mapping styles.</li>
+<li>Rewrote model import system (mainly to extend mapping capabilities).</li>
+<li>Added light sources to the world resource.</li>
+<li>Finished model window functionality.</li>
+<li>Improved stencil shadowing system.</li>
+<li>Added <code>IconButton</code> interface element.</li></ul>
+<h2><span id="January_29.2C_2000"></span><span class="mw-headline" id="January_29,_2000">January 29, 2000</span></h2>
+<ul><li>Added skeleton display to the model window.</li>
+<li>Upgraded 3D Studio MAX plugins to support release 3.1 and added a way to extend the skeletal hierarchy.</li>
+<li>Added Marker object class to the World Builder. This class holds the location and properties of intangible objects such as sound sources, special effects, and spawn locations.</li>
+<li>Implemented a marker for the fire effect.</li>
+<li>Added support for all OpenGL fog modes.</li>
+<li>Added environmental properties to the world resource. These include things like ambient light and fog parameters.</li>
+<li>Removed support for the <code>GL_EXT_clip_volume_hint</code> extension. It never makes any difference.</li></ul>
+<h2><span id="January_22.2C_2000"></span><span class="mw-headline" id="January_22,_2000">January 22, 2000</span></h2>
+<ul><li>Removed <code>ColorARGB</code> class (all usages changed to <code>ColorRGBA</code>).</li>
+<li>Added supersampling levels to lightmap generation.</li>
+<li>Added ability to specify texture wrapping modes in s and t directions separately.</li>
+<li>Added lightmap wrapping mode specification to Ray Tracer geometry classes.</li>
+<li>Implemented box, disk, annulus, cylinder, and dome geometry classes in the Ray Tracer.</li>
+<li>Implemented point and spot light classes in the Ray Tracer.</li>
+<li>Added texture matrix to the <code>TextureMapAttribute</code> class.</li>
+<li>Added ability to reverse normals for all geometry classes.</li>
+<li>Hooked up diffuse color attribute to the World Builder.</li>
+<li>Added ability to attach a sound to the fire effect.</li>
+<li>Implemented screenshot function.</li></ul>
+<h2><span id="January_15.2C_2000"></span><span class="mw-headline" id="January_15,_2000">January 15, 2000</span></h2>
+<ul><li>Implemented lightmap generation system in the Ray Tracer.</li>
+<li>Added rendering order variable to the <code>Renderable</code> class so that transparent objects could be forced to render last.</li>
+<li>Added function to the Time Manager for retrieving the current date and time.</li>
+<li>Modified fire objects so that they all use the same dynamic texture instead of each one having its own.</li>
+<li>Designed BSP tree architecture which allows the splitting planes to hold complex geometry.</li>
+<li>Implemented Structure base class which holds the geometry for a BSP tree node.</li>
+<li>Added tessellation system to the Ray Tracer for generating vertex data.</li>
+<li>Designed file format for world geometry.</li>
+<li>Wrote the World Builder -- this takes a scene from the world editor, builds a BSP tree, uses the Ray Tracer to generate light maps, and writes out a world resource.</li></ul>
+<h2><span id="January_8.2C_2000"></span><span class="mw-headline" id="January_8,_2000">January 8, 2000</span></h2>
+<ul><li>Implemented system for generating cool electrical effects.</li>
+<li>Added support for triangle fans, triangle strips, and quad strips.</li>
+<li>Modified the Text Manager to allow easier addition of new fonts.</li>
+<li>Generalized object type designation to allow easier addition of new object subclasses.</li>
+<li>Overhauled the attribute system in the Ray Tracer so that it parallels the capabilities of 3D hardware.</li></ul>
+<h2><span id="December_25.2C_1999"></span><span class="mw-headline" id="December_25,_1999">December 25, 1999</span></h2>
+<ul><li>Added fog render state to the <code>Renderable</code> class.</li>
+<li>Added wireframe render state to the <code>Renderable</code> class.</li>
+<li>Integrated cube environment map functionality into the texture combination algorithm.</li>
+<li>Finished the unified <code>Renderable</code> execution pipeline. Everything in the engine which can be rendered is now sorted by the texture maps that it uses and by its rendering state. When the list of renderable objects is executed, all of the details of multitexture combinations, multiple passes, and state changes now happen automatically and in optimal order.</li>
+<li>Added rendering options to the display settings.</li></ul>
+<h2><span id="December_18.2C_1999"></span><span class="mw-headline" id="December_18,_1999">December 18, 1999</span></h2>
+<ul><li>Implemented texture combination modes and the multitexture/multipass algorithm.</li>
+<li>Added support for the <code>GL_EXT_texture_env_add</code> extension.</li>
+<li>Added stencil buffer render state to the <code>Renderable</code> class.</li>
+<li>Implemented stencil buffer based shadowing system. Models can now cast shadows on their environment, other models, and even themselves.</li>
+<li>Added animation controls to the model window.</li>
+<li>Simplified the <code>StringID</code> type and removed the consequently no-longer-used Array template.</li></ul>
+<h2><span id="December_11.2C_1999"></span><span class="mw-headline" id="December_11,_1999">December 11, 1999</span></h2>
+<ul><li>Added level of detail controls to the model import window.</li>
+<li>Added level of detail functionality to the model window.</li>
+<li>Began research on the global visibility and collision detection systems.</li>
+<li>Added constant color render state to the <code>Renderable</code> class.</li>
+<li>Implemented bounding volume display.</li></ul>
+<h2><span id="December_4.2C_1999"></span><span class="mw-headline" id="December_4,_1999">December 4, 1999</span></h2>
+<ul><li>Added Windows support to font generator.</li>
+<li>Tweaked font generation a little bit to produce better spacing.</li>
+<li>Updated model resource format to let it take advantage of the recent rendering engine improvements.</li>
+<li>Finished dynamic level of detail system for rigid and deformable meshes.</li>
+<li>Began experimenting with fractal tree generation.</li></ul>
+<h2><span id="November_27.2C_1999"></span><span class="mw-headline" id="November_27,_1999">November 27, 1999</span></h2>
+<ul><li>Implemented new generalized rendering architecture. Every renderable object is now subclassed from a new <code>Renderable</code> class which encapsulates all of the vertex buffer, texture, and state information needed to draw itself.</li>
+<li>Included support for arbitrary multitexturing, which uses as many texture units as are available in hardware and reverts to multiple passes if there are more texture layers than the hardware can handle.</li>
+<li>Added support for several vertex buffer primitives.</li>
+<li>Modified several systems to use new vertex buffer types where appropriate.</li>
+<li>Implemented sort-by-state rendering to minimize hardware state changes.</li>
+<li>Improved texture map resource management.</li>
+<li>Added <code>RemoveAll()</code> function to the <code>List</code> template.</li></ul>
+<h2><span id="November_20.2C_1999"></span><span class="mw-headline" id="November_20,_1999">November 20, 1999</span></h2>
+<ul><li>Redesigned menu architecture. Every menu now exists as a separate window, allowing it to extend outside the window that it is attached to, as well as enabling some other effects.</li>
+<li>Improved texture map dicing algorithm for window contents.</li>
+<li>Fixed bug that screwed up shadows for windows with small height.</li>
+<li>Integrated AltiVec build into standard MacOS build. The startup code now detects the AltiVec processor and sets some function pointers accordingly.</li>
+<li>Implemented covariant normal transformation in the Ray Tracer.</li>
+<li>Added support for the <code>GL_EXT_clip_volume_hint</code> extension.</li>
+<li>Removed device list from control settings window.</li>
+<li>Integrated font generation tool into C4 source.</li></ul>
+<h2><span id="November_13.2C_1999"></span><span class="mw-headline" id="November_13,_1999">November 13, 1999</span></h2>
+<ul><li>Rewrote the Network Manager. There is now no limit on the number of simultaneous connections, and symmetric support for reliable and unreliable packets has been added. Also removed restriction on IP port numbers.</li>
+<li>Changed <code>List</code> template so that adding an object to a list would automatically remove it from any other list that it was a member of, removing the need to call <code>Detach()</code>.</li>
+<li>Added fix to the Input Manager to handle cases when the user presses multiple keys/buttons which map to the same action.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20240921180322
+Cache expiry: 86400
+Reduced expiry: false
+Complications: [no‐toc‐conversion]
+CPU time usage: 0.028 seconds
+Real time usage: 0.028 seconds
+Preprocessor visited node count: 234/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+
+<!-- Saved in parser cache with key c4_wiki:pcache:idhash:12-0!canonical and timestamp 20240921180322 and revision id 14. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Early_C4_Engine_Development_Worklog&oldid=14  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Early_C4_Engine_Development_Worklog&oldid=14%27" tppabs="https://c4engine.com/wiki/index.php?title=Early_C4_Engine_Development_Worklog&oldid=14">https://c4engine.com/wiki/index.php?title=Early_C4_Engine_Development_Worklog&amp;oldid=14</a>"</div></div>
+		<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="vector-menu mw-portlet mw-portlet-personal vector-user-menu-legacy" aria-labelledby="p-personal-label" role="navigation"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="pt-login" class="mw-list-item"><a href="index.php-title=Special-UserLogin&returnto=Early+C4+Engine+Development+Worklog&returntoquery=oldid=14.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:UserLogin&returnto=Early+C4+Engine+Development+Worklog&returntoquery=oldid%3D14" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li></ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="vector-menu mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-namespaces-label" role="navigation"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected mw-list-item"><a href="index.php-title=Early_C4_Engine_Development_Worklog.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Early_C4_Engine_Development_Worklog" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Talk:Early_C4_Engine_Development_Worklog  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Talk:Early_C4_Engine_Development_Worklog%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Talk:Early_C4_Engine_Development_Worklog&action=edit&redlink=1" rel="discussion" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="vector-menu mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	/>
+	<label
+		id="p-variants-label"
+		 aria-label="Change language variant"
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="vector-menu mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-views-label" role="navigation"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-view" class="selected mw-list-item"><a href="index.php-title=Early_C4_Engine_Development_Worklog.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Early_C4_Engine_Development_Worklog"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="index.php-title=Early_C4_Engine_Development_Worklog&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Early_C4_Engine_Development_Worklog&action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="index.php-title=Early_C4_Engine_Development_Worklog&action=history.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Early_C4_Engine_Development_Worklog&action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="vector-menu mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown" aria-labelledby="p-cactions-label" role="navigation"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	/>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<div>
+		<form action="http://www.c4engine.com/wiki/index.php" id="searchform"
+			class="vector-search-box-form">
+			<div id="simpleSearch"
+				class="vector-search-box-inner"
+				 data-search-loc="header-navigation">
+				<input class="vector-search-box-input"
+					 type="search" name="search" placeholder="Search C4 Engine Wiki" aria-label="Search C4 Engine Wiki" autocapitalize="sentences" title="Search C4 Engine Wiki [f]" accesskey="f" id="searchInput"
+				>
+				<input type="hidden" name="title" value="Special:Search">
+				<input id="mw-searchButton"
+					 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+				<input id="searchButton"
+					 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+			</div>
+		</form>
+	</div>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="vector-menu mw-portlet mw-portlet-navigation vector-menu-portal portal" aria-labelledby="p-navigation-label" role="navigation"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="n-mainpage-description" class="mw-list-item"><a href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="javascript:if(confirm(%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents%27" tppabs="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="vector-menu mw-portlet mw-portlet-tb vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="t-whatlinkshere" class="mw-list-item"><a href="index.php-title=Special-WhatLinksHere-Early_C4_Engine_Development_Worklog.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:WhatLinksHere/Early_C4_Engine_Development_Worklog" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Early_C4_Engine_Development_Worklog  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Early_C4_Engine_Development_Worklog%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Early_C4_Engine_Development_Worklog" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="index.php-title=Special-SpecialPages.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="index.php-title=Early_C4_Engine_Development_Worklog&oldid=14.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Early_C4_Engine_Development_Worklog&oldid=14" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="index.php-title=Early_C4_Engine_Development_Worklog&action=info.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Early_C4_Engine_Development_Worklog&action=info" title="More information about this page"><span>Page information</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" role="contentinfo" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 15 July 2023, at 09:20.</li>
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About">About C4 Engine Wiki</a></li>
+	<li id="footer-places-disclaimers"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-poweredbyico"><a href="javascript:if(confirm(%27https://www.mediawiki.org/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/%27" tppabs="https://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" tppabs="http://www.c4engine.com/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/></a></li>
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":57,"wgPageParseReport":{"limitreport":{"cputime":"http://www.c4engine.com/wiki/0.028","walltime":"http://www.c4engine.com/wiki/0.028","ppvisitednodes":{"value":234,"limit":1000000},"postexpandincludesize":{"value":0,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":2,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20240921180322","ttl":86400,"transientcontent":false}}});});</script>
+</body>
+</html>

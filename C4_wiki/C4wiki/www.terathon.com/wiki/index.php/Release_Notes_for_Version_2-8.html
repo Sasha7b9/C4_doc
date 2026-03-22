@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/Release_Notes_for_Version_2.0 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="Release Notes for Version 2.0,Creating a Terrain Palette,Generating a Font" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>Release Notes for Version 2.0 - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Release_Notes_for_Version_2.0";
+var wgTitle = "Release Notes for Version 2.0";
+var wgAction = "view";
+var wgArticleId = "2720";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "6975";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Release_Notes_for_Version_2_0">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Release Notes for Version 2.0</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p><b>Release date:</b> May 31, 2010
+</p>
+<a name="Core_Engine"></a><h2> <span class="mw-headline"> Core Engine </span></h2>
+<a name="Physics"></a><h3> <span class="mw-headline"> Physics </span></h3>
+<ul><li> This release contains the first version of the native C4 physics architecture. The native physics processing is enabled in a particular world by placing a special "physics node" anywhere in the root zone. The physics node has a physics controller attached to it for which global properties such as the acceleration of gravity can be adjusted. If a world does not contain a physics node in its root zone, then the native C4 physics is completely dormant when that world is played. This allows third-party physics libraries to be used with absolutely no extra cost to bypass the native physics.
+</li></ul>
+<ul><li> A physics object is created by assigning a rigid body controller to a node and creating one or more "shapes" as subnodes of that node. The shapes define the volume occupied by the physics object as seen by the physics simulation, and they are always fixed relative to each other within a single object. Each shape can have a different density, and the engine automatically calculates properties such as the center of mass and the inertia tensor.
+</li></ul>
+<ul><li> Rigid bodies can be connected by "joints" to other rigid bodies or to the static environment. Six types of joints are currently defined: spherical, universal, discal, revolute, cylindrical, and prismatic.
+</li></ul>
+<ul><li> A new node type called a "field" has been added to the engine, and it represents a volume inside of which a force can be applied to physics objects. Forces are applied to objects in a field through the extensible <code><a href="http://www.terathon.com/c4engine/doco/PhysicsMgr/Force.html" class="external text" title="http://www.terathon.com/c4engine/doco/PhysicsMgr/Force.html">Force</a></code> class. After a field has been created in the World Editor, a force can be assigned to that field in the Node Info window. In this release, there are two forces built into the engine, a fluid force and a wind force. The fluid force applies buoyancy and drag, and it can be configured to simulate a current. The wind force applies air drag for a wind current. Custom forces can be defined by creating subclasses of <code>Force</code> and registering them with the engine.
+</li></ul>
+<ul><li> A basic mover controller is provided by the engine. This controller moves a rigid body from point A to point B (and handles the reverse direction, too) under script control. This controller can be used to implement things like simple elevators.
+</li></ul>
+<a name="Terrain"></a><h3> <span class="mw-headline"> Terrain </span></h3>
+<ul><li> The voxel terrain system now includes a seamless geomip level-of-detail algorithm that is the product of a large R&amp;D project at Terathon. As terrain is edited, the engine automatically creates lower-resolution terrain geometries and arranges all of the terrain geometry nodes in an octree structure. When terrain is rendered, special polygons are inserted along the boundaries between terrain geometries of different resolutions to produce a smooth transition from high-resolution to lower-resolution meshes. Since voxel terrain is inherently volumetric, this kind of linkage between neighboring meshes can get very complicated, and it was necessary to develop a new algorithm to produce a robust result with real-time performance.
+</li></ul>
+<ul><li> The terrain-specific shading capabilities of the engine have been modified in this release, partially to accommodate the new terrain LOD system. The four six-sided texture cubes used to specify texture palette entries have been replaced by two sets of three textures, with the three entries in each set representing the (a) up direction, (b) down direction, and (c) all horizontal directions.
+</li></ul>
+<ul><li> Existing terrains need to be converted in order to retain their previous texture settings and blending information. To convert a terrain block, select all of the terrain geometries in the editor and press Ctrl-R to rebuild them. (The easiest way to select all of the terrain geometries is to select one geometry, press Ctrl-Up-Arrow to select the parent block, and then press Ctrl-Down-Arrow to select all of the block's subnodes.) Some texturing capabilities in the previous version do not translate perfectly into the new scheme, so it's possible that parts of the terrain will have textures different from what they had before. In these cases, it will be necessary to manually paint new materials onto those areas to update the textures.
+</li></ul>
+<ul><li> The Terrain Texture and Terrain Normal shader processes have been extended so that custom blending of terrain materials is possible. By default, these processes fetch colors from both the primary and secondary terrain textures (where each fetch really represents a triplanar texture blend) and then blends them together using the blend data from the terrain mesh. A new setting has been added that lets you turn off blending and only fetch either the primary or secondary texture. You can then blend the textures any way you want. The default blend is given by a linear interpolation of the primary and secondary textures using the blue component of the vertex color as the interpolation parameter.
+</li></ul>
+<ul><li> The terrain material painting capabilities have been expanded in this release. Materials can now be specified on a per-voxel basis instead of a per-geometry basis, and the per-voxel blending state has been decoupled from the material IDs. There are now two paint brushes in the editor: one that modifies the blend values, and another that only modifies the materials. There is also a check box that enables material replacement when using any of the other terrain tools.
+</li></ul>
+<ul><li> The engine can now use a special terrain palette texture resource that references a set of separate 2D texture map resources. This allows many different palettes to share textures from a (possibly large) pool of plain 2D texture maps, and it removes the need to store terrain palettes in two different formats for hardware compatibility. When a terrain palette texture map is loaded, it loads all of the texture maps that it references and assembles them into the optimal format for the available hardware.
+</li></ul>
+<a name="Shaders"></a><h3> <span class="mw-headline"> Shaders </span></h3>
+<ul><li> A new shader process called Kill Fragment has been added to the engine. This process can accept one or two scalar inputs, and if the first input is less than the second input, then the current fragment is not rendered. If the second input is omitted, then it is assumed to be zero. This process can be used as a substitute for alpha testing when the alpha output needs to be used for something else like transparency, glow, or bloom.
+</li></ul>
+<ul><li> A new shader process called Magnitude 3D has been added to the engine. This process takes the dot product of an input vector with itself and outputs the square root of the result.
+</li></ul>
+<ul><li> A new shader process called Front Normal has been added to the engine. This process takes a normal vector as input and negates its <i>z</i> component if the <i>z</i> component of the tangent-space light direction is negative. This is useful when rendering two-sided triangles with a normal map because it has the effect of always facing the normal vector to the front with respect to the light direction.
+</li></ul>
+<ul><li> The second input for the Set if Less Than and Set if Greater Equal shader processes has been made optional. If the second input is omitted, then it is assumed to be zero.
+</li></ul>
+<a name="Scripts"></a><h3> <span class="mw-headline"> Scripts </span></h3>
+<ul><li> A new built-in script method called Terminate External Script has been added to the engine. This method causes all instances of a script running on another node to be terminated immediately.
+</li></ul>
+<ul><li> A new built-in script method called Get Script Time has been added to the engine. This method outputs the time that has elapsed since a script began running.
+</li></ul>
+<a name="Miscellaneous"></a><h3> <span class="mw-headline"> Miscellaneous </span></h3>
+<ul><li> Support for Unicode text rendering and input has been implemented throughout the engine. Strings are always encoded in UTF-8, and thus ordinary ASCII strings are not affected. The String Importer tool will properly handle any text encoded as UTF-8. The Font Generator tool has been rewritten to support the entire Basic Multilingual Plane of the Unicode Standard. See <a href="Generating_a_Font.html" class="mw-redirect" title="Generating a Font">Generating a Font</a>.
+</li></ul>
+<ul><li> Tablet support has been added to both the Windows and Mac version of C4. Stylus pressure is now taken into consideration when drawing with the terrain sculpting tools.
+</li></ul>
+<ul><li> A new type of light source called a "Landscape Light" has been added to the engine. This light type is an infinite light that provides large-scale multiresolution shadow mapping capabilities, enabling shadow maps to be used over areas of unlimited size. The engine smoothly transitions from one resolution to another at adjustable distances from the camera.
+</li></ul>
+<ul><li> A new flag called "Render at infinity" has been added to the Quad Effect. This causes the quad to be rendered infinitely far away in the direction of the quad's local <i>z</i>-axis. This is useful for placing objects in the sky.
+</li></ul>
+<ul><li> In order to be directly compatible with the new physics system, all velocities pertaining to sounds are now measured in meters per second by default. This applies to <code>Sound</code> objects, <code>Source</code> nodes, and the listener.
+</li></ul>
+<ul><li> The remote portal node and camera panel item now have a minimum detail level setting. When the engine renders through one of these, the minimum detail level specifies the highest LOD that can be rendered for any particular geometry. The default value is 0, meaning that any LOD can be rendered. Setting the value to a higher number means that only LODs with that index or higher (which have lower detail) can be rendered. This is useful for decreasing the amount of processing that takes place when rendering things like reflections and refractions.
+</li></ul>
+<ul><li> The velocity-depth-gradient buffer used by the motion blur effect has been changed to 16-bit floating-point color. This allows the higher-quality post-processing effect to be applied at any distance from the camera, and it will open up several new possibilities for other types of effects in future releases.
+</li></ul>
+<ul><li> The <code>wire</code> console command has been extended so that you can specify whether wireframe lines are depth tested. The command <code>wire 2</code> turns on wireframe with depth testing, the command <code>wire 1</code> turns on wireframe without depth testing, and the command <code>wire 0</code> turns off wireframe. The <code>wire</code> command by itself still toggles the current wireframe state on or off, and depth testing retains it previous state.
+</li></ul>
+<ul><li> The <a href="http://www.terathon.com/c4engine/doco/System/Lock.html" class="external text" title="http://www.terathon.com/c4engine/doco/System/Lock.html"><code>Lock</code></a> class has been added to the system utilities. The class implements a read/write lock that can be simultaneously acquired by multiple threads for shared access to some object or acquired by a single thread for exclusive access to the object.
+</li></ul>
+<ul><li> The <code>Model</code> class no longer owns the root animator assigned to it. The animator tree must be released by the code belonging to the class that creates it.
+</li></ul>
+<ul><li> Primitive geometries now triangulate disks with a pattern that is more efficient for rasterization. This change affects the disk, cylinder, cone, truncated cone, dome, path tube, and path revolution primitives.
+</li></ul>
+<ul><li> Resource names in PAK files are no longer case sensitive.
+</li></ul>
+<ul><li> PAK files now take precedence in reverse lexicographical order. That is, if the same resource appears in the file <code>Patch1.pak</code> and <code>Patch2.pak</code>, then the one in <code>Patch2.pak</code> is guaranteed to be the one that gets loaded.
+</li></ul>
+<ul><li> Files that are written by the engine, such as config files, the log, and saved games, are now stored in special directories designated by the operating system as places where these kinds of files should be stored. Under Windows, the config files variables.cfg and input.cfg are stored in the user's roaming application data directory, and the C4Log.html file is stored in the user's non-roaming application data directory. Saved games and screenshots are stored in the user's documents directory. In all cases, the files are stored in a subdirectory having the name of the application. Under Mac OS X, all of these files are stored in the <code>~/Library/Application Support/&lt;application name&gt;/</code> directory.
+</li></ul>
+<ul><li> The engine contains a new mechanism that prevents game and plugin modules built for a different target from being loaded by the engine. For example, if the engine has been built for the Optimized target, it will fail to load any modules built for the Debug target. The operating system's dynamic linker won't be able to find a target-specific symbol, and that will cause it to fail and display an error message. The engine will continue running after such a failure, but the module won't be available.
+</li></ul>
+<ul><li> A new plugin named Logitech has been added to the engine, and it manages devices made by Logitech that are capable of displaying an image on an LCD screen such as the G15 keyboard.
+</li></ul>
+<ul><li> The <code>natural</code> and <code>unsigned_natural</code> types have been renamed to <code>machine_int</code> and <code>unsigned_machine_int</code> so that it's more clear what their purpose is. This is also more consistent with the naming of the <code>machine_address</code> type. The shorthand <code>machine</code> and <code>unsigned_machine</code> can also be used in a way analogous to using <code>long</code> instead of <code>long int</code> in C. (A <code>machine_int</code> is an integer at least 32 bits wide, but is wider as necessary for an arithmetic instruction to be executed without an extra sign extension instruction. Currently a <code>machine_int</code> is 32 bits wide on x86 processors. On 64-bit PowerPC processors, a <code>machine_int</code> is 64 bits wide.)
+</li></ul>
+<ul><li> The <code>engine</code> macro has been renamed to <code>C4API</code>. The <code>module_export</code> and <code>module_import</code> macros have been renamed to <code>C4MODULEEXPORT</code> and <code>C4MODULEIMPORT</code>. The <code>extras_api</code>, <code>movie_api</code>, <code>editor_api</code>, and <code>texture_api</code> macros have been renamed to <code>C4EXTRASAPI</code>, <code>C4MOVIEAPI</code>, <code>C4EDITORAPI</code>, and <code>C4TEXTUREAPI</code>.
+</li></ul>
+<ul><li> The underlying code for panel items has been replaced with a new hierarchy of <code>Widget</code> classes. These will be the same classes that will replace the <code>Element</code> classes in a future version so that ordinary GUIs and panel effects both use the same unified architecture.
+</li></ul>
+<a name="Tools"></a><h2> <span class="mw-headline"> Tools </span></h2>
+<a name="World_Editor"></a><h3> <span class="mw-headline"> World Editor </span></h3>
+<ul><li> A new terrain painting tool has been added that creates holes in the terrain mesh. This is useful for creating entrances to structures embedded in the terrain without having to laboriously dig out large caverns. Holes are indicated by a special material ID, so painting an ordinary material over a hole will restore the terrain surface.
+</li></ul>
+<ul><li> A new terrain sculpting tool called the "Slope brush" has been added that draws conical shapes whose sides are defined by one of several slope functions. The maximum radius of the terrain brushes has also been increased to allow much larger areas of terrain to be sculpted in a single brush stroke.
+</li></ul>
+<ul><li> A new command called "Optimize Terrain" has been added to the Geometry menu. This command simplifies the selected terrain meshes, removing the tiny and very thin triangles that are commonly produced by the marching cubes algorithm. Triangle counts tend to decrease by about 25% when applying this optimization.
+</li></ul>
+<ul><li> A new command called "Generate Ambient Occlusion" has been added to the Geometry menu. This command calculates a static per-vertex alpha value that represents the amount of ambient light that reaches the surface at each vertex. In order to be effective, geometries must be tessellated densely enough so that the sample values are close enough together to look good. Terrain naturally has sufficient vertex density, but ambient occlusion data can be generated for any kind of geometry.
+</li></ul>
+<ul><li> The per-vertex ambient occlusion is not rendered until the new "Use vertex ambient occlusion" flag is set for the materials used on a geometry having ambient occlusion data. The ambient light values are also available to shaders as the alpha component of the vertex color. The shader system automatically accounts for ambient occlusion, so it is not necessary to explicitly perform the occlusion calculation in a shader.
+</li></ul>
+<ul><li> The reference marker tool has been moved to its own page called "Worlds", and a list of referenced worlds has been added. The list shows which worlds are referenced by the current world, and selecting one lets you place a reference marker for that world in the scene with a single click. The generic reference marker tool is used to place references to new worlds that had not previously been referenced in the current world.
+</li></ul>
+<ul><li> A popup menu with several commands pertaining to reference markers is also available in the Worlds page. The Cleanup command removes worlds that are no longer referenced from the world list. (Upon opening an existing world in this version, the Cleanup command can be used to populate the world list with the worlds that are already referenced.) The Select All command can be used to select all reference markers in the scene that refer to the world currently highlighted in the worlds list. The Select Some command can be used to randomly select a given percentage of those reference markers. Finally, the Replace Selected command changes the selected reference markers so that they refer to the currently highlighted world.
+</li></ul>
+<ul><li> A new page called "Placement" has been added. This page contains some settings that can be applied when new nodes are placed in a scene through the perspective viewport. If placement modifications are enabled, then the new node can be rotated randomly about the <i>z</i>-axis, aligned to the tangent plane at the placement point, and/or sunk into uneven ground so that the base of the node is automatically moved below the ground surface. These settings are useful for placing foliage on terrain, and more settings will probably be added in future releases.
+</li></ul>
+<ul><li> An "Occlusion Space" node has been added to the Spaces page. The occlusion space acts like a box-shaped occlusion portal and blocks all nodes behind its outline on the screen from being rendered. Occlusion spaces should be embedded in large solid objects to help with visibility culling. An occlusion space is disabled whenever the camera enters its box volume.
+</li></ul>
+<ul><li> Viewport caching has been implemented. This provides much better responsiveness when working with large, complex scenes.
+</li></ul>
+<ul><li> The Node Info window now remembers which tab was last visited, and it will return to that tab by default the next time the Node Info window is opened (if the tab exists for the selected nodes).
+</li></ul>
+<ul><li> Right-clicking in the perspective viewport now engages the free camera tool. The contextual menu can still be accessed by holding in Control (Command on the Mac) when right-clicking.
+</li></ul>
+<ul><li> Holding in the Shift key while using the free camera tool now causes the camera speed to be multiplied by 5.
+</li></ul>
+<ul><li> It is now possible to click on nodes belonging to external models and referenced worlds, and doing so selects the model node or reference marker node to which the clicked-on node belongs. When a model node or reference marker node is selected, geometries belonging to the model or referenced world are drawn with a gray wireframe as well.
+</li></ul>
+<ul><li> Node types that have no size associated with them, such as markers, models, skyboxes, and physics joints, can now be placed in a world within the scene graph viewport. When one of the tools used to create these types of node is active, clicking on a node in the scene graph viewport causes a new node of the type represented by the current tool to be created as a subnode of the node that was clicked. The new node's transform is the identity, so its position and orientation coincides with those of its super node.
+</li></ul>
+<ul><li> A new command called "Edit Script or Panel" has been added to the Node menu. This is a shortcut for going straight to the Script Editor or Panel Editor when a node with a script controller attached to it or a panel effect is selected. These editors are also still accessible from the Controller tab in the Node Info window.
+</li></ul>
+<ul><li> The Mesh Tools page has been removed, and the Select Surface tool now appears at the top of the editor window.
+</li></ul>
+<ul><li> Fog can now be disabled for a skybox by checking the "Do not apply fog" box under the Skybox tab in the Node Info window.
+</li></ul>
+<ul><li> The terrain builder can now import RAW voxel data that has been exported from another application. A RAW file should contain an array of floating-point values stored in little endian byte order, and the size of the array should be equal to the product of the width, height, and depth of the voxel map. To be compatible with some other applications, the <i>z</i> coordinate varies the fastest, followed by the <i>y</i> coordinate, and finally the <i>x</i> coordinate. The importer can treat either +<i>y</i> or +<i>z</i> as the up direction.
+</li></ul>
+<a name="Texture_Tool"></a><h3> <span class="mw-headline"> Texture Tool </span></h3>
+<ul><li> The texture importer tool can now remember the settings that were used to import each particular texture map. A new check box called "Remember settings" has been added to the texture import dialog, and it is checked by default. When checked, the settings used to import the texture are written to a CFG file alongside the input TGA file in the Import folder. The next time the texture is imported, the information in this file is used to initialize the settings in the import dialog. The CFG file can also be used as a standalone command line that can be executed using the <code>import</code> console command.
+</li></ul>
+<ul><li> When a texture currently in use is re-imported, the texture is now automatically reloaded by the engine. This only works properly if the type (2D, Rect, Cube) of the texture stays the same.
+</li></ul>
+<ul><li> A new check box called "Bleed colors for alpha test" has been added to the texture importer tool. When this box is checked, pixels having an alpha value less than 0.75 (where less than 0.5 fails the alpha test) pick up the color from the nearest pixel that passes the alpha test, up to a maximum of 16 pixels away. This process helps remove borders that can appear when alpha-tested textures are rendered. The command-line option for this setting is <code>-bleed</code>.
+</li></ul>
+<ul><li> The <code>texpal</code> command has been added for creating reference-based terrain palettes. See <a href="Creating_a_Terrain_Palette.html" title="Creating a Terrain Palette">Creating a Terrain Palette</a>. 
+</li></ul>
+<a name="Collada_Importer"></a><h3> <span class="mw-headline"> Collada Importer </span></h3>
+<ul><li> There are two new options exposed by the Collada Importer plugin. First, imported materials can be merged with materials already existing in the scene if they are identical. Second, an existing material in the scene can be used instead of an imported material if the names match.
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 58/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:2720-0!1!0!!en!2!edit=0 and timestamp 20150118072322 -->
+<div class="printfooter">
+Retrieved from "<a href="Release_Notes_for_Version_2-8.html">http://www.terathon.com/wiki/index.php/Release_Notes_for_Version_2.0</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="Release_Notes_for_Version_2-8.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:Release_Notes_for_Version_2.0&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=Release_Notes_for_Version_2.0&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=Release_Notes_for_Version_2.0&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="User_46.53.162.html" title="The user page for the ip you&#039;re editing as [.]" accesskey="." class="new">46.53.162.27</a></li>
+				<li id="pt-anontalk"><a href="User_talk_46.53.162.html" title="Discussion about edits from this ip address [n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=Release_Notes_for_Version_2.0" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Release_Notes_for_Version_2-8.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Release_Notes_for_Version_2-8.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=Release_Notes_for_Version_2.0&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=Release_Notes_for_Version_2.0&amp;oldid=6975" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 9 July 2010, at 02:34.</li>
+				<li id="viewcount">This page has been accessed 10,184 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.533 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/Release_Notes_for_Version_2.0 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:28 GMT -->
+</html>

@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Texture_Importer&amp;feed=atom&amp;action=history</id>
+	<title>Texture Importer - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Texture_Importer&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Texture_Importer&amp;action=history"/>
+	<updated>2024-09-21T18:27:18Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Texture_Importer&amp;diff=413&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ Texture maps used by the C4 Engine have the &lt;code&gt;.tex&lt;/code&gt; file extension. These texture map resources are created by importing texture images from a subdirectory of the &lt;code&gt;Import&lt;/code&gt; directory using the Texture Importer tool.  The Texture Importer tool supports &lt;code&gt;.tga&lt;/code&gt; files, which may be in 8-bit grayscale, 16-bit color, 24-bit color, or 32-bit color format, with or without RLE compression.  When a texture is imported, a &lt;code&gt;.cfg&lt;/code&gt; f...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Texture_Importer&amp;diff=413&amp;oldid=prev"/>
+		<updated>2023-07-15T11:44:42Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ Texture maps used by the C4 Engine have the &amp;lt;code&amp;gt;.tex&amp;lt;/code&amp;gt; file extension. These texture map resources are created by importing texture images from a subdirectory of the &amp;lt;code&amp;gt;Import&amp;lt;/code&amp;gt; directory using the Texture Importer tool.  The Texture Importer tool supports &amp;lt;code&amp;gt;.tga&amp;lt;/code&amp;gt; files, which may be in 8-bit grayscale, 16-bit color, 24-bit color, or 32-bit color format, with or without RLE compression.  When a texture is imported, a &amp;lt;code&amp;gt;.cfg&amp;lt;/code&amp;gt; f...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+Texture maps used by the C4 Engine have the &amp;lt;code&amp;gt;.tex&amp;lt;/code&amp;gt; file extension. These texture map resources are created by importing texture images from a subdirectory of the &amp;lt;code&amp;gt;Import&amp;lt;/code&amp;gt; directory using the Texture Importer tool.&lt;br /&gt;
+&lt;br /&gt;
+The Texture Importer tool supports &amp;lt;code&amp;gt;.tga&amp;lt;/code&amp;gt; files, which may be in 8-bit grayscale, 16-bit color, 24-bit color, or 32-bit color format, with or without RLE compression.&lt;br /&gt;
+&lt;br /&gt;
+When a texture is imported, a &amp;lt;code&amp;gt;.cfg&amp;lt;/code&amp;gt; file is created in the same folder as the imported texture, and it contains all of the settings that were applied. This file is recognized the next time the texture is imported and used to populate the Import Texture dialog with the settings that were previously used.&lt;br /&gt;
+&lt;br /&gt;
+'''Note:''' All resources imported into the C4 Engine should be placed in a ''subfolder'' of the Import folder, not directly in the Import folder itself.&lt;br /&gt;
+&lt;br /&gt;
+== Texture Maps ==&lt;br /&gt;
+&lt;br /&gt;
+[[File:textureimporter.png|right|frame|'''Figure 1.''' The Texture Map Import dialog.]]&lt;br /&gt;
+&lt;br /&gt;
+To import a texture, either choose Import Texture from the [[C4 Menu]] or invoke the &amp;lt;code&amp;gt;itexture&amp;lt;/code&amp;gt; [''name''] command in the [[Command Console]]. If the menu command is chosen, or the name is omitted from the console command, then the Texture Importer tool will open an Import Texture dialog that lets you select a &amp;lt;code&amp;gt;.tga&amp;lt;/code&amp;gt; file from a subdirectory of the &amp;lt;code&amp;gt;Import&amp;lt;/code&amp;gt; directory. After selecting an image file to import, the Import dialog is opened with the default settings shown in the following figure. These default settings are usually appropriate for ordinary color texture maps.&lt;br /&gt;
+&lt;br /&gt;
+=== Texture Map Import Settings ===&lt;br /&gt;
+&lt;br /&gt;
+{| {{Table}}&lt;br /&gt;
+{{Tablehead|Setting|Description}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{HeadingSetting|'''Texture Format'''}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Texture&amp;amp;nbsp;type'''|Selects the OpenGL texture target for this texture map. It can be one of the following values.&lt;br /&gt;
+&lt;br /&gt;
+* '''2D''' An ordinary 2D texture whose coordinates lie in the range [0, 1] in both dimensions. The width and height of a 2D texture must be a power of two.&lt;br /&gt;
+* '''Rect''' A rectangle texture whose coordinates lie in the range [0, width] and [0, height]. The width and height do not need to be a power of two. The rectangle texture type should not be used for texture maps that are to be used in a 3D setting because they will adversely affect performance when minified. Rectangle textures are primarily used for things like user interface images that appear in a 2D setting.&lt;br /&gt;
+* '''Cube''' A cube map texture. [[#Cube Maps|See below]].&lt;br /&gt;
+* '''Array 2D''' A texture containing an array of 2D images.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Image&amp;amp;nbsp;format'''|Selects the output pixel format for this texture map. It can be one of the following values.&lt;br /&gt;
+&lt;br /&gt;
+* '''RGBA Color''' The image has four channels: red, green, blue, and alpha.&lt;br /&gt;
+* '''Luminance Alpha''' The image has two channels: grayscale luminance and alpha.&lt;br /&gt;
+* '''Luminance''' The image has one grayscale channel, and the alpha is always interpreted to be the maximum value.&lt;br /&gt;
+* '''Intensity''' The image has one grayscale channel, and the alpha is always interpreted to be equal to the gray value.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Alpha&amp;amp;nbsp;channel'''|Specifies what kind of information is stored in the alpha channel of the texture. It can be one of the following values. (If alpha channel information is specified, then the TGA file being imported must use a 32-bit format.)&lt;br /&gt;
+&lt;br /&gt;
+* '''None''' There is no information stored in the alpha channel.&lt;br /&gt;
+* '''Transparency''' The alpha channel contains transparency information.&lt;br /&gt;
+* '''Gloss''' The alpha channel contains a gloss map. Whenever a texture containing a gloss map in the alpha channel is used in a material, any specularity, environment map, or reflection term is modulated by the gloss map.&lt;br /&gt;
+* '''Opacity''' The alpha channel contains an opacity map. Whenever a texture containing an opacity map in the alpha channel is used in a material, the opacity is used to linearly interpolate between the diffuse term and the refraction term.&lt;br /&gt;
+* '''Glow''' The alpha channel contains glow intensity values that are used by the glow post-processing effect. This should only be used for emission maps.&lt;br /&gt;
+* '''Occlusion''' The alpha channel will contain ambient occlusion information. This can be a precomputed channel, or it can be generated when the texture is imported. See the description of the '''Calculate ambient occlusion in alpha''' box below.&lt;br /&gt;
+* '''Parallax''' The alpha channel of the import texture contains a height map from which parallax mapping information should be calculated. This is selected automatically if the '''Generate parallax data''' box is checked. If the alpha channel of a normal map in a material contains parallax information, the parallax mapping is applied during all rendering passes.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''S&amp;amp;nbsp;wrap&amp;amp;nbsp;mode'''&lt;br /&gt;
+&lt;br /&gt;
+'''T&amp;amp;nbsp;wrap&amp;amp;nbsp;mode'''|Specifies what wrap modes to apply to the texture map. They can each be one of the following values.&lt;br /&gt;
+&lt;br /&gt;
+* '''Repeat''' The texture is addressed using the &amp;lt;code&amp;gt;GL_REPEAT&amp;lt;/code&amp;gt; wrap mode.&lt;br /&gt;
+* '''Clamp''' The texture is addressed using the &amp;lt;code&amp;gt;GL_CLAMP_TO_EDGE&amp;lt;/code&amp;gt; wrap mode. If this mode is not available, the &amp;lt;code&amp;gt;GL_CLAMP&amp;lt;/code&amp;gt; is used instead.&lt;br /&gt;
+* '''Clamp to Border''' The texture is addressed using the &amp;lt;code&amp;gt;GL_CLAMP_TO_BORDER&amp;lt;/code&amp;gt; wrap mode.&lt;br /&gt;
+* '''Mirror Repeat''' The texture is addressed using the &amp;lt;code&amp;gt;GL_MIRRORED_REPEAT&amp;lt;/code&amp;gt; wrap mode.&lt;br /&gt;
+* '''Mirror Clamp''' The texture is addressed using the &amp;lt;code&amp;gt;GL_MIRROR_CLAMP_TO_EDGE&amp;lt;/code&amp;gt; wrap mode.&lt;br /&gt;
+* '''Mirror Clamp to Border''' The texture is addressed using the &amp;lt;code&amp;gt;GL_MIRROR_CLAMP_TO_BORDER&amp;lt;/code&amp;gt; wrap mode.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Use&amp;amp;nbsp;block&amp;amp;nbsp;compression'''|The output texture is stored in a hardware-recognized compression format. This should be turned on for almost all texture maps for best performance and memory usage. (This setting is ignored if the image format is not RGBA Color, if the width and height of the image are not both multiples of 4, or if generating a normal map with parallax data.)}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{HeadingSetting|'''Texture Flags'''}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Disable&amp;amp;nbsp;filtering'''|No filtering is applied to this texture map, and point sampling is used instead.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Disable&amp;amp;nbsp;anisotropic&amp;amp;nbsp;filtering'''|Anisotropic filtering is disabled for this texture map, but ordinary bilinear or trilinear filtering is still applied.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Require&amp;amp;nbsp;high-resolution&amp;amp;nbsp;rendering'''|The texture map is always rendered using the highest resolution available, even if the user has selected a lower-quality option in the Graphics Settings dialog.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{HeadingSetting|Map/Channel Generation}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Calculate&amp;amp;nbsp;normal&amp;amp;nbsp;map'''|The import texture is treated as a height map from which a normal map should be calculated. Each height is multiplied by the value specified in the '''Height map scale''' field and used to determine the normal vector at each pixel.&lt;br /&gt;
+&lt;br /&gt;
+In order to access all features of the engine, normal maps should be created by the Texture Importer tool, and not by external programs. You can still use normal maps generated by external tools, but if you do, then you can't have associated parallax maps, horizon maps, or ambient occlusion maps. External normal maps can still be block compressed, but you must check the '''Treat RGB channels as vector''' box.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Generate&amp;amp;nbsp;parallax&amp;amp;nbsp;data'''|When checked in addition to '''Calculate normal map''', the height in the alpha channel is converted into special parallax data used by the engine. The same height map must be stored in all four channels of the import texture.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Generate&amp;amp;nbsp;horizon&amp;amp;nbsp;maps'''|When checked in addition to '''Calculate normal map''', a separate texture is generated that contains horizon map data. This texture has the same name as the normal map, but with a different suffix. If the name of the normal map ends in &amp;lt;code&amp;gt;-nrml&amp;lt;/code&amp;gt;, then this suffix is changed to &amp;lt;code&amp;gt;-hrzn&amp;lt;/code&amp;gt;. Otherwise the suffix &amp;lt;code&amp;gt;-h&amp;lt;/code&amp;gt; is added to the full name of the normal map (excluding the extension &amp;lt;code&amp;gt;.tex&amp;lt;/code&amp;gt;).&lt;br /&gt;
+&lt;br /&gt;
+A horizon map is applied to a material when the '''Enable horizon mapping''' box is checked in the [[Material Editor]].}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Calculate&amp;amp;nbsp;ambient&amp;amp;nbsp;occlusion&amp;amp;nbsp;in&amp;amp;nbsp;alpha'''|The heights stored in the alpha channel are scaled by the value specified in the '''Height map scale''' field and used to calculate an ambient occlusion factor that is applied in the ambient rendering pass.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Height&amp;amp;nbsp;map&amp;amp;nbsp;scale'''|Specifies a scale that is applied to all height values. A scale factor of 1.0 corresponds to the width of a single texel in the import texture.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Height&amp;amp;nbsp;map&amp;amp;nbsp;channel'''|Selects a channel to be used as the source of the height map for all calculations.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{HeadingSetting|'''Options'''}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Output&amp;amp;nbsp;file&amp;amp;nbsp;name'''|Specifies the name of the texture file that will be created. (It should not include the extension.) This usually does not need to be changed from the default setting.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Calculate&amp;amp;nbsp;mipmap&amp;amp;nbsp;levels'''|All mipmap levels for this texture are calculated and stored in the texture resource. Turning this off for textures that are used in a 3D environment can have a negative effect on performance.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Bleed&amp;amp;nbsp;colors&amp;amp;nbsp;for&amp;amp;nbsp;alpha&amp;amp;nbsp;test'''|Causes texels that would fail the alpha test to pick up the color of the nearest texel that passes the alpha test. This process helps remove borders that can appear when alpha-tested textures are rendered. When this setting is checked, the alpha values in lower-resolution mipmaps are also boosted to prevent fade-out of alpha-tested geometries.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Treat&amp;amp;nbsp;RGB&amp;amp;nbsp;channels&amp;amp;nbsp;as&amp;amp;nbsp;vector'''|Mipmaps are calculated for vector data instead of color data. This is useful if you're importing a precomputed normal map as opposed to calculating a normal map from a height field. This box must be checked in order to get block compression for an externally generated normal map.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Invert&amp;amp;nbsp;green&amp;amp;nbsp;channel'''|The green channel of the import texture image is inverted. This is useful for changing handedness in externally generated normal maps.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Scale&amp;amp;nbsp;texture&amp;amp;nbsp;to&amp;amp;nbsp;half&amp;amp;nbsp;resolution'''|The import texture image is reduced to half size in each direction before being processed.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Scale&amp;amp;nbsp;horizon&amp;amp;nbsp;maps&amp;amp;nbsp;to&amp;amp;nbsp;half&amp;amp;nbsp;resolution'''|The horizon map is generated from an import texture image that has been reduced to half size in each direction. Using this option can usually save a significant amount of memory without a noticeable reduction in rendering quality. (If '''Scale texture to half resolution''' is also checked, then both scales are applied, so the horizon map is only one-quarter the size in each direction.)}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Flip&amp;amp;nbsp;image&amp;amp;nbsp;vertically'''|The import texture image is flipped in the vertical direction before being processed.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{HeadingSetting|'''Array Texture'''}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Cell count'''|When the '''Texture type''' is set to '''Array 2D''', the cell count setting specifies how many layers the array texture has. The layers should be stacked vertically in the input image, and the total height divided by the cell count must be an integer.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{HeadingSetting|'''Skybox Haze'''}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Haze&amp;amp;nbsp;color'''|When checked, the haze color is applied at the bottom of the texture image with the appropriate warping for use as a skybox texture.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Haze&amp;amp;nbsp;elevation'''|Specifies the relative height to which the haze extends above the horizon. (Ignored if '''Haze color''' is not checked.)}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{HeadingSetting|'''Cursor Data'''}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Setting|'''Image&amp;amp;nbsp;center&amp;amp;nbsp;X'''&lt;br /&gt;
+&lt;br /&gt;
+'''Image&amp;amp;nbsp;center&amp;amp;nbsp;Y'''|If importing a cursor texture, these settings specify the coordinates, in pixels, where the center, or '''hot spot''', of the cursor is located.}}&lt;br /&gt;
+|}&lt;br /&gt;
+&lt;br /&gt;
+== Cube Maps ==&lt;br /&gt;
+&lt;br /&gt;
+A cube map can be imported by creating a single TGA file that contains all six faces of the cube. Each cube face must be square and have a width that is a power of two. The importer supports the four layouts shown in the following table. Each face must have the correct orientation in order for the cube map to work properly, and these are shown in the figures. The ''z'' axis always represents the up direction, and the direction specified in the center of each face represents the axis that points into the image.&lt;br /&gt;
+&lt;br /&gt;
+{| {{Table}}&lt;br /&gt;
+{{Tablehead|Layout|Description}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|[[File:Cube_hcross.png]]|'''Horizontal Cross.''' The image should be exactly 4 faces in width and 3 faces in height.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|[[File:Cube_vcross.png]]|'''Vertical Cross.''' The image should be exactly 3 faces in width and 4 faces in height.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|[[File:Cube_hstrip.png]]|'''Horizontal Strip.''' The image should be exactly 6 faces in width and 1 face in height.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|[[File:Cube_vstrip.png]]|'''Vertical Strip.''' The image should be exactly 1 face in width and 6 faces in height.}}&lt;br /&gt;
+|}&lt;br /&gt;
+&lt;br /&gt;
+== Normal Maps ==&lt;br /&gt;
+&lt;br /&gt;
+[[File:normalimporter.png|right|frame|'''Figure 2.''' The Normal Map Import dialog.]]&lt;br /&gt;
+&lt;br /&gt;
+=== Normal Map Import Settings ===&lt;br /&gt;
+&lt;br /&gt;
+{| {{Table}}&lt;br /&gt;
+{{Tablehead|Setting|Description}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{HeadingSetting|'''Texture Format'''}}&lt;br /&gt;
+|}&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[Texture Viewer]]&lt;br /&gt;
+* [[Material Editor]]&lt;br /&gt;
+&lt;br /&gt;
+[[Category:Shaders]]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

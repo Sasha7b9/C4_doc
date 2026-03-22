@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>Release Notes for Build 114 - C4 Engine Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"Zu8KaFQo4v-YDF-FlaFNrQAAAEo","wgCSPNonce":false,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Release_Notes_for_Build_114","wgTitle":"Release Notes for Build 114","wgCurRevisionId":21,"wgRevisionId":21,"wgArticleId":19,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Release_Notes_for_Build_114","wgRelevantArticleId":19,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"simpleBatchUploadMaxFilesPerBatch":{"*":
+1000},"wgVector2022PreviewPages":[]};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","skins.vector.legacy.js"/*tpa=http://www.c4engine.com/wiki/skins.vector.legacy.js*/];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});});});</script>
+<link rel="stylesheet" href="load.php-lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector.css" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector"/>
+<script async="" src="load.php-lang=en&modules=startup&only=scripts&raw=1&skin=vector.js" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector"></script>
+<meta name="generator" content="MediaWiki 1.40.0"/>
+<meta name="robots" content="max-image-preview:standard"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="viewport" content="width=1000"/>
+<link rel="icon" href="../favicon.ico.css" tppabs="http://www.c4engine.com/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://c4engine.com/wiki/api.php?action=rsd"/>
+<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Release_Notes_for_Build_114 rootpage-Release_Notes_for_Build_114 skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Release Notes for Build 114</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From C4 Engine Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="en" dir="ltr"><div class="mw-parser-output"><p><b>Release date:</b> January 9, 2006
+</p>
+<ul><li>Fog has been completely redesigned in this build. Fog is no longer a property of a zone, and any existing uses of the old fog property will disappear from worlds opened in this build. Fog is now controlled by placing a fog space node into the scene. The zone containing the fog space node is automatically fogged, and other zones may be linked to the fog space so that one fog space can be used to fog areas covered by more than one zone. The fog space itself defines a boundary plane between fogged and unfogged half-spaces. The half-space on the negative side of the plane contains fog, and the half-space on the positive side of the plane is clear. A single formula is used to handle the four possible configurations between a camera and an arbitrary point in the scene. (The camera can either by in the fog half-space or in the clear half-space, and a surface point can be on either side of the plane.) In all cases, the amount of fog applied to a fragment is determined by the distance along the direction from the surface point to the camera that actually lies on the fogged side of the plane. Fog is applied to everything, and it is integrated into the existing rendering passes. There is no post-processing calculation.</li></ul>
+<ul><li>A world may contain multiple fog spaces, but only one can be active at any time for a particular camera view with defined results. It's okay for one fog space to be used in a zone directly visible to the primary camera and then for another fog space to be seen through a remote portal. This works because the image seen through the remote portal is rendered from a different camera.</li></ul>
+<ul><li>Fog can be rendered in two modes. By default, fog is computed at each fragment to yield an accurate result regardless of the position of the fog plane or an object's degree of tessellation. This can have performance implications, however, so it is also possible to force the fog distance to be computed on a per-vertex basis. Doing this on Nvidia hardware is especially fast because it can take advantage of dedicated fog silicon that reduces the per-fragment cost to virtually zero (but this has limited precision). Since the interpolated fog distance for large polygons can get quite inaccurate far from the vertices, calculating fog distance per-vertex generally requires higher levels of tessellation. In this mode, it's also necessary to split polygons at the fog plane so that positive fog distances don't get extrapolated outside the fogged half-space. The geometry flags now contain a setting for splitting polygons automatically at the fog plane referenced by the geometry's owning zone.</li></ul>
+<ul><li>A fog space is created in the editor using the fog space tool in the light/sound/space panel. Only the plane of the fog space mattersâ€”the rectangular size can be anything you want. Additional zones can be linked to the fog space by first making the fog space the current target (Ctrl-T), then selecting one or more zones, and finally choosing Link to Target (Ctrl-L). The zone actually containing the fog space does not need to be explicitly linked.</li></ul>
+<ul><li>As a performance optimization, direct portals may have a flag set that prevents fog from being rendered through them. This is useful if the portal looks into a zone containing fog, but it is known that none of the fogged area can be seen from the other side of the portal.</li></ul>
+<ul><li>Occlusion portals are now fully implemented. (These have been available in the editor, but were ignored by the visibility code in previous builds.) Also known as an antiportal, an occlusion portal prevents objects that are behind it from being rendered. An occlusion portal is not linked to a destination zone and is usually placed in the middle of a zone inside some large object that blocks a lot of things from view. Any geometry, light, portal, or effect that is completely blocked by an occlusion portal from the camera's perspective is not considered any further for rendering. In general, occlusion portals should be as large as possible so that culling is maximized, and the number of occlusion portals visible at any one time should be kept as low as possible to minimize CPU calculations. Note that occlusion portals may not always produce big speed improvements where you think they should because of good hardware z-culling.</li></ul>
+<ul><li>Added the <code>SetOcclusionProc()</code> function to the Node class and modified the existing <code>SetVisibilityProc()</code> function. The procedure installed by the <code>SetVisibilityProc()</code> function now takes a pointer to a single <code>ZoneRegion</code> and must determine whether a node is visible within that region. The procedure installed by the <code>SetOcclusionProc()</code> function takes a pointer to a list of <code>ZoneRegion</code> objects and must determine of a node is occluded within any of them. See the documentation at <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/WorldMgr/Node.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/WorldMgr/Node.html%27" tppabs="http://c4engine.com/docs/WorldMgr/Node.html">http://c4engine.com/docs/WorldMgr/Node.html</a> for details. By default, a node's visibility and occlusion procedures check the node's bounding sphere against a region's bounding planes using the functions provided in the <code>Region</code> class. Several geometry primitives override this behavior to use tighter bounding volumes like boxes or cylinders.</li></ul>
+<ul><li>Ordinarily, a game module only needs to worry about visibility and occlusion procedures for special effect classes derived from the <code>Effect</code> node. An effect needs to either provide a bounding sphere (by overriding the <code>Node::CalculateBoundingSphere()</code> function) or needs to install a visibility procedure and an occlusion procedure. The <code>Render()</code> function of an effect no longer needs to test for visibility and will only be called if the effect is enabled, visible, and unoccluded. See the documentation at <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/EffectMgr/Effect_Render.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/EffectMgr/Effect_Render.html%27" tppabs="http://c4engine.com/docs/EffectMgr/Effect_Render.html">http://c4engine.com/docs/EffectMgr/Effect_Render.html</a>.</li></ul>
+<ul><li>Improved the way in which multi-zone effects are handled. Because some special effects can span mutiple zones (notably particle systems like smoke trails), their eligibility for rendering can't be determined solely based on whether their owning zones are visible. Being a scene graph node, an effect node can only be in one zone at a time, but there is a mechanism that lets any number of other zones reference the effect so that it will be considered for rendering whenever those zones are visible. By default, an effect is referenced by the zone that owns the effect node. If the effect defines a bounding sphere (by overriding the <code>Node::CalculateBoundingSphere()</code> function), then any zone into which that sphere extends through portals also references the effect. This ensures, for instance, that particles from an explosion that fly into another zone are visible to someone who can't see the zone containing the effect node itself.</li></ul>
+<ul><li>An effect may override the default zone-referencing behavior by disabling the post-bounding-sphere calculation. This is done by adding the following line to an effect's constructor or <code>Preprocess()</code> function:</li></ul>
+<pre>   <code>SetActiveUpdateFlags(GetActiveUpdateFlags() &amp; ~kUpdatePostBounding);</code>
+</pre>
+<ul><li>If this is done, then the effect is responsible for explicitly adding references to zones from which the effect could be visible. The <code>Effect::AddEffectReference()</code> and <code>Effect::RemoveEffectReference()</code> functions are supplied to do this. It is often convenient to call these from within overridden <code>EnterZone()</code> and <code>ExitZone()</code> functions. For more details, see the documentation at <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/EffectMgr/Effect.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/EffectMgr/Effect.html%27" tppabs="http://c4engine.com/docs/EffectMgr/Effect.html">http://c4engine.com/docs/EffectMgr/Effect.html</a>.</li></ul>
+<ul><li>The Display Manager will now choose the highest refresh frequency available for any particular resolution when in fullscreen mode. Previously, it let the driver choose the frequency, but this seems to have always resulted in the somewhat low 60 Hz refresh rate.</li></ul>
+<ul><li>Made various vertex program and fragment program improvements after observing how the driver was compiling them on both Nvidia and ATI hardware. The engine now contains some conditionally-compiled hooks that lets an external tool capture the actual hardware command buffer, from which it's possible to gain a lot of information about exactly what is being done on the hardware. (Sorry, this tool cannot be released.)</li></ul>
+<ul><li>The command console now stores a small command history that can be accessed with the up and down arrows.</li></ul>
+<ul><li>Changed what used to be called "focal length" for a spot light to "apex tangent". The term "focal length" was borrowed from the same property that a camera has in relation to its field of view, but it's a little confusing when it's applied to spot lights. The apex tangent t is the trigonometric tangent of half of the horizontal field of illumination. That is, at a distance t from the spot light's center in the direction that it's pointing, the pyramid of illumination has widened to one unit left and right.</li></ul>
+<ul><li>A new tool is shown in the World Editor that will let you select objects by dragging out a box, but this is not yet implemented and will have no effect if used.</li></ul>
+<ul><li>Fixed a small bug in the World Settings dialog that always caused the skybox glow enable box to be unchecked when the window is opened. (The skybox would still get the glow property if you checked the box and closed the window.) Also fixed a bug that would make it impossible to disable glow for a geometry once it was enabled.</li></ul>
+<ul><li>Fixed a minor bug in which the brightness setting in the Graphics Options dialog was not being saved unless you changed the display resolution or fullscreen setting. Also made it so that changing only the brightness and then cancelling the dialog would restore the original brightness.</li></ul>
+<ul><li>Fixed a bug that would generate a bad fragment program if specular color, microfacet color, and gloss map were all being used in a material.</li></ul>
+<ul><li>Fixed a bug that prevented depth maps from being created in the previous build due to all of the shader system changes.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20240921125415
+Cache expiry: 86400
+Reduced expiry: false
+Complications: [no‐toc‐conversion]
+CPU time usage: 0.002 seconds
+Real time usage: 0.002 seconds
+Preprocessor visited node count: 1/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 1/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+
+<!-- Saved in parser cache with key c4_wiki:pcache:idhash:19-0!canonical and timestamp 20240921125415 and revision id 21. Rendering was triggered because: diff-page
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_114&oldid=21  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_114&oldid=21%27" tppabs="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_114&oldid=21">https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_114&amp;oldid=21</a>"</div></div>
+		<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="vector-menu mw-portlet mw-portlet-personal vector-user-menu-legacy" aria-labelledby="p-personal-label" role="navigation"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="pt-login" class="mw-list-item"><a href="index.php-title=Special-UserLogin&returnto=Release+Notes+for+Build+114.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:UserLogin&returnto=Release+Notes+for+Build+114" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li></ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="vector-menu mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-namespaces-label" role="navigation"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected mw-list-item"><a href="index.php-title=Release_Notes_for_Build_114.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Build_114" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Build_114  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Build_114%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Build_114&action=edit&redlink=1" rel="discussion" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="vector-menu mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	/>
+	<label
+		id="p-variants-label"
+		 aria-label="Change language variant"
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="vector-menu mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-views-label" role="navigation"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-view" class="selected mw-list-item"><a href="index.php-title=Release_Notes_for_Build_114.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Build_114"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Build_114&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Build_114&action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Build_114&action=history.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Build_114&action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="vector-menu mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown" aria-labelledby="p-cactions-label" role="navigation"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	/>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<div>
+		<form action="http://www.c4engine.com/wiki/index.php" id="searchform"
+			class="vector-search-box-form">
+			<div id="simpleSearch"
+				class="vector-search-box-inner"
+				 data-search-loc="header-navigation">
+				<input class="vector-search-box-input"
+					 type="search" name="search" placeholder="Search C4 Engine Wiki" aria-label="Search C4 Engine Wiki" autocapitalize="sentences" title="Search C4 Engine Wiki [f]" accesskey="f" id="searchInput"
+				>
+				<input type="hidden" name="title" value="Special:Search">
+				<input id="mw-searchButton"
+					 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+				<input id="searchButton"
+					 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+			</div>
+		</form>
+	</div>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="vector-menu mw-portlet mw-portlet-navigation vector-menu-portal portal" aria-labelledby="p-navigation-label" role="navigation"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="n-mainpage-description" class="mw-list-item"><a href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="javascript:if(confirm(%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents%27" tppabs="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="vector-menu mw-portlet mw-portlet-tb vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="t-whatlinkshere" class="mw-list-item"><a href="index.php-title=Special-WhatLinksHere-Release_Notes_for_Build_114.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:WhatLinksHere/Release_Notes_for_Build_114" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Build_114  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Build_114%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Build_114" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="index.php-title=Special-SpecialPages.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Build_114&oldid=21.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Build_114&oldid=21" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Build_114&action=info.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Build_114&action=info" title="More information about this page"><span>Page information</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" role="contentinfo" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 15 July 2023, at 09:29.</li>
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About">About C4 Engine Wiki</a></li>
+	<li id="footer-places-disclaimers"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-poweredbyico"><a href="javascript:if(confirm(%27https://www.mediawiki.org/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/%27" tppabs="https://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" tppabs="http://www.c4engine.com/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/></a></li>
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":104,"wgPageParseReport":{"limitreport":{"cputime":"http://www.c4engine.com/wiki/0.002","walltime":"http://www.c4engine.com/wiki/0.002","ppvisitednodes":{"value":1,"limit":1000000},"postexpandincludesize":{"value":0,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":1,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20240921125415","ttl":86400,"transientcontent":false}}});});</script>
+</body>
+</html>

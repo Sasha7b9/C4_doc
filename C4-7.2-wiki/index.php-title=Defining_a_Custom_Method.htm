@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>Defining a Custom Method - C4 Engine Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"Zu78kWbWF5SKL0LLtKg5JgAAAFM","wgCSPNonce":false,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Defining_a_Custom_Method","wgTitle":"Defining a Custom Method","wgCurRevisionId":533,"wgRevisionId":533,"wgArticleId":120,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages with syntax highlighting errors","Scripts"],"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Defining_a_Custom_Method","wgRelevantArticleId":120,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],
+"simpleBatchUploadMaxFilesPerBatch":{"*":1000},"wgVector2022PreviewPages":[]};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","http://www.c4engine.com/wiki/mediawiki.toc","skins.vector.legacy.js"/*tpa=http://www.c4engine.com/wiki/skins.vector.legacy.js*/];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});});});</script>
+<link rel="stylesheet" href="load.php-lang=en&modules=ext.pygments-skins.vector.styles.legacy&only=styles&skin=vector.css" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=ext.pygments%7Cskins.vector.styles.legacy&only=styles&skin=vector"/>
+<script async="" src="load.php-lang=en&modules=startup&only=scripts&raw=1&skin=vector.js" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector"></script>
+<meta name="generator" content="MediaWiki 1.40.0"/>
+<meta name="robots" content="max-image-preview:standard"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="viewport" content="width=1000"/>
+<link rel="icon" href="../favicon.ico.css" tppabs="http://www.c4engine.com/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://c4engine.com/wiki/api.php?action=rsd"/>
+<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Defining_a_Custom_Method rootpage-Defining_a_Custom_Method skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Defining a Custom Method</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From C4 Engine Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="en" dir="ltr"><div class="mw-parser-output"><p>In the C4 Engine, a <i>method</i> refers to an individual action that can appear in a script. There are many types of methods built into the engine, and an application can define its own custom methods by implementing new subclasses of the <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/Controller/Method.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/Controller/Method.html%27" tppabs="http://c4engine.com/docs/Controller/Method.html">Method</a> class.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Defining_a_Method_Subclass"><span class="tocnumber">1</span> <span class="toctext">Defining a Method Subclass</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Method_Registration"><span class="tocnumber">2</span> <span class="toctext">Method Registration</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Serialization"><span class="tocnumber">3</span> <span class="toctext">Serialization</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#User_Interface"><span class="tocnumber">4</span> <span class="toctext">User Interface</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Method_Execution"><span class="tocnumber">5</span> <span class="toctext">Method Execution</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Method_Output_Values"><span class="tocnumber">6</span> <span class="toctext">Method Output Values</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#See_Also"><span class="tocnumber">7</span> <span class="toctext">See Also</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Defining_a_Method_Subclass">Defining a Method Subclass</span></h2>
+<p>In this article, we will use the example of a method called <code>ChangeLightColorMethod</code> that simply changes the color of a light source. Note that this particular functionality already exists as part of the more general built-in method <b>Change Settings</b>, so the example here is for illustrative purposes only.
+</p><p>A custom method subclass needs to have a unique type identifier that is registered with the engine so that the <a href="index.php-title=Script_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Script_Editor" title="Script Editor">Script Editor</a> knows about it. The type identifier is a 32-bit number normally represented by a four-character string as in the following code.
+</p>
+<div class="mw-highlight mw-highlight-lang-c++ mw-content-ltr" dir="ltr"><pre>enum
+{
+    kMethodChangeLightColor = 'litc'
+};</pre></div>
+<p>(Type identifiers consisting of only uppercase letters and numbers are reserved for use by the engine. Anything else is okay for an application to use.)
+</p><p>Next, the method subclass needs to be defined. We declare the <code>ChangeLightColorMethod</code> class to be a subclass of the <code>Method</code> class as follows, and we include a single data member to hold the color value that will be assigned to a light source when the method executes. Several member functions are included to handle serialization and user interface&#8212;these are discussed below.
+</p>
+<div class="mw-highlight mw-highlight-lang-c++ mw-content-ltr" dir="ltr"><pre>class ChangeLightColorMethod&#160;: public Method
+{
+   private:
+
+        ColorRGB    lightColor;
+
+        ChangeLightColorMethod(const ChangeLightColorMethod&amp; changeLightColorMethod);
+
+        Method *Replicate(void) const;
+
+   public:
+
+        ChangeLightColorMethod();
+        ChangeLightColorMethod(const ColorRGB&amp; color);
+        ~ChangeLightColorMethod();
+
+        const ColorRGB&amp; GetLightColor(void) const
+        {
+            return (lightColor);
+        }
+
+        void SetLightColor(const ColorRGB&amp; color)
+        {
+            lightColor = color;
+        }
+
+        // Serialization functions.
+        void Pack(Packer&amp; data, uint32 packFlags) const override;
+        void Unpack(Unpacker&amp; data, uint32 unpackFlags) override;
+
+        // User interface functions.
+        void BuildSettingList(List&lt;Setting&gt; *settingList) const override;
+        void CommitSetting(const Setting *setting) override;
+
+        // This function is called when the method is executed in a script.
+        void ExecuteMethod(const ScriptState *state) override;
+};</pre></div>
+<p>The constructor and destructor for this example would typically be implemented as follows.
+</p>
+<div class="mw-highlight mw-highlight-lang-c++ mw-content-ltr" dir="ltr"><pre>ChangeLightColorMethod::ChangeLightColorMethod()&#160;: Method(kMethodChangeLightColor)
+{
+    // Set a default value.
+    lightColor.Set(1.0F, 1.0F, 1.0F);
+}
+
+ChangeLightColorMethod::ChangeLightColorMethod(const ColorRGB&amp; color)&#160;: Method(kMethodChangeLightColor)
+{
+    lightColor = color;
+}
+
+ChangeLightColorMethod::~ChangeLightColorMethod()
+{
+}</pre></div>
+<p>Notice that the method's type <code>kMethodChangeLightColor</code> is passed to the base class constructor.
+</p><p>The copy constructor and the <code>Replicate()</code> function must be included for all methods. For this example, the copy constructor would be implemented as follows.
+</p>
+<div class="mw-highlight mw-highlight-lang-c++ mw-content-ltr" dir="ltr"><pre>ChangeLightColorMethod::ChangeLightColorMethod(const ChangeLightColorMethod&amp; changeLightColorMethod)&#160;: Method(changeLightColorMethod)
+{
+    lightColor = changeLightColorMethod.lightColor;
+}</pre></div>
+<p>It's important to observe that the reference to the copied <code>ChangeLightColorMethod</code> object is passed to the base class constructor this time instead of the method's type identifier.
+</p><p>The <code>Replicate()</code> function simply constructs a new instance of the method using the copy constructor. This should always be implemented as follows.
+</p>
+<div class="mw-highlight mw-highlight-lang-c++ mw-content-ltr" dir="ltr"><pre>Method *ChangeLightColorMethod::Replicate(void) const
+{
+    return (new ChangeLightColorMethod(*this));
+}</pre></div>
+<h2><span class="mw-headline" id="Method_Registration">Method Registration</span></h2>
+<p>A custom method type must be registered with the engine in order to be recognized by the <a href="index.php-title=Script_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Script_Editor" title="Script Editor">Script Editor</a>. This is accomplished by creating a <code>MethodReg</code> object. The method registration contains information about the method type and its name, and it's mere existence registers the method type that it represents. A method registration for the <code>ChangeLightColorMethod</code> class would normally look like the following.
+</p>
+<div class="mw-highlight mw-highlight-lang-c++ mw-content-ltr" dir="ltr"><pre>// Define the method registration.
+MethodReg&lt;ChangeLightColorMethod&gt; changeLightColorRegistration;</pre></div>
+<p>The registration object is initialized with the following code.
+</p>
+<div class="mw-highlight mw-highlight-lang-c++ mw-content-ltr" dir="ltr"><pre>changeLightColorRegistration(kMethodChangeLightColor, "Change Light Color");</pre></div>
+<p>There is an optional third parameter that can specify flags for the method, and these are described in the documentation for the <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/Controller/MethodReg.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/Controller/MethodReg.html%27" tppabs="http://c4engine.com/docs/Controller/MethodReg.html">MethodReg</a> class.
+</p>
+<h2><span class="mw-headline" id="Serialization">Serialization</span></h2>
+<p>A custom method must implement the <code>Pack()</code> and <code>Unpack()</code> functions so that its data can be written to a file and later restored. (These functions override the virtual functions in the <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/ResourceMgr/Packable.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/ResourceMgr/Packable.html%27" tppabs="http://c4engine.com/docs/ResourceMgr/Packable.html"><code>Packable</code></a> class.) Each of these functions needs to first call its counterpart in the <code>Method</code> base class. For the <code>ChangeLightColorMethod</code> example, these functions would typically be implemented as follows.
+</p>
+<div class="mw-highlight mw-highlight-lang-c++ mw-content-ltr" dir="ltr"><pre>void ChangeLightColorMethod::Pack(Packer&amp; data, uint32 packFlags) const
+{
+    Method::Pack(data, packFlags);
+
+    // Write the ColorRGB object.
+    data &lt;&lt; lightColor;
+}
+
+void ChangeLightColorMethod::Unpack(Unpacker&amp; data, uint32 unpackFlags)
+{
+    Method::Unpack(data, unpackFlags);
+
+    // Read the ColorRGB object.
+    data &gt;&gt; lightColor;
+}</pre></div>
+<h2><span class="mw-headline" id="User_Interface">User Interface</span></h2>
+<p>The <code>Method</code> class is a subclass of the <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/InterfaceMgr/Configurable.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/InterfaceMgr/Configurable.html%27" tppabs="http://c4engine.com/docs/InterfaceMgr/Configurable.html"><code>Configurable</code></a> class, which means it can expose a user interface that appears in the <a href="index.php-title=Script_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Script_Editor" title="Script Editor">Script Editor</a>. The <code>Method</code> object is queried by the Script Editor for its configurable settings when the user double-clicks on the method to open its Method Info window. The <code>BuildSettingList()</code> function is called when the editor needs all of the configurable settings to be built, and the <code>CommitSetting()</code> function is called for each setting when the user confirms the new configuration. For the <code>ChangeLightColorMethod</code> example, there is one setting representing the light color stored in the method object. The user interface to change this color would be implemented as follows.
+</p>
+<div class="mw-highlight mw-highlight-lang-c++ mw-content-ltr" dir="ltr"><pre>void ChangeLightColorMethod::BuildSettingList(List&lt;Setting&gt; *settingList) const
+{
+    // There is one setting, and it's a color picker.
+    settingList-&gt;AppendListElement(new ColorSetting('colr', lightColor, "Light color", "New Light Color"));
+}
+
+void ChangeLightColorMethod::CommitSetting(const Setting *setting)
+{
+    // Are we setting the light color?
+    if (setting-&gt;GetSettingIdentifier() == 'colr')
+    {
+        // Yes, grab the RGB color from the setting.
+        lightColor = static_cast&lt;const ColorSetting *&gt;(setting)-&gt;GetColor().GetColorRGB();
+    }
+}</pre></div>
+<p>The first parameter passed to the <code>ColorSetting</code> constructor (<code>'colr'</code>) is just an identifier that the property uses to keep track of which setting is which&#8212;it can be anything you want. The second parameter is the color that will initially be shown to the user. The third parameter is the title of the setting that will be displayed next to the color box in the settings list. The last parameter is the title that will be used for the color picker dialog when the user clicks on the color box.
+</p>
+<h2><span class="mw-headline" id="Method_Execution">Method Execution</span></h2>
+<p>When a script is running and it's time to execute your custom method, the script controller calls the method's <code>ExecuteMethod()</code> function. A method can do anything it wants when it executes as long as it doesn't cause itself to be deleted. When a method finishes performing its actions, it needs to indicate that it has completed by calling the <code>HandleCompletion()</code> function of its <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/Utilities/Completable.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/Utilities/Completable.html%27" tppabs="http://c4engine.com/docs/Utilities/Completable.html"><code>Completable</code></a> base class. A method may finish inside the call to its <code>ExecuteMethod()</code> function, or it may finish sometime later after more time-consuming operations have completed.
+</p><p>The <code>ExecuteMethod()</code> function for the <code>ChangeLightColorMethod</code> class could be implemented as follows.
+</p>
+<div class="mw-highlight mw-highlight-lang-c++ mw-content-ltr" dir="ltr"><pre>void ChangeLightColorMethod::Execute(const ScriptState *state)
+{
+    // Get the target node for this method and
+    // make sure it's actually a light source.
+    Node *node = GetTargetNode(state);
+    if ((node) &amp;&amp; (node-&gt;GetNodeType() == kNodeLight))
+    {
+        LightObject *object = static_cast&lt;Light *&gt;(node)-&gt;GetObject();
+
+        // Set the new light color.
+        object-&gt;SetLightColor(lightColor);
+
+        // Mark the object as modified.
+        object-&gt;SetModifiedFlag();
+    }
+
+    // Indicate that we are finished.
+    HandleCompletion();
+}</pre></div>
+<p>The call to the <code>GetTargetNode()</code> function retrieves the node that the user has selected as the target of the method in the <a href="index.php-title=Script_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Script_Editor" title="Script Editor">Script Editor</a>. It's possible that this target hasn't been selected or that the user linked it to a node that was not a light source, so the above code performs some checks before it carries out its task. Some custom methods do not operate on a target node, and these methods should specify the <code>kMethodNoTarget</code> flag in the method registration so that the user cannot select a target node in the Script Editor.
+</p><p>The <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/WorldMgr/Object_SetModifiedFlag.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/WorldMgr/Object_SetModifiedFlag.html%27" tppabs="http://c4engine.com/docs/WorldMgr/Object_SetModifiedFlag.html"><code>SetModifiedFlag()</code></a> function should be called whenever an object is modified so that the engine knows to write the object data when a game is saved. If this flag is not set, then the original object data would be reloaded when a saved game is resumed.
+</p>
+<h2><span class="mw-headline" id="Method_Output_Values">Method Output Values</span></h2>
+<p>A method may produce an output value that can be stored in a script variable. A method may also generate an independent boolean result that is used for conditional execution of subsequent methods in a script. A method can specify its output value by calling the <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/Controller/Method_SetOutputValue.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/Controller/Method_SetOutputValue.html%27" tppabs="http://c4engine.com/docs/Controller/Method_SetOutputValue.html"><code>SetOutputValue()</code></a> function. When a method outputs a value, it should specify the <code>kMethodOutputValue</code> flag in its method registration so that the <a href="index.php-title=Script_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Script_Editor" title="Script Editor">Script Editor</a> allows the user to assign an output variable to the method.
+</p><p>If a method calls the <code>SetOutputValue()</code> function, then the boolean result for the method is automatically set according to the output value. A method can set the boolean result without specifying an output value, or it can override the output value, by calling the <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/Controller/Method_SetMethodResult.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/Controller/Method_SetMethodResult.html%27" tppabs="http://c4engine.com/docs/Controller/Method_SetMethodResult.html"><code>SetMethodResult()</code></a> function.
+</p>
+<h2><span class="mw-headline" id="See_Also">See Also</span></h2>
+<ul><li><a href="index.php-title=Script_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Script_Editor" title="Script Editor">Script Editor</a></li>
+<li><a href="index.php-title=Methods.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Methods" title="Methods">Methods</a></li>
+<li><a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/Controller/Method.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/Controller/Method.html%27" tppabs="http://c4engine.com/docs/Controller/Method.html"><code>Method</code> class</a></li>
+<li><a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/Controller/MethodReg.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/Controller/MethodReg.html%27" tppabs="http://c4engine.com/docs/Controller/MethodReg.html"><code>MethodReg</code> class</a></li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20240921123143
+Cache expiry: 86400
+Reduced expiry: false
+Complications: [show‐toc, no‐toc‐conversion]
+CPU time usage: 0.028 seconds
+Real time usage: 0.082 seconds
+Preprocessor visited node count: 76/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/100
+Expensive parser function count: 10/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 4812/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+
+<!-- Saved in parser cache with key c4_wiki:pcache:idhash:120-0!canonical and timestamp 20240921123142 and revision id 533. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&oldid=533  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&oldid=533%27" tppabs="https://c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&oldid=533">https://c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&amp;oldid=533</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="index.php-title=Special-Categories.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Category:Pages_with_syntax_highlighting_errors  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Category:Pages_with_syntax_highlighting_errors%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Category:Pages_with_syntax_highlighting_errors&action=edit&redlink=1" class="new" title="Category:Pages with syntax highlighting errors (page does not exist)">Pages with syntax highlighting errors</a></li><li><a href="index.php-title=Category-Scripts.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Category:Scripts" title="Category:Scripts">Scripts</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="vector-menu mw-portlet mw-portlet-personal vector-user-menu-legacy" aria-labelledby="p-personal-label" role="navigation"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="pt-login" class="mw-list-item"><a href="index.php-title=Special-UserLogin&returnto=Defining+a+Custom+Method.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:UserLogin&returnto=Defining+a+Custom+Method" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li></ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="vector-menu mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-namespaces-label" role="navigation"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected mw-list-item"><a href="index.php-title=Defining_a_Custom_Method.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Defining_a_Custom_Method" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Talk:Defining_a_Custom_Method  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Talk:Defining_a_Custom_Method%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Talk:Defining_a_Custom_Method&action=edit&redlink=1" rel="discussion" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="vector-menu mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	/>
+	<label
+		id="p-variants-label"
+		 aria-label="Change language variant"
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="vector-menu mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-views-label" role="navigation"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-view" class="selected mw-list-item"><a href="index.php-title=Defining_a_Custom_Method.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Defining_a_Custom_Method"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="index.php-title=Defining_a_Custom_Method&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="index.php-title=Defining_a_Custom_Method&action=history.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="vector-menu mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown" aria-labelledby="p-cactions-label" role="navigation"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	/>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<div>
+		<form action="http://www.c4engine.com/wiki/index.php" id="searchform"
+			class="vector-search-box-form">
+			<div id="simpleSearch"
+				class="vector-search-box-inner"
+				 data-search-loc="header-navigation">
+				<input class="vector-search-box-input"
+					 type="search" name="search" placeholder="Search C4 Engine Wiki" aria-label="Search C4 Engine Wiki" autocapitalize="sentences" title="Search C4 Engine Wiki [f]" accesskey="f" id="searchInput"
+				>
+				<input type="hidden" name="title" value="Special:Search">
+				<input id="mw-searchButton"
+					 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+				<input id="searchButton"
+					 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+			</div>
+		</form>
+	</div>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="vector-menu mw-portlet mw-portlet-navigation vector-menu-portal portal" aria-labelledby="p-navigation-label" role="navigation"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="n-mainpage-description" class="mw-list-item"><a href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="javascript:if(confirm(%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents%27" tppabs="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="vector-menu mw-portlet mw-portlet-tb vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="t-whatlinkshere" class="mw-list-item"><a href="index.php-title=Special-WhatLinksHere-Defining_a_Custom_Method.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:WhatLinksHere/Defining_a_Custom_Method" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Defining_a_Custom_Method  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Defining_a_Custom_Method%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Defining_a_Custom_Method" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="index.php-title=Special-SpecialPages.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="index.php-title=Defining_a_Custom_Method&oldid=533.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&oldid=533" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="index.php-title=Defining_a_Custom_Method&action=info.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&action=info" title="More information about this page"><span>Page information</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" role="contentinfo" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 12 September 2023, at 21:38.</li>
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About">About C4 Engine Wiki</a></li>
+	<li id="footer-places-disclaimers"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-poweredbyico"><a href="javascript:if(confirm(%27https://www.mediawiki.org/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/%27" tppabs="https://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" tppabs="http://www.c4engine.com/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/></a></li>
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":79,"wgPageParseReport":{"limitreport":{"cputime":"http://www.c4engine.com/wiki/0.028","walltime":"http://www.c4engine.com/wiki/0.082","ppvisitednodes":{"value":76,"limit":1000000},"postexpandincludesize":{"value":0,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":2,"limit":100},"expensivefunctioncount":{"value":10,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":4812,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20240921123143","ttl":86400,"transientcontent":false}}});});</script>
+</body>
+</html>

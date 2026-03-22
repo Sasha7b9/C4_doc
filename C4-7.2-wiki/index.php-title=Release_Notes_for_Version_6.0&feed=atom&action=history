@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.0&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 6.0 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.0&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.0&amp;action=history"/>
+	<updated>2024-09-21T18:39:17Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.0&amp;diff=92&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' January 27, 2017  (C4 version 6.0 corresponds to Tombstone version 2.0.)  == Core Engine ==  * Support for the Open Data Description Language has been updated to version 2.0.  === Graphics Manager ===  * A few new workarounds have been implemented to deal with subtle bugs in the AMD graphics driver.  === Interface Manager ===  * All text drawing, both in the user interface and in panel effects, now uses our new technology to render glyphs on...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.0&amp;diff=92&amp;oldid=prev"/>
+		<updated>2023-07-15T10:21:30Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; January 27, 2017  (C4 version 6.0 corresponds to Tombstone version 2.0.)  == Core Engine ==  * Support for the Open Data Description Language has been updated to version 2.0.  === Graphics Manager ===  * A few new workarounds have been implemented to deal with subtle bugs in the AMD graphics driver.  === Interface Manager ===  * All text drawing, both in the user interface and in panel effects, now uses our new technology to render glyphs on...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' January 27, 2017&lt;br /&gt;
+&lt;br /&gt;
+(C4 version 6.0 corresponds to Tombstone version 2.0.)&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+* Support for the Open Data Description Language has been updated to version 2.0.&lt;br /&gt;
+&lt;br /&gt;
+=== Graphics Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* A few new workarounds have been implemented to deal with subtle bugs in the AMD graphics driver.&lt;br /&gt;
+&lt;br /&gt;
+=== Interface Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* All text drawing, both in the user interface and in panel effects, now uses our new technology to render glyphs on the GPU directly from font outline data. A shader reads the quadratic BÃ©zier curves from a special texture map for each glyph and calculates nicely antialiased edges at any resolution. The engine no longer uses texture maps to store pre-rendered bitmap versions of each glyph at one specific font size. Text is sharply rendered no matter how large it is scaled or how it is rotated. This technology anticipates the increasing ubiquity of higher DPI displays where glyphs are rendered at a higher resolution over the same physical area to achieve greater quality.&lt;br /&gt;
+&lt;br /&gt;
+* Every type of widget that draws text now has a font size setting. The font size corresponds to the height of the em square for the font. (The height of capital letters is usually around 70% of the em square height, but there is no strict rule about this.) Text widgets also have an independent scale factor, and the font size is multiplied by this scale factor to determine the final size of the glyphs that are rendered.&lt;br /&gt;
+&lt;br /&gt;
+* The text layout code in the engine now uses exact glyph advance widths to position characters, which results in fractional positioning that is correct at all font sizes. This has a much nicer appearance compared to the integral widths used by the texture-based glyphs in earlier versions of the engine.&lt;br /&gt;
+&lt;br /&gt;
+* The text layout code now also supports kerning. Using the tables contained in the original font, some pairs of glyphs are moved closer together, or sometimes further apart, to improve appearance. Kerning is enabled by default, but text widgets have a setting to disable it if desired.&lt;br /&gt;
+&lt;br /&gt;
+* Text can now have special effects applied, and they can be dynamically changed at run-time. Two effects are currently available, a shadow effect and a glow effect.&lt;br /&gt;
+&lt;br /&gt;
+* The color picker dialog now contains copy and paste buttons that operate on the current color.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+=== Font Importer ===&lt;br /&gt;
+&lt;br /&gt;
+* The Font Importer now reads TrueType Font (&amp;lt;code&amp;gt;.ttf&amp;lt;/code&amp;gt;) files directly instead of relying on the operating system to rasterize glyphs. This means that fonts can be imported on all platforms, and the results are identical on all platforms.&lt;br /&gt;
+&lt;br /&gt;
+* All Unicode values up to U+2FFFF are now support by the Font Importer, which is everything belonging to the Basic Multilingual Plane (BMP), as before, plus the Supplementary Multilingual Plane (SMP) and the Supplementary Ideographic Plane (SIP). This covers all renderable glyphs currently defined by Unicode.&lt;br /&gt;
+&lt;br /&gt;
+* When a font is imported, the settings in the Font Importer are saved to a config file so they can be restored if the font is ever imported again. This includes which ranges of glyphs are selected to be imported.&lt;br /&gt;
+&lt;br /&gt;
+=== OpenGEX Importer ===&lt;br /&gt;
+&lt;br /&gt;
+* Support for the OpenGEX format has been updated to version 2.0.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

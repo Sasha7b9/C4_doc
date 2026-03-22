@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>MessageMgr::SendMessage</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/MessageMgr/index.html">Message Manager</a> &#x25BA; <a href="MessageMgr.html" tppabs="http://www.c4engine.com/docs/MessageMgr/MessageMgr.html">class MessageMgr</a></div>
+</td></tr></table>
+<div class="content">
+<h2>MessageMgr::SendMessage</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Messages.h</code></div>
+Sends a message to a player in a multiplayer game.
+<div class="heading">Prototype</div>
+<p><code><span style="color: #0000FF">void</span>&nbsp;SendMessage(PlayerKey&nbsp;key,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Message&amp;&nbsp;message);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>key</code></td>
+<td class="tableright1">The key of the player that the message will be sent to.
+</td></tr>
+<tr><td class="tableleft"><code>message</code></td>
+<td class="tableright">The message to be sent.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>SendMessage</code> function locates the player whose key matches the <code>key</code> parameter and sends the message given by the <code>message</code> parameter to that player. If no player with the specified key exists, then <code>SendMessage</code> returns without sending the message.<br/><br/> The <code>key</code> parameter may be the actual key of a player, or it may be one of the following special constants.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kPlayerServer</code></td>
+<td class="tableright1">The message is sent to the server. If the local machine is the server, then the message is received immediately and is processed before <code>SendMessage</code> returns.
+</td></tr>
+<tr><td class="tableleft"><code>kPlayerSelf</code></td>
+<td class="tableright">The message is sent to the local machine. The message is received immediately and is processed before <code>SendMessage</code> returns.
+</td></tr>
+<tr><td class="tableleft"><code>kPlayerAll</code></td>
+<td class="tableright">The message is sent to all players and to the local machine. Specifying this key is equivalent to calling the <code><a href="MessageMgr_SendMessageAll.html" tppabs="http://www.c4engine.com/docs/MessageMgr/MessageMgr_SendMessageAll.html">MessageMgr::SendMessageAll</a></code> function.
+</td></tr>
+<tr><td class="tableleft"><code>kPlayerClients</code></td>
+<td class="tableright">The message is sent to all client machines. This may only be specified if the sending machine is the server, and it is equivalent to calling the <code><a href="MessageMgr_SendMessageClients.html" tppabs="http://www.c4engine.com/docs/MessageMgr/MessageMgr_SendMessageClients.html">MessageMgr::SendMessageClients</a></code> function.
+</td></tr>
+</table>
+Messages may be sent only to remote machines for which an actual connection with the local machine exists. Since client machines are normally connected only to the server, messages may not be sent directly from client to client. A call to the <code>SendMessage</code> function has no effect if there is no connection corresponding to the recipient.
+<div class="heading">Special Considerations</div>
+If a pointer to a <code><a href="Player.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Player.html">Player</a></code> object is available, it is generally better to call <code><a href="Player_SendMessage.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Player_SendMessage.html">Player::SendMessage</a></code> to send a message to that player instead of calling <code>MessageMgr::SendMessage</code> with the player's key.
+<div class="heading">See Also</div>
+<p><code><a href="MessageMgr_SendMessageAll.html" tppabs="http://www.c4engine.com/docs/MessageMgr/MessageMgr_SendMessageAll.html">MessageMgr::SendMessageAll</a></code>
+</p>
+<p><code><a href="MessageMgr_SendMessageClients.html" tppabs="http://www.c4engine.com/docs/MessageMgr/MessageMgr_SendMessageClients.html">MessageMgr::SendMessageClients</a></code>
+</p>
+<p><code><a href="MessageMgr_SendConnectionlessMessage.html" tppabs="http://www.c4engine.com/docs/MessageMgr/MessageMgr_SendConnectionlessMessage.html">MessageMgr::SendConnectionlessMessage</a></code>
+</p>
+<p><code><a href="Player_SendMessage.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Player_SendMessage.html">Player::SendMessage</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

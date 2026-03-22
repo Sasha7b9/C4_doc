@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Oscillation_Tutorial&amp;feed=atom&amp;action=history</id>
+	<title>Oscillation Tutorial - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Oscillation_Tutorial&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Oscillation_Tutorial&amp;action=history"/>
+	<updated>2024-09-21T18:28:18Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Oscillation_Tutorial&amp;diff=167&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;This tutorial teaches you how to assign an Oscillation Controller to a node in a level. The Oscillation Controller is a specific type of controller that's built into the C4 Engine, and it causes a node to oscillate back and forth between two points with a velocity based on a sine wave.  To follow this tutorial, you need the &lt;code&gt;Data/Tutorial/world/Oscillation.wld&lt;/code&gt; file that is included in the &lt;code&gt;C4-xxx-Data.zip&lt;/code&gt; distribution.  To enlarge any of the s...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Oscillation_Tutorial&amp;diff=167&amp;oldid=prev"/>
+		<updated>2023-07-15T11:09:02Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;This tutorial teaches you how to assign an &lt;a href=&quot;/wiki/index.php?title=Oscillation_Controller&quot; title=&quot;Oscillation Controller&quot;&gt;Oscillation Controller&lt;/a&gt; to a node in a level. The Oscillation Controller is a specific type of controller that&amp;#039;s built into the C4 Engine, and it causes a node to oscillate back and forth between two points with a velocity based on a sine wave.  To follow this tutorial, you need the &amp;lt;code&amp;gt;Data/Tutorial/world/Oscillation.wld&amp;lt;/code&amp;gt; file that is included in the &amp;lt;code&amp;gt;C4-xxx-Data.zip&amp;lt;/code&amp;gt; distribution.  To enlarge any of the s...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;This tutorial teaches you how to assign an [[Oscillation Controller]] to a node in a level. The Oscillation Controller is a specific type of controller that's built into the C4 Engine, and it causes a node to oscillate back and forth between two points with a velocity based on a sine wave.&lt;br /&gt;
+&lt;br /&gt;
+To follow this tutorial, you need the &amp;lt;code&amp;gt;Data/Tutorial/world/Oscillation.wld&amp;lt;/code&amp;gt; file that is included in the &amp;lt;code&amp;gt;C4-xxx-Data.zip&amp;lt;/code&amp;gt; distribution.&lt;br /&gt;
+&lt;br /&gt;
+To enlarge any of the screenshots below, click on the thumbnail icon below the image.&lt;br /&gt;
+&lt;br /&gt;
+== Step A: Open Oscillation.wld ==&lt;br /&gt;
+&lt;br /&gt;
+Open &amp;lt;code&amp;gt;Data/Tutorial/world/Oscillation.wld&amp;lt;/code&amp;gt; in the [[World Editor]] by typing Ctrl-O or by entering &amp;lt;code&amp;gt;world world/Oscillation&amp;lt;/code&amp;gt; into the [[Command Console]]. The World Editor will display the scene shown in Figure 1 containing a room with two platforms separated by a lava pit.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Oscillation1.png|thumb|center|960px|'''Figure 1.''' The oscillation tutorial world looks like this when it's first opened in the [[World Editor]].]]&lt;br /&gt;
+&lt;br /&gt;
+== Step B: Assign Oscillation Controller ==&lt;br /&gt;
+&lt;br /&gt;
+There is a smaller platform near the center of the scene that sticks out above the lava. We are going to assign an Oscillation Controller to this geometry so that it moves back and forth above the lava pit and allows the player to safely cross to the other side. Click on this platform to select it, as shown in Figure 2.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Oscillation2.png|thumb|center|960px|'''Figure 2.''' The geometry node to which we will assign an Oscillation Controller is selected.]]&lt;br /&gt;
+&lt;br /&gt;
+Once the geometry is selected, type Ctrl-I to open the Node Info window, and then click on the '''Controller''' tab. Select the '''Oscillation Controller''' from the list.&lt;br /&gt;
+&lt;br /&gt;
+There are three settings for the Oscillation Controller, a speed and two connectors. The '''Oscillation speed''' setting determines how fast the node oscillates back and forth, and it's measured in cycles per second. A value of 0.5 would mean that the node moves halfway through one complete cycle in one second, which corresponds to a period of two seconds for each complete cycle. This is pretty fast, so we'll enter a much smaller number like 0.05, which means it takes 20 seconds for the node to complete one full cycle and return to its starting position.&lt;br /&gt;
+&lt;br /&gt;
+The connector settings specify the names of the connectors that will be used to specify the starting and finishing positions for the oscillation, as described in the next step. We'll use the default values, so no changes need to be made to these settings.&lt;br /&gt;
+&lt;br /&gt;
+The controller settings should look like those shown in Figure 3. Leave the Node Info window open because we are going to add connectors in the next step.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Oscillation3.png|thumb|center|960px|'''Figure 3.''' These are the settings for the [[Oscillation Controller]].]]&lt;br /&gt;
+&lt;br /&gt;
+== Step C: Create Start and Finish Connectors ==&lt;br /&gt;
+&lt;br /&gt;
+Click on the '''Connectors''' tab in the Node Info window. We need to add two new [[Connectors|connectors]] to the oscillating node that will be connected to markers in the world that tell the controller how far to move the node. Click the '''New''' button at the bottom of the window twice. In the blank fields that appear under the Custom Connectors heading, enter &amp;quot;Start&amp;quot; and &amp;quot;Finish&amp;quot; (without quotes). Connector names are case-sensitive, so be sure to capitalize the first letter. One this has been done, the Node Info window should appear as shown in Figure 4. Click '''OK''' to save the node settings and return to the main editor.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Oscillation4.png|thumb|center|960px|'''Figure 4.''' Two new [[Connectors|connectors]] named Start and Finish are added to the node.]]&lt;br /&gt;
+&lt;br /&gt;
+== Step D: Add Markers to the World and Connect ==&lt;br /&gt;
+&lt;br /&gt;
+We now need to add two locator markers to the world that tell the Oscillation Controller how far to move its target node. Scroll down through the tool pages on the left side of the editor window with the mouse wheel until the '''Markers Page''' is visible. (Make sure the '''Object''' tab is selected.) Then select the '''Locator Marker''' tool in the upper-left corner of the '''Markers Page'''.&lt;br /&gt;
+&lt;br /&gt;
+Type Ctrl-1 to make the Top viewport fill the editor window, and zoom in a little with the mouse wheel. Click on the upper edge of the geometry that has the Oscillation Controller assigned to it (which should still be selected before clicking). This will place a new locator marker in the world. Click again on the lower edge of the stone platform on the opposite side of the lava pit. This will place a second locator marker in the world. After both markers have been created, the editor window should look like that shown in Figure 5.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Oscillation5.png|thumb|center|960px|'''Figure 5.''' Two locator markers have been placed in the scene.]]&lt;br /&gt;
+&lt;br /&gt;
+The difference in the position of the two locator markers corresponds to the distance over which the node will move.&lt;br /&gt;
+&lt;br /&gt;
+The final task is to connect the geometry node to the two locator markers. Select the '''Connect Tool''' at the top of the editor window (or use the 5 key as a shortcut), and select the geometry node by clicking on it in the Top viewport. (The ceiling has been hidden in this world so that a click will go through to the platform geometry in the Top viewport.)&lt;br /&gt;
+&lt;br /&gt;
+You will now see the two connectors named Start and Finish attached to the geometry node. Click on the Start connector, then click on the first locator marker that was placed in the world, and type Ctrl-L to link them together. Repeat this process by clicking on the Finish connector, clicking on the second locator marker, and typing Ctrl-L to link those together. Once this is done, the editor window should appear as shown in Figure 6.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Oscillation6.png|thumb|center|960px|'''Figure 6.''' The Start and Finish connectors have been connected to the two locator markers that were placed in the world.]]&lt;br /&gt;
+&lt;br /&gt;
+== Step E: Play the Level ==&lt;br /&gt;
+&lt;br /&gt;
+You can now type Ctrl-P to save and play the level. You will see the platform moving back and forth above the lava pit, completing a full cycle every 20 seconds. If you're running the demo game, then you can walk the player onto the moving platform (or jump) when it's close enough to your side of the lava pit. The platform will carry the player to the other side where he can safely step off.&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[Oscillation Controller]]&lt;br /&gt;
+* [[World Editor]]&lt;br /&gt;
+* [[Connectors]]&lt;br /&gt;
+&lt;br /&gt;
+[[Category:Tutorials]]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

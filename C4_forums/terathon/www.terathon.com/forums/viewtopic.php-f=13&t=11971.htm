@@ -1,0 +1,846 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View topic - AMP : the middleware used by Wind of Luck</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '';
+	var base_url = '';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=17.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=17">General C4 Engine Topics</a> <strong>&#8249;</strong> <a href="viewforum.php-f=13.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=13">User Lounge</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewtopic.php-f=13&t=11971.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=13&t=11971">AMP : the middleware used by Wind of Luck</a></h2>
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body --><div style="display: none !important;">Topics covering just about anything. If it's not engine-related, it goes here.<br /></div>
+	<div class="rules">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		
+			<strong>Forum rules</strong><br />
+			You may generally post about anything you want as long as it's not offensive. However, you may <span style="font-weight: bold">not</span> start threads that make engine comparisons or discuss other engines in any way. Any kind of advertisements for products and services are <span style="font-weight: bold">not allowed</span>. Recruiting for projects that don't involve C4 are also <span style="font-weight: bold">not allowed</span>.
+		
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=13&t=11971  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=13&t=11971%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=13&t=11971" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="search-box">
+			<form method="get" id="topic-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="Search this topic…" onclick="if(this.value=='Search this topic…')this.value='';" onblur="if(this.value=='')this.value='Search this topic…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="t" value="11971" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			9 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+
+</div>
+<div class="clear"></div>
+
+
+	<div id="p108838" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 class="first"><a href="#p108838">AMP : the middleware used by Wind of Luck</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=108838  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=108838#p108838%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=108838#p108838"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1876.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1876" style="color: #0060C0;" class="username-coloured">TheRhinoDude</a></strong> &raquo; 24 Jun 2012, 16:53 </p>
+
+			
+
+			<div class="content">Hey folks,<br /><br />As I mentioned in Casper's Wind of Luck (WoL) announcement thread in the Showcase forum, I've been working with him and the rest of the Trazzy team since early 2010. Back in 2008 I started a project which has morphed into what today is AMP, which is an acronym for the Adaptive Middleware Platform.  <br /><br />AMP is an adaptive and location-independent Service Orientated Archicture (SOA) platfom that provides network services for MMO's and other online games and networked simulations and serious games.  Some of the services include registration/account management, login/sessions, lobby/chat, patching and synchronization, world/zone management, tuple spaces, game simulation, auditing, payments/recurring billing, just to name a few.   AMP also provides database services (db's and access libs) for everything from the world storage (avatars, zones, items, npcs, etc.) to account / CRM storage to content, knowledge base, issuse tracking, and much, much more. <br /><br />So just what is an AMP Service?  It's simple actually.  At it's simplest definition, and AMP Service is a collection of interface methods that you can invoke, yet depending upon deployed configuration you may not necessarily know where they will be executed.  That is what is meant by location independent.  It supports client-server topologies upon deployment, but at it's core it's a graph architecture that can support many-to-many communications.  So when working with the AMP core, you can really build any type of networked application.  The AMP Game Services are simply one of the first problems we are tackling.  From here on when I refer to &quot;AMP&quot;, I'm referring to the Core + these Game Services.<br /><br />AMP is all 100% generic and parts can be used for any networked PC game (and soon Mac and Linux) or networked simulation, not just something that looks like WoL or even a MMO.  In fact, there is another team developing a non-MMO game with it right now.<br /><br />One of the key aspects of AMP is it is designed to work with other technologies and can be used piece by piece; it is not a monolithic solution. For example, WoL uses AMP alongside RakNet, and performs networking with both of them.  AMP does not pretend to be all things to all projects.  Each service is indivdually deployable and separately accessible and optionally clusterable from all of the others (unlike RakNet where it all has to be compiled into your application even if you only use parts of it). You can use one, some, all or none of the AMP Services.<br /><br />Furthermore, all services that depend on other services are lightly coupled using a hybrid interface/adapter pattern which easily allows services to be &quot;glued&quot; to third party implementations.  Entire layers of the architecture can be replaced, and one of the upcoming features is the transport layer will be pluggable, so you won't even have to use AMP's built-in networking transports, and can instead be used on top of RakNet, ENet, and so forth.<br /><br />Most AMP services are also highly extensible from the outisde using an XML configuration file for many settings, switches, and choices of behaviors.  These configurations can be imported/exported to and from the AMP Master databases, for central managemet of all configurations, in a deployed environment.  This is a key element to the adaptive &quot;cloudiness&quot; nature of AMP.  Many of the tenets of the utility computing model went into the design fo the AMP architecture, making server management and game scaling a piece of cake, and eventually, automatic if desired.<br /><br />Conversely, for simplified development these configurations can simply be XML files on your hard drive and will automatically be loaded from there.  The official build process may then choose to use the AmpDbTool to merge these configurations into the database for deployment to a particular test or even production environment.  Well over a decade of writing and managing server environments has taught me a lot of tricks, and these are all baked into AMP.<br /><br />Alternatively, a few services also support optional plugins managed or native DLL's which can extend or even replace service features without code access, mitigating future code interation work.  The plugin and adapter patterns are heavily used here and it is an extremely powerful paradigm.  Two plugin interfaces are supported, so you can write your DLL either in managed code such as C#, or as a plain-jane native DLL with entrypoints.  Eventually all services will support this plugin framework.<br /><br />Of course, AMP will be available both with and without source code licenses, so you can alter the service code if you reallly want or need to. But I've tried to provide as many ways as possible to extend and alter it's behavior without having to make custom code modifications. The plugin interfaces are going to be sacred within major versions. The code inside...not so much. <img src="images/smilies/icon_wink.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_wink.gif" alt=";-)" title="Wink" /><br /><br />One of the cooler features I'm working on with a third party right now is the scripting system which will provide a standard AMP Script Engine Plugin to be plugged into any of pluggable services, so you can script all of this service customization instead of writing your own DLL.  You'll be able to remotely debug, automatically load and save scripts back to server with versioning, and so forth.  This work is very preliminary so there isn't much to share about it at this point.  If this doesn't make it into 1.0, it will very high in the roadmap.<br /><br />Another one of the key points of AMP is it is a platform, not just middleware. In addition to being able to extend the stock services, you can of course write your own.  The upcoming AmpCompiler will actually generate all of the proxies, stubs, and processors for you from your own interfaces.  But unlike most complete MMO engine solutions, which AMP is eventually going to grow to be, it doesn't force you to the platform and require you to extend it as the platform designers saw fit. If you just want to use just a single AMP service such as the patcher in your project, then fine.  Conversely, if you want to build your entire game's networking and backend around AMP, then fine.  WoL for example is between these two extremes, athough it is closer to the later.  It uses almost all of AMP's services except for the simulation services, for which they use RakNet for their own custom game simulation logic.<br /><br />Finally, one of AMP's greatest strengths is it's high performance and scalability.  A lot has been said above about flexility, replaceable tiers, plugins, adapter/interface patterns, and so forth.  A seasoned software engineer will read these things and perhaps think one thing: SLOW.  This couldn't be further from the truth.  Absolute performance has been a critical point of AMP design from the beginning.  The code has been extremely tuned and native code is used where it is needed to minimize bottlenecks (AMP is about 95% C# 5% native C).   In short the architecture embraces high parallalism and object caching, and as such scales very well on modern high-core high-memory systems, which AMP leverage to their fullest.<br /><br />For example, let's look at the AMP Login Service and what it takes to do a login.  Performing a login isn't just about checking credentials.  It of course includes all of the encryption and handshaking necessary with the client to securely establish a shared secret key for high performance secure communications, as well as overhead for checking blacklists, checking for malicious intent / attack recognition, as well as creating a unique session and identifier, tieing customers IP and shared secret key to that session, as well as loading the relevant bits of their account profile into the session for future reference.  In short, a lot happens.  So how many of these distinct logins can AMP process in a second?<br /><br />- On a 5+ year old core duo @ 2ghz @ 2gb laptop, you can see ~250 logins per second.<br />- On a first generation i5 dual-core @ 2.93 ghz (HT enabled) @ 4gb, it jumps to ~900 login/sec.<br />- On a modern dual xeon 24 cores @ 2.26 ghz total (HT enabled) @ 16gb, it can handle ~5k logins per second.<br /><br />Not quite near linear scalability, but close.  Also of note is that deviation on the last example is &lt; 5% no matter how many user accounts you have whether it is 10 or 1,000 or 10,000 or 100,000 or 1,000,000 or even 10,000,000.  The key to these numbers is aggressive caching and focus on parallelism throughout the stack.<br /><br />So if anybody has been wondering where I disapear to months at a time with nary a post here in the C4 forums, this is it: it means I am heads-down coding in AMP. <img src="images/smilies/icon_wink.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_wink.gif" alt=";-)" title="Wink" /><br /><br />If anybody has any questions or would like some additional details, feel free ask away and if it's something I can share I will.  I hope to have the website live in the next few months which will provide much more detail as well as a demo download of AMP itself.  But at this point I'm still heads down finishing it all, and doing everything I can to make sure WoL is a success.  When I get closer, probably as WoL beta approaches, I will put up a site and start taking Early Adopter orders, which will get free updates for life on the entire AMP suite including future products in the same product line.<br /><br />In the meantime, to see AMP in action (albeit under the covers), check out Trazzy's site at <!-- m --><a class="postlink" href="javascript:if(confirm(%27http://www.trazzy.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.trazzy.com/%27" tppabs="http://www.trazzy.com/">http://www.trazzy.com</a><!-- m -->.  Almost everything at the site below the ASP.Net presentation layer is built upon nearly two-dozen different AMP services, and all data is stored in AMP db's.  In fact, nearly every word you read on that dynamic site is stored in one of several globalzied AMP Content databases and accessed through it's content management service.  In fact the only &quot;deep feature&quot; on the site not implemented on AMP are the forums, which uses the third party JitBitForum, but even that was integrated with AMP for single sign-on.  In short, while the site itself is built on the ASP.Net for presentation layer only by another team, almost all of the functionality is implemented as AMP services by myself.  This allows for an exceedingly tight integration between game and website, if desired.<br /><br />Note that even though the site presentation layer is built in .Net, the entire set of AMP Services useful for building a website is made available through a library which is also PHP accessible.  I obviously wanted to support PHP due ito it's ubiquity.  If there is enough demand, someday I may also author WordPress, Joomla plugins, or DNN plugins.  If I don't, hopefully somebody else will.<br /><br />Note that when playing around with the site, especially for my friends here in the states, that it is hosted out of The Netherlands as Trazzy is a European company, and pages load accordingly.<br /><br />Anyway let me know if any questions.<br /><br />Thanks,<br />Ryan Rogers<br />Beaver Valley Labs</div>
+
+			
+				<div class="notice">Last edited by <a href="memberlist.php-mode=viewprofile&u=1876.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1876" style="color: #0060C0;" class="username-coloured">TheRhinoDude</a> on 25 Jun 2012, 05:51, edited 1 time in total.
+					
+				</div>
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile108838">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1876.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1876" style="color: #0060C0;" class="username-coloured">TheRhinoDude</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 352</dd><dd><strong>Joined:</strong> 16 Apr 2009, 10:25</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p108842" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p108842">Re: AMP : the middleware used by Wind of Luck</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=108842  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=108842#p108842%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=108842#p108842"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a></strong> &raquo; 24 Jun 2012, 17:25 </p>
+
+			
+
+			<div class="content">X</div>
+
+			
+				<div class="notice">Last edited by <a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a> on 25 Jun 2012, 21:20, edited 1 time in total.
+					
+				</div>
+			<div id="sig108842" class="signature">Intel i5-4430<br />Nvidia 660 - Driver 340.43<br />8 Gigs RAM</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile108842">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257"><img src="download/file.php-avatar=1257_1365571061.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1257_1365571061.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2883</dd><dd><strong>Joined:</strong> 13 Jun 2008, 15:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p108844" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p108844">Re: AMP : the middleware used by Wind of Luck</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=108844  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=108844#p108844%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=108844#p108844"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2537.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2537" style="color: #0060C0;" class="username-coloured">Grognard</a></strong> &raquo; 24 Jun 2012, 18:05 </p>
+
+			
+
+			<div class="content">Cool info, thanks for posting.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile108844">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2537.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2537" style="color: #0060C0;" class="username-coloured">Grognard</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1163</dd><dd><strong>Joined:</strong> 13 Sep 2010, 19:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p108845" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p108845">Re: AMP : the middleware used by Wind of Luck</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=108845  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=108845#p108845%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=108845#p108845"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a></strong> &raquo; 24 Jun 2012, 18:06 </p>
+
+			
+
+			<div class="content">So, I read all these great things - and all I am wondering is : price.</div>
+
+			<div id="sig108845" class="signature">Intel i5-4430<br />Nvidia 660 - Driver 340.43<br />8 Gigs RAM</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile108845">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257"><img src="download/file.php-avatar=1257_1365571061.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1257_1365571061.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2883</dd><dd><strong>Joined:</strong> 13 Jun 2008, 15:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p108892" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p108892">Re: AMP : the middleware used by Wind of Luck</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=108892  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=108892#p108892%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=108892#p108892"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2982.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2982" style="color: #404040;" class="username-coloured">HeadClot</a></strong> &raquo; 25 Jun 2012, 16:33 </p>
+
+			
+
+			<div class="content">I want to see a Price as well <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":)" title="Smile" /></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile108892">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2982.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2982" style="color: #404040;" class="username-coloured">HeadClot</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 31</dd><dd><strong>Joined:</strong> 22 Apr 2012, 17:14</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p108893" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p108893">Re: AMP : the middleware used by Wind of Luck</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=108893  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=108893#p108893%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=108893#p108893"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1876.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1876" style="color: #0060C0;" class="username-coloured">TheRhinoDude</a></strong> &raquo; 25 Jun 2012, 16:46 </p>
+
+			
+
+			<div class="content">Sorry this isn't the short answer you're probably looking for...as frankly I don't have final prices figured in yet and don't want to share and have things change. However I have decided on the general product line and licensing models that I would like to get feedback on.  Furthermore, the one thing I can say is that upon initial Early Adapter launch, it will be priced at 75% of what the total &quot;AMP Master Suite&quot; will be on 1.0 launch.  More details below on what all that means. <img src="images/smilies/icon_wink.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_wink.gif" alt=";-)" title="Wink" /><br /><br />First, there will be no percentage-based royalties, ever, even for binary editions. This choice meant doing things a bit differently though, so some of this may feel a bit different, and I'd appreciate feedback on it.  Quite a bit of market research has actually gone into this already, as should be.<br /><br />Second, all products will be available as both Binary and Source Editions.  More on that later as it affects licensing and deployment. Binary costs will going  to be very aggressive (ie low) as I want hobbyist developers and indies on a tight budget to be able to afford this. Note that you will be able to upgrade from Binary to Source at cost differential, no hidden tricks or fees.<br /><br />Third, there will be many products, as I don't think it's fair to ask somebody to buy everything if they don't need it.  It would be one thing if it was a monolithic engine where everything was tightly bound.  If that were the case, it would just be one large big product for a single flat fee.  But AMP is purposefully built to be exactly the opposite of this. You can pick and choose what you need.  As such, the menu will be a la carte: you order and pay for what you eat. <img src="images/smilies/icon_wink.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_wink.gif" alt=";-)" title="Wink" /><br /><br />For example, there is a lot to the AMP Patcher and Launcher.  A ton of features, and a lot of engineering work that went into it.  If you don't need it for your project because you don't have a launcher, or are only going to be sold on Steam for example, then you don't need this piece of technology.  You shouldn't have to pay for it if you don't need it.<br /><br />As such, the approach to our product lines will be that many different smaller products will extend a common AMP Core product.  You buy the Core, and then only what you need to extend it. <br /><br />But what if you &quot;need&quot; everything?  Or what if you need only the game services, but are going to merge them with your own website and existing back-office billings, CRM and KB?  While trying to be fair to those who just need a few services, we don't want others to feel like they are being nickel-and-dimed to death with add-on products.  For these people, we will offer bundled &quot;suites&quot; so that they can be preconfigured groups of products, and save.<br /><br />These are the planned suites and their products in them:<br /><br />- AMP Foundation Suite : includes Core + Locator + Basic Data + Native Bridges product. Everybody needs this.<br />- AMP Back Office Suite : includes Foundation Suite + Web Services + Payment Service +  Recurring Billing + Advanced Data<br />- AMP Patcher Suite : includes Foundation Suite + Patcher Service + Launcher App<br />- AMP Game Services Suite : includes Foundation Suite + User Services + Lobby Services + World Services<br />- AMP Master Suite : includes *everything*<br /><br />So the Foundation Suite is included in all of the other suites.  The Master Suite includes everything.  Again, if you start with Foundation Suite you will be able to upgrade to another suite at no penalty if under active maintenance.  The same goes for upgrading any of the other suites to Master suite.  I'm not sure if we will offer cross-grades from individual products to suites though.  That can get really messy to do, and can be abused.  So we may not offer that. Right now I'm leaning against it.<br /><br />All products and suites will have their own maintenance plan.  Initial purchase gets you 1 year maintenance.  Renewals are on a 1 year basis.  Active maintenance entitles you to latest versions, private support forums, as well as private email group.<br /><br />All developers need their own license. This includes developers using AMP API's, components or services, including authoring their own services, writing plugins for existing services, and so forth.  A separate license will be available for script programmers only for teams that need this flexibility.<br /><br />The Early Adopter will basically be a perpetual Master Suite license.  So you will have access to everything going forward that falls under the banner &quot;AMP&quot;.  I haven't decided on pricing yet for the individual products much less the suite, but I have decided that it will be released on a sliding 75%, 50% and finally 25% discount up until launch.  Once launched, the discount will disappear, along with perpetual updates for life.  They may come back from time to time as incentives like a weekend sale or something, but I can't promise it.<br /><br />Now back to binary vs. source licensing costs...as they pertain to MMO's / networked games where you run your own public server(s) using AMP, whether revenue generating or not.<br /><br />Unlike many MMO solutions targeted towards independents AMP will be royalty-free in terms of your revenue, even for binary licenses.  We are trying to make this very hobbyist and indie friendly, which means low up-front costs, and no oppressive royalties, and no excessive one-time deployment costs.  But on the other hand, if you have a run-away hit and end up deploying lots of servers, we feel we deserve something other than the small up-front binary licensing fee.<br /><br />So what we've come up with is really quite simple: Binary Editions pay little up front, pay a bit more per as servers are deployed, and a bit more money each month as you continue to run them, independent of revenue levels or the power of the server.  Source Editions pay more up front, but have no server deployment fees (within your organization).  Some details on this...<br /><br />Binary Edition will require per-machine activation and recurring subscription for servers containing AMP functionality that is being directly or indirectly accessed by anybody outside your immediate organization (ie open beta testing, live production).  Distributed application for internal or Intranet within your business organization only do not require server activation.<br /><br />There will be two different per-server activations and subscriptions to choose from per game: revenue-generating, and non-revenue generating.  Each license is independent of the number of cores, their speed, and total system memory.  Activation is done over the Internet, and can be done from a different machine if necessary with our activation tool.  Once activated, there will be a small monthly recurring subscription to keep that server running legally.  These can be paid in advance if desired, at a discount, and are transferrable.<br /><br />A local license server product will be available to simplify all of this so that your servers can do all of their licensing through this license proxy server automatically. Note that when a server license expires, it does NOT automatically stop working or bring down your game.  It simply notifies you, and us if possible, that the license has expired.  If after one week it has not been reactivated, it will still keep running, but if it is shut-down it will refuse to start back up until reactivated. If desired, you can of course pre-pay many months in advance.  You can also &quot;migrate&quot; activations from machine to machine at no cost and no loss of remaining time.<br /><br />Source Edition will have no such per-server activation and subscription.  The Source Edition distributions will have the activation and license enforcement code removed, so source licensees can deploy binaries built from their source how they see fit, within your organization.  There will be no server maintenance for support and upgrade assurance separate from the support and upgrade assurance for the source code license itself.  Naturally, the source code is licensed for use by a single developer.  Each developer that works on or needs to program to AMP services or components you have compiled with the Source Edition, also needs the Source Edition.<br /><br />So as you can see, the Source Edition is a fundamentally different beast.  It isn't just about ability to modify the source.  Even if you never modify the source, you may wish to upgrade to source license for all of your developers as you near game launch purely for access to the alternate deployment and licensing model.<br /><br />Again, our primary goal here is to provide flexible licensing models for hobbyists and small independents so that they don't have to pay much to get started, or a small fortune to progress into a public open beta and eventual launch.  Furthermore, when an independent does develop a great game and is about to have a large, successful launch, then they have a choice between two different solutions: per server licensing, or upgrade to source licenses for all developer seats used in construction of the game.<br /><br />So that's it.  It's a bit different than the models that are out there, but as you can see our driving force has been to make sure that the decisions are in your hands, and that you can choose the model that works best for you no matter the size and funding level of your organization.  We want hobbyist and small independent developers to get started and pay as little up front as possible.  Serious independents will probably opt for the source licenses, maybe not at first, but will possibly upgrade to them as needed.  Pro shops will likely just buy the source licenses up front without thinking twice about it.<br /><br />We want to provide this flexibility to all, and still be a viable business model to us.  And I think we've got a model that does that, but I would love to hear feedback, critiques, additional ideas, and so forth.<br /><br />Thanks,<br />Ryan Rogers<br />Beaver Valley Labs</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile108893">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1876.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1876" style="color: #0060C0;" class="username-coloured">TheRhinoDude</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 352</dd><dd><strong>Joined:</strong> 16 Apr 2009, 10:25</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p108896" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p108896">Re: AMP : the middleware used by Wind of Luck</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=108896  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=108896#p108896%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=108896#p108896"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a></strong> &raquo; 25 Jun 2012, 21:23 </p>
+
+			
+
+			<div class="content">Very interesting. I do not have any critiques, as this is quite out of my expertise and experience, but it reads very fair and thoughtful.<br /><br />Another broad question : How does AMP play with virtualized servers?</div>
+
+			<div id="sig108896" class="signature">Intel i5-4430<br />Nvidia 660 - Driver 340.43<br />8 Gigs RAM</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile108896">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257"><img src="download/file.php-avatar=1257_1365571061.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1257_1365571061.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2883</dd><dd><strong>Joined:</strong> 13 Jun 2008, 15:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p108920" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p108920">Re: AMP : the middleware used by Wind of Luck</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=108920  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=108920#p108920%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=108920#p108920"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1876.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1876" style="color: #0060C0;" class="username-coloured">TheRhinoDude</a></strong> &raquo; 26 Jun 2012, 09:47 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Jesse Meyer wrote:</cite>Another broad question: How does AMP play with virtualized servers?</div></blockquote><br /><br />Great question.<br /><br />AMP doesn't distinguish between physical and virtual servers, and it works very well under virtualization.   I do a lot of testing under VM's so that on my 8 test servers I can emulate much larger installations.  AMP is in fact being used in a production virtualized environment right now.<br /><br />However, with that said with AMP there is less of a reason to virtualize a server fulfilling only AMP server roles than there are for traditional server roles.   AMP does reap fewer benefits from some of the primary reasons for virtualization: segmentation of server roles, and enhanced parallelism and utilization of hardware.<br /><br />With AMP's centralized configuration of server roles, it is trivial to migrate server roles from one machine to another (in the future AMP will even do so automatically as needed if instructed to do so).  Plus each service can optionally be hosted in its own app domain and therefore cannot affect other AMP services if one crashes.  So if the primary reason for considering virtualization is isolation and/or segregation of AMP server roles, then you are really underutilizing one of the nice features of AMP.<br /><br />Furthermore, with many traditional (read: old and poorly scalable) server implementations, virtualization is used as a good way to achieve scalability and better utilize hardware of server implementations that are not highly parallel.  AMP is the exact opposite: it is exceedingly parallel and was designed from the ground up to be so.  With some older servers, taking a 24-core box and creating (6) quad-cores out of it and running six clustered servers on WLBS was a great way to more effectively leverage the hardware, purely because the software wouldn't scale well beyond a few cores as it was not highly parallel.  Virtualization was the answer to scaling this poorly written software.  AMP doesn't suffer from that.  If you tried the same trick with AMP login service, you would lose throughput, not increase it.  That's in fact one of the tests I do to prove it's scalability.<br /><br />However, if you are virtualizing for other reasons, for example let's say you know that eventually the current environment will scale to a certain number of servers and you want to test on such an environment ahead of time (aka evolution planning and validation), then virtualizing ahead of time has obvious benefits and AMP will play along just fine, with a few minor caveats.<br /><br />One such caveat is that some of the advanced clustering and load balancing features of AMP which can be configured to use optional algorithms that take into account network port saturation.  These can work improperly under VM's if the host network adapter is not properly segmented to the individual hosted VM's.  If improperly configured then AMP clustering can actually cause a virtualized server to be under loaded because it thinks the network load for that machine is higher than it really is.  To avoid this you both have to segment and cap network traffic among the VM's (something not all VM products allow you to do), or else you need to avoid using the load balance algorithms which take into account network saturation.  Five balancing algorithms are available out of the box, three of which do not use network saturation.  Plus it's easy to extend the cluster service to write your own or tweak the stock algorithms. So there are a lot of ways around this &quot;issue&quot;.<br /><br />With respect to binary license activation and subscription, as mentioned above virtual machines are considered real machines, and as such are licensed and activated the same way.   The benefits of &quot;any cores / any amount of memory&quot; for the license go both ways. <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":-)" title="Smile" />  As discussed above, there is less of a benefit to segregating server roles to their own virtual machines with AMP than there are with other more traditional server software.  And virtualizing in order to achieve scalability and better hardware utilization out of non-scalable server software is a moot point with AMP.<br /><br />But if this point of licensing still bothers some (and I understand it may), one of the things to keep in mind is that there will be a big difference in cost between revenue generating and non-revenue generating binary server fees.  Furthermore, until the servers are customer facing, there is no machine licensing fees anyway: you can run off of your developer licenses.  These two together greatly lessen the impact of virtual server licening overhead.<br /><br />Typically, when using many virtual machines to perform environment evolution planning and validation, this will all be done behind the scenes and not with customer facing servers.  And even if they are, this work will usually be done during beta, and not live.  So the licensing overhead cost of running the VM's for these tests will either be none (if you aren't customer facing), or minimal (if you are customer facing, but not yet generating revenue).  By the time you are generating revenue, the environment should be expanded, and you will have money coming in to offset the small monthly fees for the servers.  Also, note that these fees will be small compared to bandwidth costs used by the servers, so we aren't talking a lot of money per server to begin with.<br /><br />Let me know if any questions / thoughts / concerns…<br /><br />Thanks,<br />Ryan</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile108920">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1876.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1876" style="color: #0060C0;" class="username-coloured">TheRhinoDude</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 352</dd><dd><strong>Joined:</strong> 16 Apr 2009, 10:25</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115274" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115274">Re: AMP : the middleware used by Wind of Luck</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115274  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115274#p115274%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115274#p115274"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1704.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1704" style="color: #0060C0;" class="username-coloured">Meow</a></strong> &raquo; 04 Mar 2013, 21:41 </p>
+
+			
+
+			<div class="content">Is there any new information on when/if this will be avaliable for license?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115274">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1704.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1704"><img src="download/file.php-avatar=1704_1393676455.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1704_1393676455.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1704.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1704" style="color: #0060C0;" class="username-coloured">Meow</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 100</dd><dd><strong>Joined:</strong> 18 Jan 2009, 17:16</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<form id="viewtopic" method="post" action="http://www.terathon.com/forums/viewtopic.php?f=13&t=11971">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		
+		<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+		
+	</fieldset>
+
+	</form>
+	<hr />
+
+
+<div class="topic-actions">
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=13&t=11971  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=13&t=11971%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=13&t=11971" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="pagination">
+			9 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+</div>
+
+
+	<p></p><p><a href="viewforum.php-f=13.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=13" class="left-box left" accesskey="r">Return to User Lounge</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13" selected="selected">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: No registered users and 1 guest</p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

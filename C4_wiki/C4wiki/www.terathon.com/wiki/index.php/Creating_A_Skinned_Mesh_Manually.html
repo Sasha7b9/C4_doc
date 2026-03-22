@@ -1,0 +1,1236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/Creating_A_Skinned_Mesh_Manually by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="Creating A Skinned Mesh Manually" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>Creating A Skinned Mesh Manually - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Creating_A_Skinned_Mesh_Manually";
+var wgTitle = "Creating A Skinned Mesh Manually";
+var wgAction = "view";
+var wgArticleId = "3302";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "8707";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Creating_A_Skinned_Mesh_Manually">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Creating A Skinned Mesh Manually</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p>One of the most important tasks for many users to create a mesh manually, load a skeleton from disk and attach the mesh to it so that it can be animated. This is because the creation of customized meshes on the fly, as opposed to loading a pre edited model, can be useful when morphing a character or altering it completely. To do this it is necessary to assemble the geometry information in ram and also the skeleton information, if the mesh is to be rigged on a skeleton as done in this tutorial. This example however assumes that the skeleton comes from a .mdl file from disk. This is reasonable because in most cases skeletons will not be altered on the fly (where would the necessary animations come from after all)
+</p><p>This HOWTO does NOT include the necessary data objects. It is more a theoretical tutorial than one you can copy and run, but I tried out the code and it works well here (C4 version 2.9.1). You can easily add the missing data yourself. All you need is an empty world you create in the World Editor, a skeleton in a .mdl file and an animation made for that same skeleton in an .anm file. The skeleton must be edited in the world editor in such a way, that the rootbone in the skeleton hierarchy is directly under the infinite zone node and there are NO other nodes parallel to the bone root node, especially no mesh nodes, and no parallel bone nodes like for example from a IK solver in 3DS or anything like that. Everything else is in the code.
+</p><p>The code consists of some code I took from other tutorials mainly the stubs for controller, world camera and the application main class. Also, I simplified the design so that everything happens in the application constructor. This is for demonstration purposes after all and my main concern was to keep the code simple, not to show how use all the C4 design constructs like controllers correctly. The interesting part happens in the second half of the CPP file, everything else is mostly standard setup for the C4 engine.
+</p><p>That said, I think the comments in the code speak for themselves and explain everything sufficiently, at least I hope&nbsp;:)
+I also don't follow the C4 coding guidelines, so nevermind my coding style please. It's old fashioned Hungarian Notation like stuff since I'm and old time Microsoft guy&nbsp;:P
+You can basically take the simple HelloWorld Tutorial and modify it to create a simple working project and then replace the .H and .CPP files with these
+</p><p><br />
+</p>
+<hr />
+<p>This is the H file 
+</p>
+<pre>
+#ifndef GAME_H
+#define GAME_H
+ 
+#include &quot;C4Application.h&quot;
+#include &quot;C4Input.h&quot;
+#include &quot;C4Interface.h&quot;
+#include &quot;C4String.h&quot;
+#include &quot;C4World.h&quot;
+#include &quot;C4Cameras.h&quot;
+ 
+ 
+ 
+ 
+extern &quot;C&quot;
+{
+	C4MODULEEXPORT C4::Application* ConstructApplication();
+}
+ 
+using namespace C4;
+ 
+
+
+namespace HW
+{
+
+
+
+
+	// Model types are associated with a model resource using the ModelRegistration
+	// class. Models are registered with the engine in the Game constructor.
+	
+	enum
+	{
+		kModelTest				= 'xcvg'
+	};
+
+	// New controller types are registered with the engine in the Game constructor.
+	
+	enum
+	{
+		kControllerTest		= 'ball'
+	};
+	
+
+
+	// --- patric ----
+	// ################################################################################################################################################################
+	// The test controller
+	// ################################################################################################################################################################
+	// Controllers are used to control anything that moves in the world.
+	// New types of controllers defined by the application/game module are
+	// registered with the engine when the Game class is constructed.
+	//
+	// The Controller inherits from the built-in rigid body controller, 
+	// which handles the objects's motion and collision detection. 
+	
+	class TestController&nbsp;: public RigidBodyController 
+	{
+	private: 
+			 
+		TestController(const TestController&amp; TestController); 
+			
+		Controller *Replicate(void) const override;
+		
+	public:
+			 
+		TestController();
+		~TestController();
+			
+		static bool ValidNode(const Node *node);
+			
+		void Preprocess(void);
+			
+		RigidBodyStatus HandleNewRigidBodyContact(const RigidBodyContact *contact, RigidBodyController *contactBody);
+	};
+	
+
+
+
+
+
+
+
+	// --- patric ----
+	// ################################################################################################################################################################
+	// The spin controller
+	// ################################################################################################################################################################
+	enum
+	{
+		kControllerSpin = 'spin'
+	};
+	 
+	class SpinController&nbsp;: public Controller
+	{
+	   private:
+	 
+		float         spinRate;             // In radians per millisecond
+		float         spinAngle;            // The current angle, in radians
+		Transform4D   originalTransform;    // The target's original transform
+	 
+		SpinController(const SpinController&amp; spinController);
+	 
+		Controller *Replicate(void) const;
+	 
+	   public:
+	 
+		SpinController();
+		SpinController(float rate);
+		~SpinController();
+	 
+		float GetSpinRate(void) const
+		{
+			return (spinRate);
+		}
+	 
+		void SetSpinRate(float rate)
+		{
+			spinRate = rate;
+		}
+	 
+		static bool ValidNode(const Node *node);
+	 
+		// Serialization functions
+		void Pack(Packer&amp; data, unsigned_int32 packFlags) const;
+		void Unpack(Unpacker&amp; data, unsigned_int32 unpackFlags);
+	 
+		// User interface functions
+		int32 GetSettingCount(void) const;
+		Setting *GetSetting(int32 index) const;
+		void SetSetting(const Setting *setting);
+	 
+		void Preprocess(void);
+	 
+		// The function that moves the target node
+		void Move(void);
+	};
+	
+
+
+	// --- patric ----
+	// ################################################################################################################################################################
+	// The camera
+	// ################################################################################################################################################################
+	class RTSCamera&nbsp;: public FrustumCamera
+	{
+	public:
+			
+		RTSCamera();
+		~RTSCamera();
+
+		void Preprocess(void);
+		void Move(void);
+	};
+
+
+
+
+
+	// --- patric ----
+	// ################################################################################################################################################################
+	// The world loaded from disk
+	// ################################################################################################################################################################
+
+	class CombatWorld&nbsp;: public World
+	{
+	private:
+		RTSCamera navCamera;	// &lt;-- Add
+
+	public:
+		CombatWorld(const char *name);
+		~CombatWorld();
+ 
+		WorldResult Preprocess(void);
+		void Render(void);
+	};
+
+
+
+
+
+	// --- patric ----
+	// ################################################################################################################################################################
+	// The game application
+	// ################################################################################################################################################################
+
+
+	class Game&nbsp;: public Singleton&lt;Game&gt;, public Application
+	{
+	private:
+		TextureMapAttribute					*mpc_base_texture_attribute;
+		TextureMapAttribute					*mpc_overlay_texture_attribute;
+		DiffuseAttribute					*mpc_diffuse_attribute;
+		C4::MaterialObject 					*mpc_material_object;
+
+		ModelRegistration					*mpc_model_registration;
+		ControllerReg&lt;TestController&gt;		*mpc_controller_test;
+
+		Model								*mpc_animated_skeleton;
+
+		FrameAnimator						*mpc_frame_animator_walk;
+
+ 
+	public:
+		virtual void ApplicationTask(void);
+		Game();
+		~Game();
+ 
+		static World *ConstructWorld(const char *name, void *data);	// &lt;-- Add
+	};
+ 
+	extern Game* TheGame;
+}
+ 
+#endif // GAME_H
+</pre>
+<p><br />
+</p><p>Now for the .CPP file where all the magic stuff happens:
+</p>
+<pre>
+#include &quot;Test1.h&quot;
+#include &quot;C4World.h&quot;
+#include &quot;C4Primitives.h&quot;
+#include &quot;C4Configuration.h&quot;
+#include &quot;C4Geometries.h&quot;
+#include &quot;C4GeometryObjects.h&quot;
+
+using namespace C4;
+using namespace HW;
+ 
+Game* HW::TheGame = nullptr;
+ 
+
+
+// --- patric ----
+// ################################################################################################################################################################
+// The spin controller is attached to the model and rotates it slowly around it's own axis.
+// This was mostly taken from another tutorial and I don't have much info about this but it's fairly easy to understand
+// ################################################################################################################################################################
+
+SpinController::SpinController()&nbsp;: Controller(kControllerSpin)
+{
+    // Set a default value for the spin rate of one revolution per 10 seconds. I believe the &quot;rate&quot;
+    // is basically how many radians to rotate per millisecond
+    spinRate = (K::two_pi / 1000.0F) * 0.1f;
+    spinAngle = 0.0F;
+}
+ 
+SpinController::SpinController(float rate)&nbsp;: Controller(kControllerSpin)
+{
+    spinRate = rate;
+    spinAngle = 0.0F;
+}
+ 
+SpinController::~SpinController()
+{
+}
+
+
+void SpinController::Pack(Packer&amp; data, unsigned_int32 packFlags) const
+{
+    Controller::Pack(data, packFlags);
+ 
+    // Write the spin rate
+    data &lt;&lt; spinRate;
+ 
+    // Write the current angle
+    data &lt;&lt; spinAngle;
+ 
+    // Write the original transform
+    data &lt;&lt; originalTransform;
+}
+ 
+void SpinController::Unpack(Unpacker&amp; data, unsigned_int32 unpackFlags)
+{
+    Controller::Unpack(data, unpackFlags);
+ 
+    // Read the spin rate
+    data &gt;&gt; spinRate;
+ 
+    // Read the current angle
+    data &gt;&gt; spinAngle;
+ 
+    // Read the original transform
+    data &gt;&gt; originalTransform;
+}
+
+
+void SpinController::Preprocess(void)
+{
+    Controller::Preprocess();
+ 
+    // Grab the original transform of the target node
+    const Node *target = GetTargetNode();
+    originalTransform = target-&gt;GetNodeTransform();
+ 
+    // Set the kGeometryDynamic flag for any geometry nodes
+    const Node *node = target;
+    do
+    {
+        if (node-&gt;GetNodeType() == kNodeGeometry)
+        {
+            // Node is a geometry, so grab its object
+            GeometryObject *object = static_cast&lt;const Geometry *&gt;(node)-&gt;GetObject();
+ 
+            // Set the kGeometryDynamic flag
+            object-&gt;SetGeometryFlags(object-&gt;GetGeometryFlags() | kGeometryDynamic);
+        }
+ 
+        // Iterate through entire subtree
+        node = target-&gt;GetNextNode(node);
+    } while (node);
+}
+
+
+
+void SpinController::Move(void)
+{
+    Matrix3D    rotator;
+ 
+    // Calculate the new spin angle based on how much time has passed
+    float angle = spinAngle + spinRate * TheTimeMgr-&gt;GetFloatDeltaTime();
+ 
+    // Make sure it's in the [-pi, pi] range
+    if (angle &gt; K::pi) angle -= K::two_pi;
+    else if (angle &lt; -K::pi) angle += K::two_pi;
+ 
+    spinAngle = angle;
+ 
+    // Now make a 3x3 rotation matrix
+    rotator.SetRotationAboutZ(angle);
+ 
+    // We'll rotate about the center of the target node's bounding sphere
+    Node *target = GetTargetNode();
+    const Point3D&amp; worldCenter = target-&gt;GetBoundingSphere()-&gt;GetCenter();
+    Point3D objectCenter = target-&gt;GetInverseWorldTransform() * worldCenter; 
+ 
+    // Make a 3x4 transform that rotates about the center point
+    Transform4D transform(rotator, objectCenter - rotator * objectCenter);
+ 
+    // Apply the rotation transform to the original transform and
+    // assign it to the node as its new transform
+    target-&gt;SetNodeTransform(originalTransform * transform);
+ 
+    // Invalidate the target node so that it gets updated properly
+    target-&gt;Invalidate();
+}
+
+
+int32 SpinController::GetSettingCount(void) const
+{
+    // There's only one setting
+    return (1);
+}
+ 
+Setting *SpinController::GetSetting(int32 index) const
+{
+    // Is it asking for the first setting?
+    if (index == 0)
+    {
+        // Yes, return a new text setting and set its value in revolutions per second
+        return (new TextSetting('rate', Text::FloatToString(spinRate * 1000.0F / K::two_pi),
+            &quot;Spin rate&quot;, 7, &amp;EditTextWidget::FloatNumberFilter));
+    }
+ 
+    return (nullptr);
+}
+ 
+void SpinController::SetSetting(const Setting *setting)
+{
+    // Are we setting the spin rate?
+    if (setting-&gt;GetSettingIdentifier() == 'rate')
+    {
+        // Yes, grab the value from the setting and convert it back to radians per millisecond
+        const char *text = static_cast&lt;const TextSetting *&gt;(setting)-&gt;GetText();
+        spinRate = Text::StringToFloat(text) * K::two_pi / 1000.0F;
+    }
+}
+
+
+SpinController::SpinController(const SpinController&amp; spinController)&nbsp;: Controller(spinController)
+{
+    spinRate = spinController.spinRate;
+    spinAngle = 0.0F;
+}
+
+Controller *SpinController::Replicate(void) const
+{
+    return (new SpinController(*this));
+}
+
+
+
+
+
+
+// --- patric ----
+// ################################################################################################################################################################
+// The World class is responsible for loading the world we created in the World Editor. Since it is basically an empty world, there is not much to see here
+// ################################################################################################################################################################
+
+
+
+
+CombatWorld::CombatWorld(const char *name)&nbsp;:
+		World(name)
+{
+}
+ 
+CombatWorld::~CombatWorld()
+{
+}
+ 
+WorldResult CombatWorld::Preprocess(void)
+{
+	WorldResult result = World::Preprocess();
+	if (result&nbsp;!= kWorldOkay) return (result);
+ 
+	SetCamera(&amp;navCamera);
+
+	return (kWorldOkay);
+}
+ 
+void CombatWorld::Render(void)
+{
+	World::Render();
+}
+
+
+// --- patric ----
+// ################################################################################################################################################################
+// This is a simple camera at a fixed position
+// ################################################################################################################################################################
+
+RTSCamera::RTSCamera()&nbsp;: FrustumCamera(2.0F, 1.0F)
+{
+}
+
+RTSCamera::~RTSCamera()
+{
+}
+
+void RTSCamera::Preprocess(void)
+{
+	FrustumCamera::Preprocess();
+}
+
+void RTSCamera::Move(void)
+{
+	// Change position here as desired
+	this-&gt;SetNodePosition(Point3D(0.0f, -20.0f, 3.0f));
+	this-&gt;LookAtPoint(Point3D(0.0f, 0.0f, 0.0f));
+}
+
+
+
+
+
+
+
+
+
+// --- patric ----
+// ################################################################################################################################################################
+// I took this controller from the ball example and stripped it down. It is attached to the model once it is loaded. It basically does nothing.
+// Many things I put into the applicaiton (&quot;game&quot;) class out of convenience should actually be here in a real application but since the purpose of the tutorial
+// is not to show how to program in good style but how to assemble a mesh, I keep it simple
+// ################################################################################################################################################################
+
+
+TestController::TestController()&nbsp;: RigidBodyController(kControllerTest)
+{
+}
+
+TestController::TestController(const TestController&amp; TestController)&nbsp;: RigidBodyController(TestController) 
+{
+}
+
+TestController::~TestController()
+{
+}
+
+Controller *TestController::Replicate(void) const
+{
+	return (new TestController(*this));
+}
+
+bool TestController::ValidNode(const Node *node) 
+{ 
+	// This function is called by the engine to determine whether
+	// this particular type of controller can control the particular
+	// node passed in through the node parameter. This function should
+	// return true if it can control the node, and otherwise it should 
+	// return false. In this case, the controller can only be applied
+	// to model nodes. 
+	 
+	return (node-&gt;GetNodeType() == kNodeModel); 
+}
+
+void TestController::Preprocess(void)
+{
+	// This function is called once before the target node is ever 
+	// rendered or moved. The base class Preprocess() function should
+	// always be called first, and then the subclass can do whatever
+	// preprocessing it needs to do. In this case, we set the ball's
+	// coefficient of restitution.
+	
+	RigidBodyController::Preprocess();
+
+	SetRestitutionCoefficient(0.95F);
+	SetLinearVelocity(Math::RandomUnitVector() * 2.0F);
+}
+
+RigidBodyStatus TestController::HandleNewRigidBodyContact(const RigidBodyContact *contact, RigidBodyController *contactBody)
+{
+	// This function is called when the ball makes contact with another rigid body.
+	
+	if (contactBody-&gt;GetControllerType() == kControllerTest)
+	{
+		// Dont really do anything here, just for demonstration
+	}
+	
+	return (kRigidBodyUnchanged);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// --- patric ----
+// ################################################################################################################################################################
+// This is the application. Since it's purpose is to show how to assemble a mesh, skin it and attach it to a skeleton, the application is not very sophisticated
+// and basically does everything in the constructor. This is NOT what you would do in a real world applicaiton of course, but it keeps things easy.
+// ################################################################################################################################################################
+
+
+
+
+C4::Application* ConstructApplication()
+{
+	return (new Game);
+}
+ 
+
+
+
+Game::~Game()
+{
+	// --- patric ----
+	// ################################################################################################################################################################
+	// Clean up material attributes. We don't call Release() on the material because the model destructor will do that and the application did not hold a reference 
+	// count on the material (we released it after construction) and therefore we must not call Release() here
+	// Also we dont need to free the attributes here, the material destructor does this. I include the delete code here only to show that we dont clean these
+	// up deliberately
+	// ################################################################################################################################################################
+	//delete mpc_diffuse_attribute;
+	//delete mpc_base_texture_attribute;
+	//delete mpc_overlay_texture_attribute;
+	//mpc_material_object-&gt;Release();
+	delete mpc_animated_skeleton;
+	delete mpc_controller_test;
+	delete mpc_model_registration;
+	delete mpc_frame_animator_walk;
+
+	TheWorldMgr-&gt;UnloadWorld();
+	TheWorldMgr-&gt;SetWorldConstructor(nullptr);
+
+}
+ 
+
+
+void Game::ApplicationTask(void)
+{
+	// --- patric ----
+	// ################################################################################################################################################################
+	// This is called once per frame before the scene is rendered. I update the animation here. This shoould normally be done in the model's controller
+	// ################################################################################################################################################################
+	mpc_animated_skeleton-&gt;Animate();
+
+}
+
+
+
+World *Game::ConstructWorld(const char *name, void *data)
+{
+	return (new CombatWorld(name));
+}
+
+
+
+
+
+
+
+Game::Game()&nbsp;: Singleton&lt;Game&gt;(TheGame)
+{	
+	// --- patric ----
+	// ################################################################################################################################################################
+	// Application constructor. This is where everything is assembled
+	// ################################################################################################################################################################
+	mpc_diffuse_attribute		= nullptr;
+	mpc_base_texture_attribute	= nullptr;
+	mpc_material_object			= nullptr;
+	mpc_controller_test			= nullptr;
+	mpc_frame_animator_walk		= nullptr;
+
+
+	// --- patric ----
+	// ################################################################################################################################################################
+	// Automatically releases keyboard and mouse from game when '~' is hit
+	// ################################################################################################################################################################
+	TheInterfaceMgr-&gt;SetInputManagementMode(kInputManagementAutomatic);
+	TheWorldMgr-&gt;SetWorldConstructor(&amp;ConstructWorld);	// &lt;-- Add
+
+	if( kEngineOkay == TheWorldMgr-&gt;LoadWorld(&quot;mytestworld&quot;) )
+	{
+		World		*pc_world = TheWorldMgr-&gt;GetWorld();
+
+
+	// --- patric ----
+	// ################################################################################################################################################################
+	// Create a primitive geometry object. This was my first experiment and you can enable this if you want to experience a really simple world. In this case, don't
+	// do all the stuff after this, and attach the spin controller to this node instead of the model
+	// ################################################################################################################################################################
+/*
+	Vector3D				c_size( 0.1f, 0.1f, 0.1f );
+	BoxGeometry				*pc_node;
+
+	pc_node		= new BoxGeometry(c_size);
+
+	pc_node-&gt;GetObject()-&gt;SetGeometryLevelCount(1);
+
+	pc_world-&gt;GetRootNode()-&gt;AddSubnode(pc_node);
+	pc_node-&gt;Update();
+	pc_node-&gt;GetObject()-&gt;Build(pc_node);
+	pc_node-&gt;Preprocess();
+*/
+
+
+
+	  // --- patric ----
+	  // ################################################################################################################################################################
+	  // Create a custom geometry object
+	  // ################################################################################################################################################################
+	  MeshGeometry			*pc_custom_node;
+
+
+
+      // --- patric ----
+      // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+      // Create the surface. A mesh can consist of many surfaces, each refering to one material, so a mesh can consist of many materials. 
+      // A surface consists of a number of triangles, each complete with vertex, normals and other information. 
+      // The MeshGeometry contstructor will automatically remove duplicate vertices.
+      // 
+      // The surface flags be an OR combination of the following depending on what input data each vertex has:
+      // 
+      // kSurfaceValidNormals 
+      // kSurfaceValidTangents
+      // kSurfaceValidColors  
+      // 
+      // texcoordCount contains the NOF texture coordinates per vertex in case there are multiple textures per vertex. In this case we use a material with two textures
+      // which are blended together and the texture coorinates for the second one are mirrored along the v axis (right left)
+      // 
+      // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+      GeometrySurface          c_surface_lod_0;
+
+      c_surface_lod_0.surfaceFlags      = kSurfaceValidNormals | kSurfaceValidColors;
+      c_surface_lod_0.texcoordCount     = 2;
+
+
+
+      // --- patric ----
+      // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+      // Build up the polygons and add them to the polygon list of the surface. A surface can consist of multiple polygons. Each polygon in turn consists of the 
+      // triangles that make up one polygon. For our purpose, coming from standard 3D formats, a polygon always has 3 vertices only. I havn't figured out how to 
+      // use polygons with more than 3 vertices. Vertices must be added in counterclockwise order.
+      // 
+      // The skinIndex variable is simply filled out as an ascending row of numbers. These values are later used as indices into s_skinData.weightDataTable to find
+      // the entry in that array that corresponds to this specific vertex. So when building a mesh it may be best to add entries to s_skinData.weightDataTable
+      // as you add vertices and add one entry to the skindata when you add a vertex. I understand C4 will optimize this later and prevent waste by eliminating duplicate
+      // values, so no need to become sophisticated here and try to save space
+      // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+      GeometryPolygon           c_polygon;
+      GeometryVertex            c_vertex_0,
+                                c_vertex_1,
+                                c_vertex_2;
+
+
+      c_vertex_0.position       = Point3D(0.0f, 0.0f,   0.0f);
+      c_vertex_0.normal         = Vector3D( 0.0f,   1.0f,  0.0f).Normalize();
+      c_vertex_0.color          = ColorRGBA( 1.0f, 1.0f, 1.0f, 1.0f );
+      c_vertex_0.texcoord[0]    = Point2D( 0.0f, 1.0f );
+      c_vertex_0.texcoord[1]    = Point2D( 1.0f, 1.0f );
+      c_vertex_0.skinIndex      = 0;
+      c_polygon.vertexList.Append( &amp; c_vertex_0 );
+
+      c_vertex_1.position       = Point3D(1.0f, 0.0f,   0.0f);
+      c_vertex_1.normal         = Vector3D( 0.0f,   1.0f,  0.0f).Normalize();
+      c_vertex_1.color          = ColorRGBA( 1.0f, 1.0f, 1.0f, 1.0f );
+      c_vertex_1.texcoord[0]    = Point2D( 1.0f, 1.0f );
+      c_vertex_1.texcoord[1]    = Point2D( 0.0f, 1.0f );
+      c_vertex_1.skinIndex      = 1;
+      c_polygon.vertexList.Append( &amp; c_vertex_1 );
+
+      c_vertex_2.position       = Point3D(0.0f, 0.0f,   1.0f);
+      c_vertex_2.normal         = Vector3D( 0.0f,   1.0f,  0.0f).Normalize();
+      c_vertex_2.color          = ColorRGBA( 1.0f, 1.0f, 1.0f, 1.0f );
+      c_vertex_2.texcoord[0]    = Point2D( 0.0f, 0.0f );
+      c_vertex_2.texcoord[1]    = Point2D( 1.0f, 0.0f );
+      c_vertex_2.skinIndex      = 2;
+      c_polygon.vertexList.Append( &amp; c_vertex_2 );
+
+
+      // --- patric ----
+      // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+      // Enter the polygon into the surface 
+      // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+      c_surface_lod_0.polygonList.Append( &amp; c_polygon );
+
+
+
+
+
+
+
+
+	  // --- patric ----
+	  // ################################################################################################################################################################
+	  // Create a manual material for our custom mesh. Since we have only one surface, we create only one material
+	  // ################################################################################################################################################################
+
+
+	  // --- patric ----
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  // Create a material. This one simply adds multiple textures together but if you have textures with an alphachannel you can use the more sophisticated blend modes
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  mpc_material_object	= new C4::MaterialObject;
+	  mpc_material_object-&gt;SetTextureBlendMode(kTextureBlendAdd);
+
+
+
+	  // --- patric ----
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  // Create the diffuse colour attribute for the material. 
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  mpc_diffuse_attribute		= new DiffuseAttribute;
+	  mpc_diffuse_attribute-&gt;SetDiffuseColor( ColorRGBA( 1.0f, 0.0f, 1.0f, 1.0f ) );
+	  mpc_material_object-&gt;AddAttribute( mpc_diffuse_attribute );
+
+
+	  // --- patric ----
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  // Create a texture map attribute for the basic texture.
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  mpc_base_texture_attribute	= new TextureMapAttribute(&quot;c4/checker&quot;);
+	  mpc_base_texture_attribute-&gt;SetTexcoordIndex( 0 );
+	  mpc_material_object-&gt;AddAttribute( mpc_base_texture_attribute );
+
+	  // --- patric ----
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  // Create some overlay texture that goes on top of the first one. The above command pc_material_object-&gt;SetTextureBlendMode(kTextureBlendAdd); regulates
+	  // the blending modus between the textures. This texture uses the second texture coordinate set per vertex. It couls also use the first texture coordinate set
+	  // in which case each vertex needs only one texture coordinate of course and the textures are always aligned the same way 
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  mpc_overlay_texture_attribute	= new TextureMapAttribute(&quot;c4/arrow&quot;);
+	  mpc_overlay_texture_attribute-&gt;SetTexcoordIndex( 1 );
+	  mpc_material_object-&gt;AddAttribute( mpc_overlay_texture_attribute );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  // --- patric ----
+	  // ################################################################################################################################################################
+	  // Load a model. This model must have been prepared in such a way that it contains a skeleton only, no animation. I don't think .mdl files can contain
+	  // animations anyway, that is what .anm files are fore which must be based on the same skeleton than the .mdl file with the sekelton we load here. The point is,
+	  // to attach the manually created mesh to this model.
+	  // ################################################################################################################################################################
+	  
+	  // --- patric ----
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  // Load the model. It contains the skeleton. Attach this model to the root scene node, then attach the preapred gemoetry as a child to the model. This will
+	  // make the geometry a subordinate node to the model (which has the skeleton) and will allow the skin controller to deform the geometry according to the
+	  // bones in the model
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  mpc_model_registration	= new ModelRegistration(kModelTest, &quot;Character Walk&quot;, &quot;TPose_Female/tpose_female&quot;, kModelPrecache, kControllerTest);
+	  mpc_animated_skeleton		= Model::Get( kModelTest );
+	  if( mpc_animated_skeleton-&gt;GetModelType()&nbsp;!= kModelTest )	// This doesnt work although it should according to the manual. I don't know how to recognize failure of loading yet
+	  {
+		  Engine::Report(&quot;The Model wasn't found!&quot; );
+
+	  } // if
+	  mpc_animated_skeleton-&gt;Preprocess();
+	  mpc_animated_skeleton-&gt;Update();
+
+
+
+
+
+
+
+
+
+	  // --- patric ----
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  // Create the skinning info from the model which will later be attached to the gemoetry when it is created. This info will allow the skin controller to deform the
+	  // mesh according to the skeleton animation. It contains info for every vertex and how it is attached to bones
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  C4::SkinData 						s_skinData;
+	  const C4::SkinData 				       *ps_skinData = &amp; s_skinData;
+
+	  s_skinData.boneCount					= mpc_animated_skeleton-&gt;GetAnimatedNodeCount(); // Can only be called after the above call to Preprocess()&nbsp;!
+	  s_skinData.nodeHashArray				= new unsigned_int32[s_skinData.boneCount]&nbsp;;
+	  s_skinData.inverseBindTransformArray	= new Transform4D[s_skinData.boneCount];
+
+	  // --- patric ----
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  // Now fill out the weight table. There is one entry for each vertex. But since each vertex can hold 1-4 bonewheight indices, each entry in that table can have
+	  // a different size which is why an array with pointers to weight structures are used which is simpler than building up an array with elements of different sizes.
+	  // 
+	  // In this case, we just create entries with 1 bone weight each, in reality each vertex can have a different number of bones, up to 4. IN this case the total
+	  // of weights for each bone associations per vertex must add up to 1.Allocating the maximum size for an entry is also possible, since the MeshGeometry contructor 
+	  // will copy these values and they can be released afterwards.
+	  // 
+	  // As bone indices we simply use some random value from our skeleton that we know are valid. In reality these values would have to be
+	  // taken from the stored mesh.
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  WeightedVertex				*aps_weight_table[3];
+
+
+	  aps_weight_table[0]					= new WeightedVertex;
+	  aps_weight_table[0]-&gt;boneCount			= 1;
+	  aps_weight_table[0]-&gt;boneWeight[0].boneIndex		= 0; 
+	  aps_weight_table[0]-&gt;boneWeight[0].weight		= 1.0f;
+
+	  aps_weight_table[1]					= new WeightedVertex;
+	  aps_weight_table[1]-&gt;boneCount			= 1;
+	  aps_weight_table[1]-&gt;boneWeight[0].boneIndex		= 1; 
+	  aps_weight_table[1]-&gt;boneWeight[0].weight		= 1.0f;
+
+	  aps_weight_table[2]					= new WeightedVertex;
+	  aps_weight_table[2]-&gt;boneCount			= 1;
+	  aps_weight_table[2]-&gt;boneWeight[0].boneIndex		= 2; 
+	  aps_weight_table[2]-&gt;boneWeight[0].weight		= 1.0f;
+
+
+	  s_skinData.weightDataTable				= aps_weight_table; 
+
+
+
+	  // --- patric ----
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  // Fill in the hash values for each bone. The hashvalue is a quick way of comparing bone names instead of using a full string compare. The order in which
+	  // we access the bones to acquire their hash values must be the same order we use to index bones in aps_weight_table[x]-&gt;boneWeight[y].boneIndex
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  unsigned_int32	*pau32_hash_values;
+          int                   s32_index;
+
+	  pau32_hash_values	= (unsigned_int32 *) s_skinData.nodeHashArray;
+          for( s32_index = 0; s32_index &lt; s_skinData.boneCount; s32_index ++ )
+               pau32_hash_values[s32_index]	= mpc_animated_skeleton-&gt;GetAnimatedNodeTable()[s32_index]-&gt;GetNodeHash();
+
+
+
+	  // --- patric ----
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  // Fill in the inverse transformation matrices. Thankfully the bones provide these&nbsp;:)
+	  // The model should consist only of bones but in case there are other nodes attached, we make sure we can cast to the Bone class before we do it. Actually I 
+	  // believe we would run into trouble here if there were any non bone nodes since that would cause a gap in the array but since in my particular case I can 
+	  // guarantee that a model will only contain bones when it is loaded, I didn't research this potential problem
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  Transform4D			*pau32_inverse_bind_transform_array;
+
+          pau32_inverse_bind_transform_array	= (Transform4D *) s_skinData.inverseBindTransformArray;
+          for( s32_index = 0; s32_index &lt; s_skinData.boneCount; s32_index ++ )
+          {
+		  if( mpc_animated_skeleton-&gt;GetAnimatedNodeTable()[s32_index]-&gt;GetNodeType() == kNodeBone )
+		  {
+			  pau32_inverse_bind_transform_array[s32_index]	= Inverse( ((Bone *)mpc_animated_skeleton-&gt;GetAnimatedNodeTable()[s32_index])-&gt;GetModelTransform() );
+		  } // if
+          }
+
+
+
+
+
+
+
+
+
+	  // --- patric ----
+	  // ################################################################################################################################################################
+	  // Create the mesh node which creates the associated geometry at all LODs. We have only one LOD here.
+	  // ################################################################################################################################################################
+
+	  // --- patric ----
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  // Create the mesh geometry node and add it to the model.
+	  // The constructor allows for the construction of MeshGeometryObjects with multiple LOD levels. 
+	  // - The first parameter is the number of LOD levels
+	  // - The second array is a pointer to an array of Lists. Each array element corresponds to a LOD level with the highest detail LOD first. The lists contain all the 
+	  //   surfaces of which this LOD level consists of. A surface is basically a group of polygons/triangles that use the same material
+	  // - The third parameter is an array of all materials. This array holds as many entries as there are surfaces, NOT LODs! Basically each surface in a LIST of
+	  //   surfaces per LOD corresponds to the material at the given index position in the material array. I was not able to find out if lower LOD levels could
+	  //   use fewer materials than the highest LOD level. Maybe providing an empty surface with no polygons for the unused material will do the trick,but that is 
+	  //   a guess only! In general: Each LIST of surfaces should contain the same number of elements in all LOD levels and the number of entries in each list
+	  //   must be equal to the number of elements in the material array
+	  // - The skin array holds the skinning data that describes how each vertex corresponds to a bone. If the mesh is not to be attached to a skeleton,this can be NULL.
+	  //   This array bascially contains one entry per vertex that was used when assembling the polygons
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  List&lt;GeometrySurface&gt;			c_list_surface;
+	  const List&lt;GeometrySurface&gt; 		*pc_surfaceTable = &amp;c_list_surface;
+	  Array&lt;C4::MaterialObject *&gt; 		apc_material_array(1);
+
+	  c_list_surface.Append( &amp; c_surface_lod_0 );
+	  apc_material_array.AddElement(mpc_material_object);
+
+
+	  pc_custom_node	= new MeshGeometry( 1, &amp; pc_surfaceTable, apc_material_array, &amp; ps_skinData ); 
+  
+	  // --- patric ----
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  // The boneweights can be deleted now since the constructor copied them. Actually, everythign can be deleted since the node/geometry copied all data&nbsp;:)
+	  // We call Release() on the material here since we don't need the material in our application and the model geometry (object?) holds a reference tio the material 
+	  // as well, so deleting the mesh later will delete the material.
+	  // If your applicaitn needs access to the material as well, keep a reference but release it when you delete the mesh node or the model 
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  delete aps_weight_table[0];
+	  delete aps_weight_table[1];
+	  delete aps_weight_table[2];
+	  c_list_surface.RemoveAll();
+	  mpc_material_object-&gt;Release();
+	  delete [] s_skinData.nodeHashArray;
+	  delete [] s_skinData.inverseBindTransformArray;
+
+
+
+	  // --- patric ----
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  // This flag MUST be set or the mesh node is treated like a bone by the animator which will make it crash since then the number of bones in the model which was
+	  // loaded earlier without the geometry will not be equal to the number of subnodes of the model (which are all bones plus the attached geometry node). In short,
+	  // the number of subnodes of the model will be NOF bones + 1 (the geometry node) while the animation file only has the NOF bones stored. Each node attached
+	  // to the model which is not a bone should have this flag set.
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  pc_custom_node-&gt;SetNodeFlags( pc_custom_node-&gt;GetNodeFlags() | kNodeAnimateInhibit);
+
+
+
+
+
+
+
+
+	  // --- patric ----
+	  // ################################################################################################################################################################
+	  // Attach this model to the root scene node, then attach the preapred gemoetry as a child to the model. This will
+	  // make the geometry a subordinate node to the model (which has the skeleton) and will allow the skin controller to deform the geometry according to the
+	  // bones in the model.
+	  // Now as for the Preprocess() calls, I don't know the exact rules for their calling but what I found out is that it is pretty important to call them at 
+	  // the right time&nbsp;:)
+	  // Basically, a node must be attached to it's parent (not sure about being attached to the world) and then call Preprocess() which is where many internal data
+	  // structures are created. Think of it as a call to Create() or Initialize() instead. If a scene does not show the expected results, look into Preprocess() calls
+	  // in any case, this might be th reason.
+	  // ################################################################################################################################################################
+	  pc_world-&gt;GetRootNode()-&gt;AddNewSubnode(mpc_animated_skeleton);
+	  mpc_animated_skeleton-&gt;Update();
+	  mpc_animated_skeleton-&gt;AddNewSubnode(pc_custom_node);
+	  mpc_animated_skeleton-&gt;Preprocess();
+	  pc_custom_node-&gt;Preprocess();
+
+
+	  // --- patric ----
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  // Create a skin controller and attach it to the model. This will keep the mesh geometry updates with any animation the model (skeleton) performs
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  SkinController		*pc_skin_controller;
+
+	  pc_skin_controller	= new SkinController;
+	  pc_custom_node-&gt;SetController(pc_skin_controller);
+	  pc_skin_controller-&gt;Preprocess();
+	  pc_custom_node-&gt;Preprocess();	// &lt;- This MUST be called again after the skin controller was added!!
+
+
+
+	  // --- patric ----
+	  // ################################################################################################################################################################
+	  // Add a spin controller to the node so that we can see it from all sides
+	  // ################################################################################################################################################################
+	  SpinController		*pc_controller;
+
+	  pc_controller	= new SpinController;
+
+	  mpc_animated_skeleton-&gt;SetController(pc_controller);
+	  pc_controller-&gt;Preprocess();
+
+
+
+
+
+
+
+
+	  // --- patric ----
+	  // ################################################################################################################################################################
+	  // Create a simple animation on the model. This animation was previously created with the Model viewer by importing it from a .DAE file. I'm not very familiar
+	  // with those peculiarities so I can't go into details regarding importing models and animations but it seems to be pretty functional and reasonably well
+	  // documented so I refere you to other places in the Wiki
+	  // ################################################################################################################################################################
+	  mpc_frame_animator_walk	= new FrameAnimator(mpc_animated_skeleton);
+	  mpc_frame_animator_walk-&gt;SetAnimation(&quot;TPose_Animation/tpose_female&quot;);
+	  mpc_frame_animator_walk-&gt;GetWeightInterpolator()-&gt;SetValue(1.0f);
+	  mpc_frame_animator_walk-&gt;GetWeightInterpolator()-&gt;SetRate((K::two_pi / 1000.0F) * 0.1f); // This should make the animation 10 times as long as it was originally designed, but I haven't figured ou the rate thing yet
+	  mpc_frame_animator_walk-&gt;GetFrameInterpolator()-&gt;SetMode(kInterpolatorForward | kInterpolatorLoop);
+	  mpc_animated_skeleton-&gt;SetRootAnimator(mpc_frame_animator_walk);
+	  mpc_frame_animator_walk-&gt;Preprocess();
+
+	  // You could add this for a non loop animation to get a callback when the animation terminates
+	  //mpc_frame_animator_walk-&gt;GetFrameInterpolator()-&gt;SetCompletionProc(&amp;RunComplete, this);
+
+
+	  // --- patric ----
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  // This deforms the skeleton to the first frame of the animation. Thjis function must later be called once per frame to keep the animation going
+	  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	  mpc_animated_skeleton-&gt;Animate();
+
+
+	}
+
+}
+
+</pre>
+<p><br />
+Well, that's all folks. I hope this helps somebody with the same requirements I had&nbsp;:)
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 7/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:3302-0!1!0!!en!2!edit=0 and timestamp 20150118171655 -->
+<div class="printfooter">
+Retrieved from "<a href="Creating_A_Skinned_Mesh_Manually.html">http://www.terathon.com/wiki/index.php/Creating_A_Skinned_Mesh_Manually</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="Creating_A_Skinned_Mesh_Manually.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:Creating_A_Skinned_Mesh_Manually&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=Creating_A_Skinned_Mesh_Manually&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=Creating_A_Skinned_Mesh_Manually&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=Creating_A_Skinned_Mesh_Manually" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Creating_A_Skinned_Mesh_Manually.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Creating_A_Skinned_Mesh_Manually.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=Creating_A_Skinned_Mesh_Manually&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=Creating_A_Skinned_Mesh_Manually&amp;oldid=8707" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 10 July 2012, at 09:13.</li>
+				<li id="viewcount">This page has been accessed 2,129 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.538 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/Creating_A_Skinned_Mesh_Manually by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:26 GMT -->
+</html>

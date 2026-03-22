@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.6&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 2.6 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.6&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.6&amp;action=history"/>
+	<updated>2024-09-21T18:40:58Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.6&amp;diff=72&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' July 14, 2011  * '''IMPORTANT:''' In this version, some backwards compatibility with old versions of the engine has been removed. If you have problems with old world files in version 2.6, then please open those files in version 2.5.5 and save them in the World Editor before opening them in version 2.6 again. Be sure to backup your data first.  == Core Engine ==  * A special flag named &lt;code&gt;C4FASTBUILD&lt;/code&gt; has been added at the top of the...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.6&amp;diff=72&amp;oldid=prev"/>
+		<updated>2023-07-15T10:07:48Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; July 14, 2011  * &amp;#039;&amp;#039;&amp;#039;IMPORTANT:&amp;#039;&amp;#039;&amp;#039; In this version, some backwards compatibility with old versions of the engine has been removed. If you have problems with old world files in version 2.6, then please open those files in version 2.5.5 and save them in the World Editor before opening them in version 2.6 again. Be sure to backup your data first.  == Core Engine ==  * A special flag named &amp;lt;code&amp;gt;C4FASTBUILD&amp;lt;/code&amp;gt; has been added at the top of the...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' July 14, 2011&lt;br /&gt;
+&lt;br /&gt;
+* '''IMPORTANT:''' In this version, some backwards compatibility with old versions of the engine has been removed. If you have problems with old world files in version 2.6, then please open those files in version 2.5.5 and save them in the World Editor before opening them in version 2.6 again. Be sure to backup your data first.&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+* A special flag named &amp;lt;code&amp;gt;C4FASTBUILD&amp;lt;/code&amp;gt; has been added at the top of the file &amp;lt;code&amp;gt;C4PrefixWindows.h&amp;lt;/code&amp;gt;. If this symbol is defined to be nonzero, then all of the projects are built using custom minimal header files for all Win32, DirectX, OpenGL, math library, and intrinsic functions. This greatly reduces build times at the slight risk of forward compatibility issues, but those are easily fixed. The default value of &amp;lt;code&amp;gt;C4FASTBUILD&amp;lt;/code&amp;gt; is 1. If you experience problems compiling, then change it to 0. The &amp;lt;code&amp;gt;C4FASTBUILD&amp;lt;/code&amp;gt; flag does not affect the linking stage.&lt;br /&gt;
+&lt;br /&gt;
+* The Stats window has been expanded and now has three tabs named Render, World, and Physics that display information for the Graphics Manager, the World Manager, and the Physics Manager.&lt;br /&gt;
+&lt;br /&gt;
+=== Physics ===&lt;br /&gt;
+&lt;br /&gt;
+* A new large-scale water surface simulation system has been added to the engine. Its intended use is for bodies of water ranging in size from small ponds to large oceans, and it is designed to simulate dynamic surface waves in an interactive manner. A body of water is represented in the scene graph by a new water block node that organizes a large number of water geometry nodes in a manner similar to how a terrain block node organizes a bunch of terrain geometries. Each water geometry simulates waves occurring within its bounds, and waves automatically propagate from one water geometry to its neighbors (if they exist). A water block can optionally include special &amp;quot;horizon&amp;quot; water geometries that extend a very large (but still finite) distance from the main water area. Waves are not simulated on horizon water geometries&amp;amp;mdash;they are intended to be shown only in the distance where the camera would never be close enough to see a dynamic water surface.&lt;br /&gt;
+&lt;br /&gt;
+* Water simulation for an entire water block is managed by a single water controller that is assigned to the water block. Settings for this controller allow you to specify parameters such as wave speed and fluid viscosity. The water controller automatically determines which water geometries need to be simulated based on proximity to the camera and time since they were last rendered, and inactive water geometries are put into a sleep state that consumes no processing time.&lt;br /&gt;
+&lt;br /&gt;
+* Waves are created by attaching wave generator objects to a water controller. Each wave generator creates a disturbance in the water surface that is then propagated by the water simulation. There are currently three types of wave generator, a point generator, a line generator, and a random generator. The point wave generator creates a circular disturbance around a single point, the line wave generator creates a disturbance around a line segment between two points, and the random wave generator adds random noise to the water. Wave generators typically exist for a short amount of time (measured in the number of simulation steps) and can be used for things such as creating a disturbance when an object falls into the water or creating a wake for a ship moving through the water.&lt;br /&gt;
+&lt;br /&gt;
+* Two new controller functions have been added for the water controller so that point and line wave generators can be created from a script. These functions allow a script to create disturbances in a water simulation at specific locations.&lt;br /&gt;
+&lt;br /&gt;
+* The fluid force field can now be connected to a water block so that the actual water surface elevation can be used in buoyancy calculations. This is done by connecting the field node to a water block and then specifying the connector key in the settings for the fluid force assigned to the field node. When a fluid force field is connected to a water block, the top of the field volume no longer represents the water surface, but is used only to determine whether the force affects rigid bodies that intersect the field. The water surface is determined completely by the water block in this case, and the top of the field volume should be extended high enough to include rigid bodies that could be floating on the largest waves existing in the water block.&lt;br /&gt;
+&lt;br /&gt;
+=== Graphics ===&lt;br /&gt;
+&lt;br /&gt;
+* A new shader process called Steep Parameter has been added to the shading system. This is just a convenience process similar to the existing Smooth Parameter process, and it calculates 2''t''&amp;amp;nbsp;&amp;amp;minus;&amp;amp;nbsp;''t''&amp;lt;sup&amp;gt;2&amp;lt;/sup&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+=== Effects ===&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;MarkingData&amp;lt;/code&amp;gt; structure passed to the &amp;lt;code&amp;gt;MarkingEffect::New()&amp;lt;/code&amp;gt; function now holds a scale and offset for the texture coordinates. This allows multiple distinct marking textures to be stored in the same texture map.&lt;br /&gt;
+&lt;br /&gt;
+* A setting called &amp;quot;interaction padding&amp;quot; has been added to panel effects. This padding controls how far away from the boundary of a panel effect the user needs to move the cursor before the panel will disengage. Setting this to a nonzero value helps avoid quick disengaging/re-engaging that can happen if the cursor moves slightly out of bounds for a moment.&lt;br /&gt;
+&lt;br /&gt;
+=== World Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The internal way in which node connectors work has been redesigned. Connectors now form a graph with hubs attached to the nodes that take part in the graph, and it's now possible to iterate over incoming connectors as well as outgoing connectors. For most users, these changes will have no visible effect&amp;amp;mdash;the functions used to link connectors are the same, and the World Editor tools have not changed.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new modifier for reference markers that links a connector on the marker to a named node in the referenced world when it is loaded.&lt;br /&gt;
+&lt;br /&gt;
+* A shadow map can now be shared between the scenes rendered in the refraction buffer and the primary buffer. This happens automatically when a single shadow map is rendered through a remote portal that targets the refraction buffer ''unless'' the new &amp;quot;Render separate shadow map&amp;quot; box is checked for the portal.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new setting for remote portals that lets you specify a different clear color for scenes rendered to the reflection or refraction buffer. This is useful for specifying a clear color for underwater parts of a scene that is different from the main clear color use for the above-water parts.&lt;br /&gt;
+&lt;br /&gt;
+* Remote portals also have a new &amp;quot;Portal plane offset&amp;quot; setting that moves the portal clipping plane outward by the specified distance for the purposes of rendering. This is useful when a remote portal is used to render refractions for water that has waves because it ensures that geometry up to the specified distance above the water plane is included in the refraction rendering.&lt;br /&gt;
+&lt;br /&gt;
+* A remote portal can now be configured so that only infinitely distant parts of the scene are rendered through it. This currently means that only the skybox is rendered through a remote portal with this flag set.&lt;br /&gt;
+&lt;br /&gt;
+* Skyboxes have a new option that specifies a vertical texture coordinate adjustment for the four sides of the box that cross the horizon. This can be used to cause the bottom of the textures to dip below the horizon a little bit.&lt;br /&gt;
+&lt;br /&gt;
+=== Time Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;DeferredEvent&amp;lt;/code&amp;gt; class has been renamed to &amp;lt;code&amp;gt;DeferredTask&amp;lt;/code&amp;gt;, and the behavior has changed a little bit. A deferred task is now fired exactly one time and then automatically removed from the Time Manager's task list, so it won't keep firing every frame once it has been triggered, and there's no need to explicitly remove it from the task list.&lt;br /&gt;
+&lt;br /&gt;
+=== System Utilities ===&lt;br /&gt;
+&lt;br /&gt;
+* The Job Manager now supports job batches, and it's possible to block the main thread and wait for an entire batch to finish instead of waiting for each individual job separately.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new static &amp;lt;code&amp;gt;SetReservedProcessorCount()&amp;lt;/code&amp;gt; function in the &amp;lt;code&amp;gt;JobMgr&amp;lt;/code&amp;gt; class that can be used to reduce the number of worker threads created by the Job Manager. This function must be called in the &amp;lt;code&amp;gt;WinMain()&amp;lt;/code&amp;gt; or &amp;lt;code&amp;gt;main()&amp;lt;/code&amp;gt; function before the &amp;lt;code&amp;gt;Engine::New()&amp;lt;/code&amp;gt; function is called, or it will have no effect.&lt;br /&gt;
+&lt;br /&gt;
+=== Math Library ===&lt;br /&gt;
+&lt;br /&gt;
+* New classes called &amp;lt;code&amp;gt;Integer2D&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;Integer3D&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;Fixed2D&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;Fixed3D&amp;lt;/code&amp;gt; have been added to the engine for two- and three-dimension integer and fixed-point vectors. The &amp;lt;code&amp;gt;Point&amp;lt;/code&amp;gt; class has been removed in favor of &amp;lt;code&amp;gt;Integer2D&amp;lt;/code&amp;gt;, and the &amp;lt;code&amp;gt;Coordinates&amp;lt;/code&amp;gt; class has been removed in favor of &amp;lt;code&amp;gt;Fixed3D&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+== Plugins ==&lt;br /&gt;
+&lt;br /&gt;
+=== Browser Plugin ===&lt;br /&gt;
+&lt;br /&gt;
+* There is a new browser plugin (for both Windows and Mac OS X) that defines a browser widget. A browser widget can be placed in windows or in-game panel effects just like any other widget, and it renders and interacts with web pages using Awesomium.&lt;br /&gt;
+&lt;br /&gt;
+* Several controller functions have been added to control browser widgets. These functions are able to navigate forward and back, navigate to a particular hard-coded address or to an address held in a text-based widget, reload the current page, or stop loading the current page.&lt;br /&gt;
+&lt;br /&gt;
+=== Movies Plugin ===&lt;br /&gt;
+&lt;br /&gt;
+* The movie widget has a new setting that enables alpha blending using the alpha channel in the movie itself.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+=== World Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* A new Water page has been added to the editor, and it includes a tool for drawing water blocks. When a water block is drawn, a dialog appears in which different settings pertaining to the resolution of the water surface can be specified. This dialog also lets you specify whether horizon water geometries are created in the east, west, north, and south directions.&lt;br /&gt;
+&lt;br /&gt;
+* The popup menu in the Water page includes a command for generating land height data. This command generates land height and gradient information at every vertex for each selected water geometry, and this information is available to shaders so that various effects can be created based on the depth of the water and the direction in which the land is sloping at every point.&lt;br /&gt;
+&lt;br /&gt;
+* The Optimize Terrain and Resize Terrain Block commands have been removed from the Geometry menu. These commands can now be accessed from a menu button in the top-right corner of the Terrain tool page.&lt;br /&gt;
+&lt;br /&gt;
+* New bulldozer tools have been added to the Terrain tool page. These tools tend to level out the ground where they are applied, one tool in an additive manner and one tool in a subtractive manner. A bias slider has also been added that can cause the bulldozer to tend to slope upward or downward.&lt;br /&gt;
+&lt;br /&gt;
+* A fuzziness slider has been added to the Terrain tool page, and it affects the texture blending paint brushes. Higher fuzziness means softer edges where textures blend together. The blend tool has also been split into two blend tools, one for painting the primary texture and another for painting the secondary texture.&lt;br /&gt;
+&lt;br /&gt;
+* A button has been added to the Placement page that causes the placement modifier settings to be applied to the current selection. This causes placement modifiers to be applied to selected referenced worlds, models, and locator markers regardless of whether the placement modifiers are enabled for newly created nodes.&lt;br /&gt;
+&lt;br /&gt;
+* The material pickup tool can now be used to grab the material from a skybox or impostor node by clicking on them in the scene graph viewport.&lt;br /&gt;
+&lt;br /&gt;
+=== Texture Importer ===&lt;br /&gt;
+&lt;br /&gt;
+* A new option in the texture importer can apply a layer of haze to skybox textures with the appropriate warping along the horizon.&lt;br /&gt;
+&lt;br /&gt;
+* New options have been added to the texture importer to scale texture maps to one-half resolution. One option scales the whole texture, and this can be useful if the original source image is larger and more detailed than necessary for the game. The other option scales only the horizon maps that can be generated when a normal map is imported, and this saves a lot of space without a significant decrease in quality because the shadows cast by horizon maps are generally soft.&lt;br /&gt;
+&lt;br /&gt;
+=== Collada Importer ===&lt;br /&gt;
+&lt;br /&gt;
+* Some new workarounds have been added to the Collada Importer in order to support illegal XML formats written by some exporters.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

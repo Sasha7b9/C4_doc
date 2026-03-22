@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class BlobParticleSystem</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../doco.css" /></meta>
+</head>
+<body>
+<div class="body">
+<div style="position: relative; height: 96px; background-image: url(../image/banner.jpg); background-position: center 148px;">
+<div style="position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+<a href="http://www.terathon.com/"><img src="../image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+<h1><a href="http://www.terathon.com/">C4 Engine</a></h1>
+<div style="position: absolute; right: 16px; bottom: 24px;">
+<a href="http://www.facebook.com/c4engine"><img src="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+<a href="https://twitter.com/C4Engine"><img src="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+<a href="http://www.youtube.com/user/C4Engine"><img src="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+<a href="http://plus.google.com/+Terathon"><img src="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+<a href="http://www.indiedb.com/engines/c4-engine/"><img src="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+</div>
+</div>
+<div class="navbar">
+<table style="margin-left: auto; margin-right: auto;"><tr>
+<td class="menu"><a href="http://www.terathon.com/news.php">News</a></td>
+<td class="menu"><a href="http://www.terathon.com/explore.php">Explore</a>
+<table>
+<tr><td><a href="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+<tr><td><a href="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+<tr><td><a href="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+<tr><td><a href="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+<tr><td><a href="http://www.terathon.com/video.php">Video</a></td></tr>
+</table>
+</td>
+<td class="menu"><a href="http://www.terathon.com/support.php">Support</a>
+<table>
+<tr><td><a href="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+<tr><td><a href="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+<tr><td><a href="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+<tr><td><a href="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+</table>
+</td>
+<td class="menu"><a href="https://www.terathon.com/order.php">Purchase</a></td>
+<td class="menu"><a href="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+</tr></table>
+</div>
+<div class="content">
+<div class="apinav"><a href="../index.html">API Documentation</a> &#x25BA; <a href="index.html">Effect Manager</a> &#x25BA; <a href="BlobParticleSystem.html">class BlobParticleSystem</a></div>
+<h2>class BlobParticleSystem</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Particles.h</code></div>
+The <code>BlobParticleSystem</code> class represents a blob-based particle system node in a world.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;BlobParticleSystem&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;ParticleSystem</code></p>
+<div class="heading">Constructor</div>
+<p><code>BlobParticleSystem(ParticleSystemType&nbsp;type,&nbsp;ParticlePoolBase&nbsp;*pool,&nbsp;<span style="color: #0000FF">float</span>&nbsp;scale,&nbsp;<span style="color: #0000FF">float</span>&nbsp;maxRadius);</code></p>
+The constructor has protected access. The <code>BlobParticleSystem</code> class can only exist as the base class for a more specific type of particle effect.
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>type</code></td>
+<td class="tableright1">The type of particle system.
+</td></tr>
+<tr><td class="tableleft"><code>pool</code></td>
+<td class="tableright">The particle pool from which this effect creates particles. The particles in this pool must use the <code><a href="BlobParticle.html">BlobParticle</a></code> structure.
+</td></tr>
+<tr><td class="tableleft"><code>scale</code></td>
+<td class="tableright">The size of the voxels used to render the blob particles.
+</td></tr>
+<tr><td class="tableleft"><code>maxRadius</code></td>
+<td class="tableright">The maximum radius of any single blob particle in the particle system.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>BlobParticleSystem</code> class is the base class for all blob-based particle effects. Blob particles are rendered into a set of voxel maps that are then triangulated with a fixed-polarity marching cubes implementation. A separate triangulation job is run for each connected island of blobs, and these jobs are distributed among all available processor cores.<br/><br/> The value of the <code>scale</code> parameter specifies the distance between voxels. A smaller value produces more highly-tessellated triangle meshes, which can reduce performance if the scale is too small. A higher value increases performance, but at the cost of surface smoothness. The value of <code>scale</code> should generally be about the same as the smallest radius that will be used by any particle in the system.<br/><br/> The <code>maxRadius</code> parameter specifies the maximum radius that any particle in the system will have. This should generally be a multiple of the <code>scale</code> parameter for best memory utilization. If any single particle has a radius larger than <code>maxRadius</code>, then the results are undefined. However, multiple particles can combine to form islands that are much larger than this maximum.<br/><br/> The values of the <code>scale</code> and <code>maxRadius</code> parameters must together satisfy the following restriction, or the particle system may not render correctly:<br/><br/> 18 &times; <code>totalParticleCount</code> &times; (&lceil;<code>maxRadius</code> / <code>scale</code>&rceil;)<sup>2</sup> &lt; 65535<br/><br/> Here, the value of <code>totalParticleCount</code> is the number of particles available in the particle pool.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="ParticleSystem.html">ParticleSystem</a></code></td>
+<td class="tableright1">A <code>BlobParticleSystem</code> node is a specific type of particle system.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="ParticlePool.html">ParticlePool</a></code>
+</p>
+<p><code><a href="BlobParticle.html">BlobParticle</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+<table class="footer"><tr>
+<td><a href="http://www.terathon.com/terathon.php">Company</a></td>
+<td><a href="http://www.terathon.com/contact.php">Contact</a></td>
+<td><a href="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+<td><a href="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 4.5</b>, 21-Mar-2015, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

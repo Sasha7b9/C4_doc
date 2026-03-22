@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class ExclusiveObserver</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/Utilities/index.html">Utility Library</a> &#x25BA; <a href="ExclusiveObserver.html" tppabs="http://www.c4engine.com/docs/Utilities/ExclusiveObserver.html">class ExclusiveObserver</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class ExclusiveObserver</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>TSObservable.h</code></div>
+The <code>ExclusiveObserver</code> class encapsulates an object pointer and callback function for an exclusive observer.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">template</span>&nbsp;&lt;<span style="color: #0000FF">class</span>&nbsp;observerType,&nbsp;<span style="color: #0000FF">class</span>&nbsp;observableType&gt;&nbsp;<span style="color: #0000FF">class</span>&nbsp;ExclusiveObserver&nbsp;:</code></p>
+<p style="padding-left: 32px;"><code><span style="color: #0000FF">public</span>&nbsp;ExclusiveObserverBase&lt;observableType,&nbsp;<span style="color: #0000FF">typename</span>&nbsp;observableType::ObservableEventType&gt;</code></p>
+<div class="heading">Template Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>observerType</code></td>
+<td class="tableright1">The type of the class for which a notification function is called when an event occurs.
+</td></tr>
+<tr><td class="tableleft"><code>observableType</code></td>
+<td class="tableright">The type of the class that is being observed. This parameter should be the type of the class that inherits directly from the <code>ExclusiveObservable</code> class.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code><span style="color: #0000FF">template</span>&nbsp;&lt;<span style="color: #0000FF">class</span>&nbsp;eventType&gt;&nbsp;ExclusiveObserver(observerType&nbsp;*observer,&nbsp;<span style="color: #0000FF">void</span>&nbsp;(observerType::*callback)(observableType&nbsp;*,&nbsp;eventType));</code></p>
+<p><code>ExclusiveObserver(observerType&nbsp;*observer,&nbsp;<span style="color: #0000FF">void</span>&nbsp;(observerType::*callback)(observableType&nbsp;*));</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>observer</code></td>
+<td class="tableright1">A pointer to the object for which a notification function is called when an event occurs.
+</td></tr>
+<tr><td class="tableleft"><code>callback</code></td>
+<td class="tableright">A pointer to a member function (the notification function) of the object specified by the <code>observer</code> parameter that is called when an event occurs.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>ExclusiveObserver</code> class encapsulates a member function of an observer object. Observers are installed on exclusive observable objects by calling the <code><a href="ExclusiveObservable_SetObserver.html" tppabs="http://www.c4engine.com/docs/Utilities/ExclusiveObservable_SetObserver.html">ExclusiveObservable::SetObserver</a></code> function. Once installed, the member function stored in the observer object is called each time an event is posted for the observable object.<br/><br/> The first parameter of the member function belonging to the observer object is a pointer to the object being observed. If the event type of the observable object is not <code><span style="color: #0000FF">void</span></code>, then the event is passed as the second parameter to the member function. Otherwise, the member function should not take a second parameter.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>ExclusiveObserverBase&lt;observableType,&nbsp;<span style="color: #0000FF">typename</span>&nbsp;observableType::ObservableEventType&gt;</code></td>
+<td class="tableright1">Used internally.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="ExclusiveObservable.html" tppabs="http://www.c4engine.com/docs/Utilities/ExclusiveObservable.html">ExclusiveObservable</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

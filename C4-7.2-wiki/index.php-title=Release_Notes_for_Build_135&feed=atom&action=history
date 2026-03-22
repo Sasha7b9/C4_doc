@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_135&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Build 135 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_135&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_135&amp;action=history"/>
+	<updated>2024-09-21T18:43:22Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_135&amp;diff=42&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' May 12, 2007  * Antialiasing has been re-implemented in the engine using the &lt;code&gt;GL_EXT_framebuffer_multisample&lt;/code&gt; extension. The number of samples per pixel can be set in the Graphics Settings dialog, and the engine supports up to 8 samples when available.  * The weapon code in the demo game has received a big upgrade. All weapons now shoot precisely from their barrels. More importantly, the proton cannon is now implemented. When it's...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_135&amp;diff=42&amp;oldid=prev"/>
+		<updated>2023-07-15T09:43:53Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; May 12, 2007  * Antialiasing has been re-implemented in the engine using the &amp;lt;code&amp;gt;GL_EXT_framebuffer_multisample&amp;lt;/code&amp;gt; extension. The number of samples per pixel can be set in the Graphics Settings dialog, and the engine supports up to 8 samples when available.  * The weapon code in the demo game has received a big upgrade. All weapons now shoot precisely from their barrels. More importantly, the proton cannon is now implemented. When it&amp;#039;s...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' May 12, 2007&lt;br /&gt;
+&lt;br /&gt;
+* Antialiasing has been re-implemented in the engine using the &amp;lt;code&amp;gt;GL_EXT_framebuffer_multisample&amp;lt;/code&amp;gt; extension. The number of samples per pixel can be set in the Graphics Settings dialog, and the engine supports up to 8 samples when available.&lt;br /&gt;
+&lt;br /&gt;
+* The weapon code in the demo game has received a big upgrade. All weapons now shoot precisely from their barrels. More importantly, the proton cannon is now implemented. When it's fired, the barrel takes a moment to spin up before the beams actually shoot, but the gun has a devastating effect on its target.&lt;br /&gt;
+&lt;br /&gt;
+* The configuration interface for customizable settings has been completely reworked. It now displays a two-column scrollable list of settings. Slider-based settings now also accept text entry. The only affect this has on existing code is that the &amp;lt;code&amp;gt;TextSetting&amp;lt;/code&amp;gt; constructor no longer takes a width parameter.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new &amp;lt;code&amp;gt;HeadingSetting&amp;lt;/code&amp;gt; class that lets you insert a section heading into a list of settings.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new Transform page in the World Editor that displays the position, rotation, and size of the node for which the gizmo is currently shown. (Remember that the gizmo can be advanced through the selected nodes by pressing Tab.) Entering new data in the Transform page has an immediate effect on the node. All changes to the position and rotation are clumped together for a single undo step, and all changes to the size are clumped together for a separate single undo step. Keyboard focus in the Transform page is ended whenever you click in a viewport, select one of the standard tools at the top of the editor, or hit the Escape key.&lt;br /&gt;
+&lt;br /&gt;
+* The size fields in the Transform page require a little explanation. These aren't to be confused with scales, which are not included in transformation matrices in C4. All objects that have well-defined sizes can express their dimensions using 1&amp;amp;ndash;4 measurements. For most primitive geometries, the measurements correspond to the size of the geometry in the ''x'', ''y'', and ''z'' directions. The annulus and hole primitives are exceptions where two numbers correspond to the size of the inner boundary, and two numbers correspond to the size of the outer boundary. For things like lights and sound sources, the first size parameter corresponds to the light's range.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new Info page in the World Editor that displays various kinds of information about the node for which the gizmo is currently shown. Currently, the Info page displays the node name, the controller type, the number of connectors, and the number of properties for every type of node. For geometry nodes, the Info page also displays the vertex count, face count, surface count, material count, and detail level count. More information may be added in a future release.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new Grid page in the World Editor that contains controls for all grid-related settings. The toggle buttons for showing gridlines, snapping to the grid, and showing the coordinate axes have all been moved to the Grid page. The settings for gridline spacing and grid color have also been moved to the Grid page from their previous home in the Editor Settings dialog. There is a new setting called &amp;quot;major grid&amp;quot; that specifies how many grid squares separate each brighter major gridline. There are also two new buttons that immediately double or halve the gridline spacing.&lt;br /&gt;
+&lt;br /&gt;
+* The grid snap mechanism in the World Editor has been changed. Instead of being applied to everything, grid snap is now only applied where it makes sense. In general, grid snap is applied when nodes are placed, moved, or resized. Furthermore, grid snap now applies when nodes are moved in the perspective viewport.&lt;br /&gt;
+&lt;br /&gt;
+* The motion blur algorithm has been upgraded in several ways. It's now more accurate, and it takes depth gradients into account so that distant objects don't blur together with close objects. Previously, you could see a halo around the weapon in the demo game because the background was moving, but the weapon was stationary with respect to the camera. This no longer happens, and additionally, the spinning barrel of the proton cannon won't blur with the stationary parts of the same gun.&lt;br /&gt;
+&lt;br /&gt;
+It was not possible to implement the motion blur as nicely on ATI hardware because the ATI drivers do not support derivative instructions in &amp;lt;code&amp;gt;ARB_fragment_program&amp;lt;/code&amp;gt;. So the ability to separate motion blur into different depth layers is limited on ATI hardware, but it's still better in this release than in the previous ones. In particular, the engine can't stop the stationary part of the proton cannon from blurring into the spinning barrel on ATI hardware. Derivative instructions are available on ATI hardware in GLSL, but GLSL has serious limitations that don't exist in &amp;lt;code&amp;gt;ARB_fragment_program&amp;lt;/code&amp;gt;, such as a lack of shared global variables, that have prevented the engine from using it.&lt;br /&gt;
+&lt;br /&gt;
+* The cursor in an interface panel no longer blurs into the rest of the panel when the camera moves (since it's stationary with respect to the camera). Again, this isn't 100% perfect on ATI hardware for the reasons mentioned above.&lt;br /&gt;
+&lt;br /&gt;
+* The Script Editor will now automatically assign generic controllers to nodes that are the targets of script methods, but don't already have controllers assigned to them. This removes the extra step that was necessary before in order for a script method to send messages to a node.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new function called &amp;lt;code&amp;gt;SetInputManagementMode&amp;lt;/code&amp;gt; to the Interface Manager class. Passing &amp;lt;code&amp;gt;kInputManagementManual&amp;lt;/code&amp;gt; to this function will stop the Interface Manager from changing the input mode based on whether a window capable of receiving events is currently active. Passing &amp;lt;code&amp;gt;kInputManagementAutomatic&amp;lt;/code&amp;gt; to the function will cause the Interface Manager to switch the input mode to gameplay mode whenever all interactive windows are closed.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

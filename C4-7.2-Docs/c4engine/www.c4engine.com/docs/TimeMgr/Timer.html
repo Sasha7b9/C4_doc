@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class Timer</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/TimeMgr/index.html">Time Manager</a> &#x25BA; <a href="Timer.html" tppabs="http://www.c4engine.com/docs/TimeMgr/Timer.html">class Timer</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class Timer</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Time.h</code></div>
+A deferred task which signals the expiration of a specific amount of time.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;Timer&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;DeferredTask</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="Timer_GetTime.html" tppabs="http://www.c4engine.com/docs/TimeMgr/Timer_GetTime.html">Timer::GetTime</a></code></td>
+<td class="tableright1">Returns the length of time until the timer is triggered.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Timer_SetTime.html" tppabs="http://www.c4engine.com/docs/TimeMgr/Timer_SetTime.html">Timer::SetTime</a></code></td>
+<td class="tableright">Sets the length of time which should pass before the timer is triggered.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>Timer(<span style="color: #0000FF">int32</span>&nbsp;time,&nbsp;CompletionCallback&nbsp;*callback,&nbsp;<span style="color: #0000FF">void</span>&nbsp;*cookie&nbsp;=&nbsp;<span style="color: #0000FF">nullptr</span>);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>time</code></td>
+<td class="tableright1">The length of time, in milliseconds, which should pass before the timer is triggered.
+</td></tr>
+<tr><td class="tableleft"><code>callback</code></td>
+<td class="tableright">The callback to invoke when the task is triggered.
+</td></tr>
+<tr><td class="tableleft"><code>cookie</code></td>
+<td class="tableright">The cookie that is passed to the trigger callback as its last parameter.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>Timer</code> class encapsulates a deferred task which is triggered after the time specified by the <code>time</code> parameter. Once a timer is registered using the <code><a href="TimeMgr_AddTask.html" tppabs="http://www.c4engine.com/docs/TimeMgr/TimeMgr_AddTask.html">TimeMgr::AddTask</a></code> function, its remaining time is reduced each frame until it reaches zero, at which point its callback function is invoked. The callback function specified by the <code>callback</code> parameter should have the following prototype.
+<p><code><span style="color: #0000FF">typedef</span>&nbsp;<span style="color: #0000FF">void</span>&nbsp;CompletionCallback(DeferredTask&nbsp;*,&nbsp;<span style="color: #0000FF">void</span>&nbsp;*);</code></p>
+When the timer is triggered, the callback is invoked with the pointer specified by the <code>cookie</code> parameter passed to it as its second argument. A timer is triggered only once and must be resubmitted with the <code><a href="TimeMgr_AddTask.html" tppabs="http://www.c4engine.com/docs/TimeMgr/TimeMgr_AddTask.html">TimeMgr::AddTask</a></code> function in order to be triggered again.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="DeferredTask.html" tppabs="http://www.c4engine.com/docs/TimeMgr/DeferredTask.html">DeferredTask</a></code></td>
+<td class="tableright1"><code>Timer</code> objects provide a trigger for <code>DeferredTask</code> objects.
+</td></tr>
+</table>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

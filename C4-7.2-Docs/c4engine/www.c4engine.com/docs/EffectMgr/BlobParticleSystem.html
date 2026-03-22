@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class BlobParticleSystem</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/EffectMgr/index.html">Effect Manager</a> &#x25BA; <a href="BlobParticleSystem.html" tppabs="http://www.c4engine.com/docs/EffectMgr/BlobParticleSystem.html">class BlobParticleSystem</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class BlobParticleSystem</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Particles.h</code></div>
+The <code>BlobParticleSystem</code> class represents a blob-based particle system node in a world.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;BlobParticleSystem&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;ParticleSystem</code></p>
+<div class="heading">Constructor</div>
+<p><code>BlobParticleSystem(ParticleSystemType&nbsp;type,&nbsp;ParticlePoolBase&nbsp;*pool,&nbsp;<span style="color: #0000FF">float</span>&nbsp;scale,&nbsp;<span style="color: #0000FF">float</span>&nbsp;maxRadius);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>type</code></td>
+<td class="tableright1">The type of particle system.
+</td></tr>
+<tr><td class="tableleft"><code>pool</code></td>
+<td class="tableright">The particle pool from which this effect creates particles. The particles in this pool must use the <code><a href="BlobParticle.html" tppabs="http://www.c4engine.com/docs/EffectMgr/BlobParticle.html">BlobParticle</a></code> structure.
+</td></tr>
+<tr><td class="tableleft"><code>scale</code></td>
+<td class="tableright">The size of the voxels used to render the blob particles.
+</td></tr>
+<tr><td class="tableleft"><code>maxRadius</code></td>
+<td class="tableright">The maximum radius of any single blob particle in the particle system.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>BlobParticleSystem</code> class is the base class for all blob-based particle effects. Blob particles are rendered into a set of voxel maps that are then triangulated with a fixed-polarity marching cubes implementation. A separate triangulation job is run for each connected island of blobs, and these jobs are distributed among all available processor cores.<br/><br/> The value of the <code>scale</code> parameter specifies the distance between voxels. A smaller value produces more highly-tessellated triangle meshes, which can reduce performance if the scale is too small. A higher value increases performance, but at the cost of surface smoothness. The value of <code>scale</code> should generally be about the same as the smallest radius that will be used by any particle in the system.<br/><br/> The <code>maxRadius</code> parameter specifies the maximum radius that any particle in the system will have. This should generally be a multiple of the <code>scale</code> parameter for best memory utilization. If any single particle has a radius larger than <code>maxRadius</code>, then the results are undefined. However, multiple particles can combine to form islands that are much larger than this maximum.<br/><br/> The values of the <code>scale</code> and <code>maxRadius</code> parameters must together satisfy the following restriction, or the particle system may not render correctly:<br/><br/> 18 &times; <code>totalParticleCount</code> &times; (&lceil;<code>maxRadius</code> / <code>scale</code>&rceil;)<sup>2</sup> &lt; 65535<br/><br/> Here, the value of <code>totalParticleCount</code> is the number of particles available in the particle pool.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="ParticleSystem.html" tppabs="http://www.c4engine.com/docs/EffectMgr/ParticleSystem.html">ParticleSystem</a></code></td>
+<td class="tableright1">A <code>BlobParticleSystem</code> node is a specific type of particle system.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="ParticlePool.html" tppabs="http://www.c4engine.com/docs/EffectMgr/ParticlePool.html">ParticlePool</a></code>
+</p>
+<p><code><a href="BlobParticle.html" tppabs="http://www.c4engine.com/docs/EffectMgr/BlobParticle.html">BlobParticle</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

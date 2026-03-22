@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Portal_Tutorial&amp;feed=atom&amp;action=history</id>
+	<title>Portal Tutorial - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Portal_Tutorial&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Portal_Tutorial&amp;action=history"/>
+	<updated>2024-09-21T18:28:12Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Portal_Tutorial&amp;diff=160&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;In order to allow for arbitrarily large and complex environments, every sizable world built in the C4 Engine World Editor should be organized into multiple zones. The root node of a world is an infinitely large zone, and all other zones are contained within the root zone. When new zones are added to a world, they need to be connected by portals so that it's possible to see from one zone into another. This tutorial describes a simple example in which two rooms are con...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Portal_Tutorial&amp;diff=160&amp;oldid=prev"/>
+		<updated>2023-07-15T11:05:48Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;In order to allow for arbitrarily large and complex environments, every sizable world built in the C4 Engine &lt;a href=&quot;/wiki/index.php?title=World_Editor&quot; title=&quot;World Editor&quot;&gt;World Editor&lt;/a&gt; should be organized into multiple zones. The root node of a world is an infinitely large zone, and all other zones are contained within the root zone. When new zones are added to a world, they need to be connected by portals so that it&amp;#039;s possible to see from one zone into another. This tutorial describes a simple example in which two rooms are con...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;In order to allow for arbitrarily large and complex environments, every sizable world built in the C4 Engine [[World Editor]] should be organized into multiple zones. The root node of a world is an infinitely large zone, and all other zones are contained within the root zone. When new zones are added to a world, they need to be connected by portals so that it's possible to see from one zone into another. This tutorial describes a simple example in which two rooms are connected by a pair of portals.&lt;br /&gt;
+&lt;br /&gt;
+To follow this tutorial, you need the &amp;lt;code&amp;gt;Data/Tutorial/world/Portal.wld&amp;lt;/code&amp;gt; file that is included in the &amp;lt;code&amp;gt;C4-xxx-Data.zip&amp;lt;/code&amp;gt; distribution.&lt;br /&gt;
+&lt;br /&gt;
+To enlarge any of the screenshots below, click on the thumbnail icon below the image.&lt;br /&gt;
+&lt;br /&gt;
+== Step A: Prepare Portal.wld ==&lt;br /&gt;
+&lt;br /&gt;
+Open &amp;lt;code&amp;gt;Data/Tutorial/world/Portal.wld&amp;lt;/code&amp;gt; in the [[World Editor]] by typing Ctrl-O or by entering &amp;lt;code&amp;gt;world world/Portal&amp;lt;/code&amp;gt; into the [[Command Console]]. The World Editor will display the scene shown in Figure 1 containing two rooms with a doorway in between.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Portal1.png|thumb|center|960px|'''Figure 1.''' The portal tutorial world looks like this when it's first opened in the [[World Editor]].]]&lt;br /&gt;
+&lt;br /&gt;
+This world contains two zones, each of which contains a very simple room with a light source in it. The world already contains portals that lead from each room into the other, so you'll need to delete them first if you want to follow the rest of this tutorial. A direct portal is shown as a greenish outline with green arrows attached to it. In the perspective viewport, portals are filled with a pattern that contains the word &amp;quot;PORTAL&amp;quot;. (There are other types of portals that are different colors, but a direct portal is the basic type that lets you see from one room to another.)&lt;br /&gt;
+&lt;br /&gt;
+To delete the two portals in this world, simply select each one and hit the Delete key. To select the portals in some viewports, it may be necessary to disable geometry and zone selection using the '''[[Node Management Page]]''' so that other types of nodes aren't inadvertently selected. There's nothing blocking our view in the Perspective viewport, though, so type Ctrl-4 to make it fill the screen, and click on the green portal in the doorway. The editor should appear as shown in Figure 2.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Portal2.png|thumb|center|960px|'''Figure 2.''' One of the portals in the world is selected.]]&lt;br /&gt;
+&lt;br /&gt;
+Hit the Delete key to delete the selected portal, and you'll notice that the back wall of the other room disappears because we can no longer see through the doorway. Hold the right mouse button in the Perspective viewport and use the WSAD keys to fly the camera through the door into the other room. The walls will appear when you've entered the other zone. Turn the camera around so you can see the doorway that you just went through, and select the other portal that looks back into the first room. The editor should appear as shown in Figure 3. Hit the Delete key to remove this portal from the world.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Portal3.png|thumb|center|960px|'''Figure 3.''' The second portal in the world is selected.]]&lt;br /&gt;
+&lt;br /&gt;
+== Step B: Draw a New Portal ==&lt;br /&gt;
+&lt;br /&gt;
+To fully connect the two zones, one portal needs to be added to the left room that looks into the right room, and another portal needs to be added to the right room that looks into the left room. (That is, portals are one-way.) We only have to draw one portal, and then the opposing portal can be created automatically by the editor.&lt;br /&gt;
+&lt;br /&gt;
+First, switch to the Top viewport by typing Ctrl-1. Deselect the '''Geometry''' type from the '''[[Node Management Page]]''' (under the Editor tab) if you haven't already done so. Now select the zone for the right room, and choose '''Set Target Zone''' from the '''Node''' menu (or type Ctrl-T) to make the selected zone the current target zone. The striped zone boundary enclosing the right room will turn green to indicate that it's the current target zone. (Whenever a new node is created in the World Editor, it is placed in the current target zone.) The editor should now appear as shown in Figure 4.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Portal4.png|thumb|center|960px|'''Figure 4.''' The zone containing the right room has been selected and made to be the current target zone.]]&lt;br /&gt;
+&lt;br /&gt;
+Switch to the Front viewport by typing Ctrl-2. This looks at the level from the positive ''x'' axis, which points to the right in the Top viewport. The doorway can be seen in the center of the image.&lt;br /&gt;
+&lt;br /&gt;
+Select the '''Direct Portal''' tool from the '''[[Portals Page]]''' (under the Object tab), and draw a portal over the doorway as shown in Figure 5. You can click in any corner of the doorway and drag to the diagonally opposite corner.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Portal5.png|thumb|center|960px|'''Figure 5.''' A new portal has been drawn over the doorway.]]&lt;br /&gt;
+&lt;br /&gt;
+Switch back to the Top viewport by typing Ctrl-1, and notice that the portal has been placed on the left boundary of the target zone. The portal can be anywhere in the space where the two zones overlap, so this is fine.&lt;br /&gt;
+&lt;br /&gt;
+== Step C: Connect the Portal ==&lt;br /&gt;
+&lt;br /&gt;
+We need to connect the portal to the zone for the left room in order to see from the right zone to the left zone. To do this, select the '''Connect Tool''' at the top of the editor window or use the 5 key as a shortcut. The built-in &amp;lt;code&amp;gt;%Zone&amp;lt;/code&amp;gt; connector will appear for the portal, and the editor should look like Figure 6.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Portal6.png|thumb|center|960px|'''Figure 6.''' The &amp;lt;code&amp;gt;%Zone&amp;lt;/code&amp;gt; connector is shown for the new portal in the Top viewport.]]&lt;br /&gt;
+&lt;br /&gt;
+Select the &amp;lt;code&amp;gt;%Zone&amp;lt;/code&amp;gt; connector by clicking on its box. Then select the zone for the left zone, and type Ctrl-L to link them together. The editor should now appear as shown in Figure 7.&lt;br /&gt;
+&lt;br /&gt;
+[[File:Portal7.png|thumb|center|960px|'''Figure 7.''' The portal has been connected to the left zone.]]&lt;br /&gt;
+&lt;br /&gt;
+Switch to the Perspective viewport by typing Ctrl-4. We're still looking at the doorway from the back side, so we need to fly the camera back through to the other room by holding the right mouse button and using the WSAD keys. Once we're in the other room and the camera has been turned around, we can see our new portal. We can also see through to the other room now because the portal has been connected to the other zone.&lt;br /&gt;
+&lt;br /&gt;
+== Step D: Create the Opposing Portal ==&lt;br /&gt;
+&lt;br /&gt;
+As we noticed when we switched to the Perspective viewport, we still can't see from the left room into the right room. There is no portal that looks in that direction yet, but creating one is as simple as pressing a button. Click on the green portal to select it, and then click the '''Create Opposing''' button in the '''[[Portals Page]]'''. The opposing portal is automatically created, placed in the left zone, and connected to the right zone. If you fly the camera back through the doorway and turn around, you can now see from the left zone into the right zone.&lt;br /&gt;
+&lt;br /&gt;
+== Common Problems with Portals ==&lt;br /&gt;
+&lt;br /&gt;
+* When creating new zones, make sure that one zone isn't accidentally a subzone of another when you didn't intend it to be. You can tell by looking at the node hierarchy in the Scene Graph viewport. A zone can be reparented by dragging it in the Scene Graph viewport to the proper parent zone, which is usually to infinite zone at the root of the scene.&lt;br /&gt;
+* Make sure each portal is a subnode of the zone that it leads out of. This can also be checked in the Scene Graph viewport.&lt;br /&gt;
+* Make sure each portal is connected to the zone that it leads into. You can tell by selecting the portal and selecting the '''Connect Tool''' (or using the 5 key as a shortcut). The &amp;lt;code&amp;gt;%Zone&amp;lt;/code&amp;gt; connector should point to the center of the destination zone.&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[Portals Page]]&lt;br /&gt;
+* [[Zones Page]]&lt;br /&gt;
+* [[Connectors]]&lt;br /&gt;
+&lt;br /&gt;
+[[Category:Tutorials]]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

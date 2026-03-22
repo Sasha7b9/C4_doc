@@ -1,0 +1,1463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View topic - Networked player movement in Game code</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '25';
+	var base_url = './viewtopic.php?f=7&amp;t=11400';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=18.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=18">C4 Engine Development</a> <strong>&#8249;</strong> <a href="viewforum.php-f=7.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=7">Networking and Multiplayer</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewtopic.php-f=7&t=11400.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=7&t=11400">Networked player movement in Game code</a></h2>
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body --><div style="display: none !important;">Topics about networking and multiplayer programming in the C4 Engine.<br /></div>
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="posting.php-mode=reply&f=7&t=11400.htm" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=7&t=11400" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="search-box">
+			<form method="get" id="topic-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="Search this topic…" onclick="if(this.value=='Search this topic…')this.value='';" onblur="if(this.value=='')this.value='Search this topic…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="t" value="11400" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			37 posts
+			 &bull; <a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Page <strong>1</strong> of <strong>2</strong></a> &bull; <span><strong>1</strong><span class="page-sep">, </span><a href="viewtopic.php-f=7&t=11400&start=25.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=7&t=11400&start=25">2</a></span>
+		</div>
+	
+
+</div>
+<div class="clear"></div>
+
+
+	<div id="p103729" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 class="first"><a href="#p103729">Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103729.htm#p103729" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103729#p103729"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a></strong> &raquo; 11 Dec 2011, 22:03 </p>
+
+			
+
+			<div class="content">I noticed that the BeginMovement and EndMovement input methods first send the movement message to the server, then to all clients from the server. My question is, what is the advantage to doing that over just sending the movement message from the client to all other clients?</div>
+
+			<div id="sig103729" class="signature">Check out our first C4 game, Gremlin Invasion: Survivor. http://cssquaredgamestudio.com/games</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103729">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 391</dd><dd><strong>Joined:</strong> 12 Aug 2009, 18:36</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103730" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103730">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103730.htm#p103730" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103730#p103730"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183" style="color: #0060C0;" class="username-coloured">CodeNewt</a></strong> &raquo; 11 Dec 2011, 22:29 </p>
+
+			
+
+			<div class="content">Journaled messaging is probably the biggest reason. The server can't send the current movement of a player to a newly connected client if it doesn't know what the last BeginMovement or EndMovement was from the player.<br /><br />There are other reasons too, such as simplifying the lag compensation model. It'd be difficult to figure out whats happening inbetween frames (and inbetween clients) when you have no server tracking a player's input.<br /><br />What you CAN do is, send it to the server AND send it to itself so it can &quot;start&quot; the motion immediately instead of getting the lag effect you get in games like World of Warcraft (where you are running in the same spot due to lag?)</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103730">
+			<dt>
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183" style="color: #0060C0;" class="username-coloured">CodeNewt</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 740</dd><dd><strong>Joined:</strong> 16 Oct 2009, 18:09</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103731" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103731">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103731.htm#p103731" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103731#p103731"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a></strong> &raquo; 11 Dec 2011, 22:41 </p>
+
+			
+
+			<div class="content">All good points, thanks CodeNewt. I was wondering if there was anything else it was doing that I didn't see, but it would seem not.</div>
+
+			<div id="sig103731" class="signature">Check out our first C4 game, Gremlin Invasion: Survivor. http://cssquaredgamestudio.com/games</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103731">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 391</dd><dd><strong>Joined:</strong> 12 Aug 2009, 18:36</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103734" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103734">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103734.htm#p103734" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103734#p103734"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 12 Dec 2011, 02:20 </p>
+
+			
+
+			<div class="content">One additional HUGE reason not to send information from client to client is that you can't trust client machines. We don't even let clients know the IP addresses of other clients connected to the server. Imagine a client intentionally sending bad data to another client in an attempt to crash it or as a denial of service attack.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103734">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103739" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103739">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103739.htm#p103739" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103739#p103739"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a></strong> &raquo; 12 Dec 2011, 11:41 </p>
+
+			
+
+			<div class="content">That's another great point, thanks Eric. I hadn't even considered the potential security issues yet.</div>
+
+			<div id="sig103739" class="signature">Check out our first C4 game, Gremlin Invasion: Survivor. http://cssquaredgamestudio.com/games</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103739">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 391</dd><dd><strong>Joined:</strong> 12 Aug 2009, 18:36</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103745" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103745">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103745.htm#p103745" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103745#p103745"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a></strong> &raquo; 12 Dec 2011, 18:33 </p>
+
+			
+
+			<div class="content">Another quick question - In my game I'm currently sending the character orientation information from each client to the server 30 times a second. Is this going to overload the messaging if I get 4+ characters going? It looks to me like the orientation message in the C4 demo is sent during the BeginMovement and EndMovement functions, but I don't think that would work well for my game.</div>
+
+			<div id="sig103745" class="signature">Check out our first C4 game, Gremlin Invasion: Survivor. http://cssquaredgamestudio.com/games</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103745">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 391</dd><dd><strong>Joined:</strong> 12 Aug 2009, 18:36</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103746" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103746">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103746.htm#p103746" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103746#p103746"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 12 Dec 2011, 21:03 </p>
+
+			
+
+			<div class="content">The clients in the demo game also send ClientOrientationMessage messages to the server periodically (probably too often). They are sent unreliably because it doesn't really matter if one is dropped, and you wouldn't want one of these messages to hold up anything else.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103746">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103747" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103747">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103747.htm#p103747" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103747#p103747"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a></strong> &raquo; 12 Dec 2011, 21:47 </p>
+
+			
+
+			<div class="content">Oh I didn't even see that the first time around. Ok, thank you. Glad to know I'm on the right track.</div>
+
+			<div id="sig103747" class="signature">Check out our first C4 game, Gremlin Invasion: Survivor. http://cssquaredgamestudio.com/games</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103747">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 391</dd><dd><strong>Joined:</strong> 12 Aug 2009, 18:36</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103803" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103803">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103803.htm#p103803" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103803#p103803"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a></strong> &raquo; 16 Dec 2011, 05:46 </p>
+
+			
+
+			<div class="content">Security is one reason not to send directly to clients... synchronization is another.  Imagine the discrepancies that would arise between the clients and the server if they were all talking independently... it would be a bit of a mess.  Trying to force resyncs periodically would lead to stuttering, popping, jumping, and all kinds of other yucky things.<br /><br />The necessity of sending everything to the server and having to wait for a response (the current implementation in C4) is what makes multiplayer feel bad at the moment.  You press a button and it takes 50-100ms to get to the server, and then 50-100ms to get back to the client.  So the player is holding the button down for 100-200ms before the character on the screen starts moving.  This doesn't feel good.<br /><br />It is not an easy thing to implement compensation into any engine with physics because if you let the client start predicting movement, you have to keep the physics system from going bananas.  Some engines like Halflife and Quake sim entities one at a time... meaning that if there is a collision (or a predicted collision) you can &quot;go back in time&quot; for those JUST those two entities to sort out prediction errors after the fact.  As an example, imagine a player running into another player.  If you are allowing the local client to predict the movement of the player to avoid the 200ms lag I mentioned above, it is possible that the local client will register a collision with another player during predicted movement only to find out later from the server that no collision really occurred.  This means you have to correct the prediction error and &quot;resim&quot; the two players to find out where they really should have been.<br /><br />I don't think you can do this in C4 because the entire scene is simmed at once.  It is an all or nothing deal.  A tricky problem.  I keep hoping that Eric will have time to investigate a proper lag compensation system for his Demo Game but so far, he hasn't had time.</div>
+
+			<div id="sig103803" class="signature">CALLING ALL ARTISTS!  Please contribute to the Content Creation wiki with your experiences accumulated while importing assets in to C4!<br /><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs%27" tppabs="http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs" class="postlink">*** Content Creation WIKI ***</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103803">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 478</dd><dd><strong>Joined:</strong> 26 Mar 2009, 13:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103808" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103808">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103808.htm#p103808" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103808#p103808"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183" style="color: #0060C0;" class="username-coloured">CodeNewt</a></strong> &raquo; 16 Dec 2011, 12:10 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Zitheral wrote:</cite>You press a button and it takes 50-100ms to get to the server, and then 50-100ms to get back to the client. So the player is holding the button down for 100-200ms before the character on the screen starts moving. This doesn't feel good.</div></blockquote><br />But that is just personal implementation (and therefore unrelated to the C4 Engine)... You can send &quot;to yourself&quot; the same message to get your character moving &quot;ahead&quot; of time. Basically, before the server is even aware that you are moving, you start moving on your screen. Then the server will receive the message and start performing the same action. You then have the server compensate for your ping (eg if your ping is 200ms, then you give the play a 200ms boost on the server of his action to compensate, or you can go half that and then send back the adjustment to the player)<br /><br />This results in a much more immediate response for the player, meanwhile the server maintains control over where you actually are.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103808">
+			<dt>
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183" style="color: #0060C0;" class="username-coloured">CodeNewt</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 740</dd><dd><strong>Joined:</strong> 16 Oct 2009, 18:09</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103817" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103817">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103817.htm#p103817" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103817#p103817"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a></strong> &raquo; 17 Dec 2011, 01:03 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>CodeNewt wrote:</cite><blockquote><div><cite>Zitheral wrote:</cite>You press a button and it takes 50-100ms to get to the server, and then 50-100ms to get back to the client. So the player is holding the button down for 100-200ms before the character on the screen starts moving. This doesn't feel good.</div></blockquote><br />But that is just personal implementation (and therefore unrelated to the C4 Engine)... You can send &quot;to yourself&quot; the same message to get your character moving &quot;ahead&quot; of time. Basically, before the server is even aware that you are moving, you start moving on your screen. Then the server will receive the message and start performing the same action. You then have the server compensate for your ping (eg if your ping is 200ms, then you give the play a 200ms boost on the server of his action to compensate, or you can go half that and then send back the adjustment to the player)<br /><br />This results in a much more immediate response for the player, meanwhile the server maintains control over where you actually are.</div></blockquote><br /><br />Have you tried an implementation like this in C4?  We have tried it several different ways and the physics become hard to control.  In any event, I'm looking for this type of implementation in the demo game so that I can see what &quot;levers&quot; Eric works with... from that we can adapt it to a personal implementation for our specific gametype.</div>
+
+			<div id="sig103817" class="signature">CALLING ALL ARTISTS!  Please contribute to the Content Creation wiki with your experiences accumulated while importing assets in to C4!<br /><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs%27" tppabs="http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs" class="postlink">*** Content Creation WIKI ***</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103817">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 478</dd><dd><strong>Joined:</strong> 26 Mar 2009, 13:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103834" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103834">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103834.htm#p103834" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103834#p103834"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183" style="color: #0060C0;" class="username-coloured">CodeNewt</a></strong> &raquo; 17 Dec 2011, 12:45 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Zitheral wrote:</cite>Have you tried an implementation like this in C4?</div></blockquote><br />I have not so I can't attest to the actual difficulty of this. I never said it was easy, but it is not something that really could be solved on the level of the game engine itself because each game can have a different method to handle this. Like I said, World of Warcraft doesn't have lag compensation for motion. Meaning when you experience lag, your character doesn't move because you are waiting for the server to verify what key you pressed and process what your motion will be. While a game like Counter-Strike: Source will send the message to the local player to allow immediate response. Though Source does a lot more for <a href="javascript:if(confirm(%27https://developer.valvesoftware.com/wiki/Source_Multiplayer_Networking  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://developer.valvesoftware.com/wiki/Source_Multiplayer_Networking#Lag_compensation%27" tppabs="https://developer.valvesoftware.com/wiki/Source_Multiplayer_Networking#Lag_compensation" class="postlink">lag compensation</a> about which you can read at VALVe's dev wiki. It is an interesting read though.<br /><br /><blockquote class="uncited"><div>In any event, I'm looking for this type of implementation in the demo game so that I can see what &quot;levers&quot; Eric works with... from that we can adapt it to a personal implementation for our specific gametype.</div></blockquote><br />AFAIK the demo game does not ship with any lag compensation, what Eric does is send snap shots to the clients to correct objects getting out of sync and let the clients calculate their own physics. This is an appropriate model, send clients the &quot;motion&quot; and the &quot;direction&quot; and let it calculate its own physics for interpolation between the &quot;correction&quot; packets, but it doesn't account for lag between the server and the client.<br /><br />Eventually I'm going to try to tackle this problem, but right now single player games for me. <img src="images/smilies/icon_biggrin.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_biggrin.gif" alt=":D" title="Very Happy" /></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103834">
+			<dt>
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183" style="color: #0060C0;" class="username-coloured">CodeNewt</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 740</dd><dd><strong>Joined:</strong> 16 Oct 2009, 18:09</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103835" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103835">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103835.htm#p103835" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103835#p103835"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=992.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=992" style="color: #0060C0;" class="username-coloured">wtblife</a></strong> &raquo; 17 Dec 2011, 14:02 </p>
+
+			
+
+			<div class="content"><blockquote class="uncited"><div>Like I said, World of Warcraft doesn't have lag compensation for motion. Meaning when you experience lag, your character doesn't move because you are waiting for the server to verify what key you pressed and process what your motion will be</div></blockquote><br /><br />WoW actually allows for extremely high ping and it never seems to affect your movement on the client side. I once leveled a character 1-85 with satellite internet and about a two second delay to the server (although someone helped me for the first 30 levels cause I couldn't kill quest mobs on my own).</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103835">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=992.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=992"><img src="download/file.php-avatar=992_1244167116.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=992_1244167116.jpg" width="75" height="75" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=992.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=992" style="color: #0060C0;" class="username-coloured">wtblife</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 974</dd><dd><strong>Joined:</strong> 03 Jan 2008, 17:43</dd><dd><strong>Location:</strong> VA, USA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103837" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103837">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103837.htm#p103837" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103837#p103837"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a></strong> &raquo; 17 Dec 2011, 19:15 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>wtblife wrote:</cite><blockquote class="uncited"><div>Like I said, World of Warcraft doesn't have lag compensation for motion. Meaning when you experience lag, your character doesn't move because you are waiting for the server to verify what key you pressed and process what your motion will be</div></blockquote><br /><br />WoW actually allows for extremely high ping and it never seems to affect your movement on the client side. I once leveled a character 1-85 with satellite internet and about a two second delay to the server (although someone helped me for the first 30 levels cause I couldn't kill quest mobs on my own).</div></blockquote><br /><br />Yea you can move around in WoW with connection totally cut. Can't cast or interact with anything tho.</div>
+
+			<div id="sig103837" class="signature"><a href="javascript:if(confirm(%27http://www.codeblender.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.codeblender.com/%27" tppabs="http://www.codeblender.com/" class="postlink">CodeBlender Software</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103837">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265"><img src="download/file.php-avatar=1265_1245652575.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1265_1245652575.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1636</dd><dd><strong>Joined:</strong> 23 Jun 2008, 14:06</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103841" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103841">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103841.htm#p103841" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103841#p103841"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a></strong> &raquo; 18 Dec 2011, 12:10 </p>
+
+			
+
+			<div class="content">Wow definitely has lag compensation... player movement is predicted on the client side.  Even using abilities is partially compensated because the client will begin to do player animations (like spell casting) even though it hasn't heard back from the server yet.  That is why if you have high lag, your player will start casting animations and then freeze in the first few frames of it awaiting for the server to tell the client it is ok to finish.<br /><br />I still believe it would be a very good idea to implement lag compensation into the Demo game A) so that prospective buyers do not get the false idea that C4 has bad networking support and B) so that developers have a blueprint for the best method to implement lag compensation for whatever genre they are working in.<br /><br />The needs for lag compensation are surely different for an RPG vs an FPS vs a fighting game -- but the places you make your edits and the methodology for addressing each of the pieces would be very similar.</div>
+
+			<div id="sig103841" class="signature">CALLING ALL ARTISTS!  Please contribute to the Content Creation wiki with your experiences accumulated while importing assets in to C4!<br /><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs%27" tppabs="http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs" class="postlink">*** Content Creation WIKI ***</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103841">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 478</dd><dd><strong>Joined:</strong> 26 Mar 2009, 13:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103848" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103848">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103848.htm#p103848" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103848#p103848"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183" style="color: #0060C0;" class="username-coloured">CodeNewt</a></strong> &raquo; 18 Dec 2011, 17:03 </p>
+
+			
+
+			<div class="content">Oh, hrm. I could be mistaken, but distinctly remember running in place a couple of times in Dalaran. Maybe I experienced that during full disconnects (and not part of the lag compensation then).</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103848">
+			<dt>
+				<a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2183" style="color: #0060C0;" class="username-coloured">CodeNewt</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 740</dd><dd><strong>Joined:</strong> 16 Oct 2009, 18:09</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103863" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103863">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=103863.htm#p103863" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103863#p103863"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a></strong> &raquo; 19 Dec 2011, 12:47 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>CodeNewt wrote:</cite>Oh, hrm. I could be mistaken, but distinctly remember running in place a couple of times in Dalaran. Maybe I experienced that during full disconnects (and not part of the lag compensation then).</div></blockquote><br /><br />Many games give you a prediction leash... where you can only enter so many &quot;commands&quot; before prediction stops and the player is forced to wait to see if the game will resync.</div>
+
+			<div id="sig103863" class="signature">CALLING ALL ARTISTS!  Please contribute to the Content Creation wiki with your experiences accumulated while importing assets in to C4!<br /><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs%27" tppabs="http://www.terathon.com/wiki/index.php?title=Content_Creation_Programs" class="postlink">*** Content Creation WIKI ***</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103863">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1841.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1841" style="color: #0060C0;" class="username-coloured">Zitheral</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 478</dd><dd><strong>Joined:</strong> 26 Mar 2009, 13:17</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p104164" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p104164">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=104164.htm#p104164" tppabs="http://www.terathon.com/forums/viewtopic.php?p=104164#p104164"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2478.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2478" style="color: #0060C0;" class="username-coloured">Infernal</a></strong> &raquo; 11 Jan 2012, 13:52 </p>
+
+			
+
+			<div class="content">I am interested, have any good results been achieved yet?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile104164">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2478.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2478" style="color: #0060C0;" class="username-coloured">Infernal</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 46</dd><dd><strong>Joined:</strong> 12 Jun 2010, 18:29</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p104169" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p104169">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=104169.htm#p104169" tppabs="http://www.terathon.com/forums/viewtopic.php?p=104169#p104169"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a></strong> &raquo; 11 Jan 2012, 20:24 </p>
+
+			
+
+			<div class="content">I haven't actually gotten to working on latency correction, but I will be releasing the Networked SimpleChar very shortly.</div>
+
+			<div id="sig104169" class="signature">Check out our first C4 game, Gremlin Invasion: Survivor. http://cssquaredgamestudio.com/games</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile104169">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 391</dd><dd><strong>Joined:</strong> 12 Aug 2009, 18:36</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p104170" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p104170">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=104170.htm#p104170" tppabs="http://www.terathon.com/forums/viewtopic.php?p=104170#p104170"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=596.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=596" style="color: #0060C0;" class="username-coloured">Fratercide</a></strong> &raquo; 11 Jan 2012, 22:32 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>smittix wrote:</cite>I haven't actually gotten to working on latency correction, but I will be releasing the Networked SimpleChar very shortly.</div></blockquote><br /><br />Really looking forward to this!<br /><br />Thanks!</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile104170">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=596.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=596" style="color: #0060C0;" class="username-coloured">Fratercide</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 366</dd><dd><strong>Joined:</strong> 06 Jun 2007, 22:03</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p104361" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p104361">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=104361.htm#p104361" tppabs="http://www.terathon.com/forums/viewtopic.php?p=104361#p104361"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2478.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2478" style="color: #0060C0;" class="username-coloured">Infernal</a></strong> &raquo; 23 Jan 2012, 13:25 </p>
+
+			
+
+			<div class="content">In  your testing, have you ben using one machine running multiple clients or multiple machines across a LAN or multiple machines across the internet with minium 100ms ping?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile104361">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2478.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2478" style="color: #0060C0;" class="username-coloured">Infernal</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 46</dd><dd><strong>Joined:</strong> 12 Jun 2010, 18:29</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p104362" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p104362">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=104362.htm#p104362" tppabs="http://www.terathon.com/forums/viewtopic.php?p=104362#p104362"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a></strong> &raquo; 23 Jan 2012, 13:44 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Infernal wrote:</cite>In  your testing, have you ben using one machine running multiple clients or multiple machines across a LAN or multiple machines across the internet with minium 100ms ping?</div></blockquote><br /><br />I've done several different tests actually. I've tested with multiple machines running on LAN, and I've also tested with someone in Brazil (I'm in the US). From what I've seen, the lag on LAN is acceptable, but the lag between Brazil and the US is... playable but unacceptable for a real-time game. I still plan on doing some latency correction stuff after I release the standard SimpleChar multiplayer example, so I'll update this post as I progress.<br /><br />As an update for the SimpleChar multiplayer tutorial I'm working on, the code is 100% complete, and the tutorial itself is about 50% complete. I plan on finishing it and posting it up on the wiki today.</div>
+
+			<div id="sig104362" class="signature">Check out our first C4 game, Gremlin Invasion: Survivor. http://cssquaredgamestudio.com/games</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile104362">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 391</dd><dd><strong>Joined:</strong> 12 Aug 2009, 18:36</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p104377" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p104377">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=104377.htm#p104377" tppabs="http://www.terathon.com/forums/viewtopic.php?p=104377#p104377"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a></strong> &raquo; 24 Jan 2012, 01:57 </p>
+
+			
+
+			<div class="content">Ok here it is. SimpleChar Multiplayer wiki post has been made, and includes all source code. Let me know what you guys think:<br /><br /><!-- m --><a class="postlink" href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/SimpleChar_Multiplayer  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/SimpleChar_Multiplayer%27" tppabs="http://www.terathon.com/wiki/index.php/SimpleChar_Multiplayer">http://www.terathon.com/wiki/index.php/ ... ultiplayer</a><!-- m --></div>
+
+			<div id="sig104377" class="signature">Check out our first C4 game, Gremlin Invasion: Survivor. http://cssquaredgamestudio.com/games</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile104377">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 391</dd><dd><strong>Joined:</strong> 12 Aug 2009, 18:36</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p104378" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p104378">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=104378.htm#p104378" tppabs="http://www.terathon.com/forums/viewtopic.php?p=104378#p104378"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=596.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=596" style="color: #0060C0;" class="username-coloured">Fratercide</a></strong> &raquo; 24 Jan 2012, 02:11 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>smittix wrote:</cite>Ok here it is. SimpleChar Multiplayer wiki post has been made, and includes all source code. Let me know what you guys think:<br /><br /><!-- m --><a class="postlink" href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/SimpleChar_Multiplayer  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/SimpleChar_Multiplayer%27" tppabs="http://www.terathon.com/wiki/index.php/SimpleChar_Multiplayer">http://www.terathon.com/wiki/index.php/ ... ultiplayer</a><!-- m --></div></blockquote><br /><br />I think this is a great contribution and will get a lot of mileage <br /><br />Thanks and good luck in the future on your latency correction efforts<br /><br />Edited for spellIng.... <img src="images/smilies/icon_rolleyes.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_rolleyes.gif" alt=":roll:" title="Rolling Eyes" /></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile104378">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=596.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=596" style="color: #0060C0;" class="username-coloured">Fratercide</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 366</dd><dd><strong>Joined:</strong> 06 Jun 2007, 22:03</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p104379" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p104379">Re: Networked player movement in Game code</a></h3>
+			<p class="author"><a href="viewtopic.php-p=104379.htm#p104379" tppabs="http://www.terathon.com/forums/viewtopic.php?p=104379#p104379"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a></strong> &raquo; 24 Jan 2012, 02:31 </p>
+
+			
+
+			<div class="content">Ha, thanks for the spelling correction. I didn't proofread too strictly, so I'm sure there are some errors in there. Oh and if anyone has edits to the code they feel are significant, send them over to me and I'll add them to the code.</div>
+
+			<div id="sig104379" class="signature">Check out our first C4 game, Gremlin Invasion: Survivor. http://cssquaredgamestudio.com/games</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile104379">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2052.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2052" style="color: #0060C0;" class="username-coloured">smittix</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 391</dd><dd><strong>Joined:</strong> 12 Aug 2009, 18:36</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<form id="viewtopic" method="post" action="http://www.terathon.com/forums/viewtopic.php?f=7&t=11400">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		<a href="viewtopic.php-f=7&t=11400&start=25.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=7&t=11400&start=25" class="right-box right">Next</a>
+		<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+		
+	</fieldset>
+
+	</form>
+	<hr />
+
+
+<div class="topic-actions">
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="posting.php-mode=reply&f=7&t=11400.htm" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=7&t=11400" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="pagination">
+			37 posts
+			 &bull; <a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Page <strong>1</strong> of <strong>2</strong></a> &bull; <span><strong>1</strong><span class="page-sep">, </span><a href="viewtopic.php-f=7&t=11400&start=25.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=7&t=11400&start=25">2</a></span>
+		</div>
+	
+</div>
+
+
+	<p></p><p><a href="viewforum.php-f=7.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=7" class="left-box left" accesskey="r">Return to Networking and Multiplayer</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7" selected="selected">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: No registered users and 2 guests</p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

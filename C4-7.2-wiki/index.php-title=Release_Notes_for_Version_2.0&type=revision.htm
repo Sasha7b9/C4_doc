@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>Release Notes for Version 2.0 - C4 Engine Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"Zu8TX6vNqlZ1qevUjy-wAwAAAdg","wgCSPNonce":false,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Release_Notes_for_Version_2.0","wgTitle":"Release Notes for Version 2.0","wgCurRevisionId":64,"wgRevisionId":64,"wgArticleId":62,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Release_Notes_for_Version_2.0","wgRelevantArticleId":62,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"simpleBatchUploadMaxFilesPerBatch":{
+"*":1000},"wgVector2022PreviewPages":[]};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","skins.vector.legacy.js"/*tpa=http://www.c4engine.com/wiki/skins.vector.legacy.js*/];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});});});</script>
+<link rel="stylesheet" href="load.php-lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector.css" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector"/>
+<script async="" src="load.php-lang=en&modules=startup&only=scripts&raw=1&skin=vector.js" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector"></script>
+<meta name="generator" content="MediaWiki 1.40.0"/>
+<meta name="robots" content="max-image-preview:standard"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="viewport" content="width=1000"/>
+<link rel="icon" href="../favicon.ico.css" tppabs="http://www.c4engine.com/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://c4engine.com/wiki/api.php?action=rsd"/>
+<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Release_Notes_for_Version_2_0 rootpage-Release_Notes_for_Version_2_0 skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Release Notes for Version 2.0</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From C4 Engine Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="en" dir="ltr"><div class="mw-parser-output"><p><b>Release date:</b> May 31, 2010
+</p>
+<h2><span class="mw-headline" id="Core_Engine">Core Engine</span></h2>
+<h3><span class="mw-headline" id="Physics">Physics</span></h3>
+<ul><li>This release contains the first version of the native C4 physics architecture. The native physics processing is enabled in a particular world by placing a special "physics node" anywhere in the root zone. The physics node has a physics controller attached to it for which global properties such as the acceleration of gravity can be adjusted. If a world does not contain a physics node in its root zone, then the native C4 physics is completely dormant when that world is played. This allows third-party physics libraries to be used with absolutely no extra cost to bypass the native physics.</li></ul>
+<ul><li>A physics object is created by assigning a rigid body controller to a node and creating one or more "shapes" as subnodes of that node. The shapes define the volume occupied by the physics object as seen by the physics simulation, and they are always fixed relative to each other within a single object. Each shape can have a different density, and the engine automatically calculates properties such as the center of mass and the inertia tensor.</li></ul>
+<ul><li>Rigid bodies can be connected by "joints" to other rigid bodies or to the static environment. Six types of joints are currently defined: spherical, universal, discal, revolute, cylindrical, and prismatic.</li></ul>
+<ul><li>A new node type called a "field" has been added to the engine, and it represents a volume inside of which a force can be applied to physics objects. Forces are applied to objects in a field through the extensible <code><a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/PhysicsMgr/Force.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/PhysicsMgr/Force.html%27" tppabs="http://c4engine.com/docs/PhysicsMgr/Force.html">Force</a></code> class. After a field has been created in the World Editor, a force can be assigned to that field in the Node Info window. In this release, there are two forces built into the engine, a fluid force and a wind force. The fluid force applies buoyancy and drag, and it can be configured to simulate a current. The wind force applies air drag for a wind current. Custom forces can be defined by creating subclasses of <code>Force</code> and registering them with the engine.</li></ul>
+<ul><li>A basic mover controller is provided by the engine. This controller moves a rigid body from point A to point B (and handles the reverse direction, too) under script control. This controller can be used to implement things like simple elevators.</li></ul>
+<h3><span class="mw-headline" id="Terrain">Terrain</span></h3>
+<ul><li>The voxel terrain system now includes a seamless geomip level-of-detail algorithm that is the product of a large R&amp;D project at Terathon. As terrain is edited, the engine automatically creates lower-resolution terrain geometries and arranges all of the terrain geometry nodes in an octree structure. When terrain is rendered, special polygons are inserted along the boundaries between terrain geometries of different resolutions to produce a smooth transition from high-resolution to lower-resolution meshes. Since voxel terrain is inherently volumetric, this kind of linkage between neighboring meshes can get very complicated, and it was necessary to develop a new algorithm to produce a robust result with real-time performance.</li></ul>
+<ul><li>The terrain-specific shading capabilities of the engine have been modified in this release, partially to accommodate the new terrain LOD system. The four six-sided texture cubes used to specify texture palette entries have been replaced by two sets of three textures, with the three entries in each set representing the (a) up direction, (b) down direction, and (c) all horizontal directions.</li></ul>
+<ul><li>Existing terrains need to be converted in order to retain their previous texture settings and blending information. To convert a terrain block, select all of the terrain geometries in the editor and press Ctrl-R to rebuild them. (The easiest way to select all of the terrain geometries is to select one geometry, press Ctrl-Up-Arrow to select the parent block, and then press Ctrl-Down-Arrow to select all of the block's subnodes.) Some texturing capabilities in the previous version do not translate perfectly into the new scheme, so it's possible that parts of the terrain will have textures different from what they had before. In these cases, it will be necessary to manually paint new materials onto those areas to update the textures.</li></ul>
+<ul><li>The Terrain Texture and Terrain Normal shader processes have been extended so that custom blending of terrain materials is possible. By default, these processes fetch colors from both the primary and secondary terrain textures (where each fetch really represents a triplanar texture blend) and then blends them together using the blend data from the terrain mesh. A new setting has been added that lets you turn off blending and only fetch either the primary or secondary texture. You can then blend the textures any way you want. The default blend is given by a linear interpolation of the primary and secondary textures using the blue component of the vertex color as the interpolation parameter.</li></ul>
+<ul><li>The terrain material painting capabilities have been expanded in this release. Materials can now be specified on a per-voxel basis instead of a per-geometry basis, and the per-voxel blending state has been decoupled from the material IDs. There are now two paint brushes in the editor: one that modifies the blend values, and another that only modifies the materials. There is also a check box that enables material replacement when using any of the other terrain tools.</li></ul>
+<ul><li>The engine can now use a special terrain palette texture resource that references a set of separate 2D texture map resources. This allows many different palettes to share textures from a (possibly large) pool of plain 2D texture maps, and it removes the need to store terrain palettes in two different formats for hardware compatibility. When a terrain palette texture map is loaded, it loads all of the texture maps that it references and assembles them into the optimal format for the available hardware.</li></ul>
+<h3><span class="mw-headline" id="Shaders">Shaders</span></h3>
+<ul><li>A new shader process called Kill Fragment has been added to the engine. This process can accept one or two scalar inputs, and if the first input is less than the second input, then the current fragment is not rendered. If the second input is omitted, then it is assumed to be zero. This process can be used as a substitute for alpha testing when the alpha output needs to be used for something else like transparency, glow, or bloom.</li></ul>
+<ul><li>A new shader process called Magnitude 3D has been added to the engine. This process takes the dot product of an input vector with itself and outputs the square root of the result.</li></ul>
+<ul><li>A new shader process called Front Normal has been added to the engine. This process takes a normal vector as input and negates its <i>z</i> component if the <i>z</i> component of the tangent-space light direction is negative. This is useful when rendering two-sided triangles with a normal map because it has the effect of always facing the normal vector to the front with respect to the light direction.</li></ul>
+<ul><li>The second input for the Set if Less Than and Set if Greater Equal shader processes has been made optional. If the second input is omitted, then it is assumed to be zero.</li></ul>
+<h3><span class="mw-headline" id="Scripts">Scripts</span></h3>
+<ul><li>A new built-in script method called Terminate External Script has been added to the engine. This method causes all instances of a script running on another node to be terminated immediately.</li></ul>
+<ul><li>A new built-in script method called Get Script Time has been added to the engine. This method outputs the time that has elapsed since a script began running.</li></ul>
+<h3><span class="mw-headline" id="Miscellaneous">Miscellaneous</span></h3>
+<ul><li>Support for Unicode text rendering and input has been implemented throughout the engine. Strings are always encoded in UTF-8, and thus ordinary ASCII strings are not affected. The String Importer tool will properly handle any text encoded as UTF-8. The Font Generator tool has been rewritten to support the entire Basic Multilingual Plane of the Unicode Standard. See <a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Generating_a_Font  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Generating_a_Font%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Generating_a_Font&action=edit&redlink=1" class="new" title="Generating a Font (page does not exist)">Generating a Font</a>.</li></ul>
+<ul><li>Tablet support has been added to both the Windows and Mac version of C4. Stylus pressure is now taken into consideration when drawing with the terrain sculpting tools.</li></ul>
+<ul><li>A new type of light source called a "Landscape Light" has been added to the engine. This light type is an infinite light that provides large-scale multiresolution shadow mapping capabilities, enabling shadow maps to be used over areas of unlimited size. The engine smoothly transitions from one resolution to another at adjustable distances from the camera.</li></ul>
+<ul><li>A new flag called "Render at infinity" has been added to the Quad Effect. This causes the quad to be rendered infinitely far away in the direction of the quad's local <i>z</i>-axis. This is useful for placing objects in the sky.</li></ul>
+<ul><li>In order to be directly compatible with the new physics system, all velocities pertaining to sounds are now measured in meters per second by default. This applies to <code>Sound</code> objects, <code>Source</code> nodes, and the listener.</li></ul>
+<ul><li>The remote portal node and camera panel item now have a minimum detail level setting. When the engine renders through one of these, the minimum detail level specifies the highest LOD that can be rendered for any particular geometry. The default value is 0, meaning that any LOD can be rendered. Setting the value to a higher number means that only LODs with that index or higher (which have lower detail) can be rendered. This is useful for decreasing the amount of processing that takes place when rendering things like reflections and refractions.</li></ul>
+<ul><li>The velocity-depth-gradient buffer used by the motion blur effect has been changed to 16-bit floating-point color. This allows the higher-quality post-processing effect to be applied at any distance from the camera, and it will open up several new possibilities for other types of effects in future releases.</li></ul>
+<ul><li>The <code>wire</code> console command has been extended so that you can specify whether wireframe lines are depth tested. The command <code>wire 2</code> turns on wireframe with depth testing, the command <code>wire 1</code> turns on wireframe without depth testing, and the command <code>wire 0</code> turns off wireframe. The <code>wire</code> command by itself still toggles the current wireframe state on or off, and depth testing retains it previous state.</li></ul>
+<ul><li>The <code>Lock</code> class has been added to the system utilities. The class implements a read/write lock that can be simultaneously acquired by multiple threads for shared access to some object or acquired by a single thread for exclusive access to the object.</li></ul>
+<ul><li>The <code>Model</code> class no longer owns the root animator assigned to it. The animator tree must be released by the code belonging to the class that creates it.</li></ul>
+<ul><li>Primitive geometries now triangulate disks with a pattern that is more efficient for rasterization. This change affects the disk, cylinder, cone, truncated cone, dome, path tube, and path revolution primitives.</li></ul>
+<ul><li>Resource names in PAK files are no longer case sensitive.</li></ul>
+<ul><li>PAK files now take precedence in reverse lexicographical order. That is, if the same resource appears in the file <code>Patch1.pak</code> and <code>Patch2.pak</code>, then the one in <code>Patch2.pak</code> is guaranteed to be the one that gets loaded.</li></ul>
+<ul><li>Files that are written by the engine, such as config files, the log, and saved games, are now stored in special directories designated by the operating system as places where these kinds of files should be stored. Under Windows, the config files variables.cfg and input.cfg are stored in the user's roaming application data directory, and the C4Log.html file is stored in the user's non-roaming application data directory. Saved games and screenshots are stored in the user's documents directory. In all cases, the files are stored in a subdirectory having the name of the application. Under Mac OS X, all of these files are stored in the <code>~/Library/Application Support/&lt;application name&gt;/</code> directory.</li></ul>
+<ul><li>The engine contains a new mechanism that prevents game and plugin modules built for a different target from being loaded by the engine. For example, if the engine has been built for the Optimized target, it will fail to load any modules built for the Debug target. The operating system's dynamic linker won't be able to find a target-specific symbol, and that will cause it to fail and display an error message. The engine will continue running after such a failure, but the module won't be available.</li></ul>
+<ul><li>A new plugin named Logitech has been added to the engine, and it manages devices made by Logitech that are capable of displaying an image on an LCD screen such as the G15 keyboard.</li></ul>
+<ul><li>The <code>natural</code> and <code>unsigned_natural</code> types have been renamed to <code>machine_int</code> and <code>unsigned_machine_int</code> so that it's more clear what their purpose is. This is also more consistent with the naming of the <code>machine_address</code> type. The shorthand <code>machine</code> and <code>unsigned_machine</code> can also be used in a way analogous to using <code>long</code> instead of <code>long int</code> in C. (A <code>machine_int</code> is an integer at least 32 bits wide, but is wider as necessary for an arithmetic instruction to be executed without an extra sign extension instruction. Currently a <code>machine_int</code> is 32 bits wide on x86 processors. On 64-bit PowerPC processors, a <code>machine_int</code> is 64 bits wide.)</li></ul>
+<ul><li>The <code>engine</code> macro has been renamed to <code>C4API</code>. The <code>module_export</code> and <code>module_import</code> macros have been renamed to <code>C4MODULEEXPORT</code> and <code>C4MODULEIMPORT</code>. The <code>extras_api</code>, <code>movie_api</code>, <code>editor_api</code>, and <code>texture_api</code> macros have been renamed to <code>C4EXTRASAPI</code>, <code>C4MOVIEAPI</code>, <code>C4EDITORAPI</code>, and <code>C4TEXTUREAPI</code>.</li></ul>
+<ul><li>The underlying code for panel items has been replaced with a new hierarchy of <code>Widget</code> classes. These will be the same classes that will replace the <code>Element</code> classes in a future version so that ordinary GUIs and panel effects both use the same unified architecture.</li></ul>
+<h2><span class="mw-headline" id="Tools">Tools</span></h2>
+<h3><span class="mw-headline" id="World_Editor">World Editor</span></h3>
+<ul><li>A new terrain painting tool has been added that creates holes in the terrain mesh. This is useful for creating entrances to structures embedded in the terrain without having to laboriously dig out large caverns. Holes are indicated by a special material ID, so painting an ordinary material over a hole will restore the terrain surface.</li></ul>
+<ul><li>A new terrain sculpting tool called the "Slope brush" has been added that draws conical shapes whose sides are defined by one of several slope functions. The maximum radius of the terrain brushes has also been increased to allow much larger areas of terrain to be sculpted in a single brush stroke.</li></ul>
+<ul><li>A new command called "Optimize Terrain" has been added to the Geometry menu. This command simplifies the selected terrain meshes, removing the tiny and very thin triangles that are commonly produced by the marching cubes algorithm. Triangle counts tend to decrease by about 25% when applying this optimization.</li></ul>
+<ul><li>A new command called "Generate Ambient Occlusion" has been added to the Geometry menu. This command calculates a static per-vertex alpha value that represents the amount of ambient light that reaches the surface at each vertex. In order to be effective, geometries must be tessellated densely enough so that the sample values are close enough together to look good. Terrain naturally has sufficient vertex density, but ambient occlusion data can be generated for any kind of geometry.</li></ul>
+<ul><li>The per-vertex ambient occlusion is not rendered until the new "Use vertex ambient occlusion" flag is set for the materials used on a geometry having ambient occlusion data. The ambient light values are also available to shaders as the alpha component of the vertex color. The shader system automatically accounts for ambient occlusion, so it is not necessary to explicitly perform the occlusion calculation in a shader.</li></ul>
+<ul><li>The reference marker tool has been moved to its own page called "Worlds", and a list of referenced worlds has been added. The list shows which worlds are referenced by the current world, and selecting one lets you place a reference marker for that world in the scene with a single click. The generic reference marker tool is used to place references to new worlds that had not previously been referenced in the current world.</li></ul>
+<ul><li>A popup menu with several commands pertaining to reference markers is also available in the Worlds page. The Cleanup command removes worlds that are no longer referenced from the world list. (Upon opening an existing world in this version, the Cleanup command can be used to populate the world list with the worlds that are already referenced.) The Select All command can be used to select all reference markers in the scene that refer to the world currently highlighted in the worlds list. The Select Some command can be used to randomly select a given percentage of those reference markers. Finally, the Replace Selected command changes the selected reference markers so that they refer to the currently highlighted world.</li></ul>
+<ul><li>A new page called "Placement" has been added. This page contains some settings that can be applied when new nodes are placed in a scene through the perspective viewport. If placement modifications are enabled, then the new node can be rotated randomly about the <i>z</i>-axis, aligned to the tangent plane at the placement point, and/or sunk into uneven ground so that the base of the node is automatically moved below the ground surface. These settings are useful for placing foliage on terrain, and more settings will probably be added in future releases.</li></ul>
+<ul><li>An "Occlusion Space" node has been added to the Spaces page. The occlusion space acts like a box-shaped occlusion portal and blocks all nodes behind its outline on the screen from being rendered. Occlusion spaces should be embedded in large solid objects to help with visibility culling. An occlusion space is disabled whenever the camera enters its box volume.</li></ul>
+<ul><li>Viewport caching has been implemented. This provides much better responsiveness when working with large, complex scenes.</li></ul>
+<ul><li>The Node Info window now remembers which tab was last visited, and it will return to that tab by default the next time the Node Info window is opened (if the tab exists for the selected nodes).</li></ul>
+<ul><li>Right-clicking in the perspective viewport now engages the free camera tool. The contextual menu can still be accessed by holding in Control (Command on the Mac) when right-clicking.</li></ul>
+<ul><li>Holding in the Shift key while using the free camera tool now causes the camera speed to be multiplied by 5.</li></ul>
+<ul><li>It is now possible to click on nodes belonging to external models and referenced worlds, and doing so selects the model node or reference marker node to which the clicked-on node belongs. When a model node or reference marker node is selected, geometries belonging to the model or referenced world are drawn with a gray wireframe as well.</li></ul>
+<ul><li>Node types that have no size associated with them, such as markers, models, skyboxes, and physics joints, can now be placed in a world within the scene graph viewport. When one of the tools used to create these types of node is active, clicking on a node in the scene graph viewport causes a new node of the type represented by the current tool to be created as a subnode of the node that was clicked. The new node's transform is the identity, so its position and orientation coincides with those of its super node.</li></ul>
+<ul><li>A new command called "Edit Script or Panel" has been added to the Node menu. This is a shortcut for going straight to the Script Editor or Panel Editor when a node with a script controller attached to it or a panel effect is selected. These editors are also still accessible from the Controller tab in the Node Info window.</li></ul>
+<ul><li>The Mesh Tools page has been removed, and the Select Surface tool now appears at the top of the editor window.</li></ul>
+<ul><li>Fog can now be disabled for a skybox by checking the "Do not apply fog" box under the Skybox tab in the Node Info window.</li></ul>
+<ul><li>The terrain builder can now import RAW voxel data that has been exported from another application. A RAW file should contain an array of floating-point values stored in little endian byte order, and the size of the array should be equal to the product of the width, height, and depth of the voxel map. To be compatible with some other applications, the <i>z</i> coordinate varies the fastest, followed by the <i>y</i> coordinate, and finally the <i>x</i> coordinate. The importer can treat either +<i>y</i> or +<i>z</i> as the up direction.</li></ul>
+<h3><span class="mw-headline" id="Texture_Tool">Texture Tool</span></h3>
+<ul><li>The texture importer tool can now remember the settings that were used to import each particular texture map. A new check box called "Remember settings" has been added to the texture import dialog, and it is checked by default. When checked, the settings used to import the texture are written to a CFG file alongside the input TGA file in the Import folder. The next time the texture is imported, the information in this file is used to initialize the settings in the import dialog. The CFG file can also be used as a standalone command line that can be executed using the <code>import</code> console command.</li></ul>
+<ul><li>When a texture currently in use is re-imported, the texture is now automatically reloaded by the engine. This only works properly if the type (2D, Rect, Cube) of the texture stays the same.</li></ul>
+<ul><li>A new check box called "Bleed colors for alpha test" has been added to the texture importer tool. When this box is checked, pixels having an alpha value less than 0.75 (where less than 0.5 fails the alpha test) pick up the color from the nearest pixel that passes the alpha test, up to a maximum of 16 pixels away. This process helps remove borders that can appear when alpha-tested textures are rendered. The command-line option for this setting is <code>-bleed</code>.</li></ul>
+<ul><li>The <code>texpal</code> command has been added for creating reference-based terrain palettes. See <a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Creating_a_Terrain_Palette  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Creating_a_Terrain_Palette%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Creating_a_Terrain_Palette&action=edit&redlink=1" class="new" title="Creating a Terrain Palette (page does not exist)">Creating a Terrain Palette</a>.</li></ul>
+<h3><span class="mw-headline" id="Collada_Importer">Collada Importer</span></h3>
+<ul><li>There are two new options exposed by the Collada Importer plugin. First, imported materials can be merged with materials already existing in the scene if they are identical. Second, an existing material in the scene can be used instead of an imported material if the names match.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20240921180304
+Cache expiry: 86400
+Reduced expiry: false
+Complications: [no‐toc‐conversion]
+CPU time usage: 0.008 seconds
+Real time usage: 0.008 seconds
+Preprocessor visited node count: 32/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+
+<!-- Saved in parser cache with key c4_wiki:pcache:idhash:62-0!canonical and timestamp 20240921180304 and revision id 64. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0&oldid=64  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0&oldid=64%27" tppabs="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0&oldid=64">https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0&amp;oldid=64</a>"</div></div>
+		<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="vector-menu mw-portlet mw-portlet-personal vector-user-menu-legacy" aria-labelledby="p-personal-label" role="navigation"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="pt-login" class="mw-list-item"><a href="index.php-title=Special-UserLogin&returnto=Release+Notes+for+Version+2.0&returntoquery=type=revision.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:UserLogin&returnto=Release+Notes+for+Version+2.0&returntoquery=type%3Drevision" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li></ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="vector-menu mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-namespaces-label" role="navigation"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected mw-list-item"><a href="index.php-title=Release_Notes_for_Version_2.0.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Version_2.0  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Version_2.0%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Version_2.0&action=edit&redlink=1" rel="discussion" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="vector-menu mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	/>
+	<label
+		id="p-variants-label"
+		 aria-label="Change language variant"
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="vector-menu mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-views-label" role="navigation"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-view" class="selected mw-list-item"><a href="index.php-title=Release_Notes_for_Version_2.0.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Version_2.0&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0&action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Version_2.0&action=history.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0&action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="vector-menu mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown" aria-labelledby="p-cactions-label" role="navigation"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	/>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<div>
+		<form action="http://www.c4engine.com/wiki/index.php" id="searchform"
+			class="vector-search-box-form">
+			<div id="simpleSearch"
+				class="vector-search-box-inner"
+				 data-search-loc="header-navigation">
+				<input class="vector-search-box-input"
+					 type="search" name="search" placeholder="Search C4 Engine Wiki" aria-label="Search C4 Engine Wiki" autocapitalize="sentences" title="Search C4 Engine Wiki [f]" accesskey="f" id="searchInput"
+				>
+				<input type="hidden" name="title" value="Special:Search">
+				<input id="mw-searchButton"
+					 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+				<input id="searchButton"
+					 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+			</div>
+		</form>
+	</div>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="vector-menu mw-portlet mw-portlet-navigation vector-menu-portal portal" aria-labelledby="p-navigation-label" role="navigation"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="n-mainpage-description" class="mw-list-item"><a href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="javascript:if(confirm(%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents%27" tppabs="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="vector-menu mw-portlet mw-portlet-tb vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="t-whatlinkshere" class="mw-list-item"><a href="index.php-title=Special-WhatLinksHere-Release_Notes_for_Version_2.0.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:WhatLinksHere/Release_Notes_for_Version_2.0" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Version_2.0  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Version_2.0%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Version_2.0" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="index.php-title=Special-SpecialPages.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Version_2.0&oldid=64.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0&oldid=64" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Version_2.0&action=info.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0&action=info" title="More information about this page"><span>Page information</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" role="contentinfo" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 15 July 2023, at 10:02.</li>
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About">About C4 Engine Wiki</a></li>
+	<li id="footer-places-disclaimers"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-poweredbyico"><a href="javascript:if(confirm(%27https://www.mediawiki.org/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/%27" tppabs="https://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" tppabs="http://www.c4engine.com/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/></a></li>
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":51,"wgPageParseReport":{"limitreport":{"cputime":"http://www.c4engine.com/wiki/0.008","walltime":"http://www.c4engine.com/wiki/0.008","ppvisitednodes":{"value":32,"limit":1000000},"postexpandincludesize":{"value":0,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":2,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20240921180304","ttl":86400,"transientcontent":false}}});});</script>
+</body>
+</html>

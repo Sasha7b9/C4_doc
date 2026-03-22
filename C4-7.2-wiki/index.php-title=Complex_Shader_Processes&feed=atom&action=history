@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Complex_Shader_Processes&amp;feed=atom&amp;action=history</id>
+	<title>Complex Shader Processes - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Complex_Shader_Processes&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Complex_Shader_Processes&amp;action=history"/>
+	<updated>2024-09-21T18:24:21Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Complex_Shader_Processes&amp;diff=432&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;This is a list of the complex shader processes that are available in the Shader Editor under the Complex tab.  {| {{Table}} {{Tablehead|Process|Description}} |- {{Process|Diffuse Reflection|Shader_diffuse.png|Tangent-space normal '''N''' (optional)|Scalar|Calculates the Lambertian diffuse reflection factor '''N'''&amp;nbsp;&amp;middot;&amp;nbsp;'''L''', where '''L''' is the tangent-space direction to light. The result is saturated to the range [0,1]. If '''N''' is omitted, then...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Complex_Shader_Processes&amp;diff=432&amp;oldid=prev"/>
+		<updated>2023-07-15T11:59:05Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;This is a list of the complex shader processes that are available in the &lt;a href=&quot;/wiki/index.php?title=Shader_Editor&quot; title=&quot;Shader Editor&quot;&gt;Shader Editor&lt;/a&gt; under the Complex tab.  {| {{Table}} {{Tablehead|Process|Description}} |- {{Process|Diffuse Reflection|Shader_diffuse.png|Tangent-space normal &amp;#039;&amp;#039;&amp;#039;N&amp;#039;&amp;#039;&amp;#039; (optional)|Scalar|Calculates the Lambertian diffuse reflection factor &amp;#039;&amp;#039;&amp;#039;N&amp;#039;&amp;#039;&amp;#039; · &amp;#039;&amp;#039;&amp;#039;L&amp;#039;&amp;#039;&amp;#039;, where &amp;#039;&amp;#039;&amp;#039;L&amp;#039;&amp;#039;&amp;#039; is the tangent-space direction to light. The result is saturated to the range [0,1]. If &amp;#039;&amp;#039;&amp;#039;N&amp;#039;&amp;#039;&amp;#039; is omitted, then...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;This is a list of the complex shader processes that are available in the [[Shader Editor]] under the Complex tab.&lt;br /&gt;
+&lt;br /&gt;
+{| {{Table}}&lt;br /&gt;
+{{Tablehead|Process|Description}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Diffuse Reflection|Shader_diffuse.png|Tangent-space normal '''N''' (optional)|Scalar|Calculates the Lambertian diffuse reflection factor '''N'''&amp;amp;nbsp;&amp;amp;middot;&amp;amp;nbsp;'''L''', where '''L''' is the tangent-space direction to light. The result is saturated to the range [0,1]. If '''N''' is omitted, then it's as if '''N''' is (0,0,1).&lt;br /&gt;
+&lt;br /&gt;
+This process implicitly uses the tangent light direction interpolant.&lt;br /&gt;
+&lt;br /&gt;
+If the ambient reflection output depends on this process, then the results are undefined.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Specular Reflection|Shader_specular.png|Tangent-space normal '''N''' (optional), Specular power ''p'' (required)|Scalar|Calculates the Blinn specular reflection factor ('''N'''&amp;amp;nbsp;&amp;amp;middot;&amp;amp;nbsp;'''H''')&amp;lt;sup&amp;gt;''p''&amp;lt;/sup&amp;gt;, where '''H''' is the tangent-space direction halfway between the direction to light and direction to viewer. If '''N''' is omitted, then it's as if '''N''' is (0,0,1). The specular power ''p'' controls the sharpness of the specularity.&lt;br /&gt;
+&lt;br /&gt;
+This process implicitly uses the tangent halfway direction interpolant, which in turn uses the tangent light direction and tangent view direction interpolants.&lt;br /&gt;
+&lt;br /&gt;
+If the ambient reflection output depends on this process, then the results are undefined.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Microfacet Reflection|Shader_microfacet.png|Tangent-space normal '''N''' (optional)|RGB color|Calculates the Cook-Torrance microfacet reflection color. If '''N''' is omitted, then it's as if '''N''' is (0,0,1).&lt;br /&gt;
+&lt;br /&gt;
+This process implicitly uses the tangent light direction, tangent view direction, and tangent halfway direction interpolants.&lt;br /&gt;
+&lt;br /&gt;
+If the ambient reflection output depends on this process, then the results are undefined.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Terrain Diffuse Reflection|Shader_terraindiffuse.png|Terrain normal '''N'''&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt; (optional), Terrain normal '''N'''&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt; (optional), Terrain normal '''N'''&amp;lt;sub&amp;gt;3&amp;lt;/sub&amp;gt; (optional)|Scalar|Calculates the Lambertian diffuse reflection factor for terrain. If any of the three inputs is missing, then the tangent-space normal vector is assumed to be (0,0,1). If all three inputs are present, then bump-mapped shading is performed. The three inputs should come from the three Terrain Normal processes.&lt;br /&gt;
+&lt;br /&gt;
+If the ambient reflection output depends on this process, then the results are undefined.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Terrain Specular Reflection|Shader_terrainspecular.png|Terrain normal '''N'''&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt; (optional), Terrain normal '''N'''&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt; (optional), Terrain normal '''N'''&amp;lt;sub&amp;gt;3&amp;lt;/sub&amp;gt; (optional), Specular power ''p'' (required)|Scalar|Calculates the Blinn specular reflection factor for terrain. If any of the three inputs is missing, then the tangent-space normal vector is assumed to be (0,0,1). If all three inputs are present, then bump-mapped shading is performed. The three inputs should come from the three Terrain Normal processes. The specular power ''p'' controls the sharpness of the specularity.&lt;br /&gt;
+&lt;br /&gt;
+If the ambient reflection output depends on this process, then the results are undefined.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Combine Normals|Shader_combinenormals.png|Normal vector '''N'''&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt; (required), Normal vector '''N'''&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt; (required), Scalar ''t'' (optional)|3D vector|If ''t'' is omitted, calculates a new normal vector corresponding to the normal that would be produced if the two height maps producing the input normals were added together.&lt;br /&gt;
+&lt;br /&gt;
+If ''t'' is not omitted, then it determines how the heights are weighted, with the height corresponding to '''N'''&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt; being weighted most when ''t'' is zero and the height corresponding to '''N'''&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt; being weighted most when ''t'' is one. A value for ''t'' of 0.5 does produces an average height, which is not the same as the sum produces when ''t'' is omitted.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Front Normal|Shader_frontnormal.png|Normal vector '''N''' (required)|3D vector|Calculates a new normal vector by negating the ''z'' component of the input vector if the ''z'' component of the tangent-space light direction is negative. Otherwise, the input vector is passed through unchanged. This is useful when rendering two-sided triangles with a normal map because it has the effect of always facing the normal vector to the front with respect to the light direction.&lt;br /&gt;
+&lt;br /&gt;
+This process implicitly uses the tangent light direction interpolant.&lt;br /&gt;
+&lt;br /&gt;
+If the ambient reflection output depends on this process, then the results are undefined.&lt;br /&gt;
+&lt;br /&gt;
+''Tip:'' This process should not be used in impostor shaders.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Reflect Vector|Shader_reflectvector.png|3D vector '''V''' (required), 3D vector '''N''' (optional)|3D vector|Calculates the reflection of the vector '''V''' across the vector '''N'''. If '''N''' is omitted, then it's as if '''N''' is (0,0,1).}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Smooth Parameter|Shader_smooth.png|Value ''t'' (required)|Value of size matching ''t''|Calculates 3''t''&amp;lt;sup&amp;gt;2&amp;lt;/sup&amp;gt;&amp;amp;nbsp;&amp;amp;minus;&amp;amp;nbsp;2''t''&amp;lt;sup&amp;gt;3&amp;lt;/sup&amp;gt; componentwise. This has the effect of smoothing an interpolation parameter within the range [0,1] since the derivative at both endpoints is zero.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Steep Parameter|Shader_steep.png|Value ''t'' (required)|Value of size matching ''t''|Calculates 2''t''&amp;amp;nbsp;&amp;amp;minus;&amp;amp;nbsp;''t''&amp;lt;sup&amp;gt;2&amp;lt;/sup&amp;gt; componentwise. This has the effect of making an interpolation start quickly at a steep slope and finish smoothly.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Linear Ramp|Shader_linearramp.png|Value '''A''' (required)|Value of size matching '''A'''|Remaps the range [''c''&amp;amp;nbsp;&amp;amp;minus;&amp;amp;nbsp;&amp;amp;frac12;''w'',&amp;amp;nbsp;''c''&amp;amp;nbsp;+&amp;amp;nbsp;&amp;amp;frac12;''w''] to the range [0,1] componentwise, where ''c'' is a center value and ''w'' is the width of the input range. The values of ''c'' and ''w'' are specified in the settings for the process.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Delta Depth|Shader_deltadepth.png|None|Scalar|Outputs the difference between the depth of the geometry in the structure buffer and the depth of the fragment being shaded, scaled by a factor ''s'' and clamped to the range [0,1]. The scale factor ''s'' is specified in the settings for the process.&lt;br /&gt;
+&lt;br /&gt;
+If rendering to the structure buffer is disabled, then the output value is always 1.0.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Tangent to World Transform|Shader_tangenttoworld.png|3D vector '''V''' (required)|3D vector|Transforms the vector '''V''' from tangent space coordinates into world space coordinates.&lt;br /&gt;
+&lt;br /&gt;
+This process implicitly uses three 3D vector interpolants containing the matrix that transforms from tangent space to world space.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Parallax Offset|Shader_parallax.png|2D vector '''TEXC''' (required)|2D vector|Perturbs the input texture coordinates using the parallax information in the normal map and outputs the result. The normal map is specified in the settings for the process. If parallax mapping is disabled, then the input texture coordinates '''TEXC''' are simply passed through to the output.&lt;br /&gt;
+&lt;br /&gt;
+This process implicitly uses the tangent view direction interpolant.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Horizon Shadow|Shader_horizon.png|2D vector '''TEXC''' (required), RGB color '''RGB''' (required)|RGB color|Calculates the horizon map shadowing based on the two input horizon map sampled at the texture coordinates '''TEXC''' and multiplies the input color '''RGB''' by the amount of light reaching the surface. The horizon map is specified in the settings for the process. Flags for excluding horizon mapping for infinite or points lights can also be set. If horizon mapping is disabled or the shader is used in conjunction with a light type that has been excluded, then the input color '''RGB''' is simply passed through to the output.&lt;br /&gt;
+&lt;br /&gt;
+This process implicitly uses the tangent light direction interpolant.&lt;br /&gt;
+&lt;br /&gt;
+If the ambient reflection output depends on this process, then the results are undefined.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Kill Fragment|Shader_kill.png|Scalar '''A''' (required), Scalar '''B''' (optional)|None|Kills the current fragment if '''A''' &amp;amp;lt; '''B'''. If '''B''' is omitted, then the fragment is killed if '''A''' &amp;amp;lt; 0.}}&lt;br /&gt;
+|}&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[Shader Editor]]&lt;br /&gt;
+* [[Basic Shader Processes]]&lt;br /&gt;
+* [[Mathematical Shader Processes]]&lt;br /&gt;
+* [[Interpolant Shader Processes]]&lt;br /&gt;
+&lt;br /&gt;
+[[Category:Shaders]]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

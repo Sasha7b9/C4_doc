@@ -1,0 +1,1487 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View topic - Code Beautifiers/Code Refactoring?</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '25';
+	var base_url = './viewtopic.php?f=13&amp;t=12829';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=17.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=17">General C4 Engine Topics</a> <strong>&#8249;</strong> <a href="viewforum.php-f=13.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=13">User Lounge</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewtopic.php-f=13&t=12829.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=13&t=12829">Code Beautifiers/Code Refactoring?</a></h2>
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body --><div style="display: none !important;">Topics covering just about anything. If it's not engine-related, it goes here.<br /></div>
+	<div class="rules">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		
+			<strong>Forum rules</strong><br />
+			You may generally post about anything you want as long as it's not offensive. However, you may <span style="font-weight: bold">not</span> start threads that make engine comparisons or discuss other engines in any way. Any kind of advertisements for products and services are <span style="font-weight: bold">not allowed</span>. Recruiting for projects that don't involve C4 are also <span style="font-weight: bold">not allowed</span>.
+		
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=13&t=12829  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=13&t=12829%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=13&t=12829" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="search-box">
+			<form method="get" id="topic-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="Search this topic…" onclick="if(this.value=='Search this topic…')this.value='';" onblur="if(this.value=='')this.value='Search this topic…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="t" value="12829" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			34 posts
+			 &bull; <a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Page <strong>1</strong> of <strong>2</strong></a> &bull; <span><strong>1</strong><span class="page-sep">, </span><a href="viewtopic.php-f=13&t=12829&start=25.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=13&t=12829&start=25">2</a></span>
+		</div>
+	
+
+</div>
+<div class="clear"></div>
+
+
+	<div id="p116760" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 class="first"><a href="#p116760">Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116760  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116760#p116760%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116760#p116760"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 20 Apr 2013, 18:32 </p>
+
+			
+
+			<div class="content">I'm considering using an old C++ code base and would like to clean it up. So I need some advice on tools, free or commercial, to do the job. These are what I've found so far:<br /><br />Commercial for use with Visual Studio only<br />CodeRush and Visual Assist X. I've never used them before, so I don't know if they are worth it. If I do buy them, I would also have to buy Visual Studio Pro 2012. The lowest price I've been able to find is ~$500, so I have to consider that in the total cost.<br /><br />Free cross platform tools<br />Artistic Style, Uncrustify and Universal Indent GUI, but they only do spaces and brackets by the looks of them. I assume the commercial refactor tools above, will do that as well.<br /><br /><br />Something I would like to be able to do, is automatically add/remove prefixes on variables for an entire code base. However I can't find any mention of it, in the commercial tools above. Are there beautifier/refactoring tools that can do it?<br /><br />The code base I am looking at, uses tons of macros to improve readability. So a tool that makes it easy to convert macros to functions, would be handy.<br /><br />A big task is converting lists and maps from one library to another. What do you guys use to do it?<br /><br />Have you used ones not mentioned here? Please let me know if you've found any good ones.</div>
+
+			<div id="sig116760" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116760">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p116763" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p116763">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116763  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116763#p116763%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116763#p116763"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a></strong> &raquo; 20 Apr 2013, 22:34 </p>
+
+			
+
+			<div class="content">I'd like to know as well. AFAIK, they mostly only handle the trivial stuff, with the real work left up to you.<br /><br />I've noticed Xcode refactors decently well, but that's OBJ-C w/ Clang. Speaking of which, browse the LLVM stuff. I bet there's something there,  maybe mixed in with some plugins with Sublime text?</div>
+
+			<div id="sig116763" class="signature">Intel i5-4430<br />Nvidia 660 - Driver 340.43<br />8 Gigs RAM</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116763">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257"><img src="download/file.php-avatar=1257_1365571061.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1257_1365571061.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2883</dd><dd><strong>Joined:</strong> 13 Jun 2008, 15:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p116765" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p116765">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116765  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116765#p116765%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116765#p116765"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030">DrVonBraun</a></strong> &raquo; 20 Apr 2013, 23:15 </p>
+
+			
+
+			<div class="content">I am using Visual Studio 2012 pro with Visual assist. I used to have VS2008 and needed Visual Slick Edit becasue VS2008 simply wasnt up to the job. I used Slick Edit for well over 10 years now and thought I couldn't do without it, but since I have VS2012 and Visual Assist, i use only them. The main reason to switch was that Slick Edit isnt able to handle namespaces correctly plus with every version they introduced more bugs.<br /><br />VS2012/VAssist arent perfect. The main thing I am missingis to be able to click on an identifier in code and then have &quot;Show In Browser&quot; function. You have to go the declaration in the H file and then open the class or wahtever in the browser window manually. <br /><br />I used to do a lot with visual Slick edit macros, to create my class templates etc, but VS2012 now supplies that for C++ as well ( I think VS2010 only did it for C#) so this works too. Visual Assist is indispensable, you simply need it, VS2012 alone is not good enough, but like I said, they are so good in tandem that I dropped Slick Edit after 10 years and that means a lot for me, since I tend to stick to tools once I use them.<br /><br />As for refactoring variables, all you can do with VS2012 is rename one variable at a time which it does pretty well, but no way of identifying a variable by itself and then prefix all of them or so.</div>
+
+			<div id="sig116765" class="signature">&quot;Research is what I'm doing when I don't know what I'm doing&quot; - Wernher Von Braun</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116765">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030"><img src="download/file.php-avatar=3030_1341302879.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3030_1341302879.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030">DrVonBraun</a>
+			</dt>
+
+			<dd>Banned</dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 575</dd><dd><strong>Joined:</strong> 03 Jul 2012, 02:04</dd><dd><strong>Location:</strong> Los Angeles, CA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p116766" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p116766">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116766  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116766#p116766%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116766#p116766"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 21 Apr 2013, 00:55 </p>
+
+			
+
+			<div class="content">Thanks for the info on Slick Edit. I hadn't heard of that one. <br /><br />The only thing I could find out about CodeRush, was it does more than Visual Assist, but it is a bit of a hog. The guy said he uses both VA and CR because he needs features from both. That comment was from 2010, so I don't know if it applies any longer.</div>
+
+			<div id="sig116766" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116766">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p116767" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p116767">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116767  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116767#p116767%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116767#p116767"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030">DrVonBraun</a></strong> &raquo; 21 Apr 2013, 01:24 </p>
+
+			
+
+			<div class="content">yes it is pretty good, just like I said it has it's trouble with namespaces which I didnt use at all until last year when I had a revelation by reading a book about Ada programming <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":)" title="Smile" /> and happened to have bugs with things I needed in their macro language</div>
+
+			<div id="sig116767" class="signature">&quot;Research is what I'm doing when I don't know what I'm doing&quot; - Wernher Von Braun</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116767">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030"><img src="download/file.php-avatar=3030_1341302879.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3030_1341302879.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030">DrVonBraun</a>
+			</dt>
+
+			<dd>Banned</dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 575</dd><dd><strong>Joined:</strong> 03 Jul 2012, 02:04</dd><dd><strong>Location:</strong> Los Angeles, CA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p116768" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p116768">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116768  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116768#p116768%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116768#p116768"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 21 Apr 2013, 05:26 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Jesse Meyer wrote:</cite>I'd like to know as well. AFAIK, they mostly only handle the trivial stuff, with the real work left up to you.<br /><br />I've noticed Xcode refactors decently well, but that's OBJ-C w/ Clang. Speaking of which, browse the LLVM stuff. I bet there's something there,  maybe mixed in with some plugins with Sublime text?</div></blockquote><br /><br />I found this:<br /><br />Chandler Carruth: Refactoring C++ with Clang <br /><!-- m --><a class="postlink" href="javascript:if(confirm(%27http://www.youtube.com/watch?v=yuIOGfcOH0k  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/watch?v=yuIOGfcOH0k%27" tppabs="http://www.youtube.com/watch?v=yuIOGfcOH0k">http://www.youtube.com/watch?v=yuIOGfcOH0k</a><!-- m --></div>
+
+			<div id="sig116768" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116768">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p116772" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p116772">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116772  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116772#p116772%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116772#p116772"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3203.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3203" style="color: #0060C0;" class="username-coloured">patlecat</a></strong> &raquo; 21 Apr 2013, 18:01 </p>
+
+			
+
+			<div class="content">I was a fan of SlickEdit too and it has way more to offer than just the beautifier  <img src="images/smilies/icon_cool.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_cool.gif" alt="8)" title="Cool" /></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116772">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3203.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3203"><img src="download/file.php-avatar=3203_1364474215.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3203_1364474215.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3203.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3203" style="color: #0060C0;" class="username-coloured">patlecat</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 379</dd><dd><strong>Joined:</strong> 27 Feb 2013, 06:59</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p116774" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p116774">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116774  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116774#p116774%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116774#p116774"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 21 Apr 2013, 18:15 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Davaris wrote:</cite>The guy said he uses both VA and CR because he needs features from both.</div></blockquote><br /><br />Just want to correct this. <br /><br />I found that comment again and guy said he keeps CR for C#. It sounds like C++ support back then was not so good. <br /><br />I have found a few C++ people saying VAX has limited features but they all work, whereas CR has lots of features but they seem to have a problem with quality control. But again these are all old comments. So the only way you can find out, is to download both demos and try for yourself.</div>
+
+			<div id="sig116774" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116774">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p116792" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p116792">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116792  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116792#p116792%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116792#p116792"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 22 Apr 2013, 18:37 </p>
+
+			
+
+			<div class="content">I am trying out VAX and many features do not work in it. $300 + $500 minimum for Visual Studio and I have to test their software for them as well?<br /><br />I also tried CodeRush and nothing works at all with Vis Studio 2012 update 2. The only thing it does is make the interface super sluggish - Critical Fail.<br /><br />I think I'll return to VS Express and keep doing things the &quot;hard way&quot;.  <img src="images/smilies/icon_lol.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /></div>
+
+			<div id="sig116792" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116792">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p116793" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p116793">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116793  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116793#p116793%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116793#p116793"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 22 Apr 2013, 19:28 </p>
+
+			
+
+			<div class="content">I just incorporated Artistic Style with the Express version. Not ideal, but better than nothing.<br /><br /><!-- m --><a class="postlink" href="javascript:if(confirm(%27http://stackoverflow.com/questions/7602296/integrating-artistic-style-with-visual-studio-2010  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://stackoverflow.com/questions/7602296/integrating-artistic-style-with-visual-studio-2010%27" tppabs="http://stackoverflow.com/questions/7602296/integrating-artistic-style-with-visual-studio-2010">http://stackoverflow.com/questions/7602 ... tudio-2010</a><!-- m --></div>
+
+			<div id="sig116793" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116793">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p116794" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p116794">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116794  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116794#p116794%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116794#p116794"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030">DrVonBraun</a></strong> &raquo; 22 Apr 2013, 19:37 </p>
+
+			
+
+			<div class="content">I had problems with both VS2012 express and pro. I guess my Windows 7 system was so overloaded with junk that VS was unstable. What I did was to install Server 2008R2 on another HD and now I am basically always on that system, using the win7 system for games and to test things etc. I think Vs 2012 itself is less stable than 2008 thats why i didnt want to change at first but the new language features forced me to.<br /><br />It is true that the VS GUI is sluggish but to be frank, after all these years of crap software from MS I just kinda go along with it without complaining. What alternative do we have after all. I was looking into into that linux GDB debugging thing once but it is way below the Visual Studio debugger. Call me what you will but without a debugger I feel like a blind man stumbling between the code lines, so that was the biggest decision making point for me. I need the VS debugger and therefore I must also go with VS.<br /><br />Try out Slick Edit, maybe it works for you. They have a trial version</div>
+
+			<div id="sig116794" class="signature">&quot;Research is what I'm doing when I don't know what I'm doing&quot; - Wernher Von Braun</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116794">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030"><img src="download/file.php-avatar=3030_1341302879.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3030_1341302879.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030">DrVonBraun</a>
+			</dt>
+
+			<dd>Banned</dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 575</dd><dd><strong>Joined:</strong> 03 Jul 2012, 02:04</dd><dd><strong>Location:</strong> Los Angeles, CA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p116795" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p116795">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116795  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116795#p116795%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116795#p116795"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 22 Apr 2013, 19:49 </p>
+
+			
+
+			<div class="content">Actually the Visual Studio GUI is super fast, if you use this tip from Eric:<br /><br /><blockquote class="uncited"><div>Tip: When running from the Visual Studio debugger, Windows automatically enables memory heap debugging features that are used by the entire process being debugged, including external libraries such as the graphics drivers. This can cause significant delays that do not appear when not running in the debugger. To disable these debugging features, set the Environment property in the Debugging page to &quot;_NO_DEBUG_HEAP=1&quot; (without quotes)</div></blockquote><br /><br />As for VAX, it is super snappy but clearly has issues with my setup. I don't know if it is to do with 64 bit, or the latest Visual Studio update has broken it. <br /><br />What is frustrating, they have made no videos demoing how their features are supposed to work, while their competitors have made many. So when you are trying to learn and the software is broken, you have no idea if you are doing it the wrong or the right way and you waste a lot of time.<br /><br />Anyway I told them I may try their software at a later date. I also told them to make some Youtube videos demoing the features. If they don't make the videos, I won't bother trying their software again. Productivity software should be easy to learn, easy to use and be bug free. Otherwise it defeats the purpose of productivity software.<br /><br />Their support did respond quickly. So at least I can say something good about them.</div>
+
+			<div id="sig116795" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116795">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p116797" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p116797">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116797  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116797#p116797%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116797#p116797"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 22 Apr 2013, 23:27 </p>
+
+			
+
+			<div class="content">I just got one of the issues I was having with VAX to work. The problem was I was expecting it to work like their competitor's version, but it does something else entirely and requires something else to be in existence, before it can do its job. The part I was expecting it to create, is the part it needs to do its job. DUH... So in that case I was an idiot.<br /><br />There is one other problem I ran into, if I can figure that out then VAX is King.</div>
+
+			<div id="sig116797" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116797">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p116847" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p116847">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116847  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116847#p116847%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116847#p116847"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 24 Apr 2013, 01:03 </p>
+
+			
+
+			<div class="content">I found why it is not working in VAX. Looks like their extract method, doesn't like 'using namespace' in cpp files. So at least that wasn't down to my stupidity.</div>
+
+			<div id="sig116847" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116847">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p116852" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p116852">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=116852  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=116852#p116852%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=116852#p116852"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2046.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2046" style="color: #0060C0;" class="username-coloured">nore</a></strong> &raquo; 24 Apr 2013, 08:31 </p>
+
+			
+
+			<div class="content">Eclipse/CDT have very good refactoring capabilities too. I use it all times <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":)" title="Smile" /></div>
+
+			<div id="sig116852" class="signature">* &lt;- This is not a signature</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile116852">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2046.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2046"><img src="download/file.php-avatar=2046_1278083713.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2046_1278083713.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2046.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2046" style="color: #0060C0;" class="username-coloured">nore</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 49</dd><dd><strong>Joined:</strong> 05 Aug 2009, 04:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117152" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117152">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=117152  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=117152#p117152%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117152#p117152"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=55.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=55" style="color: #8000C0;" class="username-coloured">JamesH</a></strong> &raquo; 29 Apr 2013, 02:38 </p>
+
+			
+
+			<div class="content">I messed around with using <a href="javascript:if(confirm(%27http://www.codemaid.net/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.codemaid.net/%27" tppabs="http://www.codemaid.net/" class="postlink">CodeMaid</a> for cleaning up my code, but it was difficult to adhere to C4's coding conventions. One of the guys at work uses it extensively for C# work and the dev behind CodeMaid is open to adding new features, I just haven't got around to adding any suggestions yet.<br /><br />I predominantly use VAX with VS2012 as well.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117152">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=55.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=55" style="color: #8000C0;" class="username-coloured">JamesH</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2587</dd><dd><strong>Joined:</strong> 10 May 2006, 06:50</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117153" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117153">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=117153  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=117153#p117153%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117153#p117153"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 29 Apr 2013, 03:13 </p>
+
+			
+
+			<div class="content">Thanks nore and James.<br /><br />CodeMaid looks pretty interesting to me, but I found the current version locks up my VS.<br /><br />I tried using Artistic Style and found it gets you pretty close to the C4 standard. If it had an option that cleans up random white space first, it would be great.<br /><br /><!-- m --><a class="postlink" href="javascript:if(confirm(%27http://astyle.sourceforge.net/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://astyle.sourceforge.net/%27" tppabs="http://astyle.sourceforge.net/">http://astyle.sourceforge.net/</a><!-- m --><br /><br />There is a VS extension that uses it, called AStyle, but it is a couple of updates behind. So I asked the owner if he will make a command line option available, so we can use whatever version of Artistic Style we like.<br /><br />AStyle Extension<br /><!-- m --><a class="postlink" href="javascript:if(confirm(%27http://visualstudiogallery.msdn.microsoft.com/2f3f04cd-2866-4e47-a671-d1cc9cc3fb02  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://visualstudiogallery.msdn.microsoft.com/2f3f04cd-2866-4e47-a671-d1cc9cc3fb02%27" tppabs="http://visualstudiogallery.msdn.microsoft.com/2f3f04cd-2866-4e47-a671-d1cc9cc3fb02">http://visualstudiogallery.msdn.microso ... cc9cc3fb02</a><!-- m --></div>
+
+			<div id="sig117153" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117153">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117156" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117156">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=117156  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=117156#p117156%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117156#p117156"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2046.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2046" style="color: #0060C0;" class="username-coloured">nore</a></strong> &raquo; 29 Apr 2013, 05:31 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Davaris wrote:</cite>Thanks nore and James.<br />I tried using Artistic Style and found it gets you pretty close to the C4 standard. If it had an option that cleans up random white space first, it would be great.<br /></div></blockquote><br />The --align-reference option apart of --align-pointer introduced in the 2.02 is my little contribution to match C4 style ^^</div>
+
+			<div id="sig117156" class="signature">* &lt;- This is not a signature</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117156">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2046.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2046"><img src="download/file.php-avatar=2046_1278083713.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2046_1278083713.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2046.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2046" style="color: #0060C0;" class="username-coloured">nore</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 49</dd><dd><strong>Joined:</strong> 05 Aug 2009, 04:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117157" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117157">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=117157  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=117157#p117157%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117157#p117157"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3203.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3203" style="color: #0060C0;" class="username-coloured">patlecat</a></strong> &raquo; 29 Apr 2013, 05:42 </p>
+
+			
+
+			<div class="content">AFAIK is CodeMaid more like a general developer tool and not really made for code-beautifying. This would be the domain of AStyle. Best would be a combination of the two <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":)" title="Smile" /><br />I'm gonna give AStyle + CodeMaid a try.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117157">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3203.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3203"><img src="download/file.php-avatar=3203_1364474215.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3203_1364474215.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3203.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3203" style="color: #0060C0;" class="username-coloured">patlecat</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 379</dd><dd><strong>Joined:</strong> 27 Feb 2013, 06:59</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117163" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117163">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=117163  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=117163#p117163%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117163#p117163"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 29 Apr 2013, 07:57 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>nore wrote:</cite><blockquote><div><cite>Davaris wrote:</cite>The --align-reference option apart of --align-pointer introduced in the 2.02 is my little contribution to match C4 style ^^</div></blockquote></div></blockquote><br /><br />Well done nore. Thank you! <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":)" title="Smile" /></div>
+
+			<div id="sig117163" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117163">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117165" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117165">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=117165  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=117165#p117165%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117165#p117165"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3203.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3203" style="color: #0060C0;" class="username-coloured">patlecat</a></strong> &raquo; 29 Apr 2013, 10:02 </p>
+
+			
+
+			<div class="content">A word of caution: It seems that you cannot run both Add-Ins at the same time. So I deinstalled the CodeMaid, because the AStyle is more useful for me now.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117165">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3203.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3203"><img src="download/file.php-avatar=3203_1364474215.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3203_1364474215.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3203.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3203" style="color: #0060C0;" class="username-coloured">patlecat</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 379</dd><dd><strong>Joined:</strong> 27 Feb 2013, 06:59</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117292" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117292">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=117292  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=117292#p117292%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117292#p117292"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2537.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2537" style="color: #0060C0;" class="username-coloured">Grognard</a></strong> &raquo; 01 May 2013, 23:29 </p>
+
+			
+
+			<div class="content">I'd suggest to NOT edit the code of the library. Instead build your own interface to the library on top of the library's code.<br /><br />For instance with C4 I made my own class that used C4's collision detection, but if need be I could put in some other code or move to another library.<br /><br />You might slowly refactor it anyway but I'd only do so as needed or it's likely you will be wasting your time and introducing bugs.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117292">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2537.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2537" style="color: #0060C0;" class="username-coloured">Grognard</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1163</dd><dd><strong>Joined:</strong> 13 Sep 2010, 19:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117298" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117298">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=117298  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=117298#p117298%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117298#p117298"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 02 May 2013, 02:18 </p>
+
+			
+
+			<div class="content">Yeah that's a good point.</div>
+
+			<div id="sig117298" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117298">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117720" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117720">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=117720  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=117720#p117720%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117720#p117720"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 18 May 2013, 07:24 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>nore wrote:</cite>Eclipse/CDT have very good refactoring capabilities too. I use it all times <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":)" title="Smile" /></div></blockquote><br /><br />I just got around to trying this. I used Eclipse a few years ago and didn't like it much, but I see it has come a long way. <br /><br />ATM I'm using it as an editor and will continue to build and debug in VS, until I figure out how to do both from within Eclipse. Their refactoring works well, quite impressive because it is free. <br /><br />I also got Artistic Style working in Eclipse and the only problem is there is a pause of around 5 seconds before it does its job.<br /><br />These are my Artistic Style settings. I'm pretty sure they match the C4 standard on almost everything.<br /><br />MSVC++<br />-A1 -t4 -C -S -K -N -L -w -Y -M -f -p -H -U -E -k3 -W3 -O -o -xy $(ItemPath)<br /><br />Eclipse CDT<br />-A1 -t4 -C -S -K -N -L -w -Y -M -f -p -H -U -E -k3 -W3 -O -o -xy ${resource_loc}<br /><br />Edit:<br />VAX is still easier to use, but it + VS costs a bomb. <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":)" title="Smile" /></div>
+
+			<div id="sig117720" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117720">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117724" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117724">Re: Code Beautifiers/Code Refactoring?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=117724  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=117724#p117724%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117724#p117724"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 18 May 2013, 16:58 </p>
+
+			
+
+			<div class="content">The style matching what I've been using in C4 is a little different:<br /><br />-A1 -T -C -S -N -L -w -Y -m2 -f -p -H -k3 -W1 -O -o<br /><br />I think the only thing that doesn't do exactly what I would want is -L, which outdents labels by one where I leave them at the same indent as the surrounding code.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117724">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<form id="viewtopic" method="post" action="http://www.terathon.com/forums/viewtopic.php?f=13&t=12829">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		<a href="viewtopic.php-f=13&t=12829&start=25.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=13&t=12829&start=25" class="right-box right">Next</a>
+		<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+		
+	</fieldset>
+
+	</form>
+	<hr />
+
+
+<div class="topic-actions">
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=13&t=12829  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=13&t=12829%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=13&t=12829" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="pagination">
+			34 posts
+			 &bull; <a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Page <strong>1</strong> of <strong>2</strong></a> &bull; <span><strong>1</strong><span class="page-sep">, </span><a href="viewtopic.php-f=13&t=12829&start=25.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=13&t=12829&start=25">2</a></span>
+		</div>
+	
+</div>
+
+
+	<p></p><p><a href="viewforum.php-f=13.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=13" class="left-box left" accesskey="r">Return to User Lounge</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13" selected="selected">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: <span style="color: #9E8DA7;" class="username-coloured">Google [Bot]</span> and 1 guest</p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ImageImportPlugin::ImportImageFile</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/System/index.html">System Utilities</a> &#x25BA; <a href="ImageImportPlugin.html" tppabs="http://www.c4engine.com/docs/System/ImageImportPlugin.html">class ImageImportPlugin</a></div>
+</td></tr></table>
+<div class="content">
+<h2>ImageImportPlugin::ImportImageFile</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Plugins.h</code></div>
+Imports an image from a file.
+<div class="heading">Prototype</div>
+<p><code>EngineResult&nbsp;ImportImageFile(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*name,&nbsp;<span style="color: #0000FF">void</span>&nbsp;**image,&nbsp;Integer2D&nbsp;*size,&nbsp;<span style="color: #0000FF">uint32</span>&nbsp;*flags&nbsp;=&nbsp;<span style="color: #0000FF">nullptr</span>,&nbsp;<span style="color: #0000FF">int32</span>&nbsp;index&nbsp;=&nbsp;0)&nbsp;=&nbsp;0;</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>name</code></td>
+<td class="tableright1">The file name of the image, relative to the engine executable.
+</td></tr>
+<tr><td class="tableleft"><code>image</code></td>
+<td class="tableright">A pointer to a location that receives a pointer to the buffer in which the image is stored.
+</td></tr>
+<tr><td class="tableleft"><code>size</code></td>
+<td class="tableright">A pointer to a location that receives the dimensions of the image. This cannot be <code><span style="color: #0000FF">nullptr</span></code>.
+</td></tr>
+<tr><td class="tableleft"><code>flags</code></td>
+<td class="tableright">A pointer to a location that receives flags pertaining to the image. This can be <code><span style="color: #0000FF">nullptr</span></code> if this information is not needed.
+</td></tr>
+<tr><td class="tableleft"><code>index</code></td>
+<td class="tableright">The zero-based index of the image to import.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>ImportImageFile</code> function imports an image from the file specified by the <code>name</code> paramater. If the function succeeds, then the return value is <code>kEngineOkay</code>. If an error occurred, then the result code corresponding to the error is returned. A pointer to a buffer containing the image data is stored in the location specified by the <code>image</code> parameter. This buffer is allocated by the implementation of the <code>ImportImageFile</code> function. Once the image data is no longer needed, this buffer should be released by calling the <code><a href="ImageImportPlugin_ReleaseImageData.html" tppabs="http://www.c4engine.com/docs/System/ImageImportPlugin_ReleaseImageData.html">ImageImportPlugin::ReleaseImageData</a></code> function. The horizontal and vertical dimensions of the image are stored in the location specified by the <code>size</code> parameter. If the <code>flags</code> parameter is not <code><span style="color: #0000FF">nullptr</span></code>, then flags pertaining to the image are stored in the location it points to. The flags can be a combination (through logical OR) of the following constants.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kImageImportAlpha</code></td>
+<td class="tableright1">The imported image includes an alpha channel.
+</td></tr>
+</table>
+The <code>index</code> parameter specifies which image to import for files containing more than one image. It should be in the range [0,&#x202F;<i>n</i>&#x202F;&minus;&#x202F;1], where <i>n</i> is the image count returned by the <code><a href="ImageImportPlugin_GetImageFileInfo.html" tppabs="http://www.c4engine.com/docs/System/ImageImportPlugin_GetImageFileInfo.html">ImageImportPlugin::GetImageFileInfo</a></code> function. The <code>ImportImageFile</code> function must be overridden by subclasses of the <code>ImageImportPlugin</code> class.
+<div class="heading">See Also</div>
+<p><code><a href="ImageImportPlugin_ReleaseImageData.html" tppabs="http://www.c4engine.com/docs/System/ImageImportPlugin_ReleaseImageData.html">ImageImportPlugin::ReleaseImageData</a></code>
+</p>
+<p><code><a href="ImageImportPlugin_GetImageFormat.html" tppabs="http://www.c4engine.com/docs/System/ImageImportPlugin_GetImageFormat.html">ImageImportPlugin::GetImageFormat</a></code>
+</p>
+<p><code><a href="ImageImportPlugin_GetImageFileInfo.html" tppabs="http://www.c4engine.com/docs/System/ImageImportPlugin_GetImageFileInfo.html">ImageImportPlugin::GetImageFileInfo</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

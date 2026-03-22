@@ -1,0 +1,1208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View topic - Precise Terrain creation help needed</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '';
+	var base_url = '';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=18.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=18">C4 Engine Development</a> <strong>&#8249;</strong> <a href="viewforum.php-f=9.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9">Editor and Tools</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewtopic.php-f=9&t=11415.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=11415">Precise Terrain creation help needed</a></h2>
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body --><div style="display: none !important;">Topics about the World Editor and other C4 Engine tools.<br /></div>
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=9&t=11415  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=9&t=11415%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=9&t=11415" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="search-box">
+			<form method="get" id="topic-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="Search this topic…" onclick="if(this.value=='Search this topic…')this.value='';" onblur="if(this.value=='')this.value='Search this topic…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="t" value="11415" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			17 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+
+</div>
+<div class="clear"></div>
+
+
+	<div id="p103861" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 class="first"><a href="#p103861">Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103861  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103861#p103861%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103861#p103861"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a></strong> &raquo; 19 Dec 2011, 09:44 </p>
+
+			
+
+			<div class="content">Hey folks.<br /><br />This topic is not intended to criticize the Voxel terrain capabilities of the engine, I am just in need of some input because I am stuck with several problems.<br /><br />For our last two projects we created our terrains in Blender without any use of LOD stages. That was quite ok because the terrain sizes were not that big. For the last project it already turned into a sligt hassle since we had to cut several roads into the terrain but the size was still small enough to solve performance issues by splitting the terrain up into several pieces to support the culling. <br />This time our terrain will be a couple of times bigger than the last one so there will probably no way except using the voxel terrain. Unfortunately I see at the moment no way working that precise that the terrain will fit to the roads created in Blender. <br />The problem behind this is, that we can't just paint something road like on the terrain like you would probably do for cobblestone roads like those in Skyrim. I am talking about tarmac streets with markings and all that stuff. Problem is: They are only around 1 to 2 inches higher than the terrain itself for our last terrain I cutted them in and deleted the road covered faces of the terrain geometry to avoid z-buffer fights.<br />For me the best solution would be, creating the terrain inside Blender and manage somehow to get it imported into the engine. <br />I am of course willing to test several options but it is for me the very first time working extensive with the voxel terrain and its importing and editing capabilities. So I am looking for some input avoiding days long trial and error sessions. <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":-)" title="Smile" /></div>
+
+			<div id="sig103861" class="signature"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" class="postlink">http://www.toxsick-labs.com</a><br /><br />per aspera ad astra</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103861">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932"><img src="download/file.php-avatar=932_1260353879.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=932_1260353879.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 992</dd><dd><strong>Joined:</strong> 26 Nov 2007, 06:14</dd><dd><strong>Location:</strong> Germany</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" title="WWW: http://www.toxsick-labs.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103864" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103864">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103864  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103864#p103864%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103864#p103864"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a></strong> &raquo; 19 Dec 2011, 14:01 </p>
+
+			
+
+			<div class="content">Take a peek at World Machine. With a plugin, you can render out a height map and import that into C4 and access the voxel system. Issue is painting the terrain in a way which results in a believable terrain. Now that C4 supports &quot;substances&quot;, it seems mandatory to use the C4's voxel painting tools for texturing, which does have a few draw backs right now. I remember Eric having thought up an improved system that is both faster and more flexible, so maybe that'll help out.</div>
+
+			<div id="sig103864" class="signature">Intel i5-4430<br />Nvidia 660 - Driver 340.43<br />8 Gigs RAM</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103864">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257"><img src="download/file.php-avatar=1257_1365571061.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1257_1365571061.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2883</dd><dd><strong>Joined:</strong> 13 Jun 2008, 15:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103868" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103868">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103868  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103868#p103868%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103868#p103868"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a></strong> &raquo; 19 Dec 2011, 16:46 </p>
+
+			
+
+			<div class="content">I have to say that for what you want to do, the voxel terrain is not going to work. Or I should say that for the amount of effort to get a decent result, you are better off creating a custom terrain in Blender as before where you have full control of road/terrain interaction. I would then also recommend going with an irregular terrain grid since you'd cut down on the polygon count significantly compared to a gridded terrain and still maintain the same look.</div>
+
+			<div id="sig103868" class="signature"><a href="javascript:if(confirm(%27http://www.codeblender.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.codeblender.com/%27" tppabs="http://www.codeblender.com/" class="postlink">CodeBlender Software</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103868">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265"><img src="download/file.php-avatar=1265_1245652575.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1265_1245652575.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1636</dd><dd><strong>Joined:</strong> 23 Jun 2008, 14:06</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103885" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103885">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103885  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103885#p103885%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103885#p103885"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a></strong> &raquo; 20 Dec 2011, 02:20 </p>
+
+			
+
+			<div class="content">Thanks for your answers folks.<br />Cbken, I somehow suspected that. An &quot;ideal solution&quot; would be, creating a high detailed terrain in Blender to have the full control as mentioned and somehow get that result exported that it can be used in C4's voxel system without any losses in terms of precision to make sure that the terrain still fits to the roads. But somehow I doubt that there is a solution achieving this. I already tried the RAW export but that wasn't enough.</div>
+
+			<div id="sig103885" class="signature"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" class="postlink">http://www.toxsick-labs.com</a><br /><br />per aspera ad astra</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103885">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932"><img src="download/file.php-avatar=932_1260353879.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=932_1260353879.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 992</dd><dd><strong>Joined:</strong> 26 Nov 2007, 06:14</dd><dd><strong>Location:</strong> Germany</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" title="WWW: http://www.toxsick-labs.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103886" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103886">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103886  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103886#p103886%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103886#p103886"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a></strong> &raquo; 20 Dec 2011, 02:46 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Amo wrote:</cite>Thanks for your answers folks.<br />Cbken, I somehow suspected that. An &quot;ideal solution&quot; would be, creating a high detailed terrain in Blender to have the full control as mentioned and somehow get that result exported that it can be used in C4's voxel system without any losses in terms of precision to make sure that the terrain still fits to the roads. But somehow I doubt that there is a solution achieving this. I already tried the RAW export but that wasn't enough.</div></blockquote><br /><br />Well, if you could convert your custom terrain to a height map then you could make a voxel terrain out of it but the problem you will run into is resolution. The voxel terrain is a gridded terrain and roads usually don't follow a grid unless you made a city and have the streets on a grid. But even then the resolution you'd need would most likely not be feasible with the voxel terrain.<br /><br />When you need high detail precision like paved roads a custom terrain is pretty much the only way to go. Voxel terrain is good for &quot;non precision&quot; terrain with paths through a forrest and things like that.<br /><br />You could make the roads as custom meshes and place them on a voxel terrain but since they need to be very close to the ground you will probably run into Z fighting. Making the voxel terrain smooth enough to be a nice clean surface for custom roads is also difficult.</div>
+
+			<div id="sig103886" class="signature"><a href="javascript:if(confirm(%27http://www.codeblender.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.codeblender.com/%27" tppabs="http://www.codeblender.com/" class="postlink">CodeBlender Software</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103886">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265"><img src="download/file.php-avatar=1265_1245652575.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1265_1245652575.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1636</dd><dd><strong>Joined:</strong> 23 Jun 2008, 14:06</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103888" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103888">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103888  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103888#p103888%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103888#p103888"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a></strong> &raquo; 20 Dec 2011, 03:05 </p>
+
+			
+
+			<div class="content">Something like an aligning tool could work. Giving the posibility to align marked parts of the terrain to the road z-wise. <br />For distance drawing the street geometry could be switched to decal. <br />However this is not an option atm so it seems I need to stick with the custom terrain and organize the mesh to keep the specs down. However thanks for your answers.</div>
+
+			<div id="sig103888" class="signature"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" class="postlink">http://www.toxsick-labs.com</a><br /><br />per aspera ad astra</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103888">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932"><img src="download/file.php-avatar=932_1260353879.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=932_1260353879.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 992</dd><dd><strong>Joined:</strong> 26 Nov 2007, 06:14</dd><dd><strong>Location:</strong> Germany</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" title="WWW: http://www.toxsick-labs.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103890" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103890">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103890  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103890#p103890%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103890#p103890"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=190.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=190" style="color: #8000C0;" class="username-coloured">Sven-Bertil Blom</a></strong> &raquo; 20 Dec 2011, 03:43 </p>
+
+			
+
+			<div class="content">Maybe the &quot;Hole brush&quot; could be used on the voxelterrain under the road to avoid some of the Z-fighting but might be tricky to get it right at the edges of the road unless you cover it up with large curbs or something, which would look weird on a landscape road though  <img src="images/smilies/icon_confused.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_confused.gif" alt=":?" title="Confused" /></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103890">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=190.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=190" style="color: #8000C0;" class="username-coloured">Sven-Bertil Blom</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 180</dd><dd><strong>Joined:</strong> 31 Jul 2006, 16:17</dd><dd><strong>Location:</strong> Sweden</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http:///  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http:///%27" tppabs="http:///" title="WWW: http://"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103891" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103891">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103891  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103891#p103891%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103891#p103891"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a></strong> &raquo; 20 Dec 2011, 04:02 </p>
+
+			
+
+			<div class="content">Yep. It was the first option that came into my mind. Of course after solving the problem of getting the terrain aligned to the road. But I also discovered that this would probably not work.<br /><br />I think I'll create the high detailed terrain in Blender, split it up into tiles and create the Lod stages manually but do not touch the vertices at the borders of the tiles. Won't be the most efficient way but should ugly borders. Mayb I could also just extrude the edges of the tiles straight down and optimize everything. This will probably cause some bad texture stretches at the edges but would prevent holes.</div>
+
+			<div id="sig103891" class="signature"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" class="postlink">http://www.toxsick-labs.com</a><br /><br />per aspera ad astra</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103891">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932"><img src="download/file.php-avatar=932_1260353879.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=932_1260353879.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 992</dd><dd><strong>Joined:</strong> 26 Nov 2007, 06:14</dd><dd><strong>Location:</strong> Germany</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" title="WWW: http://www.toxsick-labs.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103905" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103905">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103905  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103905#p103905%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103905#p103905"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2225.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2225" style="color: #8000C0;" class="username-coloured">Arthain-Baka</a></strong> &raquo; 20 Dec 2011, 21:57 </p>
+
+			
+
+			<div class="content">You could either make the terrain align to the road or make to road align to the terrain. It is actually very easy to get the terrain geometry from C4 (as in Voxel to Triangle Mesh) but I haven't done any work with programatically altering voxels in C4 so I'm not sure how easy that is...<br /><br />What is your road geometry like though?<br />Is it mainly flat polygons with some kind of bump or parallax mapping for the details or is it a high polygon mesh?<br />If it's mainly flat it'd be quite easy to align it to the terrain but it would mean that your road path needs to be constructed in the voxel terrain. That way it'd be more like a road paintbrush that you could move along the terrain and it would fit the road to the terrain which would take longer to setup but for creating worlds in the long run it would be invaluable.<br /><br />If you wanted it the other way so that the terrain is altered to fit the road there will still be work to be done and I think it would be less of an automatic process (because otherwise you'll get strange geometry such as a cliff next to a road that you didn't want). And you'd either need some system to ensure some level of compatability between the terrain and the road (or create the road first and sculp the terrain around it), or break the road into tiles which can be rotated. And I think the easiest thing to do with the terrain would be just to drop the section immediately under the roads down a few units to avoid Z-Fighting which would either be a manual job or you'd need to create a painting tool for each road tile to do this automatically.<br /><br />Another solution would be to create a tool to export terrain you create in C4 to something simple like an OBJ file which you can then import into Blender to make your road ontop of so it can just be imported straight into C4 without worrying about Z-Fighting, this method would pretty simple to do as OBJs don't have a complicated structure and it's easy to get the triangle soup from C4s Voxel Terrains.<br /><br />Or you could just avoid using the voxel terrain at all and model it all inside Blender.<br /><br />Another option which would require programming would be to create a new import tool that will accept a triangle mesh and then transform it into C4s Voxel Terrain, though due to the nature of voxels this might mean you lose some detail. On the plus side there should be plenty of references for voxelising triangle meshes so you'd just need to alter one to C4s voxel structure.<br /><br /><br />I think I rambled for longer than I intended too... hopefully it either helps or gives you some ideas  <img src="images/smilies/icon_biggrin.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_biggrin.gif" alt=":D" title="Very Happy" /></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103905">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2225.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2225" style="color: #8000C0;" class="username-coloured">Arthain-Baka</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 81</dd><dd><strong>Joined:</strong> 23 Nov 2009, 18:31</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103906" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103906">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103906  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103906#p103906%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103906#p103906"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a></strong> &raquo; 21 Dec 2011, 01:00 </p>
+
+			
+
+			<div class="content">Yeah that was some nice input <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":-)" title="Smile" /><br /><br />The main problem is as usual in the industry: Way too less time, way too many ideas <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":-)" title="Smile" /><br />I think we stick with the manual creation first as I stated in my last post. However. I'll discuss your input with Jack, maybe we could get an future solution out of this. <br />Me personally really likes the idea of importing a high detailed mesh into C4 and converting it there. But this ain't an option for now because of the time thingy I named earier <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":-)" title="Smile" /></div>
+
+			<div id="sig103906" class="signature"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" class="postlink">http://www.toxsick-labs.com</a><br /><br />per aspera ad astra</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103906">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932"><img src="download/file.php-avatar=932_1260353879.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=932_1260353879.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 992</dd><dd><strong>Joined:</strong> 26 Nov 2007, 06:14</dd><dd><strong>Location:</strong> Germany</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" title="WWW: http://www.toxsick-labs.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103909" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103909">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103909  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103909#p103909%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103909#p103909"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a></strong> &raquo; 21 Dec 2011, 04:41 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Amo wrote:</cite> <br />Me personally really likes the idea of importing a high detailed mesh into C4 and converting it there.</div></blockquote><br /><br />You mean importing a high resolution mesh and somehow converting it to a voxel terrain? I'm not so sure this is really feasible and definitely not trivial. You could pretty much just as well make a voxel terrain from a high resolution height map then. Also remember that the voxel terrain is based on a grid and you can't just make some irregular mesh into a grid mesh without losing most of the details. So again, a height map would be much easier. But a high resolution height map is not really feasibly either. 1024x1024 seems to be about max practical size. Either way you don't get the detail you need.<br /><br />A custom mesh is really the only solution without some road making tool built into C4.</div>
+
+			<div id="sig103909" class="signature"><a href="javascript:if(confirm(%27http://www.codeblender.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.codeblender.com/%27" tppabs="http://www.codeblender.com/" class="postlink">CodeBlender Software</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103909">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265"><img src="download/file.php-avatar=1265_1245652575.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1265_1245652575.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1636</dd><dd><strong>Joined:</strong> 23 Jun 2008, 14:06</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103910" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103910">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103910  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103910#p103910%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103910#p103910"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a></strong> &raquo; 21 Dec 2011, 05:53 </p>
+
+			
+
+			<div class="content">Aside from the technical aspect it could be possible to automatically lay the voxel grid over the high detail mesh from Blender. However, I doubt that this will work properly since the grid would need to be extremely dense to align precise to the Roads. So a road tool would be necessary to get an handy solution. However I am the artist, so I stick with blender. <br />But one question regarding road tools: Are there any solutions out there working great? I mean, creating roads in Blender doesn't work like a charm either, since its hard to create precise banking.<br /><br />EDIT: I wouldn't ask, but we add modding tools to the next project so its allways fine to have the level editing all inside the engine.</div>
+
+			<div id="sig103910" class="signature"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" class="postlink">http://www.toxsick-labs.com</a><br /><br />per aspera ad astra</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103910">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932"><img src="download/file.php-avatar=932_1260353879.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=932_1260353879.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 992</dd><dd><strong>Joined:</strong> 26 Nov 2007, 06:14</dd><dd><strong>Location:</strong> Germany</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" title="WWW: http://www.toxsick-labs.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103912" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103912">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103912  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103912#p103912%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103912#p103912"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=144.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=144" style="color: #8000C0;" class="username-coloured">Javier Moya</a></strong> &raquo; 21 Dec 2011, 11:51 </p>
+
+			
+
+			<div class="content">I don't know Blender, but in Max, loft objects are a good solution to create roads. A loft object is similar to C4 path tube geometry, but you can define the cross section. It has more options like banking control and deformations along the path. In addition, the uv map is automatically arranged so it follows the path, making it perfect for roads. Maybe blender has something similar. A quick google search so you can get a picture of this tool:<br /><br /><a href="javascript:if(confirm(%27http://lab.visual-logic.com/skills-techniques/modeling/creating-a-street-using-loft/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://lab.visual-logic.com/skills-techniques/modeling/creating-a-street-using-loft/%27" tppabs="http://lab.visual-logic.com/skills-techniques/modeling/creating-a-street-using-loft/" class="postlink">http://lab.visual-logic.com/skills-techniques/modeling/creating-a-street-using-loft/</a><br /><br />I made some circuits using this technique long ago (really old work):<br /><br /><a href="javascript:if(confirm(%27http://www.javy3d.com/wordpress/?page_id=63  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.javy3d.com/wordpress/?page_id=63%27" tppabs="http://www.javy3d.com/wordpress/?page_id=63" class="postlink">http://www.javy3d.com/wordpress/?page_id=63</a> (at the middle of the page, roughly)<br /><br />The only solution that I can think of using this and C4 voxel terrain is that the road borders are long enough so they get into the terrain geometry. It wouldn't be the first game doing this (though I don't know if this is an option for you).<br /><br />Btw, Acropora (<a href="javascript:if(confirm(%27http://www.voxelogic.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.voxelogic.com/%27" tppabs="http://www.voxelogic.com/" class="postlink">http://www.voxelogic.com/</a>) can 'voxelize' imported meshes. Then, you can export the 'voxelized' mesh to RAW, if I'm not wrong, which can be loaded into C4 WE. Maybe you can convert your terrain into C4 terrain this way.<br /><br />Hope it helps.</div>
+
+			<div id="sig103912" class="signature">Videogame artist - <a href="javascript:if(confirm(%27http://www.javy3d.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.javy3d.com/%27" tppabs="http://www.javy3d.com/" class="postlink">http://www.javy3d.com/</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103912">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=144.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=144" style="color: #8000C0;" class="username-coloured">Javier Moya</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 228</dd><dd><strong>Joined:</strong> 05 Jul 2006, 10:57</dd><dd><strong>Location:</strong> Granada (Spain)</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.javy3d.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.javy3d.com/%27" tppabs="http://www.javy3d.com/" title="WWW: http://www.javy3d.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103913" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103913">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103913  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103913#p103913%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103913#p103913"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a></strong> &raquo; 21 Dec 2011, 12:31 </p>
+
+			
+
+			<div class="content">Thanks for the hints. Voxelogic sounds like being worth a try.</div>
+
+			<div id="sig103913" class="signature"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" class="postlink">http://www.toxsick-labs.com</a><br /><br />per aspera ad astra</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103913">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932"><img src="download/file.php-avatar=932_1260353879.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=932_1260353879.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 992</dd><dd><strong>Joined:</strong> 26 Nov 2007, 06:14</dd><dd><strong>Location:</strong> Germany</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" title="WWW: http://www.toxsick-labs.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103915" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103915">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103915  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103915#p103915%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103915#p103915"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a></strong> &raquo; 21 Dec 2011, 15:02 </p>
+
+			
+
+			<div class="content">Yea for a racing game I made I created roads from lofted spline curves. Got cross section and UV automatically that way. Then I built the terrain out from the roads.</div>
+
+			<div id="sig103915" class="signature"><a href="javascript:if(confirm(%27http://www.codeblender.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.codeblender.com/%27" tppabs="http://www.codeblender.com/" class="postlink">CodeBlender Software</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103915">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265"><img src="download/file.php-avatar=1265_1245652575.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1265_1245652575.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1636</dd><dd><strong>Joined:</strong> 23 Jun 2008, 14:06</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p103927" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p103927">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=103927  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=103927#p103927%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=103927#p103927"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=134.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=134" style="color: #8000C0;" class="username-coloured">jimbobjames</a></strong> &raquo; 22 Dec 2011, 15:35 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Amo wrote:</cite> creating roads in Blender doesn't work like a charm either..<br /></div></blockquote><br />Just wondering. What do you use to create terrain in Blender? Have you tried &quot;<a href="javascript:if(confirm(%27http://andrewdoll.blogspot.com/2011/05/ant-landscape-generator.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://andrewdoll.blogspot.com/2011/05/ant-landscape-generator.html%27" tppabs="http://andrewdoll.blogspot.com/2011/05/ant-landscape-generator.html" class="postlink">ANT Landscape</a>&quot; for that? <br /><br />And how do you go about texturing the terrain and making roads?</div>
+
+			<div id="sig103927" class="signature">You can now buy the Beginner's Guide to the C4 Engine on Amazon: <!-- m --><a class="postlink" href="javascript:if(confirm(%27http://www.amazon.com/exec/obidos/tg/detail/-/0985811714  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.amazon.com/exec/obidos/tg/detail/-/0985811714%27" tppabs="http://www.amazon.com/exec/obidos/tg/detail/-/0985811714">http://www.amazon.com/exec/obidos/tg/de ... 0985811714</a><!-- m --></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile103927">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=134.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=134" style="color: #8000C0;" class="username-coloured">jimbobjames</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 875</dd><dd><strong>Joined:</strong> 02 Jul 2006, 05:55</dd><dd><strong>Location:</strong> Germany (Irish)</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p104043" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p104043">Re: Precise Terrain creation help needed</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=104043  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=104043#p104043%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=104043#p104043"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a></strong> &raquo; 03 Jan 2012, 14:57 </p>
+
+			
+
+			<div class="content">Hi Jim,<br /><br />nope haven't tried that yet. <br /><br />Regarding roads and terrain:<br />The last time we created terrain and roads I created a road segment added array and than curve modifier to bend it along a spline. Unfortunately this resulted in wrong banking of the road. However I fixed that manually (pain in the arse) and then I used a simple plane as base for the terrain, subdivided it, sculped it roughly and then refined parts were I needed more details and after all that I cutted the streets into the terrain and splitted it up into several pieces to help the engine with the culling. <br />Roads have been mapped easily by &quot;Follow active quad&quot; terrain just ortho from the top. On this I painted with different colors and saved the map. Each color + alpha then in the engine represented another texture. <br /><br />At the end I can say: It was a huge hassle...</div>
+
+			<div id="sig104043" class="signature"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" class="postlink">http://www.toxsick-labs.com</a><br /><br />per aspera ad astra</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile104043">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932"><img src="download/file.php-avatar=932_1260353879.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=932_1260353879.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 992</dd><dd><strong>Joined:</strong> 26 Nov 2007, 06:14</dd><dd><strong>Location:</strong> Germany</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.toxsick-labs.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.toxsick-labs.com/%27" tppabs="http://www.toxsick-labs.com/" title="WWW: http://www.toxsick-labs.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<form id="viewtopic" method="post" action="http://www.terathon.com/forums/viewtopic.php?f=9&t=11415">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		
+		<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+		
+	</fieldset>
+
+	</form>
+	<hr />
+
+
+<div class="topic-actions">
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=9&t=11415  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=9&t=11415%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=9&t=11415" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="pagination">
+			17 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+</div>
+
+
+	<p></p><p><a href="viewforum.php-f=9.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9" class="left-box left" accesskey="r">Return to Editor and Tools</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9" selected="selected">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: No registered users and 2 guests</p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

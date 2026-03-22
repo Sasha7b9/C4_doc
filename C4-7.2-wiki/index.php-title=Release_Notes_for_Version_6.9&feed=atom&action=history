@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.9&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 6.9 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.9&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.9&amp;action=history"/>
+	<updated>2024-09-21T18:38:52Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.9&amp;diff=96&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' November 2, 2018  (C4 version 6.9 corresponds to Tombstone version 2.9.)  * The file formats have been updated a little bit in this version. While it's not a requirement, you ''may'' upgrade your resources to the newer formats by typing &lt;code&gt;updateworlds&lt;/code&gt; in the Command Console. '''Always backup your entire Data folder before doing this just in case something goes wrong.'''  == Core Engine ==  * All of the unsigned integer types t...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.9&amp;diff=96&amp;oldid=prev"/>
+		<updated>2023-07-15T10:24:06Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; November 2, 2018  (C4 version 6.9 corresponds to Tombstone version 2.9.)  * The file formats have been updated a little bit in this version. While it&amp;#039;s not a requirement, you &amp;#039;&amp;#039;may&amp;#039;&amp;#039; upgrade your resources to the newer formats by typing &amp;lt;code&amp;gt;updateworlds&amp;lt;/code&amp;gt; in the &lt;a href=&quot;/wiki/index.php?title=Command_Console&quot; title=&quot;Command Console&quot;&gt;Command Console&lt;/a&gt;. &amp;#039;&amp;#039;&amp;#039;Always backup your entire Data folder before doing this just in case something goes wrong.&amp;#039;&amp;#039;&amp;#039;  == Core Engine ==  * All of the unsigned integer types t...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' November 2, 2018&lt;br /&gt;
+&lt;br /&gt;
+(C4 version 6.9 corresponds to Tombstone version 2.9.)&lt;br /&gt;
+&lt;br /&gt;
+* The file formats have been updated a little bit in this version. While it's not a requirement, you ''may'' upgrade your resources to the newer formats by typing &amp;lt;code&amp;gt;updateworlds&amp;lt;/code&amp;gt; in the [[Command Console]]. '''Always backup your entire Data folder before doing this just in case something goes wrong.'''&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+* All of the unsigned integer types that previously began with &amp;lt;code&amp;gt;unsigned_&amp;lt;/code&amp;gt; have been changed to begin simply with &amp;lt;code&amp;gt;u&amp;lt;/code&amp;gt;. For example, &amp;lt;code&amp;gt;unsigned_int32&amp;lt;/code&amp;gt; is now just &amp;lt;code&amp;gt;uint32&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Array::FindArrayElement()&amp;lt;/code&amp;gt; function has been renamed to &amp;lt;code&amp;gt;Array::FindArrayElementIndex()&amp;lt;/code&amp;gt; to make it clear what kind of information is returned.&lt;br /&gt;
+&lt;br /&gt;
+=== Graphics Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The Graphics Manager on Windows and Linux now require OpenGL 3.3 plus the &amp;lt;code&amp;gt;GL_ARB_clip_control&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;GL_ARB_direct_state_access&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;GL_ARB_multi_bind&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;GL_ARB_texture_storage&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;GL_ARB_texture_storage_multisample&amp;lt;/code&amp;gt; extensions. Since Apple does not support some of these extensions (and never will), this means that C4 2.9 does not run on the Mac.&lt;br /&gt;
+&lt;br /&gt;
+* The projection matrices used by the engine have been modified to produce device-space ''z'' coordinates in the range [0,1] with reversed depth. This greatly increases depth buffer precision and eliminates Z fighting artifacts when parallel surfaces near each other are viewed from far away.&lt;br /&gt;
+&lt;br /&gt;
+* Generalized depth offset modifications and depth bounds test optimizations have been implemented to handle oblique near plane projections. This can improve the appearance of decals in reflection or refraction images, and it can improve performance of point/cube/spot light sources in reflection or refraction images.&lt;br /&gt;
+&lt;br /&gt;
+* The motion blur algorithm has been improved and now generates better results. The velocity buffer has been changed to a two-channel format using 8 bits per channel, using half the space it previously used.&lt;br /&gt;
+&lt;br /&gt;
+* The method used to split linear 32-bit depths into two 16-bit depths for the floating-point structure buffer has been improved. This gives better precision farther from the camera position.&lt;br /&gt;
+&lt;br /&gt;
+=== Interface Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The font format has changed in this version. Any custom fonts that were previously imported must be imported again before they can be used.&lt;br /&gt;
+&lt;br /&gt;
+* There are many new text rendering capabilities, including underline, strikethrough, horizontal stretch, transform-based subscript/superscripts, right-to-left writing directions, bidirectional layout, adaptive supersampling, rectangle primitives, fraction formatting, and hyphen-minus substitution. Settings have been added to the [[Text Widget]] that can be used to enable these in the [[Panel Editor]], and new [[Text Formatting | embedded format directives]] have been added to control them within a block of text. See the [http://sluglibrary.com/SlugManual.pdf Slug User Manual] for details about all of the text rendering features.&lt;br /&gt;
+&lt;br /&gt;
+=== Effect Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* A new [[Text Effect]] node has been added to the engine. This is used to place text on surfaces within a game world and apply materials to the glyphs so they appear to be painted on the surfaces. (This is completely different from using text in a panel effect.)&lt;br /&gt;
+&lt;br /&gt;
+=== Terrain ===&lt;br /&gt;
+&lt;br /&gt;
+* The functions that build terrain geometry have been improved so that vertex sharing occurs as often as possible. Rebuilding terrain geometries can reduce the data size by roughly 5&amp;amp;ndash;10%.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+=== Font Importer ===&lt;br /&gt;
+&lt;br /&gt;
+* The [[Font Importer]] contains new settings for the size and position of underline and strikethrough decorations and the transforms for subscripts and superscripts. These are initialized to the values specified in the input TrueType font file.&lt;br /&gt;
+&lt;br /&gt;
+== Tutorials ==&lt;br /&gt;
+&lt;br /&gt;
+* Two basic game projects called SimpleBall and SimpleChar are now included with the engine. See [[Simple Games]].&lt;br /&gt;
+&lt;br /&gt;
+* Several new tutorial worlds are included in the &amp;lt;code&amp;gt;Data/Tutorial&amp;lt;/code&amp;gt; folder. Some of them are starting points for [[:Category:Tutorials | tutorial articles]] on the wiki.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

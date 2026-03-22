@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class Plane3D</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/Math/index.html">Math Library</a> &#x25BA; <a href="Plane3D.html" tppabs="http://www.c4engine.com/docs/Math/Plane3D.html">class Plane3D</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class Plane3D</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>TSPlane3D.h</code></div>
+The <code>Plane3D</code> class encapsulates a 3D plane.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;Plane3D&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;Antivec4D&lt;TypePlane3D&gt;</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="Plane3D_Set.html" tppabs="http://www.c4engine.com/docs/Math/Plane3D_Set.html">Plane3D::Set</a></code></td>
+<td class="tableright1">Sets all four components of a plane.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Plane3D_Unitize.html" tppabs="http://www.c4engine.com/docs/Math/Plane3D_Unitize.html">Plane3D::Unitize</a></code></td>
+<td class="tableright">Unitizes the weight of a plane.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>Plane3D();</code></p>
+<p><code>Plane3D(<span style="color: #0000FF">float</span>&nbsp;a,&nbsp;<span style="color: #0000FF">float</span>&nbsp;b,&nbsp;<span style="color: #0000FF">float</span>&nbsp;c,&nbsp;<span style="color: #0000FF">float</span>&nbsp;d);</code></p>
+<p><code>Plane3D(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;n,&nbsp;<span style="color: #0000FF">float</span>&nbsp;d);</code></p>
+<p><code>Plane3D(<span style="color: #0000FF">const</span>&nbsp;Bivector3D&amp;&nbsp;n,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p);</code></p>
+<p><code>Plane3D(<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p1,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p2,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p3);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>a</code></td>
+<td class="tableright1">The value of the <i>x</i> coordinate.
+</td></tr>
+<tr><td class="tableleft"><code>b</code></td>
+<td class="tableright">The value of the <i>y</i> coordinate.
+</td></tr>
+<tr><td class="tableleft"><code>c</code></td>
+<td class="tableright">The value of the <i>z</i> coordinate.
+</td></tr>
+<tr><td class="tableleft"><code>d</code></td>
+<td class="tableright">The value of the <i>w</i> coordinate.
+</td></tr>
+<tr><td class="tableleft"><code>n</code></td>
+<td class="tableright">A 3D bivector whose entries are copied to the <i>x</i>, <i>y</i>, and <i>z</i> coordinates.
+</td></tr>
+<tr><td class="tableleft"><code>p</code></td>
+<td class="tableright">A 3D point lying in the plane.
+</td></tr>
+<tr><td class="tableleft"><code>p1,p2,p3</code></td>
+<td class="tableright">Three 3D points that lie in the plane.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>Plane3D</code> class is used to store a three-dimensional plane represented as a four-dimensional trivector having floating-point components <i>x</i>, <i>y</i>, <i>z</i>, and <i>w</i>.<br/><br/> The default constructor leaves the components of the plane undefined. If the values <code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code> are supplied, then they are assigned to the <i>x</i>, <i>y</i>, <i>z</i>, and <i>w</i> coordinates of the plane, respectively.<br/><br/> If the <code>p</code> parameter is specified, then the <i>w</i> coordinate is given by &minus;(<code>n</code>&#x202F;&and;&#x202F;<code>p</code>). If the <code>p1</code>, <code>p2</code>, and <code>p3</code> parameters are specified, then the plane is set to the triple wedge product <code>p1</code>&#x202F;&and;&#x202F;<code>p2</code>&#x202F;&and;&#x202F;<code>p3</code>.
+<div class="heading">Overloaded Operators</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><span style="color: #0000FF">float</span>&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;[](machine&nbsp;k);</code></td>
+<td class="tableright1">Returns a reference to the <code>k</code>-th scalar component of a plane. The value of <code>k</code> must be 0, 1, 2, or 3.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">float</span>&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;[](machine&nbsp;k)&nbsp;<span style="color: #0000FF">const</span>;</code></td>
+<td class="tableright">Returns a constant reference to the <code>k</code>-th scalar component of a plane. The value of <code>k</code> must be 0, 1, 2, or 3.
+</td></tr>
+<tr><td class="tableleft"><code>Plane3D&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;*=(<span style="color: #0000FF">float</span>&nbsp;n);</code></td>
+<td class="tableright">Multiplies by the scalar <code>n</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Plane3D&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;/=(<span style="color: #0000FF">float</span>&nbsp;n);</code></td>
+<td class="tableright">Multiplies by the inverse of the scalar <code>n</code>.
+</td></tr>
+</table>
+<div class="heading">Nonmember Operations</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><span style="color: #0000FF">bool</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;==(<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;h);</code></td>
+<td class="tableright1">Returns a boolean value indicating whether the two planes <code>g</code> and <code>h</code> are equal.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">bool</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;!=(<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;h);</code></td>
+<td class="tableright">Returns a boolean value indicating whether the two planes <code>g</code> and <code>h</code> are not equal.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;~(<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g);</code></td>
+<td class="tableright">Returns the antireverse of the plane <code>g</code> (which is just the plane <code>g</code> itself).
+</td></tr>
+<tr><td class="tableleft"><code>Plane3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;-(<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g);</code></td>
+<td class="tableright">Returns the negation of the plane <code>g</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Plane3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;*(<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g,&nbsp;<span style="color: #0000FF">float</span>&nbsp;n);</code></td>
+<td class="tableright">Returns the product of the plane <code>g</code> and the scalar <code>n</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Plane3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;*(<span style="color: #0000FF">float</span>&nbsp;n,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g);</code></td>
+<td class="tableright">Returns the product of the plane <code>g</code> and the scalar <code>n</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Plane3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;/(<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g,&nbsp;<span style="color: #0000FF">float</span>&nbsp;n);</code></td>
+<td class="tableright">Returns the product of the plane <code>g</code> and the inverse of the scalar <code>n</code>.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">float</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Vector4D&amp;&nbsp;v,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g);</code></td>
+<td class="tableright">Returns the antiwedge product of the vector <code>v</code> and the plane <code>g</code>.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">float</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;v,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g);</code></td>
+<td class="tableright">Returns the antiwedge product of the 3D vector <code>v</code> and the plane <code>g</code>. The <i>w</i> coordinate of <code>v</code> is assumed to be 0.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">float</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g);</code></td>
+<td class="tableright">Returns the antiwedge product of the 3D point <code>p</code> and the plane <code>g</code>. The <i>w</i> coordinate of <code>p</code> is assumed to be 1. This gives the distance from a unitized plane represented by a <code>Plane3D</code> object to the point <code>p</code>.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">float</span>&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Point2D&amp;&nbsp;p,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g);</code></td>
+<td class="tableright">Returns the antiwedge product of the 2D point <code>p</code> and the plane <code>g</code>. The <i>z</i> coordinate of <code>p</code> is assumed to be 0, and the <i>w</i> coordinate of <code>p</code> is assumed to be 1. This gives the distance from a unitized plane represented by a <code>Plane3D</code> object to the point <code>p</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Line3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;h);</code></td>
+<td class="tableright">Returns the antiwedge product of the planes <code>g</code> and <code>h</code>. The result represents the line where the two planes <code>g</code> and <code>h</code> intersect. The direction of the line is equal to the cross product between the normal component of <code>g</code> and the normal component of <code>h</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Plane3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Line3D&amp;&nbsp;l,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p);</code></td>
+<td class="tableright">Returns the wedge product of the bivector <code>l</code> and the point <code>p</code>. The <i>w</i> coordinate of <code>p</code> is assumed to be 1. The result represents the plane containing the line <code>l</code> and the point <code>p</code>, wound from the direction component of <code>l</code> toward the direction to <code>p</code> perpendicular to the line <code>l</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Plane3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Line3D&amp;&nbsp;l);</code></td>
+<td class="tableright">Returns the wedge product of the point <code>p</code> and the bivector <code>l</code>, which is the same as <code>l</code>&#x202F;&#x2227;&#x202F;<code>p</code>. The <i>w</i> coordinate of <code>p</code> is assumed to be 1.
+</td></tr>
+<tr><td class="tableleft"><code>Plane3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Line3D&amp;&nbsp;l,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;v);</code></td>
+<td class="tableright">Returns the wedge product of the bivector <code>l</code> and the direction <code>v</code>. The <i>w</i> coordinate of <code>v</code> is assumed to be 0. The result represents the plane containing the line <code>l</code> and the direction <code>v</code>, wound from the direction component of <code>l</code> toward the direction <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Plane3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;v,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Line3D&amp;&nbsp;l);</code></td>
+<td class="tableright">Returns the wedge product of the direction <code>v</code> and the bivector <code>l</code>, which is the same as <code>l</code>&#x202F;&#x2227;&#x202F;<code>v</code>. The <i>w</i> coordinate of <code>v</code> is assumed to be 0.
+</td></tr>
+<tr><td class="tableleft"><code>Vector4D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Line3D&amp;&nbsp;l,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g);</code></td>
+<td class="tableright">Returns the antiwedge product of the bivector <code>L</code> and the plane <code>g</code>. The result represents the homogeneous point where the line and plane intersect. The <i>x</i>, <i>y</i>, and <i>z</i> must be divided by the <i>w</i> coordinate to produce a 3D point.
+</td></tr>
+<tr><td class="tableleft"><code>Vector4D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;^(<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Line3D&amp;&nbsp;l);</code></td>
+<td class="tableright">Returns the antiwedge product of the plane <code>g</code> and the bivector <code>l</code>, which is the same as <code>l</code>&#x202F;&#x2228;&#x202F;<code>g</code>.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">float</span>&nbsp;BulkNorm(<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g);</code></td>
+<td class="tableright">Returns the bulk norm of the plane <code>g</code>.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">float</span>&nbsp;WeightNorm(<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g);</code></td>
+<td class="tableright">Returns the weight norm of the plane <code>g</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Point3D&nbsp;Project(<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g);</code></td>
+<td class="tableright">Returns the projection of the point <code>p</code> onto the plane <code>g</code> under the assumption that the plane is unitized.
+</td></tr>
+<tr><td class="tableleft"><code>Line3D&nbsp;Project(<span style="color: #0000FF">const</span>&nbsp;Line3D&amp;&nbsp;l,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g);</code></td>
+<td class="tableright">Returns the projection of the line <code>l</code> onto the plane <code>g</code> under the assumption that the plane is unitized.
+</td></tr>
+<tr><td class="tableleft"><code>Plane3D&nbsp;Antiproject(<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p);</code></td>
+<td class="tableright">Returns the antiprojection of the plane <code>g</code> onto the point <code>p</code> (where <code>p</code> is always unitized because it has an implicit <i>w</i> coordinate of 1).
+</td></tr>
+<tr><td class="tableleft"><code>Plane3D&nbsp;Antiproject(<span style="color: #0000FF">const</span>&nbsp;Plane3D&amp;&nbsp;g,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Line3D&amp;&nbsp;l);</code></td>
+<td class="tableright">Returns the antiprojection of the plane <code>g</code> onto the line <code>l</code> under the assumption that the line is unitized.
+</td></tr>
+</table>
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>Antivec4D</code></td>
+<td class="tableright1">Antivectors use a generic base class to store their components.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="Vector4D.html" tppabs="http://www.c4engine.com/docs/Math/Vector4D.html">Vector4D</a></code>
+</p>
+<p><code><a href="Point3D.html" tppabs="http://www.c4engine.com/docs/Math/Point3D.html">Point3D</a></code>
+</p>
+<p><code><a href="Point2D.html" tppabs="http://www.c4engine.com/docs/Math/Point2D.html">Point2D</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

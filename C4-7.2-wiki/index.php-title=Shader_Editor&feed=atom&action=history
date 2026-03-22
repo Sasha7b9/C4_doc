@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Shader_Editor&amp;feed=atom&amp;action=history</id>
+	<title>Shader Editor - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Shader_Editor&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Shader_Editor&amp;action=history"/>
+	<updated>2024-09-21T18:23:59Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Shader_Editor&amp;diff=427&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ There are two ways to create materials in the C4 Engine. The first method is to simply configure a set of predefined attributes in the Material Editor. This is the easiest and fastest way to create a new material, and most ordinary materials can be made using only those attributes. A more advanced method is to use the Shader Editor to define the exact calculations used by the engine to render a material. The Shader Editor provides you with the power to crea...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Shader_Editor&amp;diff=427&amp;oldid=prev"/>
+		<updated>2023-07-15T11:55:48Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ There are two ways to create materials in the C4 Engine. The first method is to simply configure a set of predefined attributes in the &lt;a href=&quot;/wiki/index.php?title=Material_Editor&quot; title=&quot;Material Editor&quot;&gt;Material Editor&lt;/a&gt;. This is the easiest and fastest way to create a new material, and most ordinary materials can be made using only those attributes. A more advanced method is to use the Shader Editor to define the exact calculations used by the engine to render a material. The Shader Editor provides you with the power to crea...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+There are two ways to create materials in the C4 Engine. The first method is to simply configure a set of predefined attributes in the [[Material Editor]]. This is the easiest and fastest way to create a new material, and most ordinary materials can be made using only those attributes. A more advanced method is to use the Shader Editor to define the exact calculations used by the engine to render a material. The Shader Editor provides you with the power to create a limitless variety of materials within the context of a graphical interface.&lt;br /&gt;
+&lt;br /&gt;
+== Opening the Shader Editor ==&lt;br /&gt;
+&lt;br /&gt;
+[[File:Shadereditor.png|right|frame|'''Figure 1.''' The Shader Editor window.]] The image to the right shows the Shader Editor. The Shader Editor is opened from inside the [[Material Editor]] by choosing '''Edit Shader''' from the '''Material''' menu. If the selected material already had conventional attributes assigned to it through the settings in the Material Editor, then the Shader Editor will initially show a translation of those attributes into the shader graph. If the selected material was empty (because no settings had been specified for it yet), then the Shader Editor will initially show default graph with a minimal number of nodes.&lt;br /&gt;
+&lt;br /&gt;
+== Shader Graphs ==&lt;br /&gt;
+&lt;br /&gt;
+A shader is represented in the Shader Editor by what is known as a ''data flow graph''. The nodes in this graph are called ''processes'', and the edges in this graph are called ''routes''. A shader is a special type of graph called a ''directed acyclic graph'', or ''DAG'', meaning that data flows in a specific direction from one process to another and there are no loops.&lt;br /&gt;
+&lt;br /&gt;
+Each box in the shader graph represents a single process. A process can be a simple mathematical operation, a constant input value such as a color, an interpolated value such as the direction to the light source, or a more complex operation defined by the engine such as a parallax offset calculation.&lt;br /&gt;
+&lt;br /&gt;
+A route is a directed edge shown as a curve with an arrowhead at one end, and it represents the flow of data from one process to another. Routes begin at one process and end at a ''port'' belonging to another process. Every process has between zero and four ports, and each can be occupied by only one incoming route at a time. Ports with a plain background are required, and ports with a striped background are optional. All required ports must have an incoming route attached to them in order for the shader to be valid.&lt;br /&gt;
+&lt;br /&gt;
+== Editing a Shader ==&lt;br /&gt;
+&lt;br /&gt;
+The tabbed lists on the left side of the Shader Editor show the processes that are available for use in a shader. They are divided into four categories that are described in more detail below: Basic, Math, Complex, and Interpolants. A new process is added to a shader by selecting it in the list and then clicking in the viewport. The editor won't let you place two processes on top of each other, and the cursor will change to indicate where it's possible to place a new process.&lt;br /&gt;
+&lt;br /&gt;
+Routes are added to a shader by clicking inside the circle on the right side of a process and dragging into a port belonging to another process. This causes a new route to be created beginning at the process you clicked on and ending at the input port to which you dragged. If a port is already occupied by another route, then the existing route is deleted and replaced with the new route that you are creating. You cannot connect a route from one process to a port belonging to any other process preceding that process in the graph because it would create a cycle.&lt;br /&gt;
+&lt;br /&gt;
+The physical position of a process in the viewport is irrelevant. The data flow structure of a shader is determined entirely by the route connections. Processes may be placed in any convenient location. &lt;br /&gt;
+&lt;br /&gt;
+== Processes ==&lt;br /&gt;
+&lt;br /&gt;
+A process takes between zero and four inputs and produces at most a single output. The output may be sent to any number of input ports for other processes.&lt;br /&gt;
+&lt;br /&gt;
+For many types of processes, the process box shown in the Shader Editor displays additional information. For example, the Texture Map process shows a small image of the texture map, and the Constant Vector process shows the four constant values that it outputs. Most mathematical operations display a mathematical expression showing exactly how their input values are used to calculate an output value.&lt;br /&gt;
+&lt;br /&gt;
+Double-clicking on a process, or selecting a process and typing Ctrl-I, opens the Process Info window for that process. In the Process Info window, every process has a comment field that let's you specify some text that is displayed at the bottom of the process box in the Shader Editor. Some processes also have extra settings that appear in the Process Info window.&lt;br /&gt;
+&lt;br /&gt;
+Each type of process available for use in a shader is described individually on the following pages (corresponding to the groups displayed in the Shader Editor):&lt;br /&gt;
+&lt;br /&gt;
+* [[Basic Shader Processes | List of basic processes]]&lt;br /&gt;
+&lt;br /&gt;
+* [[Mathematical Shader Processes | List of mathematical processes]]&lt;br /&gt;
+&lt;br /&gt;
+* [[Complex Shader Processes | List of complex processes]]&lt;br /&gt;
+&lt;br /&gt;
+* [[Interpolant Shader Processes | List of interpolant processes]]&lt;br /&gt;
+&lt;br /&gt;
+== Routes ==&lt;br /&gt;
+&lt;br /&gt;
+The routes in a shader graph carry data from one process to another. Each route can carry between one and four floating-point values&amp;amp;mdash;the actual number is determined by the output size of the route's start process.&lt;br /&gt;
+&lt;br /&gt;
+A swizzle and negation may be applied to a route. These can be set by double-clicking on a route or by selecting a route and typing Ctrl-I. By default, the swizzle for a route is &amp;lt;code&amp;gt;xyzw&amp;lt;/code&amp;gt;, meaning that there is no change to the order of the components. If any other swizzle is specified, or the values are negated, then that information is displayed in a small box at the center of the path representing the route. The swizzle may be specified using any letters from the sets &amp;lt;code&amp;gt;xyzw&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;rgba&amp;lt;/code&amp;gt;, or &amp;lt;code&amp;gt;stpq&amp;lt;/code&amp;gt;. Specifying only a single letter is shorthand for the same letter repeated four times. For example, the swizzle &amp;lt;code&amp;gt;z&amp;lt;/code&amp;gt; is equivalent to the swizzle &amp;lt;code&amp;gt;zzzz&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+If a route carries fewer than four components, then each component specified in its swizzle is clamped to the last available component. For example, if a route carries only three components, then any &amp;lt;code&amp;gt;w&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;a&amp;lt;/code&amp;gt;, or &amp;lt;code&amp;gt;q&amp;lt;/code&amp;gt; in the swizzle ultimately interpreted as the third component of the data carried by the route. The swizzle &amp;lt;code&amp;gt;wxyz&amp;lt;/code&amp;gt; would really mean &amp;lt;code&amp;gt;zxyz&amp;lt;/code&amp;gt;. This is particularly important in the case that two routes of different sizes are used as inputs to a binary operation. The operation is performed using the number of components for larger of the two routes, so the missing components of the smaller route are taken from the components specified by the clamped swizzle.&lt;br /&gt;
+&lt;br /&gt;
+== Shader Editor Tools ==&lt;br /&gt;
+&lt;br /&gt;
+There are four tool buttons in the upper-left corner of the Shader Editor window, and they have the following uses. In addition to clicking on the tool button, each of these tools can also be selected by pressing the shortcut number key as shown in the table. (The shortcuts were chosen to be the same as the corresponding tools in the World Editor.)&lt;br /&gt;
+&lt;br /&gt;
+{| {{Table}}&lt;br /&gt;
+{{Tablehead3|Icon|Shortcut|Function}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow3|[[File:Tool_select.png]]|1|'''Select / Move'''. Selects a process or route in a shader. Clicking outside of a process and dragging will create a box that selects all of the processes inside it. Clicking inside a process and dragging moves all of the currently selected processes. (When processes are moved, they are automatically prevented from moving on top of other processes.)}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow3|[[File:Tool_scroll.png]]|6|'''Scroll'''. Scrolls the shader viewport. Holding the Alt key with any other tool temporarily selects the scroll tool.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow3|[[File:Tool_zoom.png]]|7|'''Zoom'''. Changes the scale of the shader viewport. Using the mouse wheel with any other tool also zooms.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow3|[[File:Tool_section.png]]||'''Draw Section'''. Draws a rectangular box with a title bar behind all processes in the graph. This can be used to visually organize groups of processes in a shader.}}&lt;br /&gt;
+|}&lt;br /&gt;
+&lt;br /&gt;
+== Output Processes ==&lt;br /&gt;
+&lt;br /&gt;
+Each shader graph contains a set of ''output processes'' that represent the final values produced by the shader. These are colored green in the shader editor, they cannot be deleted, and they can have no output routes. The only output process that has a required input port is the '''Ambient Reflection Output''' process. All other output processes have only optional input ports and are ignored if they are not used.&lt;br /&gt;
+&lt;br /&gt;
+The individual output processes are described in the following table.&lt;br /&gt;
+&lt;br /&gt;
+{| {{Table}}&lt;br /&gt;
+{{Tablehead|Process|Description}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Ambient&amp;amp;nbsp;Reflection&amp;amp;nbsp;Output|Shader_ambientoutput.png|RGB color '''RGB''' (required), Normal '''N''' (optional)|None|This is the primary output process for the ambient shader. The color sent to this output process is combined with the ambient lighting environment to produce the final ambient light reflection for a material. The normal vector '''N''' is currently unused, but will be important in future ambient lighting models.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Light&amp;amp;nbsp;Reflection&amp;amp;nbsp;Output|Shader_lightingoutput.png|RGB color '''RGB''' (optional), Impostor depth '''Z''' (optional)|None|This is the primary output process for the light shader. The color sent to this output process is combined with the color from a light source to produce the final light reflection for a material.&lt;br /&gt;
+&lt;br /&gt;
+In an impostor shader, the alpha channel of the output of the Impostor Normal process should be sent to the '''Z''' input port to provide the impostor depth.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Alpha&amp;amp;nbsp;Output|Shader_alphaoutput.png|Scalar '''A''' (optional)|None|If a material is transparent, then the alpha value sent to this output process controls the transparency. This is currently useful only for objects rendered in the effect pass. If the Glow Output process is used, then the Alpha Output process is ignored.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Alpha&amp;amp;nbsp;Test&amp;amp;nbsp;Output|Shader_alphatestoutput.png|Scalar '''A''' (optional)|None|If a material uses the alpha test, then the value sent to this output process is the value that is tested. The material must have the alpha test flag set in the Material Manager for this output process to be used.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Emission&amp;amp;nbsp;Output|Shader_emissionoutput.png|RGB color '''RGB''' (optional)|None|The color sent to this output process is added to the final ambient color as an emission term.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Glow&amp;amp;nbsp;Output|Shader_glowoutput.png|Scalar '''A''' (optional)|None|If a material uses emission glow, then the value sent to this output process determines the glow intensity. The material must have the emission glow flag set in the Material Manager for this output process to be used. If the alpha test flag is set, then the Glow Output process is ignored.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Bloom&amp;amp;nbsp;Output|Shader_bloomoutput.png|Scalar '''A''' (optional)|None|If a material uses specular bloom, then the value sent to this output process determines the bloom intensity. The material must have the specular bloom flag set in the Material Manager for this output process to be used.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Reflection&amp;amp;nbsp;Buffer&amp;amp;nbsp;Output|Shader_reflectionoutput.png|RGB color '''RGB''' (optional), Tangent-space normal vector '''N''' (optional)|None|If this output process has an input, then a sample from the reflection buffer is multiplied by the input color and added to the final ambient color. A tangent-space normal vector may be sent to the '''N''' input port in order to create a bumpy appearance for the reflection. Normal incidence reflectivity and bump offset scale can be configured in the settings for the process.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Refraction&amp;amp;nbsp;Buffer&amp;amp;nbsp;Output|Shader_refractionoutput.png|RGB color '''RGB''' (optional), Tangent-space normal vector '''N''' (optional)|None|If this output process has an input, then a sample from the refraction buffer is multiplied by the input color and added to the final ambient color. A tangent-space normal vector may be sent to the '''N''' input port in order to create a bumpy appearance for the refraction. The bump offset scale can be configured in the settings for the process.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Environment&amp;amp;nbsp;Output|Shader_environmentoutput.png|RGB color '''RGB''' (optional), Tangent-space normal vector '''N''' (optional)|None|If this output process has an input, then a sample from the environment map is multiplied by the input color and added to the final ambient color. A tangent-space normal vector may be sent to the '''N''' input port in order to create a bumpy appearance for the environment map. An override environment map can be specified in the settings for the process.}}&lt;br /&gt;
+|}&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[Material Editor]]&lt;br /&gt;
+&lt;br /&gt;
+[[Category:Shaders]]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

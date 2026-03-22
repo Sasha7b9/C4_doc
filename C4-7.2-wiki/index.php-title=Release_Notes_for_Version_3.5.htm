@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>Release Notes for Version 3.5 - C4 Engine Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"Zu8KUavNqlZ1qevUjy-pSQAAAdY","wgCSPNonce":false,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Release_Notes_for_Version_3.5","wgTitle":"Release Notes for Version 3.5","wgCurRevisionId":83,"wgRevisionId":83,"wgArticleId":81,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Release_Notes_for_Version_3.5","wgRelevantArticleId":81,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"simpleBatchUploadMaxFilesPerBatch":{
+"*":1000},"wgVector2022PreviewPages":[]};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","skins.vector.legacy.js"/*tpa=http://www.c4engine.com/wiki/skins.vector.legacy.js*/];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});});});</script>
+<link rel="stylesheet" href="load.php-lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector.css" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector"/>
+<script async="" src="load.php-lang=en&modules=startup&only=scripts&raw=1&skin=vector.js" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector"></script>
+<meta name="generator" content="MediaWiki 1.40.0"/>
+<meta name="robots" content="max-image-preview:standard"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="viewport" content="width=1000"/>
+<link rel="icon" href="../favicon.ico.css" tppabs="http://www.c4engine.com/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://c4engine.com/wiki/api.php?action=rsd"/>
+<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Release_Notes_for_Version_3_5 rootpage-Release_Notes_for_Version_3_5 skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Release Notes for Version 3.5</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From C4 Engine Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="en" dir="ltr"><div class="mw-parser-output"><p><b>Release date:</b> January 8, 2014
+</p>
+<ul><li>This release includes a utility function that automatically updates all world and model resources so that they use the newest format. The engine currently contains a significant amount of code that's necessary to support old formats going back many years, and this code will be removed from version 4.0. It will be necessary to run the update utility in version 3.5 before your world and model resources can be used in version 4.0. The utility is run by typing <code>updateworlds</code> in the command console. This utility searches the <code>Data</code> directory hierarchy for all <code>.wld</code> and <code>.mdl</code> resources, unpacks the data inside each one, and then saves them back out to the disk. <b>Note that this will overwrite all existing <code>.wld</code> and <code>.mdl</code> files in the <code>Data</code> directory. Please make a backup of your entire <code>Data</code> directory before using this utility just in case something goes wrong.</b></li></ul>
+<h2><span class="mw-headline" id="Core_Engine">Core Engine</span></h2>
+<ul><li>The engine now includes integrated support for the <a href="index.php-title=Open_Data_Description_Language.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Open_Data_Description_Language" title="Open Data Description Language">Open Data Description Language</a> (OpenDDL). The general language parsing functionality is abstracted by the new <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/System/DataDescription.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/System/DataDescription.html%27" tppabs="http://c4engine.com/docs/System/DataDescription.html"><code>DataDescription</code></a> class, and data structures described by OpenDDL files are represented by the new <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://c4engine.com/docs/System/Structure.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/docs/System/Structure.html%27" tppabs="http://c4engine.com/docs/System/Structure.html"><code>Structure</code></a> class hierarchy. Specific file formats based on OpenDDL are defined by creating a subclass of the <code>DataDescription</code> class to represent the format as a whole and by creating subclasses of the <code>Structure</code> class to represent each of the various data structures that can be used in the format.</li></ul>
+<ul><li>The <code>MeshGeometry</code> class has been renamed to <code>GenericGeometry</code>, and the <code>GeometryLevel</code> class has been renamed to <code>Mesh</code>. This was done because <code>Mesh</code> objects don't necessarily have a one-to-one correspondence with levels of detail any more.</li></ul>
+<ul><li>The console command history is now saved out when the engine config file is written (or when the engine exits, if necessary). It is restored the next time that the engine starts up, and commands previously entered into the console can be accessed with the up arrow key.</li></ul>
+<ul><li>Under Windows, Visual C++ 2013 is now required to build C4, and under Linux, GCC 4.8.1 is now required to build C4. The engine uses newer features of the C++ language that are not supported by earlier versions of these compilers. (Visual C++ 2012 is still used for the PS4.)</li></ul>
+<h3><span class="mw-headline" id="Graphics_Manager">Graphics Manager</span></h3>
+<ul><li>The engine contains a new ambient shading feature called <i>radiosity spaces</i>. These are similar to the existing ambient spaces in that they store volumetric lighting information on a 3D grid. A radiosity space contains information about the directional reflected light intensity and color reaching each sample point inside the space. This provides an enormous boost in the realism of the ambient lighting in a level, and it affects dynamic objects passing through a radiosity space as well as static geometry.</li></ul>
+<ul><li>The data for ambient spaces (and radiosity spaces) is now stored inside the world instead of in separate texture resources. After a world resource has been updated to version 3.5, the previously existing ambient texture resources should be deleted.</li></ul>
+<ul><li>The built-in shading code for rendering halfspace fog on objects infinitely far away has been refined and now produces more accurate results. This effects skyboxes and any effects rendered at infinity.</li></ul>
+<ul><li>This release includes preliminary support for Oculus Rift on Windows, and Mac and Linux support will follow. This has to be enabled by defining <code>C4OCULUS</code> to be <code>1</code> at the top of <code>C4Oculus.h</code> and rebuilding the engine. (It's necessary to add the Oculus SDK include and library paths to the project settings as well.) To actually display stereo rendering, the system variable <code>$displayOculus</code> needs to be set to "1" in the <code>engine.cfg</code> file (in the user's roaming folder, see <a href="index.php-title=File_Locations.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File_Locations" title="File Locations">File Locations</a>). When stereo rendering is active, the resolution of the display is always set to the native resolution of the Oculus Rift (1280&#215;800 in the devkit). Vertical sync should be enabled to prevent tearing. <i>This is preliminary support only.</i> The overall performance and demo game functionality does not represent what the final version will be like. In particular, there is currently no sharing of computation between rendering for the left and right eyes, the visibility code has not been updated to account for two camera positions, and the game code simply adds head tracking on top of the mouse input.</li></ul>
+<h3><span class="mw-headline" id="World_Manager">World Manager</span></h3>
+<ul><li>Trigger nodes now generate different events for activation and deactivation. There are two separate connector key settings that can be used to send these events to different controllers, or they may be sent to the same controller.</li></ul>
+<ul><li>A camera shaking effect has been added to the core engine, and it can be used to rattle the camera for explosions, earthquakes, etc. The effect is implemented as part of a new <code>Adjuster</code> class hierarchy that may be expanded in the future.</li></ul>
+<ul><li>The distance occlusion capabilities of fog spaces have been enhanced. Distance occlusion in the horizontal and vertical directions (relative to the fog plane) can now be enabled separately, and the fog intensity at which objects are culled can now be explicitly specified.</li></ul>
+<ul><li>The <code>Modifier</code> class now has a virtual <code>operator ==</code> function that should be overridden by all custom modifier subclasses. It's used by the World Editor to determine whether two instances have the same modifiers with the same settings.</li></ul>
+<ul><li>The concept of transition zones has been removed from the engine. They have been rendered obsolete by the new multi-zone system, and they were always kind of a messy hack.</li></ul>
+<h3><span class="mw-headline" id="Controllers">Controllers</span></h3>
+<ul><li>Two new controllers for light nodes have been added to the core engine, the Strobe Controller and the Flicker Controller. The Strobe Controller causes a light to alternate between two colors at random times within specified intervals, and it is suitable for things like electric lights. The Flicker Controller causes a light to continuously flicker in intensity and move around slightly about its original position, which is suitable for things like fire.</li></ul>
+<ul><li>A new Shader Parameter Controller has been added to the core engine, and it can be assigned to geometry or effect nodes. It observes a controller attached to another node and forwards the output of that controller to a shader parameter for the geometry or effect node to which it is assigned. As an example, this could be used to vary the emission intensity of some geometry's material in sync with the strobing of a light source. The Shader Parameter Controller modifies a shader parameter only for its target node and not for all nodes using the same material.</li></ul>
+<h3><span class="mw-headline" id="Physics">Physics</span></h3>
+<ul><li>The cloth simulation has been more tightly integrated with the physics system, and a new rope simulation has been added to the engine. The rope controller is similar to the cloth controller, and it simulates a one-dimensional string of masses connected by spring-dampers to produce realistic ropes, cables, etc. Both the cloth controller and rope controller are subclasses of a new "deformable" controller that encapsulates common functionality. The mass-spring-damper simulation stages for multiple cloth and rope controllers can now run in parallel on multiple processors (whereas previously, only the geometry updates ran in parallel).</li></ul>
+<ul><li>New settings have been added to the cloth controller to provide more control over the simulation, and these include damper settings and internal resistance for greater stability. The same settings are also available for the rope controller.</li></ul>
+<ul><li>A rope geometry can be "attached" at either end (or both ends), and each attachment can be a fixed point in space, another node (which can be moving), or a direct subnode of a rigid body. If a rope is attached to a rigid body, then the rope simulation exerts a force on the rigid body through the tension in the rope.</li></ul>
+<ul><li>Attachment settings for the cloth geometry have been moved to the cloth controller.</li></ul>
+<ul><li>A rope attachment can be broken when a world is running by using the Break Attachment script function for the rope controller.</li></ul>
+<ul><li>Both the cloth and rope controllers can now be warmed up when a world is loaded so that they have a chance to reach a steady state before being rendered.</li></ul>
+<ul><li>The time before cloth and rope controllers automatically go to sleep when they haven't been rendered can now be specified by the user. When a cloth or rope controller goes to sleep automatically, it wakes back up the next time it is rendered. If a cloth or rope geometry is connected to an exclusive force field through its <code>%Wind</code> connector, then any controller assigned to that force field is put to sleep and awoken at the same time as the cloth or rope controller. If either end of a rope is attached to a rigid body, then the rope will not automatically go to sleep unless the rigid body has gone to sleep. If the rigid body is awakened by the physics simulation, then it also awakens any ropes attached to it.</li></ul>
+<ul><li>There is a new set of nodes called "blockers" that can be used to block the motion of a cloth or rope geometry. A cloth or rope geometry can be connected to a blocker node through the built-in <code>%Blocker</code> connector.</li></ul>
+<ul><li>Cloth and rope simulations are now affected by all force fields that they intersect.</li></ul>
+<h3><span class="mw-headline" id="Interface_Manager">Interface Manager</span></h3>
+<ul><li>Begin and end hover events are now generated for widgets when the mouse cursor is placed over them.</li></ul>
+<ul><li>Anchor modes can now be set for the horizontal and vertical position of a widget. These let you specify that a widget should maintain its position relative to the boundaries of a window when the window is resized.</li></ul>
+<h3><span class="mw-headline" id="Particle_Systems">Particle Systems</span></h3>
+<ul><li>Emitter nodes can now have a precalculated height field associated with them. The values in the height field represent the actual height of world geometry relative to the bottom surface of the emitter. This information makes it possible to emit particles over the actual surface of the ground, for instance, instead of only at one end of an emitter.</li></ul>
+<h3><span class="mw-headline" id="Scripting">Scripting</span></h3>
+<ul><li>Script controllers and widgets can now have multiple scripts attached to them, and each script can be run in response to a specific set of events. Scripts can also determine what type of event caused them to execute and take conditional execution paths based on the result.</li></ul>
+<h2><span class="mw-headline" id="Tools">Tools</span></h2>
+<h3><span class="mw-headline" id="World_Editor">World Editor</span></h3>
+<ul><li>The World Editor now includes an import plugin that can read the <a href="index.php-title=Open_Game_Engine_Exchange.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Open_Game_Engine_Exchange" title="Open Game Engine Exchange">Open Game Engine Exchange</a> (OpenGEX) format. This is available, in addition to the Collada format, when Import Scene is selected from the World menu. The World Editor remembers which format was last imported and selects the same format by default the next time a scene is imported.</li></ul>
+<ul><li>The volumetric lighting information stored in ambient spaces and radiosity spaces is now generated by using the popup menu in the <a href="index.php-title=Lights_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Lights_Page" title="Lights Page">Lights Page</a>.</li></ul>
+<ul><li>There is a new command under the Edit menu called Select All In Zone. This is available when one or more zones are already selected, and it adds all nodes belonging to each zone's cell graphs to the selection as well as all subnodes of each zone. This effectively selects everything that is considered by the engine when the selected zones are processed for rendering, trigger activation, and force field application.</li></ul>
+<ul><li>There is a new command under the Node menu called Select Incoming Connecting Nodes. This selects all nodes in the scene having connectors that are connected to the current selection.</li></ul>
+<ul><li>The Geometries page now includes a new rope geometry next to the existing cloth geometry. A rope geometry always has a rope controller assigned to it that can be configured under the Controller tab in the Node Info window.</li></ul>
+<ul><li>The Physics page contains new tools for drawing blocker nodes (plate, box, cylinder, sphere, and capsule). Blocker nodes are used only by cloth and rope controllers.</li></ul>
+<ul><li>If a node is hidden in an instanced world, it will now also be hidden in the instancing world when loaded in the World Editor.</li></ul>
+<ul><li>The popup menu in the Worlds Page contains two new items that expand and collapse all instances of the selected worlds in scene graph viewports.</li></ul>
+<ul><li>There is a new popup menu in the Models Page that contains commands for selecting all or some models and for expanding/collapsing all models in scene graph viewports.</li></ul>
+<ul><li>In the Worlds Page, double-clicking on a modifier preset now causes all of the instance nodes in the world having exactly the same set of modifiers with exactly the same settings to be selected.</li></ul>
+<ul><li>In the Particles Page, double-clicking on a particle system now causes all particle systems in the world having the same type to be selected.</li></ul>
+<ul><li>The Particles Page now has a popup menu that contains a couple new commands. One command selects all particle systems of the type of the one currently selected in the list of registered particle systems. A second commands generates height field data for the currently selected emitter nodes. An emitter must have the "Enable height field" box checked in order to have a height field generated.</li></ul>
+<ul><li>The material pickup tool now cycles through multiple materials applied to a geometry node when the tool is used in the scene graph viewport. That is, if a geometry has more than one material, then clicking on the geometry in the scene graph viewport once will pick up the first material, clicking on the same geometry a second time will pick up the second material, etc.</li></ul>
+<ul><li>The Spaces Page has been removed from the World Editor, and the tools for drawing the various types of spaces have been moved to other pages containing related tools. The shadow space and ambient space tools have been moved to the Lights Page, the acoustics space tool has been moved to the Sources Page, the occlusion space tool has been moved to the Portals Page, the paint space tool has been moved to the Paint Page, and the physics space tool has been moved to the Physics Page.</li></ul>
+<ul><li>The Skyboxes Page has been renamed to the Atmosphere Page, and the fog space tool has been moved to this page.</li></ul>
+<h3><span class="mw-headline" id="OpenGEX_Importer">OpenGEX Importer</span></h3>
+<ul><li>An importer plugin for the OpenGEX format is now included with the engine. OpenGEX export plugins (including source) for various modeling programs can be found on the official website at <a rel="nofollow" class="external text" href="javascript:if(confirm(%27http://opengex.org/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://opengex.org/%27" tppabs="http://opengex.org/">opengex.org</a>.</li></ul>
+<h3><span class="mw-headline" id="Shader_Editor">Shader Editor</span></h3>
+<ul><li>A new Fragment Depth process has been added to the Shader Editor. It outputs a scalar value representing the linear depth of the fragment being rendered in camera space.</li></ul>
+<h3><span class="mw-headline" id="Script_Editor">Script Editor</span></h3>
+<ul><li>The Script Editor now supports editing multiple scripts for the same object. A list of scripts is displayed on the left side of the editor window, and new scripts can be added at any time. Each script has a name (that is only used by the editor) and a set of events that it can handle. Scripts belonging to a script controller attached to a node can handle controller activation and controller deactivation events. Scripts attached to a widget can handle widget activation, widget change, and widget begin/end hover events. It's possible for a script to handle no events at all, in which case it can only be run by checking the "Execute script when loaded" box for a script belonging to a script controller.</li></ul>
+<ul><li>The Script Editor maintains a separate selection and undo stack for each script. You can switch among scripts by clicking on them in the scripts list or using Ctrl-1 through Ctrl-9 as shortcuts. Double-clicking on a script opens the dialog in which the name and event types can be specified.</li></ul>
+<ul><li>There is a new Events tab in the Methods page. Event methods simply generate a boolean value indicating whether the specific type of event they represent is the type that caused the script to run. Event methods do not have any settings, and the Method Info window cannot be opened for them. When fibers are drawn from an event method to another method, the Script Editor automatically assigns a condition of True to the fiber so that all succeeding methods execute only if the event type matches.</li></ul>
+<h3><span class="mw-headline" id="String_Importer">String Importer</span></h3>
+<ul><li>The String Importer tool now expects input files to be in the OpenDDL format, but still using the <code>.txt</code> extension. The string table format defines a single data structure called <code>Entry</code> that can contain a <code>string</code> primitive and/or other <code>Entry</code> structures. Each <code>Entry</code> structure must specify an <code>id</code> property, which is a 32-bit unsigned integer that's usually written as a four-character code.</li></ul>
+<ul><li>There is a conversion utility that will automatically create OpenDDL-formatted text files for all existing string table resources. The utility is run by typing <code>updatestrings</code> in the command console. This utility searches the <code>Data</code> directory hierarchy for all <code>.str</code> resources and uses the data in each one to create a corresponding <code>.txt</code> file in the <code>Import</code> directory hierarchy. <b>Note that this will overwrite any existing <code>.txt</code> files in the <code>Import</code> directory that were previously used to create the string table resources. Please make a backup before using this utility just in case something goes wrong.</b></li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20240921130729
+Cache expiry: 86400
+Reduced expiry: false
+Complications: [no‐toc‐conversion]
+CPU time usage: 0.008 seconds
+Real time usage: 0.008 seconds
+Preprocessor visited node count: 46/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+
+<!-- Saved in parser cache with key c4_wiki:pcache:idhash:81-0!canonical and timestamp 20240921130729 and revision id 83. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5&oldid=83  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5&oldid=83%27" tppabs="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5&oldid=83">https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5&amp;oldid=83</a>"</div></div>
+		<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="vector-menu mw-portlet mw-portlet-personal vector-user-menu-legacy" aria-labelledby="p-personal-label" role="navigation"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="pt-login" class="mw-list-item"><a href="index.php-title=Special-UserLogin&returnto=Release+Notes+for+Version+3.5.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:UserLogin&returnto=Release+Notes+for+Version+3.5" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li></ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="vector-menu mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-namespaces-label" role="navigation"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected mw-list-item"><a href="index.php-title=Release_Notes_for_Version_3.5.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Version_3.5  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Version_3.5%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Version_3.5&action=edit&redlink=1" rel="discussion" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="vector-menu mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	/>
+	<label
+		id="p-variants-label"
+		 aria-label="Change language variant"
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="vector-menu mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-views-label" role="navigation"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-view" class="selected mw-list-item"><a href="index.php-title=Release_Notes_for_Version_3.5.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Version_3.5&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5&action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Version_3.5&action=history.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5&action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="vector-menu mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown" aria-labelledby="p-cactions-label" role="navigation"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	/>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<div>
+		<form action="http://www.c4engine.com/wiki/index.php" id="searchform"
+			class="vector-search-box-form">
+			<div id="simpleSearch"
+				class="vector-search-box-inner"
+				 data-search-loc="header-navigation">
+				<input class="vector-search-box-input"
+					 type="search" name="search" placeholder="Search C4 Engine Wiki" aria-label="Search C4 Engine Wiki" autocapitalize="sentences" title="Search C4 Engine Wiki [f]" accesskey="f" id="searchInput"
+				>
+				<input type="hidden" name="title" value="Special:Search">
+				<input id="mw-searchButton"
+					 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+				<input id="searchButton"
+					 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+			</div>
+		</form>
+	</div>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="vector-menu mw-portlet mw-portlet-navigation vector-menu-portal portal" aria-labelledby="p-navigation-label" role="navigation"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="n-mainpage-description" class="mw-list-item"><a href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="javascript:if(confirm(%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents%27" tppabs="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="vector-menu mw-portlet mw-portlet-tb vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="t-whatlinkshere" class="mw-list-item"><a href="index.php-title=Special-WhatLinksHere-Release_Notes_for_Version_3.5.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:WhatLinksHere/Release_Notes_for_Version_3.5" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Version_3.5  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Version_3.5%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Version_3.5" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="index.php-title=Special-SpecialPages.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Version_3.5&oldid=83.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5&oldid=83" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Version_3.5&action=info.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5&action=info" title="More information about this page"><span>Page information</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" role="contentinfo" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 15 July 2023, at 10:15.</li>
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About">About C4 Engine Wiki</a></li>
+	<li id="footer-places-disclaimers"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-poweredbyico"><a href="javascript:if(confirm(%27https://www.mediawiki.org/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/%27" tppabs="https://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" tppabs="http://www.c4engine.com/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/></a></li>
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":99,"wgPageParseReport":{"limitreport":{"cputime":"http://www.c4engine.com/wiki/0.008","walltime":"http://www.c4engine.com/wiki/0.008","ppvisitednodes":{"value":46,"limit":1000000},"postexpandincludesize":{"value":0,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":2,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20240921130729","ttl":86400,"transientcontent":false}}});});</script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/Shaders by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:25 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="Shaders,Material Manager,Shader Editor" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>Shaders - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Shaders";
+var wgTitle = "Shaders";
+var wgAction = "view";
+var wgArticleId = "2331";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "10306";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Shaders">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Shaders</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p>In the C4 Engine, shaders are created internally based on settings specified in the <a href="Material_Manager.html" title="Material Manager">Material Manager</a> window and the new <a href="Shader_Editor.html" title="Shader Editor">Shader Editor</a>. Due to a variety of very practical issues that are discussed in this article, shader code written in a language such as Cg, HLSL, or GLSL cannot be used. Instead, the material system in C4 is designed to satisfy the following requirements.
+</p>
+<ul><li> All materials should function on all platforms supported by the engine, within the limits of the available graphics hardware. The user should not have to specify different versions of a material for different platforms.
+</li><li> All materials should render correctly inside the many lighting environments support by the engine, which include several different light types, multiple ambient environments, and multiple types of fog. All materials should also work without modification when new lighting environments are added in the future.
+</li><li> It should be possible to replace the graphics library used by the engine without the need to update any materials. That is, the user should not need to know anything about the underlying graphics library or the native shading language that it supports.
+</li></ul>
+<p>The C4 Material Manager can be used to create a wide variety of materials, and all of them satisfy the above requirements. The new Shader Editor opens the possibility to create a virtually limitless numbers of custom shaders in such a way that they are cross-platform and future compatible.
+</p>
+<a name="Combinatorial_Shader_Explosion"></a><h2> <span class="mw-headline"> Combinatorial Shader Explosion </span></h2>
+<p>Every modern rendering engine must deal with something known as the &ldquo;Combinatorial Shader Explosion&rdquo; problem. Basically, this problem refers to the fact that it's possible to create an enormous number of shaders through various combinations of material properties and lighting environments, and it wouldn't be even remotely practical to write shader code for all of them ahead of time. In C4, it is possible to generate over 4 billion different materials through fixed attribute settings in the Material Manager. Each of these materials can be applied to objects that are rendered under 8 different types of lights and 3 different types of fog. Thus, the engine must be able to correctly render objects using shaders from a potential set of over 96 billion combinations of material properties, light types, and fog types. With the new Shader Editor, the number of possible materials becomes unbounded, but our advanced shader compiler ensures that each one works properly in all environments supported by the engine and on all platforms supported by the engine.
+</p><p>C4 handles the combinatorial shader explosion problem by generating shader code as it is needed, on the fly. Whenever a new combination of material, light type, and fog type is encountered, the engine examines all of the properties of the material and assembles a new shader using small snippets of code that perform specific functions. That shader is then cached in memory and used to render all objects that require the same material within the same type of lighting environment. Only the shaders that are actually needed for rendering ever get generated.
+</p><p>If it were possible to import text-based shader files, then 24 variations of the shader would be required to support the 8 types of lights and 3 types of fog supported by the engine. The biggest disadvantage to using text-based shaders, however, is that new light types or fog types added in the future would not be supported until new variations of the shader were created. Under the system used by C4, this is not an issue&mdash;all materials will work correctly with any new types of light or fog added to the engine in the future.
+</p>
+<a name="Graphics_Library_Abstraction"></a><h2> <span class="mw-headline"> Graphics Library Abstraction </span></h2>
+<p>The C4 Engine currently runs on three different platforms (PC, Mac, and PlayStation 4), and support for additional platforms is planned. These platforms use different native graphics libraries that support different shading languages. In the case of GLSL, the shading language frequently changes as OpenGL is updated, so various changes need to be made to the native code passed to the driver. C4 is designed so that the user is not required to have any knowledge of the underlying graphics library or the shading language that it uses. A material created on one platform will work correctly on all platforms because the engine generates the correct shader code for whichever platform it is currently running on. If it were possible to import text-based shader files, then this would no longer be the case. Separate shaders would have to be written for each platform, and they would require maintenance as support for newer versions of OpenGL was added to the engine.
+</p><p>Furthermore, under the current design of the C4 Engine, it is possible for us to completely replace the underlying graphics library without any change to the materials being necessary. For example, we could switch from OpenGL to DirectX 10/11 on Windows, and not a single shader would have to be rewritten by the user.
+</p>
+<a name="See_Also"></a><h2> <span class="mw-headline"> See Also </span></h2>
+<ul><li> <a href="Material_Manager.html" title="Material Manager">Material Manager</a>
+</li><li> <a href="Shader_Editor.html" title="Shader Editor">Shader Editor</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 4/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:2331-0!1!0!!en!2!edit=0 and timestamp 20150118152319 -->
+<div class="printfooter">
+Retrieved from "<a href="Shaders.html">http://www.terathon.com/wiki/index.php/Shaders</a>"</div>
+			<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks"><a href="Special_Categories.html" title="Special:Categories">Category</a>:&#32;<span dir='ltr'><a href="Category_Shaders.html" title="Category:Shaders">Shaders</a></span></div></div>			<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="Shaders.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:Shaders&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=Shaders&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=Shaders&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=Shaders" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Shaders.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Shaders.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=Shaders&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=Shaders&amp;oldid=10306" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 10 January 2015, at 23:37.</li>
+				<li id="viewcount">This page has been accessed 10,375 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.547 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/Shaders by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:25 GMT -->
+</html>

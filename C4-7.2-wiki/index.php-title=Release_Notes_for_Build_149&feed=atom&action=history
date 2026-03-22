@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_149&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Build 149 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_149&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_149&amp;action=history"/>
+	<updated>2024-09-21T18:42:15Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_149&amp;diff=56&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' July 8, 2008  * The graphical scripting system in the engine has been replaced with a far more powerful design that supports variables, loops, and conditional execution. All previously existing scripts will continue to run without modification. Details about the new scripting system are too extensive to include here, but they can be found in the Graphical Scripting Language article.  * The &lt;code&gt;Function::Execute()&lt;/code&gt; function now ta...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_149&amp;diff=56&amp;oldid=prev"/>
+		<updated>2023-07-15T09:55:11Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; July 8, 2008  * The graphical scripting system in the engine has been replaced with a far more powerful design that supports variables, loops, and conditional execution. All previously existing scripts will continue to run without modification. Details about the new scripting system are too extensive to include here, but they can be found in the &lt;a href=&quot;/wiki/index.php?title=Graphical_Scripting_Language&amp;amp;action=edit&amp;amp;redlink=1&quot; class=&quot;new&quot; title=&quot;Graphical Scripting Language (page does not exist)&quot;&gt;Graphical Scripting Language&lt;/a&gt; article.  * The &amp;lt;code&amp;gt;Function::Execute()&amp;lt;/code&amp;gt; function now ta...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' July 8, 2008&lt;br /&gt;
+&lt;br /&gt;
+* The graphical scripting system in the engine has been replaced with a far more powerful design that supports variables, loops, and conditional execution. All previously existing scripts will continue to run without modification. Details about the new scripting system are too extensive to include here, but they can be found in the [[Graphical Scripting Language]] article.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Function::Execute()&amp;lt;/code&amp;gt; function now takes a pointer to the method that is calling it. This allows the function to set the method's boolean result value in the new scripting system.&lt;br /&gt;
+&lt;br /&gt;
+* The engine's texture format has been changed in this release. The file extension is still &amp;lt;code&amp;gt;.tex&amp;lt;/code&amp;gt;, and the engine can still read the old format. However, in the next release, the old format will no longer be supported. We have included a conversion utility in this release that will scan your Data folder and convert all &amp;lt;code&amp;gt;.tex&amp;lt;/code&amp;gt; files to the new format automatically. All textures that ship with the engine have already been converted. To use the conversion utility, run the engine and type &amp;lt;code&amp;gt;convtex&amp;lt;/code&amp;gt; in the command console. This will convert all &amp;lt;code&amp;gt;.tex&amp;lt;/code&amp;gt; files in your Data folder to the new format in place. '''Be sure that you have a backup copy of your custom textures before running this utility.'''&lt;br /&gt;
+&lt;br /&gt;
+* The Texture Viewer tool has been renamed to Texture Tool, and all the code that creates textures of any kind has been moved to this plugin. Generated textures (light projections, shadow maps, environment maps, and ambient spaces) are now made using the &amp;lt;code&amp;gt;gentex&amp;lt;/code&amp;gt; console command.&lt;br /&gt;
+&lt;br /&gt;
+* The ambient space feature has been replaced with a new rendering method for static volumetric ambient occlusion. Ambient spaces are still placed in zones as they were previously, but now they only encode directional occlusion that modulates the ambient light intensity as opposed to encoding the ambient light intensity itself. More ambient lighting capabilities will be added to near-term future releases.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;SceneImportPlugin&amp;lt;/code&amp;gt; class has been changed slightly so that it's possible for an import plugin to display a dialog before importing a scene. (See the Collada import plugin for an example.) The &amp;lt;code&amp;gt;SceneImportPlugin::ImportGeometry()&amp;lt;/code&amp;gt; function now takes a pointer to the editor window as a parameter, and the importer must call the &amp;lt;code&amp;gt;Editor::ImportScene()&amp;lt;/code&amp;gt; function in order to complete the import.&lt;br /&gt;
+&lt;br /&gt;
+* The Collada importer now offers the option to attempt to import texture maps while it is importing a scene. When this option is turned on, any qualified diffuse map, normal map, gloss map, or emission map specified in a Collada file will be imported with the Texture Tool using the default settings. A texture map qualifies for import if its path name contains &amp;lt;code&amp;gt;/Import/&amp;lt;/code&amp;gt; so that the importer recognizes it as being in the C4 Import folder. If the Collada file specifies the wrap modes for a texture map, then they are respected when a texture map is automatically imported.&lt;br /&gt;
+&lt;br /&gt;
+* A Cleanup button has been added to the Material Manager. Clicking this button causes all duplicate materials to be merged into one material. Materials are considered equivalent if they produce the same shaders.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Entity&amp;lt;/code&amp;gt; class has been renamed to the &amp;lt;code&amp;gt;Model&amp;lt;/code&amp;gt; class. To update your code, make the case-sensitive global replacements of Entity to Model and entity to model. This will have the effect of inadvertently changing the word &amp;quot;identity&amp;quot; as well, so you'll need to also make the replacement of dmodel to dentity to clean it up.&lt;br /&gt;
+&lt;br /&gt;
+* A new toggle button has been added to the World Editor that turns display of models on and off. Models are no longer displayed as a bounding box.&lt;br /&gt;
+&lt;br /&gt;
+* A model registration now takes one more parameter that specifies the human-readable model name to be displayed in the World Editor.&lt;br /&gt;
+&lt;br /&gt;
+* A new multi-zone referencing system has been implemented that generalizes some older techniques used in the engine for transition zones and effects that span multiple zones. Most of this system is internal to the engine and not exposed to higher-level code, but there's one new addition that game programmers need to be aware of. Model nodes have always automatically reparented themselves to the zones that contain them as they move around, but now when a model exits a zone, it also attaches a special reference to the zone that survives until the model's bounding volume has completely left the zone. This allows large models to span multiple zones and to be correctly identified by the visibility determination system. The whole thing is automated, so no code needs to be written to take advantage of this feature.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;kEntityAttached&amp;lt;/code&amp;gt; flag, previously used to signify that a model is attached to another model in some way, has been removed from the engine. The Model class now determines whether models are attached to other models automatically.&lt;br /&gt;
+&lt;br /&gt;
+* Under Windows, the Sound Manager now uses XAudio2 instead of DirectSound. This should be completely transparent to all higher-level code, but you will need to upgrade to the latest version of DirectX. The engine will only compile with the June 2008 DirectX SDK or later.&lt;br /&gt;
+&lt;br /&gt;
+* The streaming capabilities in the Sound Manager have been generalized so that it's possible to stream sound data from any kind of source. The method for setting up a streaming wave file has changedâ€”see the [[Working with Sound]] article for more information.&lt;br /&gt;
+&lt;br /&gt;
+* A color scale and bias operation has been added to the post-processing pass. The &amp;lt;code&amp;gt;World::SetFinalColorTransform()&amp;lt;/code&amp;gt; function can be used to specify a scale color S and a bias color B that are applied to the final rendered color C to yield SC + B. The red, green, and blue channels of these colors can be any floating-point values that produce the desired effect. The scale and bias colors only affect rendering of the current world and not the graphical user interface.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;WorldRenderTask()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;InterfaceRenderTask()&amp;lt;/code&amp;gt; functions have been added to the Application class. These functions are called once per frame after the world has been rendered and after the graphical user interface has been rendered, respectively.&lt;br /&gt;
+&lt;br /&gt;
+* The Display Manager will now allow any window size to be specified by the &amp;lt;code&amp;gt;$displayWidth&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;$displayHeight&amp;lt;/code&amp;gt; variables when running in windowed mode.&lt;br /&gt;
+&lt;br /&gt;
+* The Node class is now subclassed from Constructable so that custom node types can be defined and properly deserialized. The &amp;lt;code&amp;gt;[http://c4engine.com/docs/System/Constructable_InstallConstructor.html Constructable::InstallConstructor()]&amp;lt;/code&amp;gt; function is used to install a callback function that constructs custom node subclasses.&lt;br /&gt;
+&lt;br /&gt;
+* Full native support for Xbox 360 controllers under Windows has been added to the Input Manager (using XInput). The demo game code has been updated so that it's possible to play using only the Xbox controller. Better support for DirectInput joysticks has also been added to the Input Manager.&lt;br /&gt;
+&lt;br /&gt;
+* The movies plugin now allows movies to be played as streams from remote locations. The movie controller and movie panel item now both have check boxes indicating whether the movie name is a URL.&lt;br /&gt;
+&lt;br /&gt;
+* Movie play position is now synchronized in multiplayer games when new players join.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

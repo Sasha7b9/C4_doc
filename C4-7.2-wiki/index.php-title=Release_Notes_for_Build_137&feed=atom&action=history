@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_137&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Build 137 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_137&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_137&amp;action=history"/>
+	<updated>2024-09-21T18:43:13Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_137&amp;diff=44&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' August 4, 2007  * The Sound Manager has been almost completely rewritten and now includes a much larger set of features. More important than the number of features, though, is the fact that every single feature is available on all platforms and with all sound hardware. The engine no longer contains any support for vendor-specific libraries like EAX and instead uses a custom multi-threaded software audio renderer. This gets rid of all the hea...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_137&amp;diff=44&amp;oldid=prev"/>
+		<updated>2023-07-15T09:45:47Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; August 4, 2007  * The Sound Manager has been almost completely rewritten and now includes a much larger set of features. More important than the number of features, though, is the fact that every single feature is available on all platforms and with all sound hardware. The engine no longer contains any support for vendor-specific libraries like EAX and instead uses a custom multi-threaded software audio renderer. This gets rid of all the hea...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' August 4, 2007&lt;br /&gt;
+&lt;br /&gt;
+* The Sound Manager has been almost completely rewritten and now includes a much larger set of features. More important than the number of features, though, is the fact that every single feature is available on all platforms and with all sound hardware. The engine no longer contains any support for vendor-specific libraries like EAX and instead uses a custom multi-threaded software audio renderer. This gets rid of all the headaches associated with supporting different hardware, buggy drivers, and poorly designed APIs. Furthermore, it means that the audio experience is identical on all machines, so testing across a wide spectrum of sound hardware is not necessary.&lt;br /&gt;
+&lt;br /&gt;
+* The following list briefly describes the new features in the Sound Manager:&lt;br /&gt;
+** All sounds can now have any loop count. Previously, spatialized sounds could only play once or loop forever.&lt;br /&gt;
+** The previously-existing sound classifications (effects, music, voice) have been removed and replaced by registered sound groups. A game module can define any number of sound groups for which the volume can be independently controlled.&lt;br /&gt;
+** WAV files no longer need to have a sampling rate of 22.05 kHz or 44.1 kHz. The Sound Manager will play WAV files using any frequency.&lt;br /&gt;
+** The playback frequency of a sound can be changed while it is playing, and the Sound Manager ensures a smooth transition without popping artifacts.&lt;br /&gt;
+** A Doppler shift can be applied to a sound based on the relative velocity between it and the listener.&lt;br /&gt;
+** A very precise sound travel delay can be applied based on the distance between a sound and the listener. When a sound is played, this delay is calculated using the current distance to the listener, but the motion of the listener will also be taken into account so that the sound begins playing at the right time.&lt;br /&gt;
+** Atmospheric absorption can be applied to a sound based on distance from the listener. This attenuates high frequencies so that distant sounds are muffled somewhat.&lt;br /&gt;
+** The Sound Manager includes a full reverberation model and supports multiple simultaneously active environments. A new type of space node, an &amp;lt;code&amp;gt;[http://c4engine.com/docs/WorldMgr/AcousticsSpace.html AcousticsSpace]&amp;lt;/code&amp;gt; has been added that defines the size and reflective properties of an acoustics environment. The listener does not need to be in the same environment as a sound in order for the correct reverberation effects to be audible.&lt;br /&gt;
+** The volumes of early reflections can be set on a per-environment and per-sound basis. There is a separate setting for high-frequency attenuation of reflected sound. Each environment also has a reverberation decay time associated with it.&lt;br /&gt;
+** Directional sounds are now supported. As the listener moves through a sound cone for a directional sound, the volume falls off to the exterior volume at the cone's boundary. The exterior volume and extra high-frequency attenuation are applied outside the sound cone.&lt;br /&gt;
+** Sounds can be attenuated by obstructions. There are separate obstructive volume settings for the direct path and for reflected paths. The &amp;lt;code&amp;gt;AcousticsProperty&amp;lt;/code&amp;gt; has been updated for the new obstruction settings.&lt;br /&gt;
+** Sounds use a new fall-off model, and there is a new sound permeation system that determines how sounds travel throughout worlds. Sounds will now penetrate much more deeply through different zones, traveling down halls and around corners until they naturally become too faint to be heard.&lt;br /&gt;
+&lt;br /&gt;
+Some aspects of the new Sound Manager are still a slight bit rough and will get some tweaking in the next few builds. Acoustics environments have been added to a few of the worlds that ship with the engine, but not all of them.&lt;br /&gt;
+&lt;br /&gt;
+* Some additional audio features that will be added to future releases include direct mixing to multi-channel surround sound and a generalized streaming mechanism that will allow plugin decompressors.&lt;br /&gt;
+&lt;br /&gt;
+* For various reasons, all C++ exception handling has been removed from the engine. This resulted in significantly smaller binaries, and execution speed should be slightly faster due to the removal of some code and space overhead. If you have a custom project, be sure to turn off support for exception handling in the code generation properties.&lt;br /&gt;
+&lt;br /&gt;
+* As a consequence of there being no exception handling, many error handling mechanisms in the engine had to be reworked. The design pattern for constructors that used to throw exceptions to indicate failure had to be changed to a pattern in which the constructor doesn't really do anything, and a separate initialization function is called. The most prominently affected classes are &amp;lt;code&amp;gt;File&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;Sound&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;Movie&amp;lt;/code&amp;gt;. The constructors for these classes no longer take any parameters. The &amp;lt;code&amp;gt;File&amp;lt;/code&amp;gt; class now has &amp;lt;code&amp;gt;Open()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Close()&amp;lt;/code&amp;gt; functions, and the &amp;lt;code&amp;gt;Sound&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Movie&amp;lt;/code&amp;gt; classes now both have a &amp;lt;code&amp;gt;Load()&amp;lt;/code&amp;gt; function.&lt;br /&gt;
+&lt;br /&gt;
+* In the World Editor, the Get Info dialog now displays settings for all selected nodes simultaneously. Making changes to the settings has an effect on every selected node when the Get Info dialog is closed. Every type of setting can now assume an indeterminate state that is used when values from multiple nodes conflict. If a setting is left in the indeterminate state, then its value is left unchanged for all nodes. The appearance of the indeterminate states are as follows: check boxes show a dash instead of an X, sliders do not show a handle, popup menus show a blank selection, and both color boxes and text boxes are filled with a striped pattern.&lt;br /&gt;
+&lt;br /&gt;
+* Several node settings have been moved or changed to work better with the new Get Info dialog:&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;quot;Do not render through remote portals&amp;quot; setting for geometries has been moved to a subsection under the Node pane because it is a setting for the geometry node and not the geometry object.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;quot;Do not share light object data&amp;quot; setting for lights has also been moved to a subsection under the Node pane because it represents a general node flag.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;quot;Light is statically confined&amp;quot; setting for lights has been removed. Controllers that make lights move in a small volume now set the confined flag automatically when the &amp;quot;Light is static&amp;quot; flag has been set in the editor.&lt;br /&gt;
+&lt;br /&gt;
+* The clear color property of the root zone is now exposed as an actual property. This was a property all along, but it was previously shown under the Zone pane instead of the Properties pane.&lt;br /&gt;
+* Several upgrades have been made to the weapons code in the demo game:&lt;br /&gt;
+&lt;br /&gt;
+* Three check boxes have been added to the Player Settings dialog that control automatic weapon switching. The game can be configured to automatically change weapons when you pick up a new weapon or when you run out of ammo.&lt;br /&gt;
+&lt;br /&gt;
+* There are new ammo packs for the grenade launcher, rocket launcher, plasma gun, and proton cannon.&lt;br /&gt;
+&lt;br /&gt;
+* The proton cannon now does a reasonable amount of damage per unit time.&lt;br /&gt;
+&lt;br /&gt;
+* The code for the Display Settings, Audio Settings, and Control Settings dialogs has been moved to the demo game module.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new setting type called &amp;lt;code&amp;gt;PowerTwoSetting&amp;lt;/code&amp;gt; that displays a slider and allows the user to choose a power of two between a minimum and maximum value.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new setting type called &amp;lt;code&amp;gt;MultiResourceSetting&amp;lt;/code&amp;gt; that displays a text box containing a semicolon-separated list of resources.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;ResourceSetting&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;MultiResourceSetting&amp;lt;/code&amp;gt; settings now display the file picker with texture preview when the resource type is a texture map.&lt;br /&gt;
+&lt;br /&gt;
+* The Interface Manager now maintains a global clipboard for text. Copy, cut, and paste are now supported for all editable text boxes, and this is independent of the World Editor's clipboard for nodes.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;TypeToString&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;StringToType&amp;lt;/code&amp;gt; functions have been moved into the &amp;lt;code&amp;gt;Text&amp;lt;/code&amp;gt; namespace. Furthermore, &amp;lt;code&amp;gt;TypeToString&amp;lt;/code&amp;gt; now returns a string instead of taking a pointer to an array of characters as a parameter.&lt;br /&gt;
+&lt;br /&gt;
+* Added a &amp;lt;code&amp;gt;[http://c4engine.com/docs/System/Thread_SetThreadPriority.html SetThreadPriority()]&amp;lt;/code&amp;gt; function to the &amp;lt;code&amp;gt;Thread&amp;lt;/code&amp;gt; class.&lt;br /&gt;
+&lt;br /&gt;
+* Changed the &amp;lt;code&amp;gt;[http://c4engine.com/docs/System/Signal_Wait.html Signal::Wait()]&amp;lt;/code&amp;gt; function so that it takes a timeout parameter.&lt;br /&gt;
+&lt;br /&gt;
+* The engine now ships with a new project called SimpleChar. This project contains a simple example of an implementation of a subclass of the &amp;lt;code&amp;gt;CharacterController&amp;lt;/code&amp;gt; class and let's you run a character around the world. This game module can be run by changing the &amp;lt;code&amp;gt;$applicName&amp;lt;/code&amp;gt; variable (in Data/cfg/Variables.cfg) to &amp;quot;SimpleChar&amp;quot;. As with the SimpleBall game module, you need to open the console and use the &amp;lt;code&amp;gt;load&amp;lt;/code&amp;gt; command to load a world.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

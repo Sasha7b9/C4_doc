@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class Process</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/index.html">Graphics Manager</a> &#x25BA; <a href="Process.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Process.html">class Process</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class Process</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Processes.h</code></div>
+The <code>Process</code> class represents an operation performed on data in a shader graph.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;Process&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;GraphElement&lt;Process,&nbsp;Route&gt;,&nbsp;<span style="color: #0000FF">public</span>&nbsp;ListElement&lt;Process&gt;,&nbsp;<span style="color: #0000FF">public</span>&nbsp;Packable,</code></p>
+<p style="padding-left: 32px;"><code><span style="color: #0000FF">public</span>&nbsp;Configurable,&nbsp;<span style="color: #0000FF">public</span>&nbsp;Registrable&lt;Process,&nbsp;ProcessRegistration&gt;,&nbsp;<span style="color: #0000FF">public</span>&nbsp;Memory&lt;Process&gt;</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="Process_GetProcessType.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Process_GetProcessType.html">Process::GetProcessType</a></code></td>
+<td class="tableright1">Returns the type of a process.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Process_GetPortRoute.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Process_GetPortRoute.html">Process::GetPortRoute</a></code></td>
+<td class="tableright">Returns the route connected to an input port.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Process_GetPortCount.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Process_GetPortCount.html">Process::GetPortCount</a></code></td>
+<td class="tableright">Returns the number of input ports for a process.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Process_GetPortFlags.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Process_GetPortFlags.html">Process::GetPortFlags</a></code></td>
+<td class="tableright">Returns the port flags for a specific input port.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>Process(ProcessType&nbsp;type);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>type</code></td>
+<td class="tableright1">The type of the process.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+A <code>Process</code> object is a node in a shader graph that represents some kind of operation or data source. Each type of process has between 0 and 4 input ports through which data can be received from other processes. Most types of processes generate an output value that can be sent to the input ports of other processes.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="../Utilities/GraphElement.html" tppabs="http://www.c4engine.com/docs/Utilities/GraphElement.html">GraphElement&lt;Process,&nbsp;Route&gt;</a></code></td>
+<td class="tableright1">A process is an element in a graph.
+</td></tr>
+<tr><td class="tableleft"><code><a href="../Utilities/ListElement.html" tppabs="http://www.c4engine.com/docs/Utilities/ListElement.html">ListElement&lt;Process&gt;</a></code></td>
+<td class="tableright">Used internally by the Graphics Manager.
+</td></tr>
+<tr><td class="tableleft"><code><a href="../ResourceMgr/Packable.html" tppabs="http://www.c4engine.com/docs/ResourceMgr/Packable.html">Packable</a></code></td>
+<td class="tableright">Processes can be packed for storage in resources.
+</td></tr>
+<tr><td class="tableleft"><code><a href="../InterfaceMgr/Configurable.html" tppabs="http://www.c4engine.com/docs/InterfaceMgr/Configurable.html">Configurable</a></code></td>
+<td class="tableright">Processes can be configured by the user in the Shader Editor.
+</td></tr>
+<tr><td class="tableleft"><code><a href="../System/Registrable.html" tppabs="http://www.c4engine.com/docs/System/Registrable.html">Registrable&lt;Process,&nbsp;ProcessRegistration&gt;</a></code></td>
+<td class="tableright">Process types are registered for display in the Shader Editor.
+</td></tr>
+<tr><td class="tableleft"><code><a href="../MemoryMgr/Memory.html" tppabs="http://www.c4engine.com/docs/MemoryMgr/Memory.html">Memory&lt;Process&gt;</a></code></td>
+<td class="tableright">Components of a shader graph are stored in a dedicated heap.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="Route.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Route.html">Route</a></code>
+</p>
+<div class="heading">Wiki Articles</div>
+<p><a href="javascript:if(confirm(%27http://c4engine.com/wiki/index.php/Shader_Editor  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/wiki/index.php/Shader_Editor%27" tppabs="http://c4engine.com/wiki/index.php/Shader_Editor">Shader Editor</a></p>
+<p><a href="javascript:if(confirm(%27http://c4engine.com/wiki/index.php/Basic_Shader_Processes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/wiki/index.php/Basic_Shader_Processes%27" tppabs="http://c4engine.com/wiki/index.php/Basic_Shader_Processes">List of Basic Shader Processes</a></p>
+<p><a href="javascript:if(confirm(%27http://c4engine.com/wiki/index.php/Mathematical_Shader_Processes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/wiki/index.php/Mathematical_Shader_Processes%27" tppabs="http://c4engine.com/wiki/index.php/Mathematical_Shader_Processes">List of Mathematical Shader Processes</a></p>
+<p><a href="javascript:if(confirm(%27http://c4engine.com/wiki/index.php/Complex_Shader_Processes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/wiki/index.php/Complex_Shader_Processes%27" tppabs="http://c4engine.com/wiki/index.php/Complex_Shader_Processes">List of Complex Shader Processes</a></p>
+<p><a href="javascript:if(confirm(%27http://c4engine.com/wiki/index.php/Interpolant_Shader_Processes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/wiki/index.php/Interpolant_Shader_Processes%27" tppabs="http://c4engine.com/wiki/index.php/Interpolant_Shader_Processes">List of Interpolant Shader Processes</a></p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

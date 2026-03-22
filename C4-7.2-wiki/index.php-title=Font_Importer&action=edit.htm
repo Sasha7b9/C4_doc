@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>View source for Font Importer - C4 Engine Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":true,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"Zu8LviLm00ZKy8svL2HnXgAAAAM","wgCSPNonce":false,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Font_Importer","wgTitle":"Font Importer","wgCurRevisionId":412,"wgRevisionId":0,"wgArticleId":409,"wgIsArticle":false,"wgIsRedirect":false,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Font_Importer","wgRelevantArticleId":409,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"simpleBatchUploadMaxFilesPerBatch":{"*":1000},"wgVector2022PreviewPages":[]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["mediawiki.action.edit.collapsibleFooter","site","mediawiki.page.ready","skins.vector.legacy.js"/*tpa=http://www.c4engine.com/wiki/skins.vector.legacy.js*/];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});});});</script>
+<link rel="stylesheet" href="load.php-lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector.css" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector"/>
+<script async="" src="load.php-lang=en&modules=startup&only=scripts&raw=1&skin=vector.js" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector"></script>
+<meta name="generator" content="MediaWiki 1.40.0"/>
+<meta name="robots" content="noindex,nofollow,max-image-preview:standard"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="viewport" content="width=1000"/>
+<link rel="icon" href="../favicon.ico.css" tppabs="http://www.c4engine.com/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://c4engine.com/wiki/api.php?action=rsd"/>
+<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Font_Importer rootpage-Font_Importer skin-vector action-edit"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading">View source for Font Importer</h1>
+	<div id="bodyContent" class="vector-body">
+		
+		<div id="contentSub"><div id="mw-content-subtitle">← <a href="index.php-title=Font_Importer.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Font_Importer" title="Font Importer">Font Importer</a></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Users  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Users%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Users&action=edit&redlink=1" class="new" title="C4 Engine Wiki:Users (page does not exist)">Users</a>.
+</p>
+</div><hr />
+<p>You can view and copy the source of this page.
+</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" class="mw-editfont-monospace" lang="en" dir="ltr" name="wpTextbox1">__NOTOC__
+[[File:Fontimporter.png|right|frame|'''Figure 1.''' The Font Importer window.]]
+In most types of applications, text is rendered into a 2D drawing context by the operating system using the information stored in OpenType or TrueType font files. However, this method of text rendering is not compatible with hardware-accelerated 3D graphics, and it suffers from inconsistencies among different platforms. In order to render high-quality text in a 3D environment and produce exactly the same results on all platforms, the C4 Engine uses its own internal font format.
+
+Fonts used by the C4 Engine are stored as font resources having the &lt;code>.fnt&lt;/code> extension. A font resource is generated by the Font Importer tool by importing a OpenType or TrueType font having the &lt;code>.ttf&lt;/code> extension.
+
+The C4 Engine can render text from all planes containing characters currently defined by the Unicode Standard. The engine always stores and processes strings using the UTF-8 encoding to provide full compatibility with ordinary ASCII strings.
+
+To generate a font, either select '''Import Font''' from the [[C4 Menu]] or type &lt;code>ifont&lt;/code> in the [[Command Console]]. The Font Importer will then display a dialog allowing you to pick a &lt;code>.ttf&lt;/code> file from inside the &lt;code>Import&lt;/code> folder. Once you have chosen the font that you want to import, the main Font Importer window will appear. The layout of this window is shown in the Figure&amp;nbsp;1.
+
+The Font Importer window displays a 16&amp;times;16 grid containing a preview of the available characters within a single 256-entry code page. Only the characters that are present in the font are shown, and only pages having at least one character in the font are accessible. The list on the right side of the window shows the standard names for the Unicode blocks for which the font provides at least one character.
+
+== Code Page Navigation ==
+
+You can navigate among the available code pages by pressing the Page Up and Page Down keys. Unless a setting has the keyboard focus, the Left Arrow and Right Arrow keys also navigate to the previous and next code pages, respectively. Clicking on a code block name in the block list will cause the first page covered by the block to be shown if you are not already viewing a page that intersects the block's Unicode range.
+
+== Character Selection ==
+
+A single character can be selected by clicking on it. A range of characters can be selected by holding in the Shift key while clicking. The selection is always a contiguous range, and the Unicode values for the characters in the selection are shown at the bottom-left corner of the window. If a single character is selected, then the Unicode name for that character is displayed at the bottom of the window.
+
+All characters can be selected at once by typing Ctrl-A, and all characters can be deselected by typing Ctrl-Shift-A.
+
+When a code block name is clicked in the block list, all of the glyphs in the block are selected.
+
+Typing Ctrl-C while characters are selected causes those characters to be copied to the clipboard.
+
+== Character Inclusion and Exclusion ==
+
+Many fonts contain a far greater number of characters than are needed by an application. The Font Importer lets you pick which characters in the font are included in the font resource generated for use by the C4 Engine. A character is rendered in black when it is marked for inclusion in the font resource. Characters that are not to be included are rendered in gray. The currently selected range of characters can be included or excluded by clicking the '''Include''' and '''Exclude''' buttons at the bottom of the window.
+
+By default, only Unicode ranges U+0020..U+007E and U+00A0..U+00FF are included, and the rest of the font is excluded. These ranges correspond to the Basic Latin and Latin-1 Supplement code blocks in the Unicode Standard. The Basic Latin block cannot be excluded&amp;mdash;it is always part of the generated font resource.
+
+If an attempt is made to render a character that was not imported (or didn't exist in the original font at all), then the missing character symbol is rendered in its place. This is usually a rectangular box.
+
+== Import Settings ==
+
+{| {{Table}}
+{{Tablehead|Setting|Description}}
+|-
+{{HeadingSetting|'''Font&amp;nbsp;Import&amp;nbsp;Options'''}}
+|-
+{{Setting|'''Import&amp;nbsp;multicolor&amp;nbsp;data'''|Determines whether multicolor glyph data is imported for the font, when available. If the &lt;code>.ttf&lt;/code> file contains multicolor glyphs such as emoji and pictographs, then this is checked by default.}}
+|-
+{{Setting|'''Import&amp;nbsp;kerning&amp;nbsp;data'''|Determines whether kerning data is imported for the font, when available. If the &lt;code>.ttf&lt;/code> file contains kerning data, then this is checked by default, and it should generally be left enabled unless you have a good reason to turn them off.}}
+|-
+{{Setting|'''Import&amp;nbsp;mark&amp;nbsp;positioning&amp;nbsp;data'''|Determines whether mark positioning data is imported for the font, when available. This data is needed to properly place combining diacritical marks when text is laid out.}}
+|-
+{{Setting|'''Import&amp;nbsp;sequence&amp;nbsp;replacement&amp;nbsp;data'''|Determines whether sequence replacement data is imported for the font, when available. This includes information about glyph composition and ligatures defined by the &lt;code>.ttf&lt;/code> file.}}
+|-
+{{Setting|'''Import&amp;nbsp;alternate&amp;nbsp;substitution&amp;nbsp;data'''|Determines whether alternate substitution data is imported for the font, when available. This includes information about all substitution features defined by the &lt;code>.ttf&lt;/code> file.}}
+|-
+{{HeadingSetting|'''Glyph&amp;nbsp;Rendering&amp;nbsp;Options'''}}
+|-
+{{Setting|'''Generate&amp;nbsp;bounding&amp;nbsp;polygons'''|Causes extra geometric data to be generated so that glyphs can be rendered using 3&amp;ndash;6 sided polygons that cover less area than bounding boxes. This can increase performance for text rendered at large sizes when the '''Use bounding polygons''' setting is checked for a particular text widget. Enabling this optimization during the import process has no performance cost at smaller sizes if the optimization is not enabled for a text widget.}}
+|-
+{{Setting|'''Polygon&amp;nbsp;max&amp;nbsp;vertex&amp;nbsp;count'''|Specifies the maximum number of vertices generated for a glyphâ€™s bounding polygon, which can be in the range 4&amp;ndash;6. The import process takes longer for higher values.}}
+|-
+{{Setting|'''Polygon&amp;nbsp;interior&amp;nbsp;edge&amp;nbsp;cost'''|Specifies the interior edge cost factor for a glyphâ€™s bounding polygon. This has an effect bounding polygons in such a way that interior edge lengths are considered more or less expensive when determining the optimal shape.}}
+|-
+{{Setting|'''Generate&amp;nbsp;outline&amp;nbsp;glyph&amp;nbsp;effect'''|Causes expanded outlines to be generated for all glyphs so they can be rendered with the outline effect. Using this option increases file size significantly.}}
+|-
+{{Setting|'''Outline&amp;nbsp;effect&amp;nbsp;size&amp;nbsp;(em)'''|Specifies the size of the outline effect in em units. This is typically a very small value near the default of 0.2.}}
+|-
+{{Setting|'''Outline&amp;nbsp;effect&amp;nbsp;miter&amp;nbsp;limit'''|Specifies the miter limit for the outline effect. When this limit is exceeded at a corner in a glyph, the corner is rounded or beveled.}}
+|-
+{{Setting|'''Outline&amp;nbsp;effect&amp;nbsp;join&amp;nbsp;style'''|Specifies whether corners are rounded or beveled when the miter limit is exceeded.}}
+|-
+{{HeadingSetting|'''Text&amp;nbsp;Decoration&amp;nbsp;Options'''}}
+|-
+{{Setting|'''Underline size (em)'''|The thickness of the underline stroke in em units. This is initially set to the default value defined in the &lt;code>.ttf&lt;/code> file.}}
+|-
+{{Setting|'''Underline position (em)'''|The position of the bottom of the underline stroke, in em units. This is initially set to the default value defined in the &lt;code>.ttf&lt;/code> file. Negative values are below the baseline.}}
+|-
+{{Setting|'''Strikethrough size (em)'''|The thickness of the strikethrough stroke in em units. This is initially set to the default value defined in the &lt;code>.ttf&lt;/code> file.}}
+|-
+{{Setting|'''Strikethrough position (em)'''|The position of the bottom of the strikethrough stroke, in em units. This is initially set to the default value defined in the &lt;code>.ttf&lt;/code> file. Positive values are above the baseline.}}
+|-
+{{HeadingSetting|'''Script&amp;nbsp;Transform&amp;nbsp;Options'''}}
+|-
+{{Setting|'''Subscript scale X'''|The scale in the ''x'' direction for transform-based subscripts. This is initially set to the default value defined in the &lt;code>.ttf&lt;/code> file.}}
+|-
+{{Setting|'''Subscript scale Y'''|The scale in the ''y'' direction for transform-based subscripts. This is initially set to the default value defined in the &lt;code>.ttf&lt;/code> file.}}
+|-
+{{Setting|'''Subscript offset X'''|The offset in the ''x'' direction, in em units, for transform-based subscripts. This is initially set to the default value defined in the &lt;code>.ttf&lt;/code> file.}}
+|-
+{{Setting|'''Subscript offset Y'''|The offset in the ''y'' direction, in em units, for transform-based subscripts. This is initially set to the default value defined in the &lt;code>.ttf&lt;/code> file.}}
+|-
+{{Setting|'''Superscript scale X'''|The scale in the ''x'' direction for transform-based superscripts. This is initially set to the default value defined in the &lt;code>.ttf&lt;/code> file.}}
+|-
+{{Setting|'''Superscript scale Y'''|The scale in the ''y'' direction for transform-based superscripts. This is initially set to the default value defined in the &lt;code>.ttf&lt;/code> file.}}
+|-
+{{Setting|'''Superscript offset X'''|The offset in the ''x'' direction, in em units, for transform-based superscripts. This is initially set to the default value defined in the &lt;code>.ttf&lt;/code> file.}}
+|-
+{{Setting|'''Superscript offset Y'''|The offset in the ''y'' direction, in em units, for transform-based superscripts. This is initially set to the default value defined in the &lt;code>.ttf&lt;/code> file.}}
+|}
+
+== Saved Configurations ==
+
+When a font is imported, the ranges of included characters and the import settings are saved in a &lt;code>.cfg&lt;/code> in the same folder as the &lt;code>.ttf&lt;/code> file being imported. The next time the same font is imported, that information is read from the &lt;code>.cfg&lt;/code> file and used to initialize the Font Importer settings.
+
+== See Also ==
+
+* [[Text Widget]]
+* [[Text Formatting]]
+* [http://c4engine.com/docs/InterfaceMgr/Font.html &lt;code>Font&lt;/code> class].
+</textarea><div class="templatesUsed"><div class="mw-templatesUsedExplanation"><p>Templates used on this page:
+</p></div><ul>
+<li><a href="index.php-title=Template-HeadingSetting.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:HeadingSetting" title="Template:HeadingSetting">Template:HeadingSetting</a> (<a href="index.php-title=Template-HeadingSetting&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:HeadingSetting&action=edit" title="Template:HeadingSetting">view source</a>) </li><li><a href="index.php-title=Template-Setting.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Setting" title="Template:Setting">Template:Setting</a> (<a href="index.php-title=Template-Setting&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Setting&action=edit" title="Template:Setting">view source</a>) </li><li><a href="index.php-title=Template-Table.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Table" title="Template:Table">Template:Table</a> (<a href="index.php-title=Template-Table&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Table&action=edit" title="Template:Table">view source</a>) </li><li><a href="index.php-title=Template-Tablehead.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablehead" title="Template:Tablehead">Template:Tablehead</a> (<a href="index.php-title=Template-Tablehead&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablehead&action=edit" title="Template:Tablehead">view source</a>) </li></ul></div><p id="mw-returnto">Return to <a href="index.php-title=Font_Importer.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Font_Importer" title="Font Importer">Font Importer</a>.</p>
+
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Font_Importer  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Font_Importer%27" tppabs="https://c4engine.com/wiki/index.php?title=Font_Importer">https://c4engine.com/wiki/index.php?title=Font_Importer</a>"</div></div>
+		<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="vector-menu mw-portlet mw-portlet-personal vector-user-menu-legacy" aria-labelledby="p-personal-label" role="navigation"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="pt-login" class="mw-list-item"><a href="index.php-title=Special-UserLogin&returnto=Font+Importer&returntoquery=action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:UserLogin&returnto=Font+Importer&returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li></ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="vector-menu mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-namespaces-label" role="navigation"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected mw-list-item"><a href="index.php-title=Font_Importer.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Font_Importer" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Talk:Font_Importer  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Talk:Font_Importer%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Talk:Font_Importer&action=edit&redlink=1" rel="discussion" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="vector-menu mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	/>
+	<label
+		id="p-variants-label"
+		 aria-label="Change language variant"
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="vector-menu mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-views-label" role="navigation"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-view" class="mw-list-item"><a href="index.php-title=Font_Importer.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Font_Importer"><span>Read</span></a></li><li id="ca-viewsource" class="selected mw-list-item"><a href="index.php-title=Font_Importer&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Font_Importer&action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="index.php-title=Font_Importer&action=history.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Font_Importer&action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="vector-menu mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown" aria-labelledby="p-cactions-label" role="navigation"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	/>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<div>
+		<form action="http://www.c4engine.com/wiki/index.php" id="searchform"
+			class="vector-search-box-form">
+			<div id="simpleSearch"
+				class="vector-search-box-inner"
+				 data-search-loc="header-navigation">
+				<input class="vector-search-box-input"
+					 type="search" name="search" placeholder="Search C4 Engine Wiki" aria-label="Search C4 Engine Wiki" autocapitalize="sentences" title="Search C4 Engine Wiki [f]" accesskey="f" id="searchInput"
+				>
+				<input type="hidden" name="title" value="Special:Search">
+				<input id="mw-searchButton"
+					 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+				<input id="searchButton"
+					 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+			</div>
+		</form>
+	</div>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="vector-menu mw-portlet mw-portlet-navigation vector-menu-portal portal" aria-labelledby="p-navigation-label" role="navigation"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="n-mainpage-description" class="mw-list-item"><a href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="javascript:if(confirm(%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents%27" tppabs="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="vector-menu mw-portlet mw-portlet-tb vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="t-whatlinkshere" class="mw-list-item"><a href="index.php-title=Special-WhatLinksHere-Font_Importer.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:WhatLinksHere/Font_Importer" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Font_Importer  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Font_Importer%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Font_Importer" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="index.php-title=Special-SpecialPages.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-info" class="mw-list-item"><a href="index.php-title=Font_Importer&action=info.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Font_Importer&action=info" title="More information about this page"><span>Page information</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" role="contentinfo" >
+	<ul id="footer-info">
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About">About C4 Engine Wiki</a></li>
+	<li id="footer-places-disclaimers"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-poweredbyico"><a href="javascript:if(confirm(%27https://www.mediawiki.org/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/%27" tppabs="https://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" tppabs="http://www.c4engine.com/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/></a></li>
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":64,"wgPageParseReport":{"limitreport":{"cputime":"http://www.c4engine.com/wiki/0.001","walltime":"http://www.c4engine.com/wiki/0.001","ppvisitednodes":{"value":8,"limit":1000000},"postexpandincludesize":{"value":15,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":2,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20240921180902","ttl":86400,"transientcontent":false}}});});</script>
+</body>
+</html>

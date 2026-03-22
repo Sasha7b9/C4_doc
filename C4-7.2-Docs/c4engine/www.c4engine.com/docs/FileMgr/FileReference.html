@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class FileReference</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/FileMgr/index.html">File Manager</a> &#x25BA; <a href="FileReference.html" tppabs="http://www.c4engine.com/docs/FileMgr/FileReference.html">class FileReference</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class FileReference</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Files.h</code></div>
+The <code>FileReference</code> class is used to represent one item in a list of files returned by the <code><a href="FileMgr_BuildFileMap.html" tppabs="http://www.c4engine.com/docs/FileMgr/FileMgr_BuildFileMap.html">FileMgr::BuildFileMap</a></code> function.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;FileReference&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;ListElement&lt;FileReference&gt;</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="FileReference_GetFileName.html" tppabs="http://www.c4engine.com/docs/FileMgr/FileReference_GetFileName.html">FileReference::GetFileName</a></code></td>
+<td class="tableright1">Returns the name stored in a <code><a href="FileReference.html" tppabs="http://www.c4engine.com/docs/FileMgr/FileReference.html">FileReference</a></code> object.
+</td></tr>
+<tr><td class="tableleft"><code><a href="FileReference_GetFileFlags.html" tppabs="http://www.c4engine.com/docs/FileMgr/FileReference_GetFileFlags.html">FileReference::GetFileFlags</a></code></td>
+<td class="tableright">Returns the flags associated with a <code><a href="FileReference.html" tppabs="http://www.c4engine.com/docs/FileMgr/FileReference.html">FileReference</a></code> object.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>FileReference(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*name,&nbsp;<span style="color: #0000FF">uint32</span>&nbsp;flags&nbsp;=&nbsp;0);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>name</code></td>
+<td class="tableright1">A pointer to the name of the file. If a path name is specified, it is interpreted relative to the application. Directory names preceding a file name or another directory name should be followed by a single forward slash character (/).
+</td></tr>
+<tr><td class="tableleft"><code>flags</code></td>
+<td class="tableright">The flags associated with the file.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>FileReference</code> class stores the name of a single file. If the <code>name</code> parameter points to a string longer than <code>kMaxFileNameLength</code>, then it is truncated to this length. Applications typically do not need to construct <code>FileReference</code> objects since they are returned in the list built by the <code><a href="FileMgr_BuildFileMap.html" tppabs="http://www.c4engine.com/docs/FileMgr/FileMgr_BuildFileMap.html">FileMgr::BuildFileMap</a></code> function.<br/><br/> The <code>flags</code> parameter can be a combination (through logical OR) of the following bit values.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kFileDirectory</code></td>
+<td class="tableright1">The file reference represents a directory.
+</td></tr>
+<tr><td class="tableleft"><code>kFileInvisible</code></td>
+<td class="tableright">The file is invisible.
+</td></tr>
+</table>
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="../Utilities/MapElement.html" tppabs="http://www.c4engine.com/docs/Utilities/MapElement.html">MapElement&lt;FileReference&gt;</a></code></td>
+<td class="tableright1"><code>FileReference</code> objects are stored in a map by the <code><a href="FileMgr_BuildFileMap.html" tppabs="http://www.c4engine.com/docs/FileMgr/FileMgr_BuildFileMap.html">FileMgr::BuildFileMap</a></code> function.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="File.html" tppabs="http://www.c4engine.com/docs/FileMgr/File.html">File</a></code>
+</p>
+<p><code><a href="FileMgr.html" tppabs="http://www.c4engine.com/docs/FileMgr/FileMgr.html">FileMgr</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 3.5 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5&amp;action=history"/>
+	<updated>2024-09-21T18:40:03Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5&amp;diff=83&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' January 8, 2014  * This release includes a utility function that automatically updates all world and model resources so that they use the newest format. The engine currently contains a significant amount of code that's necessary to support old formats going back many years, and this code will be removed from version 4.0. It will be necessary to run the update utility in version 3.5 before your world and model resources can be used in version...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_3.5&amp;diff=83&amp;oldid=prev"/>
+		<updated>2023-07-15T10:15:26Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; January 8, 2014  * This release includes a utility function that automatically updates all world and model resources so that they use the newest format. The engine currently contains a significant amount of code that&amp;#039;s necessary to support old formats going back many years, and this code will be removed from version 4.0. It will be necessary to run the update utility in version 3.5 before your world and model resources can be used in version...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' January 8, 2014&lt;br /&gt;
+&lt;br /&gt;
+* This release includes a utility function that automatically updates all world and model resources so that they use the newest format. The engine currently contains a significant amount of code that's necessary to support old formats going back many years, and this code will be removed from version 4.0. It will be necessary to run the update utility in version 3.5 before your world and model resources can be used in version 4.0. The utility is run by typing &amp;lt;code&amp;gt;updateworlds&amp;lt;/code&amp;gt; in the command console. This utility searches the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory hierarchy for all &amp;lt;code&amp;gt;.wld&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;.mdl&amp;lt;/code&amp;gt; resources, unpacks the data inside each one, and then saves them back out to the disk. '''Note that this will overwrite all existing &amp;lt;code&amp;gt;.wld&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;.mdl&amp;lt;/code&amp;gt; files in the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory. Please make a backup of your entire &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory before using this utility just in case something goes wrong.'''&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+* The engine now includes integrated support for the [[Open Data Description Language]] (OpenDDL). The general language parsing functionality is abstracted by the new [http://c4engine.com/docs/System/DataDescription.html &amp;lt;code&amp;gt;DataDescription&amp;lt;/code&amp;gt;] class, and data structures described by OpenDDL files are represented by the new [http://c4engine.com/docs/System/Structure.html &amp;lt;code&amp;gt;Structure&amp;lt;/code&amp;gt;] class hierarchy. Specific file formats based on OpenDDL are defined by creating a subclass of the &amp;lt;code&amp;gt;DataDescription&amp;lt;/code&amp;gt; class to represent the format as a whole and by creating subclasses of the &amp;lt;code&amp;gt;Structure&amp;lt;/code&amp;gt; class to represent each of the various data structures that can be used in the format.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;MeshGeometry&amp;lt;/code&amp;gt; class has been renamed to &amp;lt;code&amp;gt;GenericGeometry&amp;lt;/code&amp;gt;, and the &amp;lt;code&amp;gt;GeometryLevel&amp;lt;/code&amp;gt; class has been renamed to &amp;lt;code&amp;gt;Mesh&amp;lt;/code&amp;gt;. This was done because &amp;lt;code&amp;gt;Mesh&amp;lt;/code&amp;gt; objects don't necessarily have a one-to-one correspondence with levels of detail any more.&lt;br /&gt;
+&lt;br /&gt;
+* The console command history is now saved out when the engine config file is written (or when the engine exits, if necessary). It is restored the next time that the engine starts up, and commands previously entered into the console can be accessed with the up arrow key.&lt;br /&gt;
+&lt;br /&gt;
+* Under Windows, Visual C++ 2013 is now required to build C4, and under Linux, GCC 4.8.1 is now required to build C4. The engine uses newer features of the C++ language that are not supported by earlier versions of these compilers. (Visual C++ 2012 is still used for the PS4.)&lt;br /&gt;
+&lt;br /&gt;
+=== Graphics Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The engine contains a new ambient shading feature called ''radiosity spaces''. These are similar to the existing ambient spaces in that they store volumetric lighting information on a 3D grid. A radiosity space contains information about the directional reflected light intensity and color reaching each sample point inside the space. This provides an enormous boost in the realism of the ambient lighting in a level, and it affects dynamic objects passing through a radiosity space as well as static geometry.&lt;br /&gt;
+&lt;br /&gt;
+* The data for ambient spaces (and radiosity spaces) is now stored inside the world instead of in separate texture resources. After a world resource has been updated to version 3.5, the previously existing ambient texture resources should be deleted.&lt;br /&gt;
+&lt;br /&gt;
+* The built-in shading code for rendering halfspace fog on objects infinitely far away has been refined and now produces more accurate results. This effects skyboxes and any effects rendered at infinity.&lt;br /&gt;
+&lt;br /&gt;
+* This release includes preliminary support for Oculus Rift on Windows, and Mac and Linux support will follow. This has to be enabled by defining &amp;lt;code&amp;gt;C4OCULUS&amp;lt;/code&amp;gt; to be &amp;lt;code&amp;gt;1&amp;lt;/code&amp;gt; at the top of &amp;lt;code&amp;gt;C4Oculus.h&amp;lt;/code&amp;gt; and rebuilding the engine. (It's necessary to add the Oculus SDK include and library paths to the project settings as well.) To actually display stereo rendering, the system variable &amp;lt;code&amp;gt;$displayOculus&amp;lt;/code&amp;gt; needs to be set to &amp;quot;1&amp;quot; in the &amp;lt;code&amp;gt;engine.cfg&amp;lt;/code&amp;gt; file (in the user's roaming folder, see [[File Locations]]). When stereo rendering is active, the resolution of the display is always set to the native resolution of the Oculus Rift (1280&amp;amp;times;800 in the devkit). Vertical sync should be enabled to prevent tearing. ''This is preliminary support only.'' The overall performance and demo game functionality does not represent what the final version will be like. In particular, there is currently no sharing of computation between rendering for the left and right eyes, the visibility code has not been updated to account for two camera positions, and the game code simply adds head tracking on top of the mouse input.&lt;br /&gt;
+&lt;br /&gt;
+=== World Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* Trigger nodes now generate different events for activation and deactivation. There are two separate connector key settings that can be used to send these events to different controllers, or they may be sent to the same controller.&lt;br /&gt;
+&lt;br /&gt;
+* A camera shaking effect has been added to the core engine, and it can be used to rattle the camera for explosions, earthquakes, etc. The effect is implemented as part of a new &amp;lt;code&amp;gt;Adjuster&amp;lt;/code&amp;gt; class hierarchy that may be expanded in the future.&lt;br /&gt;
+&lt;br /&gt;
+* The distance occlusion capabilities of fog spaces have been enhanced. Distance occlusion in the horizontal and vertical directions (relative to the fog plane) can now be enabled separately, and the fog intensity at which objects are culled can now be explicitly specified.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Modifier&amp;lt;/code&amp;gt; class now has a virtual &amp;lt;code&amp;gt;operator ==&amp;lt;/code&amp;gt; function that should be overridden by all custom modifier subclasses. It's used by the World Editor to determine whether two instances have the same modifiers with the same settings.&lt;br /&gt;
+&lt;br /&gt;
+* The concept of transition zones has been removed from the engine. They have been rendered obsolete by the new multi-zone system, and they were always kind of a messy hack.&lt;br /&gt;
+&lt;br /&gt;
+=== Controllers ===&lt;br /&gt;
+&lt;br /&gt;
+* Two new controllers for light nodes have been added to the core engine, the Strobe Controller and the Flicker Controller. The Strobe Controller causes a light to alternate between two colors at random times within specified intervals, and it is suitable for things like electric lights. The Flicker Controller causes a light to continuously flicker in intensity and move around slightly about its original position, which is suitable for things like fire.&lt;br /&gt;
+&lt;br /&gt;
+* A new Shader Parameter Controller has been added to the core engine, and it can be assigned to geometry or effect nodes. It observes a controller attached to another node and forwards the output of that controller to a shader parameter for the geometry or effect node to which it is assigned. As an example, this could be used to vary the emission intensity of some geometry's material in sync with the strobing of a light source. The Shader Parameter Controller modifies a shader parameter only for its target node and not for all nodes using the same material.&lt;br /&gt;
+&lt;br /&gt;
+=== Physics ===&lt;br /&gt;
+&lt;br /&gt;
+* The cloth simulation has been more tightly integrated with the physics system, and a new rope simulation has been added to the engine. The rope controller is similar to the cloth controller, and it simulates a one-dimensional string of masses connected by spring-dampers to produce realistic ropes, cables, etc. Both the cloth controller and rope controller are subclasses of a new &amp;quot;deformable&amp;quot; controller that encapsulates common functionality. The mass-spring-damper simulation stages for multiple cloth and rope controllers can now run in parallel on multiple processors (whereas previously, only the geometry updates ran in parallel).&lt;br /&gt;
+&lt;br /&gt;
+* New settings have been added to the cloth controller to provide more control over the simulation, and these include damper settings and internal resistance for greater stability. The same settings are also available for the rope controller.&lt;br /&gt;
+&lt;br /&gt;
+* A rope geometry can be &amp;quot;attached&amp;quot; at either end (or both ends), and each attachment can be a fixed point in space, another node (which can be moving), or a direct subnode of a rigid body. If a rope is attached to a rigid body, then the rope simulation exerts a force on the rigid body through the tension in the rope.&lt;br /&gt;
+&lt;br /&gt;
+* Attachment settings for the cloth geometry have been moved to the cloth controller.&lt;br /&gt;
+&lt;br /&gt;
+* A rope attachment can be broken when a world is running by using the Break Attachment script function for the rope controller.&lt;br /&gt;
+&lt;br /&gt;
+* Both the cloth and rope controllers can now be warmed up when a world is loaded so that they have a chance to reach a steady state before being rendered.&lt;br /&gt;
+&lt;br /&gt;
+* The time before cloth and rope controllers automatically go to sleep when they haven't been rendered can now be specified by the user. When a cloth or rope controller goes to sleep automatically, it wakes back up the next time it is rendered. If a cloth or rope geometry is connected to an exclusive force field through its &amp;lt;code&amp;gt;%Wind&amp;lt;/code&amp;gt; connector, then any controller assigned to that force field is put to sleep and awoken at the same time as the cloth or rope controller. If either end of a rope is attached to a rigid body, then the rope will not automatically go to sleep unless the rigid body has gone to sleep. If the rigid body is awakened by the physics simulation, then it also awakens any ropes attached to it.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new set of nodes called &amp;quot;blockers&amp;quot; that can be used to block the motion of a cloth or rope geometry. A cloth or rope geometry can be connected to a blocker node through the built-in &amp;lt;code&amp;gt;%Blocker&amp;lt;/code&amp;gt; connector.&lt;br /&gt;
+&lt;br /&gt;
+* Cloth and rope simulations are now affected by all force fields that they intersect.&lt;br /&gt;
+&lt;br /&gt;
+=== Interface Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* Begin and end hover events are now generated for widgets when the mouse cursor is placed over them.&lt;br /&gt;
+&lt;br /&gt;
+* Anchor modes can now be set for the horizontal and vertical position of a widget. These let you specify that a widget should maintain its position relative to the boundaries of a window when the window is resized.&lt;br /&gt;
+&lt;br /&gt;
+=== Particle Systems ===&lt;br /&gt;
+&lt;br /&gt;
+* Emitter nodes can now have a precalculated height field associated with them. The values in the height field represent the actual height of world geometry relative to the bottom surface of the emitter. This information makes it possible to emit particles over the actual surface of the ground, for instance, instead of only at one end of an emitter.&lt;br /&gt;
+&lt;br /&gt;
+=== Scripting ===&lt;br /&gt;
+&lt;br /&gt;
+* Script controllers and widgets can now have multiple scripts attached to them, and each script can be run in response to a specific set of events. Scripts can also determine what type of event caused them to execute and take conditional execution paths based on the result.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+=== World Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* The World Editor now includes an import plugin that can read the [[Open Game Engine Exchange]] (OpenGEX) format. This is available, in addition to the Collada format, when Import Scene is selected from the World menu. The World Editor remembers which format was last imported and selects the same format by default the next time a scene is imported.&lt;br /&gt;
+&lt;br /&gt;
+* The volumetric lighting information stored in ambient spaces and radiosity spaces is now generated by using the popup menu in the [[Lights Page]].&lt;br /&gt;
+&lt;br /&gt;
+* There is a new command under the Edit menu called Select All In Zone. This is available when one or more zones are already selected, and it adds all nodes belonging to each zone's cell graphs to the selection as well as all subnodes of each zone. This effectively selects everything that is considered by the engine when the selected zones are processed for rendering, trigger activation, and force field application.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new command under the Node menu called Select Incoming Connecting Nodes. This selects all nodes in the scene having connectors that are connected to the current selection.&lt;br /&gt;
+&lt;br /&gt;
+* The Geometries page now includes a new rope geometry next to the existing cloth geometry. A rope geometry always has a rope controller assigned to it that can be configured under the Controller tab in the Node Info window.&lt;br /&gt;
+&lt;br /&gt;
+* The Physics page contains new tools for drawing blocker nodes (plate, box, cylinder, sphere, and capsule). Blocker nodes are used only by cloth and rope controllers.&lt;br /&gt;
+&lt;br /&gt;
+* If a node is hidden in an instanced world, it will now also be hidden in the instancing world when loaded in the World Editor.&lt;br /&gt;
+&lt;br /&gt;
+* The popup menu in the Worlds Page contains two new items that expand and collapse all instances of the selected worlds in scene graph viewports.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new popup menu in the Models Page that contains commands for selecting all or some models and for expanding/collapsing all models in scene graph viewports.&lt;br /&gt;
+&lt;br /&gt;
+* In the Worlds Page, double-clicking on a modifier preset now causes all of the instance nodes in the world having exactly the same set of modifiers with exactly the same settings to be selected.&lt;br /&gt;
+&lt;br /&gt;
+* In the Particles Page, double-clicking on a particle system now causes all particle systems in the world having the same type to be selected.&lt;br /&gt;
+&lt;br /&gt;
+* The Particles Page now has a popup menu that contains a couple new commands. One command selects all particle systems of the type of the one currently selected in the list of registered particle systems. A second commands generates height field data for the currently selected emitter nodes. An emitter must have the &amp;quot;Enable height field&amp;quot; box checked in order to have a height field generated.&lt;br /&gt;
+&lt;br /&gt;
+* The material pickup tool now cycles through multiple materials applied to a geometry node when the tool is used in the scene graph viewport. That is, if a geometry has more than one material, then clicking on the geometry in the scene graph viewport once will pick up the first material, clicking on the same geometry a second time will pick up the second material, etc.&lt;br /&gt;
+&lt;br /&gt;
+* The Spaces Page has been removed from the World Editor, and the tools for drawing the various types of spaces have been moved to other pages containing related tools. The shadow space and ambient space tools have been moved to the Lights Page, the acoustics space tool has been moved to the Sources Page, the occlusion space tool has been moved to the Portals Page, the paint space tool has been moved to the Paint Page, and the physics space tool has been moved to the Physics Page.&lt;br /&gt;
+&lt;br /&gt;
+* The Skyboxes Page has been renamed to the Atmosphere Page, and the fog space tool has been moved to this page.&lt;br /&gt;
+&lt;br /&gt;
+=== OpenGEX Importer ===&lt;br /&gt;
+&lt;br /&gt;
+* An importer plugin for the OpenGEX format is now included with the engine. OpenGEX export plugins (including source) for various modeling programs can be found on the official website at [http://opengex.org/ opengex.org].&lt;br /&gt;
+&lt;br /&gt;
+=== Shader Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* A new Fragment Depth process has been added to the Shader Editor. It outputs a scalar value representing the linear depth of the fragment being rendered in camera space.&lt;br /&gt;
+&lt;br /&gt;
+=== Script Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* The Script Editor now supports editing multiple scripts for the same object. A list of scripts is displayed on the left side of the editor window, and new scripts can be added at any time. Each script has a name (that is only used by the editor) and a set of events that it can handle. Scripts belonging to a script controller attached to a node can handle controller activation and controller deactivation events. Scripts attached to a widget can handle widget activation, widget change, and widget begin/end hover events. It's possible for a script to handle no events at all, in which case it can only be run by checking the &amp;quot;Execute script when loaded&amp;quot; box for a script belonging to a script controller.&lt;br /&gt;
+&lt;br /&gt;
+* The Script Editor maintains a separate selection and undo stack for each script. You can switch among scripts by clicking on them in the scripts list or using Ctrl-1 through Ctrl-9 as shortcuts. Double-clicking on a script opens the dialog in which the name and event types can be specified.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new Events tab in the Methods page. Event methods simply generate a boolean value indicating whether the specific type of event they represent is the type that caused the script to run. Event methods do not have any settings, and the Method Info window cannot be opened for them. When fibers are drawn from an event method to another method, the Script Editor automatically assigns a condition of True to the fiber so that all succeeding methods execute only if the event type matches.&lt;br /&gt;
+&lt;br /&gt;
+=== String Importer ===&lt;br /&gt;
+&lt;br /&gt;
+* The String Importer tool now expects input files to be in the OpenDDL format, but still using the &amp;lt;code&amp;gt;.txt&amp;lt;/code&amp;gt; extension. The string table format defines a single data structure called &amp;lt;code&amp;gt;Entry&amp;lt;/code&amp;gt; that can contain a &amp;lt;code&amp;gt;string&amp;lt;/code&amp;gt; primitive and/or other &amp;lt;code&amp;gt;Entry&amp;lt;/code&amp;gt; structures. Each &amp;lt;code&amp;gt;Entry&amp;lt;/code&amp;gt; structure must specify an &amp;lt;code&amp;gt;id&amp;lt;/code&amp;gt; property, which is a 32-bit unsigned integer that's usually written as a four-character code.&lt;br /&gt;
+&lt;br /&gt;
+* There is a conversion utility that will automatically create OpenDDL-formatted text files for all existing string table resources. The utility is run by typing &amp;lt;code&amp;gt;updatestrings&amp;lt;/code&amp;gt; in the command console. This utility searches the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory hierarchy for all &amp;lt;code&amp;gt;.str&amp;lt;/code&amp;gt; resources and uses the data in each one to create a corresponding &amp;lt;code&amp;gt;.txt&amp;lt;/code&amp;gt; file in the &amp;lt;code&amp;gt;Import&amp;lt;/code&amp;gt; directory hierarchy. '''Note that this will overwrite any existing &amp;lt;code&amp;gt;.txt&amp;lt;/code&amp;gt; files in the &amp;lt;code&amp;gt;Import&amp;lt;/code&amp;gt; directory that were previously used to create the string table resources. Please make a backup before using this utility just in case something goes wrong.'''&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_140&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Build 140 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_140&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_140&amp;action=history"/>
+	<updated>2024-09-21T18:42:59Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_140&amp;diff=47&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' September 27, 2007  * '''IMPORTANT:''' It is particularly important that you backup your resources before installing this build. The World Editor will throw away obsolete information when you open files, and worlds will be saved in an updated format.  * After installing build 140, you should open each of your worlds in the World Editor and then immediately save them to automatically update them to the new format. Resource sizes will decrease...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_140&amp;diff=47&amp;oldid=prev"/>
+		<updated>2023-07-15T09:47:43Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; September 27, 2007  * &amp;#039;&amp;#039;&amp;#039;IMPORTANT:&amp;#039;&amp;#039;&amp;#039; It is particularly important that you backup your resources before installing this build. The World Editor will throw away obsolete information when you open files, and worlds will be saved in an updated format.  * After installing build 140, you should open each of your worlds in the World Editor and then immediately save them to automatically update them to the new format. Resource sizes will decrease...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' September 27, 2007&lt;br /&gt;
+&lt;br /&gt;
+* '''IMPORTANT:''' It is particularly important that you backup your resources before installing this build. The World Editor will throw away obsolete information when you open files, and worlds will be saved in an updated format.&lt;br /&gt;
+&lt;br /&gt;
+* After installing build 140, you should open each of your worlds in the World Editor and then immediately save them to automatically update them to the new format. Resource sizes will decrease a bit depending on how many generic meshes each world contains. Models should also be opened in the Model Viewer and then immediately saved to update those as well.&lt;br /&gt;
+&lt;br /&gt;
+* If you have any worlds or models that have not been opened and saved for a very long time, then you should open them and save them in build 139 before installing build 140. Specifically, any resources not saved in build 112 or later need to be opened and saved in build 112&amp;amp;ndash;139 before installing build 140. Some very old backwards compatibility mechanisms have been removed from build 140, and this could cause information to be lost if resources aren't first updated in a previous build.&lt;br /&gt;
+&lt;br /&gt;
+* All geometry building code in the engine has been completed rewritten. The World Editor no longer relies on the existence of a separate source of polygon data for generic meshes, and a lot of support for obsolete mesh operations has been removed. Even though most of this rewrite pertains to internal functionality that is transparent to the user, the completion of this task opens the door for much faster implementation of new geometrical editor features.&lt;br /&gt;
+&lt;br /&gt;
+* Most of the new geometry building code is concentrated in the &amp;lt;code&amp;gt;[http://c4engine.com/docs/WorldMgr/GeometryLevel.html GeometryLevel]&amp;lt;/code&amp;gt; class, which represents a single level-of-detail for a geometry object. Non-primitive (generic) geometries are no longer implicitly rebuilt when certain operations are performed on them in the editor. Primitive geometries are rebuilt when they are changed, and they can be explicitly rebuilt by the user. Imported geometries are always generic, and normals for imported geometries are always preserved. Normals can be explicitly recalculated in the editor, however (see next item).&lt;br /&gt;
+&lt;br /&gt;
+* The Node menu in the World Editor has been split into a Node menu and a Geometry menu. The Geometry menu contains two new commands, Rebuild Primitive and Recalculate Normals.&lt;br /&gt;
+&lt;br /&gt;
+* The Rebuild Primitive command has limited utility in this build, but it will become a lot more useful in future builds when edits have been made to a primitive geometry and you want to restore it to its original state. One present use for this command is to restore natural texture coordinates after they've been altered.&lt;br /&gt;
+&lt;br /&gt;
+* The Recalculate Normals command recalculates all of the normals for selected geometries. This is useful for replacing bad normals on imported geometries. When normals are recalculated, so are the tangents.&lt;br /&gt;
+&lt;br /&gt;
+* A primitive geometry will no longer remember that it has been inverted by the Invert Geometry command. If a primitive is rebuilt, then the inversion will be lost. There is a new flag in the Get Info dialog for primitive geometries that causes them to be built inverted, and this should be used to permanently invert a primitive.&lt;br /&gt;
+&lt;br /&gt;
+* The CSG operations (intersection, union, subtraction) in the World Editor have received a major upgrade. They are now capable of handling much more complex geometry, and they generate very clean meshes using some new geometry optimization operations. There are still some precision-related issues with high-density meshes and complex topologies, but the CSG operations can do a lot more than they could before.&lt;br /&gt;
+&lt;br /&gt;
+* The resize tool has been completely rewritten for generic meshes.&lt;br /&gt;
+&lt;br /&gt;
+* A new Mesh Tools page has been added to the World Editor. It currently contains only one tool, and that tool selects individual surfaces on a geometry. (A surface is a group of faces which, as a whole, has a tangent space domain and material that is independent from other surfaces belonging to the geometry.) Clicking on a geometry with the surface selection tool will select the surface containing the triangle that you clicked on. The Shift key can be used to select multiple surfaces, and it's possible to select surfaces from multiple geometries simultaneously. The highlight color for selected surfaces is given by the &amp;lt;code&amp;gt;$surfaceColor&amp;lt;/code&amp;gt; system variable.&lt;br /&gt;
+&lt;br /&gt;
+* If individual surfaces are selected on a geometry, then the Set Material command in the Geometry menu now replaces materials only on those surfaces, leaving the materials on other surfaces unchanged. If a geometry is selected, but none of its individual surfaces are selected, then the Set Material command replaces the material for all of the geometry's surfaces.&lt;br /&gt;
+&lt;br /&gt;
+* The Select by Material command in the Edit menu now selects all of the individual surfaces using the current material instead of entire geometries.&lt;br /&gt;
+&lt;br /&gt;
+* A new Texture Mapping page has been added to the World Editor. It contains tools for offsetting, rotating, and scaling texture coordinates. It also contains type-in boxes for the texcoord generation transform and popup menus for the coordinates generation modes. This replaces the Texturing tab which used to exist in the Get Info dialog for a geometry node. (The Texturing tab has been removed.)&lt;br /&gt;
+&lt;br /&gt;
+* When an entire geometry is selected, the texture offset, rotate, and scale tools apply to all surfaces of the geometry. If individual surfaces of a geometry are selected, then texture operations only affect the selected surfaces.&lt;br /&gt;
+&lt;br /&gt;
+* The texcoord generation transform information appears when exactly one surface is selected. Two offsets (one for each of the s and t coordinates), two scales, and a single rotation value can be changed by entering new numbers in the text boxes, and the changes take affect immediately. For undo, the Texture Mapping page works like the Transform page: any contiguous sequence of inputs for offset, scale, rotation, or mode is treated as a single undoable action. Also like the Transform page, keyboard focus is ended whenever you click in a viewport, select a standard tool at the top of the editor window, or hit the Escape key.&lt;br /&gt;
+&lt;br /&gt;
+* Operations that combine multiple geometries into one now generate as many detail levels as the maximum number existing in any of the input geometries. The applies to the Merge Geometry, Intersect Geometry, and Union Geometry commands in the World Editor.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;FunnelGeometry&amp;lt;/code&amp;gt; primitive geometry type has been removed from the engine. The same type of shape will be achievable in the World Editor using a revolved path in an upcoming release. Any existing funnel geometries will disappear when a world containing them is opened in this build. To keep the funnels, convert each one to a generic mesh using a previous build. (Select all of them and hit Ctrl-Shift-C in the World Editor.)&lt;br /&gt;
+&lt;br /&gt;
+* Eight flags have been added to the cloth geometry to control which vertices are fixed in position. This is a temporary solution that allows control over whether each of the four corners or four edges of a cloth geometry is fixed. The flags appear in the Get Info dialog under the Geometry tab.&lt;br /&gt;
+&lt;br /&gt;
+* The utility window that has been called &amp;quot;Graphics&amp;quot; is now called &amp;quot;Stats&amp;quot;, and the &amp;lt;code&amp;gt;graf&amp;lt;/code&amp;gt; command has been changed to &amp;lt;code&amp;gt;stat&amp;lt;/code&amp;gt;. This window now displays four new stats, two for textures and two for sound sources. For textures, the window shows the current number of textures loaded and the total amount of memory used by the textures. For sound sources, the window shows the current number of playing sources and the number of those sources that are currently engaged. (A source is considered playing if it would be audible when you're close enough to it, and it's engaged when you actually are close enough to it for the engine to need to send it through the Sound Manager.&lt;br /&gt;
+&lt;br /&gt;
+* Additional mouse wheel support has been added in various places. In particular, the mouse wheel will now scroll the pages in the World Editor and the materials in the Material Manager.&lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;Stop()&amp;lt;/code&amp;gt; function to the &amp;lt;code&amp;gt;[http://c4engine.com/docs/Controller/Method.html Method]&amp;lt;/code&amp;gt; class. This function should be called from within the method's &amp;lt;code&amp;gt;Execute()&amp;lt;/code&amp;gt; function to indicate that the method's subnodes should not be executed, effectively stopping execution of the script along the branch containing the method for which &amp;lt;code&amp;gt;Stop()&amp;lt;/code&amp;gt; is called.&lt;br /&gt;
+&lt;br /&gt;
+* Added the static &amp;lt;code&amp;gt;Sleep()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Yield()&amp;lt;/code&amp;gt; functions to the &amp;lt;code&amp;gt;[http://c4engine.com/docs/System/Thread.html Thread]&amp;lt;/code&amp;gt; class. These functions can be used to temporarily suspend execution of the current thread.&lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;Complete()&amp;lt;/code&amp;gt; function to the &amp;lt;code&amp;gt;Thread&amp;lt;/code&amp;gt; class. This function can be used to poll for the completion of thread execution.&lt;br /&gt;
+&lt;br /&gt;
+* The Textue Importer dialog contains a new check box that causes the green channel of the output texture to be inverted. This is useful for changing handedness on precomputed normal maps. The command line switch is &amp;lt;code&amp;gt;-invgreen&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* In the World Editor, holding in the Ctrl key (or Cmd key on the Mac) while clicking in the Selection Mask page will now cause the mask buttons for all other node types to be unselected.&lt;br /&gt;
+&lt;br /&gt;
+* The Memory Manager has been upgraded. It is now safe to allocate or deallocate memory from any thread.&lt;br /&gt;
+&lt;br /&gt;
+* The C4SIMD define has been removed from the engine. SSE code will now always be compiled, but the engine will only call SSE functions if the processor supports SSE2 instructions.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

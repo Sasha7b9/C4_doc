@@ -1,0 +1,757 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/Importing_a_Texture by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="Texture Importer,C4 Menu,Command Console,Creating a Terrain Palette,Material Manager" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>Texture Importer - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Texture_Importer";
+var wgTitle = "Texture Importer";
+var wgAction = "view";
+var wgArticleId = "1287";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "9713";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Texture_Importer">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Texture Importer</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub">(Redirected from <a href="http://www.terathon.com/wiki/index.php?title=Importing_a_Texture&amp;redirect=no" title="Importing a Texture">Importing a Texture</a>)</div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p>Texture maps used by the C4 Engine have the <code>.tex</code> file extension. These texture map resources are created by importing texture images from a subdirectory of the <code>Import</code> directory using the Texture Importer tool.
+</p><p>The Texture Importer tool supports <code>.tga</code> files, which may be in 8-bit grayscale, 16-bit color, 24-bit color, or 32-bit color format, with or without RLE compression.
+</p><p>To import a texture, either choose Import Texture from the <a href="C4_Menu.html" title="C4 Menu"> C4 menu</a> or invoke the <code>itexture</code> [<i>name</i>] command in the <a href="Command_Console.html" title="Command Console">Command Console</a>. If the menu command is chosen, or the name is omitted from the console command, then the Texture Importer tool will open an Import Texture dialog that lets you select a <code>.tga</code> file from a subdirectory of the <code>Import</code> directory. After selecting an image file to import, the Import dialog is opened with the default settings shown in the following figure. These default settings are usually appropriate for ordinary color texture maps.
+</p>
+<table style="border: solid 1px #444; background-color: #FFA; padding: 12px;">
+<tr>
+<td><b>Note:</b> All resources imported into the C4 Engine should be placed in a <i>subfolder</i> of the Import folder, not directly in the Import folder itself.
+</td></tr></table>
+<p><br />
+<a href="Image_Itexture.html" class="image" title="Image:itexture.png"><img alt="Image:itexture.png" src="../images/1/1b/Itexture.png" width="576" height="576" border="0" /></a>
+</p><p><br />
+</p>
+<a name="Texture_Format"></a><h2> <span class="mw-headline"> Texture Format </span></h2>
+<table style="border: solid 1px #444; border-spacing: 0px; border-collapse: collapse;">
+<tr>
+<td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 24px 2px 6px;">
+<p>Setting
+</p>
+</td><td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 6px 2px 6px;">
+<p>Description
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Texture&nbsp;type</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Selects the OpenGL texture target for this texture map. It can be one of the following values.
+</p>
+<ul><li> <b>2D</b> An ordinary 2D texture whose coordinates lie in the range [0, 1] in both dimensions. The width and height of a 2D texture must be a power of two.
+</li><li> <b>RECT</b> A rectangle texture whose coordinates lie in the range [0, width] and [0, height]. The width and height do not need to be a power of two. The rectangle texture type should not be used for texture maps that are to be used in a 3D setting because they will adversely affect performance when minified. Rectangle textures are primary used for things like user interface images that appear in a 2D setting.
+</li><li> <b>CUBE</b> A cube map texture. <a href="#Cube_Maps" title="">See below</a>.
+</li></ul>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Image&nbsp;format</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Selects the output pixel format for this texture map. It can be one of the following values.
+</p>
+<ul><li> <b>RGBA Color</b> The image has four channels: red, green, blue, and alpha.
+</li><li> <b>Luminance Alpha</b> The image has two channels: grayscale luminance and alpha.
+</li><li> <b>Luminance</b> The image has one grayscale channel, and the alpha is always interpreted to be the maximum value.
+</li><li> <b>Intensity</b> The image has one grayscale channel, and the alpha is always interpreted to be equal to the gray value.
+</li></ul>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Alpha&nbsp;channel</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Specifies what kind of information is stored in the alpha channel of the texture. It can be one of the following values. (If alpha channel information is specified, then the TGA file being imported must use a 32-bit format.)
+</p>
+<ul><li> <b>None</b> There is no information stored in the alpha channel.
+</li><li> <b>Transparency</b> The alpha channel contains transparency information.
+</li><li> <b>Gloss</b> The alpha channel contains a gloss map. Whenever a texture containing a gloss map in the alpha channel is used in a material, any specularity, environment map, or reflection term is modulated by the gloss map.
+</li><li> <b>Opacity</b> The alpha channel contains an opacity map. Whenever a texture containing an opacity map in the alpha channel is used in a material, the opacity is used to linearly interpolate between the diffuse term and the refraction term.
+</li><li> <b>Glow</b> The alpha channel contains glow intensity values that are used by the glow post-processing effect. This should only be used for emission maps.
+</li><li> <b>Occlusion</b> The alpha channel will contain ambient occlusion information. This can be a precomputed channel, or it can be generated when the texture is imported. See the description of the <b>Calculate ambient occlusion in alpha</b> box below.
+</li><li> <b>Parallax</b> The alpha channel of the import texture contains a height map from which parallax mapping information should be calculated. This is selected automatically if the <b>Generate parallax data</b> box is checked. If the alpha channel of a normal map in a material contains parallax information, the parallax mapping is applied during all rendering passes.
+</li></ul>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>S&nbsp;wrap&nbsp;mode / T&nbsp;wrap&nbsp;mode</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Specifies what wrap modes to apply to the texture map. They can each be one of the following values.
+</p>
+<ul><li> <b>Repeat</b> The texture is addressed using the <code>GL_REPEAT</code> wrap mode.
+</li><li> <b>Clamp</b> The texture is addressed using the <code>GL_CLAMP_TO_EDGE</code> wrap mode. If this mode is not available, the <code>GL_CLAMP</code> is used instead.
+</li><li> <b>Clamp to Border</b> The texture is addressed using the <code>GL_CLAMP_TO_BORDER</code> wrap mode.
+</li><li> <b>Mirror Repeat</b> The texture is addressed using the <code>GL_MIRRORED_REPEAT</code> wrap mode.
+</li><li> <b>Mirror Clamp</b> The texture is addressed using the <code>GL_MIRROR_CLAMP_TO_EDGE</code> wrap mode.
+</li><li> <b>Mirror Clamp to Border</b> The texture is addressed using the <code>GL_MIRROR_CLAMP_TO_BORDER</code> wrap mode.
+</li></ul>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Use&nbsp;block&nbsp;compression</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The output texture is stored in a hardware-recognized compression format. This should be turned on for almost all texture maps for best performance and memory usage. (This setting is ignored if the image format is not RGBA Color or if generating a normal map with parallax data.)
+</p>
+</td></tr></table>
+<p><br />
+</p>
+<a name="Texture_Flags"></a><h2> <span class="mw-headline"> Texture Flags </span></h2>
+<table style="border: solid 1px #444; border-spacing: 0px; border-collapse: collapse;">
+<tr>
+<td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 24px 2px 6px;">
+<p>Setting
+</p>
+</td><td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 6px 2px 6px;">
+<p>Description
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Disable&nbsp;filtering</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>No filtering is applied to this texture map, and point sampling is used instead.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Disable&nbsp;anisotropic&nbsp;filtering</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Anisotropic filtering is disabled for this texture map, but ordinary bilinear or trilinear filtering is still applied.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Require&nbsp;high-resolution&nbsp;rendering</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The texture map is always rendered using the highest resolution available, even if the user has selected a lower-quality option in the Graphics Settings dialog.
+</p>
+</td></tr></table>
+<p><br />
+</p>
+<a name="Map.2FChannel_Generation"></a><h2> <span class="mw-headline"> Map/Channel Generation </span></h2>
+<table style="border: solid 1px #444; border-spacing: 0px; border-collapse: collapse;">
+<tr>
+<td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 24px 2px 6px;">
+<p>Setting
+</p>
+</td><td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 6px 2px 6px;">
+<p>Description
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Calculate&nbsp;normal&nbsp;map</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The import texture is treated as a height map from which a normal map should be calculated. Each height is multiplied by the value specified in the <b>Height map scale</b> field and used to determine the normal vector at each pixel.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Generate&nbsp;parallax&nbsp;data</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>When checked in addition to <b>Calculate normal map</b>, the height in the alpha channel is converted into special parallax data used by the engine. The same height map must be stored in all four channels of the import texture.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Generate&nbsp;horizon&nbsp;maps</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>When checked in addition to <b>Calculate normal map</b>, two additional textures are generated that contain horizon map data. These textures have the same name as the normal map, but with the suffixes <code>-h1</code> and <code>-h2</code>. Horizon maps are applied to a material when the <b>Enable horizon mapping</b> box is checked in the <a href="Material_Manager.html" title="Material Manager">Material Manager</a>.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Calculate&nbsp;ambient&nbsp;occlusion&nbsp;in&nbsp;alpha</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The heights stored in the alpha channel are scaled by the value specified in the <b>Height map scale</b> field and used to calculate an ambient occlusion factor that is applied in the ambient rendering pass.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Height&nbsp;map&nbsp;scale</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Specifies a scale that is applied to all height values. A scale factor of 1.0 corresponds to the width of a single texel in the import texture.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Height&nbsp;map&nbsp;channel</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Selects a channel to be used as the source of the height map for all calculations.
+</p>
+</td></tr></table>
+<p>In order to access all features of the engine, normal maps should be created by the C4 texture importer, not by external programs. You can still use normal maps generated outside C4, but if you do, then you can't have associated parallax maps, horizon maps, or ambient occlusion maps. External normal maps can still be block compressed, but you must check the <b>Treat RGB channels as vector</b> box.
+</p>
+<a name="Options"></a><h2> <span class="mw-headline"> Options </span></h2>
+<table style="border: solid 1px #444; border-spacing: 0px; border-collapse: collapse;">
+<tr>
+<td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 24px 2px 6px;">
+<p>Setting
+</p>
+</td><td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 6px 2px 6px;">
+<p>Description
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Output&nbsp;file&nbsp;name</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Specifies the name of the texture file that will be created. (It should not include the extension.) This usually does not need to be changed from the default setting.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Calculate&nbsp;mipmap&nbsp;levels</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>All mipmap levels for this texture are calculated and stored in the texture resource. Turning this off for textures that are used in a 3D environment can have a negative effect on performance.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Bleed&nbsp;colors&nbsp;for&nbsp;alpha&nbsp;test</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Causes texels that would fail the alpha test to pick up the color of the nearest texel that passes the alpha test. This process helps remove borders that can appear when alpha-tested textures are rendered. When this setting is checked, the alpha values in lower-resolution mipmaps are also boosted to prevent fade-out of alpha-tested geometries.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Treat&nbsp;RGB&nbsp;channels&nbsp;as&nbsp;vector</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Mipmaps are calculated for vector data instead of color data. This is useful if you're importing a precomputed normal map as opposed to calculating a normal map from a height field. This box must be checked in order to get block compression for an externally generated normal map.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Invert&nbsp;green&nbsp;channel</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The green channel of the import texture image is inverted. This is useful for changing handedness in externally generated normal maps.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Scale&nbsp;texture&nbsp;to&nbsp;half&nbsp;resolution</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The import texture image is reduced to half size in each direction before being processed.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Scale&nbsp;horizon&nbsp;maps&nbsp;to&nbsp;half&nbsp;resolution</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Horizon maps are generated from an import texture image that has been reduced to half size in each direction. Using this option can usually save a significant amount of memory without a noticeable reduction in rendering quality. (If <b>Scale texture to half resolution</b> is also checked, then both scales are applied, so horizon maps are only one-quarter the size in each direction.)
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Flip&nbsp;image&nbsp;vertically</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The import texture image is flipped in the vertical direction before being processed.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Remember&nbsp;settings</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Generates a <code>.cfg</code> file in the directory containing the import texture that will be recognized the next time the texture is imported and used to populate the Import Texture dialog with the previous settings.
+</p>
+</td></tr></table>
+<p><br />
+</p>
+<a name="Skybox_Haze"></a><h2> <span class="mw-headline"> Skybox Haze </span></h2>
+<table style="border: solid 1px #444; border-spacing: 0px; border-collapse: collapse;">
+<tr>
+<td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 24px 2px 6px;">
+<p>Setting
+</p>
+</td><td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 6px 2px 6px;">
+<p>Description
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Haze&nbsp;color</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>When checked, the haze color is applied at the bottom of the texture image with the appropriate warping for use as a skybox texture.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Haze&nbsp;elevation</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Specifies the relative height to which the haze extends above the horizon. (Ignored if <b>Haze color</b> is not checked.)
+</p>
+</td></tr></table>
+<p><br />
+</p>
+<a name="Cursor_Data"></a><h2> <span class="mw-headline"> Cursor Data </span></h2>
+<table style="border: solid 1px #444; border-spacing: 0px; border-collapse: collapse;">
+<tr>
+<td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 24px 2px 6px;">
+<p>Setting
+</p>
+</td><td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 6px 2px 6px;">
+<p>Description
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><b>Image&nbsp;center&nbsp;X / Image&nbsp;center&nbsp;Y</b>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>If importing a cursor texture, these settings specify the coordinates, in pixels, where the center, or <b>hot spot</b>, of the cursor is located.
+</p>
+</td></tr></table>
+<p><br />
+</p>
+<a name="Cube_Maps"></a><h2> <span class="mw-headline"> Cube Maps </span></h2>
+<p>A cube map can be imported by creating a single TGA file that contains all six faces of the cube. Each cube face must be square and have a width that is a power of two. The importer supports the four layouts shown in the following table. Each face must have the correct orientation in order for the cube map to work properly, and these are shown in the figures. The <i>z</i> axis always represents the up direction, and the direction specified in the center of each face represents the axis that points into the image.
+</p>
+<table style="border: solid 1px #444; border-spacing: 0px; border-collapse: collapse;">
+<tr>
+<td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 24px 2px 6px;">
+<p>Layout
+</p>
+</td><td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 6px 2px 6px;">
+<p>Description
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><a href="Image_HCross.html" class="image" title="Image:HCross.png"><img alt="Image:HCross.png" src="../images/6/6e/HCross.png" width="400" height="300" border="0" /></a>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p><b>Horizontal Cross.</b> The image should be exactly 4 faces in width and 3 faces in height.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><a href="Image_VCross.html" class="image" title="Image:VCross.png"><img alt="Image:VCross.png" src="../images/1/1f/VCross.png" width="300" height="400" border="0" /></a>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p><b>Vertical Cross.</b> The image should be exactly 3 faces in width and 4 faces in height.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><a href="Image_HStrip.html" class="image" title="Image:HStrip.png"><img alt="Image:HStrip.png" src="../images/6/60/HStrip.png" width="600" height="100" border="0" /></a>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p><b>Horizontal Strip.</b> The image should be exactly 6 faces in width and 1 face in height.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><a href="Image_VStrip.html" class="image" title="Image:VStrip.png"><img alt="Image:VStrip.png" src="../images/a/a3/VStrip.png" width="100" height="600" border="0" /></a>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p><b>Vertical Strip.</b> The image should be exactly 1 face in width and 6 faces in height.
+</p>
+</td></tr></table>
+<p><br />
+</p>
+<a name="Command_Line"></a><h2> <span class="mw-headline"> Command Line </span></h2>
+<p>The <code>itexture</code> command can take parameters corresponding to all of the settings in the texture import dialog. The general form of this command is as follows.
+</p><p><code>itexture </code><i>name</i> <i>params</i>
+</p><p>If any parameters are specified on the command line, then the import dialog is not displayed. This facilitates batch texture importing by allowing <code>itexture</code> commands to be executed from a <code>.cfg</code> file.
+</p><p>The parameters accepted by the <code>itexture</code> command are listed in the following table. Multiple parameters should be separated by a space. Any unrecognized parameters are ignored.
+</p>
+<table style="border: solid 1px #444; border-spacing: 0px; border-collapse: collapse;">
+<tr>
+<td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 24px 2px 6px;">
+<p>Parameter
+</p>
+</td><td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 6px 2px 6px;">
+<p>Description
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-o </code> <i>name</i>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The name of the output file is given by <i>name</i>. (The extension should not be included in the file name.) By default, the output path is the same as the input path, except that it's in the <code>Data</code> directory instead of the <code>Import</code> directory.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-type </code> <i>id</i>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The texture type is given by <i>id</i>. The value of <i>id</i> must be <code>2D</code>, <code>RECT</code>, or <code>CUBE</code>. The default is <code>2D</code>.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-format </code> <i>id</i>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The image format is given by <i>id</i>. Accepted values are <code>RGBA</code>, <code>RDGN</code>, <code>"RED "</code>, <code>LMAL</code>, <code>LUMI</code>, and <code>INTS</code>. The default is <code>RGBA</code>. (To specify the single-channel red format, the value must be enclosed in quotes and must have a space at the end.)
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-alpha </code> <i>id</i>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The alpha channel data type is given by <i>id</i>. Accepted values are <code>ALFA</code>, <code>GLOS</code>, <code>OPAC</code>, <code>GLOW</code>, and <code>OCCL</code>. By default, the alpha channel is considered empty.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-swrap </code> <i>id</i>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The S wrap mode is given by <i>id</i>. Accepted values are <code>REPT</code>, <code>CLMP</code>, <code>CBDR</code>, <code>MRPT</code>, <code>MCLP</code>, and <code>MCBD</code>. The default is <code>REPT</code>.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-twrap </code> <i>id</i>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The T wrap mode is given by <i>id</i>. Accepted values are the same as for the S wrap mode. The default is <code>REPT</code>.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-compress</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Block compression is applied.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-nofilter</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Disable filtering.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-noaniso</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Disable anisotropic filtering.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-highres</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Require high-resolution rendering.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-normal</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Calculate normal map.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-parallax</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Generate parallax data.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-horizon</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Generate horizon maps.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-occlusion</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Calculate ambient occlusion in alpha.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-scale </code><i>value</i>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Set the height map scale to <i>value</i>. The default is 8.0.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-height </code><i>channel</i>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Get the height map from <i>channel</i>, which must be 0&ndash;3, representing (in order) red, green, blue, or alpha. The default is 0 (red channel).
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-nomipmaps</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Do not calculate mipmap levels.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-bleed</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Bleed colors for alpha test.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-vector</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Treat RGB channels as vector.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-invgreen</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Invert green channel.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-half</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Scale texture to half resolution.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-halfhorizon</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Scale horizon maps to half resolution.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-flip</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Flip image vertically.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-haze </code><i>elevation</i> <i>red</i> <i>green</i> <i>blue</i>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Apply skybox haze using the color given by the floating-point values <i>red</i>, <i>green</i>, and <i>blue</i> and the elevation given by <i>elevation</i> (in the range [1,255]).
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-x <i>coord</i></code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Set the cursor center <i>x</i> coordinate to <i>coord</i>.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>-y <i>coord</i></code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>Set the cursor center <i>y</i> coordinate to <i>coord</i>.
+</p>
+</td></tr></table>
+<p><br />
+</p>
+<a name="See_Also"></a><h2> <span class="mw-headline"> See Also </span></h2>
+<ul><li> <a href="Material_Manager.html" title="Material Manager">Material Manager</a>
+</li><li> <a href="Creating_a_Terrain_Palette.html" title="Creating a Terrain Palette">Creating a Terrain Palette</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 471/1000000
+Post-expand include size: 27646/2097152 bytes
+Template argument size: 12352/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:1287-0!1!0!!en!2!edit=0 and timestamp 20150118100217 -->
+<div class="printfooter">
+Retrieved from "<a href="Texture_Importer.html">http://www.terathon.com/wiki/index.php/Texture_Importer</a>"</div>
+			<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks"><a href="Special_Categories.html" title="Special:Categories">Categories</a>:&#32;<span dir='ltr'><a href="Category_Shaders.html" title="Category:Shaders">Shaders</a></span> | <span dir='ltr'><a href="Category_Tools.html" title="Category:Tools">Tools</a></span></div></div>			<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="Texture_Importer.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:Texture_Importer&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=Texture_Importer&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=Texture_Importer&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=Texture_Importer" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Texture_Importer.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Texture_Importer.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=Texture_Importer&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=Texture_Importer&amp;oldid=9713" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 3 September 2013, at 07:45.</li>
+				<li id="viewcount">This page has been accessed 33,870 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.564 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/Importing_a_Texture by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:26 GMT -->
+</html>

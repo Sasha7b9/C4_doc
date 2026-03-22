@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.5.5&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 2.5.5 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.5.5&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.5.5&amp;action=history"/>
+	<updated>2024-09-21T18:41:03Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.5.5&amp;diff=71&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' April 14, 2011  == Core Engine ==  === Graphics ===  * The shadow mapping capabilities used by the landscape light have been redesigned. There is no longer any restriction on geometry size relative to the section sizes for a landscape light. This allows smaller section sizes closer to the camera, which produce higher-resolution shadow maps, without having to worry about objects spanning more than two consecutive sections.  * The timer query...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.5.5&amp;diff=71&amp;oldid=prev"/>
+		<updated>2023-07-15T10:06:45Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; April 14, 2011  == Core Engine ==  === Graphics ===  * The shadow mapping capabilities used by the landscape light have been redesigned. There is no longer any restriction on geometry size relative to the section sizes for a landscape light. This allows smaller section sizes closer to the camera, which produce higher-resolution shadow maps, without having to worry about objects spanning more than two consecutive sections.  * The timer query...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' April 14, 2011&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+=== Graphics ===&lt;br /&gt;
+&lt;br /&gt;
+* The shadow mapping capabilities used by the landscape light have been redesigned. There is no longer any restriction on geometry size relative to the section sizes for a landscape light. This allows smaller section sizes closer to the camera, which produce higher-resolution shadow maps, without having to worry about objects spanning more than two consecutive sections.&lt;br /&gt;
+&lt;br /&gt;
+* The timer query mechanism (for timing on the GPU) has been reworked to prevent a decrease in performance that could previously occur when the Rate window was open.&lt;br /&gt;
+&lt;br /&gt;
+=== Interface Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* Many of the &amp;lt;code&amp;gt;Widget&amp;lt;/code&amp;gt; subclasses now expose settings for the colors of the different parts of the widgets, such as the background color, border color, highlight color, etc. Each widget has a default color type that usually corresponds to one of the more specific color types, and most widgets also support one or more additional color types. Some color types can have default values that are read from system variables, and these have a check box next to them in the settings. If the box is not checked, then the default color is used.&lt;br /&gt;
+&lt;br /&gt;
+* The Get Widget Color and Set Widget Color controller functions (accessible from the Call Controller Function script method) can now target any of the color types support by a widget.&lt;br /&gt;
+&lt;br /&gt;
+* Two new built-in controller functions, Get Widget Value and Set Widget Value, have been added to the scripting system. These can get and set values for the check, radio, progress, slider, scroll, list, multipane, and popup menu widgets.&lt;br /&gt;
+&lt;br /&gt;
+* The Pulsate and Fade mutators can now target any of the color types supported by a widget.&lt;br /&gt;
+&lt;br /&gt;
+* The Pulsate mutator now supports three blend modes: interpolate (the default), add, and multiply. The interpolate mode smoothly interpolates between the widget color ''c''&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt; and the pulsate color ''c''&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt; based on the time parameter ''t'', where ''t'' is always in the range 0 to 1. The resulting color is ''c''&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt; * (1 - ''t'') + ''c''&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt; * ''t'', and this is the same effect that the pulsate mutator had in earlier versions. The add mode causes the pulsate color to be fractionally added to the widget color, producing the color ''c''&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt; + ''c''&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt; * ''t''. The multiply mode causes the widget color to be multiplied by the smooth interpolation between white and the pulsate color to produce ''c''&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt; * (white * (1 - ''t'') + ''c''&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt; * ''t'').&lt;br /&gt;
+&lt;br /&gt;
+=== Effects ===&lt;br /&gt;
+&lt;br /&gt;
+* The marking effect has a new flag called &amp;lt;code&amp;gt;kMarkingDepthWrite&amp;lt;/code&amp;gt; that enables writing to the depth buffer for a marking. This was previously always on if the &amp;lt;code&amp;gt;kMarkingLight&amp;lt;/code&amp;gt; flag was specified, but now needs to be specified separately in order for a marking to modify the depth buffer.&lt;br /&gt;
+&lt;br /&gt;
+=== Math Library ===&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;GetSineTable()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;GetCosineTable()&amp;lt;/code&amp;gt; functions have been replaced by a single &amp;lt;code&amp;gt;GetTrigTable()&amp;lt;/code&amp;gt; function. This table is an array of &amp;lt;code&amp;gt;Vector2D&amp;lt;/code&amp;gt; objects for which the &amp;lt;i&amp;gt;x&amp;lt;/i&amp;gt; component contains the cosine and the &amp;lt;i&amp;gt;y&amp;lt;/i&amp;gt; component contains the sine of the array index times 2&amp;amp;pi;/256.&lt;br /&gt;
+&lt;br /&gt;
+=== World Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Block&amp;lt;/code&amp;gt; class has been renamed to the &amp;lt;code&amp;gt;TerrainBlock&amp;lt;/code&amp;gt; class. This was done because there will be a &amp;lt;code&amp;gt;WaterBlock&amp;lt;/code&amp;gt; class in a future release.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+=== Collada Importer ===&lt;br /&gt;
+&lt;br /&gt;
+* The Collada Importer is now able to handle more cases in which joint nodes (bones) are not properly indicated by the exporter that wrote a &amp;lt;code&amp;gt;DAE&amp;lt;/code&amp;gt; file.&lt;br /&gt;
+&lt;br /&gt;
+* Extra functionality has been added to the Collada Importer to prevent the fusion of vertices with opposing tangent vectors, but with otherwise identical positions and texture coordinates.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

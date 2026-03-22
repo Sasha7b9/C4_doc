@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/Geometry_Internals by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:25 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="Geometry Internals,World Editor" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>Geometry Internals - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Geometry_Internals";
+var wgTitle = "Geometry Internals";
+var wgAction = "view";
+var wgArticleId = "1975";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "9923";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+<style type="text/css">/*<![CDATA[*/
+.source-cpp {line-height: normal;}
+.source-cpp li, .source-cpp pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for cpp
+ * CSS class: source-cpp, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.cpp.source-cpp .de1, .cpp.source-cpp .de2 {font: normal normal 10pt/12pt monospace; margin:0; padding:0; background:none; vertical-align:top; -moz-tab-size: 4; -webkit-tab-size: 4; -o-tab-size: 4; tab-size: 4;}
+.cpp.source-cpp  {font-family:monospace;}
+.cpp.source-cpp .imp {font-weight: bold; color: red;}
+.cpp.source-cpp li, .cpp.source-cpp .li1 {font-weight: normal; vertical-align:top;}
+.cpp.source-cpp .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.cpp.source-cpp .li2 {font-weight: bold; vertical-align:top;}
+.cpp.source-cpp .kw1 {color: #0000ff;}
+.cpp.source-cpp .kw2 {color: #0000ff;}
+.cpp.source-cpp .kw3 {color: #0000ff;}
+.cpp.source-cpp .kw4 {color: #0000ff;}
+.cpp.source-cpp .co1 {color: #666666;}
+.cpp.source-cpp .co2 {color: #666666;}
+.cpp.source-cpp .coMULTI {color: #666666;}
+.cpp.source-cpp .es0 {color: #000000;}
+.cpp.source-cpp .br0 {color: #000000;}
+.cpp.source-cpp .sy0 {color: #000000;}
+.cpp.source-cpp .sy1 {color: #000000;}
+.cpp.source-cpp .sy2 {color: #000000;}
+.cpp.source-cpp .sy3 {color: #000000;}
+.cpp.source-cpp .sy4 {color: #000000;}
+.cpp.source-cpp .st0 {color: #000000;}
+.cpp.source-cpp .nu0 {color: #000000;}
+.cpp.source-cpp .nu6 {color: #000000;}
+.cpp.source-cpp .nu8 {color: #000000;}
+.cpp.source-cpp .nu12 {color: #000000;}
+.cpp.source-cpp .nu16 {color:#000000;}
+.cpp.source-cpp .nu17 {color:#000000;}
+.cpp.source-cpp .nu18 {color:#000000;}
+.cpp.source-cpp .nu19 {color:#000000;}
+.cpp.source-cpp .me1 {color: #000000;}
+.cpp.source-cpp .me2 {color: #000000;}
+.cpp.source-cpp .ln-xtra, .cpp.source-cpp li.ln-xtra, .cpp.source-cpp div.ln-xtra {background-color: #ffc;}
+.cpp.source-cpp span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Geshi.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+/*]]>*/
+</style>		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Geometry_Internals">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Geometry Internals</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<div class="thumb tright"><div class="thumbinner" style="width:402px;"><a href="Image_GeoObjectAndNodeDependencyGraph2.html" class="image" title="Figure 1. Relationships between Geometry Nodes, Geometry Objects, and Material Objects."><img alt="Figure 1. Relationships between Geometry Nodes, Geometry Objects, and Material Objects." src="../images/thumb/c/cb/GeoObjectAndNodeDependencyGraph2.png/400px-GeoObjectAndNodeDependencyGraph2.png" width="400" height="300" border="0" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="Image_GeoObjectAndNodeDependencyGraph2.html" class="internal" title="Enlarge"><img src="../skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><b>Figure 1.</b> Relationships between Geometry Nodes, Geometry Objects, and Material Objects.</div></div></div>
+<p>In the C4 Engine, every piece of geometry in a world is represented by a generic data structure containing all kinds of different information. This article describes the various types of information that is stored, how it's arranged, and how it's used by the engine.
+</p>
+<table id="toc" class="toc" summary="Contents"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1"><a href="#Geometry_Node"><span class="tocnumber">1</span> <span class="toctext">Geometry Node</span></a></li>
+<li class="toclevel-1"><a href="#Geometry_Object"><span class="tocnumber">2</span> <span class="toctext">Geometry Object</span></a></li>
+<li class="toclevel-1"><a href="#Geometry_Level"><span class="tocnumber">3</span> <span class="toctext">Geometry Level</span></a></li>
+<li class="toclevel-1"><a href="#Vertex_Data"><span class="tocnumber">4</span> <span class="toctext">Vertex Data</span></a></li>
+</ul>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Geometry_Node"></a><h2> <span class="mw-headline"> Geometry Node </span></h2>
+<p>Each separate geometry in a scene is represented by a <i>geometry node</i>. The geometry node contains the transform for the geometry, but it does not contain any of the geometrical data describing the triangle mesh that is actually rendered. This information is stored in a <i>geometry object</i>. Multiple geometry nodes may reference the same geometry object, and this is the mechanism through which instancing works in the engine. The mesh data for a particular geometry can be stored once, and referenced by several geometry nodes to create identical copies throughout the world.
+</p><p>The geometry node also stores references to the material objects used by the geometry. In the case that multiple geometry nodes reference the same geometry object, each instance of the geometry can use a different set of materials.
+</p>
+<a name="Geometry_Object"></a><h2> <span class="mw-headline"> Geometry Object </span></h2>
+<p>A geometry object is a container for all of the vertex and triangle information pertaining to a geometry. The mesh data is stored in one or more <i>geometry levels</i>, each of which represents a single detail level of the geometry.
+</p><p>The geometry object also stores information about the different surfaces belonging to a mesh. A <i>surface</i> is a collection of triangles that share the same material, the same tangent space domain, and the same texture coordinate generation domain. For example, a cube has six surfaces because each side of the cube has an independent set of normals and can have an independent material. Individual surfaces can be selected and altered in the <a href="World_Editor.html" title="World Editor">World Editor</a> using the Select Surface tool.
+</p><p>Surfaces are grouped into <i>segments</i> that represent each contiguous set of triangles that can be rendered using the same material. The number of segments in a geometry is equal to the number of hardware rendering commands needed to draw the geometry.
+</p><p>Collision data for a geometry is stored in the geometry object. The collision data can be generated from any of the available levels of detail.
+</p>
+<a name="Geometry_Level"></a><h2> <span class="mw-headline"> Geometry Level </span></h2>
+<p>A geometry level is the data structure in which all the geometrical information about a single level of detail is stored. It contains the vertex and triangle arrays that are needed to render the geometry, as well as several additional arrays that are used by the engine for things like skinning. The <code><a href="http://www.terathon.com/c4engine/doco/WorldMgr/Mesh.html" class="external text" title="http://www.terathon.com/c4engine/doco/WorldMgr/Mesh.html">Mesh</a></code> class also contains many functions that can generate data needed by the engine, such as the tangent array.
+</p><p>The following table gives brief descriptions of each type of array that can appear in the mesh representing a geometry level.
+</p>
+<table style="border: solid 1px #444; border-spacing: 0px; border-collapse: collapse;">
+<tr>
+<td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 24px 2px 6px;">
+<p>Array&nbsp;Identifier
+</p>
+</td><td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 6px 2px 6px;">
+<p>Element&nbsp;Type
+</p>
+</td><td style="font-weight: bold; vertical-align: top; background-color: #A0E8A0; border: solid 1px #444; border-bottom: solid 2px black; padding: 2px 6px 2px 6px;">
+<p>Description
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>kArrayPosition</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p><code>Point3D</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The array of 3D vertex positions.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>kArrayPrevious</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p><code>Point3D</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The previous vertex positions, used for per-vertex motion blur on skinned meshes, rope, and cloth.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>kArrayNormal</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p><code>Vector3D</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The normal vectors.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>kArrayTangent</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p><code>Vector3D</code> or <code>Vector4D</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The tangent vectors, used for bump mapping.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>kArrayTexture</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p><code>Point2D</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The primary texture coordinates.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>kArrayPrimitive</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p><code>Triangle</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The triangle array. Each triangle holds three 16-bit indexes into the vertex arrays.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>kArraySurfaceIndex</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p><code>unsigned_int16</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>The surface index corresponding to each vertex.
+</p>
+</td></tr>
+<tr>
+<td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 24px 2px 6px;">
+<p><code>kArraySegment</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p><code>SegmentData</code>
+</p>
+</td><td style="vertical-align: top; background-color: #F6F6F6; border: solid 1px #444; padding: 2px 6px 2px 6px;">
+<p>An array containing the starting index and triangle count for each contiguous set of faces having the same material.
+</p>
+</td></tr></table>
+<a name="Vertex_Data"></a><h2> <span class="mw-headline"> Vertex Data </span></h2>
+<p>The vertex and index data for any geometry, including terrain, is stored in the Mesh objects owned by the GeometryObject that is referenced by a particular geometry node. If you have a pointer to a Geometry node (for example, a TerrainGeometry node), then you can retrieve a pointer to its GeometryObject by simply calling GetObject() like this:
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw4">const</span> GeometryObject <span class="sy2">*</span>object <span class="sy1">=</span> geometryNode<span class="sy2">-</span><span class="sy1">&gt;</span>GetObject<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span></pre></div></div>
+<p>Once you have this pointer to the GeometryObject, you can get a pointer to the Mesh object for the highest level of detail with this call:
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw4">const</span> Mesh <span class="sy2">*</span>mesh <span class="sy1">=</span> object<span class="sy2">-</span><span class="sy1">&gt;</span>GetGeometryLevel<span class="br0">&#40;</span><span class="nu0">0</span><span class="br0">&#41;</span><span class="sy4">;</span></pre></div></div>
+<p>You can then access the vertex and triangle index information as follows:
+</p>
+<div dir="ltr" style="text-align: left;"><div class="cpp source-cpp" style="font-family:monospace;"><pre class="de1"><span class="kw4">int32</span> vertexCount <span class="sy1">=</span> mesh<span class="sy2">-</span><span class="sy1">&gt;</span>GetVertexCount<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="kw4">int32</span> triangleCount <span class="sy1">=</span> mesh<span class="sy2">-</span><span class="sy1">&gt;</span>GetPrimitiveCount<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="kw4">const</span> Point3D <span class="sy2">*</span>vertexArray <span class="sy1">=</span> mesh<span class="sy2">-</span><span class="sy1">&gt;</span>GetArray<span class="sy1">&lt;</span>Point3D<span class="sy1">&gt;</span><span class="br0">&#40;</span>kArrayPosition<span class="br0">&#41;</span><span class="sy4">;</span>
+<span class="kw4">const</span> Triangle <span class="sy2">*</span>triangleArray <span class="sy1">=</span> mesh<span class="sy2">-</span><span class="sy1">&gt;</span>GetArray<span class="sy1">&lt;</span>Triangle<span class="sy1">&gt;</span><span class="br0">&#40;</span>kArrayPrimitive<span class="br0">&#41;</span><span class="sy4">;</span></pre></div></div>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 104/1000000
+Post-expand include size: 4131/2097152 bytes
+Template argument size: 936/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:1975-0!1!0!!en!2!edit=0 and timestamp 20150119045058 -->
+<div class="printfooter">
+Retrieved from "<a href="Geometry_Internals.html">http://www.terathon.com/wiki/index.php/Geometry_Internals</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="Geometry_Internals.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:Geometry_Internals&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=Geometry_Internals&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=Geometry_Internals&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=Geometry_Internals" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Geometry_Internals.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Geometry_Internals.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=Geometry_Internals&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=Geometry_Internals&amp;oldid=9923" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 29 May 2014, at 19:33.</li>
+				<li id="viewcount">This page has been accessed 10,632 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.538 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/Geometry_Internals by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:25 GMT -->
+</html>

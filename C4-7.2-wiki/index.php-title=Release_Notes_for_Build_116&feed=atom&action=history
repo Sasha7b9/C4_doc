@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_116&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Build 116 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_116&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_116&amp;action=history"/>
+	<updated>2024-09-21T18:44:55Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_116&amp;diff=23&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' February 28, 2006  * The Get Info dialog in the World Editor has been expanded to include controller and texture mapping settings that used to be shown in separate windows. The Get Info dialog now has multiple tabs, and the Controller tab is always present. Geometries now have tabs for geometry building flags, rendering flags, collision properties, and texturing settings.   * There are now a few additional tabs in the Get Info dialog: Genera...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_116&amp;diff=23&amp;oldid=prev"/>
+		<updated>2023-07-15T09:31:37Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; February 28, 2006  * The Get Info dialog in the World Editor has been expanded to include controller and texture mapping settings that used to be shown in separate windows. The Get Info dialog now has multiple tabs, and the Controller tab is always present. Geometries now have tabs for geometry building flags, rendering flags, collision properties, and texturing settings.   * There are now a few additional tabs in the Get Info dialog: Genera...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' February 28, 2006&lt;br /&gt;
+&lt;br /&gt;
+* The Get Info dialog in the World Editor has been expanded to include controller and texture mapping settings that used to be shown in separate windows. The Get Info dialog now has multiple tabs, and the Controller tab is always present. Geometries now have tabs for geometry building flags, rendering flags, collision properties, and texturing settings. &lt;br /&gt;
+&lt;br /&gt;
+* There are now a few additional tabs in the Get Info dialog: General, Properties, and Connectors. The General settings pane allows you to set the name of any node and, for certain types of node, to specify whether it is initially disabled. The Properties pane lets you assign any kind of properties defined by a game to a node. (More about properties below.) The Connectors pane lets you define a list of connectors that can be linked to other nodes. (Connectors are described in the next item.)&lt;br /&gt;
+ &lt;br /&gt;
+* Implemented a general node connecting interface in the World Editor. There is now a &amp;quot;Select and Connect&amp;quot; tool that causes available connection sites for a node to be displayed along with connectors that point to their targets. Several types of nodes have built-in connectors that can be linked to other nodes for specific purposes, and any node can have an unlimited number of custom connectors defined for it in the Connectors pane of the Get Info dialog. Connectors are identified by a 32-bit (four character) identifier. The built-in connectors are as follows:&lt;br /&gt;
+** A zone has two connectors: one called AMBT that connects to an ambient space, and one called FOG that connects to a fog space. &lt;br /&gt;
+** A portal has one connector called ZONE that connects to the portal's destination zone. &lt;br /&gt;
+** A light has one connector called SHAD that connects to a shadow space. &lt;br /&gt;
+** A trigger has one connector called TARG that can connect to any type of node.&lt;br /&gt;
+&lt;br /&gt;
+* To specify the target of a connector, click on the Select and Connect tool (or press 5) and then select a node for which you want to set an outgoing connection (but don't select the target yet). The available connectors will appear in little boxes containing their identifiers with icons showing what types of node they can be connected to. Click in a box to select a connector, and it will change color and get a thicker outline to indicate that it's selected. Then select the target node and choose Connect Node from the Node menu (or just hit Ctrl-L). You will see a yellowish line with arrowheads pointing from the connector to the center of its target. Connectors from multiple nodes (one connector each) can be selected by using the shift key. This can be useful if, for instance, you want to connect a bunch of zones to the same fog space. (You don't have to use the shift when selecting the zones, but just when selecting the connectors in the zones.) A connector can be broken by selecting it and choosing Unconnect Node from the Node menu (or hitting Ctrl-U).&lt;br /&gt;
+&lt;br /&gt;
+* There is now a connection marker that can be used simply as a container that holds connectors. This could be useful in cases such as when multiple triggers need to activate the same script. (This replaces the collection node mentioned in the notes for build 112.) &lt;br /&gt;
+&lt;br /&gt;
+* Added a reference marker node type that lets you reference an external world resource from within a scene graph. In the world editor, the reference marker is represented by a world icon with crosshairs running through it. The position where the crosshairs meet determines where the origin of the external world in placed. The referenced world resource is set in the Get Info box for the reference marker.&lt;br /&gt;
+&lt;br /&gt;
+* When a world is loaded, reference markers cause external worlds to be brought in as nonpersistent nodes so that they are not saved as part of the referencing world. If the same world is referenced by multiple reference markers, then they share the same object storage; that is, they are instanced. Reference inclusion is ''not'' recursiveâ€”referenced worlds within referenced worlds will not be expanded. This avoids problems with cyclic references, etc.&lt;br /&gt;
+&lt;br /&gt;
+* There is a toggle button in the World Editor that shows or hides referenced worlds. When it's off, you just see the reference markers. When it's on, you see the reference markers and the instances of the worlds that they reference. Moving or rotating the reference marker also affects the included world (because the included world is attached to the marker as a subtree). You cannot select any part of a referenced world because it doesn't really belong to the world that references it. Changes to referenced worlds must be made in the original file. If you change a referenced world while another world referencing it is also open, you can toggle the referenced world button off and back on again to see the updated version.&lt;br /&gt;
+&lt;br /&gt;
+* Implemented a general scripting architecture. The scripting system is not based on a scripting language, but is instead designed to execute a tree of operations called methods that can be assembled graphically in the World Editor. A script is assigned to a node by selecting the script controller in the Get Info dialog and then opening the script editor. Details about the script editor can be found on the [[Graphical Scripting Language]] page.&lt;br /&gt;
+&lt;br /&gt;
+* A script is normally executed through the activation of the script controller. It is also possible to make a script run immediately upon loading a world by checking a box in the Controller pane of the Get Info dialog.&lt;br /&gt;
+&lt;br /&gt;
+* By default, a script runs on all machines in a multiplayer game. It can be made to run only on the server, but then each of the script methods must somehow communicate any actions that need to take place on the client machines. This is normally done by sending controller messages from within custom script methods.&lt;br /&gt;
+&lt;br /&gt;
+* This is only the first version of the scripting system, and additional features will be added in future releases. In particular, conditional execution is script methods is not present, but will be added later. The current scripting system is very extensible because it's possible for the Game Module to define custom script methods, and these appear in the script editor. There is also a new mechanism for accessing controller functionality from within scripts by calling &amp;quot;function&amp;quot; objects, described next.&lt;br /&gt;
+&lt;br /&gt;
+* Added the ability for controllers to define subclasses of the &amp;lt;code&amp;gt;Function&amp;lt;/code&amp;gt; class that expose various kinds of functionality that can be accessed from a script. There is a script method named &amp;quot;Call Function&amp;quot; that lets you select a function belonging to the controller attached to the method's target node. When you select a function, its configurable settings appear, and these act as the function's parameters. &lt;br /&gt;
+&lt;br /&gt;
+* Trigger node functionality has been enhanced. A trigger will now call its target controller's &amp;lt;code&amp;gt;Activate()&amp;lt;/code&amp;gt; function whenever it transitions from the unactivated to activated state, and it will call its target controller's &amp;lt;code&amp;gt;Deactivate()&amp;lt;/code&amp;gt; function whenever it transitions from the activated to unactivated state. A trigger can be set to automatically disable itself that first time it is activated, and in this case the &amp;lt;code&amp;gt;Deactivate()&amp;lt;/code&amp;gt; call is not made. It's also possible to specify that a trigger is to be continuously activated as long as an eligible node intersects it, in which case the &amp;lt;code&amp;gt;Activate()&amp;lt;/code&amp;gt; function is called every frame until the trigger is unactivated. &lt;br /&gt;
+&lt;br /&gt;
+* The Game Module can now define &amp;lt;code&amp;gt;Property&amp;lt;/code&amp;gt; subclasses for whatever reason it needs to, and these can be exposed in the World Editor under the Properties tab of the Get Info dialog. &lt;br /&gt;
+&lt;br /&gt;
+* Finished implementing the &amp;lt;code&amp;gt;Configurable&amp;lt;/code&amp;gt; base class. Different types of classes that are capable of displaying a configuration interface in the World Editor are subclassed from &amp;lt;code&amp;gt;Configurable&amp;lt;/code&amp;gt;. Currently, the classes that have the configurable functionality are &amp;lt;code&amp;gt;Controller, Property, Method,&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Function&amp;lt;/code&amp;gt;. A configurable class specifies that it has one or more ''settings'' that need to be presented to the user at the appropriate time. There are several types of built-in settings: a boolean (check box) setting, integer/float (slider) settings, a text box, a popup menu, a color box, and a resource picker. New types of settings can be defined by the Game Module. &lt;br /&gt;
+&lt;br /&gt;
+* Added a movie controller that plays a QuickTime movie into any of the texture map material attributes. The &amp;lt;code&amp;gt;MovieController&amp;lt;/code&amp;gt; class exposes two &amp;lt;code&amp;gt;Function&amp;lt;/code&amp;gt; objects that can be used to play or stop movies from a script. A movie can also be played immediately upon loading a level or it can be played in response to a trigger activating the movie controller. &lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;MovieElement&amp;lt;/code&amp;gt; class that plays a QuickTime movie into an interface element. &lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Source&amp;lt;/code&amp;gt; node has been updated with more complete functionality. Sound sources can now be placed in a world in a dormant state until they are explicitly played. There are two script methods, &amp;quot;Play Sound Source&amp;quot; and &amp;quot;Stop Sound Source&amp;quot; that play/stop a source node connected to the script's owning node.&lt;br /&gt;
+ &lt;br /&gt;
+* Implemented a particle rendering technique that I call &amp;quot;sprite quads&amp;quot;. This allows the sprite rendering hardware to be used to render an arbitrarily-oriented quad inside a screen-aligned point sprite. The benefit is that only one quarter of the vertex information needs to be transferred to the GPU for each quad. The expense is a small increase in fill, but this can be alpha-tested to avoid the final write. This technique was used with excellent results in a PS3 technology demo, and it works very well on Nvidia hardware. Unfortunately, the OpenGL spec requires that point sprites be entirely clipped if their centers go outside the view frustum. Nvidia has ignored this requirement (which is good), but ATI adheres to it by clipping point sprites in software (which also means they perform the vertex transform in software). This could make the whole sprite quad technique somewhat useless unless an OpenGL extension can be agreed upon to allow point sprites to be clipped as if they were quads. Of course, with the forthcoming geometry shaders, none of this will really matter.&lt;br /&gt;
+ &lt;br /&gt;
+* Made several improvements to the joystick support in the Input Manager. More to come, including direct access to the Xbox 360 controller data. &lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;SetMousePosition()&amp;lt;/code&amp;gt; function to the Interface Manager. &lt;br /&gt;
+&lt;br /&gt;
+* Added a &amp;quot;world time multiplier&amp;quot; to the Time Manager that can be used to control the rate at which time passes in a game world. The multiplier is initially 1.0 and can be changed by calling the &amp;lt;code&amp;gt;TimeMgr::SetWorldTimeMultiplier()&amp;lt;/code&amp;gt; function. The functions &amp;lt;code&amp;gt;TimeMgr::GetDeltaTime()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;TimeMgr::GetFloatDeltaTime()&amp;lt;/code&amp;gt; now return world time, which is the actual time that has passed multiplied by the world time multiplier. You can still get the unaltered actual time that has passed using the new &amp;lt;code&amp;gt;TimeMgr::GetSystemDeltaTime()&amp;lt;/code&amp;gt; and T&amp;lt;code&amp;gt;imeMgr::GetSystemFloatDeltaTime()&amp;lt;/code&amp;gt; functions. &lt;br /&gt;
+&lt;br /&gt;
+* Removed the &amp;lt;code&amp;gt;GeometryController&amp;lt;/code&amp;gt; class. A controller which can be assigned to a geometry node no longer needs to be subclassed from &amp;lt;code&amp;gt;GeometryController&amp;lt;/code&amp;gt;.&lt;br /&gt;
+ &lt;br /&gt;
+* Settings for the fluid controller and cloth controller can now be accessed in the Controller pane of the Get Info dialog. &lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;MoveSubtree()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Descendant()&amp;lt;/code&amp;gt; functions to the &amp;lt;code&amp;gt;Tree&amp;lt;/code&amp;gt; class. &lt;br /&gt;
+&lt;br /&gt;
+* Added the Strong AA check box to the Font Generator tool. This causes partially filled pixels to be weighted more heavily so that small font sizes can be made more clear. &lt;br /&gt;
+&lt;br /&gt;
+* If the &amp;lt;code&amp;gt;GL_EXT_timer_query&amp;lt;/code&amp;gt; extension is available (currently, only on Nvidia hardware), then the frame rate window will now display a second graph that shows the amount of time spent rendering on the GPU. This shows the actual GPU load regardless of whether vertical sync is on or off, and it can highlight time spikes that happen only on the CPU.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

@@ -1,0 +1,914 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View topic - Dedicated Server hosting multiple Games</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '';
+	var base_url = '';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=18.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=18">C4 Engine Development</a> <strong>&#8249;</strong> <a href="viewforum.php-f=7.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=7">Networking and Multiplayer</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewtopic.php-f=7&t=12951.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=7&t=12951">Dedicated Server hosting multiple Games</a></h2>
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body --><div style="display: none !important;">Topics about networking and multiplayer programming in the C4 Engine.<br /></div>
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="posting.php-mode=reply&f=7&t=12951.htm" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=7&t=12951" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="search-box">
+			<form method="get" id="topic-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="Search this topic…" onclick="if(this.value=='Search this topic…')this.value='';" onblur="if(this.value=='')this.value='Search this topic…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="t" value="12951" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			11 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+
+</div>
+<div class="clear"></div>
+
+
+	<div id="p117953" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 class="first"><a href="#p117953">Dedicated Server hosting multiple Games</a></h3>
+			<p class="author"><a href="viewtopic.php-p=117953.htm#p117953" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117953#p117953"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3263.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3263" style="color: #404040;" class="username-coloured">Sevenos</a></strong> &raquo; 31 May 2013, 08:00 </p>
+
+			
+
+			<div class="content">Hello,<br /><br />I'm just starting to get my head around &quot;real&quot; game programming, after some years of web development.<br /><br />I would like to create a multiplayer game with about 10-20 players per game, but host all of these games on my server (there are permanent things in and between those games). The server part will also need database access etc. Now I wonder if there are &quot;best practices&quot; on how to do that, and if there is anything in C4 specifically for this.<br /><br />From what I've seen so far in multiplayer tutorials etc, server and client code are always mixed up and dedicated servers use the same compiled game, just with a command line flag. And those dedicated servers host only one game. Is this also how &quot;more complex&quot; online games are usually made? <br /><br />What I see as a possible solution:<br />1) Having a master server to let players group up for a game<br />2) When they start the game, pick a free port, generate a key and start a dedicated server for this game, send port and key to clients and let them reconnect to the actual game server<br /><br />That would mean that the same codebase is used for a master server (to use the same network functions), game server and client. Also I'm curious how much overhead it would cost to initialise everything again for each game.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117953">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3263.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3263" style="color: #404040;" class="username-coloured">Sevenos</a>
+			</dt>
+
+			<dd>New User</dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 3</dd><dd><strong>Joined:</strong> 31 May 2013, 06:39</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117958" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117958">Re: Dedicated Server hosting multiple Games</a></h3>
+			<p class="author"><a href="viewtopic.php-p=117958.htm#p117958" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117958#p117958"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030">DrVonBraun</a></strong> &raquo; 31 May 2013, 11:59 </p>
+
+			
+
+			<div class="content">Here is what I did for my client server game:<br />First I must say I am not using the C4 network module but Raknet, because I already had a system going before I switched the client to C4 so I didnt want to bother converting the network code, so I cant say much about the C4 network API.<br /><br />The server is clearly different from the client. it uses a different representation of the world, often much simpler. For example when you load a world in the client and add a character to it, you have the full character in RAM with the skeleton etc pp. On the server, basically all you need to represent the character is a box or maybe a dome physics shape.<br /><br />The world representation can be different on the server. In the past I had a much simplified world there, basically a low level LOD that I used for coarse object placement and then let the client figure out the actual Z value when rendering each object. The idea was to save memory on the server. However this led to more problems than it was worth. memory is cheap these days, so dont bother. My recommendation would be to load the world completely on the server, but when you place dynamic objects, use a simplified shape to represent them.<br /><br />As for physics, I tried to use the C4 physics system in that scenario and had to give up. It wasn't possible for me to keep the physics representation in sync on all machines and the server. So basically I am working with a simple system where I move the objects on the server without physics, except gravity which I compute manually for jumps. It all depends. I guess it may be possible to have physics run in sync if the physics engine is deterministic, but I am not sure here. If there is a single random call somewhere in it, it will clearly diverge at some point in time. So less is more in my opiinion, especially when you're just beginning with client server programming. You dont want to deal with those details which, in the end, are just a cool-factor in game but nothing that contributes to the game play, unless you have a racing game, space game etc where the physical features of an object are central to the game itself. In an RPG or combat simulator, its negligible. <br /><br />Keep a copy of the static world data, that is the terrain, houses, etc on the client. Transmit the dynamic objects from the server as they come into the visibility scope of the player. Keep a representation of the player on the server with position and monitor the objects around it based on distance and then send the information about what he sees or of what he looses scope to the client. Keep static data for those objects on the client, that is of course the 3D model or things like armor value, armament etc. Minimize the amount of data you send.<br /><br />When moving objects, make it so that the client initiates a move, the server then creates a move object and moves the item in the given direction with the given speed. When you create that, send a command to all clients so they can start a similar move. If you do it right, client and server can move without ever sending another data package until the move terminates. When that happens, send the position from the server to the client and let them correct the difference that they probably have accumulated so they represent the server position. You can do that with a slide movement to make it nicer or with a sudden jump.<br /><br />And one more thing: Never trust the client. use client input only to initiate actins on the server, but verify the parameters to protect against hacking. Never let the client compute something and then just accept the result on the server. Always compute data on the server and send to the clients.<br /><br />Not sure what else I can say, but regarding your post: Assume from the start that the server and client code are different. This is not a peer to peer scenario, so they have to contain different content. Feel free to ask specific questions, I try to answer if I can</div>
+
+			<div id="sig117958" class="signature">&quot;Research is what I'm doing when I don't know what I'm doing&quot; - Wernher Von Braun</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117958">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030"><img src="download/file.php-avatar=3030_1341302879.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3030_1341302879.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030">DrVonBraun</a>
+			</dt>
+
+			<dd>Banned</dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 575</dd><dd><strong>Joined:</strong> 03 Jul 2012, 02:04</dd><dd><strong>Location:</strong> Los Angeles, CA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117962" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117962">Re: Dedicated Server hosting multiple Games</a></h3>
+			<p class="author"><a href="viewtopic.php-p=117962.htm#p117962" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117962#p117962"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3263.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3263" style="color: #404040;" class="username-coloured">Sevenos</a></strong> &raquo; 31 May 2013, 16:22 </p>
+
+			
+
+			<div class="content">First of all, thanks for your geat answer. Didn't really hit my main questions but alot of nice tips I'll definately keep in mind.<br /><br />The question remaining is: Do you set up the server as a different project / binary or do you use the same as client and server? Even if the server has a different role and sometimes a different representation of objects in the scene, there are alot of things they have to share (game logic, packet ids, ...). I'm coming from a strongly MVC oriented world and it just seems to become an incredible mess to put client and server functions together and if/else everything based on how it was started. But seperate project with copying the things they have in common isn't much cleaner, are there any best practices/patterns?<br /><br />And a somehow related question is, how would you start multiple independent game sessions on one server. Starting a whole new instance of the server for every game or is there a way a single instance of the server can handle multiple &quot;scenes&quot; at the same time?<br /><br />About the project planned, it's actually a space game, so I'd like to try using physics for the movement. There won't be many collisions though, so the sync requirements aren't that high (it's more about big ships, not a fast paced shooter). I heard the physics system of C4 got completely rewritten, are you talking about the old or the new one causing problems? And are there replacements which are known to be more deterministic?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117962">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3263.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3263" style="color: #404040;" class="username-coloured">Sevenos</a>
+			</dt>
+
+			<dd>New User</dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 3</dd><dd><strong>Joined:</strong> 31 May 2013, 06:39</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117963" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117963">Re: Dedicated Server hosting multiple Games</a></h3>
+			<p class="author"><a href="viewtopic.php-p=117963.htm#p117963" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117963#p117963"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3148.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3148" style="color: #8000C0;" class="username-coloured">miken</a></strong> &raquo; 31 May 2013, 17:02 </p>
+
+			
+
+			<div class="content">We did some rework of C4 ourselves so that we could have a separate client and server C4::World in the same process. It's not exactly what you're looking for but we ran into issues that you will too<br /><br />There's a few things you'll run into:<br /><br />- TheMessageMgr. This is going to be the core of your pain. We had to do extensive rework of this to support multiple worlds, especially related to ControllerMessages. <br />- The WorldMgr has the notion of a &quot;current world&quot; - this assumes there's only one world, so this needs to be eliminated. You'll need to modify the game loop to tick a list of worlds<br />- TheNetworkMgr - I had some trouble getting two sockets in the same process, we have our own network stack so we don't use TheNetworkMgr at all<br /><br />The other thing we did was change the ControllerRegistration mechanism so that we could actually instantiate different controller classes in the client and server worlds. This is pretty essential to being able to split the client and server code. This has major serialization-related ramifications that are difficult to work around, so we have further changes planned to revamp the controller serialization code<br /><br />The short answer: this is a bunch of work to get going. Hope this helps<br /><br />Of course, I wouldn't recommend hosting more than one game in a process anyway, as bugs/crashes from one game will be able to trash other games, which is undesirable.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117963">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3148.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3148" style="color: #8000C0;" class="username-coloured">miken</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 108</dd><dd><strong>Joined:</strong> 16 Dec 2012, 21:20</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117965" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117965">Re: Dedicated Server hosting multiple Games</a></h3>
+			<p class="author"><a href="viewtopic.php-p=117965.htm#p117965" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117965#p117965"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2822.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2822" style="color: #8000C0;" class="username-coloured">cjacket</a></strong> &raquo; 31 May 2013, 18:45 </p>
+
+			
+
+			<div class="content">Depending on what you need, there is a headless server that you can build.  This allows you to just have a server waiting for connections, and acting on those connections without a lot of additional work depending on your needs.  If all your players connect to the same world, then you may not need to make many adjustments except add your own message packets.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117965">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2822.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2822"><img src="download/file.php-avatar=2822_1315954400.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2822_1315954400.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2822.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2822" style="color: #8000C0;" class="username-coloured">cjacket</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 89</dd><dd><strong>Joined:</strong> 21 Aug 2011, 19:19</dd><dd><strong>Location:</strong> Milwaukee, WI</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117966" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117966">Re: Dedicated Server hosting multiple Games</a></h3>
+			<p class="author"><a href="viewtopic.php-p=117966.htm#p117966" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117966#p117966"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2822.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2822" style="color: #8000C0;" class="username-coloured">cjacket</a></strong> &raquo; 31 May 2013, 18:47 </p>
+
+			
+
+			<div class="content">By the way, by message packets I mean multiplayer communications that are specific to your game.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117966">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2822.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2822"><img src="download/file.php-avatar=2822_1315954400.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2822_1315954400.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2822.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2822" style="color: #8000C0;" class="username-coloured">cjacket</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 89</dd><dd><strong>Joined:</strong> 21 Aug 2011, 19:19</dd><dd><strong>Location:</strong> Milwaukee, WI</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117970" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117970">Re: Dedicated Server hosting multiple Games</a></h3>
+			<p class="author"><a href="viewtopic.php-p=117970.htm#p117970" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117970#p117970"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030">DrVonBraun</a></strong> &raquo; 31 May 2013, 22:09 </p>
+
+			
+
+			<div class="content">The way I have things set up here is one VC solution for everything with projects according to the following schema:<br /><br />- A client EXE or now, rather a client DLL that works with C4 and which is the basic executable<br />- A client static library or DLL if you prefere where nearly ALL of the code is that actually handles stuff. Called by the above Client DLL<br /><br />- A Server EXE that executes the server or, if you have C4 on the server, same setup as above, a DLL to be called by C4<br /><br />- A shared library (I prefere static link since it avoids some problems) that holds code and data that is included by client and server because it is shared<br /><br />Why the dualisim on client side? If you made one monolithic DLL for the client you will run into problems when you want to debug multiple clients. With the above setup, you simply copy the main client DLL project (the one thats called by C4 directly) and you can debug a second client or repeat the step and have as many clients as you want to debug.<br /><br />I used to have different solutions for client and server but that got out of hand since I had multiple server programs for a distributed server approach (actually I have one master control server that holds the main logic and several spatial servers that handle the C4 part and can run on different machines to distribute the load) and having each in their own Visual Studio instance sucks big time, so the one solution setup works for me. You can still remote debug client and server on different machines.<br /><br />The headless server is actually just a release mode solution. In debug mode, the server will be a regular C4 server that opens a window but you can make it tiny and if you dont place a camera, nothing will be rendered during debug and when you do the release mode, you have headless server without that window.<br /><br />As for the above advise with controllers and managers etc, this is probably just my personal style, but I minimize the use of C4 on the server side as much as possible because I think it makes things much easier when you can design the server part based on the necessity of the server and not based on what constructs the C4 engine requires you to have. C4 is great for single player games where you serialize the state of the whole world for the next session and I assume its also great for P2P games (dont have any experience with that though but it sounds like C4 handles it well). For a client server setup I would advise against designing your server around C4. Use C4 to load the world, use it to place items, use it to detect collisions, detect the terrain Z value, the topographic situation for your characters etc, but dont get into the controller, registratiors etc. My spatial server consists of a C4 world that is loaded, Objects that are derived from C4 nodes and skeleton Controllers that basically do nothing and everything else is handled in code that I develop based on the situational necessity. <br /><br />The client is a totally different thing though. Here you must work closely with the way C4 wants you to do things. One feature I dont use at all is the C4 serialization, since that would be available only on the client and there is nothing to serialize since the dynamic objects come from the server.<br /><br />Another thing to keep out is the floating point problem I learned about only recently. Anything thats more than about 5Km from the coordinate origin will start to jiggle because the floating point exactness gets lost, which is probably a big problem for a space game. On the client you can offset the origin and bring the camera back close to the new origin and then just use the offset for all positions. On the server  I would imagine you will have to find a different solution. <br /><br />You wont be able to run multiple C4 applications on the same machine so you cant partition the space on the server side and tun multiple C4 servers without having multiple machines. You could for instance give &quot;dimension&quot; attribute to each object and place them all around the origin in 5Km sectors. So for sintacne planet A is on position 10/10/10 and planet B is on position 5010/5010/5010 so 5 Km or LIghtyears or whatever away, but you relocate planet B to 10/10/10 but you keep an extra dimension flag and when it comes to visibility or approachibility for a spaceship on coordinate 5/5/5 it sees planet A but not planet B due to it's dimension flag. Just one of lots of solutions.<br /><br /><blockquote class="uncited"><div>I heard the physics system of C4 got completely rewritten, are you talking about the old or the new one causing problems? And are there replacements which are known to be more deterministic?<br /></div></blockquote><br />My failure was just recently so it was with the 2.10 version, I dont think there is a major change in the physics for Version 3.0. You would have to ask somebody else about that, I wasn't able to keep client and server in sync. Perhaps it is possible on a P2P game where the bandwidth doesnt matter but over the internet you cant send correctional values every second or so, so it didnt work for me</div>
+
+			<div id="sig117970" class="signature">&quot;Research is what I'm doing when I don't know what I'm doing&quot; - Wernher Von Braun</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117970">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030"><img src="download/file.php-avatar=3030_1341302879.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3030_1341302879.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030">DrVonBraun</a>
+			</dt>
+
+			<dd>Banned</dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 575</dd><dd><strong>Joined:</strong> 03 Jul 2012, 02:04</dd><dd><strong>Location:</strong> Los Angeles, CA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117988" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117988">Re: Dedicated Server hosting multiple Games</a></h3>
+			<p class="author"><a href="viewtopic.php-p=117988.htm#p117988" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117988#p117988"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3263.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3263" style="color: #404040;" class="username-coloured">Sevenos</a></strong> &raquo; 01 Jun 2013, 19:34 </p>
+
+			
+
+			<div class="content">Thanks again, even after months of browsing around there is still so much I've never read or thought about pointed out here.<br /><br />So when I conclude it correctly:<br />1) Use a shared library, keep client and server code separate<br />2) Handling multiple sessions in one process would include big reworks and risk<br />3) Can't run multiple instances of C4 on the same machine (why is that?)<br /><br />It sounds like building the server completely without the game engine might be a good way to go. That would of course turn some tasks to be more complex, but I think the nature of the game would allow it. Have to think about what I really need on the server.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117988">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3263.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3263" style="color: #404040;" class="username-coloured">Sevenos</a>
+			</dt>
+
+			<dd>New User</dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 3</dd><dd><strong>Joined:</strong> 31 May 2013, 06:39</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117990" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117990">Re: Dedicated Server hosting multiple Games</a></h3>
+			<p class="author"><a href="viewtopic.php-p=117990.htm#p117990" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117990#p117990"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=992.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=992" style="color: #0060C0;" class="username-coloured">wtblife</a></strong> &raquo; 01 Jun 2013, 20:24 </p>
+
+			
+
+			<div class="content"><blockquote class="uncited"><div>Can't run multiple instances of C4 on the same machine (why is that?)</div></blockquote><br /><br />You can, it just isn't allowed with the default/demo build. There was actually a thread really recently about this <!-- l --><a class="postlink-local" href="viewtopic.php-f=3&t=12913.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=3&t=12913">viewtopic.php?f=3&amp;t=12913</a><!-- l --></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117990">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=992.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=992"><img src="download/file.php-avatar=992_1244167116.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=992_1244167116.jpg" width="75" height="75" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=992.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=992" style="color: #0060C0;" class="username-coloured">wtblife</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 974</dd><dd><strong>Joined:</strong> 03 Jan 2008, 17:43</dd><dd><strong>Location:</strong> VA, USA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p117995" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p117995">Re: Dedicated Server hosting multiple Games</a></h3>
+			<p class="author"><a href="viewtopic.php-p=117995.htm#p117995" tppabs="http://www.terathon.com/forums/viewtopic.php?p=117995#p117995"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030">DrVonBraun</a></strong> &raquo; 02 Jun 2013, 01:35 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Sevenos wrote:</cite>1) Use a shared library, keep client and server code separate.<br /></div></blockquote><br /><br />I would say yes. There are surprisingly few code elements you will actually share. The majority are data tables. I would create one class per major datatable in the shared library and make most of the access function static to avoid including a table multiple times in the code. Say you have a table to access static values for ship types in your case. That involves probably  a structure that defines the data per ship type, an enum for all shiptypes and an array with one entry per ship type. I would create the following general outlay in a separate H file that goes into the static library and is included by the static library, client and server:<br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>#ifndef SHIPTYPES_H<br />#define SHIPTYPES_H<br />enum E_Shiptype.....<br /><br />struct S_SHIPTYPE.....<br /><br />#endif<br /><br />#ifdef SHIPTYPES_CPP<br />static S_SHIPTYPES as_shiptypes&#91;&#93; = <br />{<br />... one line per shiptype<br />};<br />#endif<br /></code></dd></dl><br /><br />And in the static library one class Shiptype_Static with a staticfunction like this:<br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>static const S_SHIPTYPE &amp; Get_Shiptype_Data( E_SHIPTYPE );<br /></code></dd></dl><br /><br /><br />And in the corresponding CPP file include this line:<br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>#define SHIPTYPES_CPP<br />#include &quot;STATIC_SHIPTYPES.H&quot; // That is the above H file<br /></code></dd></dl><br /><br />Now you can include that H file anywhere you want the shiptype access and have access to the enum and the structure, but the array is included only within that static class and then exposed through the static access function. That way you only have to keep one file updated and have the definitions and the static array in one location. I find that more convenient. Of course it means that anybody with access to the file can read the array, but it depends on your environment. If you're working alone like me that isnt a concern, if I worked with colleagues or so I would probably chose a different approach.<br /><br /><blockquote><div><cite>Sevenos wrote:</cite>2) Handling multiple sessions in one process would include big reworks and risk<br /></div></blockquote><br />If you mean runnning multiple servers for not-connected worlds, yes. <br /><br /><blockquote><div><cite>Sevenos wrote:</cite>3) Can't run multiple instances of C4 on the same machine (why is that?)<br /></div></blockquote><br />Mostly yes, that thread wtblife mentioned didnt lead to a real conclusion I believe, there were still questions open. I would argue, why would you want to run multiple instances of C4 anyway. If it's a client application your machine would be hopelessly overloaded with rendering and if it's a server, it will be overloaded with servicing user requests, so there is not really a point in my eyes. If you develop a client server game, you wont get around having 2-3 machines.<br /><br /><blockquote><div><cite>Sevenos wrote:</cite>It sounds like building the server completely without the game engine might be a good way to go. That would of course turn some tasks to be more complex, but I think the nature of the game would allow it. Have to think about what I really need on the server.</div></blockquote><br /><br />Again we are talking about a real client server application here, not just a P2P game with one machine standing out in the way that it's not used as a play console but handles certain aspects of the session in a central manner. If so, I would say yes. The server will be completely different from the client code and attempting any of the P2P techniques will lead to disaster. I have one multiplayer game running for 8 years now and I am working on this new one for several years now and the completely separate approach served me well. Especially this past half year that I  spend switching my client over to C4 went relatively well due to the fact that the server logic is mostly unaffected by the switch, except the spatial representation part.<br /><br />You could use the C4 engine in your server to load a world and position objects, but the physics will be a problem. In my case, I chose that path becasue I need to edit levels. In case of a space game I would probably not use C4 on the server side. Placing solar systems is something I wouldnt want to do in any 3D editor, its better done in a table in code and ships dont use sophisticated physics. Apply force impulses and keep the ship moving until another force applies. That little bit of gravitation that planets and stars influence on a ship is something you can handle yourself.</div>
+
+			<div id="sig117995" class="signature">&quot;Research is what I'm doing when I don't know what I'm doing&quot; - Wernher Von Braun</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile117995">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030"><img src="download/file.php-avatar=3030_1341302879.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3030_1341302879.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030">DrVonBraun</a>
+			</dt>
+
+			<dd>Banned</dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 575</dd><dd><strong>Joined:</strong> 03 Jul 2012, 02:04</dd><dd><strong>Location:</strong> Los Angeles, CA</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p118017" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p118017">Re: Dedicated Server hosting multiple Games</a></h3>
+			<p class="author"><a href="viewtopic.php-p=118017.htm#p118017" tppabs="http://www.terathon.com/forums/viewtopic.php?p=118017#p118017"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a></strong> &raquo; 03 Jun 2013, 11:21 </p>
+
+			
+
+			<div class="content">You will probably want a &quot;matchmaker&quot; process that players connect to, and get told about where their game server is running.<br />Then, players connect to that game server.<br />You can run multiple game servers on a single machine if they each listen to a different port -- so the &quot;where&quot; part of where each client connects to needs to include the port number.<br />On Windows, the C4 executable uses a mutex to prevent multiple instances of the process on the same machine. You can disable this. Make sure each process uses a different working directory for writable files like logs etc if you do this.<br />Personally, I'd rather run the servers on Linux than Windows; setting up and managing the multiple processes would be simpler and more robust with less custom coding needed.</div>
+
+			<div id="sig118017" class="signature">~~<br />   <a href="viewtopic.php-f=3&t=4689.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=3&t=4689" class="postlink">Z-down For Teh W1n!</a><br />   Core i7 4702HQ, 8GB DDR3L-1600, 3GB NVIDIA GTX 870M, 512 GB SSD</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile118017">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187"><img src="download/file.php-avatar=187_1201906842.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=187_1201906842.png" width="62" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1892</dd><dd><strong>Joined:</strong> 30 Jul 2006, 22:29</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.enchantedage.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.enchantedage.com/%27" tppabs="http://www.enchantedage.com/" title="WWW: http://www.enchantedage.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<form id="viewtopic" method="post" action="http://www.terathon.com/forums/viewtopic.php?f=7&t=12951">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		
+		<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+		
+	</fieldset>
+
+	</form>
+	<hr />
+
+
+<div class="topic-actions">
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="posting.php-mode=reply&f=7&t=12951.htm" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=7&t=12951" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="pagination">
+			11 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+</div>
+
+
+	<p></p><p><a href="viewforum.php-f=7.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=7" class="left-box left" accesskey="r">Return to Networking and Multiplayer</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7" selected="selected">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: No registered users and 0 guests</p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

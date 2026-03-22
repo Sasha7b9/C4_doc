@@ -1,0 +1,968 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Special:NewPages&amp;feed=atom&amp;hideredirs=1&amp;limit=20&amp;offset=20230715095747%7C58&amp;namespace=0&amp;username=&amp;tagfilter=&amp;size-mode=max&amp;size=0</id>
+	<title>C4 Engine Wiki - New pages [en]</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Special:NewPages&amp;feed=atom&amp;hideredirs=1&amp;limit=20&amp;offset=20230715095747%7C58&amp;namespace=0&amp;username=&amp;tagfilter=&amp;size-mode=max&amp;size=0"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Special:NewPages"/>
+	<updated>2024-09-21T19:16:15Z</updated>
+	<subtitle>From C4 Engine Wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_1.5</id>
+		<title>Release Notes for Version 1.5</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_1.5"/>
+		<updated>2023-07-15T09:57:00Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' December 27, 2008  * A new voxel terrain system has been added to the engine, along with several terrain editing tools in the World Editor. More information about these can be found in the Editing Terrain article. Support for the old terrain geometry has been removed from the engine, so any old terrain in existing worlds will disappear when opened in the new version of the engine. To preserve the old terrain, select it in the editor unde...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' December 27, 2008&lt;br /&gt;
+&lt;br /&gt;
+* A new voxel terrain system has been added to the engine, along with several terrain editing tools in the World Editor. More information about these can be found in the [[Editing Terrain]] article. Support for the old terrain geometry has been removed from the engine, so any old terrain in existing worlds will disappear when opened in the new version of the engine. To preserve the old terrain, select it in the editor under a previous version and convert it to a generic mesh before opening it in the current version of the engine.&lt;br /&gt;
+&lt;br /&gt;
+* All of the shading systems in the engine have been completely replaced by a new architecture based on shader graphs. Every existing attribute-based material will continue to work just fine, but they are translated into shader graphs internally. The Material Manager still allows materials to be created by configuring a fixed set of material attributes, and this is still the preferred method of creating materials that only use the standard options. Arbitrary custom materials can now be created in the new Shader Editor that's accessible from the Material Manager window.&lt;br /&gt;
+&lt;br /&gt;
+* Both the new Shader Editor and the existing Script Editor have a new tool for creating sections in a graph. A section is simply a rectangular area drawn beneath the graph that can be used to group a set of nodes for organizational purposes&amp;amp;mdash;it has absolutely no effect on the function of the graph itself. Each section has a user-configurable title and background color that can be changed by double-clicking on the title bar or by selecting the section and choosing Get Info from the menu (or hitting Ctrl-I).&lt;br /&gt;
+&lt;br /&gt;
+* Three new script methods have been added that can be used to set scalar, vector, and color parameter values in shader-based materials. These methods allow you to specify a parameter slot number and a new parameter value. When executed, the methods search all of the materials on the target geometry node for Constant Scalar, Constant Vector, and Constant Color processes that use the parameter slot and change the input value for those processes to the new value specified in the script.&lt;br /&gt;
+&lt;br /&gt;
+* A new tool has been added to the Material page in the World Editor that works like the eyedropper in a painting program. When this tool is clicked on a geometry surface in a scene, the current material is set to the material used on that surface.&lt;br /&gt;
+&lt;br /&gt;
+* For transition zones having exactly two outgoing direct portals, the ambient light color is now dynamically calculated. The light color is simply a smooth gradient in between the two portals, blending from one zone's ambient light color to the other's. If either zone's ambient light color changes, then the gradient is automatically updated.&lt;br /&gt;
+&lt;br /&gt;
+* The collision system has been improved in this release. To gain the full benefits of these improvements, it is necessary to rebuild the collision data for geometry nodes in the World Editor. This can be done by selecting all of the geometry nodes, hitting Ctrl-I to open the Node Info window, moving to the Collision tab, and then just clicking OK.&lt;br /&gt;
+&lt;br /&gt;
+* The engine now recognizes the operating system clipboard under Windows and Mac OS X, so it's possible to copy and paste text between other applications and text boxes inside C4.&lt;br /&gt;
+&lt;br /&gt;
+* The project files now have a new build target called Server. When this target is selected, the engine builds without any graphics, sound, or input systems so that it can be run on minimal hardware and used as a dedicated server.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;kWindowMaximize&amp;lt;/code&amp;gt; flag can now be passed to the Window constructor to make it as large as possible upon creation.&lt;br /&gt;
+&lt;br /&gt;
+* If an attempt is made to read strings from a non-existent string table resource, the engine now returns the &amp;quot;&amp;lt;missing&amp;gt;&amp;quot; string in the same way that it already does for missing strings in an existing resource.&lt;br /&gt;
+&lt;br /&gt;
+* The Time Manager has been modified so that it correctly handles frame rates greater than 1000 fps.&lt;br /&gt;
+&lt;br /&gt;
+* The quad effect now has a setting for the blend mode that it's rendered with.&lt;br /&gt;
+&lt;br /&gt;
+* The Panel Controller script functions for getting and setting panel item text now work on editable text items as well as static text items.&lt;br /&gt;
+&lt;br /&gt;
+* New standard Panel Controller script functions have been added to get and set the texture map shown in an image item.&lt;br /&gt;
+&lt;br /&gt;
+* The script expression parser now recognizes the words &amp;quot;true&amp;quot; and &amp;quot;false&amp;quot; as boolean literals. These are now treated as keywords and cannot be used as variable names.&lt;br /&gt;
+&lt;br /&gt;
+* Hexadecimal integer literals using the &amp;lt;code&amp;gt;0x&amp;lt;/code&amp;gt; syntax are now recognized by the script expression parser.&lt;br /&gt;
+&lt;br /&gt;
+* The box select tool in the World Editor has been reimplemented and is now very precise.&lt;br /&gt;
+&lt;br /&gt;
+* In the World Editor, double-clicking on a node in the scene graph now opens the Node Info window.&lt;br /&gt;
+&lt;br /&gt;
+* When importing a geometry node with the Collada Importer, if the transform contains any kind of scale, then the 3&amp;amp;times;3 portion of the transform (containing the scale and rotation) is now baked into the vertices.&lt;br /&gt;
+&lt;br /&gt;
+* A voice chat channel can now be enabled and disabled so that it's possible to switch among chat configurations without having to create and/or delete channels.&lt;br /&gt;
+&lt;br /&gt;
+* A new type of event handler, the &amp;lt;code&amp;gt;WindowEventHandler&amp;lt;/code&amp;gt;, can now be installed in the Interface Manager to receive events pertaining to GUI windows. The types of events posted are (a) a window was added/removed from the GUI, (b) a window's enable or hidden state has changed, and (c) the mouse has moved into or out of a window's content area.&lt;br /&gt;
+&lt;br /&gt;
+* The Input Manager has been modified so that it is possible to receive raw input from only specific classes of devices while still receiving ordinary OS events for mouse and/or keyboard devices. The &amp;lt;code&amp;gt;kInputNormal&amp;lt;/code&amp;gt; mode that could previously be passed to the &amp;lt;code&amp;gt;InputMgr::SetInputMode()&amp;lt;/code&amp;gt; function has been replaced by the three values &amp;lt;code&amp;gt;kInputMouseActive&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;kInputKeyboardActive&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;kInputGameActive&amp;lt;/code&amp;gt;. The &amp;quot;Game&amp;quot; classification includes all devices that are not mice or keyboards. These values can be passed in any combination (through logical OR) to the &amp;lt;code&amp;gt;InputMgr::SetInputMode()&amp;lt;/code&amp;gt; function to set the input mode for those classes of device. If either &amp;lt;code&amp;gt;kInputMouseActive&amp;lt;/code&amp;gt; or &amp;lt;code&amp;gt;kInputKeyboardActive&amp;lt;/code&amp;gt; is not specified, then you continue to receive OS events for those classes of device. The &amp;lt;code&amp;gt;kInputAllActive&amp;lt;/code&amp;gt; value is provided to enable raw input for all devices, equivalent to the old value of &amp;lt;code&amp;gt;kInputNormal&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;SetAudioCaptureProc()&amp;lt;/code&amp;gt; function has been added to the Audio Capture Manager. This function lets you install a callback procedure that is periodically invoked when new audio data has been captured on the local machine, and it provides a way for the application to intercept the raw sample data.&lt;br /&gt;
+&lt;br /&gt;
+* The configuration file &amp;lt;code&amp;gt;Engine/engine.cfg&amp;lt;/code&amp;gt; has been renamed to &amp;lt;code&amp;gt;Engine/input.cfg&amp;lt;/code&amp;gt; since it only includes commands for binding input controls.&lt;br /&gt;
+&lt;br /&gt;
+* In debug mode, the values used to fill newly allocated memory and just-deallocated memory have been changed to &amp;lt;code&amp;gt;0x7FCCCCCC&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;0x7FDDDDDD&amp;lt;/code&amp;gt;, respectively. This was done so that any float-point values read from uninitialized memory would be interpreted as NaNs. In the case that a memory block is not a multiple of four bytes in size, &amp;lt;code&amp;gt;0xCC&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;0xDD&amp;lt;/code&amp;gt; are used to fill in the remainder bytes.&lt;br /&gt;
+&lt;br /&gt;
+* In debug mode under Windows, the engine will now display an error message at startup if the working directory does not point to the location containing the Data directory.&lt;br /&gt;
+&lt;br /&gt;
+* The per-vertex fog option has been removed from the engine. Fog calculations are now always performed at the fragment level.&lt;br /&gt;
+&lt;br /&gt;
+* The separate specular color option has been removed from light objects.&lt;br /&gt;
+&lt;br /&gt;
+* The microfacet rendering variable &amp;lt;code&amp;gt;$renderMicrofacetShading&amp;lt;/code&amp;gt; has been removed from the engine. Microfacet rendering can no longer be turned off through a flag.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_1.4.10</id>
+		<title>Release Notes for Version 1.4.10</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_1.4.10"/>
+		<updated>2023-07-15T09:56:11Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' July 25, 2008  * A new cross-platform voice chat system has been added to the engine as the Audio Capture Manager. In a multiplayer game, audio can be captured on each player's machine, compressed using a variable bit-rate algorithm, and distributed through the server to the other players in the game. In the demo game, there are options for enabling or disabling sending and receiving of voice chat, and there's a volume control for received v...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' July 25, 2008&lt;br /&gt;
+&lt;br /&gt;
+* A new cross-platform voice chat system has been added to the engine as the Audio Capture Manager. In a multiplayer game, audio can be captured on each player's machine, compressed using a variable bit-rate algorithm, and distributed through the server to the other players in the game. In the demo game, there are options for enabling or disabling sending and receiving of voice chat, and there's a volume control for received voice chat.&lt;br /&gt;
+&lt;br /&gt;
+* Each &amp;lt;code&amp;gt;[http://c4engine.com/docs/MessageMgr/Player.html Player]&amp;lt;/code&amp;gt; object that corresponds to a player in a game is now part of a graph that represents the voice communication channels among all of the players. Voice chat is only sent from player A to player B if there exists a channel starting at player A and ending at player B. A channel is an edge in the player graph encapsulated by the &amp;lt;code&amp;gt;Channel&amp;lt;/code&amp;gt; class. The demo game automatically establishes channels among all players who have enabled voice chat receipt, but more complex arrangements such as team chat can be set up.&lt;br /&gt;
+&lt;br /&gt;
+* It is now possible for a remote portal to span multiple zones so that a single large portal can be used in several zones in cases when a reflective or refractive surface is bigger than a single room. To use this functionality, just add a connector to each zone (other than the portal's owning zone) and link it to the remote portal.&lt;br /&gt;
+&lt;br /&gt;
+* The S3TC texture compression algorithm built into the engine has been significantly improved in this release, both in terms of image quality and speed.&lt;br /&gt;
+&lt;br /&gt;
+* Due to some serious limitations in Mac OS 10.4 (Tiger), we will only be supporting Mac OS 10.5 (Leopard) beginning with this release. The Mac project files now require Xcode 3. It's still possible to build the engine under earlier versions of Mac OS X, but it will require making your own project files for Xcode 2 and working around the dynamic loader limitations (for which one solution is to hard-code an absolute installation path for the C4.app bundle).&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_149</id>
+		<title>Release Notes for Build 149</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_149"/>
+		<updated>2023-07-15T09:55:11Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' July 8, 2008  * The graphical scripting system in the engine has been replaced with a far more powerful design that supports variables, loops, and conditional execution. All previously existing scripts will continue to run without modification. Details about the new scripting system are too extensive to include here, but they can be found in the Graphical Scripting Language article.  * The &amp;lt;code&amp;gt;Function::Execute()&amp;lt;/code&amp;gt; function now ta...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' July 8, 2008&lt;br /&gt;
+&lt;br /&gt;
+* The graphical scripting system in the engine has been replaced with a far more powerful design that supports variables, loops, and conditional execution. All previously existing scripts will continue to run without modification. Details about the new scripting system are too extensive to include here, but they can be found in the [[Graphical Scripting Language]] article.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Function::Execute()&amp;lt;/code&amp;gt; function now takes a pointer to the method that is calling it. This allows the function to set the method's boolean result value in the new scripting system.&lt;br /&gt;
+&lt;br /&gt;
+* The engine's texture format has been changed in this release. The file extension is still &amp;lt;code&amp;gt;.tex&amp;lt;/code&amp;gt;, and the engine can still read the old format. However, in the next release, the old format will no longer be supported. We have included a conversion utility in this release that will scan your Data folder and convert all &amp;lt;code&amp;gt;.tex&amp;lt;/code&amp;gt; files to the new format automatically. All textures that ship with the engine have already been converted. To use the conversion utility, run the engine and type &amp;lt;code&amp;gt;convtex&amp;lt;/code&amp;gt; in the command console. This will convert all &amp;lt;code&amp;gt;.tex&amp;lt;/code&amp;gt; files in your Data folder to the new format in place. '''Be sure that you have a backup copy of your custom textures before running this utility.'''&lt;br /&gt;
+&lt;br /&gt;
+* The Texture Viewer tool has been renamed to Texture Tool, and all the code that creates textures of any kind has been moved to this plugin. Generated textures (light projections, shadow maps, environment maps, and ambient spaces) are now made using the &amp;lt;code&amp;gt;gentex&amp;lt;/code&amp;gt; console command.&lt;br /&gt;
+&lt;br /&gt;
+* The ambient space feature has been replaced with a new rendering method for static volumetric ambient occlusion. Ambient spaces are still placed in zones as they were previously, but now they only encode directional occlusion that modulates the ambient light intensity as opposed to encoding the ambient light intensity itself. More ambient lighting capabilities will be added to near-term future releases.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;SceneImportPlugin&amp;lt;/code&amp;gt; class has been changed slightly so that it's possible for an import plugin to display a dialog before importing a scene. (See the Collada import plugin for an example.) The &amp;lt;code&amp;gt;SceneImportPlugin::ImportGeometry()&amp;lt;/code&amp;gt; function now takes a pointer to the editor window as a parameter, and the importer must call the &amp;lt;code&amp;gt;Editor::ImportScene()&amp;lt;/code&amp;gt; function in order to complete the import.&lt;br /&gt;
+&lt;br /&gt;
+* The Collada importer now offers the option to attempt to import texture maps while it is importing a scene. When this option is turned on, any qualified diffuse map, normal map, gloss map, or emission map specified in a Collada file will be imported with the Texture Tool using the default settings. A texture map qualifies for import if its path name contains &amp;lt;code&amp;gt;/Import/&amp;lt;/code&amp;gt; so that the importer recognizes it as being in the C4 Import folder. If the Collada file specifies the wrap modes for a texture map, then they are respected when a texture map is automatically imported.&lt;br /&gt;
+&lt;br /&gt;
+* A Cleanup button has been added to the Material Manager. Clicking this button causes all duplicate materials to be merged into one material. Materials are considered equivalent if they produce the same shaders.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Entity&amp;lt;/code&amp;gt; class has been renamed to the &amp;lt;code&amp;gt;Model&amp;lt;/code&amp;gt; class. To update your code, make the case-sensitive global replacements of Entity to Model and entity to model. This will have the effect of inadvertently changing the word &amp;quot;identity&amp;quot; as well, so you'll need to also make the replacement of dmodel to dentity to clean it up.&lt;br /&gt;
+&lt;br /&gt;
+* A new toggle button has been added to the World Editor that turns display of models on and off. Models are no longer displayed as a bounding box.&lt;br /&gt;
+&lt;br /&gt;
+* A model registration now takes one more parameter that specifies the human-readable model name to be displayed in the World Editor.&lt;br /&gt;
+&lt;br /&gt;
+* A new multi-zone referencing system has been implemented that generalizes some older techniques used in the engine for transition zones and effects that span multiple zones. Most of this system is internal to the engine and not exposed to higher-level code, but there's one new addition that game programmers need to be aware of. Model nodes have always automatically reparented themselves to the zones that contain them as they move around, but now when a model exits a zone, it also attaches a special reference to the zone that survives until the model's bounding volume has completely left the zone. This allows large models to span multiple zones and to be correctly identified by the visibility determination system. The whole thing is automated, so no code needs to be written to take advantage of this feature.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;kEntityAttached&amp;lt;/code&amp;gt; flag, previously used to signify that a model is attached to another model in some way, has been removed from the engine. The Model class now determines whether models are attached to other models automatically.&lt;br /&gt;
+&lt;br /&gt;
+* Under Windows, the Sound Manager now uses XAudio2 instead of DirectSound. This should be completely transparent to all higher-level code, but you will need to upgrade to the latest version of DirectX. The engine will only compile with the June 2008 DirectX SDK or later.&lt;br /&gt;
+&lt;br /&gt;
+* The streaming capabilities in the Sound Manager have been generalized so that it's possible to stream sound data from any kind of source. The method for setting up a streaming wave file has changedâ€”see the [[Working with Sound]] article for more information.&lt;br /&gt;
+&lt;br /&gt;
+* A color scale and bias operation has been added to the post-processing pass. The &amp;lt;code&amp;gt;World::SetFinalColorTransform()&amp;lt;/code&amp;gt; function can be used to specify a scale color S and a bias color B that are applied to the final rendered color C to yield SC + B. The red, green, and blue channels of these colors can be any floating-point values that produce the desired effect. The scale and bias colors only affect rendering of the current world and not the graphical user interface.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;WorldRenderTask()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;InterfaceRenderTask()&amp;lt;/code&amp;gt; functions have been added to the Application class. These functions are called once per frame after the world has been rendered and after the graphical user interface has been rendered, respectively.&lt;br /&gt;
+&lt;br /&gt;
+* The Display Manager will now allow any window size to be specified by the &amp;lt;code&amp;gt;$displayWidth&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;$displayHeight&amp;lt;/code&amp;gt; variables when running in windowed mode.&lt;br /&gt;
+&lt;br /&gt;
+* The Node class is now subclassed from Constructable so that custom node types can be defined and properly deserialized. The &amp;lt;code&amp;gt;[http://c4engine.com/docs/System/Constructable_InstallConstructor.html Constructable::InstallConstructor()]&amp;lt;/code&amp;gt; function is used to install a callback function that constructs custom node subclasses.&lt;br /&gt;
+&lt;br /&gt;
+* Full native support for Xbox 360 controllers under Windows has been added to the Input Manager (using XInput). The demo game code has been updated so that it's possible to play using only the Xbox controller. Better support for DirectInput joysticks has also been added to the Input Manager.&lt;br /&gt;
+&lt;br /&gt;
+* The movies plugin now allows movies to be played as streams from remote locations. The movie controller and movie panel item now both have check boxes indicating whether the movie name is a URL.&lt;br /&gt;
+&lt;br /&gt;
+* Movie play position is now synchronized in multiplayer games when new players join.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_148</id>
+		<title>Release Notes for Build 148</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_148"/>
+		<updated>2023-07-15T09:54:27Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' March 13, 2008  * Glow and bloom effects have been added to the post-processing phase of the rendering system. No distinction is made between glow and bloom during post-processing, but the two effects are created by different parts of the shading equations. Glow comes from the emission component's alpha channel, and bloom is determined by the intensity of the specular component. Glow and bloom are enabled on a per-material basis, and each ha...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' March 13, 2008&lt;br /&gt;
+&lt;br /&gt;
+* Glow and bloom effects have been added to the post-processing phase of the rendering system. No distinction is made between glow and bloom during post-processing, but the two effects are created by different parts of the shading equations. Glow comes from the emission component's alpha channel, and bloom is determined by the intensity of the specular component. Glow and bloom are enabled on a per-material basis, and each has a check box in the Material Manager. (Glow is found under the Ambient tab, and bloom is found under the Specular tab.) Glow and bloom can be enabled or disabled globally in the Graphics Settings dialog.&lt;br /&gt;
+&lt;br /&gt;
+* A new generic animation controller has been added to the engine. This controller can be attached to an entity node, and it simply plays an animation resource for that entity. The animation controller also exposes play and stop functions that can be called from a script to change animations or stop the current animation.&lt;br /&gt;
+&lt;br /&gt;
+* The Material Manager in the World Editor has been largely redesigned. It now always displays every material that is used by a world, and all previews are rendered in real-time. The various material attribute settings have been reorganized into four panes: Diffuse, Specular, Ambient, and Texcoords. The first three panes group attributes by where they appear in the lighting equations, and the Texcoords pane contains everything related to texture coordinate transforms and animation. The New button now creates an empty material, and a Duplicate button has been added that creates a copy of the currently selected material. A Delete button has been added that removes a material from a world, but only if it is not used by anything. The Import and Export buttons still exist and function as before.&lt;br /&gt;
+&lt;br /&gt;
+* The World Editor now directly supports plugin modules. The external API is in a rather early state, but it is possible to create a plugin that displays new tool pages in the editor. World Editor plugins should be placed inside the &amp;lt;code&amp;gt;Plugins/Tools/Editor/&amp;lt;/code&amp;gt; directory so that they are loaded after the World Editor itself is loaded. Support for import and export plugins has been moved to the World Editor, and the Collada Importer plugin has been modified to work directly with the editor.&lt;br /&gt;
+&lt;br /&gt;
+* Up to four columns of tool pages can now be displayed in the World Editor. How many columns there are, and where they appear, is configured by selecting Editor Settings from the Layout menu. Each of the four available columns can be placed on the left or right side of the viewports when made visible. Pages can be dragged from one column to another.&lt;br /&gt;
+&lt;br /&gt;
+* By holding in the Control key (Command key on Mac) while clicking on the collapse or close button of a tool page, all pages in the same column can now be collapsed or closed at once. There is a new command in the Page menu that shows all available tool pages.&lt;br /&gt;
+&lt;br /&gt;
+* In the World Editor, the selection mask will now be automatically updated whenever a new node is drawn so that the node is always selectable right after it is created.&lt;br /&gt;
+&lt;br /&gt;
+* The Clone Group command in the World Editor has been replaced with the Clone command. Any node can be cloned now, and the result is a new copy of the node that refers to the same object(s).&lt;br /&gt;
+&lt;br /&gt;
+* The right-click popup menu in the World Editor now contains a Get Info item. Also, the Frame All and Frame Selection items in this menu now work on perspective viewports.&lt;br /&gt;
+&lt;br /&gt;
+* Editable text elements can now be made read-only by setting the &amp;lt;code&amp;gt;kEditableTextReadOnly&amp;lt;/code&amp;gt; flag with the &amp;lt;code&amp;gt;SetEditableTextFlags()&amp;lt;/code&amp;gt; function. Text can still be selected and copied from a read-only text element, but it cannot be modified by the user.&lt;br /&gt;
+&lt;br /&gt;
+* The Movies plugin now exposes script functions for playing, stopping, pausing, and resuming movie items inside panel effects.&lt;br /&gt;
+&lt;br /&gt;
+* The Collada Importer now correctly sets the default up direction to the y axis if an imported file does not indicate an up axis.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_147</id>
+		<title>Release Notes for Build 147</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_147"/>
+		<updated>2023-07-15T09:53:22Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' February 25, 2008  * This release is primarily an update that contains the demo shown at GDC.  * A new enemy character, the spider, has been added to the demo game. Its controller is now the simplest example of a controller for a non-player character.  * A world can now be paused by setting the &amp;lt;code&amp;gt;kWorldPaused&amp;lt;/code&amp;gt; flag with the &amp;lt;code&amp;gt;[http://c4engine.com/docs/WorldMgr/World_SetWorldFlags.html World::SetWorldFlags()]&amp;lt;/code&amp;gt; function. (C...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' February 25, 2008&lt;br /&gt;
+&lt;br /&gt;
+* This release is primarily an update that contains the demo shown at GDC.&lt;br /&gt;
+&lt;br /&gt;
+* A new enemy character, the spider, has been added to the demo game. Its controller is now the simplest example of a controller for a non-player character.&lt;br /&gt;
+&lt;br /&gt;
+* A world can now be paused by setting the &amp;lt;code&amp;gt;kWorldPaused&amp;lt;/code&amp;gt; flag with the &amp;lt;code&amp;gt;[http://c4engine.com/docs/WorldMgr/World_SetWorldFlags.html World::SetWorldFlags()]&amp;lt;/code&amp;gt; function. (Care should be taken to avoid clearing other flags by calling &amp;lt;code&amp;gt;[http://c4engine.com/docs/WorldMgr/World_GetWorldFlags.html World::GetWorldFlags()]&amp;lt;/code&amp;gt; and logically ORing in the &amp;lt;code&amp;gt;kWorldPaused&amp;lt;/code&amp;gt; flag.) While this flag is set, controllers and effects are not moved. The demo game now sets this flag when the menu window is displayed in single player mode.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_146</id>
+		<title>Release Notes for Build 146</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_146"/>
+		<updated>2023-07-15T09:52:26Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' February 7, 2008  * With this release, we begin officially supporting the Intel GMA X3000 series of graphics chips under Windows. Some driver issues are currently preventing us from supporting these chips on the Mac.  * A new post-processing effect has been implemented that enables distortion effects such as heat haze. Any effect can be configured so that it renders into the distortion buffer instead of into the main scene by using the &amp;lt;code...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' February 7, 2008&lt;br /&gt;
+&lt;br /&gt;
+* With this release, we begin officially supporting the Intel GMA X3000 series of graphics chips under Windows. Some driver issues are currently preventing us from supporting these chips on the Mac.&lt;br /&gt;
+&lt;br /&gt;
+* A new post-processing effect has been implemented that enables distortion effects such as heat haze. Any effect can be configured so that it renders into the distortion buffer instead of into the main scene by using the &amp;lt;code&amp;gt;[http://c4engine.com/docs/EffectMgr/Effect_SetEffectListIndex.html Effect::SetEffectListIndex()]&amp;lt;/code&amp;gt; function to set the effect list to &amp;lt;code&amp;gt;kEffectListDistortion&amp;lt;/code&amp;gt; and by setting the &amp;lt;code&amp;gt;kShaderDistortion&amp;lt;/code&amp;gt; shader flag. The &amp;lt;code&amp;gt;[http://c4engine.com/docs/EffectMgr/Effect_SetDistortionState.html Effect::SetDistortionState()]&amp;lt;/code&amp;gt; function has been provided to set all of the necessary state for rendering into the distortion buffer.&lt;br /&gt;
+&lt;br /&gt;
+* When an effect is rendered into the distortion buffer, only the red and green channels of the texture color matter, and they encode horizontal and vertical offsets, respectively. A value of 128 in either channel means no offset, while 0 means the largest possible negative offset, and 255 means the largest possible positive offset. Offsets are accumulated in the distortion buffer so that multiple effect nodes can have an additive effect on the amount of distortion visible at a particular point. The alpha channel of the vertex color can be used to modulate the intensity of the offset values after RG decoding. See the &amp;lt;code&amp;gt;ShimmerSystem&amp;lt;/code&amp;gt; class in the demo game for an example of a particle system that renders heat waves into the distortion buffer.&lt;br /&gt;
+&lt;br /&gt;
+* It is now possible to render effect nodes in the lighting passes so that all of the shading capabilities of the engine can be applied to the effect. This is accomplished by using the &amp;lt;code&amp;gt;Effect::SetEffectListIndex()&amp;lt;/code&amp;gt; function to set the effect list to &amp;lt;code&amp;gt;kEffectListLight&amp;lt;/code&amp;gt;. An effect must have normal and tangent arrays in order to render correctly in the lighting passes. The marking effect has been extended to create these arrays automatically and set the effect list index. To use this functionality, the &amp;lt;code&amp;gt;kMarkingLight&amp;lt;/code&amp;gt; flag should be specified when creating a new &amp;lt;code&amp;gt;[http://c4engine.com/docs/EffectMgr/MarkingData.html MarkingData]&amp;lt;/code&amp;gt; structure. The demo game now uses this flag for blood splatters.&lt;br /&gt;
+&lt;br /&gt;
+* The engine now supports a hierarchical relationship among plugins, and it is now possible for a plugin to depend on the existence of other plugins. The way this works is through the use of subdirectories inside the Plugins directory. All plugins in a particular directory are loaded before any plugins in the subdirectories of that directory, so if plugin B depends on plugin A, then plugin B should be in a subdirectory inside the directory containing plugin A.&lt;br /&gt;
+&lt;br /&gt;
+* It is no longer necessary to define &amp;lt;code&amp;gt;C4MODULE&amp;lt;/code&amp;gt; when compiling the application module or any plugin modules. Instead, the engine project defines &amp;lt;code&amp;gt;C4ENGINEMODULE&amp;lt;/code&amp;gt; so that it can be determined that the engine is being compiled as opposed to any other module.&lt;br /&gt;
+&lt;br /&gt;
+* All of the movie code has been moved into a new Movies plugin. All dependencies on QuickTime are now isolated to this plugin, and the plugin can simply be omitted if movie playing capabilities are not needed. The MoviePlayer plugin depends on the Movies plugin.&lt;br /&gt;
+&lt;br /&gt;
+* A new plugin called Extras has been created that contains functionality that may not be needed by every game, but is general enough to be made available outside the application module. Currently, the Extras plugin includes the rotation controller and the star field particle system. More functionality will be moved to the Extras plugin in the future.&lt;br /&gt;
+&lt;br /&gt;
+* New path editing tools have been added to the World Editor. A path is made up of a series of components that can be any of the types linear, elliptical, or Bezier. A linear component is simply a straight line that connects two endpoints, an elliptical component is a 90-degree elliptical arc between two endpoints, and a Bezier component is a single cubic Bezier curve with four control points (two endpoints and two off-curve control points). Paths are created by using the three tools in the Paths page corresponding to linear, elliptical, and Bezier components. Switching among the tools allows the user to add different types of components to the same path. Whenever a single path node is selected, using the path tools will add to that path.&lt;br /&gt;
+&lt;br /&gt;
+* The path tools will snap to the beginning endpoint of the current path so that perfectly closed paths can be created. The snap can be disabled by holding in the Control key (Command key on Mac).&lt;br /&gt;
+&lt;br /&gt;
+* Control points along a curve can be selected with the ordinary selection tools. Shift-clicking adds or subtracts from a selection. A Control-click (Command-click on the Mac) will cause control points along the tangent to be selected in addition to an on-curve control point in a single click. If an off-curve control point is moved for a Bezier component, then it's opposing control point in any adjacent Bezier component is moved in the opposite direction unless it is also selected or the Control key is held in (Command key on Mac).&lt;br /&gt;
+&lt;br /&gt;
+* Three new geometric primitives based on paths have been added to the engine and are available in the Geometries page inside the World Editor. They are called path tube, path extrusion, and path revolution. Each of these primitives can be created when a path is selected in the editor to define the shape of a tube, the base shape of an extrusion, or the lateral surface shape of a revolution. When creating a tube geometry, you drag out a disk representing the shape of the tube's cross section. When creating an extrusion or revolution, the drawing tools behave like a box and a cylinder, respectively so that you can create geometries with the shape of the path, but at any size.&lt;br /&gt;
+&lt;br /&gt;
+* A new effect type called a tube effect has been added to the engine. It is similar to the beam effect, except that it follows a path instead of a straight line. The tube effect is drawn as a circular disk representing the cross-sectional shape. The actual effect can only be seen in the perspective view with lighting turned on.&lt;br /&gt;
+&lt;br /&gt;
+* When a tube (geometry or effect), extrusion, or revolution is created, the path from which it was made is copied into the geometry or effect node so that the original path is not needed in order to rebuild the node (for example, with different subdivision settings). A link to the original path is also stored in a built-in connector of type PATH. When the original path is edited, the node linking to it will not be updated automatically, but any such node can be explicitly rebuilt using the linked path by choosing the Rebuild with New Path command under the Geometry menu.&lt;br /&gt;
+&lt;br /&gt;
+* Several improvements have been made to the in-game interface panels and the Panel Editor:&lt;br /&gt;
+** It is now possible to create and register custom panel items.&lt;br /&gt;
+** There is a new stock panel item that encapsulates editable text.&lt;br /&gt;
+** The selection tool in the Panel Editor now functions as a box select tool once the cursor has been dragged a few pixels. The shift key can be used to add to the current selection when dragging out a box.&lt;br /&gt;
+** It is now possible to modify settings for multiple items simultaneously in the Panel Editor.&lt;br /&gt;
+** A new mutator called Animate has been implemented which plays frames of animation out of a texture by changing the texture coordinates of an image item. The mutator is configured by specifying the horizontal and vertical grid dimensions for subdividing the texture, the total number of frames, and the frame rate.&lt;br /&gt;
+&lt;br /&gt;
+* Script method registrations now take only a single name string instead of the two name strings previously taken. When a script method name is displayed in the Script Editor, lines will automatically be broken at a space, hyphen, or forward slash, if necessary, or at any newline character (represented by \n).&lt;br /&gt;
+&lt;br /&gt;
+* In the World Editor, the types of entities, locator markers, and reference markers are now displayed in the Info page for the node to which the gizmo is attached.&lt;br /&gt;
+&lt;br /&gt;
+* A new command called Bake Transform into Vertices has been added to the Geometry menu in the World Editor. This applies the node transform of a geometry node to each of its vertices, and then sets the node transform to the identity.&lt;br /&gt;
+&lt;br /&gt;
+* Another new command called Reposition Mesh Origin has been added to the Geometry menu. When this is selected, a dialog appears that lets you select min, center, or max for each of the three axes, where these refer to the bounding box. The node position for each selected mesh will be moved to the specified location, and the vertices of the mesh will be translated the same distance in the opposite direction. This has the effect of moving the object origin without actually moving the world-space vertex positions.&lt;br /&gt;
+&lt;br /&gt;
+* A new command called Move Viewport Camera to Node has been added to the Node menu. This command moves the camera in all perspective viewports to the position of the selected node and faces it along the node's z-axis. The camera still obeys the ordinary restrictions on the viewport camera, so it will not roll side to side or tilt up or down more than about 83 degrees from the horizontal.&lt;br /&gt;
+&lt;br /&gt;
+* Another new command called Open Referenced World has been added to the Node menu. This command opens the world resource referenced by each selected reference marker in a separate editor window.&lt;br /&gt;
+&lt;br /&gt;
+* A new camera speed slider has been added to the Viewports page in the World Editor. This controls the maximum speed of the free camera in the perspective viewports.&lt;br /&gt;
+&lt;br /&gt;
+* When the Invert Geometry command (Ctrl-Shift-I) is used in the World Editor to invert a primitive geometry node, it will now also flip the &amp;quot;Build inverted&amp;quot; flag from the Get Info dialog automatically. This will cause the geometry to continue rebuilding in the inverted state if it's altered at a later point in time.&lt;br /&gt;
+&lt;br /&gt;
+* When placing a locator marker in the World Editor, the marker will now keep the identity transform until the mouse has been dragged several pixels away from the click point. This prevents random rotations if the mouse is clicked and released at the same point.&lt;br /&gt;
+&lt;br /&gt;
+* The Markers page now displays a list of registered locator types. Selecting one of these lets you place a locator in the scene with the registered type already set.&lt;br /&gt;
+&lt;br /&gt;
+* The Memory Manager has been largely rewritten and there is an enormous performance improvement in general allocation speed.&lt;br /&gt;
+&lt;br /&gt;
+* Screenshots saved using the shot command are now saved as compressed TGA files (whereas before they were not compressed).&lt;br /&gt;
+&lt;br /&gt;
+* All interface elements now have common functions for getting and setting their sizes. These functions are &amp;lt;code&amp;gt;GetElementWidth()&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;GetElementHeight()&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;SetElementSize()&amp;lt;/code&amp;gt;. Also, the origin for the push button element is now at the left edge of the button at the vertical position for the button text.&lt;br /&gt;
+&lt;br /&gt;
+* When a radio button is selected by the user, it will now automatically unselect all other radio buttons having the same parent element.&lt;br /&gt;
+&lt;br /&gt;
+* It is no longer necessary to type the full path name when opening a world, texture, or sound using the command line. The top-level virtual directory name should be left off.&lt;br /&gt;
+&lt;br /&gt;
+* All resource names may now contain the names of system variables, and these will be replaced by the value of each variable before the Resource Manager tries to locate a resource. The syntax is ($name). For example, if you try to load a resource with the name textures/($season)/leaves, and the value of the variable $season is &amp;quot;summer&amp;quot;, then the Resource Manager will load the resource named textures/summer/leaves. A resource name may contain any number of variable names. In any case when the right syntax isn't used or the variable doesn't exist, the resource name is not altered.&lt;br /&gt;
+&lt;br /&gt;
+* The Xcode projects for the Mac have been changed significantly. Everything now builds as a dynamic library instead of a bundle. The engine module also builds as a dynamic library because it's not possible to link against both an executable and another plugin on the Mac, and this is necessary for plugins that depend on other plugins. A small executable that contains only the main() function is now built as a wrapper for the engine module.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_145</id>
+		<title>Release Notes for Build 145</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_145"/>
+		<updated>2023-07-15T09:51:14Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' November 27, 2007  * Implemented a new GUI rendering system. For details, see the wiki article about Creating a GUI Skin.  * Added a radio button interface element as the &amp;lt;code&amp;gt;RadioButtonElement&amp;lt;/code&amp;gt; class.  * Cameras now have a new flag to indicate that they may temporarily move outside their owning zone. This is useful in such cases as a camera mounted on a gun that's attached to a character. A similar flag has existed for lights, and n...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' November 27, 2007&lt;br /&gt;
+&lt;br /&gt;
+* Implemented a new GUI rendering system. For details, see the wiki article about Creating a GUI Skin.&lt;br /&gt;
+&lt;br /&gt;
+* Added a radio button interface element as the &amp;lt;code&amp;gt;RadioButtonElement&amp;lt;/code&amp;gt; class.&lt;br /&gt;
+&lt;br /&gt;
+* Cameras now have a new flag to indicate that they may temporarily move outside their owning zone. This is useful in such cases as a camera mounted on a gun that's attached to a character. A similar flag has existed for lights, and now both flags are exposed in the Get Info dialog.&lt;br /&gt;
+&lt;br /&gt;
+*  A new concept of &amp;quot;perspective&amp;quot; has been worked into the engine, and this refers to the kind of viewing position the scene is currently being rendered from. There are currently four perspectives defined: direct, reflection, refraction, and camera. The direct perspective pertains to the scene as it is rendered directly from the main camera, the reflection and refraction perspectives pertain to the scene as it is rendered through remote portals, and the camera perspective pertains to the scene as it is rendered through a camera item in an interface panel. Multiple perspectives can be in effect at the same time; for example, the reflection in a water surface seen through a panel camera.&lt;br /&gt;
+&lt;br /&gt;
+* Geometries and fog spaces can now be excluded from each of the four perspectives by setting flags in the Get Info box. (The flags for a geometry appear under the Node tab.) For geometries, the visibility of shadows can also be controlled independently.&lt;br /&gt;
+&lt;br /&gt;
+* A new flag has been added for remote portals that enables recursive rendering. By default, this flag is off, so a remote portal will not be rendered again if you are already looking through that portal.&lt;br /&gt;
+&lt;br /&gt;
+* When shadow maps, cube light projections, spot light projections, or ambient space maps are generated, they are now written into the same virtual directory that contains the world resource from which they were generated. Any subdirectory names in the resource path are relative to the top-level virtual directory.&lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;GetImportResourceCatalog()&amp;lt;/code&amp;gt; function to the &amp;lt;code&amp;gt;[http://c4engine.com/docs/WorldEditor/SceneImportPlugin.html SceneImportPlugin]&amp;lt;/code&amp;gt; class and the &amp;lt;code&amp;gt;GetExportResourceCatalog()&amp;lt;/code&amp;gt; function to the &amp;lt;code&amp;gt;[http://c4engine.com/docs/WorldEditor/SceneExportPlugin.html SceneExportPlugin]&amp;lt;/code&amp;gt; class to let the plugins specify what catalog to use for import or export.&lt;br /&gt;
+&lt;br /&gt;
+* Added some resource caching optimizations.&lt;br /&gt;
+&lt;br /&gt;
+* A lot of work has been done to move the PS3 rendering code to a much lower-level system. The Graphics Manager now minimizes use of the GCM library and instead uses custom code to build command buffers. This allows the C4 rendering code to be as fast as possible, and it gives C4 access to more hardware features than are available to other PS3 games.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_144</id>
+		<title>Release Notes for Build 144</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_144"/>
+		<updated>2023-07-15T09:50:27Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' November 9, 2007  * The Resource Manager has been redesigned and now supports pack files and a virtual directory hierarchy. All resources are still stored inside the Data folder, but the subfolders that previously separated resources by type no longer exist. Resources can now be organized in an arbitrary manner inside the Data folder. However, the top-level contents of the Data folder have special meanings.  * All of the top-level subfolders...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' November 9, 2007&lt;br /&gt;
+&lt;br /&gt;
+* The Resource Manager has been redesigned and now supports pack files and a virtual directory hierarchy. All resources are still stored inside the Data folder, but the subfolders that previously separated resources by type no longer exist. Resources can now be organized in an arbitrary manner inside the Data folder. However, the top-level contents of the Data folder have special meanings.&lt;br /&gt;
+&lt;br /&gt;
+* All of the top-level subfolders of the Data folder behave as if their contents belonged to a single virtual folder at the root of the resource namespace. These top-level subfolders exist only for external organization and do not participate in the unique identification of any resources. As an example, suppose that there existed two subfolders &amp;lt;code&amp;gt;Data/Interiors/&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Data/Exteriors/&amp;lt;/code&amp;gt;. A resource named &amp;lt;code&amp;gt;Wood.tex&amp;lt;/code&amp;gt; could be stored in either subfolder, but it would still be identified only as &amp;quot;Wood&amp;quot; by the Resource Manager. The name of the top-level subfolder is not part of the resource's path. However, if the &amp;lt;code&amp;gt;Wood.tex&amp;lt;/code&amp;gt; resource was placed in an additional subfolder such as &amp;lt;code&amp;gt;Data/Exteriors/Forest/&amp;lt;/code&amp;gt;, then the name of the resource would be &amp;lt;code&amp;gt;&amp;quot;Forest/Wood&amp;quot;&amp;lt;/code&amp;gt;. All folder names beneath the top-level subfolders of the Data directory are part of the resource name.&lt;br /&gt;
+&lt;br /&gt;
+* The resources that ship with C4 have been divided into the following subfolders:&lt;br /&gt;
+** A C4 folder containing the resources used by the core engine and required by all applications built with C4.&lt;br /&gt;
+** A Demo folder containing the resources used exclusively by the demo game.&lt;br /&gt;
+** A Tools folder containing the resources used exclusively by the tool plugins.&lt;br /&gt;
+** A Tutorial folder containing the resources associated with the tutorials and sample worlds.&lt;br /&gt;
+&lt;br /&gt;
+* Pack files, having the extension &amp;lt;code&amp;gt;.pak&amp;lt;/code&amp;gt;, can also be stored at the top level of the Data directory. A pack file is created by using a new tool plugin, the Resource Packer, to pack the contents of a top-level subfolder into a single file. The console command &amp;lt;code&amp;gt;pack&amp;lt;/code&amp;gt; &amp;amp;lt;''name''&amp;amp;gt; is used to create a pack file, where &amp;amp;lt;''name''&amp;amp;gt; is the name of a top-level subfolder. For example, the command pack Demo will create the file &amp;lt;code&amp;gt;Demo.pak&amp;lt;/code&amp;gt; containing all of the resources used exclusively by the demo game. Once a pack file has been created, the folder from which it was made can be deleted, and the Resource Manager will fetch resources from the pack file instead. (Pack files actually override ordinary folders.)&lt;br /&gt;
+&lt;br /&gt;
+* Some additional miscellaneous notes about the Resource Manager:&lt;br /&gt;
+** Folders and pack files are the only items allowed at the top level of the Data directory. Other types of files in that location will be ignored.&lt;br /&gt;
+** Resource path names inside pack files are case sensitive.&lt;br /&gt;
+** QuickTime movies cannot be accessed inside pack files.&lt;br /&gt;
+** Because concealment is a benefit provided by pack files, there will not be an unpacking tool that would allow users to easily extract resources from a &amp;lt;code&amp;gt;Demo.pak&amp;lt;/code&amp;gt; file.&lt;br /&gt;
+&lt;br /&gt;
+* It is no longer necessary to use the &amp;lt;code&amp;gt;ModuleResource&amp;lt;/code&amp;gt; class template when defining a resource type in a game module or plugin module. New resource types should now just inherit from the Resource class template. However, the resource descriptor is now declared in the subclass.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Packable::GetPackSize()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Packable::GetPackTypeCount()&amp;lt;/code&amp;gt; functions have been removed from the engine. All overrides of these functions in custom class types should be deleted. These sizes are now calculated automatically by calling the &amp;lt;code&amp;gt;Packable::Pack()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Packable::PackType()&amp;lt;/code&amp;gt; functions with a nonwritable data object.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new flag to the script controller that lets you limit concurrent runs of a script to unique activators. That is, with this flag set, only one instance of the script will run for each node that is activating the trigger for the script.&lt;br /&gt;
+&lt;br /&gt;
+* The C4 Sound Manager has been upgraded on the Mac to use the CoreAudio framework. This should provide greater compatibility with future hardware and OS releases as well as yield better performance.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new &amp;lt;code&amp;gt;HashTable&amp;lt;/code&amp;gt; class to the engine utilities.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;PrimitiveGeometry&amp;lt;/code&amp;gt; class now inherits from &amp;lt;code&amp;gt;Constructable&amp;lt;/code&amp;gt; so that custom primitives can be defined by an application.&lt;br /&gt;
+&lt;br /&gt;
+* A new setting has been added to the Texture Import dialog that allows you to select the channel from which height data is read when calculating normal maps, horizon maps, and ambient occlusion maps. The command line equivalent is &amp;lt;code&amp;gt;-height&amp;lt;/code&amp;gt; &amp;amp;lt;''n''&amp;amp;gt;, where ''n'' is an integer between 0 and 3 representing the red, green, blue, or alpha channel, in that order.&lt;br /&gt;
+&lt;br /&gt;
+* Since world resources don't all have to be in the same location any more, the demo game now reads the strings in the &amp;lt;code&amp;gt;Data/Demo/game/Worlds.str&amp;lt;/code&amp;gt; file to obtain the list of playable worlds displayed in the New Game and Host Game dialogs. The corresponding &amp;lt;code&amp;gt;.txt&amp;lt;/code&amp;gt; file in the Import directory can be edited and re-imported (with the &amp;lt;code&amp;gt;istring&amp;lt;/code&amp;gt; command) to add or remove worlds from the list.&lt;br /&gt;
+&lt;br /&gt;
+* A new command, Save and Play World, has been added to the World menu in the World Editor. This saves the world being edited, closes the World Editor, and loads the world in the game.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_143</id>
+		<title>Release Notes for Build 143</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_143"/>
+		<updated>2023-07-15T09:49:50Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' October 19, 2007  * Reference markers can now be expanded and collapsed dynamically from code using the &amp;lt;code&amp;gt;ReferenceMarker::Expand()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;ReferenceMarker::Collapse()&amp;lt;/code&amp;gt; functions.  * The &amp;lt;code&amp;gt;TextElement&amp;lt;/code&amp;gt; interface element class has been rewritten and now combines all of the functionality that was previously spread over four different classes. Several new features have also been added that can be used almost everywh...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' October 19, 2007&lt;br /&gt;
+&lt;br /&gt;
+* Reference markers can now be expanded and collapsed dynamically from code using the &amp;lt;code&amp;gt;ReferenceMarker::Expand()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;ReferenceMarker::Collapse()&amp;lt;/code&amp;gt; functions.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;TextElement&amp;lt;/code&amp;gt; interface element class has been rewritten and now combines all of the functionality that was previously spread over four different classes. Several new features have also been added that can be used almost everywhere that text is rendered in the engine, including panel effects. For more information, see the documentation for the &amp;lt;code&amp;gt;TextElement&amp;lt;/code&amp;gt; class.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;EditableTextElement&amp;lt;/code&amp;gt; class has been expanded to allow multi-line text boxes. This is enabled by setting the &amp;lt;code&amp;gt;kEditableTextMultiline&amp;lt;/code&amp;gt; flag with the &amp;lt;code&amp;gt;EditableTextElement::SetEditableTextFlags()&amp;lt;/code&amp;gt; function. Multi-line text boxes support all the bells and whistles, including full selection capabilities, copy and paste, mouse wheeling, word wrap, double-click word selection, and smart cursoring.&lt;br /&gt;
+&lt;br /&gt;
+* Made some general improvements to the Panel Editor. One of these is that the text entry box for text items is now a multi-line box.&lt;br /&gt;
+&lt;br /&gt;
+* The Set Panel Item Text script function has been expanded so that you can choose to append or prepend text in addition to replacing it altogether. Also added a way to limit the length of the resulting text. An example that uses this new functionality has been added to the &amp;lt;code&amp;gt;Samples/Lasers&amp;lt;/code&amp;gt; world.&lt;br /&gt;
+&lt;br /&gt;
+* Added a truncated cone primitive geometry type. This produces a cleaner mesh than intersecting a cone with a box in many cases.&lt;br /&gt;
+&lt;br /&gt;
+* Some improvements have been made to the CSG code in the World Editor. They can now handle some more topologically complex cases.&lt;br /&gt;
+&lt;br /&gt;
+* Exposed the &amp;lt;code&amp;gt;GetMillisecondCount()&amp;lt;/code&amp;gt; function in the Time Manager. This will return a real-time absolute millisecond count, but with no zero reference. ''This function should only be used if you know what you're doing.'' If you have to ask whether it's the right function, then you shouldn't use it.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_142</id>
+		<title>Release Notes for Build 142</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_142"/>
+		<updated>2023-07-15T09:49:12Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' October 9, 2007  * The Tool Manager has been renamed to the Plugin Manager. The &amp;lt;code&amp;gt;Tool&amp;lt;/code&amp;gt; class is now the &amp;lt;code&amp;gt;Plugin&amp;lt;/code&amp;gt; class, the &amp;lt;code&amp;gt;ToolMgr&amp;lt;/code&amp;gt; class is now the &amp;lt;code&amp;gt;PluginMgr&amp;lt;/code&amp;gt; class, and the &amp;lt;code&amp;gt;Tools&amp;lt;/code&amp;gt; folder is now the &amp;lt;code&amp;gt;Plugins&amp;lt;/code&amp;gt; folder.  * A new feature has been added to the in-game interface panels that allows an impostor image to be displayed beyond a given distance instead of the set of e...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' October 9, 2007&lt;br /&gt;
+&lt;br /&gt;
+* The Tool Manager has been renamed to the Plugin Manager. The &amp;lt;code&amp;gt;Tool&amp;lt;/code&amp;gt; class is now the &amp;lt;code&amp;gt;Plugin&amp;lt;/code&amp;gt; class, the &amp;lt;code&amp;gt;ToolMgr&amp;lt;/code&amp;gt; class is now the &amp;lt;code&amp;gt;PluginMgr&amp;lt;/code&amp;gt; class, and the &amp;lt;code&amp;gt;Tools&amp;lt;/code&amp;gt; folder is now the &amp;lt;code&amp;gt;Plugins&amp;lt;/code&amp;gt; folder.&lt;br /&gt;
+&lt;br /&gt;
+* A new feature has been added to the in-game interface panels that allows an impostor image to be displayed beyond a given distance instead of the set of elements in the panel. This can improve performance considerably when many panels are visible at once. The impostor image will cross-fade with the real panel between two distances that can be set in the Get Info dialog under the Panel tab. An impostor image should be a 2D texture so that mipmapping is supported. It is possible to change the impostor image from a script using the Change Settings method.&lt;br /&gt;
+&lt;br /&gt;
+* A geometry detail level bias and shader detail level bias have been added to the Get Info dialog for geometry nodes. These are specified in units of fractional detail levels. A value of 1.0 means to use a detail level that's exactly one level lower quality than would normally be selected. Negative values can be used to keep higher detail at farther distances.&lt;br /&gt;
+&lt;br /&gt;
+* A detail level bias setting has been added to remote portals and panel cameras. This value is added to the detail level that would normally be selected by the engine (in addition to per-geometry detail level biases) and can be used to boost performance when rendering reflections, refractions, or panel cameras.&lt;br /&gt;
+&lt;br /&gt;
+* A simple &amp;lt;code&amp;gt;[http://c4engine.com/docs/EffectMgr/QuadEffect.html QuadEffect]&amp;lt;/code&amp;gt; class has been added to the engine for cases when you just need to render a single billboarded quad. It has a position, radius, color, and texture. It gets rendered in the sorted transparent effect pass.&lt;br /&gt;
+&lt;br /&gt;
+* Calling the &amp;lt;code&amp;gt;Entity::SetRootAnimator()&amp;lt;/code&amp;gt; function now causes the new root animator to be invalidated, so it's no longer necessary to invalidate it through a separate call to &amp;lt;code&amp;gt;Animator::Invalidate()&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* Added settings to the &amp;lt;code&amp;gt;DoorController&amp;lt;/code&amp;gt; in the demo game that control the opening speed and closing speed of a door, the time that a door stays open, and whether the door is initially open or closed.&lt;br /&gt;
+&lt;br /&gt;
+* Added a generic rain particle system to the demo game. Also added a new setting to the burning rain particle system that controls what percentage of the rain drops turn into flames. (Note that setting the rain intensity and burning rain percentage too high in combination can result in the flame particle system periodically running out of free particles.)&lt;br /&gt;
+&lt;br /&gt;
+* Implemented a fallback mechanism for missing fonts. If an attempt to load a nonexistent is made, then the default GUI font is loaded in its place.&lt;br /&gt;
+&lt;br /&gt;
+* The middle mouse button now pans viewports in the World Editor.&lt;br /&gt;
+&lt;br /&gt;
+* The Collada Importer now recognizes any empty node whose name begins with MARKER_ as a locator marker. This will prevent an empty leaf node from being deleted during import. When the marker is imported, the first 7 characters are stripped from the beginning of the node's name.&lt;br /&gt;
+&lt;br /&gt;
+* The Graphics Manager now allows three texture quality settings, and this is exposed in the Graphics Settings dialog in the game code. The high quality setting causes the highest-resolution mipmap to be used, and the medium and low quality settings remove the top one or two mipmaps, respectively. Any mipmaps having a resolution higher than that supported by the hardware are also removed.&lt;br /&gt;
+&lt;br /&gt;
+* Added an icon to the multiplayer game that appears over a player's head when he's typing a chat message.&lt;br /&gt;
+&lt;br /&gt;
+* Made some adjustments to the weapon code in the demo game so that shots are no longer fired parallel to the line of sight, but instead in a slightly bent direction based on how far away the target in the crosshairs is. This precisely aligns the projectile's destination with the center of the crosshairs.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_141</id>
+		<title>Release Notes for Build 141</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_141"/>
+		<updated>2023-07-15T09:48:17Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' October 3, 2007  * The Info page in the World Editor now displays the number of instances in the scene corresponding to the node for which the gizmo is currently shown. The number of instances is equal to the total number of nodes referencing the same data object.  * When replacing materials on individual surfaces of a geometry that has multiple instances in the scene, the World Editor now enforces the preservation of the material segmentati...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' October 3, 2007&lt;br /&gt;
+&lt;br /&gt;
+* The Info page in the World Editor now displays the number of instances in the scene corresponding to the node for which the gizmo is currently shown. The number of instances is equal to the total number of nodes referencing the same data object.&lt;br /&gt;
+&lt;br /&gt;
+* When replacing materials on individual surfaces of a geometry that has multiple instances in the scene, the World Editor now enforces the preservation of the material segmentation structure in order to prevent mismatches among the different instances. What this means is that you can't change the number of material slots or the surface-to-material-slot mapping for geometries having multiple instances in the scene. The only consequence of this rule is that attempting to change the material for a set of surfaces on an multiply-instanced geometry may result in the material being applied to more surfaces than are selected.&lt;br /&gt;
+&lt;br /&gt;
+* Added the Copy Transform and Paste Transform commands to the Edit menu in the World Editor. These commands copy and paste the local node transform corresponding to the node for which the gizmo is currently shown. They do not copy and paste the node size (since that's not part of the transform), but just the position and rotation. The transform clipboard is independent from the main clipboard.&lt;br /&gt;
+&lt;br /&gt;
+* Added the Combine Detail Levels and Separate Detail Levels commands to the Geometry menu in the World Editor. These commands allow you to combine multiple geometries into a single geometry with multiple levels of detail, or to separate multiple levels of detail in a single geometry into multiple geometries with a single level of detail.&lt;br /&gt;
+&lt;br /&gt;
+* The Combine Detail Levels command is available when 2â€“4 geometries are selected. It examines the highest level of detail from each geometry and puts them in order by vertex count. The geometry having the most vertices is designated the primary geometry node, and it continues to exist after the detail levels are combined. The highest level of detail from each geometry is added to the primary geometry as a lower detail level, replacing any lower detail levels that were already there. The geometry data from each input geometry is transformed into the coordinate space for the primary geometry. (Geometries should be manually aligned before combining detail levels.) Input geometries other than the primary geometry are finally deleted.&lt;br /&gt;
+&lt;br /&gt;
+* The Separate Detail Levels command has the opposite function. It takes an input geometry and creates new geometry nodes for each level of detail, removing them from the input geometry. The new geometry nodes are identical to the input geometry, including controller assignment, properties, and connections. However, the collision data will be rebuilt for level 0 if it had been changed.&lt;br /&gt;
+&lt;br /&gt;
+* The collision detail level is now exposed in the Get Info dialog under the Collision tab. By default, collision detection information is generated for the highest level of detail (level 0) for a geometry. This can now be changed so that collisions occur against a lower level of detail. The advantages to setting a higher-numbered collision detail level (which corresponds to lower geometric level of detail) are that it saves space and it performs a little faster. If the collision detail level is set greater than or equal to the number of geometric detail levels, then the last available level of detail is used.&lt;br /&gt;
+&lt;br /&gt;
+* A check box called &amp;quot;Reflection&amp;quot; has been added to the Texture Mapping page in the World Editor. Checking this box will cause texture coordinates to be mirrored in the s direction, effectively adding an inversion on top of the reflection in the texture coordinate generation matrix. Mirroring in the t direction can be achieved by rotating 180 degrees after checking the Reflection box.&lt;br /&gt;
+&lt;br /&gt;
+* An alignment plane popup menu has also been added to the Texture Mapping page. This allows selection of the XY, XZ, or YZ plane as the texcoord generation plane. These are set automatically by many primitive geometries, but may need to be changed for imported geometry to get the desired mapping.&lt;br /&gt;
+&lt;br /&gt;
+* The default texture used when a texture resource is missing has been changed so that it works better as a normal map. (The file is &amp;lt;code&amp;gt;Data/tex/C4/missing.tex&amp;lt;/code&amp;gt;.) This texture now looks like a bunch of green Xs on top of a pastel purple background (representing the (0,0,1) normal vector).&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Constructable::Construct()&amp;lt;/code&amp;gt; function has been changed to take a second parameter. Any custom construction functions (for custom objects, properties, controllers, etc.) will need to be altered so that they take a second parameter of type unsigned long for additional flags to be passed in. The value of the flags parameter can safely be ignored.&lt;br /&gt;
+&lt;br /&gt;
+* Fixed a crash that would occur only on PowerPC-based Macs when streaming sounds were played.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_140</id>
+		<title>Release Notes for Build 140</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_140"/>
+		<updated>2023-07-15T09:47:43Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' September 27, 2007  * '''IMPORTANT:''' It is particularly important that you backup your resources before installing this build. The World Editor will throw away obsolete information when you open files, and worlds will be saved in an updated format.  * After installing build 140, you should open each of your worlds in the World Editor and then immediately save them to automatically update them to the new format. Resource sizes will decrease...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' September 27, 2007&lt;br /&gt;
+&lt;br /&gt;
+* '''IMPORTANT:''' It is particularly important that you backup your resources before installing this build. The World Editor will throw away obsolete information when you open files, and worlds will be saved in an updated format.&lt;br /&gt;
+&lt;br /&gt;
+* After installing build 140, you should open each of your worlds in the World Editor and then immediately save them to automatically update them to the new format. Resource sizes will decrease a bit depending on how many generic meshes each world contains. Models should also be opened in the Model Viewer and then immediately saved to update those as well.&lt;br /&gt;
+&lt;br /&gt;
+* If you have any worlds or models that have not been opened and saved for a very long time, then you should open them and save them in build 139 before installing build 140. Specifically, any resources not saved in build 112 or later need to be opened and saved in build 112&amp;amp;ndash;139 before installing build 140. Some very old backwards compatibility mechanisms have been removed from build 140, and this could cause information to be lost if resources aren't first updated in a previous build.&lt;br /&gt;
+&lt;br /&gt;
+* All geometry building code in the engine has been completed rewritten. The World Editor no longer relies on the existence of a separate source of polygon data for generic meshes, and a lot of support for obsolete mesh operations has been removed. Even though most of this rewrite pertains to internal functionality that is transparent to the user, the completion of this task opens the door for much faster implementation of new geometrical editor features.&lt;br /&gt;
+&lt;br /&gt;
+* Most of the new geometry building code is concentrated in the &amp;lt;code&amp;gt;[http://c4engine.com/docs/WorldMgr/GeometryLevel.html GeometryLevel]&amp;lt;/code&amp;gt; class, which represents a single level-of-detail for a geometry object. Non-primitive (generic) geometries are no longer implicitly rebuilt when certain operations are performed on them in the editor. Primitive geometries are rebuilt when they are changed, and they can be explicitly rebuilt by the user. Imported geometries are always generic, and normals for imported geometries are always preserved. Normals can be explicitly recalculated in the editor, however (see next item).&lt;br /&gt;
+&lt;br /&gt;
+* The Node menu in the World Editor has been split into a Node menu and a Geometry menu. The Geometry menu contains two new commands, Rebuild Primitive and Recalculate Normals.&lt;br /&gt;
+&lt;br /&gt;
+* The Rebuild Primitive command has limited utility in this build, but it will become a lot more useful in future builds when edits have been made to a primitive geometry and you want to restore it to its original state. One present use for this command is to restore natural texture coordinates after they've been altered.&lt;br /&gt;
+&lt;br /&gt;
+* The Recalculate Normals command recalculates all of the normals for selected geometries. This is useful for replacing bad normals on imported geometries. When normals are recalculated, so are the tangents.&lt;br /&gt;
+&lt;br /&gt;
+* A primitive geometry will no longer remember that it has been inverted by the Invert Geometry command. If a primitive is rebuilt, then the inversion will be lost. There is a new flag in the Get Info dialog for primitive geometries that causes them to be built inverted, and this should be used to permanently invert a primitive.&lt;br /&gt;
+&lt;br /&gt;
+* The CSG operations (intersection, union, subtraction) in the World Editor have received a major upgrade. They are now capable of handling much more complex geometry, and they generate very clean meshes using some new geometry optimization operations. There are still some precision-related issues with high-density meshes and complex topologies, but the CSG operations can do a lot more than they could before.&lt;br /&gt;
+&lt;br /&gt;
+* The resize tool has been completely rewritten for generic meshes.&lt;br /&gt;
+&lt;br /&gt;
+* A new Mesh Tools page has been added to the World Editor. It currently contains only one tool, and that tool selects individual surfaces on a geometry. (A surface is a group of faces which, as a whole, has a tangent space domain and material that is independent from other surfaces belonging to the geometry.) Clicking on a geometry with the surface selection tool will select the surface containing the triangle that you clicked on. The Shift key can be used to select multiple surfaces, and it's possible to select surfaces from multiple geometries simultaneously. The highlight color for selected surfaces is given by the &amp;lt;code&amp;gt;$surfaceColor&amp;lt;/code&amp;gt; system variable.&lt;br /&gt;
+&lt;br /&gt;
+* If individual surfaces are selected on a geometry, then the Set Material command in the Geometry menu now replaces materials only on those surfaces, leaving the materials on other surfaces unchanged. If a geometry is selected, but none of its individual surfaces are selected, then the Set Material command replaces the material for all of the geometry's surfaces.&lt;br /&gt;
+&lt;br /&gt;
+* The Select by Material command in the Edit menu now selects all of the individual surfaces using the current material instead of entire geometries.&lt;br /&gt;
+&lt;br /&gt;
+* A new Texture Mapping page has been added to the World Editor. It contains tools for offsetting, rotating, and scaling texture coordinates. It also contains type-in boxes for the texcoord generation transform and popup menus for the coordinates generation modes. This replaces the Texturing tab which used to exist in the Get Info dialog for a geometry node. (The Texturing tab has been removed.)&lt;br /&gt;
+&lt;br /&gt;
+* When an entire geometry is selected, the texture offset, rotate, and scale tools apply to all surfaces of the geometry. If individual surfaces of a geometry are selected, then texture operations only affect the selected surfaces.&lt;br /&gt;
+&lt;br /&gt;
+* The texcoord generation transform information appears when exactly one surface is selected. Two offsets (one for each of the s and t coordinates), two scales, and a single rotation value can be changed by entering new numbers in the text boxes, and the changes take affect immediately. For undo, the Texture Mapping page works like the Transform page: any contiguous sequence of inputs for offset, scale, rotation, or mode is treated as a single undoable action. Also like the Transform page, keyboard focus is ended whenever you click in a viewport, select a standard tool at the top of the editor window, or hit the Escape key.&lt;br /&gt;
+&lt;br /&gt;
+* Operations that combine multiple geometries into one now generate as many detail levels as the maximum number existing in any of the input geometries. The applies to the Merge Geometry, Intersect Geometry, and Union Geometry commands in the World Editor.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;FunnelGeometry&amp;lt;/code&amp;gt; primitive geometry type has been removed from the engine. The same type of shape will be achievable in the World Editor using a revolved path in an upcoming release. Any existing funnel geometries will disappear when a world containing them is opened in this build. To keep the funnels, convert each one to a generic mesh using a previous build. (Select all of them and hit Ctrl-Shift-C in the World Editor.)&lt;br /&gt;
+&lt;br /&gt;
+* Eight flags have been added to the cloth geometry to control which vertices are fixed in position. This is a temporary solution that allows control over whether each of the four corners or four edges of a cloth geometry is fixed. The flags appear in the Get Info dialog under the Geometry tab.&lt;br /&gt;
+&lt;br /&gt;
+* The utility window that has been called &amp;quot;Graphics&amp;quot; is now called &amp;quot;Stats&amp;quot;, and the &amp;lt;code&amp;gt;graf&amp;lt;/code&amp;gt; command has been changed to &amp;lt;code&amp;gt;stat&amp;lt;/code&amp;gt;. This window now displays four new stats, two for textures and two for sound sources. For textures, the window shows the current number of textures loaded and the total amount of memory used by the textures. For sound sources, the window shows the current number of playing sources and the number of those sources that are currently engaged. (A source is considered playing if it would be audible when you're close enough to it, and it's engaged when you actually are close enough to it for the engine to need to send it through the Sound Manager.&lt;br /&gt;
+&lt;br /&gt;
+* Additional mouse wheel support has been added in various places. In particular, the mouse wheel will now scroll the pages in the World Editor and the materials in the Material Manager.&lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;Stop()&amp;lt;/code&amp;gt; function to the &amp;lt;code&amp;gt;[http://c4engine.com/docs/Controller/Method.html Method]&amp;lt;/code&amp;gt; class. This function should be called from within the method's &amp;lt;code&amp;gt;Execute()&amp;lt;/code&amp;gt; function to indicate that the method's subnodes should not be executed, effectively stopping execution of the script along the branch containing the method for which &amp;lt;code&amp;gt;Stop()&amp;lt;/code&amp;gt; is called.&lt;br /&gt;
+&lt;br /&gt;
+* Added the static &amp;lt;code&amp;gt;Sleep()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Yield()&amp;lt;/code&amp;gt; functions to the &amp;lt;code&amp;gt;[http://c4engine.com/docs/System/Thread.html Thread]&amp;lt;/code&amp;gt; class. These functions can be used to temporarily suspend execution of the current thread.&lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;Complete()&amp;lt;/code&amp;gt; function to the &amp;lt;code&amp;gt;Thread&amp;lt;/code&amp;gt; class. This function can be used to poll for the completion of thread execution.&lt;br /&gt;
+&lt;br /&gt;
+* The Textue Importer dialog contains a new check box that causes the green channel of the output texture to be inverted. This is useful for changing handedness on precomputed normal maps. The command line switch is &amp;lt;code&amp;gt;-invgreen&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* In the World Editor, holding in the Ctrl key (or Cmd key on the Mac) while clicking in the Selection Mask page will now cause the mask buttons for all other node types to be unselected.&lt;br /&gt;
+&lt;br /&gt;
+* The Memory Manager has been upgraded. It is now safe to allocate or deallocate memory from any thread.&lt;br /&gt;
+&lt;br /&gt;
+* The C4SIMD define has been removed from the engine. SSE code will now always be compiled, but the engine will only call SSE functions if the processor supports SSE2 instructions.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_139</id>
+		<title>Release Notes for Build 139</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_139"/>
+		<updated>2023-07-15T09:46:51Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' August 21, 2007  * Implemented a workaround for an ATI driver crash that some people have been experiencing.  * Fixed a couple minor bugs in the engine.&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' August 21, 2007&lt;br /&gt;
+&lt;br /&gt;
+* Implemented a workaround for an ATI driver crash that some people have been experiencing.&lt;br /&gt;
+&lt;br /&gt;
+* Fixed a couple minor bugs in the engine.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_138</id>
+		<title>Release Notes for Build 138</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_138"/>
+		<updated>2023-07-15T09:46:25Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' August 18, 2007  * A new script method called &amp;quot;Change Settings&amp;quot; has been added to the core scripting system. This method lets a script change the same settings for an object that are displayed in the World Editor's Get Info dialog. Not all of every object's settings are exposed to scripts because there are some things that can't be changed dynamically, but in general, any object setting for which it makes sense to change can now be changed b...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' August 18, 2007&lt;br /&gt;
+&lt;br /&gt;
+* A new script method called &amp;quot;Change Settings&amp;quot; has been added to the core scripting system. This method lets a script change the same settings for an object that are displayed in the World Editor's Get Info dialog. Not all of every object's settings are exposed to scripts because there are some things that can't be changed dynamically, but in general, any object setting for which it makes sense to change can now be changed by a script. A single method can change any number of settings from a single settings category (each tab in the Get Info dialog represents a separate category), and each changed setting generates a journaled message that overrides any previous changes to the same setting.&lt;br /&gt;
+&lt;br /&gt;
+In the Script Editor, once a target has been chosen for the Change Settings method, a list of available categories appears. Clicking on a category causes the settings in that category to be displayed. Initially, all of the settings are in an indeterminate state, meaning that they are not changed by the script method. Modifying a setting causes it to be added to the method. The settings can be put back into the indeterminate state by clicking the Reset button.&lt;br /&gt;
+&lt;br /&gt;
+* The Change Light Color script method has been removed because it has been subsumed by the Change Settings method.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Function::Execute()&amp;lt;/code&amp;gt; function now takes a &amp;lt;code&amp;gt;[http://c4engine.com/docs/Controller/ScriptState.html ScriptState]&amp;lt;/code&amp;gt; object as a second parameter so that it's possible to retrieve information about the activator and trigger nodes.&lt;br /&gt;
+&lt;br /&gt;
+* The Script Editor and Panel Editor will now accept the Enter and Escape keys as shortcuts for the OK and Cancel buttons. If the Cancel button is clicked, or the Escape key is pressed, and changes have been made, a confirmation dialog is displayed.&lt;br /&gt;
+&lt;br /&gt;
+* The Script Editor and Panel Editor windows are now resizeable.&lt;br /&gt;
+&lt;br /&gt;
+* Added the Ticker mutator to the panel effect code. This mutator can be applied to a text item to make the text scroll left or right and be clipped against the edges of the item's bounding box. A new check box in the Panel Editor lets you choose to put the text all on one line, and this must be checked for the Ticker mutator to do anything.&lt;br /&gt;
+&lt;br /&gt;
+* The Texture Importer tool now supports 8-bit grayscale TGA files.&lt;br /&gt;
+&lt;br /&gt;
+* Added a rotation menu to the animation import picker in the Model Viewer. This lets you rotate a character by any multiple of 90 degrees and hardwire it into the animation.&lt;br /&gt;
+&lt;br /&gt;
+* Made several additions to the Collada Importer tool to handle various quirks in the exporters out there.&lt;br /&gt;
+&lt;br /&gt;
+* Implemented several bug fixes and minor feature requests that aren't listed here.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_137</id>
+		<title>Release Notes for Build 137</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_137"/>
+		<updated>2023-07-15T09:45:47Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' August 4, 2007  * The Sound Manager has been almost completely rewritten and now includes a much larger set of features. More important than the number of features, though, is the fact that every single feature is available on all platforms and with all sound hardware. The engine no longer contains any support for vendor-specific libraries like EAX and instead uses a custom multi-threaded software audio renderer. This gets rid of all the hea...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' August 4, 2007&lt;br /&gt;
+&lt;br /&gt;
+* The Sound Manager has been almost completely rewritten and now includes a much larger set of features. More important than the number of features, though, is the fact that every single feature is available on all platforms and with all sound hardware. The engine no longer contains any support for vendor-specific libraries like EAX and instead uses a custom multi-threaded software audio renderer. This gets rid of all the headaches associated with supporting different hardware, buggy drivers, and poorly designed APIs. Furthermore, it means that the audio experience is identical on all machines, so testing across a wide spectrum of sound hardware is not necessary.&lt;br /&gt;
+&lt;br /&gt;
+* The following list briefly describes the new features in the Sound Manager:&lt;br /&gt;
+** All sounds can now have any loop count. Previously, spatialized sounds could only play once or loop forever.&lt;br /&gt;
+** The previously-existing sound classifications (effects, music, voice) have been removed and replaced by registered sound groups. A game module can define any number of sound groups for which the volume can be independently controlled.&lt;br /&gt;
+** WAV files no longer need to have a sampling rate of 22.05 kHz or 44.1 kHz. The Sound Manager will play WAV files using any frequency.&lt;br /&gt;
+** The playback frequency of a sound can be changed while it is playing, and the Sound Manager ensures a smooth transition without popping artifacts.&lt;br /&gt;
+** A Doppler shift can be applied to a sound based on the relative velocity between it and the listener.&lt;br /&gt;
+** A very precise sound travel delay can be applied based on the distance between a sound and the listener. When a sound is played, this delay is calculated using the current distance to the listener, but the motion of the listener will also be taken into account so that the sound begins playing at the right time.&lt;br /&gt;
+** Atmospheric absorption can be applied to a sound based on distance from the listener. This attenuates high frequencies so that distant sounds are muffled somewhat.&lt;br /&gt;
+** The Sound Manager includes a full reverberation model and supports multiple simultaneously active environments. A new type of space node, an &amp;lt;code&amp;gt;[http://c4engine.com/docs/WorldMgr/AcousticsSpace.html AcousticsSpace]&amp;lt;/code&amp;gt; has been added that defines the size and reflective properties of an acoustics environment. The listener does not need to be in the same environment as a sound in order for the correct reverberation effects to be audible.&lt;br /&gt;
+** The volumes of early reflections can be set on a per-environment and per-sound basis. There is a separate setting for high-frequency attenuation of reflected sound. Each environment also has a reverberation decay time associated with it.&lt;br /&gt;
+** Directional sounds are now supported. As the listener moves through a sound cone for a directional sound, the volume falls off to the exterior volume at the cone's boundary. The exterior volume and extra high-frequency attenuation are applied outside the sound cone.&lt;br /&gt;
+** Sounds can be attenuated by obstructions. There are separate obstructive volume settings for the direct path and for reflected paths. The &amp;lt;code&amp;gt;AcousticsProperty&amp;lt;/code&amp;gt; has been updated for the new obstruction settings.&lt;br /&gt;
+** Sounds use a new fall-off model, and there is a new sound permeation system that determines how sounds travel throughout worlds. Sounds will now penetrate much more deeply through different zones, traveling down halls and around corners until they naturally become too faint to be heard.&lt;br /&gt;
+&lt;br /&gt;
+Some aspects of the new Sound Manager are still a slight bit rough and will get some tweaking in the next few builds. Acoustics environments have been added to a few of the worlds that ship with the engine, but not all of them.&lt;br /&gt;
+&lt;br /&gt;
+* Some additional audio features that will be added to future releases include direct mixing to multi-channel surround sound and a generalized streaming mechanism that will allow plugin decompressors.&lt;br /&gt;
+&lt;br /&gt;
+* For various reasons, all C++ exception handling has been removed from the engine. This resulted in significantly smaller binaries, and execution speed should be slightly faster due to the removal of some code and space overhead. If you have a custom project, be sure to turn off support for exception handling in the code generation properties.&lt;br /&gt;
+&lt;br /&gt;
+* As a consequence of there being no exception handling, many error handling mechanisms in the engine had to be reworked. The design pattern for constructors that used to throw exceptions to indicate failure had to be changed to a pattern in which the constructor doesn't really do anything, and a separate initialization function is called. The most prominently affected classes are &amp;lt;code&amp;gt;File&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;Sound&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;Movie&amp;lt;/code&amp;gt;. The constructors for these classes no longer take any parameters. The &amp;lt;code&amp;gt;File&amp;lt;/code&amp;gt; class now has &amp;lt;code&amp;gt;Open()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Close()&amp;lt;/code&amp;gt; functions, and the &amp;lt;code&amp;gt;Sound&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Movie&amp;lt;/code&amp;gt; classes now both have a &amp;lt;code&amp;gt;Load()&amp;lt;/code&amp;gt; function.&lt;br /&gt;
+&lt;br /&gt;
+* In the World Editor, the Get Info dialog now displays settings for all selected nodes simultaneously. Making changes to the settings has an effect on every selected node when the Get Info dialog is closed. Every type of setting can now assume an indeterminate state that is used when values from multiple nodes conflict. If a setting is left in the indeterminate state, then its value is left unchanged for all nodes. The appearance of the indeterminate states are as follows: check boxes show a dash instead of an X, sliders do not show a handle, popup menus show a blank selection, and both color boxes and text boxes are filled with a striped pattern.&lt;br /&gt;
+&lt;br /&gt;
+* Several node settings have been moved or changed to work better with the new Get Info dialog:&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;quot;Do not render through remote portals&amp;quot; setting for geometries has been moved to a subsection under the Node pane because it is a setting for the geometry node and not the geometry object.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;quot;Do not share light object data&amp;quot; setting for lights has also been moved to a subsection under the Node pane because it represents a general node flag.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;quot;Light is statically confined&amp;quot; setting for lights has been removed. Controllers that make lights move in a small volume now set the confined flag automatically when the &amp;quot;Light is static&amp;quot; flag has been set in the editor.&lt;br /&gt;
+&lt;br /&gt;
+* The clear color property of the root zone is now exposed as an actual property. This was a property all along, but it was previously shown under the Zone pane instead of the Properties pane.&lt;br /&gt;
+* Several upgrades have been made to the weapons code in the demo game:&lt;br /&gt;
+&lt;br /&gt;
+* Three check boxes have been added to the Player Settings dialog that control automatic weapon switching. The game can be configured to automatically change weapons when you pick up a new weapon or when you run out of ammo.&lt;br /&gt;
+&lt;br /&gt;
+* There are new ammo packs for the grenade launcher, rocket launcher, plasma gun, and proton cannon.&lt;br /&gt;
+&lt;br /&gt;
+* The proton cannon now does a reasonable amount of damage per unit time.&lt;br /&gt;
+&lt;br /&gt;
+* The code for the Display Settings, Audio Settings, and Control Settings dialogs has been moved to the demo game module.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new setting type called &amp;lt;code&amp;gt;PowerTwoSetting&amp;lt;/code&amp;gt; that displays a slider and allows the user to choose a power of two between a minimum and maximum value.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new setting type called &amp;lt;code&amp;gt;MultiResourceSetting&amp;lt;/code&amp;gt; that displays a text box containing a semicolon-separated list of resources.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;ResourceSetting&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;MultiResourceSetting&amp;lt;/code&amp;gt; settings now display the file picker with texture preview when the resource type is a texture map.&lt;br /&gt;
+&lt;br /&gt;
+* The Interface Manager now maintains a global clipboard for text. Copy, cut, and paste are now supported for all editable text boxes, and this is independent of the World Editor's clipboard for nodes.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;TypeToString&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;StringToType&amp;lt;/code&amp;gt; functions have been moved into the &amp;lt;code&amp;gt;Text&amp;lt;/code&amp;gt; namespace. Furthermore, &amp;lt;code&amp;gt;TypeToString&amp;lt;/code&amp;gt; now returns a string instead of taking a pointer to an array of characters as a parameter.&lt;br /&gt;
+&lt;br /&gt;
+* Added a &amp;lt;code&amp;gt;[http://c4engine.com/docs/System/Thread_SetThreadPriority.html SetThreadPriority()]&amp;lt;/code&amp;gt; function to the &amp;lt;code&amp;gt;Thread&amp;lt;/code&amp;gt; class.&lt;br /&gt;
+&lt;br /&gt;
+* Changed the &amp;lt;code&amp;gt;[http://c4engine.com/docs/System/Signal_Wait.html Signal::Wait()]&amp;lt;/code&amp;gt; function so that it takes a timeout parameter.&lt;br /&gt;
+&lt;br /&gt;
+* The engine now ships with a new project called SimpleChar. This project contains a simple example of an implementation of a subclass of the &amp;lt;code&amp;gt;CharacterController&amp;lt;/code&amp;gt; class and let's you run a character around the world. This game module can be run by changing the &amp;lt;code&amp;gt;$applicName&amp;lt;/code&amp;gt; variable (in Data/cfg/Variables.cfg) to &amp;quot;SimpleChar&amp;quot;. As with the SimpleBall game module, you need to open the console and use the &amp;lt;code&amp;gt;load&amp;lt;/code&amp;gt; command to load a world.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_136</id>
+		<title>Release Notes for Build 136</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_136"/>
+		<updated>2023-07-15T09:44:22Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' May 22, 2007  * There have been several problems with input not responding on the Mac lately. This issue has been traced to behavior changes in some MacOS X HID Manager functions introduced by the latest security updates from Apple. Some users would have started experiencing the problem after upgrading to MacOS 10.4.9, and other users would have seen the problem only after installing security update 2007-004. A workaround has been implemente...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' May 22, 2007&lt;br /&gt;
+&lt;br /&gt;
+* There have been several problems with input not responding on the Mac lately. This issue has been traced to behavior changes in some MacOS X HID Manager functions introduced by the latest security updates from Apple. Some users would have started experiencing the problem after upgrading to MacOS 10.4.9, and other users would have seen the problem only after installing security update 2007-004. A workaround has been implemented in the engine, so all input problems on the Mac should now be resolved.&lt;br /&gt;
+&lt;br /&gt;
+* Added some new optimizations to the shadow culling code that will stop unnecessary shadows from being drawn in some cases.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new feature to the motion blur effect that uses fast-clearing hardware to initialize the velocity buffer to the correct background velocity when appropriate. This allows motion blur to be applied when the clear color is being used in a world, and it provides a more optimal way to set the velocity of a skybox. There is no case in which this has any additional performance cost.&lt;br /&gt;
+&lt;br /&gt;
+* Improved the quality of horizon mapping when used in conjunction with parallax mapping.&lt;br /&gt;
+&lt;br /&gt;
+* Fixed several minor bugs in the world editor and demo game.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_135</id>
+		<title>Release Notes for Build 135</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_135"/>
+		<updated>2023-07-15T09:43:53Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' May 12, 2007  * Antialiasing has been re-implemented in the engine using the &amp;lt;code&amp;gt;GL_EXT_framebuffer_multisample&amp;lt;/code&amp;gt; extension. The number of samples per pixel can be set in the Graphics Settings dialog, and the engine supports up to 8 samples when available.  * The weapon code in the demo game has received a big upgrade. All weapons now shoot precisely from their barrels. More importantly, the proton cannon is now implemented. When it's...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' May 12, 2007&lt;br /&gt;
+&lt;br /&gt;
+* Antialiasing has been re-implemented in the engine using the &amp;lt;code&amp;gt;GL_EXT_framebuffer_multisample&amp;lt;/code&amp;gt; extension. The number of samples per pixel can be set in the Graphics Settings dialog, and the engine supports up to 8 samples when available.&lt;br /&gt;
+&lt;br /&gt;
+* The weapon code in the demo game has received a big upgrade. All weapons now shoot precisely from their barrels. More importantly, the proton cannon is now implemented. When it's fired, the barrel takes a moment to spin up before the beams actually shoot, but the gun has a devastating effect on its target.&lt;br /&gt;
+&lt;br /&gt;
+* The configuration interface for customizable settings has been completely reworked. It now displays a two-column scrollable list of settings. Slider-based settings now also accept text entry. The only affect this has on existing code is that the &amp;lt;code&amp;gt;TextSetting&amp;lt;/code&amp;gt; constructor no longer takes a width parameter.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new &amp;lt;code&amp;gt;HeadingSetting&amp;lt;/code&amp;gt; class that lets you insert a section heading into a list of settings.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new Transform page in the World Editor that displays the position, rotation, and size of the node for which the gizmo is currently shown. (Remember that the gizmo can be advanced through the selected nodes by pressing Tab.) Entering new data in the Transform page has an immediate effect on the node. All changes to the position and rotation are clumped together for a single undo step, and all changes to the size are clumped together for a separate single undo step. Keyboard focus in the Transform page is ended whenever you click in a viewport, select one of the standard tools at the top of the editor, or hit the Escape key.&lt;br /&gt;
+&lt;br /&gt;
+* The size fields in the Transform page require a little explanation. These aren't to be confused with scales, which are not included in transformation matrices in C4. All objects that have well-defined sizes can express their dimensions using 1&amp;amp;ndash;4 measurements. For most primitive geometries, the measurements correspond to the size of the geometry in the ''x'', ''y'', and ''z'' directions. The annulus and hole primitives are exceptions where two numbers correspond to the size of the inner boundary, and two numbers correspond to the size of the outer boundary. For things like lights and sound sources, the first size parameter corresponds to the light's range.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new Info page in the World Editor that displays various kinds of information about the node for which the gizmo is currently shown. Currently, the Info page displays the node name, the controller type, the number of connectors, and the number of properties for every type of node. For geometry nodes, the Info page also displays the vertex count, face count, surface count, material count, and detail level count. More information may be added in a future release.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new Grid page in the World Editor that contains controls for all grid-related settings. The toggle buttons for showing gridlines, snapping to the grid, and showing the coordinate axes have all been moved to the Grid page. The settings for gridline spacing and grid color have also been moved to the Grid page from their previous home in the Editor Settings dialog. There is a new setting called &amp;quot;major grid&amp;quot; that specifies how many grid squares separate each brighter major gridline. There are also two new buttons that immediately double or halve the gridline spacing.&lt;br /&gt;
+&lt;br /&gt;
+* The grid snap mechanism in the World Editor has been changed. Instead of being applied to everything, grid snap is now only applied where it makes sense. In general, grid snap is applied when nodes are placed, moved, or resized. Furthermore, grid snap now applies when nodes are moved in the perspective viewport.&lt;br /&gt;
+&lt;br /&gt;
+* The motion blur algorithm has been upgraded in several ways. It's now more accurate, and it takes depth gradients into account so that distant objects don't blur together with close objects. Previously, you could see a halo around the weapon in the demo game because the background was moving, but the weapon was stationary with respect to the camera. This no longer happens, and additionally, the spinning barrel of the proton cannon won't blur with the stationary parts of the same gun.&lt;br /&gt;
+&lt;br /&gt;
+It was not possible to implement the motion blur as nicely on ATI hardware because the ATI drivers do not support derivative instructions in &amp;lt;code&amp;gt;ARB_fragment_program&amp;lt;/code&amp;gt;. So the ability to separate motion blur into different depth layers is limited on ATI hardware, but it's still better in this release than in the previous ones. In particular, the engine can't stop the stationary part of the proton cannon from blurring into the spinning barrel on ATI hardware. Derivative instructions are available on ATI hardware in GLSL, but GLSL has serious limitations that don't exist in &amp;lt;code&amp;gt;ARB_fragment_program&amp;lt;/code&amp;gt;, such as a lack of shared global variables, that have prevented the engine from using it.&lt;br /&gt;
+&lt;br /&gt;
+* The cursor in an interface panel no longer blurs into the rest of the panel when the camera moves (since it's stationary with respect to the camera). Again, this isn't 100% perfect on ATI hardware for the reasons mentioned above.&lt;br /&gt;
+&lt;br /&gt;
+* The Script Editor will now automatically assign generic controllers to nodes that are the targets of script methods, but don't already have controllers assigned to them. This removes the extra step that was necessary before in order for a script method to send messages to a node.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new function called &amp;lt;code&amp;gt;SetInputManagementMode&amp;lt;/code&amp;gt; to the Interface Manager class. Passing &amp;lt;code&amp;gt;kInputManagementManual&amp;lt;/code&amp;gt; to this function will stop the Interface Manager from changing the input mode based on whether a window capable of receiving events is currently active. Passing &amp;lt;code&amp;gt;kInputManagementAutomatic&amp;lt;/code&amp;gt; to the function will cause the Interface Manager to switch the input mode to gameplay mode whenever all interactive windows are closed.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_134</id>
+		<title>Release Notes for Build 134</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_134"/>
+		<updated>2023-07-15T09:42:58Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' April 14, 2007  * Added a new &amp;lt;code&amp;gt;PolygonZone&amp;lt;/code&amp;gt; class that allows a zone to have the shape of an extruded convex polygon. In the World Editor, polygon zones are drawn in a manner similar to portals, in which new vertices can be inserted, and existing vertices can be individually dragged around or removed. The polygonal shape defines the base of the zone, and the height of the zone is controlled by an additional handle at the top cente...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' April 14, 2007&lt;br /&gt;
+&lt;br /&gt;
+* Added a new &amp;lt;code&amp;gt;PolygonZone&amp;lt;/code&amp;gt; class that allows a zone to have the shape of an extruded convex polygon. In the World Editor, polygon zones are drawn in a manner similar to portals, in which new vertices can be inserted, and existing vertices can be individually dragged around or removed. The polygonal shape defines the base of the zone, and the height of the zone is controlled by an additional handle at the top center of the zone.&lt;br /&gt;
+&lt;br /&gt;
+* When a node is cloned, links between any pair of its subnodes are now replicated in the cloned subtree. (Any connectors that lead out of the subtree being cloned continue to be cleared in the new copy.) This also affects connectors in referenced worlds, since these worlds are cloned when more than one instance is used in a level. Connectors inside a referenced world will now be replicated in all copies of that world.&lt;br /&gt;
+&lt;br /&gt;
+* In the World Editor, panel effects are now rendered in the perspective viewport when lighting is enabled. Panels are only shown in their initial state because controllers do not run in the editor.&lt;br /&gt;
+&lt;br /&gt;
+* Particle systems are now subclassed from the &amp;lt;code&amp;gt;Configurable&amp;lt;/code&amp;gt; class and can expose settings in the World Editor. If a particle system exposes any settings, then a Particles pane will appear in its Get Info dialog.&lt;br /&gt;
+&lt;br /&gt;
+* Several improvements have been made to the burning rain effect in the demo game. The flames can now be rendered as particles, so a single particle system is used to render all of the flames at once. The &amp;lt;code&amp;gt;BurningRain&amp;lt;/code&amp;gt; class also exposes some settings in the editor now.&lt;br /&gt;
+&lt;br /&gt;
+* Added a color setting to the waterfall particle effects in the demo game.&lt;br /&gt;
+&lt;br /&gt;
+* Added the Select Connected Node command to the Node menu in the World Editor. This command is available when one or more connectors are selected, and it selects the nodes that they are connected to.&lt;br /&gt;
+&lt;br /&gt;
+* Added virtual functions &amp;lt;code&amp;gt;BeginRendering()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;EndRendering()&amp;lt;/code&amp;gt; to the World class. These contain the code previously in the &amp;lt;code&amp;gt;World::Render()&amp;lt;/code&amp;gt; function that should only be executed once per frame. The render callback function that could be installed in the last build is no longer necessary since it's exact behavior can now be implemented by overriding the &amp;lt;code&amp;gt;World::Render()&amp;lt;/code&amp;gt; function and executing extra code after calling the base class's &amp;lt;code&amp;gt;Render()&amp;lt;/code&amp;gt; function. Thus, the &amp;lt;code&amp;gt;World::SetRenderProc()&amp;lt;/code&amp;gt; function has been removed.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Compressor&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Decompressor&amp;lt;/code&amp;gt; classes now support 64-bit integers for network messages.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_133</id>
+		<title>Release Notes for Build 133</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_133"/>
+		<updated>2023-07-15T09:42:21Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' April 6, 2007  * FBOs are now enabled by default on the Mac. They seem to be working correctly in MacOS 10.4.9.  * The &amp;lt;code&amp;gt;System&amp;lt;/code&amp;gt; class has been removed from the engine, and its functions have been moved to the &amp;lt;code&amp;gt;Engine&amp;lt;/code&amp;gt; class. All occurrences of &amp;lt;code&amp;gt;System::&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;TheSystem-&amp;gt;&amp;lt;/code&amp;gt; should be changed to &amp;lt;code&amp;gt;Engine::&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;TheEngine-&amp;gt;&amp;lt;/code&amp;gt;, respectively.  * With the intent of reducing the number...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' April 6, 2007&lt;br /&gt;
+&lt;br /&gt;
+* FBOs are now enabled by default on the Mac. They seem to be working correctly in MacOS 10.4.9.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;System&amp;lt;/code&amp;gt; class has been removed from the engine, and its functions have been moved to the &amp;lt;code&amp;gt;Engine&amp;lt;/code&amp;gt; class. All occurrences of &amp;lt;code&amp;gt;System::&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;TheSystem-&amp;gt;&amp;lt;/code&amp;gt; should be changed to &amp;lt;code&amp;gt;Engine::&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;TheEngine-&amp;gt;&amp;lt;/code&amp;gt;, respectively.&lt;br /&gt;
+&lt;br /&gt;
+* With the intent of reducing the number of steps required to register custom class types, the registration mechanism has been changed a bit. First, for all registration types, it is no longer necessary to explicitly call one of the &amp;lt;code&amp;gt;Register*()&amp;lt;/code&amp;gt; functions. Instead, every registration type automatically registers itself upon construction. Calls to the following functions should simply be removed:&lt;br /&gt;
+** &amp;lt;code&amp;gt;RegisterController&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;RegisterProperty&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;RegisterMethod&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;RegisterMutator&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;RegisterEffect&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;RegisterEntity&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;RegisterFunction&amp;lt;/code&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+* Second, there is a new, slightly different way to declare registrations for controllers, properties, methods, mutators, effects, particle systems, and functions. Instead of declaring a controller registration object as a &amp;lt;code&amp;gt;ControllerRegistration&amp;lt;/code&amp;gt;, you should declare it as a &amp;lt;code&amp;gt;ControllerReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt; template object, where type is the derived type of the custom controller class. For example, the registraton for the &amp;lt;code&amp;gt;RotationController&amp;lt;/code&amp;gt; class is declared as &amp;lt;code&amp;gt;ControllerReg&amp;lt;RotationController&amp;gt;&amp;lt;/code&amp;gt;. The following templates exist for registering various types of custom classes:&lt;br /&gt;
+** &amp;lt;code&amp;gt;ControllerReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;PropertyReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;MethodReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;MutatorReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;EffectReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;ParticleSystemReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;FunctionReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+* Custom class types registered with these templates no longer need to be constructed explicitly by the application. If you've implemented a function such as &amp;lt;code&amp;gt;ConstructController&amp;lt;/code&amp;gt;, then you can remove any registered types because they will be constructed automatically.&lt;br /&gt;
+&lt;br /&gt;
+* The function registration object is a little different in that its constructor takes a pointer to a controller registration as its first parameter. Function registrations for each type of controller are stored in the controller's registration object. There is no longer any need to implement a &amp;lt;code&amp;gt;ConstructFunction()&amp;lt;/code&amp;gt; function in controller classes that define custom functions.&lt;br /&gt;
+&lt;br /&gt;
+* Previously, registration objects for controllers, properties, and mutators took a parameter that specified some kind of validation function. These have been removed because the new registration templates can call the validation function for the custom class type directly. When a controller or property subclass defines the &amp;lt;code&amp;gt;ValidNode()&amp;lt;/code&amp;gt; function (as a static member function), then it is automatically called to determine whether the controller or property can be applied to a particular node. Likewise, defining the &amp;lt;code&amp;gt;ValidPanelItem()&amp;lt;/code&amp;gt; function in a mutator subclass will cause that function to automatically be called to determine what kind of panel item the mutator can be assigned to.&lt;br /&gt;
+&lt;br /&gt;
+* Entity and locator registrations still work as they did before since they don't register new subclass types. Continue using the &amp;lt;code&amp;gt;EntityRegistration&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;LocatorRegistration&amp;lt;/code&amp;gt; objects to register these types.&lt;br /&gt;
+&lt;br /&gt;
+* The perspective viewport in the World Editor can now render with full lighting, reflection, refraction, fog, and some effects. There is a new toggle button at the top of the editor window that switches between full lighting and bright ambient rendering. Geometries, lights, etc., can be moved around with full lighting turned on to see the immediate results of your changes.&lt;br /&gt;
+&lt;br /&gt;
+* In the scene graph viewport, hidden nodes are now shown in a darker gray color. Nodes belonging to referenced worlds are shown in a reddish color.&lt;br /&gt;
+&lt;br /&gt;
+* In the World Editor, the Layout page has been renamed to the Viewports page to avoid confusion with a future Layers page.&lt;br /&gt;
+&lt;br /&gt;
+* The mouse wheel will now work at all times in the World Editor to zoom viewports, even when you're doing something else with the mouse button down.&lt;br /&gt;
+&lt;br /&gt;
+* Pages in the World Editor can now be displayed on either the left or right side of the window. This can be changed in the Editor Settings dialog accessible from the Layout menu.&lt;br /&gt;
+&lt;br /&gt;
+* The World Editor now displays a gizmo for selected nodes that shows the orientation of the node's local axes. The gizmo is shown as three arrows with colors red, green, and blue corresponding to the x-, y-, and z-axes, respectively. The gizmo is shown for one node in the selection at a time, and it can be iterated through the selected nodes by pressing the tab key. When the Select and Move tool is used, an arrowhead on the gizmo can be grabbed in any viewport and used to drag the node along its corresponding axis.&lt;br /&gt;
+&lt;br /&gt;
+* In the next build, the gizmo will also have rotation handles, and it will be possible to display world-space and zone-space axes instead of object-space axes.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new Particle Systems page to the World Editor. This page displays a list of registered particle systems (see next item) and also contains tools for drawing emitter volumes. Particle systems now have a built-in connector of type EMIT that can be connected to an emitter volume. How the emitter volume is used depends on the particular particle system's implementation. Multiple particle systems can be connected to the same emitter volume.&lt;br /&gt;
+&lt;br /&gt;
+* Application-defined particle systems can now be registered using the &amp;lt;code&amp;gt;ParticleSystemReg&amp;lt;&amp;gt;&amp;lt;/code&amp;gt; class. Registered particle systems can be placed in a world using the World Editor.&lt;br /&gt;
+&lt;br /&gt;
+* Particle systems can now be fully serialized, meaning that the state of all active particles is saved. If a custom particle type is defined, then it must implement &amp;lt;code&amp;gt;Pack&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Unpack&amp;lt;/code&amp;gt; functions that save any custom state in addition to the base state saved with ,code&amp;gt;Particle::Pack&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new particle style called &amp;lt;code&amp;gt;kParticleQuad&amp;lt;/code&amp;gt; that causes particles to be drawn as fully oriented quads instead of camera-facing billboards. Particle systems using this style must use the &amp;lt;code&amp;gt;QuadParticle&amp;lt;/code&amp;gt; structure to store particles. The &amp;lt;code&amp;gt;transform&amp;lt;/code&amp;gt; field of the &amp;lt;code&amp;gt;QuadParticle&amp;lt;/code&amp;gt; structure specifies the orientation of each particle as a quaternion.&lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;AddFarthestParticle()&amp;lt;/code&amp;gt; function to the &amp;lt;code&amp;gt;ParticleSystem&amp;lt;/code&amp;gt; class. This makes the newly added particle the first to render instead of the last, as is the case when the &amp;lt;code&amp;gt;AddParticle()&amp;lt;/code&amp;gt; function is called.&lt;br /&gt;
+&lt;br /&gt;
+* Previously, it has been possible to render multiple fog spaces at once as long as they apply to different render targets, but each fog space had to be in a different zone. It is now possible to place multiple fog spaces in a single zone and have them all be considered for rendering (but still only into different render targets). This makes it a lot easier to add fog to areas that already contain a fog space for an underwater volume.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;DoorController&amp;lt;/code&amp;gt; now exposes settings for three different sounds: one that plays when the door has fully opened, one that plays when the door has fully closed, and one that loops while the door is moving in either direction.&lt;br /&gt;
+&lt;br /&gt;
+* The demo game module now defines the variable &amp;lt;code&amp;gt;$fov&amp;lt;/code&amp;gt; to be the field of view for all cameras, in degrees. The game will clamp the value to the range &amp;lt;code&amp;gt;[45,90]&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* The String Importer tool will now translate \t, \n, and \r into tab, newline, and carriage return, respectively. As usual, a backslash can be obtained by using \\.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;TextBoxElement&amp;lt;/code&amp;gt; interface class now starts a new line whenever a newline or carriage return character is encountered. The \n is recognized as a newline in the panel editor for text items.&lt;br /&gt;
+&lt;br /&gt;
+* If an attempt is made to load a nonexistent model resource, the engine will now load a stand-in &amp;quot;missing&amp;quot; model instead of throwing an exception. The &amp;quot;missing&amp;quot; model is currently a yellow cylinder.&lt;br /&gt;
+&lt;br /&gt;
+* The shot command will now pad out screenshot index numbers in filenames to four digits.&lt;br /&gt;
+&lt;br /&gt;
+* Added support for 64-bit integers to the &amp;lt;code&amp;gt;String&amp;lt;/code&amp;gt; class and &amp;lt;code&amp;gt;Text&amp;lt;/code&amp;gt; namespace.&lt;br /&gt;
+&lt;br /&gt;
+* Added a rendering callback to the &amp;lt;code&amp;gt;World&amp;lt;/code&amp;gt; class. The &amp;lt;code&amp;gt;World::SetRenderProc()&amp;lt;/code&amp;gt; function sets a callback function that is called right after the entire scene has been rendered inside &amp;lt;code&amp;gt;World::Render()&amp;lt;/code&amp;gt;, but before the Graphics Manager render target is changed back to the primary surface. This lets you render extra objects directly into the world's render target.&lt;br /&gt;
+&lt;br /&gt;
+* Precached entity models will now be reloaded when a model resource is exported from the World Editor. This removes the need to quit and restart the engine when a model is changed. If the change occurs while clones of the model exist (perhaps because a world is running in the background), then they will not be replaced, but all new instances will use the new model resource.&lt;br /&gt;
+&lt;br /&gt;
+* The Collada Importer tool has been updated to recognize additional material structures that are output by the 3DS Max exporter.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_132</id>
+		<title>Release Notes for Build 132</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_132"/>
+		<updated>2023-07-15T09:41:30Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' February 14, 2007  * '''NOTE:''' A lot of changes have been made to the distribution of source code files among the three code directories in this build. The directories have been renamed to &amp;quot;EngineCode&amp;quot;, &amp;quot;GameCode&amp;quot;, and &amp;quot;ToolCode&amp;quot;, without spaces, so unzipping into an existing installation will result in three new code directories being created with clean groups of files.  * The World Editor has received a massive upgrade, and the existing...&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' February 14, 2007&lt;br /&gt;
+&lt;br /&gt;
+* '''NOTE:''' A lot of changes have been made to the distribution of source code files among the three code directories in this build. The directories have been renamed to &amp;quot;EngineCode&amp;quot;, &amp;quot;GameCode&amp;quot;, and &amp;quot;ToolCode&amp;quot;, without spaces, so unzipping into an existing installation will result in three new code directories being created with clean groups of files.&lt;br /&gt;
+&lt;br /&gt;
+* The World Editor has received a massive upgrade, and the existing editor code has been largely reorganized. It is now structured in such a way that custom editor extensions (plugins) will be possible in a near-term release.&lt;br /&gt;
+&lt;br /&gt;
+* Most of the editor tools have now been organized into palette-like subwindows called &amp;quot;pages&amp;quot;. Pages contain groups of related tools and can be arranged on the left side of the editor window by dragging them around. Pages can also be hidden or collapsed, and invisible pages can be shown by selecting them in the new Page menu. The page state is saved and restored for each world separately.&lt;br /&gt;
+&lt;br /&gt;
+* Some previously existing editor features have been moved into new pages. The selection mask buttons are now part of the Selection Mask page, and the show/hide items previously in the View menu are now part of the Visibility page.&lt;br /&gt;
+&lt;br /&gt;
+* The bulk of the manipulator code has been moved out of the engine core and into the World Editor module, and some internal structures have been changed. All saved manipulators will be dumped when worlds are first opened with this build and replaced with new ones. The only impact this has is that certain manipulator state such a node's editor-only visibility state will be reset.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new page called Layout that controls viewport configuration and manipulator appearance. Several new viewport layouts are now possible, and the type of each viewport can be chosen by right-clicking in the viewport itself. All editor viewports will be reset to default configurations when worlds are opened with this build.&lt;br /&gt;
+&lt;br /&gt;
+* A new viewport type has been added to the editor that displays the scene graph hierarchy. Each node is shown with an icon representing its type and either its name or a string describing its type if it doesn't have a name. The collapse boxes in the hierarchy can be used to hide subtrees. Nodes belonging to referenced worlds are shown in a darker color (when referenced world display is on) and cannot be selected.&lt;br /&gt;
+&lt;br /&gt;
+* The node select, rect select, scroll, zoom, and rect zoom tools work in the scene graph viewport in the same way that they do elsewhere. The move tool works as a reparenting tool in the scene graph viewport, allowing you to drag the selection to a new parent node. Nodes cannot be reparented to one of their descendants or to a reference marker, but anything else goes.&lt;br /&gt;
+&lt;br /&gt;
+* The root node can be selected in the scene graph viewport, but it cannot be deleted or reparented.&lt;br /&gt;
+&lt;br /&gt;
+* The concept of a target group has been removed from the editor because its functionality has been superseded by the reparenting capabilities in the scene graph viewport.&lt;br /&gt;
+&lt;br /&gt;
+* The World Settings command has been removed from the editor. It simply opened the Get Info dialog for the root node, and this can now be accomplished by selecting the root node directly and hitting Ctrl-I.&lt;br /&gt;
+&lt;br /&gt;
+* The right-click menu contains two additional items called Frame All and Frame Selection. These center a viewport on either all nodes or just selected nodes and scale so that everything fits into view.&lt;br /&gt;
+&lt;br /&gt;
+* Most node types are now visible and selectable in the perspective viewport. Lights, sources, markers, and effects are represented by cubic icons whose size can be changed in the Layout page. The volumes covered by triggers, spaces, and effects are also visible.&lt;br /&gt;
+&lt;br /&gt;
+* The default grid color in the World Editor is now given by the variable &amp;lt;code&amp;gt;$editorGridColor&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* Added a camera placement tool to the World Editor in a new Cameras page. Also, connectors can now be set up so that they can only link to camera nodes.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new interface panel item that displays an image rendered from another camera in the world. This can be used for things like security camera monitors. To use this panel item, a connector must be assigned to the panel effect node and linked to the target camera. Then the same connector key should be assigned to the camera panel item.&lt;br /&gt;
+&lt;br /&gt;
+* A new function that changes the connector key for a camera panel item has been added to the panel controller. This lets a script change which camera is used to render an image for a camera panel item.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new Skybox page that contains a skybox placement tool. A skybox is now added to a world by explicitly placing a skybox node in the root zone. Skyboxes in existing worlds will show up at the world-space origin. Since a skybox is rendered at infinity, the physical location of a skybox node has no effect, but its orientation does affect the angle at which the skybox is rendered. Furthermore, it is now possible to assign a controller to a skybox node so that, for example, it can be rotated or controlled by a script.&lt;br /&gt;
+&lt;br /&gt;
+* It is now possible to assign a material to a skybox node in the World Editor. Such a material affects how a skybox is rendered in addition to the texture maps assigned to the six skybox faces. Only material attributes that pertain to the ambient lighting equation affect the appearance of a skybox. A material can be removed from a skybox using the new Remove Material command under the Node menu.&lt;br /&gt;
+&lt;br /&gt;
+* The Change Material Color script method will now affect any material assigned to a skybox.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new sound source type that plays ambient sounds. These can be placed in a world to serve as containers for music or environmental sounds. Currently, the physical location of an ambient source has no effect. If an ambient source is playing, it can be heard at the same volume everywhere.&lt;br /&gt;
+&lt;br /&gt;
+* The Node Info dialog for an ambient source lets you assign a list of sound files to play. If the source is streaming, then multiple sounds can be attached to the source, and they will play consecutively without interruption. The same file can be listed more than once.&lt;br /&gt;
+&lt;br /&gt;
+* Under the texcoord animation pane in the material manager, the texcoord speed is now displayed numerically, and the allowable range of speeds has been increased.&lt;br /&gt;
+&lt;br /&gt;
+* When geometry is imported into the World Editor, it will now always appear at the same world-space coordinates no matter what zone is currently the target zone. Imported geometry is still added to the current target zone, but it's transform is multiplied by the inverse of the zone's transform to keep it at the location specified in the import file.&lt;br /&gt;
+&lt;br /&gt;
+* The Remove Transform command has been renamed to Reset Transform to Identity, and a new command called Align Position to Grid has been added to the Node menu in the editor.&lt;br /&gt;
+&lt;br /&gt;
+* The Texture Viewer and Texture Importer tools have been merged into a single tool module.&lt;br /&gt;
+&lt;br /&gt;
+* A new check box has been added to the Texture Importer that lets you specify that the RGB channels of the source texture already contain vector information (such as a normal map). Checking this box causes mipmaps to be generated for vectors instead of colors. This option can be accessed on the command line using the &amp;lt;code&amp;gt;-vector&amp;lt;/code&amp;gt; switch.&lt;br /&gt;
+&lt;br /&gt;
+* The Model Viewer has been integrated into the World Editor tool module. It's likely that the model viewer will eventually be integrated into the editor window itself so that a separate window isn't even necessary.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Constructable&amp;lt;/code&amp;gt; class template has been changed in a couple of ways that make it more flexible in general and slightly simpler in the default case. All installed custom constructor objects (such as &amp;lt;code&amp;gt;Constructor&amp;lt;Controller&amp;gt;&amp;lt;/code&amp;gt;) should now encapsulate a function taking a single parameter of type reference to &amp;lt;code&amp;gt;Unpacker&amp;lt;/code&amp;gt;. The type to be constructed can be retrieved by calling the &amp;lt;code&amp;gt;GetType()&amp;lt;/code&amp;gt; function on the &amp;lt;code&amp;gt;Unpacker&amp;lt;/code&amp;gt; object. See the examples in the game modules.&lt;br /&gt;
+&lt;br /&gt;
+* The polyboard rendering code has been improved so that polyboards viewed near-tangentially look better.&lt;br /&gt;
+&lt;br /&gt;
+* Panels now render correctly in fog. Fog must be explicitly enabled for panels by checking a new box in the Get Info dialog for a panel effect node.&lt;br /&gt;
+&lt;br /&gt;
+* New functions have been added to the &amp;lt;code&amp;gt;Controller&amp;lt;/code&amp;gt; class called &amp;lt;code&amp;gt;Wake()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Sleep()&amp;lt;/code&amp;gt;. When a controller is asleep, it does not receive calls to its &amp;lt;code&amp;gt;Move()&amp;lt;/code&amp;gt; function, saving processing time. New script methods for putting controllers to sleep and waking them are now available.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new flag to the script controller that causes a script to loop continuously. If this flag is set, a script will start over when its last method has finished executing.&lt;br /&gt;
+&lt;br /&gt;
+* When a world is loaded, all nodes now have their world transforms updated before they are preprocessed. This means that the world transform of a node is valid inside the &amp;lt;code&amp;gt;Preprocess()&amp;lt;/code&amp;gt; function when a world is being loaded. The world transform is not valid inside &amp;lt;code&amp;gt;Preprocess()&amp;lt;/code&amp;gt; if this function is called explicitly or indirectly through a call to the &amp;lt;code&amp;gt;AddNewSubnode()&amp;lt;/code&amp;gt; function.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Node::EnumerateGeometries()&amp;lt;/code&amp;gt; function has been updated so that the callback function gets the center and radius of the input sphere.&lt;br /&gt;
+&lt;br /&gt;
+* Added a loop callback to the &amp;lt;code&amp;gt;Interpolator&amp;lt;/code&amp;gt; class. This allows you to install a function that is called each time an interpolator loops (such as the frame interpolator for the &amp;lt;code&amp;gt;FrameAnimator&amp;lt;/code&amp;gt; class).&lt;br /&gt;
+&lt;br /&gt;
+* Modified the RotationController class in the Game Module. The center of rotation and the rotation axis are now specified by adding connectors of type CENT and AXIS to the controller's target node and connecting them to markers. If the AXIS connector is present and connected to a node, then the difference in the positions of the two markers gives the axis of rotation. If there is no AXIS connector, then the rotation axis is the z-axis. These markers should not be subnodes of the node that is actually moved.&lt;br /&gt;
+&lt;br /&gt;
+* Modified the &amp;lt;code&amp;gt;DoorController&amp;lt;/code&amp;gt; class in the Game Module. The controller should now be applied directly to the node that gets moved (which can be the root node of a bigger tree). Open, closed, and shifted positions are specified by adding connectors of type OPEN, CLOS, and SHFT to the controller's target node and connecting them to markers. The relative positions of the markers (which can actually be any kind of node) tell the controller how to move the door. These markers should not be subnodes of the node that is actually moved.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new enemy character to the Game Module. The AI for the Pumpkinhead is extremely basic for now, but the code demonstrates how an NPC could be added to a game. The Pumpkinhead can be found in the Dungeon level, and he'll come after you with fireballs.&lt;br /&gt;
+&lt;br /&gt;
+* By fiddling with internal formats, a 75% increase in shadow map rendering speed has been achieved on ATI hardware.&lt;br /&gt;
+&lt;br /&gt;
+* The C4 Engine now runs on PS3.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_131</id>
+		<title>Release Notes for Build 131</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_131"/>
+		<updated>2023-07-15T09:40:54Z</updated>
+
+		<summary type="html">&lt;p&gt;Eric Lengyel: Created page with &amp;quot;__NOTOC__ '''Release date:''' November 20, 2006  * Implemented an example of a polyboard particle system. The &amp;lt;code&amp;gt;SpiralHelixEffect&amp;lt;/code&amp;gt; class in the Game Module animates a particle system for which every group of 8 particles forms a ribbon.  * Added a workaround to the Collada Importer that would handle apparently erroneous bone weights of zero generated by the ColladaMax 1.06 export plugin.  * Fixed a scale problem that affected Collada exports from 3D Studio MAX....&amp;quot;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' November 20, 2006&lt;br /&gt;
+&lt;br /&gt;
+* Implemented an example of a polyboard particle system. The &amp;lt;code&amp;gt;SpiralHelixEffect&amp;lt;/code&amp;gt; class in the Game Module animates a particle system for which every group of 8 particles forms a ribbon.&lt;br /&gt;
+&lt;br /&gt;
+* Added a workaround to the Collada Importer that would handle apparently erroneous bone weights of zero generated by the ColladaMax 1.06 export plugin.&lt;br /&gt;
+&lt;br /&gt;
+* Fixed a scale problem that affected Collada exports from 3D Studio MAX. Models that looked mangled before should now import correctly.&lt;br /&gt;
+&lt;br /&gt;
+* Fixed a problem that could prevent animations from importing correctly.&lt;br /&gt;
+&lt;br /&gt;
+* Fixed a hardware detection problem that could cause shadow mapping not to render correctly on ATI hardware. (A hacky workaround has to be used on ATI hardware because &amp;lt;code&amp;gt;GL_ARB_fragment_program_shadow&amp;lt;/code&amp;gt; does not function correctly.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

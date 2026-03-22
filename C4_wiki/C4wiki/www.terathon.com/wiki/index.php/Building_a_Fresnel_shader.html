@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/Building_a_Fresnel_shader by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="Building a Fresnel shader,Implementing Overlay Blending,Using the Shader Editor" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>Building a Fresnel shader - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Building_a_Fresnel_shader";
+var wgTitle = "Building a Fresnel shader";
+var wgAction = "view";
+var wgArticleId = "2496";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "5596";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Building_a_Fresnel_shader">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Building a Fresnel shader</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<a name="Building_a_Fresnel_shader"></a><h2> <span class="mw-headline">Building a Fresnel shader</span></h2>
+<table align="right">
+<tr>
+<td> <table id="toc" class="toc" summary="Contents"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1"><a href="#Building_a_Fresnel_shader"><span class="tocnumber">1</span> <span class="toctext">Building a Fresnel shader</span></a></li>
+<li class="toclevel-1"><a href="#Fresnel_Reflection"><span class="tocnumber">2</span> <span class="toctext">Fresnel Reflection</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Overview"><span class="tocnumber">2.1</span> <span class="toctext">Overview</span></a></li>
+<li class="toclevel-2"><a href="#Overview_summary"><span class="tocnumber">2.2</span> <span class="toctext">Overview summary</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#The_Simplistic_Approach"><span class="tocnumber">3</span> <span class="toctext">The Simplistic Approach</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Why_Z.3F"><span class="tocnumber">3.1</span> <span class="toctext">Why Z?</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#The_Improved_Approach"><span class="tocnumber">4</span> <span class="toctext">The Improved Approach</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Building_Rs_.28equation_1.29"><span class="tocnumber">4.1</span> <span class="toctext">Building Rs (equation 1)</span></a></li>
+<li class="toclevel-2"><a href="#Building_F_.28equation_2.29"><span class="tocnumber">4.2</span> <span class="toctext">Building F (equation 2)</span></a></li>
+<li class="toclevel-2"><a href="#Clamping"><span class="tocnumber">4.3</span> <span class="toctext">Clamping</span></a></li>
+<li class="toclevel-2"><a href="#Using_the_shader"><span class="tocnumber">4.4</span> <span class="toctext">Using the shader</span></a></li>
+<li class="toclevel-2"><a href="#Next_step"><span class="tocnumber">4.5</span> <span class="toctext">Next step</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#IOR_reference"><span class="tocnumber">5</span> <span class="toctext">IOR reference</span></a></li>
+</ul>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+</td></tr></table>This tutorial will guide you through the process of creating a Fresnel shader, using the C4 Shader Editor, which you should preferably have some prior experience with.
+<p>If you have never used the shader editor before:
+- read <a href="Using_the_Shader_Editor.html" class="mw-redirect" title="Using the Shader Editor">Using the Shader Editor</a> first.
+</p><p>If you have used it, but still do not really know what you are doing:
+- read <a href="Implementing_Overlay_Blending.html" title="Implementing Overlay Blending">Implementing Overlay Blending</a> first.
+</p><p>Once you have that covered, you should be fully prepared to continue reading this page.
+</p>
+<a name="Fresnel_Reflection"></a><h2> <span class="mw-headline">Fresnel Reflection</span></h2>
+<a name="Overview"></a><h3> <span class="mw-headline">Overview</span></h3>
+<p>The specific part of the Fresnel equations we are interested in here, describes how light travelling through a certain medium with a specific index of refraction (IOR) will be partially reflected and partially refracted when encountering another medium with a different IOR, and the way the angle between the incoming light, the surface and the observer affect the amount of specular reflection versus refraction or diffusion reaching the observer's eye. Perhaps the most well-known display of the fresnel effect in CG imagery is typically a shiny sphere that appears to have stronger reflections along the rim than in its centre, causing a distinct "glow" around its perimeter. The effect is also commonly used for various special effects, such as X-ray shaders or ghostly apparitions. 
+</p>
+<div class="thumb tnone"><div class="thumbinner" style="width:642px;"><a href="Image_Fresnshad1.html" class="image" title="Left: extreme Fresnel rim reflection. Right: Bad X-ray."><img alt="Left: extreme Fresnel rim reflection. Right: Bad X-ray." src="../images/7/7d/Fresnshad1.png" width="640" height="240" border="0" class="thumbimage" /></a>  <div class="thumbcaption"><b>Left</b>: extreme Fresnel rim reflection. <b>Right</b>: Bad X-ray.</div></div></div>
+<p><br />
+In the real world, you will most commonly notice the transition from refraction to reflection when looking in through an ordinary window. If you are standing on one side of a street somewhere, straight in front of an office building on the opposite side, it is quite easy to see into the rooms behind the glass in the windows. The angle between your viewplane and the glass in the windows is close to zero degrees, and that means the refraction (transmission, transparency) easily overpowers the reflection. However, if you cross the street and look at the same windows from an angle, close to 60 - 80 degrees, it will gradually become harder to see what it looks like inside, because in this case the reflections are much stronger than the refraction. The transparent glass finally appears to turn into a mirror as the viewing angle approaches 90 degrees. The relationship between the angle and the amount of reflection is exponential rather than linear. 
+</p>
+<div class="thumb tnone"><div class="thumbinner" style="width:902px;"><a href="Image_Fresnshad2.html" class="image" title="The reflection-refraction ratio changes with the viewing angle."><img alt="The reflection-refraction ratio changes with the viewing angle." src="../images/2/22/Fresnshad2.png" width="900" height="395" border="0" class="thumbimage" /></a>  <div class="thumbcaption">The reflection-refraction ratio changes with the viewing angle.</div></div></div> 
+<p><br />
+This demonstration above will of course fail to some degree if the window in question is fitted with reflective film, that effectively turns it into a one-way mirror, but that's another story. Finally, a word of advice: make sure you do not study other peoples' windows for too long, or you might find yourself arrested or at least interrogated by a bunch of rather hostile guys in uniforms.
+</p>
+<a name="Overview_summary"></a><h3> <span class="mw-headline">Overview summary</span></h3>
+<p>To sum up, a reasonable approximation of Fresnel reflection should tell us how much reflection to expect at a particular point of a certain surface depending on the viewing angle and the IOR of the mediums involved, one of which is usually air, and the other is the material we are looking at. A typical fresnel shader is not strictly limited to transparent materials, although that is what you might primarily associate with things that deal with IOR values. In fact, it is just as important for opaque materials, like metal or plastic, where it can be used to control the transition from diffuse (matte) reflection to specular (mirror like) reflection.
+</p>
+<a name="The_Simplistic_Approach"></a><h2> <span class="mw-headline">The Simplistic Approach</span></h2>
+<p>One very simple implementation is to take the Z component of the Tangent View Direction and invert it:
+</p>
+<div class="thumb tnone"><div class="thumbinner" style="width:772px;"><a href="Image_Fresnshad3.html" class="image" title="The quick solution for a &quot;not-really-fresnel shader&quot;."><img alt="The quick solution for a &quot;not-really-fresnel shader&quot;." src="../images/9/98/Fresnshad3.png" width="770" height="156" border="0" class="thumbimage" /></a>  <div class="thumbcaption">The quick solution for a "not-really-fresnel shader".</div></div></div>
+<p><br />
+This is an economic solution that is quick to set up and does not add a lot of potentially expensive math operations to the shader code. There are a few drawbacks however: we can not easily adjust it much beyond simply multiplying it with something to increase or decrease the overall intensity; it does not take into account the IOR of any participating medium; and, most importantly, it is not really a model of Fresnel reflection at all.  
+</p>
+<a name="Why_Z.3F"></a><h3> <span class="mw-headline">Why Z?</span></h3>
+<p>The reason we specifically single out the Z component, is because that part of the tangent view vector can tells us in which direction the surface normal of a mesh is pointing <i>relative to the position of the camera</i>. This means that the Z component will have a value of 1.0 for any surface exactly parallel with the camera plane, and conversely a value of 0.0 for any surface facing 90 degrees away from the camera plane. By inverting this value, we get what we want - a value close to 1.0 at glancing angles, that drops off to 0.0 where the surface is parallel to the camera plane.
+</p><p>If you bypass the Invert node and reconnect the Tangent View Direction directly to the lighting output without a swizzle, you can see how the raw output of the node works on a basic sphere:
+</p>
+<div class="thumb tnone"><div class="thumbinner" style="width:611px;"><a href="Image_Fresnshad4.html" class="image" title="The surface exactly parallel to the camera plane maps to 100% blue. B is the third component in a color vector, just as Z is the third component in a space vector."><img alt="The surface exactly parallel to the camera plane maps to 100% blue. B is the third component in a color vector, just as Z is the third component in a space vector." src="../images/6/60/Fresnshad4.png" width="609" height="291" border="0" class="thumbimage" /></a>  <div class="thumbcaption">The surface exactly parallel to the camera plane maps to 100% blue. B is the third component in a color vector, just as Z is the third component in a space vector.</div></div></div>
+<p><br />
+Limitations aside, the simple shader above - sometimes referred to as an "angle of incidence shader" - is quite versatile, and can be used to great effect in a lot of different materials, particularly if used as a control value in a linear interpolation set-up, which would then let you mix different colours or textures based on the angle of incidence. So, for many purposes, this type of Fresnel approximation may in fact be "good enough".
+</p><p>However, if we want a significantly improved approximation, we need to approach this task from a slightly more mathematical angle. The inverted Z tangent will be put to use as a small component of the improved version as well.
+</p>
+<a name="The_Improved_Approach"></a><h2> <span class="mw-headline">The Improved Approach</span></h2>
+<p>The equations we are going to use to get a better Fresnel approximation look like this:
+</p><p>(1) <b>Rs = (n1 - n2)/(n1 + n2)</b>
+</p><p>(2) <b>F = Rs + (1 - Rs)(1 - Tv)^5</b>
+</p><p>The first part, <b>Rs</b>,  expresses the ratio of the IORs of the two mediums involved, where <b>n1</b> represents the medium in which the ray of light starts, typically air, and <b>n2</b> is the medium the light eventually hits, which would be the material we are interested in, perhaps composed of some sort of glass, liquid, plastic or metal.
+</p><p>The second part, <b>F</b>, calculates the final fresnel reflectivity based on the Rs and the <b>Tv</b>, which is our tangent view direction. As you can see, it is mainly the exponent (5) along with the difference between two IORs that affects the results. Thus, F is the value we ultimately want to get to, and n1, n2 together with the exponent will be the input variables that allow the user to tweak the final look.
+</p><p>This will give a much more accurate approximation than the angle of incidence shader above, but it is important to realize that we are still dealing with something highly simplified. For starters, we do not consider polarisation or absorption, neither do we take different wavelengths of light into account, and the list goes on. Then again, if we wanted full physical accuracy, we would have to forget about doing things in real-time anyway (and this tutorial would be much longer and not written by me). The goal is just a <i>better approximation</i> than the angle of incidence, but it is still just an approximation, and there are obviously many other ways to do it.
+</p>
+<a name="Building_Rs_.28equation_1.29"></a><h3> <span class="mw-headline">Building Rs (equation 1)</span></h3>
+<p>Open a new material in the shader editor, remove any nodes from the ambient and light tabs respectively, then start adding nodes in the ambient tab. To set up <b>(n1 - n2)/(n1 + n2)</b>, we need two constant scalars, and one each of subtraction, division and addition. Connect them as shown below:
+</p><p><a href="Image_Fresnshad5.html" class="image" title="Image:Fresnshad5.png"><img alt="Image:Fresnshad5.png" src="../images/d/db/Fresnshad5.png" width="550" height="318" border="0" /></a>
+</p><p><br />
+To avoid confusion in the next step, make sure you add comments in the n1 and n2 nodes, as well as "Rs" in the comment field for the division node, since that is the node holding the Rs value we want to use in the second equation.
+</p>
+<a name="Building_F_.28equation_2.29"></a><h3> <span class="mw-headline">Building F (equation 2)</span></h3>
+<p>To handle <b>Rs + (1 - Rs)(1 - Tv)^5</b>, it might be a good idea to split it up a little and take one bit at a time. Starting with <b>(1 - Rs)</b>, just connect the Rs output to an invert node:
+</p>
+<div class="thumb tnone"><div class="thumbinner" style="width:463px;"><a href="Image_Fresnshad6.html" class="image" title="The inversion of Rs."><img alt="The inversion of Rs." src="../images/2/21/Fresnshad6.png" width="461" height="204" border="0" class="thumbimage" /></a>  <div class="thumbcaption">The inversion of Rs.</div></div></div>
+<p><br />
+The (1 - Tv) means that we need a set of nodes exactly like the one we used in the angle of incidence shader above - a tangent view direction, swizzled to output Z only, and an invert node. They are not yet connected to anything else, so just put them alone somewhere beneath the previously added nodes:
+</p><p><a href="Image_Fresnshad7.html" class="image" title="Image:Fresnshad7.png"><img alt="Image:Fresnshad7.png" src="../images/a/ac/Fresnshad7.png" width="362" height="135" border="0" /></a>
+</p><p><br />
+Now, (1 - Tv) should also be raised to the power of 5, so we need a constant scalar and a power node:
+</p>
+<div class="thumb tnone"><div class="thumbinner" style="width:771px;"><a href="Image_Fresnshad8.html" class="image" title="Raising the inverse view direction Z to the power of 5. Green frame indicates the new nodes."><img alt="Raising the inverse view direction Z to the power of 5. Green frame indicates the new nodes." src="../images/1/17/Fresnshad8.png" width="769" height="381" border="0" class="thumbimage" /></a>  <div class="thumbcaption">Raising the inverse view direction Z to the power of 5. Green frame indicates the new nodes.</div></div></div>
+<p><br />
+The scalar in this case belongs to the user interface (of sorts), so it is a good idea to give it a comment and place it somewhere near the n1 and n2 to make them easy to group in a single, easy-to-find section rectangle.
+</p><p>To finish equation 2, the output from the Power node and the inverted Rs should be multiplied together, and the straight Rs should be added to the result of that multiplication. That calls for one multiply and one add node, like this:
+</p>
+<div class="thumb tnone"><div class="thumbinner" style="width:777px;"><a href="Image_Fresnshad9.html" class="image" title="Add and multiply. Green frame indicates the new nodes."><img alt="Add and multiply. Green frame indicates the new nodes." src="../images/e/ed/Fresnshad9.png" width="775" height="456" border="0" class="thumbimage" /></a>  <div class="thumbcaption">Add and multiply. Green frame indicates the new nodes.</div></div></div>
+<p><br />
+That last Add node is the final Fresnel value, the coveted F - mark the node with a comment like "Fresnel Output". Your finished network, with an added rectangle to make it easy to find the user settings, should hopefully look like this:
+</p><p><a href="Image_Fresnshadx10.html" class="image" title="Fresnshadx10.png"><img alt="" src="../images/thumb/e/e9/Fresnshadx10.png/900px-Fresnshadx10.png" width="900" height="436" border="0" /></a>
+<br clear="all" /><i>Click to access full resolution version.</i>
+</p><p><br />
+</p>
+<hr />
+<a name="Clamping"></a><h3> <span class="mw-headline">Clamping</span></h3>
+<p>There is one last thing to do before testing the results: running the fresnel output through a Saturate node, which simply clamps the input to a 0 - 1 range. The reason for this is that the raw output might have a tendency to produce hot pixels with a brightness well above 1.0, which usually causes aliasing and generally just looks bad. Adding a saturation node takes care of that, so go on and get one of those and connect the fresnel output to it. Then connect the sat node output to the lighting output so we can get a look at the result.
+</p><p><a href="Image_Fresnshadx10b.html" class="image" title="Image:Fresnshadx10b.png"><img alt="Image:Fresnshadx10b.png" src="../images/7/70/Fresnshadx10b.png" width="590" height="156" border="0" /></a>
+</p><p><br />
+</p><p><b>With the current parameter values:</b>
+</p>
+<ul>
+<li>n1 = 1.0003 (the environment is filled with air)</li>
+<li>n2 = 1.333 (the material is made of water)</li>
+<li>Exponent = 5.0</li>
+</ul>
+<p>which represents the fresnel reflectivity of the surface of a material with the same IOR as water (1.333) surrounded by air (1.0003), you should see something like this:
+</p><p><a href="Image_Fresnshadx11.html" class="image" title="Image:Fresnshadx11.png"><img alt="Image:Fresnshadx11.png" src="../images/3/32/Fresnshadx11.png" width="261" height="289" border="0" /></a>
+</p><p><br />
+If, for example, you would instead be in an underwater environment looking at a material made of air (commonly believed to be a bubble in that case), the n1 and n2 values would need to switch places, i.e. the light would be moving through a medium with IOR=1.333 and hit an interface to another medium with IOR=1.0003. The difference is quite substantial.
+</p><p>As you can see in the preview with the initial values, the transition from white to black is very harsh, and the rim is extremely thin. While theoretically correct, it does not really work in a non-linear colorspace with a low dynamic range. The easiest way to make the whole thing softer and more display-friendly, is to decrease the exponent, maybe to a value as low as 1.5. While a change like that makes the result less correct, technically speaking, one should keep in mind that most C4 shaders are probably not intended for scientific visualisation, but mainly for entertainment purposes - which means that "if it <i>looks</i> right, it <i>is</i> right". If however a random physicist should complain about your environment map falloff, do <i>not</i> argue with him.
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:264px;"><a href="Image_Fresnshadx11c.html" class="image" title="n1=1.36 n2=0.47Exponent=5.0"><img alt="n1=1.36 n2=0.47Exponent=5.0" src="../images/2/23/Fresnshadx11c.png" width="262" height="292" border="0" class="thumbimage" /></a>  <div class="thumbcaption">n<sub>1</sub>=1.36 <br />n<sub>2</sub>=0.47<br />Exponent=5.0</div></div></div><div class="thumb tnone"><div class="thumbinner" style="width:264px;"><a href="Image_Fresnshadx11b.html" class="image" title="Default IOR values, but exponent set to 1.5"><img alt="Default IOR values, but exponent set to 1.5" src="../images/9/97/Fresnshadx11b.png" width="262" height="292" border="0" class="thumbimage" /></a>  <div class="thumbcaption">Default IOR values, but exponent set to 1.5</div></div></div> 
+<p><br clear="all" />At any rate, our basic fresnel shader is up and running, and between the main parameters n1, n2 and the exponent we have sufficient control over the refraction indices of the mediums and the overall falloff rate respectively.
+</p>
+<a name="Using_the_shader"></a><h3> <span class="mw-headline">Using the shader</span></h3>
+<p>The typical case for the fresnel shader includes using it as a t-value in a linear interpolation node, and/or as a mask/multiplier combined with some other source of colour or texture, and/or as an input to the RGB-port of the environment output node, and/or anything else you can think of. In a transparent material, the white pixels of the fresnel output should be fully reflective and/or specular, and the black pixels should be fully refractive. In an opaque material, the white still maps to reflectivity/specularity, while the black maps to diffused light (i.e. the opposite of reflective/specular lighting).
+</p>
+<a name="Next_step"></a><h3> <span class="mw-headline">Next step</span></h3>
+<p>More tutorials involving the application (and possible improvements) of this fresnel shader in various types of materials are coming soon, as indicated by the "See Also" section below. In the meantime, just do your own experiments with it.
+</p>
+<a name="IOR_reference"></a><h2> <span class="mw-headline">IOR reference</span></h2>
+<p>A small collection of refraction indices for different materials in different categories. Note that there are several variables involved in defining the "true" IOR for any material - things like ambient temperature and the thickness of the material etcetera, can have a significant impact. For example, the IOR of gold, plated on some substrate of a lesser metal, may vary from as low as 0.14 to over 3.0 depending on the thickness. Thus, the values below, collected from various online sources, are just to be considered averaged estimates.
+</p>
+<table style="width:75%" border="0">
+<tr>
+<td> <b>Opaque</b> </td><td> <b>Transparent</b> </td><td> <b>Gaseous</b>
+</td></tr>
+<tr>
+<td> Aluminium 1.44 </td><td> Amber 1.546 </td><td> Air 1.000293
+</td></tr>
+<tr>
+<td> Asphalt 1.635 </td><td> Beryl 1.577 </td><td> Carbon Dioxide 1.00045
+</td></tr>
+<tr>
+<td> Chalk 1.510 </td><td> Crystal 2.00 </td><td> Helium 1.00004
+</td></tr>
+<tr>
+<td> Copper 1.10 </td><td> Ethanol 1.36 </td><td> Hydrogen 1.00014
+</td></tr>
+<tr>
+<td> Gold 0.47 </td><td> Glass 1.51714 </td><td> Nitrogen 1.00029
+</td></tr>
+<tr>
+<td> Iron 1.51 </td><td> Ice 1.309 </td><td> Oxygen 1.00028
+</td></tr>
+<tr>
+<td> Lead 2.01 </td><td> Quartz 1.544 </td><td>
+</td></tr>
+<tr>
+<td> Plastic 1.460 </td><td> Water 1.3333 </td><td>
+</td></tr>
+<tr>
+<td> Rubber 1.519 </td><td> </td><td>
+</td></tr>
+<tr>
+<td> Silver 0.18 </td><td> </td><td>
+</td></tr>
+<tr>
+<td> Steel 2.50 </td><td> </td><td>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 24/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:2496-0!1!0!!en!2!edit=0 and timestamp 20150118234447 -->
+<div class="printfooter">
+Retrieved from "<a href="Building_a_Fresnel_shader.html">http://www.terathon.com/wiki/index.php/Building_a_Fresnel_shader</a>"</div>
+			<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks"><a href="Special_Categories.html" title="Special:Categories">Category</a>:&#32;<span dir='ltr'><a href="Category_Shader_Library.html" title="Category:Shader Library">Shader Library</a></span></div></div>			<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="Building_a_Fresnel_shader.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:Building_a_Fresnel_shader&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=Building_a_Fresnel_shader&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=Building_a_Fresnel_shader&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=Building_a_Fresnel_shader" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Building_a_Fresnel_shader.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Building_a_Fresnel_shader.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=Building_a_Fresnel_shader&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=Building_a_Fresnel_shader&amp;oldid=5596" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 17 February 2009, at 14:20.</li>
+				<li id="viewcount">This page has been accessed 18,681 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.547 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/Building_a_Fresnel_shader by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:27 GMT -->
+</html>

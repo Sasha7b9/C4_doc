@@ -1,0 +1,886 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View forum - User Interface</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '25';
+	var base_url = './viewforum.php?f=8';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewforum ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=18.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=18">C4 Engine Development</a> <strong>&#8249;</strong> <a href="viewforum.php-f=8.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8">User Interface</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewforum.php-f=8.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8">User Interface</a></h2>
+
+
+<div>
+	<!-- NOTE: remove the style="display: none" when you want to have the forum description on the forum body --><div style="display: none !important;">Topics about the user interface system, including windows, dialogs, scoreboards, etc.<br /></div>
+</div>
+
+	<div class="topic-actions" >
+
+	
+		<div class="buttons">
+			<div class="post-icon" title="Post a new topic"><a href="posting.php-mode=post&f=8.htm" tppabs="http://www.terathon.com/forums/posting.php?mode=post&f=8"><span></span>Post a new topic</a></div>
+		</div>
+	
+		<div class="search-box">
+			<form method="get" id="forum-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny" type="text" name="keywords" id="search_keywords" size="20" value="Search this forum…" onclick="if (this.value == 'Search this forum…') this.value = '';" onblur="if (this.value == '') this.value = 'Search this forum…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="fid[0]" value="8" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			206 topics &bull; <a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Page <strong>1</strong> of <strong>9</strong></a> &bull; <span><strong>1</strong><span class="page-sep">, </span><a href="viewforum.php-f=8&start=25.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8&start=25">2</a><span class="page-sep">, </span><a href="viewforum.php-f=8&start=50.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8&start=50">3</a><span class="page-sep">, </span><a href="viewforum.php-f=8&start=75.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8&start=75">4</a><span class="page-sep">, </span><a href="viewforum.php-f=8&start=100.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8&start=100">5</a><span class="page-dots"> ... </span><a href="viewforum.php-f=8&start=200.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8&start=200">9</a></span>
+		</div>
+	
+
+	</div>
+
+		<div class="forumbg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>Topics</dt>
+					<dd class="posts">Replies</dd>
+					<dd class="views">Views</dd>
+					<dd class="lastpost"><span>Last post</span></dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist topics">
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13743.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13743" class="topictitle">How to add a subtree to the TreeWidget</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a> &raquo; 19 Jun 2014, 21:54
+				</dt>
+				<dd class="posts">2 <dfn>Replies</dfn></dd>
+				<dd class="views">972 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+					<a href="viewtopic.php-f=8&t=13743&p=125065.htm#p125065" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13743&p=125065#p125065"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />22 Jun 2014, 21:17</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read_hot.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read_hot.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13531.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13531" class="topictitle">User Interface Design: Other Software</a>
+					<br />
+					<strong class="pagination"><span><a href="viewtopic.php-f=8&t=13531.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13531">1</a><span class="page-sep">, </span><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=8&t=13531&start=25  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=8&t=13531&start=25%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13531&start=25">2</a></span></strong><img src="styles/prosilver/imageset/icon_topic_attach.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_attach.gif" width="7" height="10" alt="Attachment(s)" title="Attachment(s)" /> by <a href="memberlist.php-mode=viewprofile&u=1484.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1484" style="color: #8000C0;" class="username-coloured">MACK</a> &raquo; 03 Mar 2014, 21:13
+				</dt>
+				<dd class="posts">44 <dfn>Replies</dfn></dd>
+				<dd class="views">3474 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2537.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2537" style="color: #0060C0;" class="username-coloured">Grognard</a>
+					<a href="viewtopic.php-f=8&t=13531&p=124459.htm#p124459" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13531&p=124459#p124459"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />28 May 2014, 17:30</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13651.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13651" class="topictitle">Text Following a Path</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a> &raquo; 29 Apr 2014, 19:41
+				</dt>
+				<dd class="posts">1 <dfn>Replies</dfn></dd>
+				<dd class="views">307 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="viewtopic.php-f=8&t=13651&p=124127.htm#p124127" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13651&p=124127#p124127"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />29 Apr 2014, 22:30</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13637.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13637" class="topictitle">Configuration Widgets and multiple Configurables</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a> &raquo; 12 Apr 2014, 23:49
+				</dt>
+				<dd class="posts">2 <dfn>Replies</dfn></dd>
+				<dd class="views">401 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a>
+					<a href="viewtopic.php-f=8&t=13637&p=124018.htm#p124018" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13637&p=124018#p124018"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />13 Apr 2014, 00:39</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13626.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13626" class="topictitle">Hover events?</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a> &raquo; 04 Apr 2014, 10:52
+				</dt>
+				<dd class="posts">3 <dfn>Replies</dfn></dd>
+				<dd class="views">490 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=3203.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3203" style="color: #0060C0;" class="username-coloured">patlecat</a>
+					<a href="viewtopic.php-f=8&t=13626&p=123979.htm#p123979" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13626&p=123979#p123979"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />05 Apr 2014, 12:56</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13586.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13586" class="topictitle">Window removed from parent after clicking on it?</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a> &raquo; 26 Mar 2014, 23:25
+				</dt>
+				<dd class="posts">8 <dfn>Replies</dfn></dd>
+				<dd class="views">662 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=8&t=13586&p=123864  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=8&t=13586&p=123864#p123864%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13586&p=123864#p123864"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />29 Mar 2014, 21:18</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13452.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13452" class="topictitle">Transparent WorldViewportWidget?</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=3017.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3017" style="color: #8000C0;" class="username-coloured">Cameron</a> &raquo; 16 Jan 2014, 20:21
+				</dt>
+				<dd class="posts">16 <dfn>Replies</dfn></dd>
+				<dd class="views">1519 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=3017.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3017" style="color: #8000C0;" class="username-coloured">Cameron</a>
+					<a href="viewtopic.php-f=8&t=13452&p=122619.htm#p122619" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13452&p=122619#p122619"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />06 Feb 2014, 19:22</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=8&t=13422  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=8&t=13422%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13422" class="topictitle">finding all widgets in a window</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=661.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=661" style="color: #0060C0;" class="username-coloured">gautam</a> &raquo; 01 Jan 2014, 13:03
+				</dt>
+				<dd class="posts">2 <dfn>Replies</dfn></dd>
+				<dd class="views">422 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="viewtopic.php-f=8&t=13422&p=122032.htm#p122032" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13422&p=122032#p122032"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />01 Jan 2014, 14:11</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13421.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13421" class="topictitle">Anchoring widgets to center</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=661.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=661" style="color: #0060C0;" class="username-coloured">gautam</a> &raquo; 01 Jan 2014, 01:27
+				</dt>
+				<dd class="posts">0 <dfn>Replies</dfn></dd>
+				<dd class="views">305 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=661.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=661" style="color: #0060C0;" class="username-coloured">gautam</a>
+					<a href="viewtopic.php-f=8&t=13421&p=122024.htm#p122024" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13421&p=122024#p122024"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />01 Jan 2014, 01:27</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13379.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13379" class="topictitle">Reasoning re: Icon On/OFF appearance</a>
+					<br />
+					<img src="styles/prosilver/imageset/icon_topic_attach.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_attach.gif" width="7" height="10" alt="Attachment(s)" title="Attachment(s)" /> by <a href="memberlist.php-mode=viewprofile&u=1484.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1484" style="color: #8000C0;" class="username-coloured">MACK</a> &raquo; 13 Dec 2013, 15:38
+				</dt>
+				<dd class="posts">10 <dfn>Replies</dfn></dd>
+				<dd class="views">1026 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=3092.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3092" style="color: #0060C0;" class="username-coloured">Mussi</a>
+					<a href="viewtopic.php-f=8&t=13379&p=121658.htm#p121658" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13379&p=121658#p121658"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />13 Dec 2013, 20:48</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=8&t=13366  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=8&t=13366%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13366" class="topictitle">Include one panel in another</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=608.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=608" style="color: #8000C0;" class="username-coloured">cboyce</a> &raquo; 07 Dec 2013, 19:26
+				</dt>
+				<dd class="posts">3 <dfn>Replies</dfn></dd>
+				<dd class="views">437 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=608.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=608" style="color: #8000C0;" class="username-coloured">cboyce</a>
+					<a href="viewtopic.php-f=8&t=13366&p=121593.htm#p121593" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13366&p=121593#p121593"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />07 Dec 2013, 23:12</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13367.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13367" class="topictitle">SetSettings on a ConfigurationWidget</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=608.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=608" style="color: #8000C0;" class="username-coloured">cboyce</a> &raquo; 07 Dec 2013, 19:47
+				</dt>
+				<dd class="posts">1 <dfn>Replies</dfn></dd>
+				<dd class="views">313 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=608.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=608" style="color: #8000C0;" class="username-coloured">cboyce</a>
+					<a href="viewtopic.php-f=8&t=13367&p=121591.htm#p121591" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13367&p=121591#p121591"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />07 Dec 2013, 23:08</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13365.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13365" class="topictitle">Clearing edit box text on click</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=661.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=661" style="color: #0060C0;" class="username-coloured">gautam</a> &raquo; 07 Dec 2013, 13:15
+				</dt>
+				<dd class="posts">3 <dfn>Replies</dfn></dd>
+				<dd class="views">425 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="viewtopic.php-f=8&t=13365&p=121586.htm#p121586" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13365&p=121586#p121586"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />07 Dec 2013, 15:11</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13348.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13348" class="topictitle">justified text</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=661.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=661" style="color: #0060C0;" class="username-coloured">gautam</a> &raquo; 25 Nov 2013, 08:11
+				</dt>
+				<dd class="posts">3 <dfn>Replies</dfn></dd>
+				<dd class="views">500 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=661.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=661" style="color: #0060C0;" class="username-coloured">gautam</a>
+					<a href="viewtopic.php-f=8&t=13348&p=121418.htm#p121418" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13348&p=121418#p121418"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />26 Nov 2013, 01:03</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13290.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13290" class="topictitle">Move WorldViewport Widgets?</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=3017.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3017" style="color: #8000C0;" class="username-coloured">Cameron</a> &raquo; 01 Nov 2013, 17:35
+				</dt>
+				<dd class="posts">10 <dfn>Replies</dfn></dd>
+				<dd class="views">1372 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=3017.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3017" style="color: #8000C0;" class="username-coloured">Cameron</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=8&t=13290&p=120954  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=8&t=13290&p=120954#p120954%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13290&p=120954#p120954"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />04 Nov 2013, 18:05</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13270.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13270" class="topictitle">wide screen support</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=661.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=661" style="color: #0060C0;" class="username-coloured">gautam</a> &raquo; 23 Oct 2013, 13:13
+				</dt>
+				<dd class="posts">2 <dfn>Replies</dfn></dd>
+				<dd class="views">504 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=661.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=661" style="color: #0060C0;" class="username-coloured">gautam</a>
+					<a href="viewtopic.php-f=8&t=13270&p=120721.htm#p120721" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13270&p=120721#p120721"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />24 Oct 2013, 06:30</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13248.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13248" class="topictitle">Gamepad-controlled menus</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=3084.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3084" style="color: #0060C0;" class="username-coloured">aubrey.r.jones</a> &raquo; 16 Oct 2013, 14:15
+				</dt>
+				<dd class="posts">6 <dfn>Replies</dfn></dd>
+				<dd class="views">688 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=3084.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3084" style="color: #0060C0;" class="username-coloured">aubrey.r.jones</a>
+					<a href="viewtopic.php-f=8&t=13248&p=120570.htm#p120570" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13248&p=120570#p120570"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />18 Oct 2013, 09:39</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13240.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13240" class="topictitle">Edit recorded movies?</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=3084.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3084" style="color: #0060C0;" class="username-coloured">aubrey.r.jones</a> &raquo; 10 Oct 2013, 14:07
+				</dt>
+				<dd class="posts">8 <dfn>Replies</dfn></dd>
+				<dd class="views">723 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=3084.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3084" style="color: #0060C0;" class="username-coloured">aubrey.r.jones</a>
+					<a href="viewtopic.php-f=8&t=13240&p=120461.htm#p120461" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13240&p=120461#p120461"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />11 Oct 2013, 12:27</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13176.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13176" class="topictitle">Is it possible to end text input with Enter?</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030">DrVonBraun</a> &raquo; 10 Sep 2013, 06:29
+				</dt>
+				<dd class="posts">4 <dfn>Replies</dfn></dd>
+				<dd class="views">711 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=3030.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3030">DrVonBraun</a>
+					<a href="viewtopic.php-f=8&t=13176&p=119890.htm#p119890" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13176&p=119890#p119890"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />10 Sep 2013, 23:44</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13169.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13169" class="topictitle">Removing ScrollWidget from ListWidget</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a> &raquo; 07 Sep 2013, 13:48
+				</dt>
+				<dd class="posts">1 <dfn>Replies</dfn></dd>
+				<dd class="views">374 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="viewtopic.php-f=8&t=13169&p=119855.htm#p119855" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13169&p=119855#p119855"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />07 Sep 2013, 16:46</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13085.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13085" class="topictitle">Potential Animate Mutator bug in 3.0?</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=3081.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3081" style="color: #8000C0;" class="username-coloured">kswaim</a> &raquo; 01 Aug 2013, 16:42
+				</dt>
+				<dd class="posts">4 <dfn>Replies</dfn></dd>
+				<dd class="views">732 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=3081.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3081" style="color: #8000C0;" class="username-coloured">kswaim</a>
+					<a href="viewtopic.php-f=8&t=13085&p=119156.htm#p119156" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13085&p=119156#p119156"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />02 Aug 2013, 10:25</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13061.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13061" class="topictitle">closing command console affects the button on the lower left</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=3281.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3281" style="color: #0060C0;" class="username-coloured">starlwe</a> &raquo; 25 Jul 2013, 17:23
+				</dt>
+				<dd class="posts">1 <dfn>Replies</dfn></dd>
+				<dd class="views">434 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="viewtopic.php-f=8&t=13061&p=118981.htm#p118981" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13061&p=118981#p118981"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />25 Jul 2013, 17:48</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=12973.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=12973" class="topictitle">disable tilda key for control panel</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=2461.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2461" style="color: #0060C0;" class="username-coloured">huntin games</a> &raquo; 11 Jun 2013, 19:50
+				</dt>
+				<dd class="posts">4 <dfn>Replies</dfn></dd>
+				<dd class="views">902 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="viewtopic.php-f=8&t=12973&p=118932.htm#p118932" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=12973&p=118932#p118932"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />24 Jul 2013, 14:34</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=13040.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13040" class="topictitle">Controlling Game-Menu with Gamepad</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=2620.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2620" style="color: #8000C0;" class="username-coloured">ricky</a> &raquo; 19 Jul 2013, 02:52
+				</dt>
+				<dd class="posts">6 <dfn>Replies</dfn></dd>
+				<dd class="views">932 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="viewtopic.php-f=8&t=13040&p=118893.htm#p118893" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=13040&p=118893#p118893"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />22 Jul 2013, 16:04</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="viewtopic.php-f=8&t=12993.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=12993" class="topictitle">MovieWidget change to another movie</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=2257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2257" style="color: #8000C0;" class="username-coloured">Gnobeus</a> &raquo; 20 Jun 2013, 00:07
+				</dt>
+				<dd class="posts">5 <dfn>Replies</dfn></dd>
+				<dd class="views">805 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="viewtopic.php-f=8&t=12993&p=118324.htm#p118324" tppabs="http://www.terathon.com/forums/viewtopic.php?f=8&t=12993&p=118324#p118324"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />21 Jun 2013, 16:00</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+			</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	
+	<form method="post" action="http://www.terathon.com/forums/viewforum.php?f=8">
+		<fieldset class="display-options">
+			<a href="viewforum.php-f=8&start=25.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8&start=25" class="right-box right">Next</a>
+			<label>Display topics from previous: <select name="st" id="st"><option value="0" selected="selected">All Topics</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+			<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="r">Replies</option><option value="s">Subject</option><option value="v">Views</option></select></label>
+			<label><select name="sd" id="sd"><option value="a">Ascending</option><option value="d" selected="selected">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+	
+		</fieldset>
+	</form>
+	<hr />
+
+	<div class="topic-actions">
+		
+		<div class="buttons">
+			<div class="post-icon" title="Post a new topic"><a href="posting.php-mode=post&f=8.htm" tppabs="http://www.terathon.com/forums/posting.php?mode=post&f=8"><span></span>Post a new topic</a></div>
+		</div>
+		
+		<div class="pagination">
+			 206 topics &bull;  <a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Page <strong>1</strong> of <strong>9</strong></a>
+			 &bull;  <span><strong>1</strong><span class="page-sep">, </span><a href="viewforum.php-f=8&start=25.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8&start=25">2</a><span class="page-sep">, </span><a href="viewforum.php-f=8&start=50.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8&start=50">3</a><span class="page-sep">, </span><a href="viewforum.php-f=8&start=75.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8&start=75">4</a><span class="page-sep">, </span><a href="viewforum.php-f=8&start=100.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8&start=100">5</a><span class="page-dots"> ... </span><a href="viewforum.php-f=8&start=200.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=8&start=200">9</a></span>
+		</div>
+		
+	</div>
+
+	<p></p><p><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" class="left-box left" accesskey="r">Return to Board index</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8" selected="selected">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: No registered users and 1 guest</p>
+
+	<h3>Forum permissions</h3>
+	<p>You <strong>cannot</strong> post new topics in this forum<br />You <strong>cannot</strong> reply to topics in this forum<br />You <strong>cannot</strong> edit your posts in this forum<br />You <strong>cannot</strong> delete your posts in this forum<br /></p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

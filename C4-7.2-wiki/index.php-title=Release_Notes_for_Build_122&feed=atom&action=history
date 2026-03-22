@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_122&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Build 122 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_122&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_122&amp;action=history"/>
+	<updated>2024-09-21T18:44:26Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_122&amp;diff=29&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' May 24, 2006  * '''IMPORTANT:''' In order to use the save game functionality in this release, you must update any world that will be saved as a save game to a slightly newer format. To update a world, simply open the world in the World Editor and then immediately save it. Although no problems are anticipated, it's highly recommended that you backup your WLD resources before running this build.   * Implemented delta save files for saved games...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_122&amp;diff=29&amp;oldid=prev"/>
+		<updated>2023-07-15T09:35:24Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; May 24, 2006  * &amp;#039;&amp;#039;&amp;#039;IMPORTANT:&amp;#039;&amp;#039;&amp;#039; In order to use the save game functionality in this release, you must update any world that will be saved as a save game to a slightly newer format. To update a world, simply open the world in the World Editor and then immediately save it. Although no problems are anticipated, it&amp;#039;s highly recommended that you backup your WLD resources before running this build.   * Implemented delta save files for saved games...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' May 24, 2006&lt;br /&gt;
+&lt;br /&gt;
+* '''IMPORTANT:''' In order to use the save game functionality in this release, you must update any world that will be saved as a save game to a slightly newer format. To update a world, simply open the world in the World Editor and then immediately save it. Although no problems are anticipated, it's highly recommended that you backup your WLD resources before running this build. &lt;br /&gt;
+&lt;br /&gt;
+* Implemented delta save files for saved games. Saved games get stored in the &amp;lt;code&amp;gt;Save/sav/&amp;lt;/code&amp;gt; directory. (The Save directory is the root of a new resource catalog.) Games are saved and restored using the &amp;lt;code&amp;gt;WorldMgr::SaveDeltaWorld()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;WorldMgr::RestoreDeltaWorld()&amp;lt;/code&amp;gt; functions. A save game file stores the entire node hierarchy and all controller information, but it only stores the objects that it actually needs to store. Any objects that exist in the original world and haven't been modified are not saved in the delta file. Since nearly all geometrical information is stored in the shared objects, this makes saved games extremely small compared to the original world. (In the case of the demo world, a saved game is only 1.5% the size of the original world.) Any new objects introduced since a world was loaded and any deleted objects are automatically handled.&lt;br /&gt;
+&lt;br /&gt;
+* If a saved game is restored while the original world for which it was saved is still loaded, then a special fast path is taken through which any original, unmodified objects already in memory are reused. Then only missing or modified objects are reloaded from the original world resource. Since materials are stored in objects, this also minimizes texture reloading.&lt;br /&gt;
+&lt;br /&gt;
+* If the game code modifies an object directly, it must call the &amp;lt;code&amp;gt;Object::SetModifiedFlag()&amp;lt;/code&amp;gt; function to ensure that the object is correctly saved in a delta file. If this function is not called appropriately, a modified object may be restored to its original state when a saved game is reloaded. Note that this function only needs to be called for changes to an &amp;lt;code&amp;gt;Object&amp;lt;/code&amp;gt; class, which are relatively rare. Modifications to a Node class do not require a similar call to be made because all node data is always saved.&lt;br /&gt;
+&lt;br /&gt;
+* Added QuickSave and QuickLoad input actions to the sample game. These are initially bound to the F6 and F9 keys, respectively. There is also a new Save Current Game item in the main menu that lets you save a named file. The Load Saved Game item in the main menu is now functional. &lt;br /&gt;
+&lt;br /&gt;
+* Scripts are now fully re-entrant without limitation. By default, a script has re-entrancy disabled, but it can be enabled by checking the &amp;quot;Allow multiple instances to run simultaneously&amp;quot; box in the Controller pane of the Get Info dialog. In order to support re-entrancy, all script methods and controller functions must be able to replicate themselves, meaning they must implement a copy constructor and override the &amp;lt;code&amp;gt;Replicate&amp;lt;/code&amp;gt; function. &lt;br /&gt;
+&lt;br /&gt;
+* Implemented full-scene motion blur as a postprocess effect. Motion blur affects everything uniformly and provides the same &amp;quot;cinematic&amp;quot; level of quality advertised by another engine that shall go unnamed. In particular, motion blur is determined by the combination of camera motion, object motion, and also vertex motion for things like skinned characters and cloth.&lt;br /&gt;
+&lt;br /&gt;
+* In this release, motion blur requires FBO support. A p-buffer fallback will be implemented in a minor update.&lt;br /&gt;
+&lt;br /&gt;
+* Added a geometry flag to the Get Info dialog to disable motion blur. This can be useful for things like geometry covering a remote portal so that double blurring of the remote image doesn't occur. &lt;br /&gt;
+&lt;br /&gt;
+* Added new check boxes for enabling or disabling postprocessing effects in the Graphics Options dialog. &lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;StopMotion&amp;lt;/code&amp;gt; function to the &amp;lt;code&amp;gt;Node&amp;lt;/code&amp;gt;. This function is used to signal that a node previously in motion has stopped and ensures that the stored transforms used for determining motion blur are reset. This function is necessary because stopped nodes usually aren't being invalidated, so they also aren't being updated any more, and that's where previous transforms are saved to calculate motion blur. See the documentation at [[http://c4engine.com/docs/WorldMgr/Node_StopMotion.html &amp;lt;code&amp;gt;Node::StopMotion&amp;lt;/code&amp;gt;]].&lt;br /&gt;
+ &lt;br /&gt;
+* Added flags to the &amp;lt;code&amp;gt;MaterialObject&amp;lt;/code&amp;gt; class that let you specify two-sidedness and alpha testing on a per-material basis (whereas before, it could only be done per-geometry). The material editor has been updated to support these flagsâ€”they can be found in the General pane. &lt;br /&gt;
+&lt;br /&gt;
+* Added slots for a secondary texture map and a secondary normal map in the material editor. When two normal maps are specified, they always add in the mathematically correct way as if their original height maps had been added together. Parallax mapping is automatically disabled for a material when there are two normal maps. &lt;br /&gt;
+&lt;br /&gt;
+* You can now choose an input texture coordinate set for each texture in a material. &lt;br /&gt;
+&lt;br /&gt;
+* Added support for animated texture coordinates. Each texture coordinate set can be animated using the settings under the Texcoords panel in the material editor. All texcoord animation is based on a 120 second period, so individual coordinate velocities must be set so that an integer number of complete cycles have occurred every 120 seconds. (The editor enforces this.) Since the coordinate velocities are quantized, not all animation directions are available at slow speeds. At the slowest possible speed (making one cycle every 120 seconds), the available directions are multiples of 45 degrees. &lt;br /&gt;
+&lt;br /&gt;
+* The reflection attribute now uses the Schlick approximation for a Fresnel factor. The normal incidence reflectivity is still controlled by the existing slider under the Buffers panel in the material editor. (Water has a very low normal incidence reflectivity, so a value of 1 or 2 would be appropriate.) &lt;br /&gt;
+&lt;br /&gt;
+* Added a flag for remote portals that stops skyboxes from being rendered through them. This is useful if you know that no part of the skybox will be visible through the portal (e.g., when used for underwater refraction). &lt;br /&gt;
+&lt;br /&gt;
+* Added a flag to the fluid controller that forces vertices to remain in a plane. When this flag is specified, only the normals and tangents are animated. This is necessary to prevent gaps in a refraction buffer rendered for the fluid. This flag can be set in the Get Info dialog under the Controller pane. &lt;br /&gt;
+&lt;br /&gt;
+* Added a buffer exclusion mask to fog spaces. These will stop fog from being applied in the primary, reflection, or refraction render buffers. These are accessible in the Get Info dialog. &lt;br /&gt;
+&lt;br /&gt;
+* The fire effect and flare effect tools in the World Editor now let you drag out their sizes. The fire effect is cylindrical, and the flare effect is spherical. &lt;br /&gt;
+&lt;br /&gt;
+* Implemented the &amp;lt;code&amp;gt;FlickerController class&amp;lt;/code&amp;gt; in the game module. This causes a point light source to change in intensity and move back and forth quickly like flickering fire. This controller can be assigned to a light and configured in the Get Info dialog.&lt;br /&gt;
+ &lt;br /&gt;
+* Made a lot of improvements to the Model Viewer tool. The window now displays information about the model such as node count, vertex count, and face count. The mouse wheel will now zoom in and out. The tools can be selected with hotkeys. (The pan, zoom, and free camera tools use the same keys as the World Editor: 6, 7, and 9. The orbit and light tools use 1 and 2.) You can now select an environment in which the model is placed by choosing Select Environment from the Model menu. Any world saved in the &amp;lt;code&amp;gt;Data/wld/ModelViewer directory&amp;lt;/code&amp;gt; can be used as the environment. If you make a new environment, it should not have any subzones in it (just the root zone). The model is always placed at the origin. &lt;br /&gt;
+&lt;br /&gt;
+* Reimplemented normalization cube maps for GeForceFX processors. (This was implemented a long time ago, but was removed somewhere along the way during shader system revisions.) In fill-limited test scenes, this now provides about a 25% speedup. This optimization is only used on GeForceFX-class hardware because all other supported hardware performs normalizations faster using ALU instructions. &lt;br /&gt;
+&lt;br /&gt;
+* Added a lower-quality texturing mode that can provide a quality/performance trade-off. If the &amp;quot;Use high-resolution textures&amp;quot; box is unchecked in the Graphics Options dialog, then all textures with mipmaps are reduced to half resolution. &lt;br /&gt;
+&lt;br /&gt;
+* Fixed a problem that would cause entities using a &amp;lt;code&amp;gt;SkinController&amp;lt;/code&amp;gt; not to get cloned correctly (the controller wasn't getting cloned for any skinned meshes). &lt;br /&gt;
+&lt;br /&gt;
+* Fixed a bug that would cause QuickTime movies to crash on MacOS X. &lt;br /&gt;
+&lt;br /&gt;
+* Added a message box that appears if the engine is run on sub-minimal graphics hardware.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

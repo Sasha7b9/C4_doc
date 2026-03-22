@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.9&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 2.9 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.9&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.9&amp;action=history"/>
+	<updated>2024-09-21T18:40:38Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.9&amp;diff=76&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' May 20, 2012  * The C4 Engine now runs under Linux. Generic makefiles can be found in the &lt;code&gt;Linux&lt;/code&gt; folder, and NetBeans projects can be found in the &lt;code&gt;NetBeans&lt;/code&gt; folder. The engine builds for 64-bit by default. The Browser, Movies, and Font Generator plugins have not been brought to Linux yet. All other tool plugins and game modules are fully supported.  == Core Engine ==  * The direct use of built-in integer types &lt;code&gt;l...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.9&amp;diff=76&amp;oldid=prev"/>
+		<updated>2023-07-15T10:10:19Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; May 20, 2012  * The C4 Engine now runs under Linux. Generic makefiles can be found in the &amp;lt;code&amp;gt;Linux&amp;lt;/code&amp;gt; folder, and NetBeans projects can be found in the &amp;lt;code&amp;gt;NetBeans&amp;lt;/code&amp;gt; folder. The engine builds for 64-bit by default. The Browser, Movies, and Font Generator plugins have not been brought to Linux yet. All other tool plugins and game modules are fully supported.  == Core Engine ==  * The direct use of built-in integer types &amp;lt;code&amp;gt;l...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' May 20, 2012&lt;br /&gt;
+&lt;br /&gt;
+* The C4 Engine now runs under Linux. Generic makefiles can be found in the &amp;lt;code&amp;gt;Linux&amp;lt;/code&amp;gt; folder, and NetBeans projects can be found in the &amp;lt;code&amp;gt;NetBeans&amp;lt;/code&amp;gt; folder. The engine builds for 64-bit by default. The Browser, Movies, and Font Generator plugins have not been brought to Linux yet. All other tool plugins and game modules are fully supported.&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+* The direct use of built-in integer types &amp;lt;code&amp;gt;long&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;unsigned long&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;short&amp;lt;/code&amp;gt;,&amp;lt;code&amp;gt;unsigned short&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;signed char&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;unsigned char&amp;lt;/code&amp;gt; has been eliminated from the engine. The engine now defines the types &amp;lt;code&amp;gt;int8&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;unsigned_int8&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;int16&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;unsigned_int16&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;int32&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;unsigned_int32&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;int64&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;unsigned_int64&amp;lt;/code&amp;gt;, and these types are used throughout the source code. This was done to minimize potential differences across platforms and between 32-bit and 64-bit builds. (Note that the &amp;lt;code&amp;gt;char&amp;lt;/code&amp;gt; type, which is a separate built-in type from &amp;lt;code&amp;gt;signed char&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;unsigned char&amp;lt;/code&amp;gt;, is still used for character strings.)&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;GraphNode&amp;lt;/code&amp;gt; class has been renamed to &amp;lt;code&amp;gt;GraphElement&amp;lt;/code&amp;gt;. This is more consistent with the use of the term &amp;quot;element&amp;quot; in other containers (list element, map element, hash table element), and it avoids an ambiguity with the term &amp;quot;node&amp;quot; used to represent items in the scene.&lt;br /&gt;
+&lt;br /&gt;
+=== World Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* When a rigid body is extracted from an instanced world, any connectors ending at the instance node are now transferred to the node to which the rigid body controller is assigned.&lt;br /&gt;
+&lt;br /&gt;
+=== Interface Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* A new table widget has been added to the standard set of widgets built into the engine. A table is basically a list with a specified number of columns and a fixed cell size.&lt;br /&gt;
+&lt;br /&gt;
+=== Message Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* A new message flag called &amp;lt;code&amp;gt;kMessageDestroyer&amp;lt;/code&amp;gt; has been added. It should be set for controller messages that cause the target node to be destroyed and get sent with the &amp;lt;code&amp;gt;MessageMgr::SendMessageJournal()&amp;lt;/code&amp;gt; function. This flag prevents the message from being deleted from the journal when the controller is destroyed on the server.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+=== World Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* There is a new Find page that contains functionality for finding nodes in a world. Nodes can be matched against a name field (which is not case sensitive), a node type, and a controller type. The name field can be left blank and the node and controller types can be set to &amp;lt;code&amp;gt;&amp;amp;lt;any&amp;amp;gt;&amp;lt;/code&amp;gt; in order to match any node that satisfies the restrictions that are specified. The buttons at the bottom of the page let you find all matches, the next match, or the previous match.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

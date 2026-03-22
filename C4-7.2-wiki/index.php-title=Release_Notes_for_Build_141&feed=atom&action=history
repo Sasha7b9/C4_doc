@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_141&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Build 141 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_141&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_141&amp;action=history"/>
+	<updated>2024-09-21T18:42:54Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_141&amp;diff=48&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' October 3, 2007  * The Info page in the World Editor now displays the number of instances in the scene corresponding to the node for which the gizmo is currently shown. The number of instances is equal to the total number of nodes referencing the same data object.  * When replacing materials on individual surfaces of a geometry that has multiple instances in the scene, the World Editor now enforces the preservation of the material segmentati...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_141&amp;diff=48&amp;oldid=prev"/>
+		<updated>2023-07-15T09:48:17Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; October 3, 2007  * The Info page in the World Editor now displays the number of instances in the scene corresponding to the node for which the gizmo is currently shown. The number of instances is equal to the total number of nodes referencing the same data object.  * When replacing materials on individual surfaces of a geometry that has multiple instances in the scene, the World Editor now enforces the preservation of the material segmentati...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' October 3, 2007&lt;br /&gt;
+&lt;br /&gt;
+* The Info page in the World Editor now displays the number of instances in the scene corresponding to the node for which the gizmo is currently shown. The number of instances is equal to the total number of nodes referencing the same data object.&lt;br /&gt;
+&lt;br /&gt;
+* When replacing materials on individual surfaces of a geometry that has multiple instances in the scene, the World Editor now enforces the preservation of the material segmentation structure in order to prevent mismatches among the different instances. What this means is that you can't change the number of material slots or the surface-to-material-slot mapping for geometries having multiple instances in the scene. The only consequence of this rule is that attempting to change the material for a set of surfaces on an multiply-instanced geometry may result in the material being applied to more surfaces than are selected.&lt;br /&gt;
+&lt;br /&gt;
+* Added the Copy Transform and Paste Transform commands to the Edit menu in the World Editor. These commands copy and paste the local node transform corresponding to the node for which the gizmo is currently shown. They do not copy and paste the node size (since that's not part of the transform), but just the position and rotation. The transform clipboard is independent from the main clipboard.&lt;br /&gt;
+&lt;br /&gt;
+* Added the Combine Detail Levels and Separate Detail Levels commands to the Geometry menu in the World Editor. These commands allow you to combine multiple geometries into a single geometry with multiple levels of detail, or to separate multiple levels of detail in a single geometry into multiple geometries with a single level of detail.&lt;br /&gt;
+&lt;br /&gt;
+* The Combine Detail Levels command is available when 2â€“4 geometries are selected. It examines the highest level of detail from each geometry and puts them in order by vertex count. The geometry having the most vertices is designated the primary geometry node, and it continues to exist after the detail levels are combined. The highest level of detail from each geometry is added to the primary geometry as a lower detail level, replacing any lower detail levels that were already there. The geometry data from each input geometry is transformed into the coordinate space for the primary geometry. (Geometries should be manually aligned before combining detail levels.) Input geometries other than the primary geometry are finally deleted.&lt;br /&gt;
+&lt;br /&gt;
+* The Separate Detail Levels command has the opposite function. It takes an input geometry and creates new geometry nodes for each level of detail, removing them from the input geometry. The new geometry nodes are identical to the input geometry, including controller assignment, properties, and connections. However, the collision data will be rebuilt for level 0 if it had been changed.&lt;br /&gt;
+&lt;br /&gt;
+* The collision detail level is now exposed in the Get Info dialog under the Collision tab. By default, collision detection information is generated for the highest level of detail (level 0) for a geometry. This can now be changed so that collisions occur against a lower level of detail. The advantages to setting a higher-numbered collision detail level (which corresponds to lower geometric level of detail) are that it saves space and it performs a little faster. If the collision detail level is set greater than or equal to the number of geometric detail levels, then the last available level of detail is used.&lt;br /&gt;
+&lt;br /&gt;
+* A check box called &amp;quot;Reflection&amp;quot; has been added to the Texture Mapping page in the World Editor. Checking this box will cause texture coordinates to be mirrored in the s direction, effectively adding an inversion on top of the reflection in the texture coordinate generation matrix. Mirroring in the t direction can be achieved by rotating 180 degrees after checking the Reflection box.&lt;br /&gt;
+&lt;br /&gt;
+* An alignment plane popup menu has also been added to the Texture Mapping page. This allows selection of the XY, XZ, or YZ plane as the texcoord generation plane. These are set automatically by many primitive geometries, but may need to be changed for imported geometry to get the desired mapping.&lt;br /&gt;
+&lt;br /&gt;
+* The default texture used when a texture resource is missing has been changed so that it works better as a normal map. (The file is &amp;lt;code&amp;gt;Data/tex/C4/missing.tex&amp;lt;/code&amp;gt;.) This texture now looks like a bunch of green Xs on top of a pastel purple background (representing the (0,0,1) normal vector).&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Constructable::Construct()&amp;lt;/code&amp;gt; function has been changed to take a second parameter. Any custom construction functions (for custom objects, properties, controllers, etc.) will need to be altered so that they take a second parameter of type unsigned long for additional flags to be passed in. The value of the flags parameter can safely be ignored.&lt;br /&gt;
+&lt;br /&gt;
+* Fixed a crash that would occur only on PowerPC-based Macs when streaming sounds were played.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

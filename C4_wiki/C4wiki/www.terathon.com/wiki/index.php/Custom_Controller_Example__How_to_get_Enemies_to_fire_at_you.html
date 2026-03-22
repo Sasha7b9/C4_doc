@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/Custom_Controller_Example:_How_to_get_Enemies_to_fire_at_you by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="Custom Controller Example: How to get Enemies to fire at you" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>Custom Controller Example: How to get Enemies to fire at you - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Custom_Controller_Example:_How_to_get_Enemies_to_fire_at_you";
+var wgTitle = "Custom Controller Example: How to get Enemies to fire at you";
+var wgAction = "view";
+var wgArticleId = "3292";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "8642";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Custom_Controller_Example_How_to_get_Enemies_to_fire_at_you">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Custom Controller Example: How to get Enemies to fire at you</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p>This tutorial shows how to create a Controller which you can assign to an Enemy node to make the enemy fire at the player.
+</p><p>Here are the steps:
+</p><p>1. Open your C4 solution file, which is in the directory <b>..\C4\VisualStudio2010\C4</b>, in Visual Studio and then open the <b>Game</b> project and then open the <b>General folder</b>.
+</p><p>2. Right click on the General folder and chose "Add &gt; New item". Select C++ file and name it "SimpleTurret". Make sure the file is located in the directory <b>..\C4\GameCode</b>.
+</p><p>3. Right click on the General folder again and chose "Add &gt; New item". Select .h file and name it "SimpleTurret". Make sure the file is located in the directory <b>..\C4\GameCode</b>.
+</p><p>4. Now open both SimpleTurret.h and SimpleTurret.cpp by double clicking on the file names in the General folder. 
+</p><p>5. Copy the following code into SimpleTurret.cpp:
+</p>
+<pre>
+#include &quot;SimpleTurret.h&quot;
+//For Rockets
+#include &quot;MGRocketLauncher.h&quot;
+//For Fireballs
+#include &quot;MGFireball.h&quot;
+
+#include &quot;MGFighter.h&quot;
+
+using namespace C4;
+
+TurretController::TurretController()&nbsp;: Controller(kControllerTurret)
+{
+}
+
+TurretController::~TurretController()
+{
+}
+
+bool TurretController::ValidNode(const Node *node)
+{
+	return (node-&gt;GetNodeType() == kNodeModel || node-&gt;GetNodeType() == kNodeGeometry || node-&gt;GetNodeType() == kNodeMarker);
+}
+
+void TurretController::Preprocess(void)
+{
+	Controller::Preprocess();
+
+	myCount = 0;
+	const Node *target = GetTargetNode();
+	originalTransform = target-&gt;GetWorldTransform();//GetNodeTransform();      
+	Point3D originalDirection = Point3D(originalTransform[0].x,originalTransform[0].y, originalTransform[0].z);
+	originalView = (originalDirection).Normalize();
+
+	//Find the marker on the Turret. It is the point from which to fire.
+	Node *root = GetTargetNode();
+	Node *thisnode = root;
+	String&lt;30&gt; nodeName = &quot;NoName&quot;; 
+	bool found = false;
+	do
+	{
+		nodeName = &quot;NoName&quot;; 
+		if (thisnode-&gt;GetNodeName()&nbsp;!= NULL)
+			nodeName = thisnode-&gt;GetNodeName();
+		if ((Text::CompareText(nodeName, &quot;TurretBarrel&quot;)) ) { 
+			turretBarrel = thisnode;
+			found = true;
+		}
+		thisnode = root-&gt;GetNextNode(thisnode);
+	} while (thisnode &amp;&amp;&nbsp;!found);
+}
+
+void TurretController::Move(void)
+{
+	World *world = TheWorldMgr-&gt;GetWorld();
+	Node *target = GetTargetNode();
+
+	/*
+to aim and fire at player, use these lines*/
+const GamePlayer *player = nullptr;
+ 
+player = static_cast&lt;const GamePlayer *&gt;(TheMessageMgr-&gt;GetLocalPlayer());
+if (!player) return;
+FighterController *controller = nullptr;
+controller = player-&gt;GetPlayerController();
+if (!controller) return;
+
+// We do not want to use GetColliderPosition here.
+Point3D targetPoint = controller-&gt;GetTargetNode()-&gt;GetWorldPosition();
+
+/*end to aim and fire at player
+*/
+
+
+	/* To fire at camera 
+	World *myWorld = TheWorldMgr-&gt;GetWorld();
+	const FrustumCamera *myCamera =	myWorld-&gt;GetCamera();
+	Point3D targetPoint = myCamera-&gt;GetWorldPosition();*/
+
+	Point3D startPos = turretBarrel-&gt;GetWorldPosition();
+	
+	Vector3D view = (targetPoint - startPos);
+	float x = view.x, y = view.y, z = view.z;
+	float distance = Sqrt(x * x + y * y + z * z);
+
+	view.z += (distance)/30.0F;//Aim higher if further away to compensate for gravity.
+
+	view = view.Normalize();
+
+	if (distance &lt; 1000.0f) {
+		//interpolate between the current viewing direction and the target viewing direction.
+		//If you use say 40.0 instead of 20.0 then it will move twice as slowly.
+		Vector3D updatedView = Vector3D(originalView.x+(view.x-originalView.x)/20.0f, originalView.y+(view.y-originalView.y)/20.0f, originalView.z+(view.z-originalView.z)/20.0f);
+
+		originalView = updatedView;
+		x = updatedView.x;
+		y = updatedView.y;
+		float f = InverseSqrt(x * x + y * y);
+		Vector3D right(y * f, -x * f, 0.0F);
+		Vector3D down = updatedView&nbsp;% right;
+
+		target-&gt;SetNodeMatrix3D(updatedView, -right, -down);
+		updatedView = updatedView.Normalize();
+
+		Vector3D objectVelocity = 5.0F * (Vector3D(distance * updatedView.x, distance * updatedView.y, distance * updatedView.z));
+
+		//objectVelocity.z = 5.0F * (distance + (float)(Math::RandomFloat(40.0F) - 20.0F))  * InverseSqrt((objectVelocity.x)*(objectVelocity.x) + (objectVelocity.y)*(objectVelocity.y));
+
+		//Firing
+		if (world)
+		{
+			Controller    *controller;  
+			Model *model = nullptr;
+
+			// increase or decrease to change the speed
+			float speed = 1000.0F;
+
+			//Vector3D direction = world-&gt;GetSpectatorCamera()-&gt;GetWorldTransform()[2];
+
+			//Fire on some condition - here is just an example
+			//So this is true about once every few seconds - increase (or decrease) &quot;300&quot;
+			//for longer (or shorter) pauses between shots
+			if ((myCount++&nbsp;% (300 + Math::Random(50))) == 0)
+			{
+				//create projectile!!
+				//controller = new RocketController(objectVelocity, 0); 			
+				//model = Model::Get(kModelRocket);
+				controller = new FireballController(objectVelocity);
+				model = Model::Get(kModelFireball);
+
+				if (model)
+				{
+					model-&gt;SetController(controller);
+					Zone *zone = world-&gt;FindZone(startPos);
+					Point3D zonePosition = zone-&gt;GetInverseWorldTransform() * startPos;
+					model-&gt;SetNodePosition(zonePosition);
+					zone-&gt;AddNewSubnode(model);
+					model-&gt;Update();
+				}
+			}
+		}
+		// Invalidate the target node so that it gets updated properly
+		target-&gt;Invalidate();
+	}//if distance
+}</pre>
+<p>6. Copy the following code into SimpleTurret.h:
+</p>
+<pre>
+#ifndef SimpleTurret_h
+#define SimpleTurret_h
+
+#include &quot;C4Application.h&quot;
+#include &quot;C4Input.h&quot;
+#include &quot;C4Interface.h&quot;
+#include &quot;C4World.h&quot;
+#include &quot;C4Particles.h&quot;
+
+namespace C4
+{
+    // Controller types
+    enum
+    {
+        kControllerTurret            = 'Turr'
+    };
+
+    enum
+    {
+        kModelTurret             = 'Turt'
+    };
+ 
+class TurretController&nbsp;: public Controller
+{
+   private:
+
+        int myCount;
+        Transform4D        originalTransform;    // The target's original transform
+        Vector3D        originalView;        // The direction turret is facing before updating each frame
+		Node			*turretBarrel;		//Marker on Turret Model from which missiles are fired
+
+   public:
+
+        TurretController();
+        ~TurretController();
+        static bool ValidNode(const Node *node);
+        void Preprocess(void);
+        void Move(void);
+};
+
+}
+
+#endif
+</pre>
+<p>8. Create a Turret model and save it under the <b>Tutorials/model</b> folder. <b>Don't forget to add a location marker to your model at the tip of the barrel. Call that node "TurretBarrel".</b>
+</p><p>9. Start C4 and press <b>Ctrl-O</b> to open the Water world under <b>Tutorial/world</b>. From the World editor pages menu, open the models page. In the models page on the left of the World editor, click on your Turret model and then click in the top viewport to place your turret it in the Water world. Use the move tool to raise it slightly above the ground. 
+</p><p>10. Press <b>Ctrl-P</b> to try out your new game. You should find that the turrets rotate to track and fire at the player.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 7/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:3292-0!1!0!!en!2!edit=0 and timestamp 20150118163554 -->
+<div class="printfooter">
+Retrieved from "<a href="Custom_Controller_Example__How_to_get_Enemies_to_fire_at_you.html">http://www.terathon.com/wiki/index.php/Custom_Controller_Example:_How_to_get_Enemies_to_fire_at_you</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="Custom_Controller_Example__How_to_get_Enemies_to_fire_at_you.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:Custom_Controller_Example:_How_to_get_Enemies_to_fire_at_you&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=Custom_Controller_Example:_How_to_get_Enemies_to_fire_at_you&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=Custom_Controller_Example:_How_to_get_Enemies_to_fire_at_you&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="User_46.53.162.html" title="The user page for the ip you&#039;re editing as [.]" accesskey="." class="new">46.53.162.27</a></li>
+				<li id="pt-anontalk"><a href="User_talk_46.53.162.html" title="Discussion about edits from this ip address [n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=Custom_Controller_Example:_How_to_get_Enemies_to_fire_at_you" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Custom_Controller_Example__How_to_get_Enemies_to_fire_at_you.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Custom_Controller_Example__How_to_get_Enemies_to_fire_at_you.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=Custom_Controller_Example:_How_to_get_Enemies_to_fire_at_you&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=Custom_Controller_Example:_How_to_get_Enemies_to_fire_at_you&amp;oldid=8642" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 9 June 2012, at 17:12.</li>
+				<li id="viewcount">This page has been accessed 930 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.540 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/Custom_Controller_Example:_How_to_get_Enemies_to_fire_at_you by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:49 GMT -->
+</html>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.1&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 6.1 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.1&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.1&amp;action=history"/>
+	<updated>2024-09-21T18:39:13Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.1&amp;diff=93&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' April 29, 2017  (C4 version 6.1 corresponds to Tombstone version 2.1.)  == Core Engine ==  * The project files for Visual Studio have been updated to 2017.  == Graphics Manager ==  * The engine no longer attempts to figure out how fast the GPU is in order to set defaults for all the rendering options. A single set of default options is now used for all GPUs.  * By default, the engine now tries to create a 1920&amp;times;1080 full-screen renderin...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_6.1&amp;diff=93&amp;oldid=prev"/>
+		<updated>2023-07-15T10:22:26Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; April 29, 2017  (C4 version 6.1 corresponds to Tombstone version 2.1.)  == Core Engine ==  * The project files for Visual Studio have been updated to 2017.  == Graphics Manager ==  * The engine no longer attempts to figure out how fast the GPU is in order to set defaults for all the rendering options. A single set of default options is now used for all GPUs.  * By default, the engine now tries to create a 1920×1080 full-screen renderin...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' April 29, 2017&lt;br /&gt;
+&lt;br /&gt;
+(C4 version 6.1 corresponds to Tombstone version 2.1.)&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+* The project files for Visual Studio have been updated to 2017.&lt;br /&gt;
+&lt;br /&gt;
+== Graphics Manager ==&lt;br /&gt;
+&lt;br /&gt;
+* The engine no longer attempts to figure out how fast the GPU is in order to set defaults for all the rendering options. A single set of default options is now used for all GPUs.&lt;br /&gt;
+&lt;br /&gt;
+* By default, the engine now tries to create a 1920&amp;amp;times;1080 full-screen rendering context. If this fails, then it tries 1280&amp;amp;times;720 full-screen. If that fails, then the last resort is 1280&amp;amp;times;720 windowed.&lt;br /&gt;
+&lt;br /&gt;
+=== Interface Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The font format has changed in this version. Any custom fonts that were previously imported need to be imported again before they can be used.&lt;br /&gt;
+&lt;br /&gt;
+* Multicolor glyphs like emoji and pictographs are now supported in fonts that use Microsoft's layered TrueType outline method based on the &amp;lt;code&amp;gt;'COLR'&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;'CPAL'&amp;lt;/code&amp;gt; tables. A new setting for text widgets enables multicolor glyph rendering, and it is on by default. If this setting is turned off, then monochrome versions of each glyph are rendered instead.&lt;br /&gt;
+&lt;br /&gt;
+* A new supersampling mode has been added to text widgets, and it renders higher-quality glyphs at a small performance cost. This is enabled by default in standalone panel resources and should usually be turned on for fonts rendered at smaller sizes. Performance is better if supersampling is turned off for larger text, and it is off by default when editing panel effects inside a world. A font must be imported with supersampling enabled for this to work.&lt;br /&gt;
+&lt;br /&gt;
+* Text widgets have another new setting for enabling two optimizations that work well for text rendered at large sizes. This setting is off by default, but it should be turned on for big text. One optimization reduces the area covered by each glyph by clipping off corners and rendering up to an eight-sided polygon instead of a simple box. A font must be imported with the geometry optimization enabled in order for this to work. The second optimization reduces computation in the font's pixel shader by enabling additional code paths, but it is only effective when text is rendered large enough to minimize shader divergence effects. This optimization is always available and does not require that a font be imported with any particular setting enabled.&lt;br /&gt;
+&lt;br /&gt;
+* The text layout code now supports glyph joining sequences and combining diacritical marks, and these can be enabled or disabled for text widgets. The joining sequences include glyph composition, which applies to things like skin tone modifiers to turn ðŸ‘&amp;amp;zwnj;ðŸ½ into ðŸ‘ðŸ½, and various types of ligatures such as the substitution of the single glyph &amp;quot;&amp;amp;#xFB01;&amp;quot; for the separate letters &amp;quot;fi&amp;quot;. Glyph composition, standard ligatures, required ligatures, and discretionary ligatures are defined by the font being used, and they can be individually enabled or disabled when join sequences are enabled in general.&lt;br /&gt;
+&lt;br /&gt;
+* All widgets containing text now support embedded formatting directives that can change things like font size, color, tracking, and whether text is subscript or superscript. See [[Text Formatting]] for details.&lt;br /&gt;
+&lt;br /&gt;
+* The Fade and Pulsate mutators can now be used to animate the glyph effect intensity for text widgets. Only the alpha component of the color is used in this case.&lt;br /&gt;
+&lt;br /&gt;
+* On Windows, UTF-16 surrogate pairs are now supported when reading and writing the system clipboard. This applies when Unicode characters at code points U+010000 and higher are copied or pasted.&lt;br /&gt;
+&lt;br /&gt;
+=== Scripts ===&lt;br /&gt;
+&lt;br /&gt;
+* A special type of event method called First Execution has been added to scripts. This method generates a boolean result that is true if it's the first time that a script has been run on node to which it's attached and false otherwise.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+=== Font Importer ===&lt;br /&gt;
+&lt;br /&gt;
+* There are now settings that can enable/disable support for kerning, join sequences, combining marks, multicolor glyphs, supersampling, and a special geometric optimization when fonts are imported. See the [[Font Importer]] page for more information.&lt;br /&gt;
+&lt;br /&gt;
+* The Font Importer can now read kerning information from the newer &amp;lt;code&amp;gt;'GPOS'&amp;lt;/code&amp;gt; table in an OpenType font. If no kerning information is found there, then the older &amp;lt;code&amp;gt;'kern'&amp;lt;/code&amp;gt; table is used.&lt;br /&gt;
+&lt;br /&gt;
+* The min and max glyph effect offset settings have been removed from the Font Importer. The way in which glyph effects are rendered has changed, and it's no longer necessary to specify the largest offsets in advance when a font is imported.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

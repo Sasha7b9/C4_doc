@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class Point3D</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/Math/index.html">Math Library</a> &#x25BA; <a href="Point3D.html" tppabs="http://www.c4engine.com/docs/Math/Point3D.html">class Point3D</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class Point3D</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>TSVector3D.h</code></div>
+The <code>Point3D</code> class encapsulates a 3D point.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;Point3D&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;Vector3D</code></p>
+<div class="heading">Constructor</div>
+<p><code>Point3D();</code></p>
+<p><code>Point3D(<span style="color: #0000FF">float</span>&nbsp;a,&nbsp;<span style="color: #0000FF">float</span>&nbsp;b,&nbsp;<span style="color: #0000FF">float</span>&nbsp;c);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>a</code></td>
+<td class="tableright1">The value of the <i>x</i> coordinate.
+</td></tr>
+<tr><td class="tableleft"><code>b</code></td>
+<td class="tableright">The value of the <i>y</i> coordinate.
+</td></tr>
+<tr><td class="tableleft"><code>c</code></td>
+<td class="tableright">The value of the <i>z</i> coordinate.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>Point3D</code> class is used to store a three-dimensional point having floating-point coordinates <i>x</i>, <i>y</i>, and <i>z</i>. The difference between a point and a vector is that a point is assumed to have a <i>w</i> coordinate of 1 whenever it needs to be converted to a four-dimensional representation, whereas a vector is assumed to have a <i>w</i> coordinate of 0. Such a conversion occurs when a vector or point is assigned to a <code><a href="Vector4D.html" tppabs="http://www.c4engine.com/docs/Math/Vector4D.html">Vector4D</a></code> object or is multiplied by a <code><a href="Transform4D.html" tppabs="http://www.c4engine.com/docs/Math/Transform4D.html">Transform4D</a></code> object.<br/><br/> The default constructor leaves the components of the vector undefined. If the values <code>a</code>, <code>b</code>, and <code>c</code> are supplied, then they are assigned to the <i>x</i>, <i>y</i>, and <i>z</i> coordinates of the base vector object, respectively.<br/><br/> The difference between two points produces a direction vector. A three-dimensional direction vector is converted to a point by adding it to the identifier <code>Zero3D</code>.
+<div class="heading">Overloaded Operators</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>Point3D&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;*=(<span style="color: #0000FF">float</span>&nbsp;n);</code></td>
+<td class="tableright1">Multiplies by the scalar <code>n</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Point3D&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;/=(<span style="color: #0000FF">float</span>&nbsp;n);</code></td>
+<td class="tableright">Divides by the scalar <code>n</code>.
+</td></tr>
+</table>
+<div class="heading">Nonmember Operations</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>Point3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;-(<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p);</code></td>
+<td class="tableright1">Returns the negation of the point <code>p</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Point3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;+(<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p1,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p2);</code></td>
+<td class="tableright">Returns the sum of the points <code>p1</code> and <code>p2</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Point3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;+(<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;v);</code></td>
+<td class="tableright">Returns the sum of the point <code>p</code> and the vector <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Vector3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;-(<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p1,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p2);</code></td>
+<td class="tableright">Returns the difference of the points <code>p1</code> and <code>p2</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Point3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;-(<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;v);</code></td>
+<td class="tableright">Returns the difference of the point <code>p</code> and the vector <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Point3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;-(<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;v,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p);</code></td>
+<td class="tableright">Returns the difference of the vector <code>v</code> and the point <code>p</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Point3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;*(<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p,&nbsp;<span style="color: #0000FF">float</span>&nbsp;t);</code></td>
+<td class="tableright">Returns the product of the point <code>p</code> and the scalar <code>t</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Point3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;*(<span style="color: #0000FF">float</span>&nbsp;t,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p);</code></td>
+<td class="tableright">Returns the product of the point <code>p</code> and the scalar <code>t</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Point3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;/(<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p,&nbsp;<span style="color: #0000FF">float</span>&nbsp;t);</code></td>
+<td class="tableright">Returns the product of the point <code>p</code> and the inverse of the scalar <code>t</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Point3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;*(<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p1,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p2);</code></td>
+<td class="tableright">Returns the componentwise product of the points <code>p1</code> and <code>p2</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Point3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;*(<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;v);</code></td>
+<td class="tableright">Returns the componentwise product of the point <code>p</code> and the vector <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Point3D&nbsp;<span style="color: #0000FF">operator</span>&nbsp;*(<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;v,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Point3D&amp;&nbsp;p);</code></td>
+<td class="tableright">Returns the componentwise product of the vector <code>v</code> and the point <code>p</code>.
+</td></tr>
+</table>
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="Vector3D.html" tppabs="http://www.c4engine.com/docs/Math/Vector3D.html">Vector3D</a></code></td>
+<td class="tableright1">A <code>Point3D</code> object behaves much like a <code><a href="Vector3D.html" tppabs="http://www.c4engine.com/docs/Math/Vector3D.html">Vector3D</a></code> object, but some properties are altered.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="Vector3D.html" tppabs="http://www.c4engine.com/docs/Math/Vector3D.html">Vector3D</a></code>
+</p>
+<p><code><a href="Vector4D.html" tppabs="http://www.c4engine.com/docs/Math/Vector4D.html">Vector4D</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&amp;feed=atom&amp;action=history</id>
+	<title>Defining a Custom Method - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&amp;action=history"/>
+	<updated>2024-09-21T18:20:39Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&amp;diff=533&amp;oldid=prev</id>
+		<title>Eric Lengyel at 21:38, 12 September 2023</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&amp;diff=533&amp;oldid=prev"/>
+		<updated>2023-09-12T21:38:02Z</updated>
+
+		<summary type="html">&lt;p&gt;&lt;/p&gt;
+&lt;a href=&quot;https://c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&amp;amp;diff=533&amp;amp;oldid=122&quot;&gt;Show changes&lt;/a&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&amp;diff=122&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;In the C4 Engine, a ''method'' refers to an individual action that can appear in a script. There are many types of methods built into the engine, and an application can define its own custom methods by implementing new subclasses of the [http://c4engine.com/docs/Controller/Method.html Method] class.  == Defining a Method Subclass ==  In this article, we will use the example of a method called &lt;code&gt;ChangeLightColorMethod&lt;/code&gt; that simply changes the color of a light so...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Defining_a_Custom_Method&amp;diff=122&amp;oldid=prev"/>
+		<updated>2023-07-15T10:49:38Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;In the C4 Engine, a &amp;#039;&amp;#039;method&amp;#039;&amp;#039; refers to an individual action that can appear in a script. There are many types of methods built into the engine, and an application can define its own custom methods by implementing new subclasses of the [http://c4engine.com/docs/Controller/Method.html Method] class.  == Defining a Method Subclass ==  In this article, we will use the example of a method called &amp;lt;code&amp;gt;ChangeLightColorMethod&amp;lt;/code&amp;gt; that simply changes the color of a light so...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;In the C4 Engine, a ''method'' refers to an individual action that can appear in a script. There are many types of methods built into the engine, and an application can define its own custom methods by implementing new subclasses of the [http://c4engine.com/docs/Controller/Method.html Method] class.&lt;br /&gt;
+&lt;br /&gt;
+== Defining a Method Subclass ==&lt;br /&gt;
+&lt;br /&gt;
+In this article, we will use the example of a method called &amp;lt;code&amp;gt;ChangeLightColorMethod&amp;lt;/code&amp;gt; that simply changes the color of a light source. Note that this particular functionality already exists as part of the more general built-in method '''Change Settings''', so the example here is for illustrative purposes only.&lt;br /&gt;
+&lt;br /&gt;
+A custom method subclass needs to have a unique type identifier that is registered with the engine so that the [[Script Editor]] knows about it. The type identifier is a 32-bit number normally represented by a four-character string as in the following code.&lt;br /&gt;
+&lt;br /&gt;
+&amp;lt;source lang=&amp;quot;c++&amp;quot;&amp;gt;&lt;br /&gt;
+enum&lt;br /&gt;
+{&lt;br /&gt;
+    kMethodChangeLightColor = 'litc'&lt;br /&gt;
+};&lt;br /&gt;
+&amp;lt;/source&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+(Type identifiers consisting of only uppercase letters and numbers are reserved for use by the engine. Anything else is okay for an application to use.)&lt;br /&gt;
+&lt;br /&gt;
+Next, the method subclass needs to be defined. We declare the &amp;lt;code&amp;gt;ChangeLightColorMethod&amp;lt;/code&amp;gt; class to be a subclass of the &amp;lt;code&amp;gt;Method&amp;lt;/code&amp;gt; class as follows, and we include a single data member to hold the color value that will be assigned to a light source when the method executes. Several member functions are included to handle serialization and user interface&amp;amp;mdash;these are discussed below.&lt;br /&gt;
+&lt;br /&gt;
+&amp;lt;source lang=&amp;quot;c++&amp;quot;&amp;gt;&lt;br /&gt;
+class ChangeLightColorMethod : public Method&lt;br /&gt;
+{&lt;br /&gt;
+   private:&lt;br /&gt;
+&lt;br /&gt;
+        ColorRGB    lightColor;&lt;br /&gt;
+&lt;br /&gt;
+        ChangeLightColorMethod(const ChangeLightColorMethod&amp;amp; changeLightColorMethod);&lt;br /&gt;
+&lt;br /&gt;
+        Method *Replicate(void) const;&lt;br /&gt;
+&lt;br /&gt;
+   public:&lt;br /&gt;
+&lt;br /&gt;
+        ChangeLightColorMethod();&lt;br /&gt;
+        ChangeLightColorMethod(const ColorRGB&amp;amp; color);&lt;br /&gt;
+        ~ChangeLightColorMethod();&lt;br /&gt;
+&lt;br /&gt;
+        const ColorRGB&amp;amp; GetLightColor(void) const&lt;br /&gt;
+        {&lt;br /&gt;
+            return (lightColor);&lt;br /&gt;
+        }&lt;br /&gt;
+&lt;br /&gt;
+        void SetLightColor(const ColorRGB&amp;amp; color)&lt;br /&gt;
+        {&lt;br /&gt;
+            lightColor = color;&lt;br /&gt;
+        }&lt;br /&gt;
+&lt;br /&gt;
+        // Serialization functions.&lt;br /&gt;
+        void Pack(Packer&amp;amp; data, uint32 packFlags) const override;&lt;br /&gt;
+        void Unpack(Unpacker&amp;amp; data, uint32 unpackFlags) override;&lt;br /&gt;
+&lt;br /&gt;
+        // User interface functions.&lt;br /&gt;
+        void BuildSettingList(List&amp;lt;Setting&amp;gt; *settingList) const override;&lt;br /&gt;
+        void CommitSetting(const Setting *setting) override;&lt;br /&gt;
+&lt;br /&gt;
+        // This function is called when the method is executed in a script.&lt;br /&gt;
+        void ExecuteMethod(const ScriptState *state) override;&lt;br /&gt;
+};&lt;br /&gt;
+&amp;lt;/source&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+The constructor and destructor for this example would typically be implemented as follows.&lt;br /&gt;
+&lt;br /&gt;
+&amp;lt;source lang=&amp;quot;c++&amp;quot;&amp;gt;&lt;br /&gt;
+ChangeLightColorMethod::ChangeLightColorMethod() : Method(kMethodChangeLightColor)&lt;br /&gt;
+{&lt;br /&gt;
+    // Set a default value.&lt;br /&gt;
+    lightColor.Set(1.0F, 1.0F, 1.0F);&lt;br /&gt;
+}&lt;br /&gt;
+&lt;br /&gt;
+ChangeLightColorMethod::ChangeLightColorMethod(const ColorRGB&amp;amp; color) : Method(kMethodChangeLightColor)&lt;br /&gt;
+{&lt;br /&gt;
+    lightColor = color;&lt;br /&gt;
+}&lt;br /&gt;
+&lt;br /&gt;
+ChangeLightColorMethod::~ChangeLightColorMethod()&lt;br /&gt;
+{&lt;br /&gt;
+}&lt;br /&gt;
+&amp;lt;/source&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+Notice that the method's type &amp;lt;code&amp;gt;kMethodChangeLightColor&amp;lt;/code&amp;gt; is passed to the base class constructor.&lt;br /&gt;
+&lt;br /&gt;
+The copy constructor and the &amp;lt;code&amp;gt;Replicate()&amp;lt;/code&amp;gt; function must be included for all methods. For this example, the copy constructor would be implemented as follows.&lt;br /&gt;
+&lt;br /&gt;
+&amp;lt;source lang=&amp;quot;c++&amp;quot;&amp;gt;&lt;br /&gt;
+ChangeLightColorMethod::ChangeLightColorMethod(const ChangeLightColorMethod&amp;amp; changeLightColorMethod) : Method(changeLightColorMethod)&lt;br /&gt;
+{&lt;br /&gt;
+    lightColor = changeLightColorMethod.lightColor;&lt;br /&gt;
+}&lt;br /&gt;
+&amp;lt;/source&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+It's important to observe that the reference to the copied &amp;lt;code&amp;gt;ChangeLightColorMethod&amp;lt;/code&amp;gt; object is passed to the base class constructor this time instead of the method's type identifier.&lt;br /&gt;
+&lt;br /&gt;
+The &amp;lt;code&amp;gt;Replicate()&amp;lt;/code&amp;gt; function simply constructs a new instance of the method using the copy constructor. This should always be implemented as follows.&lt;br /&gt;
+&lt;br /&gt;
+&amp;lt;source lang=&amp;quot;c++&amp;quot;&amp;gt;&lt;br /&gt;
+Method *ChangeLightColorMethod::Replicate(void) const&lt;br /&gt;
+{&lt;br /&gt;
+    return (new ChangeLightColorMethod(*this));&lt;br /&gt;
+}&lt;br /&gt;
+&amp;lt;/source&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+== Method Registration ==&lt;br /&gt;
+&lt;br /&gt;
+A custom method type must be registered with the engine in order to be recognized by the [[Script Editor]]. This is accomplished by creating a &amp;lt;code&amp;gt;MethodReg&amp;lt;/code&amp;gt; object. The method registration contains information about the method type and its name, and it's mere existence registers the method type that it represents. A method registration for the &amp;lt;code&amp;gt;ChangeLightColorMethod&amp;lt;/code&amp;gt; class would normally look like the following.&lt;br /&gt;
+&lt;br /&gt;
+&amp;lt;source lang=&amp;quot;c++&amp;quot;&amp;gt;&lt;br /&gt;
+// Define the method registration.&lt;br /&gt;
+MethodReg&amp;lt;ChangeLightColorMethod&amp;gt; changeLightColorRegistration;&lt;br /&gt;
+&amp;lt;/source&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+The registration object is initialized with the following code.&lt;br /&gt;
+&lt;br /&gt;
+&amp;lt;source lang=&amp;quot;c++&amp;quot;&amp;gt;&lt;br /&gt;
+changeLightColorRegistration(kMethodChangeLightColor, &amp;quot;Change Light Color&amp;quot;);&lt;br /&gt;
+&amp;lt;/source&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+There is an optional third parameter that can specify flags for the method, and these are described in the documentation for the [http://c4engine.com/docs/Controller/MethodReg.html MethodReg] class.&lt;br /&gt;
+&lt;br /&gt;
+== Serialization ==&lt;br /&gt;
+&lt;br /&gt;
+A custom method must implement the &amp;lt;code&amp;gt;Pack()&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Unpack()&amp;lt;/code&amp;gt; functions so that its data can be written to a file and later restored. (These functions override the virtual functions in the [http://c4engine.com/docs/ResourceMgr/Packable.html &amp;lt;code&amp;gt;Packable&amp;lt;/code&amp;gt;] class.) Each of these functions needs to first call its counterpart in the &amp;lt;code&amp;gt;Method&amp;lt;/code&amp;gt; base class. For the &amp;lt;code&amp;gt;ChangeLightColorMethod&amp;lt;/code&amp;gt; example, these functions would typically be implemented as follows.&lt;br /&gt;
+&lt;br /&gt;
+&amp;lt;source lang=&amp;quot;c++&amp;quot;&amp;gt;&lt;br /&gt;
+void ChangeLightColorMethod::Pack(Packer&amp;amp; data, uint32 packFlags) const&lt;br /&gt;
+{&lt;br /&gt;
+    Method::Pack(data, packFlags);&lt;br /&gt;
+&lt;br /&gt;
+    // Write the ColorRGB object.&lt;br /&gt;
+    data &amp;lt;&amp;lt; lightColor;&lt;br /&gt;
+}&lt;br /&gt;
+&lt;br /&gt;
+void ChangeLightColorMethod::Unpack(Unpacker&amp;amp; data, uint32 unpackFlags)&lt;br /&gt;
+{&lt;br /&gt;
+    Method::Unpack(data, unpackFlags);&lt;br /&gt;
+&lt;br /&gt;
+    // Read the ColorRGB object.&lt;br /&gt;
+    data &amp;gt;&amp;gt; lightColor;&lt;br /&gt;
+}&lt;br /&gt;
+&amp;lt;/source&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+== User Interface ==&lt;br /&gt;
+&lt;br /&gt;
+The &amp;lt;code&amp;gt;Method&amp;lt;/code&amp;gt; class is a subclass of the [http://c4engine.com/docs/InterfaceMgr/Configurable.html &amp;lt;code&amp;gt;Configurable&amp;lt;/code&amp;gt;] class, which means it can expose a user interface that appears in the [[Script Editor]]. The &amp;lt;code&amp;gt;Method&amp;lt;/code&amp;gt; object is queried by the Script Editor for its configurable settings when the user double-clicks on the method to open its Method Info window. The &amp;lt;code&amp;gt;BuildSettingList()&amp;lt;/code&amp;gt; function is called when the editor needs all of the configurable settings to be built, and the &amp;lt;code&amp;gt;CommitSetting()&amp;lt;/code&amp;gt; function is called for each setting when the user confirms the new configuration. For the &amp;lt;code&amp;gt;ChangeLightColorMethod&amp;lt;/code&amp;gt; example, there is one setting representing the light color stored in the method object. The user interface to change this color would be implemented as follows.&lt;br /&gt;
+&lt;br /&gt;
+&amp;lt;source lang=&amp;quot;c++&amp;quot;&amp;gt;&lt;br /&gt;
+void ChangeLightColorMethod::BuildSettingList(List&amp;lt;Setting&amp;gt; *settingList) const&lt;br /&gt;
+{&lt;br /&gt;
+    // There is one setting, and it's a color picker.&lt;br /&gt;
+    settingList-&amp;gt;AppendListElement(new ColorSetting('colr', lightColor, &amp;quot;Light color&amp;quot;, &amp;quot;New Light Color&amp;quot;));&lt;br /&gt;
+}&lt;br /&gt;
+&lt;br /&gt;
+void ChangeLightColorMethod::CommitSetting(const Setting *setting)&lt;br /&gt;
+{&lt;br /&gt;
+    // Are we setting the light color?&lt;br /&gt;
+    if (setting-&amp;gt;GetSettingIdentifier() == 'colr')&lt;br /&gt;
+    {&lt;br /&gt;
+        // Yes, grab the RGB color from the setting.&lt;br /&gt;
+        lightColor = static_cast&amp;lt;const ColorSetting *&amp;gt;(setting)-&amp;gt;GetColor().GetColorRGB();&lt;br /&gt;
+    }&lt;br /&gt;
+}&lt;br /&gt;
+&amp;lt;/source&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+The first parameter passed to the &amp;lt;code&amp;gt;ColorSetting&amp;lt;/code&amp;gt; constructor (&amp;lt;code&amp;gt;'colr'&amp;lt;/code&amp;gt;) is just an identifier that the property uses to keep track of which setting is which&amp;amp;mdash;it can be anything you want. The second parameter is the color that will initially be shown to the user. The third parameter is the title of the setting that will be displayed next to the color box in the settings list. The last parameter is the title that will be used for the color picker dialog when the user clicks on the color box.&lt;br /&gt;
+&lt;br /&gt;
+== Method Execution ==&lt;br /&gt;
+&lt;br /&gt;
+When a script is running and it's time to execute your custom method, the script controller calls the method's &amp;lt;code&amp;gt;ExecuteMethod()&amp;lt;/code&amp;gt; function. A method can do anything it wants when it executes as long as it doesn't cause itself to be deleted. When a method finishes performing its actions, it needs to indicate that it has completed by calling the &amp;lt;code&amp;gt;HandleCompletion()&amp;lt;/code&amp;gt; function of its [http://c4engine.com/docs/Utilities/Completable.html &amp;lt;code&amp;gt;Completable&amp;lt;/code&amp;gt;] base class. A method may finish inside the call to its &amp;lt;code&amp;gt;ExecuteMethod()&amp;lt;/code&amp;gt; function, or it may finish sometime later after more time-consuming operations have completed.&lt;br /&gt;
+&lt;br /&gt;
+The &amp;lt;code&amp;gt;ExecuteMethod()&amp;lt;/code&amp;gt; function for the &amp;lt;code&amp;gt;ChangeLightColorMethod&amp;lt;/code&amp;gt; class could be implemented as follows.&lt;br /&gt;
+&lt;br /&gt;
+&amp;lt;source lang=&amp;quot;c++&amp;quot;&amp;gt;&lt;br /&gt;
+void ChangeLightColorMethod::Execute(const ScriptState *state)&lt;br /&gt;
+{&lt;br /&gt;
+    // Get the target node for this method and&lt;br /&gt;
+    // make sure it's actually a light source.&lt;br /&gt;
+    Node *node = GetTargetNode(state);&lt;br /&gt;
+    if ((node) &amp;amp;&amp;amp; (node-&amp;gt;GetNodeType() == kNodeLight))&lt;br /&gt;
+    {&lt;br /&gt;
+        LightObject *object = static_cast&amp;lt;Light *&amp;gt;(node)-&amp;gt;GetObject();&lt;br /&gt;
+&lt;br /&gt;
+        // Set the new light color.&lt;br /&gt;
+        object-&amp;gt;SetLightColor(lightColor);&lt;br /&gt;
+&lt;br /&gt;
+        // Mark the object as modified.&lt;br /&gt;
+        object-&amp;gt;SetModifiedFlag();&lt;br /&gt;
+    }&lt;br /&gt;
+&lt;br /&gt;
+    // Indicate that we are finished.&lt;br /&gt;
+    HandleCompletion();&lt;br /&gt;
+}&lt;br /&gt;
+&amp;lt;/source&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+The call to the &amp;lt;code&amp;gt;GetTargetNode()&amp;lt;/code&amp;gt; function retrieves the node that the user has selected as the target of the method in the [[Script Editor]]. It's possible that this target hasn't been selected or that the user linked it to a node that was not a light source, so the above code performs some checks before it carries out its task. Some custom methods do not operate on a target node, and these methods should specify the &amp;lt;code&amp;gt;kMethodNoTarget&amp;lt;/code&amp;gt; flag in the method registration so that the user cannot select a target node in the Script Editor.&lt;br /&gt;
+&lt;br /&gt;
+The [http://c4engine.com/docs/WorldMgr/Object_SetModifiedFlag.html &amp;lt;code&amp;gt;SetModifiedFlag()&amp;lt;/code&amp;gt;] function should be called whenever an object is modified so that the engine knows to write the object data when a game is saved. If this flag is not set, then the original object data would be reloaded when a saved game is resumed.&lt;br /&gt;
+&lt;br /&gt;
+== Method Output Values ==&lt;br /&gt;
+&lt;br /&gt;
+A method may produce an output value that can be stored in a script variable. A method may also generate an independent boolean result that is used for conditional execution of subsequent methods in a script. A method can specify its output value by calling the [http://c4engine.com/docs/Controller/Method_SetOutputValue.html &amp;lt;code&amp;gt;SetOutputValue()&amp;lt;/code&amp;gt;] function. When a method outputs a value, it should specify the &amp;lt;code&amp;gt;kMethodOutputValue&amp;lt;/code&amp;gt; flag in its method registration so that the [[Script Editor]] allows the user to assign an output variable to the method.&lt;br /&gt;
+&lt;br /&gt;
+If a method calls the &amp;lt;code&amp;gt;SetOutputValue()&amp;lt;/code&amp;gt; function, then the boolean result for the method is automatically set according to the output value. A method can set the boolean result without specifying an output value, or it can override the output value, by calling the [http://c4engine.com/docs/Controller/Method_SetMethodResult.html &amp;lt;code&amp;gt;SetMethodResult()&amp;lt;/code&amp;gt;] function.&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[Script Editor]]&lt;br /&gt;
+* [[Methods]]&lt;br /&gt;
+* [http://c4engine.com/docs/Controller/Method.html &amp;lt;code&amp;gt;Method&amp;lt;/code&amp;gt; class]&lt;br /&gt;
+* [http://c4engine.com/docs/Controller/MethodReg.html &amp;lt;code&amp;gt;MethodReg&amp;lt;/code&amp;gt; class]&lt;br /&gt;
+&lt;br /&gt;
+[[Category:Scripts]]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

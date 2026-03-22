@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/Editing_Terrain by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="Terrain,Creating a New Material,Creating a Terrain Palette,Terrain Tutorial,Using the Shader Editor,World Editor" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>Terrain - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Terrain";
+var wgTitle = "Terrain";
+var wgAction = "view";
+var wgArticleId = "2435";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "10020";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Terrain">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Terrain</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub">(Redirected from <a href="http://www.terathon.com/wiki/index.php?title=Editing_Terrain&amp;redirect=no" title="Editing Terrain">Editing Terrain</a>)</div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<div class="thumb tright"><div class="thumbinner" style="width:402px;"><a href="Image_Terrainarch.html" class="image" title="Figure 1. An arch created with the voxel terrain editor."><img alt="Figure 1. An arch created with the voxel terrain editor." src="../images/c/c9/Terrainarch.jpg" width="400" height="320" border="0" class="thumbimage" /></a>  <div class="thumbcaption"><b>Figure 1.</b> An arch created with the voxel terrain editor.</div></div></div>The C4 Engine contains a powerful voxel terrain editor that can be used to sculpt landscapes having a wide variety of geological features. Using voxels, it is possible to create terrain features that are impossible in traditional height-based terrain systems, and these features include things like truly vertical cliffs, overhangs, arches, and caves. To illustrate an example, Figure 1 to the right shows an arch created in a matter of seconds using the voxel sculpting tools.
+<p>In addition to this page, there is a <a href="Terrain_Tutorial.html" title="Terrain Tutorial">Terrain Tutorial</a> available.
+</p><p><br />
+</p>
+<table id="toc" class="toc" summary="Contents"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1"><a href="#Terrain_Overview"><span class="tocnumber">1</span> <span class="toctext">Terrain Overview</span></a></li>
+<li class="toclevel-1"><a href="#Terrain_Tools"><span class="tocnumber">2</span> <span class="toctext">Terrain Tools</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Terrain_Blocks"><span class="tocnumber">2.1</span> <span class="toctext">Terrain Blocks</span></a></li>
+<li class="toclevel-2"><a href="#Brush_Shape"><span class="tocnumber">2.2</span> <span class="toctext">Brush Shape</span></a></li>
+<li class="toclevel-2"><a href="#Brush_Position"><span class="tocnumber">2.3</span> <span class="toctext">Brush Position</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Editing_Terrain_Geometry"><span class="tocnumber">3</span> <span class="toctext">Editing Terrain Geometry</span></a>
+<ul>
+<li class="toclevel-2"><a href="#A_Flattening_Tool"><span class="tocnumber">3.1</span> <span class="toctext">A Flattening Tool</span></a></li>
+<li class="toclevel-2"><a href="#A_Tunnel_Boring_Machine"><span class="tocnumber">3.2</span> <span class="toctext">A Tunnel Boring Machine</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Applying_Textures_to_Terrain"><span class="tocnumber">4</span> <span class="toctext">Applying Textures to Terrain</span></a></li>
+<li class="toclevel-1"><a href="#Terrain_Shaders"><span class="tocnumber">5</span> <span class="toctext">Terrain Shaders</span></a></li>
+<li class="toclevel-1"><a href="#See_Also"><span class="tocnumber">6</span> <span class="toctext">See Also</span></a></li>
+</ul>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Terrain_Overview"></a><h2> <span class="mw-headline"> Terrain Overview </span></h2>
+<p>Terrain data in C4 is represented by a three-dimensional grid called a <i>voxel map</i>. A single cube in the voxel map is called a <i>voxel</i>, and it contains information about the density of the terrain and the materials used at its location. In a C4 world, an entire voxel map is stored in a single node called a <i>block</i> node. The voxel map stored in a block node is divided into a set of cubic volumes measuring 16 voxels on each side. Each 16&times;16&times;16 cube defines the terrain for a separate terrain geometry node owned by the block. Most of the 16&times;16&times;16 cubes are either completely solid or completely empty, and so do not result in the creation of any geometry. The important cubes are those that contain both solid space and empty space, and for these cubes, the engine creates a triangle mesh representing the surface of the terrain.
+</p><p>In order to achieve high performance, the engine automatically creates terrain geometries at three different voxel resolutions, and these geometries are arranged in an octree structure for fast visibility culling. When rendering terrain, the engine chooses to show lower resolution meshes at distances farther from the camera. A special algorithm is used to seamlessly stitch together adjacent meshes of differing resolutions. (This multiresolution voxel terrain stitching algorithm is exclusive to the C4 Engine.)
+<br clear="both" />
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:459px;"><a href="Image_Terrainpage.html" class="image" title="Figure 2. The terrain editing tools contained in the Terrain Page."><img alt="Figure 2. The terrain editing tools contained in the Terrain Page." src="../images/1/1c/Terrainpage.png" width="457" height="589" border="0" class="thumbimage" /></a>  <div class="thumbcaption"><b>Figure 2.</b> The terrain editing tools contained in the Terrain Page.</div></div></div>
+<a name="Terrain_Tools"></a><h2> <span class="mw-headline"> Terrain Tools </span></h2>
+<p>All of the tools associated with creating and editing terrain are contained in the Terrain Page, shown in Figure 2. The Terrain Page can be found inside the <a href="World_Editor.html" title="World Editor">World Editor</a> under the Earth tab.
+</p>
+<a name="Terrain_Blocks"></a><h3> <span class="mw-headline"> Terrain Blocks </span></h3>
+<p>The Terrain Block tool is used to create a new terrain block. A terrain block can be initialized with a flat plane, data from a height field texture, or data from a raw voxel map exported by another program. Then the terrain editing tools can be used to modify the geometry that is created.
+</p>
+<a name="Brush_Shape"></a><h3> <span class="mw-headline"> Brush Shape </span></h3>
+<p>Terrain geometry is edited using additive and subtractive sculpting brushes having either a spherical or cylindrical shape. Terrain textures are also edited using the same brush shapes. The size of a brush is measured in voxels and is controlled by the Brush Radius slider.
+</p>
+<a name="Brush_Position"></a><h3> <span class="mw-headline"> Brush Position </span></h3>
+<p>The position of a brush is controlled by two settings. The Brush Offset slider specifies how far above or below the terrain surface the center of the brush should be moved as you are drawing. When it is set to 0%, the center of the spherical or cylindrical brush coincides with the point clicked on the terrain surface. A value of +100% means that the brush is raised outward by its full radius, meaning that a spherical brush barely skims the surface and the base of a cylindrical brush is tangent to the surface. A value of &minus;100% goes the other way, moving the brush inward by its full radius.
+</p><p>Once you've begun drawing by clicking a brush on a piece of terrain, where it can go from there is controlled by the Plane menu. There are three drawing planes that constrain the brush to a flat plane containing the point originally clicked, and there is a special mode that allows the brush to follow the contours of the existing terrain surface. The four settings available in the Plane menu are as follows.
+</p>
+<ul><li> <b>Follow Surface.</b> The brush follows the contours of the terrain surface that existed before the mouse was clicked. Changes to the surface before the mouse button is released do not influence the position of the brush at all.
+</li><li> <b>Horizontal Plane.</b> The brush is constrained to the horizontal plane containing the starting point that was clicked on.
+</li><li> <b>Tangent Plane.</b> The brush is constrained to the plane tangent to the starting point that was clicked on.
+</li><li> <b>Camera Plane.</b> The brush is constrained to the plane containing the starting point and perpendicular to the direction in which the camera is facing.
+</li></ul>
+<p><br />
+</p>
+<a name="Editing_Terrain_Geometry"></a><h2> <span class="mw-headline"> Editing Terrain Geometry </span></h2>
+<p>To edit terrain, select a brush shape and size, a brush offset, and a drawing plane, and then simply click on an existing piece of terrain in the scene. Material will either be added or subtracted from the terrain as you drag the mouse depending on whether an additive or subtractive brush is selected. If you don't like your changes, you can easily undo with Ctrl-Z (Cmd-Z on the Mac).
+</p>
+<a name="A_Flattening_Tool"></a><h3> <span class="mw-headline"> A Flattening Tool </span></h3>
+<p>A flattening tool can be created by selecting a subtractive cylindrical brush, moving the Brush Offset slider to +100%, and selecting the Horizontal Plane constraint. Click on the terrain at the elevation where you would like the ground to be and drag the mouse. The bottom of the cylindrical brush will coincide with the desired ground level, so anything above that elevation (up to the brush's height) will be subtracted away leaving flat ground behind.
+</p>
+<a name="A_Tunnel_Boring_Machine"></a><h3> <span class="mw-headline"> A Tunnel Boring Machine </span></h3>
+<p>A tunnel boring machine can be created by selecting a subtractive cylindrical brush and the Camera Plane constraint. Any brush offset less than +100% will work, but an offset near 0% usually produces the best results. Position the camera so that it is facing the desired position of the tunnel opening and click the mouse at the center of the tunnel, but do not drag. Continue clicking inside the tunnel to dig deeper into the terrain.
+</p><p><br />
+</p>
+<a name="Applying_Textures_to_Terrain"></a><h2> <span class="mw-headline"> Applying Textures to Terrain </span></h2>
+<p>So that it is possible to apply textures to terrain having surfaces like long vertical cliffs, cave interiors, and the undersides of arches, the terrain system in C4 utilizes a <i>triplanar projection</i> to calculate texture coordinates. In a triplanar projection, the coordinates of each vertex are projected onto the three planes perpendicular to the three coordinate axes. These texture coordinates are then used to perform three texture fetches, and the colors are blended together based on the normal direction.
+</p><p>As shown in Figure 3, a different texture map can be applied to top-facing surfaces that are mostly horizontal, bottom-facing surfaces that are mostly horizontal, and all surfaces that are mostly vertical. Both a primary and secondary texture map can be selected for each of these directions in the Terrain Page. The icon between the primary and secondary texture indicates which surface they apply to.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:578px;"><a href="Image_Terrainmap.html" class="image" title="Figure 3. Three different textures can be selected for top-facing, bottom-facing, and sideways-facing surfaces. They are blended together based on the normal direction."><img alt="Figure 3. Three different textures can be selected for top-facing, bottom-facing, and sideways-facing surfaces. They are blended together based on the normal direction." src="../images/e/e2/Terrainmap.png" width="576" height="226" border="0" class="thumbimage" /></a>  <div class="thumbcaption"><b>Figure 3.</b> Three different textures can be selected for top-facing, bottom-facing, and sideways-facing surfaces. They are blended together based on the normal direction.</div></div></div></div>
+<p>Technical note: In the cases that the normal vector has a negative <i>x</i> component, a positive <i>y</i> component, or a negative <i>z</i> component, the <i>s</i> texture coordinate is negated so that the two tangent fields created by the triplanar projection are continuous. One tangent field has a right-handed winding in the <i>x</i>-<i>y</i> plane, and the other has a right-handed winding in the <i>x</i>-<i>z</i> plane.
+</p><p>The Texture Blend slider controls how the two sets of three textures are blended at each voxel. A value of 0% means that only the primary textures are visible, and a value of 100% means that only the secondary textures are visible.
+</p><p>The textures that are applied to terrain come from a special type of texture map called a <i>terrain palette</i>. Terrain palettes can contain 9, 18, or 36 textures, and they are created through a special import procedure. See the <a href="Creating_a_Terrain_Palette.html" title="Creating a Terrain Palette">Creating a Terrain Palette</a> article for more information.
+</p><p>The scale of the textures applied to terrain is controlled by the Texcoord scale setting under the Terrain Texcoord Settings heading in the Texcoords tab of the <a href="Creating_a_New_Material.html" class="mw-redirect" title="Creating a New Material">Material Manager</a>.
+</p><p>The Blend Brush is used to paint new texture blending information onto the terrain. Wherever it is used, the blend parameters are set to the current value specified by the Texture Blend slider. The Texture Brush changes the texture settings wherever it is used to those currently selected in the Terrain Page.
+</p><p>The Hole Brush is a tool that paints a special material ID onto the terrain that tells the engine not to generate triangles at those locations. This is useful for punching holes into a terrain surface in order to create an entrance to some interior structure. Holes can be restored by using the Texture Brush to paint an ordinary material back onto the terrain surface.
+</p><p>The Texture Pickup tool samples the terrain where it is used and sets the current texture selections to whatever had been used on the terrain at that location.
+</p><p><br />
+</p>
+<a name="Terrain_Shaders"></a><h2> <span class="mw-headline"> Terrain Shaders </span></h2>
+<p>Shaders to be used with terrain must be created using the <a href="Using_the_Shader_Editor.html" class="mw-redirect" title="Using the Shader Editor">Shader Editor</a>. Terrain shaders cannot be created using the material attributes listed under the Diffuse, Specular, and Ambient tabs in the <a href="Creating_a_New_Material.html" class="mw-redirect" title="Creating a New Material">Material Manager</a>. Since the terrain texturing is different from other types of geometry, some of the ordinary shader processes do not work with terrain texture palettes. In these cases, special terrain counterparts have been provided that perform the correct calculations. The following table lists the shader processes that have special terrain versions.
+</p>
+<table border="1" cellspacing="0" cellpadding="3" width="75%">
+<tr>
+<td bgcolor="#E0E0E0"> <b>Ordinary Process</b>
+</td><td bgcolor="#E0E0E0"> <b>Terrain Process</b>
+</td><td bgcolor="#E0E0E0"> <b>Notes</b>
+</td></tr>
+<tr>
+<td style="padding: 6px 16px 6px 16px;"> <a href="Image_Sh_texturemap.html" class="image" title="Image:sh_texturemap.png"><img alt="Image:sh_texturemap.png" src="../images/c/c9/Sh_texturemap.png" width="164" height="116" border="0" /></a>
+</td><td style="padding: 6px 16px 6px 16px;"> <a href="Image_Sh_terraintexture.html" class="image" title="Image:sh_terraintexture.png"><img alt="Image:sh_terraintexture.png" src="../images/1/1f/Sh_terraintexture.png" width="164" height="116" border="0" /></a>
+</td><td> Texture map fetches from a terrain texture palette must use the Terrain Texture process instead of the ordinary Texture Map process.
+</td></tr>
+<tr>
+<td style="padding: 6px 16px 6px 16px;"> <a href="Image_Sh_normalmap.html" class="image" title="Image:sh_normalmap.png"><img alt="Image:sh_normalmap.png" src="../images/3/3c/Sh_normalmap.png" width="164" height="116" border="0" /></a>
+</td><td style="padding: 6px 16px 6px 16px;"> <a href="Image_Sh_terrainnormal1.html" class="image" title="Image:sh_terrainnormal1.png"><img alt="Image:sh_terrainnormal1.png" src="../images/2/2c/Sh_terrainnormal1.png" width="164" height="116" border="0" /></a>
+</td><td> Normal map fetches from a terrain texture palette must use the Terrain Normal 1, 2, and 3 processes instead of the ordinary Normal Map process. In a terrain shader, all three Terrain Normal processes should be used together with the same normal map palette, and their outputs should be directed to the Terrain Diffuse Reflection, Terrain Specular Reflection, and/or Terrain Environment Output processes.
+</td></tr>
+<tr>
+<td style="padding: 6px 16px 6px 16px;"> <a href="Image_Sh_diffuse.html" class="image" title="Image:sh_diffuse.png"><img alt="Image:sh_diffuse.png" src="../images/c/c8/Sh_diffuse.png" width="164" height="116" border="0" /></a>
+</td><td style="padding: 6px 16px 6px 16px;"> <a href="Image_Sh_terraindiffuse.html" class="image" title="Image:sh_terraindiffuse.png"><img alt="Image:sh_terraindiffuse.png" src="../images/0/03/Sh_terraindiffuse.png" width="164" height="116" border="0" /></a>
+</td><td> The diffuse reflection factor for terrain should be computed using the Terrain Diffuse Reflection process.
+</td></tr>
+<tr>
+<td style="padding: 6px 16px 6px 16px;"> <a href="Image_Sh_specular.html" class="image" title="Image:sh_specular.png"><img alt="Image:sh_specular.png" src="../images/8/82/Sh_specular.png" width="164" height="116" border="0" /></a>
+</td><td style="padding: 6px 16px 6px 16px;"> <a href="Image_Sh_terrainspecular.html" class="image" title="Image:sh_terrainspecular.png"><img alt="Image:sh_terrainspecular.png" src="../images/9/9e/Sh_terrainspecular.png" width="164" height="116" border="0" /></a>
+</td><td> The specular reflection factor for terrain should be computed using the Terrain Specular Reflection process.
+</td></tr>
+<tr>
+<td style="padding: 6px 16px 6px 16px;"> <a href="Image_Sh_environmentoutput.html" class="image" title="Image:sh_environmentoutput.png"><img alt="Image:sh_environmentoutput.png" src="../images/7/72/Sh_environmentoutput.png" width="164" height="116" border="0" /></a>
+</td><td style="padding: 6px 16px 6px 16px;"> <a href="Image_Sh_terrainenvironmentoutput.html" class="image" title="Image:sh_terrainenvironmentoutput.png"><img alt="Image:sh_terrainenvironmentoutput.png" src="../images/4/4d/Sh_terrainenvironmentoutput.png" width="164" height="116" border="0" /></a>
+</td><td> Environment mapping should use the Terrain Environment Output process instead of the ordinary Environment Output process.
+</td></tr></table>
+<p><br />
+An example of a basic terrain shader that uses these processes can be found in the <code>Data/Tutorial/world/Terrain.wld</code> file that is included in the <code>Data.zip</code> distribution.
+</p><p><br />
+</p>
+<a name="See_Also"></a><h2> <span class="mw-headline"> See Also </span></h2>
+<ul><li> <a href="Terrain_Tutorial.html" title="Terrain Tutorial">Terrain Tutorial</a>
+</li><li> <a href="Creating_a_Terrain_Palette.html" title="Creating a Terrain Palette">Creating a Terrain Palette</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 15/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:2435-0!1!0!!en!2!edit=0 and timestamp 20150118094525 -->
+<div class="printfooter">
+Retrieved from "<a href="Terrain.html">http://www.terathon.com/wiki/index.php/Terrain</a>"</div>
+			<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks"><a href="Special_Categories.html" title="Special:Categories">Categories</a>:&#32;<span dir='ltr'><a href="Category_Terrain.html" title="Category:Terrain">Terrain</a></span> | <span dir='ltr'><a href="Category_Editor.html" title="Category:Editor">Editor</a></span></div></div>			<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="Terrain.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:Terrain&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=Terrain&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=Terrain&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=Terrain" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Terrain.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Terrain.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=Terrain&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=Terrain&amp;oldid=10020" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 13 September 2014, at 23:06.</li>
+				<li id="viewcount">This page has been accessed 33,792 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.558 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/Editing_Terrain by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:26 GMT -->
+</html>

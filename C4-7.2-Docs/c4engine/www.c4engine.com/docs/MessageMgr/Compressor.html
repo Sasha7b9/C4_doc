@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class Compressor</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/MessageMgr/index.html">Message Manager</a> &#x25BA; <a href="Compressor.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Compressor.html">class Compressor</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class Compressor</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Messages.h</code></div>
+Compresses data for a message.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;Compressor</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="Compressor_GetDataSize.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Compressor_GetDataSize.html">Compressor::GetDataSize</a></code></td>
+<td class="tableright1">Returns the current size of the compressed data.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Compressor_WriteData.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Compressor_WriteData.html">Compressor::WriteData</a></code></td>
+<td class="tableright">Writes arbitrary data to the internal buffer.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>Compressor(<span style="color: #0000FF">char</span>&nbsp;*ptr);</code></p>
+<code>Compressor</code> objects should be constructed only by the Message Manager.
+<div class="heading">Description</div>
+A <code>Compressor</code> object is passed to the <code><a href="Message_CompressMessage.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Message_CompressMessage.html">Message::CompressMessage</a></code> function before the Message Manager sends a message. The message object should use the <code>&lt;&lt;</code> operator or the <code><a href="Compressor_WriteData.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Compressor_WriteData.html">Compressor::WriteData</a></code> function to store its data in the <code>Compressor</code> object's internal buffer. Data written by the <code>&lt;&lt;</code> operator is always written in big endian order so that messages can be sent between machines having different native endians.
+<div class="notebox"><b>IMPORTANT.</b> The total size of the data written to the <code>Compressor</code> object should not exceed <code>kMaxMessageSize&nbsp;-&nbsp;1</code> bytes.
+
+</div>
+<div class="heading">Overloaded Operators</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&amp;&nbsp;x);</code></td>
+<td class="tableright1">Writes a single 8-bit character to the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">int8</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Writes a single 8-bit signed byte to the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">uint8</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Writes a single 8-bit unsigned byte to the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">int16</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Writes a single 16-bit integer to the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">uint16</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Writes a single 16-bit unsigned integer to the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">int32</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Writes a single 32-bit integer to the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">uint32</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Writes a single 32-bit unsigned integer to the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">int64</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Writes a single 64-bit integer to the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">uint64</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Writes a single 64-bit unsigned integer to the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">float</span>&amp;&nbsp;x);</code></td>
+<td class="tableright">Writes a single 32-bit floating-point value to the internal buffer.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;Vector2D&amp;&nbsp;v);</code></td>
+<td class="tableright">Writes two 32-bit floating-point values to the internal buffer from the vector <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;Vector3D&amp;&nbsp;v);</code></td>
+<td class="tableright">Writes three 32-bit floating-point values to the internal buffer from the vector <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;Vector4D&amp;&nbsp;v);</code></td>
+<td class="tableright">Writes four 32-bit floating-point values to the internal buffer from the vector <code>v</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;Quaternion&amp;&nbsp;q);</code></td>
+<td class="tableright">Writes four 32-bit floating-point values to the internal buffer from the quaternion <code>q</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;ColorRGB&amp;&nbsp;c);</code></td>
+<td class="tableright">Writes three 32-bit floating-point values to the internal buffer from the color <code>c</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;ColorRGBA&amp;&nbsp;c);</code></td>
+<td class="tableright">Writes four 32-bit floating-point values to the internal buffer from the color <code>c</code>.
+</td></tr>
+<tr><td class="tableleft"><code>Compressor&amp;&nbsp;<span style="color: #0000FF">operator</span>&nbsp;&lt;&lt;(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*text);</code></td>
+<td class="tableright">Writes a null-terminated text string to the internal buffer.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="Message_CompressMessage.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Message_CompressMessage.html">Message::CompressMessage</a></code>
+</p>
+<p><code><a href="Decompressor.html" tppabs="http://www.c4engine.com/docs/MessageMgr/Decompressor.html">Decompressor</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

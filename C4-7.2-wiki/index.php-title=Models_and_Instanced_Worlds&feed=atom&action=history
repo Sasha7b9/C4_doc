@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Models_and_Instanced_Worlds&amp;feed=atom&amp;action=history</id>
+	<title>Models and Instanced Worlds - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Models_and_Instanced_Worlds&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Models_and_Instanced_Worlds&amp;action=history"/>
+	<updated>2024-09-21T18:21:01Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Models_and_Instanced_Worlds&amp;diff=127&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ There are two file formats in which scene data can be saved for use in the C4 Engine:  # A world file having the &lt;code&gt;.wld&lt;/code&gt; extension. # A model file having the &lt;code&gt;.mdl&lt;/code&gt; extension.  Both of these types of resources can contain just about any kind of scene data, and they can both be loaded into a larger world as instances of the data they contain. This article describes the differences between models and instanced worlds and discusses when one ty...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Models_and_Instanced_Worlds&amp;diff=127&amp;oldid=prev"/>
+		<updated>2023-07-15T10:53:01Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ There are two file formats in which scene data can be saved for use in the C4 Engine:  # A world file having the &amp;lt;code&amp;gt;.wld&amp;lt;/code&amp;gt; extension. # A model file having the &amp;lt;code&amp;gt;.mdl&amp;lt;/code&amp;gt; extension.  Both of these types of resources can contain just about any kind of scene data, and they can both be loaded into a larger world as instances of the data they contain. This article describes the differences between models and instanced worlds and discusses when one ty...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+There are two file formats in which scene data can be saved for use in the C4 Engine:&lt;br /&gt;
+&lt;br /&gt;
+# A world file having the &amp;lt;code&amp;gt;.wld&amp;lt;/code&amp;gt; extension.&lt;br /&gt;
+# A model file having the &amp;lt;code&amp;gt;.mdl&amp;lt;/code&amp;gt; extension.&lt;br /&gt;
+&lt;br /&gt;
+Both of these types of resources can contain just about any kind of scene data, and they can both be loaded into a larger world as instances of the data they contain. This article describes the differences between models and instanced worlds and discusses when one type should be used instead of the other.&lt;br /&gt;
+&lt;br /&gt;
+== Models ==&lt;br /&gt;
+&lt;br /&gt;
+[[File:Editor_models.png|right|frame|'''Figure 1.''' The [[Models Page]] in the [[World Editor]] with a list of model resources registered by the demo game.]]&lt;br /&gt;
+A ''model'' is generally used for entities that exhibit complex behavior or are transient elements of the main scene. For example, things like characters, vehicles, weapons, ammo, and power-ups would usually be stored in model resources and placed in the scene as model nodes because they often have custom controllers attached to them, and they typically do not exist for the entire time that a game world is being played.&lt;br /&gt;
+&lt;br /&gt;
+There are two cases in which the use of models nodes is required:&lt;br /&gt;
+&lt;br /&gt;
+# The model needs to be animated with transform data stored in an animation resource having the &amp;lt;code&amp;gt;.anm&amp;lt;/code&amp;gt; extension.&lt;br /&gt;
+# The model contains one or more skinned geometry meshes whose vertex positions are determined by the positions of bones in the model.&lt;br /&gt;
+&lt;br /&gt;
+The model node contains special code to handle these features. They are not available for instanced worlds.&lt;br /&gt;
+&lt;br /&gt;
+=== Registration ===&lt;br /&gt;
+&lt;br /&gt;
+Custom model types can be registered with the engine using the [http://c4engine.com/docs/WorldMgr/ModelRegistration.html &amp;lt;code&amp;gt;ModelRegistration&amp;lt;/code&amp;gt;] class. The set of registered model types is displayed in the [[Models Page]] inside the [[World Editor]]. The advantage of model registration is that a specific controller type and set of property types can optionally be specified by the registration, and these cause a controller and set of properties to automatically be attached to each new instance of a particular model. This functionality is not available with instanced worlds.&lt;br /&gt;
+&lt;br /&gt;
+=== World Editor ===&lt;br /&gt;
+&lt;br /&gt;
+In the [[World Editor]], models are placed in the scene by using the tools in the [[Models Page]], shown in Figure 1. There is a tool for placing generic model nodes and a list of specific models that are registered by the currently loaded game module. The actual model resource to be loaded by a generic model node is specified in the model node's settings. For all of the registered models in the list, the registration tells the engine what model resource should be loaded and tells the editor what controller and properties to assign to the model node by default.&lt;br /&gt;
+&lt;br /&gt;
+Note that model nodes are displayed in the World Editor without the contents of the model resources they represent unless the Model Toggle button at the top of the editor window is selected.&lt;br /&gt;
+&lt;br /&gt;
+== Instanced Worlds ==&lt;br /&gt;
+&lt;br /&gt;
+[[File:Editor_worlds.png|right|frame|'''Figure 2.''' The [[Worlds Page]] in the [[World Editor]] with a list of instanced worlds used by a particular world in the demo game.]]&lt;br /&gt;
+An ''instanced world'' is generally used for objects that are static elements of the scene or will exhibit only rigid body behavior under the control of the physics system. For example, things like trees, boulders, and buildings would usually be stored in world resources and placed in the scene as instance nodes because the don't move around, and they typically exist for the entire time that a game world is being played. Additionally, things like crates, barrels, and tires that can be moved around as rigid bodies but don't have any AI would be stored in world resources as well and placed in the scene as instance nodes just as static objects are.&lt;br /&gt;
+&lt;br /&gt;
+Instanced worlds can be nested to a depth of three levels. That is, instanced worlds can contain other instanced worlds, and they will be recursively loaded by the engine. Models cannot be nested.&lt;br /&gt;
+&lt;br /&gt;
+=== World Editor ===&lt;br /&gt;
+&lt;br /&gt;
+In the [[World Editor]], instanced worlds are placed in the scene by using the tools in the [[Worlds Page]], shown in Figure 2. There is a tool for placing new types of instance nodes and a list of the specific world resources that have already been placed in the scene. After a new instance node is placed in the scene, the world resource that it represents is specified in its node settings. Once the world has been set, it is added to the list of existing worlds. When a world is selected from that list, each click in the scene places a new instance of that world. Multiple worlds can be selected from the list at once (using the Shift and Ctrl keys) to cause one of those worlds to be selected at random each time a new instance is placed in the scene.&lt;br /&gt;
+&lt;br /&gt;
+Instanced worlds can have modifiers attached to them that alter their contents in some way when that are brought into the main scene. Modifiers are specified in the node settings for the instanced world. See the Modifiers article for more information.&lt;br /&gt;
+&lt;br /&gt;
+Note that instance nodes are displayed in the World Editor without the contents of the world resources they represent unless the Instanced World Toggle button at the top of the editor window is selected.&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[Models Page]]&lt;br /&gt;
+* [[Worlds Page]]&lt;br /&gt;
+* [[Placement Page]]&lt;br /&gt;
+* [[Modifiers]]&lt;br /&gt;
+* [http://c4engine.com/docs/WorldMgr/ModelRegistration.html &amp;lt;code&amp;gt;ModelRegistration&amp;lt;/code&amp;gt;] class&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

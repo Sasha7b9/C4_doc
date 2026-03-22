@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Triggers&amp;feed=atom&amp;action=history</id>
+	<title>Triggers - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Triggers&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Triggers&amp;action=history"/>
+	<updated>2024-09-21T18:49:26Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Triggers&amp;diff=476&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Figure 1.''' The Triggers Page. The '''Triggers Page''' is a tool page in the World Editor. It can be found under the '''Object''' tab.  A trigger node is used to detect when some object has entered or exited a specific volume of space. The engine defines three different shapes for a trigger volume: a box, a cylinder, and a sphere. The trigger nodes in a world are activated and deactivated by calling the [http://c...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Triggers&amp;diff=476&amp;oldid=prev"/>
+		<updated>2023-07-15T12:29:23Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &lt;a href=&quot;/wiki/index.php?title=File:Editor_triggers.png&quot; title=&quot;File:Editor triggers.png&quot;&gt;right|frame|&amp;#039;&amp;#039;&amp;#039;Figure 1.&amp;#039;&amp;#039;&amp;#039; The Triggers Page.&lt;/a&gt; The &amp;#039;&amp;#039;&amp;#039;Triggers Page&amp;#039;&amp;#039;&amp;#039; is a tool page in the &lt;a href=&quot;/wiki/index.php?title=World_Editor&quot; title=&quot;World Editor&quot;&gt;World Editor&lt;/a&gt;. It can be found under the &amp;#039;&amp;#039;&amp;#039;Object&amp;#039;&amp;#039;&amp;#039; tab.  A trigger node is used to detect when some object has entered or exited a specific volume of space. The engine defines three different shapes for a trigger volume: a box, a cylinder, and a sphere. The trigger nodes in a world are activated and deactivated by calling the [http://c...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+[[File:Editor_triggers.png|right|frame|'''Figure 1.''' The Triggers Page.]]&lt;br /&gt;
+The '''Triggers Page''' is a tool page in the [[World Editor]]. It can be found under the '''Object''' tab.&lt;br /&gt;
+&lt;br /&gt;
+A trigger node is used to detect when some object has entered or exited a specific volume of space. The engine defines three different shapes for a trigger volume: a box, a cylinder, and a sphere. The trigger nodes in a world are activated and deactivated by calling the [http://c4engine.com/docs/WorldMgr/World_ActivateTriggers.html World::ActivateTriggers()] function. The old and new positions of an object are typically passed to this function to determine whether the line segment connecting them has intersected any trigger volumes.&lt;br /&gt;
+&lt;br /&gt;
+When a trigger is activated, the engine takes the following steps.&lt;br /&gt;
+&lt;br /&gt;
+* If the trigger node itself has a controller, then that controller is activated.&lt;br /&gt;
+* If the trigger object specifies an activation connector key and there is a node connected to the trigger through a connector having that key, then:&lt;br /&gt;
+** If that node has a controller, then that controller is activated.&lt;br /&gt;
+** Otherwise, the immediate subnodes of that node are examined, and ''every'' controller belonging to that set of subnodes is activated.&lt;br /&gt;
+&lt;br /&gt;
+If the activated controller is a script controller that is configured to handle controller activation events (which is the default), then the script is executed.&lt;br /&gt;
+&lt;br /&gt;
+On the first frame after a trigger node is activated, if it no longer intersects any line segments passed to the [http://c4engine.com/docs/WorldMgr/World_ActivateTriggers.html World::ActivateTriggers()] function, then it becomes deactivated. When a trigger node is deactivated, it takes the following steps, similar to the activation process.&lt;br /&gt;
+&lt;br /&gt;
+* If the trigger node itself has a controller, then that controller is deactivated.&lt;br /&gt;
+* If the trigger object specifies a deactivation connector key and there is a node connected to the trigger through a connector having that key, then:&lt;br /&gt;
+** If that node has a controller, then that controller is deactivated.&lt;br /&gt;
+** Otherwise, the immediate subnodes of that node are examined, and ''every'' controller belonging to that set of subnodes is deactivated.&lt;br /&gt;
+&lt;br /&gt;
+If the deactivated controller is a script controller that is configured to handle controller deactivation events, then the script is executed. A script does not handle deactivation events by default, so it has to be configured as such by double-clicking on the script name in the [[Script Editor]] and checking the '''Handles controller deactivate event''' box.&lt;br /&gt;
+&lt;br /&gt;
+A single script can handle both activate and deactivate events if both boxes are checked in the script settings. In this case, different paths of execution can be followed by using the '''Controller Activate Event''' and '''Controller Deactivate Event''' methods to determine which type of event actually caused the script to run.&lt;br /&gt;
+&lt;br /&gt;
+== Trigger Settings ==&lt;br /&gt;
+&lt;br /&gt;
+A trigger node can be configured under the Trigger tab in the Node Info window. The specific settings are described in the following table.&lt;br /&gt;
+&lt;br /&gt;
+{| {{Table}}&lt;br /&gt;
+{{Tablehead|Setting|Description}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Disabled&amp;amp;nbsp;after&amp;amp;nbsp;activation'''|The trigger node is disabled immediately after the first time it is activated so that it is activated only once. (It's possible to explicitly re-enable the trigger later.)}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Continuously&amp;amp;nbsp;activated'''|The trigger is activated for each frame during which an object is inside it instead of waiting for the object to leave and re-enter.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Activation&amp;amp;nbsp;connector&amp;amp;nbsp;key'''|An optional connector key specifying a link to the node that receives the activation event when the trigger is activated. This is used only if the trigger node itself does not have a controller.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Deactivation&amp;amp;nbsp;connector&amp;amp;nbsp;key'''|An optional connector key specifying a link to the node that receives the deactivation event when the trigger is deactivated. This is used only if the trigger node itself does not have a controller.}}&lt;br /&gt;
+|}&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[World Editor Pages]]&lt;br /&gt;
+* [[World Editor]]&lt;br /&gt;
+&lt;br /&gt;
+[[Category:Editor]]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

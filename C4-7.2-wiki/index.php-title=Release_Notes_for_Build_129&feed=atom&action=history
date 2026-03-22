@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_129&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Build 129 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_129&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_129&amp;action=history"/>
+	<updated>2024-09-21T18:43:51Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_129&amp;diff=36&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' November 3, 2006  * Designed and implemented an animation blending system. The &lt;code&gt;Entity&lt;/code&gt; class can now own a tree of Animator objects that calculate transforms for the node hierarchy rooted at the entity node. Each animator has its own target root node so that it can be assigned to a subtree of the whole entity. Animators can calculate transforms in any way they wish, and the final transforms output by the root animator are ultimat...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_129&amp;diff=36&amp;oldid=prev"/>
+		<updated>2023-07-15T09:39:12Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; November 3, 2006  * Designed and implemented an animation blending system. The &amp;lt;code&amp;gt;Entity&amp;lt;/code&amp;gt; class can now own a tree of Animator objects that calculate transforms for the node hierarchy rooted at the entity node. Each animator has its own target root node so that it can be assigned to a subtree of the whole entity. Animators can calculate transforms in any way they wish, and the final transforms output by the root animator are ultimat...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' November 3, 2006&lt;br /&gt;
+&lt;br /&gt;
+* Designed and implemented an animation blending system. The &amp;lt;code&amp;gt;Entity&amp;lt;/code&amp;gt; class can now own a tree of Animator objects that calculate transforms for the node hierarchy rooted at the entity node. Each animator has its own target root node so that it can be assigned to a subtree of the whole entity. Animators can calculate transforms in any way they wish, and the final transforms output by the root animator are ultimately applied by the &amp;lt;code&amp;gt;Entity&amp;lt;/code&amp;gt; class.&lt;br /&gt;
+&lt;br /&gt;
+* '''NOTE:''' Some parts of the animation blending system have been intentionally removed from this release because they are being redesigned. The complete system will be included with the next release.&lt;br /&gt;
+&lt;br /&gt;
+* Implemented horizon maps. It is now possible, while importing a normal map, to generate two auxiliary textures that contain data about how bumps cast shadows onto themselves. When the &amp;quot;Generate horizon maps&amp;quot; check box is selected in the Texture Importer dialog, two additional textures with suffixes &amp;lt;code&amp;gt;-h1&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;-h2&amp;lt;/code&amp;gt; are created along with the normal map. Once these exist, horizon mapping can be enabled for a material by selecting the &amp;quot;Apply horizon maps&amp;quot; check box in the General pane of the Material Manager. Horizon maps can only be applied when a single normal map is present in a material, and they use the same texture coordinates as the normal map.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new setting in the Graphics Options dialog that enables or disables horizon mapping globally.&lt;br /&gt;
+&lt;br /&gt;
+* Removed the two-sided and alpha test flags from the &amp;lt;code&amp;gt;GeometryObject&amp;lt;/code&amp;gt; class. These rendering flags can now only be set in a material.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new type of particle that can be used for ribbon/trail effects. When the &amp;lt;code&amp;gt;kParticlePolyboard&amp;lt;/code&amp;gt; constant is specified as a particle's style, then the &amp;lt;code&amp;gt;PolyParticle&amp;lt;/code&amp;gt; structure must be the base structure used in the particle pool. It contains a tangent direction, a texture coordinate, and a flag indicating whether the particle is the last in a single polyboard. If it is not the last, then the polyboard continues to the next particle in the system. If it is the last, then the next particle begins a new polyboard. The radius of a particle controls the width of the polyboard.&lt;br /&gt;
+&lt;br /&gt;
+* Several big changes have been made to the Message Manager. The &amp;lt;code&amp;gt;PlayerMgr&amp;lt;/code&amp;gt; class has been removed from the engine and replaced with a system based on events that are passed to handler functions in the &amp;lt;code&amp;gt;Application&amp;lt;/code&amp;gt; class.&lt;br /&gt;
+&lt;br /&gt;
+* Two new general classes have been defined for distributing information to client machines in a multiplayer game. The &amp;lt;code&amp;gt;StateSender&amp;lt;/code&amp;gt; class is used to send initial state when a new client joins a game, and the &amp;lt;code&amp;gt;SnapshotSender&amp;lt;/code&amp;gt; class is used to send state at fixed intervals during gameplay.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new script function to the &amp;lt;code&amp;gt;PanelController&amp;lt;/code&amp;gt; that activates panel items. This runs the scripts attached to the panel items as if the player had clicked on them.&lt;br /&gt;
+&lt;br /&gt;
+* Removed the &amp;lt;code&amp;gt;PositionMarker&amp;lt;/code&amp;gt; class and renamed the &amp;lt;code&amp;gt;LocationMarker&amp;lt;/code&amp;gt; class to &amp;lt;code&amp;gt;LocatorMarker&amp;lt;/code&amp;gt;. All position markers will be converted to locator markers automatically. There was really no need to have two different marker types that essentially mean the same thing.&lt;br /&gt;
+&lt;br /&gt;
+* In the Game Module, the player's weapon is now visible in the first-person view. Both the weapon and the flashlight are now hooked up to a special mount node that the attached to the character. The player's hands do not yet grasp the weapon correctlyâ€”we are planning to use IK in a future release to keep the hands in the right place. There are a couple of additional minor issues: projectiles do not yet fire directly out of the weapons, and motion blur around the border of the weapon is not acceptable when the background is in motion. These will both be addressed in a future release.&lt;br /&gt;
+&lt;br /&gt;
+* The geometry building code now splits vertices along edges that are too sharp to share normals. The Collada Importer now preserves the normal vectors on all imported geometry.&lt;br /&gt;
+&lt;br /&gt;
+* The Collada Importer now recognizes the custom bump map settings written by 3DS Max.&lt;br /&gt;
+&lt;br /&gt;
+* The Graphics Manager will now attempt to auto-configure some rendering options. On lower-end graphics chips, some options will be turned off automatically the first time the engine is run.&lt;br /&gt;
+&lt;br /&gt;
+* Fixed a problem in which some geometries in a zone may not be lit properly if the zone is visible through multiple portals simultaneously and a particular light region doesn't intersect all of the camera regions.&lt;br /&gt;
+&lt;br /&gt;
+* Made some small changes to the material manager layout. The two-sided flag, alpha test flag, and texture blend mode menu have been moved to a new Options pane. New settings for enabling horizon mapping in a material are also in the Options pane.&lt;br /&gt;
+&lt;br /&gt;
+* Made several updates to the Texture Importer tool. You can now specify a different output name in the import dialog. The &amp;lt;code&amp;gt;itexture&amp;lt;/code&amp;gt; command can now take command line parameters to specify import settings. If any parameters are specified, then the import dialog is not displayed. This allows batch texture imports to be performed by storing a bunch of &amp;lt;code&amp;gt;itexture&amp;lt;/code&amp;gt; commands in a &amp;lt;code&amp;gt;cfg&amp;lt;/code&amp;gt; file and executing it (with the exec command). See the [[Texture Importer]] page for a description of the command line parameters.&lt;br /&gt;
+&lt;br /&gt;
+* Added a check box to the Texture Viewer tool that lets you turn alpha blending on and off.&lt;br /&gt;
+&lt;br /&gt;
+* Fixed a minor glitch that would cause the in-air propulsion to be too high for the first frame during which the player is falling. This caused a noticeable burst of acceleration on slower machines when you did something like walk off the edge of a platform.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

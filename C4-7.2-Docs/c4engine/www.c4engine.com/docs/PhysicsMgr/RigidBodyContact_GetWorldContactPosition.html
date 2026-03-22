@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>RigidBodyContact::GetWorldContactPosition</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/PhysicsMgr/index.html">Physics Manager</a> &#x25BA; <a href="RigidBodyContact.html" tppabs="http://www.c4engine.com/docs/PhysicsMgr/RigidBodyContact.html">class RigidBodyContact</a></div>
+</td></tr></table>
+<div class="content">
+<h2>RigidBodyContact::GetWorldContactPosition</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Contacts.h</code></div>
+Returns the world-space contact position and normal vector.
+<div class="heading">Prototype</div>
+<p><code><span style="color: #0000FF">void</span>&nbsp;GetWorldContactPosition(<span style="color: #0000FF">const</span>&nbsp;RigidBodyController&nbsp;*rigidBody,&nbsp;Point3D&nbsp;*position,&nbsp;Bivector3D&nbsp;*normal)&nbsp;<span style="color: #0000FF">const</span>;</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>rigidBody</code></td>
+<td class="tableright1">One of the rigid bodies involved in the contact.
+</td></tr>
+<tr><td class="tableleft"><code>position</code></td>
+<td class="tableright">A pointer to a location that receives the world-space position.
+</td></tr>
+<tr><td class="tableleft"><code>normal</code></td>
+<td class="tableright">A pointer to a location that receives the world-space normal bivector.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>GetWorldContactPosition</code> function returns the world-space position and normal vector corresponding to one of the two rigid bodies involved in a rigid body contact. The <code>rigidBody</code> parameter must be a pointer to one of the rigid bodies connected in the contact graph by the <code>RigidBodyContact</code> object for which this function is called. It would ordinarily be set to either a pointer to the object for which the <code><a href="RigidBodyController_HandleNewRigidBodyContact.html" tppabs="http://www.c4engine.com/docs/PhysicsMgr/RigidBodyController_HandleNewRigidBodyContact.html">RigidBodyController::HandleNewRigidBodyContact</a></code> function has been called or to the <code>contactBody</code> parameter passed to the <code><a href="RigidBodyController_HandleNewRigidBodyContact.html" tppabs="http://www.c4engine.com/docs/PhysicsMgr/RigidBodyController_HandleNewRigidBodyContact.html">RigidBodyController::HandleNewRigidBodyContact</a></code> function.<br/><br/> The <code>position</code> parameter should specify a location to which the world-space contact position is written. This position represents the point on the surface of the <i>other</i> rigid body that is closest to the deepest penetration between the two rigid bodies.<br/><br/> The <code>normal</code> parameter should specify a location to which the world-space contact normal bivector is written. The normal bivector is always oriented so that its complement points outward with respect to the rigid body specified by the <code>rigidBody</code> parameter. (If the <code>GetWorldContactPosition</code> were to be called for both rigid bodies involved in the contact, the normals returned would be negatives of each other.)
+<div class="heading">See Also</div>
+<p><code><a href="RigidBodyController_HandleNewRigidBodyContact.html" tppabs="http://www.c4engine.com/docs/PhysicsMgr/RigidBodyController_HandleNewRigidBodyContact.html">RigidBodyController::HandleNewRigidBodyContact</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

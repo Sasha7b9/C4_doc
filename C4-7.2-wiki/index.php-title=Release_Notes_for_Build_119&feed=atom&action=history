@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_119&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Build 119 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_119&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_119&amp;action=history"/>
+	<updated>2024-09-21T18:44:40Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_119&amp;diff=26&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' April 18, 2006  * For fog spaces, you can now select whether to use a constant density or a density that increases linearly with distance from the boundary plane. The linear density function is slightly more expensive (one additional fragment program instruction on NV40+, a surprise considering the extra complexity), but it can look much better when the camera is near the fog boundary.   * Fog spaces now use the occlusion system to cull obje...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_119&amp;diff=26&amp;oldid=prev"/>
+		<updated>2023-07-15T09:33:36Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; April 18, 2006  * For fog spaces, you can now select whether to use a constant density or a density that increases linearly with distance from the boundary plane. The linear density function is slightly more expensive (one additional fragment program instruction on NV40+, a surprise considering the extra complexity), but it can look much better when the camera is near the fog boundary.   * Fog spaces now use the occlusion system to cull obje...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' April 18, 2006&lt;br /&gt;
+&lt;br /&gt;
+* For fog spaces, you can now select whether to use a constant density or a density that increases linearly with distance from the boundary plane. The linear density function is slightly more expensive (one additional fragment program instruction on NV40+, a surprise considering the extra complexity), but it can look much better when the camera is near the fog boundary. &lt;br /&gt;
+&lt;br /&gt;
+* Fog spaces now use the occlusion system to cull objects that are completely fogged. In all cases, 1-2 planes are used to cull objects, but the exact configuration depends on the camera location with respect to the fog boundary plane and the density function. In cases where you know that no objects will ever be completely fogged, you can disable distance occlusion for a fog space in the Get Info dialog to save a little CPU processing time that would ordinarily be spent looking for objects to cull. The culling distance varies smoothly with the fog color. For bright fog, the culling distance is set to be the point at which the fog fraction is 1/32, and for dark fog, the distance corresponds to a fog fraction of 1/256. This was done because the human eye can't distinguish between close bright shades as well as close dark shades. &lt;br /&gt;
+&lt;br /&gt;
+* If the camera is outside a fog space, then the rectangular boundary plane must be visible in order for the fog to be rendered. This is different from previous versionsâ€”before, fog would render if the zone containing it (or connected to it) was visible. Existing fog planes may have to be resized to cover the entire area that they affect. It's okay for a fog plane to extend outside its owning zone. &lt;br /&gt;
+&lt;br /&gt;
+* Added a &amp;quot;confined light&amp;quot; optimization that avoids recalculating light regions for a light source that moves but is known to stay confined within a certain radius. This is currently used for the torches in the demo levelâ€”the &amp;lt;code&amp;gt;TorchController&amp;lt;/code&amp;gt; class makes the torch light wiggle around a little bit as part of the flickering effect. Previously, the light regions would have to be recalculated every frame, and this involved a lot of portal clipping. Now, slightly larger light regions that are valid as long as the light stays inside its confinement sphere. This saves a significant amount of CPU processing time. &lt;br /&gt;
+&lt;br /&gt;
+* Support for vertex buffer objects (VBOs) has been completed in the Graphics Manager. After several iterations, a good design for using VBOs without requiring them was converged upon. All geometry objects will now store static vertex and index data in VBOs to increase performance. In future releases, more types of objects will take advantage of VBOs. &lt;br /&gt;
+&lt;br /&gt;
+* Added an opacity map attribute to the material system. This is only used in conjunction with the refraction attribute and controls how opaque a surface is at each texel. Values in the opacity map are used as a linear interpolation parameter between the diffuse reflection term and the refraction term. White means completely opaque (100% diffuse term), and black means completely transparent (100% refraction term). Opacity can either be stored in its own texture map, or it can be stored in the alpha channel of the diffuse map, normal map, gloss map, or emission map. &lt;br /&gt;
+&lt;br /&gt;
+* The gloss map attribute is now applied to the reflection attribute. Gloss can also come from the alpha channel of the diffuse map, normal map, emission map, or opacity map. &lt;br /&gt;
+&lt;br /&gt;
+* The Collada importer can now handle skinned meshes placed anywhere in the node hierarchy, whereas before, a skinned mesh was expected to be at the top level. &lt;br /&gt;
+&lt;br /&gt;
+* The Collada importer will now strip out dead nodes. A &amp;quot;dead node&amp;quot; is a node that doesn't instance any object, doesn't have any subnodes, and isn't a bone. Collada exporters tend to write a bunch of these out because they're used to represent various items in the art package, but they don't carry any useful information. Importing them into the engine just wastes space and time. &lt;br /&gt;
+&lt;br /&gt;
+* Made multiple improvements to the Time Manager so that it reports time values that are as accurate as possible. &lt;br /&gt;
+&lt;br /&gt;
+* The Properties tab will now show up in the World Settings dialog so that properties can be assigned to the root zone. This allows games to store custom properties on the root zone for global level settings.&lt;br /&gt;
+ &lt;br /&gt;
+* Added a loop count box to the Play Ambient Sound script method. &lt;br /&gt;
+&lt;br /&gt;
+* Added a preview box to the file picker for the Texture Viewer tool. &lt;br /&gt;
+&lt;br /&gt;
+* Fixed a typo introduced in build 117 that causes rendering problems when multiple remote portals were visible at once that rendered to the same buffer. &lt;br /&gt;
+&lt;br /&gt;
+* Made lots of improvements to the Mac project file. There are now two configurations named &amp;quot;Debug&amp;quot; and &amp;quot;Release&amp;quot;. Precompiled headers are used in a better way now, so build times are much faster.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

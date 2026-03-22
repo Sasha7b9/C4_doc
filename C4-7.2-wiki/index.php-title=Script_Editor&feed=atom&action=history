@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Script_Editor&amp;feed=atom&amp;action=history</id>
+	<title>Script Editor - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Script_Editor&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Script_Editor&amp;action=history"/>
+	<updated>2024-09-21T18:24:39Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Script_Editor&amp;diff=434&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ The C4 Engine contains a powerful scripting language that can be used to implement event sequences taking place in response to some kind of trigger in a world. A script does not require the use of any textual programming language. Instead, a script is shown as a graphical representation of the actions to be performed and their interdependencies. Scripts support local and global variables, conditional execution, loops, and expression evaluation.  For information...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Script_Editor&amp;diff=434&amp;oldid=prev"/>
+		<updated>2023-07-15T12:01:02Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ The C4 Engine contains a powerful scripting language that can be used to implement event sequences taking place in response to some kind of trigger in a world. A script does not require the use of any textual programming language. Instead, a script is shown as a graphical representation of the actions to be performed and their interdependencies. Scripts support local and global variables, conditional execution, loops, and expression evaluation.  For information...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+The C4 Engine contains a powerful scripting language that can be used to implement event sequences taking place in response to some kind of trigger in a world. A script does not require the use of any textual programming language. Instead, a script is shown as a graphical representation of the actions to be performed and their interdependencies. Scripts support local and global variables, conditional execution, loops, and expression evaluation.&lt;br /&gt;
+&lt;br /&gt;
+For information about creating custom script methods, see [[Defining a Custom Method]].&lt;br /&gt;
+&lt;br /&gt;
+For information about the use of expressions in scripts, see [[Expression Evaluation in Scripts]].&lt;br /&gt;
+&lt;br /&gt;
+== Adding a Script to the World ==&lt;br /&gt;
+&lt;br /&gt;
+[[File:Scripteditor.png|right|frame|'''Figure 1.''' The Script Editor window.]]&lt;br /&gt;
+The image to the right shows the Script Editor. A script can be assigned to any node in a world and edited by attaching the script controller to it as follows.&lt;br /&gt;
+&lt;br /&gt;
+# In the World Editor, select the node to which you would like to assign a script.&lt;br /&gt;
+# Choose '''Node Info''' from the '''Node''' menu or just press Ctrl-I.&lt;br /&gt;
+# Click on the Controller tab in the Node Info dialog.&lt;br /&gt;
+# Select the Script controller from the list of available controllers.&lt;br /&gt;
+# Click on the Edit Script button that appears to open the Script Editor.&lt;br /&gt;
+&lt;br /&gt;
+A script can also be assigned to any item inside a panel effect. For more information, see [[Panel Editor]].&lt;br /&gt;
+&lt;br /&gt;
+An existing script can be edited by selecting a node and choosing '''Edit Script or Panel''' from the '''Node''' menu, or by just pressing Ctrl-E. You can also access the script by following the same steps above, except that the script controller will already be selected in the Node Info window.&lt;br /&gt;
+&lt;br /&gt;
+== Script Events ==&lt;br /&gt;
+&lt;br /&gt;
+A script controller can contain multiple scripts, and these are displayed in a list in the upper-left corner of the Script Editor. Each script can be configured to handle one or more different ''events'' that cause the script to be executed. When a specific event is send to a script controller, ''all'' of the scripts that can handle that event are executed.&lt;br /&gt;
+&lt;br /&gt;
+Double-clicking on a script name opens the Script Info window, which displays the following settings.&lt;br /&gt;
+&lt;br /&gt;
+{| {{Table}}&lt;br /&gt;
+{{Tablehead|Setting|Description}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Script&amp;amp;nbsp;name'''|The name of the script. This is used only to identify the script in the Script Editor.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Handles&amp;amp;nbsp;controller&amp;amp;nbsp;activate&amp;amp;nbsp;event'''|If checked, then the script is executed in response to an activate event being sent to the script controller. This is available only for scripts attached to nodes.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Handles&amp;amp;nbsp;controller&amp;amp;nbsp;deactivate&amp;amp;nbsp;event'''|If checked, then the script is executed in response to a deactivate event being sent to the script controller. This is available only for scripts attached to nodes.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Handles&amp;amp;nbsp;widget&amp;amp;nbsp;activate&amp;amp;nbsp;event'''|If checked, then the script is executed in response to an activate event being sent to the widget, which happens when the user clicks a button or activates a widget in some way that causes an action to take place. This is available only for scripts attached to widgets.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Handles&amp;amp;nbsp;widget&amp;amp;nbsp;change&amp;amp;nbsp;event'''|If checked, then the script is executed in response to a change event being sent to the widget, which happens when the user modifies the value of a widget. This is available only for scripts attached to widgets.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Handles&amp;amp;nbsp;widget&amp;amp;nbsp;begin&amp;amp;nbsp;hover&amp;amp;nbsp;event'''|If checked, then the script is executed in response to a begin hover event being sent to the widget, which happens when the cursor enters the widget. This is available only for scripts attached to widgets.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''Handles&amp;amp;nbsp;widget&amp;amp;nbsp;end&amp;amp;nbsp;hover&amp;amp;nbsp;event'''|If checked, then the script is executed in response to an end hover event being sent to the widget, which happens when the cursor exits the widget. This is available only for scripts attached to widgets.}}&lt;br /&gt;
+|}&lt;br /&gt;
+&lt;br /&gt;
+A single script may perform different actions in response to different events by using the [[Methods#Event Methods|event methods]] available in the Script Editor.&lt;br /&gt;
+&lt;br /&gt;
+== Script Execution ==&lt;br /&gt;
+&lt;br /&gt;
+The graphical representation shown in the Script Editor is known as a ''control flow graph''. The nodes in this graph are called ''methods'', and the edges in this graph are called ''fibers''.&lt;br /&gt;
+&lt;br /&gt;
+A method is shown as a box in the Script Editor, and it represents a single action in the script. What a particular method actually does is determined by the C++ code that defines that method. The C++ code for many methods is built into the core engine, and the game code can implement new C++ code for any number of custom methods.&lt;br /&gt;
+&lt;br /&gt;
+A method can produce both a boolean result and a separate output value that can be stored in a script variable. The boolean result is used for conditional execution, and the output value may be used as an input for another method.&lt;br /&gt;
+&lt;br /&gt;
+A fiber is a directed edge shown as a curve with an arrowhead at one end, and it represents the flow of execution from one method to another. The method from which the fiber starts is called the start method for the fiber, and the method to which the fiber points is called the finish method for the fiber. Each fiber possesses an execution mode that is one of the following values, and this mode controls conditional execution.&lt;br /&gt;
+&lt;br /&gt;
+* Execute always. The fiber is followed regardless of the boolean result produced by its start method. These fibers are colored black.&lt;br /&gt;
+* Execute on condition true. The fiber is followed only if the boolean result produced by its start method was true. These fibers are colored green and display a box containing the letter T.&lt;br /&gt;
+* Execute on condition false. The fiber is followed only if the boolean result produced by its start method was false. These fibers are colored red and display a box containing the letter F.&lt;br /&gt;
+&lt;br /&gt;
+A fiber that represents a loop in the script is shown as a dashed curve. Looping fibers (also known as back edges) are detected automatically by the Script Editor and cannot be specified as looping or not looping by the user.&lt;br /&gt;
+&lt;br /&gt;
+When a script begins execution, the methods having no incoming fibers are visited first and executed. These methods are automatically colored green in the Script Editor. When a method finishes executing, each of its outgoing fibers is signaled as either live or dead depending on the boolean result of the method and the execution mode of the fiber. Any fibers that are not dead looping fibers are signaled as ready. A subsequent method is executed whenever (a) ''all'' of its incoming non-looping fibers are ready or (b) ''any'' of its looping incoming fibers are ready. If any of the fibers are live, then the next method is executed normally. If all of the fibers are dead, then the next method is skipped, but its non-looping outgoing fibers are still signaled as in the ready and dead state. This model allows execution to continue past points where different conditionally executed paths join back together.&lt;br /&gt;
+&lt;br /&gt;
+Multiple fibers leaving a particular method can be thought of as executing in parallel from a high-level perspective. Since they are actually executed serially at the low level in a cooperatively scheduled fashion, the edges representing control flow in a script are reminiscent of operating system fibers, and that is where they get their name. The order in which methods immediately succeeding a completed method are executed is unspecified, except for the restriction that all incoming non-looping fibers must be ready.&lt;br /&gt;
+&lt;br /&gt;
+Methods are colored red in the case that the user creates a closed loop having no incoming fibers from methods not belonging to a cycle in the graph. Methods in such a loop can never be executed, so the red color provides an indication of dead code. This situation can be corrected by adding a null method to the graph and drawing a fiber between it and the first method that should execute in the loop.&lt;br /&gt;
+&lt;br /&gt;
+== Editing a Script ==&lt;br /&gt;
+&lt;br /&gt;
+The tabbed lists on the left side of the Script Editor show the [[Methods | methods]] that are available for use in a script. The Basic and Standard tabs contain methods that are implemented by the core engine, and the Custom tab contains methods that are implemented by the game code.&lt;br /&gt;
+&lt;br /&gt;
+When the Script Editor is opened for the first time for a particular node in a world or widget in a panel, the script viewport is blank. New methods can be added to the script by selecting them from the lists and clicking in the viewport. The editor won't let you place two methods on top of each other, and the cursor will change to indicate where it's possible to place a new method.&lt;br /&gt;
+&lt;br /&gt;
+Fibers are added to a script by clicking inside the circle at the bottom of any method and dragging into another method. This causes a new fiber to be created beginning at the method you clicked on and ending at the method inside which the mouse was released. You cannot create multiple fibers between the same two methods. The execution mode of a fiber can be changed by selecting the '''Cycle Fiber Condition''' command from the '''Script''' menu or using the shortcut Ctrl-F.&lt;br /&gt;
+&lt;br /&gt;
+The physical position of a method in the viewport is irrelevant. The execution flow structure of a script is determined entirely by the fiber connections. Methods may be placed in any convenient location.&lt;br /&gt;
+&lt;br /&gt;
+== Script Editor Tools ==&lt;br /&gt;
+&lt;br /&gt;
+There are four tool buttons in the upper-left corner of the Script Editor window, and they have the following uses. In addition to clicking on the tool button, each of these tools can also be selected by pressing the shortcut number key as shown in the table. (The shortcuts were chosen to be the same as the corresponding tools in the World Editor.)&lt;br /&gt;
+&lt;br /&gt;
+{| {{Table}}&lt;br /&gt;
+{{Tablehead3|Icon|Shortcut|Function}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow3|[[File:Tool_select.png]]|1|'''Select / Move.''' Selects a method or fiber in a script. Clicking outside of a method and dragging will create a box that selects all of the methods inside it. Clicking inside a method and dragging moves all of the currently selected methods. (When methods are moved, they are automatically prevented from moving on top of other methods.)}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow3|[[File:Tool_scroll.png]]|6|'''Scroll.''' Scrolls the script viewport. Holding the Alt key with any other tool temporarily selects the scroll tool.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow3|[[File:Tool_zoom.png]]|7|'''Zoom.''' Changes the scale of the script viewport. Using the mouse wheel with any other tool also zooms.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow3|[[File:Tool_section.png]]||'''Draw Section.''' Draws a rectangular box with a title bar behind all methods in the graph. This can be used to visually organize groups of methods in a script. Sections have no effect on script functionality.}}&lt;br /&gt;
+|}&lt;br /&gt;
+&lt;br /&gt;
+== Method Settings ==&lt;br /&gt;
+&lt;br /&gt;
+Each method may expose a group of configurable settings that can be accessed in a Method Info window. To edit them, select a single method and select Get Info from the Script menu or use the shortcut Ctrl-I. Double-clicking on a method will also open its Method Info window. The layout of the Method Info window depends on the type of the selected method. In all cases, the configurable settings for the method are displayed on the right side of the Method Info window. A column entitled &amp;quot;Input Variables&amp;quot; is also shown that let's you specify that a variable should be used as the input for a setting instead of any constant value entered in the window. (See below for more information about variables in scripts.)&lt;br /&gt;
+&lt;br /&gt;
+Most methods operate on some node in the scene, called the ''target'' of the method. The target node may be chosen from the list in the upper-left corner of the Method Info window. The target node may be any of the following nodes.&lt;br /&gt;
+&lt;br /&gt;
+* The target node of the script controller itself. This is called &amp;amp;lt;Script Node&amp;amp;gt; in the Script Editor, it's the same node that the script is attached to.&lt;br /&gt;
+* The node that ultimately initiated the script by activating the trigger node. This is called &amp;amp;lt;Initiator Node&amp;amp;gt; in the Script Editor.&lt;br /&gt;
+* The trigger node that was activated and caused the script to execute, if any. This is called &amp;amp;lt;Trigger Node&amp;amp;gt; in the Script Editor.&lt;br /&gt;
+* Any node that is connected to the target node of the controller. (See [[Connectors]] for information about making connections between nodes.)&lt;br /&gt;
+&lt;br /&gt;
+Once a target node has been selected for a method, it is displayed in parentheses under the method's name in the script viewport.&lt;br /&gt;
+&lt;br /&gt;
+=== Call Controller Function Method ===&lt;br /&gt;
+&lt;br /&gt;
+If a method is of type &amp;quot;Call Controller Function&amp;quot;, then a list of available controller functions for the selected target node is displayed on the left side of the Method Info window. Once a function is selected, its configurable settings are displayed in the list on the right side of the window. If a function outputs a value, then a field for designating an output variable also appears in the lower-left corner of the window.&lt;br /&gt;
+&lt;br /&gt;
+For a description of the functions made available by the built-in controllers, see [[Functions]].&lt;br /&gt;
+&lt;br /&gt;
+=== Change Settings Method ===&lt;br /&gt;
+&lt;br /&gt;
+If a method is of type &amp;quot;Change Settings&amp;quot;, then a list of setting categories for the object referenced by the selected target node is displayed on the left side of the Method Info window. (Most nodes types have only one category.) Once a category is selected, the object's configurable settings are displayed in the list on the right side of the window. Any settings that are shown to be in an indeterminant state are not affected when the method is executed. All of the settings can be reset into the indeterminant state by clicking the Clear Settings button.&lt;br /&gt;
+&lt;br /&gt;
+=== Evaluate Expression Method ===&lt;br /&gt;
+&lt;br /&gt;
+If a method is of type &amp;quot;Evaluate Expression&amp;quot;, then an expression can be entered in the Method Info window. See [[Expression Evaluation in Scripts]] for more information about expressions.&lt;br /&gt;
+&lt;br /&gt;
+== Variables ==&lt;br /&gt;
+&lt;br /&gt;
+A script may define any number of variables, each having one of the following types.&lt;br /&gt;
+&lt;br /&gt;
+{| {{Table}}&lt;br /&gt;
+{{Tablehead|Type|Description}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''boolean'''|The value true or false.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''integer'''|A 32-bit signed integer.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''float'''|A 32-bit floating-point number.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''string'''|A character string.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''color'''|A four-component RGBA color.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''vector'''|A three-dimensional vector.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Tablerow|'''point'''|A three-dimensional point.}}&lt;br /&gt;
+|}&lt;br /&gt;
+&lt;br /&gt;
+A new variable is created by clicking the New button below the variable list on the left side of the Script Editor window. After clicking the New button, a dialog appears that lets you enter the following information about the new variable.&lt;br /&gt;
+&lt;br /&gt;
+* The variable name. A variable name can contain any of the characters A-Z, a-z, 0-9, or _ (underscore). A variable name cannot begin with a number.&lt;br /&gt;
+* The variable type. This can be any of the types listed above.&lt;br /&gt;
+* The variable scope. The scope can be Script, Object, or Controller.&lt;br /&gt;
+** If a variable has the Script scope, then its value is reset to its initial value each time the script is run.&lt;br /&gt;
+** If a variable has the Object scope, then it is shared among all instances of the node to which the script is attached and retains its value from one run to the next in a manner analogous to static local variables in C++.&lt;br /&gt;
+** If a variable has the Controller scope, then it is stored in the controller for each instance of the node to which the script is attached and retains its value from one run to the next. Each instance has its own copy of the variable.&lt;br /&gt;
+* The variable's initial value.&lt;br /&gt;
+&lt;br /&gt;
+After a variable is created, it can be changed by double-clicking on it in the variable list.&lt;br /&gt;
+&lt;br /&gt;
+Whenever a variable is designated to receive the output value for a method, the name of the variable followed by an equals sign is displayed in the method's box in the script viewport. This gives a visual indication that the variable is being set to the value produced by the method. The output value of a method is implicitly converted to the type of the variable to which it is assigned, if necessary.&lt;br /&gt;
+&lt;br /&gt;
+The value of a variable is used as an input for a method by entering the variable's name under the â€œInput Variablesâ€ column for a particular setting in the Method Info box. If the variable's type does not match the expected type for the setting, then its value is implicitly converted to the needed type.&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[Methods]]&lt;br /&gt;
+* [[Expression Evaluation in Scripts]]&lt;br /&gt;
+* [[Defining a Custom Method]]&lt;br /&gt;
+* [[Functions]]&lt;br /&gt;
+&lt;br /&gt;
+[[Category:Scripts]]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

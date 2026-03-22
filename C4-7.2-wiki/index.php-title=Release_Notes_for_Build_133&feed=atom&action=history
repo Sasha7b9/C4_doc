@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_133&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Build 133 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_133&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_133&amp;action=history"/>
+	<updated>2024-09-21T18:43:32Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_133&amp;diff=40&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' April 6, 2007  * FBOs are now enabled by default on the Mac. They seem to be working correctly in MacOS 10.4.9.  * The &lt;code&gt;System&lt;/code&gt; class has been removed from the engine, and its functions have been moved to the &lt;code&gt;Engine&lt;/code&gt; class. All occurrences of &lt;code&gt;System::&lt;/code&gt; and &lt;code&gt;TheSystem-&gt;&lt;/code&gt; should be changed to &lt;code&gt;Engine::&lt;/code&gt; and &lt;code&gt;TheEngine-&gt;&lt;/code&gt;, respectively.  * With the intent of reducing the number...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_133&amp;diff=40&amp;oldid=prev"/>
+		<updated>2023-07-15T09:42:21Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; April 6, 2007  * FBOs are now enabled by default on the Mac. They seem to be working correctly in MacOS 10.4.9.  * The &amp;lt;code&amp;gt;System&amp;lt;/code&amp;gt; class has been removed from the engine, and its functions have been moved to the &amp;lt;code&amp;gt;Engine&amp;lt;/code&amp;gt; class. All occurrences of &amp;lt;code&amp;gt;System::&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;TheSystem-&amp;gt;&amp;lt;/code&amp;gt; should be changed to &amp;lt;code&amp;gt;Engine::&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;TheEngine-&amp;gt;&amp;lt;/code&amp;gt;, respectively.  * With the intent of reducing the number...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' April 6, 2007&lt;br /&gt;
+&lt;br /&gt;
+* FBOs are now enabled by default on the Mac. They seem to be working correctly in MacOS 10.4.9.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;System&amp;lt;/code&amp;gt; class has been removed from the engine, and its functions have been moved to the &amp;lt;code&amp;gt;Engine&amp;lt;/code&amp;gt; class. All occurrences of &amp;lt;code&amp;gt;System::&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;TheSystem-&amp;gt;&amp;lt;/code&amp;gt; should be changed to &amp;lt;code&amp;gt;Engine::&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;TheEngine-&amp;gt;&amp;lt;/code&amp;gt;, respectively.&lt;br /&gt;
+&lt;br /&gt;
+* With the intent of reducing the number of steps required to register custom class types, the registration mechanism has been changed a bit. First, for all registration types, it is no longer necessary to explicitly call one of the &amp;lt;code&amp;gt;Register*()&amp;lt;/code&amp;gt; functions. Instead, every registration type automatically registers itself upon construction. Calls to the following functions should simply be removed:&lt;br /&gt;
+** &amp;lt;code&amp;gt;RegisterController&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;RegisterProperty&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;RegisterMethod&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;RegisterMutator&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;RegisterEffect&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;RegisterEntity&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;RegisterFunction&amp;lt;/code&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+* Second, there is a new, slightly different way to declare registrations for controllers, properties, methods, mutators, effects, particle systems, and functions. Instead of declaring a controller registration object as a &amp;lt;code&amp;gt;ControllerRegistration&amp;lt;/code&amp;gt;, you should declare it as a &amp;lt;code&amp;gt;ControllerReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt; template object, where type is the derived type of the custom controller class. For example, the registraton for the &amp;lt;code&amp;gt;RotationController&amp;lt;/code&amp;gt; class is declared as &amp;lt;code&amp;gt;ControllerReg&amp;lt;RotationController&amp;gt;&amp;lt;/code&amp;gt;. The following templates exist for registering various types of custom classes:&lt;br /&gt;
+** &amp;lt;code&amp;gt;ControllerReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;PropertyReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;MethodReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;MutatorReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;EffectReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;ParticleSystemReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt;&lt;br /&gt;
+** &amp;lt;code&amp;gt;FunctionReg&amp;lt;type&amp;gt;&amp;lt;/code&amp;gt;&lt;br /&gt;
+&lt;br /&gt;
+* Custom class types registered with these templates no longer need to be constructed explicitly by the application. If you've implemented a function such as &amp;lt;code&amp;gt;ConstructController&amp;lt;/code&amp;gt;, then you can remove any registered types because they will be constructed automatically.&lt;br /&gt;
+&lt;br /&gt;
+* The function registration object is a little different in that its constructor takes a pointer to a controller registration as its first parameter. Function registrations for each type of controller are stored in the controller's registration object. There is no longer any need to implement a &amp;lt;code&amp;gt;ConstructFunction()&amp;lt;/code&amp;gt; function in controller classes that define custom functions.&lt;br /&gt;
+&lt;br /&gt;
+* Previously, registration objects for controllers, properties, and mutators took a parameter that specified some kind of validation function. These have been removed because the new registration templates can call the validation function for the custom class type directly. When a controller or property subclass defines the &amp;lt;code&amp;gt;ValidNode()&amp;lt;/code&amp;gt; function (as a static member function), then it is automatically called to determine whether the controller or property can be applied to a particular node. Likewise, defining the &amp;lt;code&amp;gt;ValidPanelItem()&amp;lt;/code&amp;gt; function in a mutator subclass will cause that function to automatically be called to determine what kind of panel item the mutator can be assigned to.&lt;br /&gt;
+&lt;br /&gt;
+* Entity and locator registrations still work as they did before since they don't register new subclass types. Continue using the &amp;lt;code&amp;gt;EntityRegistration&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;LocatorRegistration&amp;lt;/code&amp;gt; objects to register these types.&lt;br /&gt;
+&lt;br /&gt;
+* The perspective viewport in the World Editor can now render with full lighting, reflection, refraction, fog, and some effects. There is a new toggle button at the top of the editor window that switches between full lighting and bright ambient rendering. Geometries, lights, etc., can be moved around with full lighting turned on to see the immediate results of your changes.&lt;br /&gt;
+&lt;br /&gt;
+* In the scene graph viewport, hidden nodes are now shown in a darker gray color. Nodes belonging to referenced worlds are shown in a reddish color.&lt;br /&gt;
+&lt;br /&gt;
+* In the World Editor, the Layout page has been renamed to the Viewports page to avoid confusion with a future Layers page.&lt;br /&gt;
+&lt;br /&gt;
+* The mouse wheel will now work at all times in the World Editor to zoom viewports, even when you're doing something else with the mouse button down.&lt;br /&gt;
+&lt;br /&gt;
+* Pages in the World Editor can now be displayed on either the left or right side of the window. This can be changed in the Editor Settings dialog accessible from the Layout menu.&lt;br /&gt;
+&lt;br /&gt;
+* The World Editor now displays a gizmo for selected nodes that shows the orientation of the node's local axes. The gizmo is shown as three arrows with colors red, green, and blue corresponding to the x-, y-, and z-axes, respectively. The gizmo is shown for one node in the selection at a time, and it can be iterated through the selected nodes by pressing the tab key. When the Select and Move tool is used, an arrowhead on the gizmo can be grabbed in any viewport and used to drag the node along its corresponding axis.&lt;br /&gt;
+&lt;br /&gt;
+* In the next build, the gizmo will also have rotation handles, and it will be possible to display world-space and zone-space axes instead of object-space axes.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new Particle Systems page to the World Editor. This page displays a list of registered particle systems (see next item) and also contains tools for drawing emitter volumes. Particle systems now have a built-in connector of type EMIT that can be connected to an emitter volume. How the emitter volume is used depends on the particular particle system's implementation. Multiple particle systems can be connected to the same emitter volume.&lt;br /&gt;
+&lt;br /&gt;
+* Application-defined particle systems can now be registered using the &amp;lt;code&amp;gt;ParticleSystemReg&amp;lt;&amp;gt;&amp;lt;/code&amp;gt; class. Registered particle systems can be placed in a world using the World Editor.&lt;br /&gt;
+&lt;br /&gt;
+* Particle systems can now be fully serialized, meaning that the state of all active particles is saved. If a custom particle type is defined, then it must implement &amp;lt;code&amp;gt;Pack&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Unpack&amp;lt;/code&amp;gt; functions that save any custom state in addition to the base state saved with ,code&amp;gt;Particle::Pack&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* Added a new particle style called &amp;lt;code&amp;gt;kParticleQuad&amp;lt;/code&amp;gt; that causes particles to be drawn as fully oriented quads instead of camera-facing billboards. Particle systems using this style must use the &amp;lt;code&amp;gt;QuadParticle&amp;lt;/code&amp;gt; structure to store particles. The &amp;lt;code&amp;gt;transform&amp;lt;/code&amp;gt; field of the &amp;lt;code&amp;gt;QuadParticle&amp;lt;/code&amp;gt; structure specifies the orientation of each particle as a quaternion.&lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;AddFarthestParticle()&amp;lt;/code&amp;gt; function to the &amp;lt;code&amp;gt;ParticleSystem&amp;lt;/code&amp;gt; class. This makes the newly added particle the first to render instead of the last, as is the case when the &amp;lt;code&amp;gt;AddParticle()&amp;lt;/code&amp;gt; function is called.&lt;br /&gt;
+&lt;br /&gt;
+* Previously, it has been possible to render multiple fog spaces at once as long as they apply to different render targets, but each fog space had to be in a different zone. It is now possible to place multiple fog spaces in a single zone and have them all be considered for rendering (but still only into different render targets). This makes it a lot easier to add fog to areas that already contain a fog space for an underwater volume.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;DoorController&amp;lt;/code&amp;gt; now exposes settings for three different sounds: one that plays when the door has fully opened, one that plays when the door has fully closed, and one that loops while the door is moving in either direction.&lt;br /&gt;
+&lt;br /&gt;
+* The demo game module now defines the variable &amp;lt;code&amp;gt;$fov&amp;lt;/code&amp;gt; to be the field of view for all cameras, in degrees. The game will clamp the value to the range &amp;lt;code&amp;gt;[45,90]&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* The String Importer tool will now translate \t, \n, and \r into tab, newline, and carriage return, respectively. As usual, a backslash can be obtained by using \\.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;TextBoxElement&amp;lt;/code&amp;gt; interface class now starts a new line whenever a newline or carriage return character is encountered. The \n is recognized as a newline in the panel editor for text items.&lt;br /&gt;
+&lt;br /&gt;
+* If an attempt is made to load a nonexistent model resource, the engine will now load a stand-in &amp;quot;missing&amp;quot; model instead of throwing an exception. The &amp;quot;missing&amp;quot; model is currently a yellow cylinder.&lt;br /&gt;
+&lt;br /&gt;
+* The shot command will now pad out screenshot index numbers in filenames to four digits.&lt;br /&gt;
+&lt;br /&gt;
+* Added support for 64-bit integers to the &amp;lt;code&amp;gt;String&amp;lt;/code&amp;gt; class and &amp;lt;code&amp;gt;Text&amp;lt;/code&amp;gt; namespace.&lt;br /&gt;
+&lt;br /&gt;
+* Added a rendering callback to the &amp;lt;code&amp;gt;World&amp;lt;/code&amp;gt; class. The &amp;lt;code&amp;gt;World::SetRenderProc()&amp;lt;/code&amp;gt; function sets a callback function that is called right after the entire scene has been rendered inside &amp;lt;code&amp;gt;World::Render()&amp;lt;/code&amp;gt;, but before the Graphics Manager render target is changed back to the primary surface. This lets you render extra objects directly into the world's render target.&lt;br /&gt;
+&lt;br /&gt;
+* Precached entity models will now be reloaded when a model resource is exported from the World Editor. This removes the need to quit and restart the engine when a model is changed. If the change occurs while clones of the model exist (perhaps because a world is running in the background), then they will not be replaced, but all new instances will use the new model resource.&lt;br /&gt;
+&lt;br /&gt;
+* The Collada Importer tool has been updated to recognize additional material structures that are output by the 3DS Max exporter.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

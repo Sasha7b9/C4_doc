@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Build 112 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112&amp;action=history"/>
+	<updated>2024-09-21T18:45:15Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112&amp;diff=19&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' October 19, 2005  * This build includes a heavily commented sample game module called &quot;Skeleton&quot; that represents nearly the minimum amount of code that needs to be written to have a working game module. You can tell the engine to load this game module by editing the file &lt;code&gt;Data/CFG/Variables.cfg&lt;/code&gt; and changing the value of the variable &lt;code&gt;$applicName&lt;/code&gt; to &quot;Skeleton&quot;. To get the primary game module back, change &lt;code&gt;$applicN...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112&amp;diff=19&amp;oldid=prev"/>
+		<updated>2023-07-15T09:27:40Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; October 19, 2005  * This build includes a heavily commented sample game module called &amp;quot;Skeleton&amp;quot; that represents nearly the minimum amount of code that needs to be written to have a working game module. You can tell the engine to load this game module by editing the file &amp;lt;code&amp;gt;Data/CFG/Variables.cfg&amp;lt;/code&amp;gt; and changing the value of the variable &amp;lt;code&amp;gt;$applicName&amp;lt;/code&amp;gt; to &amp;quot;Skeleton&amp;quot;. To get the primary game module back, change &amp;lt;code&amp;gt;$applicN...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' October 19, 2005&lt;br /&gt;
+&lt;br /&gt;
+* This build includes a heavily commented sample game module called &amp;quot;Skeleton&amp;quot; that represents nearly the minimum amount of code that needs to be written to have a working game module. You can tell the engine to load this game module by editing the file &amp;lt;code&amp;gt;Data/CFG/Variables.cfg&amp;lt;/code&amp;gt; and changing the value of the variable &amp;lt;code&amp;gt;$applicName&amp;lt;/code&amp;gt; to &amp;quot;Skeleton&amp;quot;. To get the primary game module back, change &amp;lt;code&amp;gt;$applicName&amp;lt;/code&amp;gt; to &amp;quot;Game&amp;quot; again. &lt;br /&gt;
+&lt;br /&gt;
+* Implemented a large amount of new collision detection functionality. The existing function &amp;lt;code&amp;gt;World::DetectCollision()&amp;lt;/code&amp;gt; is still present and should continue to be used for line-of-sight tests and sphere-environment collision tests. There is now a new function for capsule collisions, &amp;lt;code&amp;gt;World::DetectCapsuleCollision()&amp;lt;/code&amp;gt;, and it detects collisions between an arbitrary swept capsule and the environment. Both of these functions are precise to the polygon level and are implemented using continuous techniques (as opposed to iterative techniques). This means the collision detection is tunnel-proof.&lt;br /&gt;
+&lt;br /&gt;
+* For most types of moving objects, it is now best to use the new &amp;lt;code&amp;gt;Collider&amp;lt;/code&amp;gt; class for collision detection instead of calling the above functions directly. The &amp;lt;code&amp;gt;Collider&amp;lt;/code&amp;gt; class has two subclasses, &amp;lt;code&amp;gt;SphereCollider&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;CapsuleCollider&amp;lt;/code&amp;gt;. Each controller class corresponding to a moving object should inherit from one of these two &amp;lt;code&amp;gt;Collider&amp;lt;/code&amp;gt; subclasses. Then the controller's &amp;lt;code&amp;gt;Move()&amp;lt;/code&amp;gt; function simply specifies the starting position and delta for the current frame. After all controllers have moved, the collision detection among all colliders is performed, and then the &amp;lt;code&amp;gt;Travel()&amp;lt;/code&amp;gt; function of each collider class is called. At this point, the &amp;lt;code&amp;gt;Collider&amp;lt;/code&amp;gt; class contains a collision state that indicates whether a collision occurred and, if so, whether it was with the environment or another collider. The implementation of the &amp;lt;code&amp;gt;Travel()&amp;lt;/code&amp;gt; function can do whatever it wants in response.&lt;br /&gt;
+&lt;br /&gt;
+* See the &amp;lt;code&amp;gt;BallController&amp;lt;/code&amp;gt; class in the &amp;lt;code&amp;gt;Skeleton.*&amp;lt;/code&amp;gt; files for an example showing how to use the new collision system. To see a cool stress test, load the world called &amp;quot;Test&amp;quot; while running the Skeleton application module by entering &amp;lt;code&amp;gt;load test&amp;lt;/code&amp;gt; in the command console. (Nothing will happen in this room if running the big game module.)&lt;br /&gt;
+&lt;br /&gt;
+* The engine module now contains stock controller base classes for basic projectiles and characters. The &amp;lt;code&amp;gt;ProjectileController&amp;lt;/code&amp;gt; class is subclassed from &amp;lt;code&amp;gt;SphereCollider&amp;lt;/code&amp;gt; and handles the motion of simple projectiles under the influence of gravity and/or through a resistive medium. The &amp;lt;code&amp;gt;CharacterController&amp;lt;/code&amp;gt; class is subclassed from &amp;lt;code&amp;gt;CapsuleCollider&amp;lt;/code&amp;gt; and handles things like gravity, falling off of things, sliding against walls, and climbing ramps. &lt;br /&gt;
+&lt;br /&gt;
+* Updated the sample game module to use the new collision system and controller base classes. Projectiles will now hit each other, so it's possible to shoot down rockets, etc. The game module class &amp;lt;code&amp;gt;FighterController&amp;lt;/code&amp;gt; is now in a clean state and handles player movement, character collisions, weapon firing, and projectile hits.&lt;br /&gt;
+&lt;br /&gt;
+* The game module contains a class called &amp;lt;code&amp;gt;FighterController&amp;lt;/code&amp;gt; that is a subclass of the &amp;lt;code&amp;gt;CharacterController&amp;lt;/code&amp;gt; and handles more details of the player movement. It's pretty functional right now, but is still a work in progress in some ways. In particular, it doesn't currently spend any time trying to detect whether the character is climbing stairs, but some research is being done to determine whether this is practical and worth the extra computational expense. Right now, it's best to cover stairs with an invisible ramp for smooth character movement.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;FighterController&amp;lt;/code&amp;gt; doesn't currently implement client prediction for multiplayer games, but it will soon. The previous code, which was very hacky, has been removed.&lt;br /&gt;
+&lt;br /&gt;
+* Added shader level of detail for parallax mapping. When enabled, the scale of the parallax effect will gradually decrease to zero at the transition point from level 0 to level 1, and parallax mapping is reduced to ordinary bump mapping in level 1 and above. &lt;br /&gt;
+&lt;br /&gt;
+* Implemented full support for Cook-Torrance specular reflection via the MicrofacetAttribute material attribute. Both isotropic and anisotropic microfacet distributions are supported, but the geometrical attenuation factor has been omitted because it almost always makes an unnoticeable difference. '''Note:''' Microfacet shading has been disabled for all types of lights except infinite lights due to some pending changes in the shader building code. It will be fully functional in the next release.&lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;$featureDisableMask&amp;lt;/code&amp;gt; permanent system variable. This has 1-bits for any graphics features that are explicitly disabled by the user. Updated the graphics settings dialog to allow parallax mapping and microfacet shading to be turned on/off. &lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;kShaderCubeLightInhibit&amp;lt;/code&amp;gt; shader flag that prevents a cube light projection from being rendered on a geometry. This is useful when applied to the geometry surrounding a cube light source (that is actually casting the projected shadow) so that it doesn't receive its own shadow. &lt;br /&gt;
+&lt;br /&gt;
+* Updated the Sound Player tool. It now displays the wave being played as it used to under the old windowing system, and there is a volume control. &lt;br /&gt;
+&lt;br /&gt;
+* The sound mixer now supports 22.05 kHz stereo sounds, both streaming and non-streaming. All mono and stereo sounds that are either 22.05 kHz or 44.1 kHz are now supported. &lt;br /&gt;
+&lt;br /&gt;
+* Modified the free camera tool in both the World Editor and Model Viewer so that the camera accelerates like the spectator camera does. &lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;PropertyObject&amp;lt;/code&amp;gt; class. This serves as a shared container for an arbitrary list of properties, and it can be attached to nodes just like material objects. Thus, changing any of the properties affects all nodes using the property object. There's currently no interface for this in the World Editor, but it will be present in a later release. &lt;br /&gt;
+&lt;br /&gt;
+* Added the &amp;lt;code&amp;gt;Collection&amp;lt;/code&amp;gt; node. This is a container that holds a set of key/node pairs. There's currently no interface for this in the World Editor, but it will be present in a later release. &lt;br /&gt;
+&lt;br /&gt;
+* There is now a new &amp;lt;code&amp;gt;EnvironmentMapAttribute&amp;lt;/code&amp;gt; that can specify a texture map that will override the environment map assigned to the zone containing an object. This attribute should be applied in addition to the &amp;lt;code&amp;gt;EnvironmentAttribute&amp;lt;/code&amp;gt; to take effect. It can be specified in the Textures pane in the World Editor's material manager. &lt;br /&gt;
+&lt;br /&gt;
+* Added a constructor and &amp;lt;code&amp;gt;Set()&amp;lt;/code&amp;gt; overload for the &amp;lt;code&amp;gt;Vector4D&amp;lt;/code&amp;gt; class that take a &amp;lt;code&amp;gt;Vector3D&amp;lt;/code&amp;gt; and a &amp;lt;code&amp;gt;Point3D&amp;lt;/code&amp;gt;. These are interpreted as the normal direction of a plane and a point lying in that plane. The normal is copied into the &amp;lt;code&amp;gt;x, y&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;z&amp;lt;/code&amp;gt; components, and the &amp;lt;code&amp;gt;w&amp;lt;/code&amp;gt; component is given the value &amp;lt;code&amp;gt;-Dot(n, p)&amp;lt;/code&amp;gt;. &lt;br /&gt;
+&lt;br /&gt;
+* All of the random number functions have been moved into the &amp;lt;code&amp;gt;Math&amp;lt;/code&amp;gt; namespace. This includes &amp;lt;code&amp;gt;Random(), RandomFloat(), RandomUnitVector(), RandomUnitQuaternion(), GetRandomSeed(),&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;SetRandomSeed()&amp;lt;/code&amp;gt;. These functions either need to be qualified with &amp;lt;code&amp;gt;Math::&amp;lt;/code&amp;gt; or the statement using namespace &amp;lt;code&amp;gt;C4::Math;&amp;lt;/code&amp;gt; needs to appear in any source file that uses them. &lt;br /&gt;
+&lt;br /&gt;
+* Defined an integer type called &amp;lt;code&amp;gt;natural&amp;lt;/code&amp;gt; that corresponds to the natural register width on the target machine. This type should be used for variables which are expected to be kept in CPU registers so that arithmetic is performed on them at the machine's natural size, avoiding extra sign extensions or high-word clears. Defining the natural type is primarily a performance optimization for the 64-bit PowerPC architecture. &lt;br /&gt;
+&lt;br /&gt;
+* Made lots of various minor additions and improvements to the primary game module. &lt;br /&gt;
+&lt;br /&gt;
+* The Visual Studio project files have been updated to be easier to move to different machines and easier to convert to later versions.&lt;br /&gt;
+ &lt;br /&gt;
+* This release contains temporary plugins for Maya, but these are going to be replaced by the Collada format in the next release. &lt;br /&gt;
+&lt;br /&gt;
+* The source texture map for the terrain in the demo is included in this release. It's path is &amp;lt;code&amp;gt;Data/TEX/terrain/Lake.tex&amp;lt;/code&amp;gt;.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class MouseEventHandler</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/System/index.html">System Utilities</a> &#x25BA; <a href="MouseEventHandler.html" tppabs="http://www.c4engine.com/docs/System/MouseEventHandler.html">class MouseEventHandler</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class MouseEventHandler</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Engine.h</code></div>
+The <code>MouseEventHandler</code> class encapsulates a mouse event handler callback function.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;MouseEventHandler&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;ListElement&lt;MouseEventHandler&gt;</code></p>
+<div class="heading">Constructor</div>
+<p><code>MouseEventHandler(HandlerCallback&nbsp;*callback,&nbsp;<span style="color: #0000FF">void</span>&nbsp;*cookie&nbsp;=&nbsp;<span style="color: #0000FF">nullptr</span>);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>callback</code></td>
+<td class="tableright1">The callback function to invoke when a mouse event occurs.
+</td></tr>
+<tr><td class="tableleft"><code>cookie</code></td>
+<td class="tableright">The cookie that is passed to the event handler as its last parameter.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>MouseEventHandler</code> class encapsulates a callback function that is invoked when a mouse event occurs. Once an instance of the <code>MouseEventHandler</code> class has been constructed, it can be installed by calling the <code><a href="Engine_InstallMouseEventHandler.html" tppabs="http://www.c4engine.com/docs/System/Engine_InstallMouseEventHandler.html">Engine::InstallMouseEventHandler</a></code> function.<br/><br/> When a mouse event occurs, the callback functions corresponding to all installed mouse event handlers are invoked. The <code>HandlerCallback</code> type is defined as follows.
+<p><code><span style="color: #0000FF">typedef</span>&nbsp;<span style="color: #0000FF">bool</span>&nbsp;HandlerCallback(<span style="color: #0000FF">const</span>&nbsp;MouseEventData&nbsp;*eventData,&nbsp;<span style="color: #0000FF">void</span>&nbsp;*cookie);</code></p>
+The <code>eventType</code> field of the <code><a href="../Utilities/MouseEventData.html" tppabs="http://www.c4engine.com/docs/Utilities/MouseEventData.html">MouseEventData</a></code> structure specifies what type of mouse event occurred and can be one of the following constants.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kEventMouseDown</code></td>
+<td class="tableright1">The left mouse button was pressed.
+</td></tr>
+<tr><td class="tableleft"><code>kEventMouseUp</code></td>
+<td class="tableright">The left mouse button was released.
+</td></tr>
+<tr><td class="tableleft"><code>kEventRightMouseDown</code></td>
+<td class="tableright">The right mouse button was pressed.
+</td></tr>
+<tr><td class="tableleft"><code>kEventRightMouseUp</code></td>
+<td class="tableright">The right mouse button was released.
+</td></tr>
+<tr><td class="tableleft"><code>kEventMiddleMouseDown</code></td>
+<td class="tableright">The middle mouse button was pressed.
+</td></tr>
+<tr><td class="tableleft"><code>kEventMiddleMouseUp</code></td>
+<td class="tableright">The middle mouse button was released.
+</td></tr>
+<tr><td class="tableleft"><code>kEventMouseMoved</code></td>
+<td class="tableright">The mouse location was moved.
+</td></tr>
+<tr><td class="tableleft"><code>kEventMouseWheel</code></td>
+<td class="tableright">The mouse wheel was moved.
+</td></tr>
+</table>
+For mouse down, mouse up, mouse moved, and mouse wheel events, the <code>mousePosition</code> field of the <code><a href="../Utilities/MouseEventData.html" tppabs="http://www.c4engine.com/docs/Utilities/MouseEventData.html">MouseEventData</a></code> structure specifies the screen coordinates at which the mouse event occurred. For the <code>kEventMouseWheel</code> event, the <code>wheelDelta</code> member specifies how far the wheel was moved in the <code>x</code> and <code>y</code> directions. (Currently, the <code>x</code> delta is always zero.)<br/><br/> The <code>cookie</code> parameter is the value passed to the <code>MouseEventHandler</code> constructor.<br/><br/> The value returned by the callback function specifies whether the mouse event was successfully handled. If the callback function returns <code><span style="color: #0000FF">true</span></code>, then the mouse event is considered handled, and no further mouse event handlers will be called for the same event. If the callback function returns <code><span style="color: #0000FF">false</span></code>, then the event is passed to the next mouse event handler.<br/><br/> A mouse event handler is uninstalled by destroying its associated class instance.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="../Utilities/ListElement.html" tppabs="http://www.c4engine.com/docs/Utilities/ListElement.html">ListElement&lt;MouseEventHandler&gt;</a></code></td>
+<td class="tableright1">Used internally to store all instances of <code>MouseEventHandler</code> in a list.
+</td></tr>
+</table>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,1411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View topic - Character model hierarchy and animation issue</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '';
+	var base_url = '';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=18.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=18">C4 Engine Development</a> <strong>&#8249;</strong> <a href="viewforum.php-f=15.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=15">Artist Central</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewtopic.php-f=15&t=12640.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=15&t=12640">Character model hierarchy and animation issue</a></h2>
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body --><div style="display: none !important;">Topics about the art pipeline and external content creation.<br /></div>
+	<div class="rules">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		
+			<strong>Forum rules</strong><br />
+			Advertisements for products and services are <span style="font-weight: bold">not allowed</span> unless you are a licensed user of C4 and you have been given permission to post them.
+		
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12640  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12640%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12640" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="search-box">
+			<form method="get" id="topic-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="Search this topic…" onclick="if(this.value=='Search this topic…')this.value='';" onblur="if(this.value=='')this.value='Search this topic…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="t" value="12640" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			22 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+
+</div>
+<div class="clear"></div>
+
+
+	<div id="p114680" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 class="first"><img src="images/icons/smile/question.gif" tppabs="http://www.terathon.com/forums/images/icons/smile/question.gif" width="16" height="16" alt="" /> <a href="#p114680">Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=114680  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=114680#p114680%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=114680#p114680"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a></strong> &raquo; 11 Feb 2013, 01:46 </p>
+
+			
+
+			<div class="content">Okay, so I made this guy right here  <img src="images/smilies/icon_biggrin.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_biggrin.gif" alt=":D" title="Very Happy" /> :  <br /><br /><img src="../../www.radiantgalaxy.com/screenshots/soldier_c4.jpg" tppabs="http://www.radiantgalaxy.com/screenshots/soldier_c4.jpg" alt="Image" /><br /><br />I got him all rigged and set up for animation.  As you can see, I can export him from Blender properly, and import him into C4.  Now I'm trying to import animation for him.  I've been unsuccessful so far, and I've looked all over for the solution, before finally posting here.<br /><br />First off, is there a particular way the model's hierarchy needs to be set up?  I'm using a standard Blender armature, with a root bone at the base of his spine.  When imported, the initial display in the scene graph is as follows: <br /><br /><img src="../../www.radiantgalaxy.com/screenshots/soldier_hierarchy.png" tppabs="http://www.radiantgalaxy.com/screenshots/soldier_hierarchy.png" alt="Image" /><br /><br />I have an IK rig set up in Blender, but everything is neat and orderly, and only the deformation bones get exported.  Assuming my current setup is acceptable, I'm not sure how to export the animation.  I created a simple walk animation as a test, named it in the Action Editor in Blender, and I've tried exporting it using both the built-in COLLADA exporter, as well as Jack's (now-discontinued) plugin.  Whenever I go to import the animation, absolutely nothing happens.  <img src="images/smilies/icon_sad.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_sad.gif" alt=":(" title="Sad" /> <br /><br />I think I'm pretty much on the right track, but I just need someone to help fill in the blanks.  Any assistance with this would be appreciated.  Thanks!</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile114680">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071"><img src="download/file.php-avatar=3071_1345767437.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3071_1345767437.gif" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 144</dd><dd><strong>Joined:</strong> 23 Aug 2012, 18:54</dd><dd><strong>Location:</strong> Chester, VA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://dalus.deviantart.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://dalus.deviantart.com/%27" tppabs="http://dalus.deviantart.com/" title="WWW: http://dalus.deviantart.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p114700" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p114700">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=114700  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=114700#p114700%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=114700#p114700"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 11 Feb 2013, 14:48 </p>
+
+			
+
+			<div class="content">Hi Dalus,<br /><br />I've had substantial grief as well as success with the Blender exporters. Bottom line: it's not ready for prime time.<br /><br />One thing to check is if the skin controller is exporting. double-click the soldier, and go to the last tab. See if the controller that is selected by default is &quot;skin.&quot; If not, you have come across a major stumbling block that has to be corrected.<br /><br />Regards,<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile114700">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p114701" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p114701">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=114701  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=114701#p114701%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=114701#p114701"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a></strong> &raquo; 11 Feb 2013, 15:23 </p>
+
+			
+
+			<div class="content">Hi Matt,<br /><br />Thank you for the prompt response.  I checked the Controller tab in the soldier's properties, and &quot;Skin&quot; was indeed the default selection.  I have posed the character before, and imported him that way.  The pose imports correctly, so it is correctly carrying over the vertex weights and all that.<br /><br />So, first question - Am I at least setting up the hierarchy in a way that's acceptable for the engine to use?  That is, with the armature and character mesh being at the top of the hierarchy, and then the root bone attaching him to the grid floor.  Since I've never done a fully animated character before, I have to go about this through process of elimination.  So far, is it feasible to assume that the problem lies with exporting the animation from Blender, and not with the character itself?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile114701">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071"><img src="download/file.php-avatar=3071_1345767437.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3071_1345767437.gif" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 144</dd><dd><strong>Joined:</strong> 23 Aug 2012, 18:54</dd><dd><strong>Location:</strong> Chester, VA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://dalus.deviantart.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://dalus.deviantart.com/%27" tppabs="http://dalus.deviantart.com/" title="WWW: http://dalus.deviantart.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p114707" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p114707">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=114707  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=114707#p114707%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=114707#p114707"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 11 Feb 2013, 17:54 </p>
+
+			
+
+			<div class="content">It sounds like you are setting things up correctly, but let's be sure and take a look at both export and import steps...<br /><br />If you are seeing no animation frames whatsoever, it's possible that the problem is in the export process.<br /><br />First off, what I do is cut the animation frames down to the minimum -- that is, I dedicate an animation file for each animation to be played back. For example, Jack's exporter doesn't downselect animation frames to be exported based on the &quot;action&quot; editor -- it exports everything for the selected character.<br /><br />When you export, be sure to select the &quot;selected animation&quot; instead of &quot;selected objects&quot; drop-down option (lower left) and drop your output into a subfolder of the import folder.<br /><br />You should be able to open the model in the model viewer at this point, and click the import button and select your animation file.<br /><br />Then select the animation that imported, and you should be able to playback.<br /><br />That's the standard import process I used. Is anything here seem new to you?<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile114707">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p114723" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p114723">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=114723  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=114723#p114723%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=114723#p114723"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 12 Feb 2013, 10:37 </p>
+
+			
+
+			<div class="content">Hey Dalus,<br /><br />If that doesn't help, try loading up the model in the world editor. Select a joint and the rotate command (3). Rotate the joint and ensure the model rotates with you. That should prove good joints and relationships.<br /><br />Regards,<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile114723">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115033" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115033">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115033  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115033#p115033%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115033#p115033"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a></strong> &raquo; 20 Feb 2013, 14:44 </p>
+
+			
+
+			<div class="content">I tried your suggestions.  I even installed an older version of Blender (2.62) that I know for sure is compatible with Jack's COLLADA exporter.  Still nothing...  <img src="images/smilies/icon_sad.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_sad.gif" alt=":(" title="Sad" /> <br /><br /><img src="../../www.radiantgalaxy.com/screenshots/soldier_deform.png" tppabs="http://www.radiantgalaxy.com/screenshots/soldier_deform.png" alt="Image" /><br /><br />As you can see, the character deforms properly inside the world editor.  I can select his bones and rotate them individually, and the mesh bends accordinly.  The issue has to be either with the exporter, or else there could be something I need to do in Blender before exporting, that I'm not aware of.  I'm still fairly new to animation right now.  It's the one area of Blender that I'm not completely familiar with at the moment.<br /><br />I suppose I could share the .blend file and you could see if there are any glaring issues with it.  I'm not sure what else to do, at this point.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115033">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071"><img src="download/file.php-avatar=3071_1345767437.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3071_1345767437.gif" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 144</dd><dd><strong>Joined:</strong> 23 Aug 2012, 18:54</dd><dd><strong>Location:</strong> Chester, VA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://dalus.deviantart.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://dalus.deviantart.com/%27" tppabs="http://dalus.deviantart.com/" title="WWW: http://dalus.deviantart.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115035" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115035">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115035  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115035#p115035%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115035#p115035"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 20 Feb 2013, 14:53 </p>
+
+			
+
+			<div class="content">Hi Dalus,<br /><br />I've been where you are now. And the fact that you are getting proper deformation in the world editor confirms that your import was correct. This knowledge comes from  a very recent confirmation by Dr. Lengyel on the same issue, because I used the same technique to verify my rigging.<br /><br />However, I have found that during my animations (which are done in code), there are still problems with some bones and I can now say for sure they are by Blender and not the exporter, C4's importer, or C4.<br /><br />So my question, which may seem obvious, is &quot;when you import an animation file in the model viewer, what happens specifically&quot;? For example, does the import dialog just go away and leave you with no change?<br /><br />BTW, Most of my animations exported using version 2.63 of Blender. I now use 2.65a with no additional problems. I think you want to move forward to at least 2.63 of Blender.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115035">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115041" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115041">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115041  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115041#p115041%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115041#p115041"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1220.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1220" style="color: #0060C0;" class="username-coloured">mwituni</a></strong> &raquo; 20 Feb 2013, 17:31 </p>
+
+			
+
+			<div class="content">We all feel your frustration. Unless your asset creation and import process is exactly right, its going to be a challenge. You will find many 4 year old posts from us on this. <br /><br />Animated assets are one of the first things a user wants to import and play with, which is why so many popular engines have put so much effort into making it idiot-proof. With many now its as simple as drag and drop your files.<br /><br />One thing I found useful which might at least help illustrate where the problem is, is to use a free rigging tool with my mesh  ... then import into C4. I can't rem the tool I used, but it had a built in animation store you could get free (or buy) animations, also rigged characters. You can use those with your mesh in C4, and it could help to see what works and not.<br /><br />I did a quick search and couldn't find it, but its something like this mixamo tool : <a href="javascript:if(confirm(%27http://www.mixamo.com/c/auto-rigger  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.mixamo.com/c/auto-rigger%27" tppabs="http://www.mixamo.com/c/auto-rigger" class="postlink">mixamo</a><br /><br />Good luck.</div>
+
+			<div id="sig115041" class="signature"><span style="font-size: 85%; line-height: 116%;">XPS Notebook: L702X i7-2630QM Quad Core - 8GB DDR3 - NVidia GT555M - 3D 120Hz FHD WLED 1920x1080 17&quot; - 80GB SSD + 750GB HDD - BD Combo Drive - Win 7 64bit</span></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115041">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1220.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1220" style="color: #0060C0;" class="username-coloured">mwituni</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 668</dd><dd><strong>Joined:</strong> 19 May 2008, 19:41</dd><dd><strong>Location:</strong> Surrey, UK</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115047" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115047">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115047  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115047#p115047%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115047#p115047"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a></strong> &raquo; 20 Feb 2013, 23:07 </p>
+
+			
+
+			<div class="content">I figured out one thing I was doing wrong.  I didn't have the animation file in the correct folder, with the model file.  Now it does import something, but depending on the options I use, it either completely mangles the skeleton, puts him halfway in the ground, or freezes him at the first frame of the walk cycle.  I'm going to try a few things and I'll make another post once I can find out more.  I appreciate your patience with me in this matter.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115047">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071"><img src="download/file.php-avatar=3071_1345767437.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3071_1345767437.gif" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 144</dd><dd><strong>Joined:</strong> 23 Aug 2012, 18:54</dd><dd><strong>Location:</strong> Chester, VA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://dalus.deviantart.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://dalus.deviantart.com/%27" tppabs="http://dalus.deviantart.com/" title="WWW: http://dalus.deviantart.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115051" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115051">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115051  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115051#p115051%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115051#p115051"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 21 Feb 2013, 10:19 </p>
+
+			
+
+			<div class="content">OK Dalus,<br /><br />I think I know what is plaguing you. Make sure that you have normalized the rigging, without which you will likely see distortion problems. If you set up your rigging using automatic weighting, this will go quickly. In object mode pick Object:Apply:Rotation Scale should normalize -- add :Location normalization off the same menu if you feel you need it.<br /><br />Here's how to reapply rigging (the only valid way): Select the skeleton in Blender object mode. ALt-P in Blender to undo skeleton -- choose &quot;clear and keep transformation.&quot; Shift-right-click the mesh then bones (you should be in Rest and X-ray Modes). The mesh should be dark orange outlined, and the bones light orange outlined. Then switch from object to Pose mode. The rigging should be completely highlighted in blue, and the mesh outlined in dark orange. Use CTRL-P to bring up the parentage selection dialog and pick with automatic weights. THIS is the only state you should be exporting from.<br /><br />Export both a model and a sample animation, andd try it in the model viewer process again. This should clear the distortions.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115051">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115058" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115058">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115058  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115058#p115058%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115058#p115058"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a></strong> &raquo; 22 Feb 2013, 00:52 </p>
+
+			
+
+			<div class="content">Hi Matt, <br /><br />So painting vertex weights in Blender will mess up the model?  What about when I go into weight paint mode?  There are buttons for &quot;Normalize&quot; and &quot;Normalize All&quot; which I thought took care of issues like that.  I did rig the soldier using automatic weights, but then I went in and tweaked them by hand, in weight paint mode.  I always freeze my models by applying transforms before I export any of them, so I don't think that part is the issue.<br /><br />I'll try normalizing the vertex weights to make sure each one adds up to exactly 100%, but I can't rely only on automatic weighting and nothing else, because the character just won't deform correctly without some manual adjustments.  Also, while I'm thinking about it, I have another question.  I read something Jack said a while ago, about how if vertex deformation isn't necessary for a particular object, that it should be parented directly to a bone instead.  The soldier has several bits of separate geometry, such as his knee pads, shoulder pads, codpiece, belt packs, visor, and hair, that don't need to use vertex deformation at all.  They're all separate objects, with each one parented to the bone it needs to follow, but so far they're not functioning correctly when I try to import animation either.  I was applying their transforms the same way, but apply the location always moves their origin back to 0 on the grid.  I wondered if instead, their origin should be set to their corresponding parent bone.  I was going to test this anyway, but perhaps you already know better.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115058">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071"><img src="download/file.php-avatar=3071_1345767437.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3071_1345767437.gif" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 144</dd><dd><strong>Joined:</strong> 23 Aug 2012, 18:54</dd><dd><strong>Location:</strong> Chester, VA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://dalus.deviantart.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://dalus.deviantart.com/%27" tppabs="http://dalus.deviantart.com/" title="WWW: http://dalus.deviantart.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115073" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115073">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115073  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115073#p115073%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115073#p115073"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 22 Feb 2013, 15:47 </p>
+
+			
+
+			<div class="content">Hi Dalus,<br /><br />With respect to the non-deformed models, my soldier and insurgent models also have separate objects that are parented the bone they need to follow. I did set the origin of the gun and muzzle flash geometry to be the right hand. But I also used the same procedure that I mentioned before on those. Again, make sure you have Blue bones and dark orange selection on the meshes, whether child or parent. I had some trouble getting to that last step and normalizing initially. Jack checked out my model, and his export process was originally different from mine, so I used to get the same kind of deformation distortions and suboordinate model displacements that you have. I also haven't tried custom weights. My models came from 3DRT.com and 2 of them didn't work because of problems with 3ds max's export process. I did get 6 fully functional, but I did have to re-establish the parenting of the gun and full creation of the muzzle flash models (which I just got textures for from another company). And the first thing I tried was exporting all of the animations -- 6000 frames for the first model.<br /><br />Let's see what happens when you fix the origins. It could be the remaining problem.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115073">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115117" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115117">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115117  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115117#p115117%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115117#p115117"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a></strong> &raquo; 24 Feb 2013, 19:06 </p>
+
+			
+
+			<div class="content">Progress!  <img src="images/smilies/icon_biggrin.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_biggrin.gif" alt=":D" title="Very Happy" /><br /><br />Okay, here's what happens...<br /><br /><img src="../../www.radiantgalaxy.com/screenshots/soldier_walk01.jpg" tppabs="http://www.radiantgalaxy.com/screenshots/soldier_walk01.jpg" alt="Image" /><br /><br />I import the animation and it poses the character at the first frame, but that's it.  The animation slider at the bottom shows that 50 frames were imported (even though this demo walk cycle is only 40 frames), and I can click the play button and watch it move across the slider, but nothing happens.  He just stays at the first frame there, and as you can see, the other objects that are parented to his bones are completely out of place.  <br /><br />Again, animation is very new to me, so I'm inclined to believe the problem is I'm missing a step or two in order to properly set it up for the export in Blender.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115117">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071"><img src="download/file.php-avatar=3071_1345767437.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3071_1345767437.gif" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 144</dd><dd><strong>Joined:</strong> 23 Aug 2012, 18:54</dd><dd><strong>Location:</strong> Chester, VA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://dalus.deviantart.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://dalus.deviantart.com/%27" tppabs="http://dalus.deviantart.com/" title="WWW: http://dalus.deviantart.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115118" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115118">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115118  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115118#p115118%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115118#p115118"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1220.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1220" style="color: #0060C0;" class="username-coloured">mwituni</a></strong> &raquo; 24 Feb 2013, 21:44 </p>
+
+			
+
+			<div class="content">Doesn't the transforms or offsets need to be reset?</div>
+
+			<div id="sig115118" class="signature"><span style="font-size: 85%; line-height: 116%;">XPS Notebook: L702X i7-2630QM Quad Core - 8GB DDR3 - NVidia GT555M - 3D 120Hz FHD WLED 1920x1080 17&quot; - 80GB SSD + 750GB HDD - BD Combo Drive - Win 7 64bit</span></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115118">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1220.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1220" style="color: #0060C0;" class="username-coloured">mwituni</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 668</dd><dd><strong>Joined:</strong> 19 May 2008, 19:41</dd><dd><strong>Location:</strong> Surrey, UK</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115120" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115120">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115120  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115120#p115120%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115120#p115120"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a></strong> &raquo; 24 Feb 2013, 23:40 </p>
+
+			
+
+			<div class="content">You mean such as freezing/applying the transforms before exporting the model?  I did do that, yes.  Unless there's a way to do it while in Pose Mode, that I'm not aware of.  But in Object Mode, I applied all transforms prior to exporting the thing to C4.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115120">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071"><img src="download/file.php-avatar=3071_1345767437.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3071_1345767437.gif" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 144</dd><dd><strong>Joined:</strong> 23 Aug 2012, 18:54</dd><dd><strong>Location:</strong> Chester, VA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://dalus.deviantart.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://dalus.deviantart.com/%27" tppabs="http://dalus.deviantart.com/" title="WWW: http://dalus.deviantart.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115122" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115122">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115122  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115122#p115122%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115122#p115122"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 25 Feb 2013, 09:24 </p>
+
+			
+
+			<div class="content">Hi Dalus,<br /><br />I too had a higher number of frames importing than I started with, however that wasn't an issue for me.<br /><br />If you only really have 1 frame of animation repeated 50 times, it's possible that not all the animation frames were selected before exporting using Jack's exporter. Use 'a' to select all the animation frames and of course select the model and skeleton. To select all the frames using 'a', open up the dopesheet and move the mouse over that window before typing 'a'. The diamonds up top, representing animation frames, will turn from white to orange. Ensure that during export, you pick &quot;selected animation&quot; and try it again.<br /><br />With regards to the broken model add-ons, make sure you are in a t-pose at the time you normalize each add-on. So basically I'm saying you must have the armature in Rest Mode when setting up a normalized add-on. I recommend you do this with one selected add-on first just to get the procedure working.<br /><br />Hopefully this is going to bring you improved results.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115122">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115129" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115129">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115129  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115129#p115129%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115129#p115129"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a></strong> &raquo; 25 Feb 2013, 14:38 </p>
+
+			
+
+			<div class="content">Hi Matt,<br /><br />The option to select &quot;Export Animation&quot; is only available in Jack's COLLADA exporter, and from what I can tell, it isn't compatible with the newer versions of Blender.  I can try installing a previous version again, but I didn't have much success with it then either, and I don't think animations exported from it will be compatible with the character model unless I attempt to export him using the same thing.  Other than that, I've done everything you've suggested.  I always make sure to select all the animations from within the Dopesheet editor.  I even tried baking the animation and exporting it that way.  It still imports 50 frames, no matter what, and they're all set to the first frame.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115129">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071"><img src="download/file.php-avatar=3071_1345767437.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3071_1345767437.gif" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 144</dd><dd><strong>Joined:</strong> 23 Aug 2012, 18:54</dd><dd><strong>Location:</strong> Chester, VA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://dalus.deviantart.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://dalus.deviantart.com/%27" tppabs="http://dalus.deviantart.com/" title="WWW: http://dalus.deviantart.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115132" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115132">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115132  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115132#p115132%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115132#p115132"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1220.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1220" style="color: #0060C0;" class="username-coloured">mwituni</a></strong> &raquo; 25 Feb 2013, 17:17 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Dalus wrote:</cite>You mean such as freezing/applying the transforms before exporting the model?  I did do that, yes.  Unless there's a way to do it while in Pose Mode, that I'm not aware of.  But in Object Mode, I applied all transforms prior to exporting the thing to C4.</div></blockquote><br />I haven't played with C4 for a while ( don't have it loaded anymore, but plan to get a bit back into it with 3.0 again as graphic improvements have started trickling in ). <br />But as I remember; I think there was a Reset transforms option in one of the menus once you import it. Have a look in the menus. Unless I'm confusing with another engine.</div>
+
+			<div id="sig115132" class="signature"><span style="font-size: 85%; line-height: 116%;">XPS Notebook: L702X i7-2630QM Quad Core - 8GB DDR3 - NVidia GT555M - 3D 120Hz FHD WLED 1920x1080 17&quot; - 80GB SSD + 750GB HDD - BD Combo Drive - Win 7 64bit</span></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115132">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1220.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1220" style="color: #0060C0;" class="username-coloured">mwituni</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 668</dd><dd><strong>Joined:</strong> 19 May 2008, 19:41</dd><dd><strong>Location:</strong> Surrey, UK</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115133" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115133">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115133  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115133#p115133%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115133#p115133"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a></strong> &raquo; 25 Feb 2013, 17:25 </p>
+
+			
+
+			<div class="content">Okay, I think I finally get it now.  I wanted to see if I could identify any sort of problem with the file export, so I re-imported it into Blender.  It looked odd, but I could at least identify what looked to be the the main issue.<br /><br />My soldier's armature consists of three different bone layers - deform, origin, and IK.  IK influences origin, and origin influences deform.  It was the simplest setup I could do, while retaining the complete range of motion that I needed for the character.  The problem I saw from opening the COLLADA file in Blender, was that the IK bones were animating, but not the origin or deform bones.  I already knew Blender used bone constraints to copy transforms from one bone to another, but I had assumed the animation keyframes were passed on to those bones as if it was their own.  <br /><br />I went around randomly searching online for anything pertaining to Blender's COLLADA exporter and animation that might alleviate this issue, and I found some posts talking about baking the action.  As I stated previously, I had tried this before, but I think I was missing one key option.  In the Bake Action menu, there's a check box for &quot;clear constraints&quot;, which removes the constraints from the bones and relies on visual keyframing instead.  I tried it, and I was finally able to view the animation from within C4.  It's not perfect yet, but the entire walk cycle did at least import properly and plays correctly.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115133">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071"><img src="download/file.php-avatar=3071_1345767437.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3071_1345767437.gif" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 144</dd><dd><strong>Joined:</strong> 23 Aug 2012, 18:54</dd><dd><strong>Location:</strong> Chester, VA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://dalus.deviantart.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://dalus.deviantart.com/%27" tppabs="http://dalus.deviantart.com/" title="WWW: http://dalus.deviantart.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115136" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115136">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115136  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115136#p115136%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115136#p115136"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 25 Feb 2013, 18:44 </p>
+
+			
+
+			<div class="content">Ah, fantastic. Congratulations, Dalus! I wasn't aware of your three layers of armature -- there's probably a limit to what Jack's exporter supports, and could also be with C4's importer. If there's something you absolutely need, or a version issue, you might want to bring it up with Jack.<br /><br />Regards,<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115136">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115139" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115139">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115139  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115139#p115139%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115139#p115139"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a></strong> &raquo; 25 Feb 2013, 20:05 </p>
+
+			
+
+			<div class="content">Well Blender is set up with this in mind, because IK often requires the use of control bones that would be pointless if imported into a game engine.  So it allows you to define which bones are essential for deforming the mesh itself, and export only those.  This actually works just fine in C4 - the real problem was that I hadn't correctly baked the action in Blender, which is what is needed to copy animation transforms from the IK and origin bones to the deform bones.<br /><br />That said, I'm still fiddling with getting the separate objects to align correctly with each one's parent bone.  They do move correctly during the animation playback, but they're all at odd locational and rotational offsets.  But this isn't a huge issue, because the main thing is it's working.  I just have to get them aligned properly.<br /><br />Thanks for all the help, Matt.   <img src="images/smilies/icon_biggrin.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_biggrin.gif" alt=":D" title="Very Happy" /></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115139">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071"><img src="download/file.php-avatar=3071_1345767437.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3071_1345767437.gif" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3071.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3071" style="color: #8000C0;" class="username-coloured">Dalus</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 144</dd><dd><strong>Joined:</strong> 23 Aug 2012, 18:54</dd><dd><strong>Location:</strong> Chester, VA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://dalus.deviantart.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://dalus.deviantart.com/%27" tppabs="http://dalus.deviantart.com/" title="WWW: http://dalus.deviantart.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p115154" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p115154">Re: Character model hierarchy and animation issue</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=115154  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=115154#p115154%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=115154#p115154"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 26 Feb 2013, 12:30 </p>
+
+			
+
+			<div class="content">You are quite welcome.<br /><br />I've looked into IK, but it was simpler to just animate with the armature I had. It kind of figures the problem was in Blender.<br /><br />Regarding the separate objects -- I had to go through some iterations to get it working, but the problem was also in Blender.<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile115154">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<form id="viewtopic" method="post" action="http://www.terathon.com/forums/viewtopic.php?f=15&t=12640">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		
+		<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+		
+	</fieldset>
+
+	</form>
+	<hr />
+
+
+<div class="topic-actions">
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12640  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12640%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=12640" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="pagination">
+			22 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+</div>
+
+
+	<p></p><p><a href="viewforum.php-f=15.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=15" class="left-box left" accesskey="r">Return to Artist Central</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15" selected="selected">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: No registered users and 1 guest</p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

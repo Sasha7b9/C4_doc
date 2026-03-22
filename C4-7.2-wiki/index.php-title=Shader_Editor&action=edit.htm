@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>View source for Shader Editor - C4 Engine Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":true,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"Zu8LEEhzjDcBpeHdQL925wAAAMM","wgCSPNonce":false,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Shader_Editor","wgTitle":"Shader Editor","wgCurRevisionId":427,"wgRevisionId":0,"wgArticleId":424,"wgIsArticle":false,"wgIsRedirect":false,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Shader_Editor","wgRelevantArticleId":424,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"simpleBatchUploadMaxFilesPerBatch":{"*":1000},"wgVector2022PreviewPages":[]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["mediawiki.action.edit.collapsibleFooter","site","mediawiki.page.ready","skins.vector.legacy.js"/*tpa=http://www.c4engine.com/wiki/skins.vector.legacy.js*/];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});});});</script>
+<link rel="stylesheet" href="load.php-lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector.css" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector"/>
+<script async="" src="load.php-lang=en&modules=startup&only=scripts&raw=1&skin=vector.js" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector"></script>
+<meta name="generator" content="MediaWiki 1.40.0"/>
+<meta name="robots" content="noindex,nofollow,max-image-preview:standard"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="viewport" content="width=1000"/>
+<link rel="icon" href="../favicon.ico.css" tppabs="http://www.c4engine.com/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://c4engine.com/wiki/api.php?action=rsd"/>
+<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Shader_Editor rootpage-Shader_Editor skin-vector action-edit"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading">View source for Shader Editor</h1>
+	<div id="bodyContent" class="vector-body">
+		
+		<div id="contentSub"><div id="mw-content-subtitle">← <a href="index.php-title=Shader_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Shader_Editor" title="Shader Editor">Shader Editor</a></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Users  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Users%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Users&action=edit&redlink=1" class="new" title="C4 Engine Wiki:Users (page does not exist)">Users</a>.
+</p>
+</div><hr />
+<p>You can view and copy the source of this page.
+</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" class="mw-editfont-monospace" lang="en" dir="ltr" name="wpTextbox1">__NOTOC__
+There are two ways to create materials in the C4 Engine. The first method is to simply configure a set of predefined attributes in the [[Material Editor]]. This is the easiest and fastest way to create a new material, and most ordinary materials can be made using only those attributes. A more advanced method is to use the Shader Editor to define the exact calculations used by the engine to render a material. The Shader Editor provides you with the power to create a limitless variety of materials within the context of a graphical interface.
+
+== Opening the Shader Editor ==
+
+[[File:Shadereditor.png|right|frame|'''Figure 1.''' The Shader Editor window.]] The image to the right shows the Shader Editor. The Shader Editor is opened from inside the [[Material Editor]] by choosing '''Edit Shader''' from the '''Material''' menu. If the selected material already had conventional attributes assigned to it through the settings in the Material Editor, then the Shader Editor will initially show a translation of those attributes into the shader graph. If the selected material was empty (because no settings had been specified for it yet), then the Shader Editor will initially show default graph with a minimal number of nodes.
+
+== Shader Graphs ==
+
+A shader is represented in the Shader Editor by what is known as a ''data flow graph''. The nodes in this graph are called ''processes'', and the edges in this graph are called ''routes''. A shader is a special type of graph called a ''directed acyclic graph'', or ''DAG'', meaning that data flows in a specific direction from one process to another and there are no loops.
+
+Each box in the shader graph represents a single process. A process can be a simple mathematical operation, a constant input value such as a color, an interpolated value such as the direction to the light source, or a more complex operation defined by the engine such as a parallax offset calculation.
+
+A route is a directed edge shown as a curve with an arrowhead at one end, and it represents the flow of data from one process to another. Routes begin at one process and end at a ''port'' belonging to another process. Every process has between zero and four ports, and each can be occupied by only one incoming route at a time. Ports with a plain background are required, and ports with a striped background are optional. All required ports must have an incoming route attached to them in order for the shader to be valid.
+
+== Editing a Shader ==
+
+The tabbed lists on the left side of the Shader Editor show the processes that are available for use in a shader. They are divided into four categories that are described in more detail below: Basic, Math, Complex, and Interpolants. A new process is added to a shader by selecting it in the list and then clicking in the viewport. The editor won't let you place two processes on top of each other, and the cursor will change to indicate where it's possible to place a new process.
+
+Routes are added to a shader by clicking inside the circle on the right side of a process and dragging into a port belonging to another process. This causes a new route to be created beginning at the process you clicked on and ending at the input port to which you dragged. If a port is already occupied by another route, then the existing route is deleted and replaced with the new route that you are creating. You cannot connect a route from one process to a port belonging to any other process preceding that process in the graph because it would create a cycle.
+
+The physical position of a process in the viewport is irrelevant. The data flow structure of a shader is determined entirely by the route connections. Processes may be placed in any convenient location. 
+
+== Processes ==
+
+A process takes between zero and four inputs and produces at most a single output. The output may be sent to any number of input ports for other processes.
+
+For many types of processes, the process box shown in the Shader Editor displays additional information. For example, the Texture Map process shows a small image of the texture map, and the Constant Vector process shows the four constant values that it outputs. Most mathematical operations display a mathematical expression showing exactly how their input values are used to calculate an output value.
+
+Double-clicking on a process, or selecting a process and typing Ctrl-I, opens the Process Info window for that process. In the Process Info window, every process has a comment field that let's you specify some text that is displayed at the bottom of the process box in the Shader Editor. Some processes also have extra settings that appear in the Process Info window.
+
+Each type of process available for use in a shader is described individually on the following pages (corresponding to the groups displayed in the Shader Editor):
+
+* [[Basic Shader Processes | List of basic processes]]
+
+* [[Mathematical Shader Processes | List of mathematical processes]]
+
+* [[Complex Shader Processes | List of complex processes]]
+
+* [[Interpolant Shader Processes | List of interpolant processes]]
+
+== Routes ==
+
+The routes in a shader graph carry data from one process to another. Each route can carry between one and four floating-point values&amp;mdash;the actual number is determined by the output size of the route's start process.
+
+A swizzle and negation may be applied to a route. These can be set by double-clicking on a route or by selecting a route and typing Ctrl-I. By default, the swizzle for a route is &lt;code>xyzw&lt;/code>, meaning that there is no change to the order of the components. If any other swizzle is specified, or the values are negated, then that information is displayed in a small box at the center of the path representing the route. The swizzle may be specified using any letters from the sets &lt;code>xyzw&lt;/code>, &lt;code>rgba&lt;/code>, or &lt;code>stpq&lt;/code>. Specifying only a single letter is shorthand for the same letter repeated four times. For example, the swizzle &lt;code>z&lt;/code> is equivalent to the swizzle &lt;code>zzzz&lt;/code>.
+
+If a route carries fewer than four components, then each component specified in its swizzle is clamped to the last available component. For example, if a route carries only three components, then any &lt;code>w&lt;/code>, &lt;code>a&lt;/code>, or &lt;code>q&lt;/code> in the swizzle ultimately interpreted as the third component of the data carried by the route. The swizzle &lt;code>wxyz&lt;/code> would really mean &lt;code>zxyz&lt;/code>. This is particularly important in the case that two routes of different sizes are used as inputs to a binary operation. The operation is performed using the number of components for larger of the two routes, so the missing components of the smaller route are taken from the components specified by the clamped swizzle.
+
+== Shader Editor Tools ==
+
+There are four tool buttons in the upper-left corner of the Shader Editor window, and they have the following uses. In addition to clicking on the tool button, each of these tools can also be selected by pressing the shortcut number key as shown in the table. (The shortcuts were chosen to be the same as the corresponding tools in the World Editor.)
+
+{| {{Table}}
+{{Tablehead3|Icon|Shortcut|Function}}
+|-
+{{Tablerow3|[[File:Tool_select.png]]|1|'''Select / Move'''. Selects a process or route in a shader. Clicking outside of a process and dragging will create a box that selects all of the processes inside it. Clicking inside a process and dragging moves all of the currently selected processes. (When processes are moved, they are automatically prevented from moving on top of other processes.)}}
+|-
+{{Tablerow3|[[File:Tool_scroll.png]]|6|'''Scroll'''. Scrolls the shader viewport. Holding the Alt key with any other tool temporarily selects the scroll tool.}}
+|-
+{{Tablerow3|[[File:Tool_zoom.png]]|7|'''Zoom'''. Changes the scale of the shader viewport. Using the mouse wheel with any other tool also zooms.}}
+|-
+{{Tablerow3|[[File:Tool_section.png]]||'''Draw Section'''. Draws a rectangular box with a title bar behind all processes in the graph. This can be used to visually organize groups of processes in a shader.}}
+|}
+
+== Output Processes ==
+
+Each shader graph contains a set of ''output processes'' that represent the final values produced by the shader. These are colored green in the shader editor, they cannot be deleted, and they can have no output routes. The only output process that has a required input port is the '''Ambient Reflection Output''' process. All other output processes have only optional input ports and are ignored if they are not used.
+
+The individual output processes are described in the following table.
+
+{| {{Table}}
+{{Tablehead|Process|Description}}
+|-
+{{Process|Ambient&amp;nbsp;Reflection&amp;nbsp;Output|Shader_ambientoutput.png|RGB color '''RGB''' (required), Normal '''N''' (optional)|None|This is the primary output process for the ambient shader. The color sent to this output process is combined with the ambient lighting environment to produce the final ambient light reflection for a material. The normal vector '''N''' is currently unused, but will be important in future ambient lighting models.}}
+|-
+{{Process|Light&amp;nbsp;Reflection&amp;nbsp;Output|Shader_lightingoutput.png|RGB color '''RGB''' (optional), Impostor depth '''Z''' (optional)|None|This is the primary output process for the light shader. The color sent to this output process is combined with the color from a light source to produce the final light reflection for a material.
+
+In an impostor shader, the alpha channel of the output of the Impostor Normal process should be sent to the '''Z''' input port to provide the impostor depth.}}
+|-
+{{Process|Alpha&amp;nbsp;Output|Shader_alphaoutput.png|Scalar '''A''' (optional)|None|If a material is transparent, then the alpha value sent to this output process controls the transparency. This is currently useful only for objects rendered in the effect pass. If the Glow Output process is used, then the Alpha Output process is ignored.}}
+|-
+{{Process|Alpha&amp;nbsp;Test&amp;nbsp;Output|Shader_alphatestoutput.png|Scalar '''A''' (optional)|None|If a material uses the alpha test, then the value sent to this output process is the value that is tested. The material must have the alpha test flag set in the Material Manager for this output process to be used.}}
+|-
+{{Process|Emission&amp;nbsp;Output|Shader_emissionoutput.png|RGB color '''RGB''' (optional)|None|The color sent to this output process is added to the final ambient color as an emission term.}}
+|-
+{{Process|Glow&amp;nbsp;Output|Shader_glowoutput.png|Scalar '''A''' (optional)|None|If a material uses emission glow, then the value sent to this output process determines the glow intensity. The material must have the emission glow flag set in the Material Manager for this output process to be used. If the alpha test flag is set, then the Glow Output process is ignored.}}
+|-
+{{Process|Bloom&amp;nbsp;Output|Shader_bloomoutput.png|Scalar '''A''' (optional)|None|If a material uses specular bloom, then the value sent to this output process determines the bloom intensity. The material must have the specular bloom flag set in the Material Manager for this output process to be used.}}
+|-
+{{Process|Reflection&amp;nbsp;Buffer&amp;nbsp;Output|Shader_reflectionoutput.png|RGB color '''RGB''' (optional), Tangent-space normal vector '''N''' (optional)|None|If this output process has an input, then a sample from the reflection buffer is multiplied by the input color and added to the final ambient color. A tangent-space normal vector may be sent to the '''N''' input port in order to create a bumpy appearance for the reflection. Normal incidence reflectivity and bump offset scale can be configured in the settings for the process.}}
+|-
+{{Process|Refraction&amp;nbsp;Buffer&amp;nbsp;Output|Shader_refractionoutput.png|RGB color '''RGB''' (optional), Tangent-space normal vector '''N''' (optional)|None|If this output process has an input, then a sample from the refraction buffer is multiplied by the input color and added to the final ambient color. A tangent-space normal vector may be sent to the '''N''' input port in order to create a bumpy appearance for the refraction. The bump offset scale can be configured in the settings for the process.}}
+|-
+{{Process|Environment&amp;nbsp;Output|Shader_environmentoutput.png|RGB color '''RGB''' (optional), Tangent-space normal vector '''N''' (optional)|None|If this output process has an input, then a sample from the environment map is multiplied by the input color and added to the final ambient color. A tangent-space normal vector may be sent to the '''N''' input port in order to create a bumpy appearance for the environment map. An override environment map can be specified in the settings for the process.}}
+|}
+
+== See Also ==
+
+* [[Material Editor]]
+
+[[Category:Shaders]]
+</textarea><div class="templatesUsed"><div class="mw-templatesUsedExplanation"><p>Templates used on this page:
+</p></div><ul>
+<li><a href="index.php-title=Template-Process.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Process" title="Template:Process">Template:Process</a> (<a href="index.php-title=Template-Process&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Process&action=edit" title="Template:Process">view source</a>) </li><li><a href="index.php-title=Template-Table.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Table" title="Template:Table">Template:Table</a> (<a href="index.php-title=Template-Table&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Table&action=edit" title="Template:Table">view source</a>) </li><li><a href="index.php-title=Template-Tablehead.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablehead" title="Template:Tablehead">Template:Tablehead</a> (<a href="index.php-title=Template-Tablehead&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablehead&action=edit" title="Template:Tablehead">view source</a>) </li><li><a href="index.php-title=Template-Tablehead3.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablehead3" title="Template:Tablehead3">Template:Tablehead3</a> (<a href="index.php-title=Template-Tablehead3&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablehead3&action=edit" title="Template:Tablehead3">view source</a>) </li><li><a href="index.php-title=Template-Tablerow3.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablerow3" title="Template:Tablerow3">Template:Tablerow3</a> (<a href="index.php-title=Template-Tablerow3&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablerow3&action=edit" title="Template:Tablerow3">view source</a>) </li></ul></div><p id="mw-returnto">Return to <a href="index.php-title=Shader_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Shader_Editor" title="Shader Editor">Shader Editor</a>.</p>
+
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Shader_Editor  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Shader_Editor%27" tppabs="https://c4engine.com/wiki/index.php?title=Shader_Editor">https://c4engine.com/wiki/index.php?title=Shader_Editor</a>"</div></div>
+		<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="vector-menu mw-portlet mw-portlet-personal vector-user-menu-legacy" aria-labelledby="p-personal-label" role="navigation"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="pt-login" class="mw-list-item"><a href="index.php-title=Special-UserLogin&returnto=Shader+Editor&returntoquery=action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:UserLogin&returnto=Shader+Editor&returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li></ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="vector-menu mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-namespaces-label" role="navigation"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected mw-list-item"><a href="index.php-title=Shader_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Shader_Editor" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Talk:Shader_Editor  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Talk:Shader_Editor%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Talk:Shader_Editor&action=edit&redlink=1" rel="discussion" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="vector-menu mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	/>
+	<label
+		id="p-variants-label"
+		 aria-label="Change language variant"
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="vector-menu mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-views-label" role="navigation"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-view" class="mw-list-item"><a href="index.php-title=Shader_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Shader_Editor"><span>Read</span></a></li><li id="ca-viewsource" class="selected mw-list-item"><a href="index.php-title=Shader_Editor&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Shader_Editor&action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="index.php-title=Shader_Editor&action=history.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Shader_Editor&action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="vector-menu mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown" aria-labelledby="p-cactions-label" role="navigation"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	/>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<div>
+		<form action="http://www.c4engine.com/wiki/index.php" id="searchform"
+			class="vector-search-box-form">
+			<div id="simpleSearch"
+				class="vector-search-box-inner"
+				 data-search-loc="header-navigation">
+				<input class="vector-search-box-input"
+					 type="search" name="search" placeholder="Search C4 Engine Wiki" aria-label="Search C4 Engine Wiki" autocapitalize="sentences" title="Search C4 Engine Wiki [f]" accesskey="f" id="searchInput"
+				>
+				<input type="hidden" name="title" value="Special:Search">
+				<input id="mw-searchButton"
+					 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+				<input id="searchButton"
+					 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+			</div>
+		</form>
+	</div>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="vector-menu mw-portlet mw-portlet-navigation vector-menu-portal portal" aria-labelledby="p-navigation-label" role="navigation"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="n-mainpage-description" class="mw-list-item"><a href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="javascript:if(confirm(%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents%27" tppabs="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="vector-menu mw-portlet mw-portlet-tb vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="t-whatlinkshere" class="mw-list-item"><a href="index.php-title=Special-WhatLinksHere-Shader_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:WhatLinksHere/Shader_Editor" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Shader_Editor  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Shader_Editor%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Shader_Editor" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="index.php-title=Special-SpecialPages.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-info" class="mw-list-item"><a href="index.php-title=Shader_Editor&action=info.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Shader_Editor&action=info" title="More information about this page"><span>Page information</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" role="contentinfo" >
+	<ul id="footer-info">
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About">About C4 Engine Wiki</a></li>
+	<li id="footer-places-disclaimers"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-poweredbyico"><a href="javascript:if(confirm(%27https://www.mediawiki.org/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/%27" tppabs="https://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" tppabs="http://www.c4engine.com/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/></a></li>
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":54,"wgPageParseReport":{"limitreport":{"cputime":"http://www.c4engine.com/wiki/0.001","walltime":"http://www.c4engine.com/wiki/0.002","ppvisitednodes":{"value":8,"limit":1000000},"postexpandincludesize":{"value":15,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":2,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20240921180608","ttl":86400,"transientcontent":false}}});});</script>
+</body>
+</html>

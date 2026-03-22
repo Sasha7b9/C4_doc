@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 2.0 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0&amp;action=history"/>
+	<updated>2024-09-21T18:41:36Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0&amp;diff=64&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' May 31, 2010  == Core Engine ==  === Physics ===  * This release contains the first version of the native C4 physics architecture. The native physics processing is enabled in a particular world by placing a special &quot;physics node&quot; anywhere in the root zone. The physics node has a physics controller attached to it for which global properties such as the acceleration of gravity can be adjusted. If a world does not contain a physics node in its...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0&amp;diff=64&amp;oldid=prev"/>
+		<updated>2023-07-15T10:02:00Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; May 31, 2010  == Core Engine ==  === Physics ===  * This release contains the first version of the native C4 physics architecture. The native physics processing is enabled in a particular world by placing a special &amp;quot;physics node&amp;quot; anywhere in the root zone. The physics node has a physics controller attached to it for which global properties such as the acceleration of gravity can be adjusted. If a world does not contain a physics node in its...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' May 31, 2010&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+=== Physics ===&lt;br /&gt;
+&lt;br /&gt;
+* This release contains the first version of the native C4 physics architecture. The native physics processing is enabled in a particular world by placing a special &amp;quot;physics node&amp;quot; anywhere in the root zone. The physics node has a physics controller attached to it for which global properties such as the acceleration of gravity can be adjusted. If a world does not contain a physics node in its root zone, then the native C4 physics is completely dormant when that world is played. This allows third-party physics libraries to be used with absolutely no extra cost to bypass the native physics.&lt;br /&gt;
+&lt;br /&gt;
+* A physics object is created by assigning a rigid body controller to a node and creating one or more &amp;quot;shapes&amp;quot; as subnodes of that node. The shapes define the volume occupied by the physics object as seen by the physics simulation, and they are always fixed relative to each other within a single object. Each shape can have a different density, and the engine automatically calculates properties such as the center of mass and the inertia tensor.&lt;br /&gt;
+&lt;br /&gt;
+* Rigid bodies can be connected by &amp;quot;joints&amp;quot; to other rigid bodies or to the static environment. Six types of joints are currently defined: spherical, universal, discal, revolute, cylindrical, and prismatic.&lt;br /&gt;
+&lt;br /&gt;
+* A new node type called a &amp;quot;field&amp;quot; has been added to the engine, and it represents a volume inside of which a force can be applied to physics objects. Forces are applied to objects in a field through the extensible &amp;lt;code&amp;gt;[http://c4engine.com/docs/PhysicsMgr/Force.html Force]&amp;lt;/code&amp;gt; class. After a field has been created in the World Editor, a force can be assigned to that field in the Node Info window. In this release, there are two forces built into the engine, a fluid force and a wind force. The fluid force applies buoyancy and drag, and it can be configured to simulate a current. The wind force applies air drag for a wind current. Custom forces can be defined by creating subclasses of &amp;lt;code&amp;gt;Force&amp;lt;/code&amp;gt; and registering them with the engine.&lt;br /&gt;
+&lt;br /&gt;
+* A basic mover controller is provided by the engine. This controller moves a rigid body from point A to point B (and handles the reverse direction, too) under script control. This controller can be used to implement things like simple elevators.&lt;br /&gt;
+&lt;br /&gt;
+=== Terrain ===&lt;br /&gt;
+&lt;br /&gt;
+* The voxel terrain system now includes a seamless geomip level-of-detail algorithm that is the product of a large R&amp;amp;D project at Terathon. As terrain is edited, the engine automatically creates lower-resolution terrain geometries and arranges all of the terrain geometry nodes in an octree structure. When terrain is rendered, special polygons are inserted along the boundaries between terrain geometries of different resolutions to produce a smooth transition from high-resolution to lower-resolution meshes. Since voxel terrain is inherently volumetric, this kind of linkage between neighboring meshes can get very complicated, and it was necessary to develop a new algorithm to produce a robust result with real-time performance.&lt;br /&gt;
+&lt;br /&gt;
+* The terrain-specific shading capabilities of the engine have been modified in this release, partially to accommodate the new terrain LOD system. The four six-sided texture cubes used to specify texture palette entries have been replaced by two sets of three textures, with the three entries in each set representing the (a) up direction, (b) down direction, and (c) all horizontal directions.&lt;br /&gt;
+&lt;br /&gt;
+* Existing terrains need to be converted in order to retain their previous texture settings and blending information. To convert a terrain block, select all of the terrain geometries in the editor and press Ctrl-R to rebuild them. (The easiest way to select all of the terrain geometries is to select one geometry, press Ctrl-Up-Arrow to select the parent block, and then press Ctrl-Down-Arrow to select all of the block's subnodes.) Some texturing capabilities in the previous version do not translate perfectly into the new scheme, so it's possible that parts of the terrain will have textures different from what they had before. In these cases, it will be necessary to manually paint new materials onto those areas to update the textures.&lt;br /&gt;
+&lt;br /&gt;
+* The Terrain Texture and Terrain Normal shader processes have been extended so that custom blending of terrain materials is possible. By default, these processes fetch colors from both the primary and secondary terrain textures (where each fetch really represents a triplanar texture blend) and then blends them together using the blend data from the terrain mesh. A new setting has been added that lets you turn off blending and only fetch either the primary or secondary texture. You can then blend the textures any way you want. The default blend is given by a linear interpolation of the primary and secondary textures using the blue component of the vertex color as the interpolation parameter.&lt;br /&gt;
+&lt;br /&gt;
+* The terrain material painting capabilities have been expanded in this release. Materials can now be specified on a per-voxel basis instead of a per-geometry basis, and the per-voxel blending state has been decoupled from the material IDs. There are now two paint brushes in the editor: one that modifies the blend values, and another that only modifies the materials. There is also a check box that enables material replacement when using any of the other terrain tools.&lt;br /&gt;
+&lt;br /&gt;
+* The engine can now use a special terrain palette texture resource that references a set of separate 2D texture map resources. This allows many different palettes to share textures from a (possibly large) pool of plain 2D texture maps, and it removes the need to store terrain palettes in two different formats for hardware compatibility. When a terrain palette texture map is loaded, it loads all of the texture maps that it references and assembles them into the optimal format for the available hardware.&lt;br /&gt;
+&lt;br /&gt;
+=== Shaders ===&lt;br /&gt;
+&lt;br /&gt;
+* A new shader process called Kill Fragment has been added to the engine. This process can accept one or two scalar inputs, and if the first input is less than the second input, then the current fragment is not rendered. If the second input is omitted, then it is assumed to be zero. This process can be used as a substitute for alpha testing when the alpha output needs to be used for something else like transparency, glow, or bloom.&lt;br /&gt;
+&lt;br /&gt;
+* A new shader process called Magnitude 3D has been added to the engine. This process takes the dot product of an input vector with itself and outputs the square root of the result.&lt;br /&gt;
+&lt;br /&gt;
+* A new shader process called Front Normal has been added to the engine. This process takes a normal vector as input and negates its ''z'' component if the ''z'' component of the tangent-space light direction is negative. This is useful when rendering two-sided triangles with a normal map because it has the effect of always facing the normal vector to the front with respect to the light direction.&lt;br /&gt;
+&lt;br /&gt;
+* The second input for the Set if Less Than and Set if Greater Equal shader processes has been made optional. If the second input is omitted, then it is assumed to be zero.&lt;br /&gt;
+&lt;br /&gt;
+=== Scripts ===&lt;br /&gt;
+&lt;br /&gt;
+* A new built-in script method called Terminate External Script has been added to the engine. This method causes all instances of a script running on another node to be terminated immediately.&lt;br /&gt;
+&lt;br /&gt;
+* A new built-in script method called Get Script Time has been added to the engine. This method outputs the time that has elapsed since a script began running.&lt;br /&gt;
+&lt;br /&gt;
+=== Miscellaneous ===&lt;br /&gt;
+&lt;br /&gt;
+* Support for Unicode text rendering and input has been implemented throughout the engine. Strings are always encoded in UTF-8, and thus ordinary ASCII strings are not affected. The String Importer tool will properly handle any text encoded as UTF-8. The Font Generator tool has been rewritten to support the entire Basic Multilingual Plane of the Unicode Standard. See [[Generating a Font]].&lt;br /&gt;
+&lt;br /&gt;
+* Tablet support has been added to both the Windows and Mac version of C4. Stylus pressure is now taken into consideration when drawing with the terrain sculpting tools.&lt;br /&gt;
+&lt;br /&gt;
+* A new type of light source called a &amp;quot;Landscape Light&amp;quot; has been added to the engine. This light type is an infinite light that provides large-scale multiresolution shadow mapping capabilities, enabling shadow maps to be used over areas of unlimited size. The engine smoothly transitions from one resolution to another at adjustable distances from the camera.&lt;br /&gt;
+&lt;br /&gt;
+* A new flag called &amp;quot;Render at infinity&amp;quot; has been added to the Quad Effect. This causes the quad to be rendered infinitely far away in the direction of the quad's local ''z''-axis. This is useful for placing objects in the sky.&lt;br /&gt;
+&lt;br /&gt;
+* In order to be directly compatible with the new physics system, all velocities pertaining to sounds are now measured in meters per second by default. This applies to &amp;lt;code&amp;gt;Sound&amp;lt;/code&amp;gt; objects, &amp;lt;code&amp;gt;Source&amp;lt;/code&amp;gt; nodes, and the listener.&lt;br /&gt;
+&lt;br /&gt;
+* The remote portal node and camera panel item now have a minimum detail level setting. When the engine renders through one of these, the minimum detail level specifies the highest LOD that can be rendered for any particular geometry. The default value is 0, meaning that any LOD can be rendered. Setting the value to a higher number means that only LODs with that index or higher (which have lower detail) can be rendered. This is useful for decreasing the amount of processing that takes place when rendering things like reflections and refractions.&lt;br /&gt;
+&lt;br /&gt;
+* The velocity-depth-gradient buffer used by the motion blur effect has been changed to 16-bit floating-point color. This allows the higher-quality post-processing effect to be applied at any distance from the camera, and it will open up several new possibilities for other types of effects in future releases.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;wire&amp;lt;/code&amp;gt; console command has been extended so that you can specify whether wireframe lines are depth tested. The command &amp;lt;code&amp;gt;wire 2&amp;lt;/code&amp;gt; turns on wireframe with depth testing, the command &amp;lt;code&amp;gt;wire 1&amp;lt;/code&amp;gt; turns on wireframe without depth testing, and the command &amp;lt;code&amp;gt;wire 0&amp;lt;/code&amp;gt; turns off wireframe. The &amp;lt;code&amp;gt;wire&amp;lt;/code&amp;gt; command by itself still toggles the current wireframe state on or off, and depth testing retains it previous state.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Lock&amp;lt;/code&amp;gt; class has been added to the system utilities. The class implements a read/write lock that can be simultaneously acquired by multiple threads for shared access to some object or acquired by a single thread for exclusive access to the object.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Model&amp;lt;/code&amp;gt; class no longer owns the root animator assigned to it. The animator tree must be released by the code belonging to the class that creates it.&lt;br /&gt;
+&lt;br /&gt;
+* Primitive geometries now triangulate disks with a pattern that is more efficient for rasterization. This change affects the disk, cylinder, cone, truncated cone, dome, path tube, and path revolution primitives.&lt;br /&gt;
+&lt;br /&gt;
+* Resource names in PAK files are no longer case sensitive.&lt;br /&gt;
+&lt;br /&gt;
+* PAK files now take precedence in reverse lexicographical order. That is, if the same resource appears in the file &amp;lt;code&amp;gt;Patch1.pak&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Patch2.pak&amp;lt;/code&amp;gt;, then the one in &amp;lt;code&amp;gt;Patch2.pak&amp;lt;/code&amp;gt; is guaranteed to be the one that gets loaded.&lt;br /&gt;
+&lt;br /&gt;
+* Files that are written by the engine, such as config files, the log, and saved games, are now stored in special directories designated by the operating system as places where these kinds of files should be stored. Under Windows, the config files variables.cfg and input.cfg are stored in the user's roaming application data directory, and the C4Log.html file is stored in the user's non-roaming application data directory. Saved games and screenshots are stored in the user's documents directory. In all cases, the files are stored in a subdirectory having the name of the application. Under Mac OS X, all of these files are stored in the &amp;lt;code&amp;gt;~/Library/Application Support/&amp;amp;lt;application name&amp;amp;gt;/&amp;lt;/code&amp;gt; directory.&lt;br /&gt;
+&lt;br /&gt;
+* The engine contains a new mechanism that prevents game and plugin modules built for a different target from being loaded by the engine. For example, if the engine has been built for the Optimized target, it will fail to load any modules built for the Debug target. The operating system's dynamic linker won't be able to find a target-specific symbol, and that will cause it to fail and display an error message. The engine will continue running after such a failure, but the module won't be available.&lt;br /&gt;
+&lt;br /&gt;
+* A new plugin named Logitech has been added to the engine, and it manages devices made by Logitech that are capable of displaying an image on an LCD screen such as the G15 keyboard.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;natural&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;unsigned_natural&amp;lt;/code&amp;gt; types have been renamed to &amp;lt;code&amp;gt;machine_int&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;unsigned_machine_int&amp;lt;/code&amp;gt; so that it's more clear what their purpose is. This is also more consistent with the naming of the &amp;lt;code&amp;gt;machine_address&amp;lt;/code&amp;gt; type. The shorthand &amp;lt;code&amp;gt;machine&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;unsigned_machine&amp;lt;/code&amp;gt; can also be used in a way analogous to using &amp;lt;code&amp;gt;long&amp;lt;/code&amp;gt; instead of &amp;lt;code&amp;gt;long int&amp;lt;/code&amp;gt; in C. (A &amp;lt;code&amp;gt;machine_int&amp;lt;/code&amp;gt; is an integer at least 32 bits wide, but is wider as necessary for an arithmetic instruction to be executed without an extra sign extension instruction. Currently a &amp;lt;code&amp;gt;machine_int&amp;lt;/code&amp;gt; is 32 bits wide on x86 processors. On 64-bit PowerPC processors, a &amp;lt;code&amp;gt;machine_int&amp;lt;/code&amp;gt; is 64 bits wide.)&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;engine&amp;lt;/code&amp;gt; macro has been renamed to &amp;lt;code&amp;gt;C4API&amp;lt;/code&amp;gt;. The &amp;lt;code&amp;gt;module_export&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;module_import&amp;lt;/code&amp;gt; macros have been renamed to &amp;lt;code&amp;gt;C4MODULEEXPORT&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;C4MODULEIMPORT&amp;lt;/code&amp;gt;. The &amp;lt;code&amp;gt;extras_api&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;movie_api&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;editor_api&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;texture_api&amp;lt;/code&amp;gt; macros have been renamed to &amp;lt;code&amp;gt;C4EXTRASAPI&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;C4MOVIEAPI&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;C4EDITORAPI&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;C4TEXTUREAPI&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* The underlying code for panel items has been replaced with a new hierarchy of &amp;lt;code&amp;gt;Widget&amp;lt;/code&amp;gt; classes. These will be the same classes that will replace the &amp;lt;code&amp;gt;Element&amp;lt;/code&amp;gt; classes in a future version so that ordinary GUIs and panel effects both use the same unified architecture.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+=== World Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* A new terrain painting tool has been added that creates holes in the terrain mesh. This is useful for creating entrances to structures embedded in the terrain without having to laboriously dig out large caverns. Holes are indicated by a special material ID, so painting an ordinary material over a hole will restore the terrain surface.&lt;br /&gt;
+&lt;br /&gt;
+* A new terrain sculpting tool called the &amp;quot;Slope brush&amp;quot; has been added that draws conical shapes whose sides are defined by one of several slope functions. The maximum radius of the terrain brushes has also been increased to allow much larger areas of terrain to be sculpted in a single brush stroke.&lt;br /&gt;
+&lt;br /&gt;
+* A new command called &amp;quot;Optimize Terrain&amp;quot; has been added to the Geometry menu. This command simplifies the selected terrain meshes, removing the tiny and very thin triangles that are commonly produced by the marching cubes algorithm. Triangle counts tend to decrease by about 25% when applying this optimization.&lt;br /&gt;
+&lt;br /&gt;
+* A new command called &amp;quot;Generate Ambient Occlusion&amp;quot; has been added to the Geometry menu. This command calculates a static per-vertex alpha value that represents the amount of ambient light that reaches the surface at each vertex. In order to be effective, geometries must be tessellated densely enough so that the sample values are close enough together to look good. Terrain naturally has sufficient vertex density, but ambient occlusion data can be generated for any kind of geometry.&lt;br /&gt;
+&lt;br /&gt;
+* The per-vertex ambient occlusion is not rendered until the new &amp;quot;Use vertex ambient occlusion&amp;quot; flag is set for the materials used on a geometry having ambient occlusion data. The ambient light values are also available to shaders as the alpha component of the vertex color. The shader system automatically accounts for ambient occlusion, so it is not necessary to explicitly perform the occlusion calculation in a shader.&lt;br /&gt;
+&lt;br /&gt;
+* The reference marker tool has been moved to its own page called &amp;quot;Worlds&amp;quot;, and a list of referenced worlds has been added. The list shows which worlds are referenced by the current world, and selecting one lets you place a reference marker for that world in the scene with a single click. The generic reference marker tool is used to place references to new worlds that had not previously been referenced in the current world.&lt;br /&gt;
+&lt;br /&gt;
+* A popup menu with several commands pertaining to reference markers is also available in the Worlds page. The Cleanup command removes worlds that are no longer referenced from the world list. (Upon opening an existing world in this version, the Cleanup command can be used to populate the world list with the worlds that are already referenced.) The Select All command can be used to select all reference markers in the scene that refer to the world currently highlighted in the worlds list. The Select Some command can be used to randomly select a given percentage of those reference markers. Finally, the Replace Selected command changes the selected reference markers so that they refer to the currently highlighted world.&lt;br /&gt;
+&lt;br /&gt;
+* A new page called &amp;quot;Placement&amp;quot; has been added. This page contains some settings that can be applied when new nodes are placed in a scene through the perspective viewport. If placement modifications are enabled, then the new node can be rotated randomly about the &amp;lt;i&amp;gt;z&amp;lt;/i&amp;gt;-axis, aligned to the tangent plane at the placement point, and/or sunk into uneven ground so that the base of the node is automatically moved below the ground surface. These settings are useful for placing foliage on terrain, and more settings will probably be added in future releases.&lt;br /&gt;
+&lt;br /&gt;
+* An &amp;quot;Occlusion Space&amp;quot; node has been added to the Spaces page. The occlusion space acts like a box-shaped occlusion portal and blocks all nodes behind its outline on the screen from being rendered. Occlusion spaces should be embedded in large solid objects to help with visibility culling. An occlusion space is disabled whenever the camera enters its box volume.&lt;br /&gt;
+&lt;br /&gt;
+* Viewport caching has been implemented. This provides much better responsiveness when working with large, complex scenes.&lt;br /&gt;
+&lt;br /&gt;
+* The Node Info window now remembers which tab was last visited, and it will return to that tab by default the next time the Node Info window is opened (if the tab exists for the selected nodes).&lt;br /&gt;
+&lt;br /&gt;
+* Right-clicking in the perspective viewport now engages the free camera tool. The contextual menu can still be accessed by holding in Control (Command on the Mac) when right-clicking.&lt;br /&gt;
+&lt;br /&gt;
+* Holding in the Shift key while using the free camera tool now causes the camera speed to be multiplied by 5.&lt;br /&gt;
+&lt;br /&gt;
+* It is now possible to click on nodes belonging to external models and referenced worlds, and doing so selects the model node or reference marker node to which the clicked-on node belongs. When a model node or reference marker node is selected, geometries belonging to the model or referenced world are drawn with a gray wireframe as well.&lt;br /&gt;
+&lt;br /&gt;
+* Node types that have no size associated with them, such as markers, models, skyboxes, and physics joints, can now be placed in a world within the scene graph viewport. When one of the tools used to create these types of node is active, clicking on a node in the scene graph viewport causes a new node of the type represented by the current tool to be created as a subnode of the node that was clicked. The new node's transform is the identity, so its position and orientation coincides with those of its super node.&lt;br /&gt;
+&lt;br /&gt;
+* A new command called &amp;quot;Edit Script or Panel&amp;quot; has been added to the Node menu. This is a shortcut for going straight to the Script Editor or Panel Editor when a node with a script controller attached to it or a panel effect is selected. These editors are also still accessible from the Controller tab in the Node Info window.&lt;br /&gt;
+&lt;br /&gt;
+* The Mesh Tools page has been removed, and the Select Surface tool now appears at the top of the editor window.&lt;br /&gt;
+&lt;br /&gt;
+* Fog can now be disabled for a skybox by checking the &amp;quot;Do not apply fog&amp;quot; box under the Skybox tab in the Node Info window.&lt;br /&gt;
+&lt;br /&gt;
+* The terrain builder can now import RAW voxel data that has been exported from another application. A RAW file should contain an array of floating-point values stored in little endian byte order, and the size of the array should be equal to the product of the width, height, and depth of the voxel map. To be compatible with some other applications, the ''z'' coordinate varies the fastest, followed by the ''y'' coordinate, and finally the ''x'' coordinate. The importer can treat either +''y'' or +''z'' as the up direction.&lt;br /&gt;
+&lt;br /&gt;
+=== Texture Tool ===&lt;br /&gt;
+&lt;br /&gt;
+* The texture importer tool can now remember the settings that were used to import each particular texture map. A new check box called &amp;quot;Remember settings&amp;quot; has been added to the texture import dialog, and it is checked by default. When checked, the settings used to import the texture are written to a CFG file alongside the input TGA file in the Import folder. The next time the texture is imported, the information in this file is used to initialize the settings in the import dialog. The CFG file can also be used as a standalone command line that can be executed using the &amp;lt;code&amp;gt;import&amp;lt;/code&amp;gt; console command.&lt;br /&gt;
+&lt;br /&gt;
+* When a texture currently in use is re-imported, the texture is now automatically reloaded by the engine. This only works properly if the type (2D, Rect, Cube) of the texture stays the same.&lt;br /&gt;
+&lt;br /&gt;
+* A new check box called &amp;quot;Bleed colors for alpha test&amp;quot; has been added to the texture importer tool. When this box is checked, pixels having an alpha value less than 0.75 (where less than 0.5 fails the alpha test) pick up the color from the nearest pixel that passes the alpha test, up to a maximum of 16 pixels away. This process helps remove borders that can appear when alpha-tested textures are rendered. The command-line option for this setting is &amp;lt;code&amp;gt;-bleed&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;texpal&amp;lt;/code&amp;gt; command has been added for creating reference-based terrain palettes. See [[Creating a Terrain Palette]]. &lt;br /&gt;
+&lt;br /&gt;
+=== Collada Importer ===&lt;br /&gt;
+&lt;br /&gt;
+* There are two new options exposed by the Collada Importer plugin. First, imported materials can be merged with materials already existing in the scene if they are identical. Second, an existing material in the scene can be used instead of an imported material if the names match.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

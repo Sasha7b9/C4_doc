@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_4.1&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 4.1 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_4.1&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_4.1&amp;action=history"/>
+	<updated>2024-09-21T18:39:48Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_4.1&amp;diff=86&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' December 25, 2014  == Core Engine ==  * The format of animation resources has changed in this release in order to accommodate morph weight animation. Existing animation resources need to be updated before they can be used in version 4.1. A conversion utility has been included, and it can be run by typing &quot;updateanims&quot; in the command console. This utility will update all &lt;code&gt;.anm&lt;/code&gt; files in the &lt;code&gt;Data&lt;/code&gt; directory hierarchy. ''...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_4.1&amp;diff=86&amp;oldid=prev"/>
+		<updated>2023-07-15T10:17:45Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; December 25, 2014  == Core Engine ==  * The format of animation resources has changed in this release in order to accommodate morph weight animation. Existing animation resources need to be updated before they can be used in version 4.1. A conversion utility has been included, and it can be run by typing &amp;quot;updateanims&amp;quot; in the command console. This utility will update all &amp;lt;code&amp;gt;.anm&amp;lt;/code&amp;gt; files in the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory hierarchy. &amp;#039;&amp;#039;...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' December 25, 2014&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+* The format of animation resources has changed in this release in order to accommodate morph weight animation. Existing animation resources need to be updated before they can be used in version 4.1. A conversion utility has been included, and it can be run by typing &amp;quot;updateanims&amp;quot; in the command console. This utility will update all &amp;lt;code&amp;gt;.anm&amp;lt;/code&amp;gt; files in the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory hierarchy. '''Be sure to make a backup of your &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; folder before running this utility in case something goes wrong.'''&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Constructable&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Constructor&amp;lt;/code&amp;gt; classes have been renamed to &amp;lt;code&amp;gt;Creatable&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Creator&amp;lt;/code&amp;gt; in order to eliminate the dual usage of the term &amp;quot;construct&amp;quot;. A &amp;lt;code&amp;gt;Construct()&amp;lt;/code&amp;gt; function is now used only in places where it pertains to an initialization function for an existing object, and not where it previously would create a new object and return it. In all cases when a new object is being created, the term &amp;quot;create&amp;quot; is now used. This will necessitate that each application or tool be modified at least as much as changing the &amp;lt;code&amp;gt;ConstructionApplication()&amp;lt;/code&amp;gt; or &amp;lt;code&amp;gt;ConstructPlugin()&amp;lt;/code&amp;gt; function to &amp;lt;code&amp;gt;CreateApplication()&amp;lt;/code&amp;gt; or &amp;lt;code&amp;gt;CreatePlugin()&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* Engine support for the [[Open Data Description Language]] (OpenDDL) has been upgraded to version 1.1. This adds support for underscore separators in numerical literals, support for 16-bit floating-point values, and support for octal literals.&lt;br /&gt;
+&lt;br /&gt;
+* Due to numerous bugs in Mac OS X that violate the C++ standard's requirement that memory allocated with operator new[] be deallocated with operator delete[], the debug check in the engine for operator consistency has been disabled on the Mac.&lt;br /&gt;
+&lt;br /&gt;
+=== World Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The engine now supports morph geometries (also known as blend shapes). Weighted blends of multiple morph targets are calculated by a new morph controller. The skin controller is a subclass of the morph controller so that the result of the morph can be used as the bind pose mesh for skinning.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Animator&amp;lt;/code&amp;gt; classes have been updated to support morph weight animation in addition to transform animation.&lt;br /&gt;
+&lt;br /&gt;
+* If a subzone does not have a fog space, shadow space, acoustics space, or radiosity space connector, then it will now inherit the corresponding space from the nearest parent zone that has a matching space connector.&lt;br /&gt;
+&lt;br /&gt;
+* The Move Connector modifier has been renamed to Move Connector Inside, and a new modifier named Move Connector Outside has been added. Both modifiers redirect an incoming connector that's hooked up to the instance node. The Move Connector Inside modifier redirects the connector to a named node inside the instanced world. The Move Connector Outside modifier redirects the connector to a node that the instance node is connected to in the main world. Since connectors in the instanced world that are connected to the root zone of the instanced world end up being connected to the instance node, the Move Connector Outside modifier can be used to connect a node inside an instanced world to a node outside, in the instancing world.&lt;br /&gt;
+&lt;br /&gt;
+=== Message Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* Controller IDs are no longer reused after controllers are deleted, so it's no longer possible for messages to accidentally be sent to the wrong controller on client machines in a network game.&lt;br /&gt;
+&lt;br /&gt;
+=== Interface Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;[http://c4engine.com/docs/InterfaceMgr/InterfaceMgr_SetInputManagementMode.html InterfaceMgr::SetInputManagementMode()]&amp;lt;/code&amp;gt; function now updates the input mode immediately if the management mode is set to &amp;lt;code&amp;gt;kInputManagementManual&amp;lt;/code&amp;gt;. It previously did not update the input mode until some change was made to the set of open windows.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+=== World Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* Options applied when importing a scene are now displayed at the bottom of the standard Import Scene dialog instead of in a separate window shown by the whichever import plugin (e.g., OpenGEX or Collada) is used to actually do the importing. These options are importing textures, merging materials, reusing named materials, and the overall scene scale.&lt;br /&gt;
+&lt;br /&gt;
+=== OpenGEX Importer ===&lt;br /&gt;
+&lt;br /&gt;
+* Support has been added for [[Open Game Engine Exchange | OpenGEX]] version 1.1.2. In particular, the OpenGEX Importer can now import geometries that have multiple morph targets, and it can import morph weight animation tracks.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

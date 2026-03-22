@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/The_C4_Rendering_Pipeline by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:25 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="The C4 Rendering Pipeline,Cascaded Shadow Mapping,Lights and Shadows,Motion Blur,Skyboxes" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>The C4 Rendering Pipeline - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "The_C4_Rendering_Pipeline";
+var wgTitle = "The C4 Rendering Pipeline";
+var wgAction = "view";
+var wgArticleId = "1962";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "10382";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-The_C4_Rendering_Pipeline">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">The C4 Rendering Pipeline</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<div class="thumb tright"><div class="thumbinner" style="width:592px;"><a href="Image_Pipeline.html" class="image" title="Figure 1. The major stages of the C4 Engine rendering pipeline."><img alt="Figure 1. The major stages of the C4 Engine rendering pipeline." src="../images/b/b4/Pipeline.png" width="590" height="541" border="0" class="thumbimage" /></a>  <div class="thumbcaption"><b>Figure 1.</b> The major stages of the C4 Engine rendering pipeline.</div></div></div>
+<p>The C4 Engine executes a complex sequence of rendering operations during each frame of gameplay. This article gives a high-level overview of the various components of the C4 Engine rendering pipeline so that users of the engine, having some knowledge of its internal processes, can achieve more efficient results in the C4 environment. The following sections describe the rendering stages executed by the engine in the order that they occur.
+</p>
+<a name="Structure_Pass"></a><h2> <span class="mw-headline"> Structure Pass </span></h2>
+<p>The engine first goes through the scene (using the portal system and cell graph) to determine what objects are visible to the current camera. Once these have been collected, the appropriate detail levels are determined, and the objects are rendered with a special shader to the <i>structure buffer</i>. The structure buffer is a four-channel 16-bit floating-point buffer that holds a 32-bit per-pixel linear depth and two 16-bit per-pixel screen-space derivatives of this depth. If <a href="Motion_Blur.html" title="Motion Blur"> motion blur</a> is enabled, an additional two-channel 16-bit floating-point buffer holds the per-pixel screen-space velocity. The linear depth information is used in later stages of the rendering pipeline that need it to perform specific calculations with it.
+</p>
+<a name="SSAO_Generation"></a><h2> <span class="mw-headline"> SSAO Generation </span></h2>
+<p>If screen-space ambient occlusion (SSAO) is enabled, then the engine renders a full-screen pass that calculates an approximate ambient occlusion at each pixel using the depth information in the structure buffer. The resulting ambient occlusion data is stored in a texture map that's used later to modify the intensity of the ambient lighting.
+</p>
+<a name="Cascaded_Shadow_Map"></a><h2> <span class="mw-headline"> Cascaded Shadow Map </span></h2>
+<p>If an infinite light is visible to the camera, then a <a href="Cascaded_Shadow_Mapping.html" title="Cascaded Shadow Mapping"> cascaded shadow map</a> is rendered next. The results are stored in an array texture that is used to draw shadows in the unified lighting pass.
+</p>
+<a name="Unified_Lighting_Pass"></a><h2> <span class="mw-headline"> Unified Lighting Pass </span></h2>
+<p>The unified lighting pass renders either the combined contribution of the ambient light and the infinite light or just the ambient light if no infinite light (with unified lighting enabled) is visible to the camera. Most of the major shading for the entire scene takes place here. The ambient light takes SSAO and radiosity spaces into account, and the infinite light uses the previously-rendered cascaded shadow map to draw shadows. The infinite light typically affects everything in an outside environment, but there are situations in which part of the scene is rendered with unified lighting and part is rendered with only ambient lighting. (For example, if the camera is inside a building and looking outside through a door or window.)
+</p><p>If a <a href="Skyboxes.html" title="Skyboxes"> skybox</a> is visible, then it is the last thing rendered in the unified lighting pass. This maximizes efficient use of hierarchical z-buffering hardware.
+</p><p>Effect visibility is determined during the unified lighting pass, but effects are not rendered until a later stage.
+</p>
+<a name="Additional_Lighting_Passes"></a><h2> <span class="mw-headline"> Additional Lighting Passes </span></h2>
+<p>If there are more light sources visible to the camera, then their contributions are rendered after the unified lighting pass. The engine uses a complicated algorithm to determine which lights in the scene affect regions that are visible to the camera. For each of these lights, the engine also figures out which objects in the scene may cast shadows into visible regions, and this usually includes objects that are not directly visible and thus never actually rendered.
+</p><p>For each visible light, the engine first renders shadows for all of the possible shadow castors for that light. For a point light, this involves rendering a cube shadow map, and for a spot light, this involves rendering a 2D shadow map. (There can also be additional infinite lights that involve rendering cascaded shadow maps.) Then the engine renders all objects that are both visible and illuminated by the light, being sure to prevent light from reaching surfaces that are in shadow. An object has a different shader for each of the different <a href="Lights_and_Shadows.html" title="Lights and Shadows"> types of light</a> supported by the engine.
+</p>
+<a name="Effect_Pass"></a><h2> <span class="mw-headline"> Effect Pass </span></h2>
+<p>Once the unified lighting pass and all additional lighting passes have been rendered, the special effects that were previously determined to be visible are rendered. There are a few different effect rendering stages. The first stage renders opaque effects, such as scorch mark decals, that are always applied to previously rendered opaque objects. In the second stage, transparent effects that need to be sorted, such as fire and smoke, are rendered from furthest to nearest. Finally, in the third stage, other transparent effects, such as certain particle systems that don't need to be sorted, are rendered.
+</p><p>Some effects use the depth information in the structure buffer to modify their appearance. For example, particles are able to use the depth to soften themselves when they get close to solid geometry so that clipping artifacts are not visible.
+</p>
+<a name="Multisample_Resolve"></a><h2> <span class="mw-headline"> Multisample Resolve </span></h2>
+<p>After everything in the scene has been rendered, the multisampled rendering buffer is resolved into a single-sampled buffer to apply antialiasing.
+</p>
+<a name="Postprocess_Effects"></a><h2> <span class="mw-headline"> Postprocess Effects </span></h2>
+<p>The final pass rendered by the engine takes care of postprocess effects. These are applied to the entire screen and have a constant performance cost that does not depend on the number of visible objects. The postprocess effects rendered by the engine at this point in the rendering pipeline are <a href="Motion_Blur.html" title="Motion Blur"> motion blur</a>, glow and bloom, distortion effects, and a final color transformation.
+</p>
+<a name="See_Also"></a><h2> <span class="mw-headline"> See Also </span></h2>
+<ul><li> <a href="Lights_and_Shadows.html" title="Lights and Shadows">Lights and Shadows</a>
+</li><li> <a href="Cascaded_Shadow_Mapping.html" title="Cascaded Shadow Mapping">Cascaded Shadow Mapping</a>
+</li><li> <a href="Motion_Blur.html" title="Motion Blur">Motion Blur</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 10/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:1962-0!1!0!!en!2!edit=0 and timestamp 20150119045056 -->
+<div class="printfooter">
+Retrieved from "<a href="The_C4_Rendering_Pipeline.html">http://www.terathon.com/wiki/index.php/The_C4_Rendering_Pipeline</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="The_C4_Rendering_Pipeline.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:The_C4_Rendering_Pipeline&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=The_C4_Rendering_Pipeline&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=The_C4_Rendering_Pipeline&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=The_C4_Rendering_Pipeline" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/The_C4_Rendering_Pipeline.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/The_C4_Rendering_Pipeline.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=The_C4_Rendering_Pipeline&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=The_C4_Rendering_Pipeline&amp;oldid=10382" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 18 January 2015, at 02:46.</li>
+				<li id="viewcount">This page has been accessed 14,005 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.531 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/The_C4_Rendering_Pipeline by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:25 GMT -->
+</html>

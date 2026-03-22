@@ -1,0 +1,1515 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View topic - Prototyping a MergeAnimator [Solved]</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '25';
+	var base_url = './viewtopic.php?f=5&amp;t=12141';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=18.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=18">C4 Engine Development</a> <strong>&#8249;</strong> <a href="viewforum.php-f=5.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=5">Graphics Programming</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewtopic.php-f=5&t=12141.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=5&t=12141">Prototyping a MergeAnimator [Solved]</a></h2>
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body --><div style="display: none !important;">Topics about programming 3D graphics in the C4 Engine.<br /></div>
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=5&t=12141  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=5&t=12141%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=5&t=12141" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="search-box">
+			<form method="get" id="topic-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="Search this topic…" onclick="if(this.value=='Search this topic…')this.value='';" onblur="if(this.value=='')this.value='Search this topic…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="t" value="12141" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			29 posts
+			 &bull; <a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Page <strong>1</strong> of <strong>2</strong></a> &bull; <span><strong>1</strong><span class="page-sep">, </span><a href="viewtopic.php-f=5&t=12141&start=25.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=5&t=12141&start=25">2</a></span>
+		</div>
+	
+
+</div>
+<div class="clear"></div>
+
+
+	<div id="p110330" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 class="first"><a href="#p110330">Prototyping a MergeAnimator [Solved]</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110330  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110330#p110330%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110330#p110330"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 20 Aug 2012, 14:59 </p>
+
+			
+
+			<div class="content">Hello folks,<br /><br />I've been reading thru the SpinalTwist code in the demo and the post from 2011 discussing MergeAnimator characteristics and structure in the world hierarchy.<br /><br />I'm looking to prototype a setup that uses a MergeAnimator in the most simple way. Per the 2011 post:<br /><blockquote class="uncited"><div>- MergeAnimator<br />-- BlendAnimator (for the upper body)<br />--- FrameAnimator (animation you want to play: firing)<br />--- FrameAnimator (animation you were playing: walking)<br />-- BlendAnimator (for the lower body)<br />--- FrameAnimator (animation you want to play: running)<br />--- FrameAnimator (animation you were playing: walking)<br /></div></blockquote><br /><br />is a valid structure. Currently I'm using Eric's Demo architecture:<br /><br />-- BlendAnimator<br />--- FrameAnimator<br />--- FrameAnimator<br /><br />and this works fine. So I just want to try overriding this with an animation override supported by a MergeAnimator as a prototype before separating upper body and lower body animations. This is more basic and looks like:<br /><br />-MergeAnimator<br />-- BlendAnimator<br />--- FrameAnimator<br />--- FrameAnimator<br /><br />So far, this simply crashes the app during a heap add inside the engine under the model-&gt;Animate() method. I just want to see an upper body override using a blendanimator under the MergeAnimation system.<br /><br />Does anybody know what could be used for a simple prototype with MergeAnimator, or any minimum requirements that I need to get Animate() back working again?<br /><br />EDIT: I've since setup a duplicate of Eric's architecture so now my animator hierarchy matches the 2011 post. However the code still crashes. I've searched the wiki and forums for an answer as to why or any more complete description of MergeAnimator usage but I don't see one.<br /><br /><br />Regards,<br /><br /><br />Matt S.</div>
+
+			
+				<div class="notice">Last edited by <a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a> on 05 Sep 2012, 16:13, edited 4 times in total.
+					
+				</div>
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110330">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110332" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110332">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110332  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110332#p110332%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110332#p110332"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1278.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1278" style="color: #8000C0;" class="username-coloured">Benjamin Dobell</a></strong> &raquo; 20 Aug 2012, 22:30 </p>
+
+			
+
+			<div class="content">MergeAnimators are useless without two or more sub-animators. I don't know if that's the cause of your crash as I've never tried to use a MergeAnimator without at least two sub-animators, but it's a possibility.<br /><br />For a MergeAnimator to be useful you'd need something like<br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>- MergeAnimator<br />-- BlendAnimator<br />--- FrameAnimator<br />--- Frameanimator<br />-- Any Animator<br />--- ... Sub-animators if the parent animator is not a FrameAnimator.</code></dd></dl></div>
+
+			<div id="sig110332" class="signature">Co-Founder / Director &amp; Developer at <a href="javascript:if(confirm(%27http://glassechidna.com.au/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://glassechidna.com.au/%27" tppabs="http://glassechidna.com.au/" class="postlink">Glass Echidna Pty Ltd</a><br />Contributing Author (Animation Chapter) - C4 Engine 3D Game Editing &amp; Programming</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110332">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1278.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1278" style="color: #8000C0;" class="username-coloured">Benjamin Dobell</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1042</dd><dd><strong>Joined:</strong> 30 Jun 2008, 04:51</dd><dd><strong>Location:</strong> Melbourne, Australia</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.glassechidna.com.au/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.glassechidna.com.au/%27" tppabs="http://www.glassechidna.com.au/" title="WWW: http://www.glassechidna.com.au/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110333" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110333">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110333  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110333#p110333%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110333#p110333"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1278.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1278" style="color: #8000C0;" class="username-coloured">Benjamin Dobell</a></strong> &raquo; 20 Aug 2012, 22:34 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>mschifter wrote:</cite>EDIT: I've since setup a duplicate of Eric's architecture so now my animator hierarchy matches the 2011 post. However the code still crashes. I've searched the wiki and forums for an answer as to why or any more complete description of MergeAnimator usage but I don't see one.</div></blockquote><br /><br />Sorry, it looks like you accidentally created a duplicate thread and I responded to the one that was missing the edit contained above.<br /><br />In order to determine the cause of this crash could you please publish your Preprocess() method for your CharacterController, which is presumably where you are setting up the animators. It might also be worth including your constructor if you have relevant code in there as well.</div>
+
+			<div id="sig110333" class="signature">Co-Founder / Director &amp; Developer at <a href="javascript:if(confirm(%27http://glassechidna.com.au/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://glassechidna.com.au/%27" tppabs="http://glassechidna.com.au/" class="postlink">Glass Echidna Pty Ltd</a><br />Contributing Author (Animation Chapter) - C4 Engine 3D Game Editing &amp; Programming</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110333">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1278.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1278" style="color: #8000C0;" class="username-coloured">Benjamin Dobell</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1042</dd><dd><strong>Joined:</strong> 30 Jun 2008, 04:51</dd><dd><strong>Location:</strong> Melbourne, Australia</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.glassechidna.com.au/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.glassechidna.com.au/%27" tppabs="http://www.glassechidna.com.au/" title="WWW: http://www.glassechidna.com.au/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110339" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110339">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110339  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110339#p110339%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110339#p110339"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2473.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2473" style="color: #0060C0;" class="username-coloured">yaure</a></strong> &raquo; 21 Aug 2012, 02:04 </p>
+
+			
+
+			<div class="content">Have you tried to run in debug to track down the crash?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110339">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2473.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2473"><img src="download/file.php-avatar=2473_1361481693.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2473_1361481693.png" width="48" height="48" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2473.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2473" style="color: #0060C0;" class="username-coloured">yaure</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 565</dd><dd><strong>Joined:</strong> 07 Jun 2010, 15:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110346" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110346">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110346  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110346#p110346%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110346#p110346"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 21 Aug 2012, 09:59 </p>
+
+			
+
+			<div class="content">Yaure: yes, the call stack is well into the engine (roughly 2 dozen calls when I first posted, now down to 3 calls after adding blendAnimator2) and the last bit of my code that ran was the Animate() call in the Move() function. I never run in release actually.<br /><br />Benjamin: Yeah, I don't know how I created two threads. I suppose I literally did a double-take after seeing that second one.<br /><br />Here's the relevant source:<br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>&nbsp; frameAnimator&#91;0&#93;=new FrameAnimator(model);<br />&nbsp; frameAnimator&#91;1&#93;=new FrameAnimator(model);<br />&nbsp; <br />&nbsp; blendParity=0;<br />&nbsp; <br />&nbsp; blender = new BlendAnimator(model);<br />&nbsp; blender-&gt;AddSubnode(frameAnimator&#91;0&#93;);<br />&nbsp; blender-&gt;AddSubnode(frameAnimator&#91;1&#93;);<br /><br />&nbsp; frameAnimator2&#91;0&#93;=new FrameAnimator(model);<br />&nbsp; frameAnimator2&#91;1&#93;=new FrameAnimator(model);<br />&nbsp; <br />&nbsp; blendParity2=0;<br />&nbsp; <br />&nbsp; blender2 = new BlendAnimator(model);<br />&nbsp; blender2-&gt;AddSubnode(frameAnimator2&#91;0&#93;); // note: this is corrected to use the second frame animator<br />&nbsp; blender2-&gt;AddSubnode(frameAnimator2&#91;1&#93;); // note: this is corrected to use the second frame animator<br /><br />&nbsp; mergeAnimator = new MergeAnimator(model);<br />&nbsp; mergeAnimator-&gt;AddSubnode(blender);<br />&nbsp; mergeAnimator-&gt;AddSubnode(blender2);<br /><br />//&nbsp; model-&gt;SetRootAnimator(blender);<br />&nbsp; model-&gt;SetRootAnimator(mergeAnimator);<br /></code></dd></dl><br /><br />The frameanimator and blendanimator code is directly from the Demo code. All I did was duplicate that and add a MergeAnimator parent. Here's the relevant code from MGFighter.cpp:<br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>&nbsp; &nbsp;<br />&nbsp; &nbsp;rootAnimator = new MergeAnimator(model);<br />&nbsp; &nbsp;mergeAnimator = new MergeAnimator(model);<br />&nbsp; &nbsp;blendAnimator = new BlendAnimator(model);<br />&nbsp; &nbsp;frameAnimator&#91;0&#93; = new FrameAnimator(model);<br />&nbsp; &nbsp;frameAnimator&#91;1&#93; = new FrameAnimator(model);<br />&nbsp; &nbsp;frameAnimator&#91;1&#93;-&gt;GetFrameInterpolator()-&gt;SetCompletionProc(&amp;MotionComplete, this);<br />&nbsp; &nbsp;weaponIKAnimator&#91;0&#93; = new WeaponIKAnimator(model, model-&gt;FindNode(Text::StaticHash&lt;'B', 'i', 'p', '0', '0', '1', '_', 'L', '_', 'U', 'p', 'p', 'e', 'r', 'A', 'r', 'm'&gt;::value), 'mntl');<br />&nbsp; &nbsp;weaponIKAnimator&#91;1&#93; = new WeaponIKAnimator(model, model-&gt;FindNode(Text::StaticHash&lt;'B', 'i', 'p', '0', '0', '1', '_', 'R', '_', 'U', 'p', 'p', 'e', 'r', 'A', 'r', 'm'&gt;::value), 'mntr');<br />&nbsp; &nbsp;<br />&nbsp; &nbsp;rootAnimator-&gt;AddSubnode(mergeAnimator);<br />&nbsp; &nbsp;rootAnimator-&gt;AddNewSubnode(weaponIKAnimator&#91;0&#93;);<br />&nbsp; &nbsp;rootAnimator-&gt;AddNewSubnode(weaponIKAnimator&#91;1&#93;);<br />&nbsp; &nbsp;mergeAnimator-&gt;AddSubnode(blendAnimator);<br />&nbsp; &nbsp;blendAnimator-&gt;AddSubnode(frameAnimator&#91;0&#93;);<br />&nbsp; &nbsp;blendAnimator-&gt;AddSubnode(frameAnimator&#91;1&#93;);<br />&nbsp; &nbsp;model-&gt;SetRootAnimator(rootAnimator);<br /></code></dd></dl><br /><br />and from MGGusGraves.cpp:<br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>&nbsp; &nbsp;Animator *animator = GetMergeAnimator();<br />&nbsp; &nbsp;<br />&nbsp; &nbsp;spineTwistAnimator = new SpineTwistAnimator(model, model-&gt;FindNode(Text::StaticHash&lt;'B', 'i', 'p', '0', '0', '1', '_', 'S', 'p', 'i', 'n', 'e'&gt;::value));<br />&nbsp; &nbsp;animator-&gt;AddNewSubnode(spineTwistAnimator);<br />&nbsp; &nbsp;<br />&nbsp; &nbsp;FrameAnimator *frameAnimator = GetFrameAnimator(0);<br />&nbsp; &nbsp;frameAnimator-&gt;SetAnimation(&quot;gus/Stand&quot;);<br />&nbsp; &nbsp;<br />&nbsp; &nbsp;frameAnimator = GetFrameAnimator(1);<br />&nbsp; &nbsp;frameAnimator-&gt;SetAnimation(&quot;gus/Stand&quot;);<br /></code></dd></dl></div>
+
+			
+				<div class="notice">Last edited by <a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a> on 22 Aug 2012, 08:39, edited 1 time in total.
+					
+				</div>
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110346">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110366" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110366">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110366  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110366#p110366%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110366#p110366"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1278.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1278" style="color: #8000C0;" class="username-coloured">Benjamin Dobell</a></strong> &raquo; 21 Aug 2012, 20:37 </p>
+
+			
+
+			<div class="content">You should be using AddNewSubnode() instead of AddSubnode() so that Preprocess() is called.<br /><br />EDIT:<br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>&nbsp; blender2 = new BlendAnimator(model);<br />&nbsp; blender2-&gt;AddSubnode(frameAnimator&#91;0&#93;);<br />&nbsp; blender2-&gt;AddSubnode(frameAnimator&#91;1&#93;);</code></dd></dl><br /><br />However, this is more than likely your problem. You've added the same frame animators to blender2, which will remove them from blender1. Presumably you meant frameAnimator2. I suggest more meaningful names if possible so you don't get confused.</div>
+
+			<div id="sig110366" class="signature">Co-Founder / Director &amp; Developer at <a href="javascript:if(confirm(%27http://glassechidna.com.au/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://glassechidna.com.au/%27" tppabs="http://glassechidna.com.au/" class="postlink">Glass Echidna Pty Ltd</a><br />Contributing Author (Animation Chapter) - C4 Engine 3D Game Editing &amp; Programming</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110366">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1278.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1278" style="color: #8000C0;" class="username-coloured">Benjamin Dobell</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1042</dd><dd><strong>Joined:</strong> 30 Jun 2008, 04:51</dd><dd><strong>Location:</strong> Melbourne, Australia</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.glassechidna.com.au/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.glassechidna.com.au/%27" tppabs="http://www.glassechidna.com.au/" title="WWW: http://www.glassechidna.com.au/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110374" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110374">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110374  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110374#p110374%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110374#p110374"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 22 Aug 2012, 08:26 </p>
+
+			
+
+			<div class="content"><blockquote class="uncited"><div>Presumably you meant frameAnimator2</div></blockquote><br /><br />Whoops -- I certainly slipped there. Thanks.<br /><br />I'll give this a shot right away.<br /><br />Regards,<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110374">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110375" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110375">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110375  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110375#p110375%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110375#p110375"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 22 Aug 2012, 08:37 </p>
+
+			
+
+			<div class="content">Benjamin,<br /><br />Oh man, you were right -- the only error I had was the frameAnimator name in those two calls. I'm now just seeing my override animation, which is correct.<br /><br />EDIT: Although seeing my override animation is correct, now that I've tried blending upper body and lower body separate animations does not work. Simplifying the code to do a run animation on the lower body and a gun carry on the upper animation, I get frozen legs.There is some animation overlap on the spine, however there's no overlap on the legs.<br /><br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110375">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110493" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110493">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110493  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110493#p110493%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110493#p110493"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 28 Aug 2012, 11:24 </p>
+
+			
+
+			<div class="content">Hello Folks,<br /><br />I have been looking at Demo and C4 code regarding animator usage. Mine isn't working and so I have some questions.<br /><br />1. Let's say I have two animations to combine, one at the right hand, and the other at the root bone. Does the MergeAnimator have to point at the root bone or at the right hand? In this case, the root bone animation doesn't animate the right hand.<br /><br />2. This is another case of two animations to combine. One is a running animation, chiefly of the lower part of the skeleton, but starting with the pelvis (root bone). The other is an animation to carry a weapon, which uses chiefly the upper part of the skeleton, but it starts with the spine. The spine is parent to both the upper body and lower body. Here is the animator structure:<br /><br />-MergeAnimator<br />--BlendAnimatorUpper<br />---FrameAnimatorUpper-&gt;root bone<br />---FrameAnimatorUpper-&gt;root bone<br />--BlendAnimatorLower<br />---FrameAnimatorLower-&gt;root bone<br />---FrameAnimatorLower-&gt;root bone<br /><br />Here is the bone structure:<br />-pelvis<br />--spine<br />---spineLower<br />----Left Clavicle<br />----RightClavicle<br />----LeftThigh<br />----RightThigh<br /><br />For the upper body animation, carrying a weapon, the leg channels are removed. For the lower body animation, the Clavicle channels are removed. When I use this setup, I get only the upper body animation. The leg channels remain stationary.<br /><br />At this point, after looking through the code, I'm not sure why the merge doesn't happen.<br /><br />All help is much appreciated.<br /><br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110493">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110513" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110513">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110513  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110513#p110513%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110513#p110513"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1278.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1278" style="color: #8000C0;" class="username-coloured">Benjamin Dobell</a></strong> &raquo; 28 Aug 2012, 22:50 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>mschifter wrote:</cite>1. Let's say I have two animations to combine, one at the right hand, and the other at the root bone. Does the MergeAnimator have to point at the root bone or at the right hand? In this case, the root bone animation doesn't animate the right hand.</div></blockquote><br />Root bone.<br /><br /><blockquote><div><cite>mschifter wrote:</cite>2. This is another case of two animations to combine. One is a running animation, chiefly of the lower part of the skeleton, but starting with the pelvis (root bone). The other is an animation to carry a weapon, which uses chiefly the upper part of the skeleton, but it starts with the spine. The spine is parent to both the upper body and lower body. Here is the animator structure:<br /><br />-MergeAnimator<br />--BlendAnimatorUpper<br />---FrameAnimatorUpper-&gt;root bone<br />---FrameAnimatorUpper-&gt;root bone<br />--BlendAnimatorLower<br />---FrameAnimatorLower-&gt;root bone<br />---FrameAnimatorLower-&gt;root bone<br /><br />Here is the bone structure:<br />-pelvis<br />--spine<br />---spineLower<br />----Left Clavicle<br />----RightClavicle<br />----LeftThigh<br />----RightThigh<br /><br />For the upper body animation, carrying a weapon, the leg channels are removed. For the lower body animation, the Clavicle channels are removed. When I use this setup, I get only the upper body animation. The leg channels remain stationary.<br /><br />At this point, after looking through the code, I'm not sure why the merge doesn't happen.</div></blockquote><br /><br />Sorry, it's a tad difficult for me to follow all that. But I believe you want the following:<br /><br />- MergeAnimator (pelvis)<br />-- BlendAnimator (pelvis)<br />--- FrameAnimator (pelvis)<br />--- FrameAnimator (pelvis)<br />-- BlendAnimator (spineLower)<br />--- FrameAnimator (spineLower)<br />--- FrameAnimator (spinerLower)<br /><br />As such, the output from the second BlendAnimator will overwrite the output from the first BlendAnimator for the spineLower bone and its sub-bones.</div>
+
+			<div id="sig110513" class="signature">Co-Founder / Director &amp; Developer at <a href="javascript:if(confirm(%27http://glassechidna.com.au/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://glassechidna.com.au/%27" tppabs="http://glassechidna.com.au/" class="postlink">Glass Echidna Pty Ltd</a><br />Contributing Author (Animation Chapter) - C4 Engine 3D Game Editing &amp; Programming</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110513">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1278.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1278" style="color: #8000C0;" class="username-coloured">Benjamin Dobell</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1042</dd><dd><strong>Joined:</strong> 30 Jun 2008, 04:51</dd><dd><strong>Location:</strong> Melbourne, Australia</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.glassechidna.com.au/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.glassechidna.com.au/%27" tppabs="http://www.glassechidna.com.au/" title="WWW: http://www.glassechidna.com.au/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110522" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110522">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110522  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110522#p110522%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110522#p110522"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 29 Aug 2012, 08:14 </p>
+
+			
+
+			<div class="content">Thanks very much Benjamin. As you can see, I've been a bit lost with the rules for using the animators properly.<br /><br />I look forwards to getting past this issue.<br /><br /><br />Regards,<br /><br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110522">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110524" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><img src="images/icons/smile/question.gif" tppabs="http://www.terathon.com/forums/images/icons/smile/question.gif" width="16" height="16" alt="" /> <a href="#p110524">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110524  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110524#p110524%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110524#p110524"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 29 Aug 2012, 09:26 </p>
+
+			
+
+			<div class="content">Hello Benjamin/Eric,<br /><br />I'm getting a crash in the engine when trying to run two animations side-by-side. The crash happens well into ExecuteAnimationFrame. Here's the relevant part of the call stack:<br /> 	C4Engine.exe!C4::operator*(const C4::Point3D &amp; p={...}, float t=0.00000000)  Line 716 + 0x8 bytes	C++<br />&gt;	C4Engine.exe!C4::FrameAnimator::ExecuteAnimationFrame(float frame=0.00000000)  Line 715 + 0x17 bytes	C++<br /> 	C4Engine.exe!C4::FrameAnimator::Move()  Line 764	C++<br /> 	C4Engine.exe!C4::Animator::Move()  Line 374	C++<br /> 	C4Engine.exe!C4::BlendAnimator::Move()  Line 510	C++<br /> 	C4Engine.exe!C4::Animator::Move()  Line 374	C++<br /> 	C4Engine.exe!C4::Model::Animate()  Line 1074	C++<br /> 	TREx_Stealth.dll!C4::SoldierController::Move()  Line 848 + 0x11 bytes	C++<br /><br />And here's the relevant code from C4Animation.cpp, starting at line 706:<br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>Please do not post engine source in the public forums.</code></dd></dl><br />The count is 37, however the 28th position of the remapTable (line 711) has index 32716. All previous index values are index i+2, so basically at array a[15] is the value 17, and so on.<br /><br />I'm thinking that this is happening because there is a different number of frames between one frame animator and the next, but I'm not sure.<br /><br />I would very much appreciate any insights into this crash or any things I should check about my animations. I'm confident the source data is legit, with the exception that although I used a partial skeleton on each of the animations, I'm not sure that the blender c4 exporter only included those skeletal channels that I animated.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110524">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110527" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110527">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110527  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110527#p110527%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110527#p110527"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 29 Aug 2012, 10:25 </p>
+
+			
+
+			<div class="content">The value 32716 is 0x7FCC, which means &quot;uninitialized&quot;. It's possible that there's a mismatch between the node names in the model and animation data, so at least one entry in the table couldn't be filled in.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110527">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110531" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110531">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110531  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110531#p110531%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110531#p110531"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 29 Aug 2012, 11:37 </p>
+
+			
+
+			<div class="content">Eric,<br /><br /><blockquote class="uncited"><div>It's possible that there's a mismatch between the node names in the model and animation data</div></blockquote><br /><br />EDIT (clarified): I've checked the FindNode results that became the targets for the frame animators and they are valid, meaning the bone names are as expected. There is, however, a definite mismatch between the rigging in the upper body animation versus the lower body animation. Could this be the problem? Do I need <span style="font-weight: bold">full rigging </span>in <span style="font-weight: bold">both upper </span>and <span style="font-weight: bold">lower </span>body animations even though I'm only using parts of each rig and merging them?<br /><br />EDIT: Also, the crash I'm getting only applies when I set the <span style="font-weight: bold">frameAnimator's</span> target node to SpineLower.<br /><br />EDIT: Some more information: there's no mismatch possible between bone names.<br /><br />Regards,<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110531">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110582" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110582">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110582  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110582#p110582%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110582#p110582"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 30 Aug 2012, 10:46 </p>
+
+			
+
+			<div class="content">Eric,<br /><br />I went back and tried fully rigged animations. First off, that count on the number of nodes is 37 according to the engine, if I'm reading that right. There's only 33 joints in the full skeleton.<br /><br />So I've no idea where this mismatch could be coming from.<br />EDIT: There are four other nodes not part of the skeleton: gun mesh, muzzle flash mesh, character mesh, and physics capsule.<br /><br />But the full-body animations do not blend partially either.<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110582">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110585" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110585">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110585  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110585#p110585%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110585#p110585"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 30 Aug 2012, 11:48 </p>
+
+			
+
+			<div class="content">Make sure you have checked the &quot;Do not apply model animation&quot; box for any nodes that you don't have animation data for. (This is the kNodeAnimateInhibit flag if you want to do it in code.)</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110585">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110590" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110590">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110590  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110590#p110590%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110590#p110590"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 30 Aug 2012, 12:41 </p>
+
+			
+
+			<div class="content">Eric,<br /><br />I see this box for mesh objects and for bones.<br /><br />Two mesh objects aren't animated -- I can set that no problem. (This didn't bring about any change).<br /><br />However, bone objects can change status over an animation. Do I need to set this flag correctly for each bone for each frame of animation?<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110590">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110599" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110599">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110599  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110599#p110599%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110599#p110599"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 30 Aug 2012, 14:40 </p>
+
+			
+
+			<div class="content">Eric,<br /><br />With my two meshes disabled for animation (gun and muzzleflash), I'm continuing to try alternatives...<br /><br />I tried blending two animations that both have full skeletons and both animate the legs, one running, the other walking. I get one cycle of leg animation and then the model stops animating. This, in general, is what I'm looking at.<br /><br />Any help would be much appreciated.<br /><br />Regards,<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110599">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110608" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110608">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110608  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110608#p110608%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110608#p110608"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 31 Aug 2012, 10:25 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>mschifter wrote:</cite>However, bone objects can change status over an animation. Do I need to set this flag correctly for each bone for each frame of animation?</div></blockquote><br /><br />What do you mean by this? Either the imported animation data contains transforms for a bone over the entire animation or it contains no transforms for the bone at all.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110608">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110609" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110609">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110609  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110609#p110609%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110609#p110609"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 31 Aug 2012, 10:51 </p>
+
+			
+
+			<div class="content">Hi Eric,<br /><br />Thanks for your reply.<br /><br />What I mean is that bones may change transforms during some frames only. For example, a guy is aiming a rifle. The weapon is lifted up to his shoulder and he bends his head/neck to look through the sights. Then that position stays static for a second to represent aiming delay. During that time, the rifle, head, and neck transforms are unchanging. This unchanging state is what I meant for the bones being unchanging, and whether this flag should be changed during these unchanging frames.<br /><br />However, I believe you've already addressed this in your statement:<br /><blockquote class="uncited"><div>Either the imported animation data contains transforms for a bone over the entire animation or it contains no transforms for the bone at all.</div></blockquote><br /><br />So in this case I've got animation &quot;components&quot; for the upper body only or the lower body only or a mix of the two. These are what I'm trying to combine. So the guy can be still, walk, or run using lower body animation only, and then separately go from carrying the rifle to firing the rifle using upper body animation only. I've tried combining animation files that use all bones and I've tried combining animation files that use only the active bones. In the case where active only bones are animated, unused bones are deleted. I assume Jack's exporter only exports the remaining visible bones. Of course the C4 model always has the full skeleton, and I also assume it's ok that the animation does not have the full skeleton.<br /><br />Regards,<br /><br />Matt<br /><br />EDIT: One of the things that is <span style="font-style: italic">not</span> happening is the completion of any animation. I've removed any loop attributes of any animation, and every frame animator has a completion callback:<br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>&nbsp; frameAnimator&#91;0&#93;-&gt;GetFrameInterpolator()-&gt;SetCompletionProc(AnimationLowerCompletedCallback, this);<br />&nbsp; frameAnimator&#91;0&#93;-&gt;GetFrameInterpolator()-&gt;SetLoopProc(AnimationLowerCompletedCallback, this);<br />&nbsp; frameAnimator&#91;1&#93;-&gt;GetFrameInterpolator()-&gt;SetCompletionProc(AnimationLowerCompletedCallback, this);<br />&nbsp; frameAnimator&#91;1&#93;-&gt;GetFrameInterpolator()-&gt;SetLoopProc(AnimationLowerCompletedCallback, this);<br /><br />&nbsp; frameAnimator2&#91;0&#93;-&gt;GetFrameInterpolator()-&gt;SetCompletionProc(AnimationUpperCompletedCallback, this);<br />&nbsp; frameAnimator2&#91;0&#93;-&gt;GetFrameInterpolator()-&gt;SetLoopProc(AnimationUpperCompletedCallback, this);<br />&nbsp; frameAnimator2&#91;1&#93;-&gt;GetFrameInterpolator()-&gt;SetCompletionProc(AnimationUpperCompletedCallback, this);<br />&nbsp; frameAnimator2&#91;1&#93;-&gt;GetFrameInterpolator()-&gt;SetLoopProc(AnimationUpperCompletedCallback, this);<br /></code></dd></dl><br />EDIT: found the cause of this -- the StartAnimation/BlendAnimation code removes the callback.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110609">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110700" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110700">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110700  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110700#p110700%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110700#p110700"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 04 Sep 2012, 14:06 </p>
+
+			
+
+			<div class="content">Eric,<br /><br />I've been researching this problem, and found a fundamental problem that is mangling my animation.<br /><br />I have BlendAnimation and StartAnimation (from the 31st code) for upper and lower body animations. If I play an animation calling StartAnimationLower, the animation is mangled and the character model implodes, appearing to have all body parts separated and centered at their origin. If I play the same exact animation using StartAnimationUpper, everything looks fine.<br /><br />The only difference is the order they are added to the scenegraph under the blend nodes, and verifying it by reversing the AddSubnode(blender)/AddSubnode(blender2), that is indeed the cause.<br /><br />So I tried to merge upper and lower animations by calling StartAnimationUpper first, then StartAnimationLower next, but I still get no blending between the two. The legs remain still. I need to push beyond this issue. If we need to start an incident to move forward, please let me know.<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110700">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110703" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110703">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110703  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110703#p110703%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110703#p110703"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 04 Sep 2012, 16:20 </p>
+
+			
+
+			<div class="content">Can you post the node hierarchy for your model (a screenshot of the scene graph viewport would be great) and post the updated source code showing how your setting up your animators?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110703">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110712" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110712">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110712  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110712#p110712%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110712#p110712"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 05 Sep 2012, 08:30 </p>
+
+			
+
+			<div class="content">Sure thing. Please find attached the bone hierarchy snapshot.<br /><br />Regarding scene setup, here's the upper (names ending in 2) and lower animator setups:<br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>&nbsp; frameAnimator&#91;0&#93;=new FrameAnimator(model);<br />&nbsp; frameAnimator&#91;1&#93;=new FrameAnimator(model);<br />&nbsp; <br />&nbsp; blendParity=0;<br />&nbsp; <br />&nbsp; blender = new BlendAnimator(model);<br />&nbsp; blender-&gt;AddSubnode(frameAnimator&#91;0&#93;);<br />&nbsp; blender-&gt;AddSubnode(frameAnimator&#91;1&#93;);<br /><br />&nbsp; frameAnimator2&#91;0&#93;=new FrameAnimator(model);<br />&nbsp; frameAnimator2&#91;1&#93;=new FrameAnimator(model);<br />&nbsp; <br />&nbsp; blendParity2=0;<br />&nbsp; <br />&nbsp; blender2 = new BlendAnimator(model);<br />&nbsp; blender2-&gt;AddSubnode(frameAnimator2&#91;0&#93;);<br />&nbsp; blender2-&gt;AddSubnode(frameAnimator2&#91;1&#93;);<br /><br />&nbsp; mergeAnimator = new MergeAnimator(model);<br />&nbsp; mergeAnimator-&gt;AddSubnode(blender);<br />&nbsp; mergeAnimator-&gt;AddSubnode(blender2);<br /><br />&nbsp; model-&gt;SetRootAnimator(mergeAnimator);<br /></code></dd></dl><br /><br /><br /><br />Thanks,<br /><br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110712">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110714" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110714">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110714  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110714#p110714%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110714#p110714"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 05 Sep 2012, 10:15 </p>
+
+			
+
+			<div class="content">In this setup, the merge animator will always cause the result of the second blend animator to be applied to the model, and the first one will be overwritten. I thought you were applying different animations to different parts of the skeleton. The merge animator is not useful unless its inputs target different subtrees of the model being animated.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110714">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110715" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110715">Re: Prototyping a MergeAnimator</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110715  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110715#p110715%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110715#p110715"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a></strong> &raquo; 05 Sep 2012, 10:21 </p>
+
+			
+
+			<div class="content">Eric,<br /><br />Well this is good to hear, meaning it still might be a simple fix.<br /><br />I <span style="font-style: italic">am </span>wanting to combine upper and lower body animations. I thought this is what I set up:<br /><br />MergeAnimator // root animator<br />-blendLower // outputs will be lower body only<br />--frame1 // runs the lower body animation<br />--frame2 // runs during blends between lower body animations<br />-blendUpper<br />--frame1 // same as for lower body<br />--frame2<br /><br />EDIT: Both blend animators were set to the root of the model. So I changed them: for the bone hierarchy below, I set the upper animation root bone to be the neck (parent of the clavicles), and the lower root bone to be the spine (parent of the thighs).<br /><br />This doesn't seem to help. I still only see upper body animation. The upper body animation nodes start at the clavicle nodes, and the lower body animations nodes start at the thigh nodes. So I would think there's no conflict.<br /><br />Once again, if I try to change the frameAnimator target node, I get a crash in the engine, so I leave that pointing to the root of the model.<br /><br />If this setup is wrong semantically, what would be the correct setup?<br /><br />Matt</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110715">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2943.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2943" style="color: #0060C0;" class="username-coloured">mschifter</a>
+			</dt>
+
+			<dd>Advanced User<br /><img src="images/ranks/PlasmaRank3.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank3.png" alt="Advanced User" title="Advanced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 327</dd><dd><strong>Joined:</strong> 24 Feb 2012, 13:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<form id="viewtopic" method="post" action="http://www.terathon.com/forums/viewtopic.php?f=5&t=12141">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		<a href="viewtopic.php-f=5&t=12141&start=25.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=5&t=12141&start=25" class="right-box right">Next</a>
+		<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+		
+	</fieldset>
+
+	</form>
+	<hr />
+
+
+<div class="topic-actions">
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=5&t=12141  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=5&t=12141%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=5&t=12141" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="pagination">
+			29 posts
+			 &bull; <a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Page <strong>1</strong> of <strong>2</strong></a> &bull; <span><strong>1</strong><span class="page-sep">, </span><a href="viewtopic.php-f=5&t=12141&start=25.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=5&t=12141&start=25">2</a></span>
+		</div>
+	
+</div>
+
+
+	<p></p><p><a href="viewforum.php-f=5.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=5" class="left-box left" accesskey="r">Return to Graphics Programming</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5" selected="selected">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: <span style="color: #9E8DA7;" class="username-coloured">Google [Bot]</span> and 1 guest</p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

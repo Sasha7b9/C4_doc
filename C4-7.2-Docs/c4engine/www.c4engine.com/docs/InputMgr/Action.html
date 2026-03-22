@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class Action</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/InputMgr/index.html">Input Manager</a> &#x25BA; <a href="Action.html" tppabs="http://www.c4engine.com/docs/InputMgr/Action.html">class Action</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class Action</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Input.h</code></div>
+The <code>Action</code> class represents an action that can be triggered by an input control.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;Action&nbsp;:&nbsp;<span style="color: #0000FF">public</span>&nbsp;LinkTarget&lt;Action&gt;,&nbsp;<span style="color: #0000FF">public</span>&nbsp;ListElement&lt;Action&gt;,&nbsp;<span style="color: #0000FF">public</span>&nbsp;Memory&lt;InputDevice&gt;</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="Action_GetActionType.html" tppabs="http://www.c4engine.com/docs/InputMgr/Action_GetActionType.html">Action::GetActionType</a></code></td>
+<td class="tableright1">Returns the type of action.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Action_HandleEngage.html" tppabs="http://www.c4engine.com/docs/InputMgr/Action_HandleEngage.html">Action::HandleEngage</a></code></td>
+<td class="tableright">Called when an associated input control is engaged.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Action_HandleDisengage.html" tppabs="http://www.c4engine.com/docs/InputMgr/Action_HandleDisengage.html">Action::HandleDisengage</a></code></td>
+<td class="tableright">Called when an associated input control is disengaged.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Action_HandleDirectionalUpdate.html" tppabs="http://www.c4engine.com/docs/InputMgr/Action_HandleDirectionalUpdate.html">Action::HandleDirectionalUpdate</a></code></td>
+<td class="tableright">Called when an associated input control has new directional data.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Action_HandleAxisUpdate.html" tppabs="http://www.c4engine.com/docs/InputMgr/Action_HandleAxisUpdate.html">Action::HandleAxisUpdate</a></code></td>
+<td class="tableright">Called when an associated input control has new axis data.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Action_HandleSliderUpdate.html" tppabs="http://www.c4engine.com/docs/InputMgr/Action_HandleSliderUpdate.html">Action::HandleSliderUpdate</a></code></td>
+<td class="tableright">Called when an associated input control has new slider data.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code><span style="color: #0000FF">explicit</span>&nbsp;Action(ActionType&nbsp;type);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>type</code></td>
+<td class="tableright1">The type of the action.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+An application typically creates several <code>Action</code> objects representing the various actions that a player can perform in a game. Examples of actions are forward and backward movements and firing a weapon. Once an action object is created, it must be registered with the Input Manager by calling the <code><a href="InputMgr_AddAction.html" tppabs="http://www.c4engine.com/docs/InputMgr/InputMgr_AddAction.html">InputMgr::AddAction</a></code> function.<br/><br/> An action object is assigned to an input control by calling the <code><a href="InputControl_SetInputControlAction.html" tppabs="http://www.c4engine.com/docs/InputMgr/InputControl_SetInputControlAction.html">InputControl::SetInputControlAction</a></code> function. One action object may be assigned to multiple input controls. After an action object is assigned to an input control, it can receive calls to its virtual member functions in response to user input to that input control.<br/><br/> Each action must have a unique type. An application can choose any 32-bit identifier that does not consist entirely of uppercase letters and numbers to pass in the <code>type</code> paramater of the <code>Action</code> constructor.
+<div class="heading">Base Classes</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="../Utilities/LinkTarget.html" tppabs="http://www.c4engine.com/docs/Utilities/LinkTarget.html">LinkTarget&lt;Action&gt;</a></code></td>
+<td class="tableright1">Used internally by the Input Manager.
+</td></tr>
+<tr><td class="tableleft"><code><a href="../Utilities/ListElement.html" tppabs="http://www.c4engine.com/docs/Utilities/ListElement.html">ListElement&lt;Action&gt;</a></code></td>
+<td class="tableright">Used internally by the Input Manager.
+</td></tr>
+<tr><td class="tableleft"><code><a href="../MemoryMgr/Memory.html" tppabs="http://www.c4engine.com/docs/MemoryMgr/Memory.html">Memory&lt;InputDevice&gt;</a></code></td>
+<td class="tableright">Actions are allocated in a dedicated heap.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="InputControl.html" tppabs="http://www.c4engine.com/docs/InputMgr/InputControl.html">InputControl</a></code>
+</p>
+<p><code><a href="InputMgr_AddAction.html" tppabs="http://www.c4engine.com/docs/InputMgr/InputMgr_AddAction.html">InputMgr::AddAction</a></code>
+</p>
+<p><code><a href="InputMgr_RemoveAction.html" tppabs="http://www.c4engine.com/docs/InputMgr/InputMgr_RemoveAction.html">InputMgr::RemoveAction</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

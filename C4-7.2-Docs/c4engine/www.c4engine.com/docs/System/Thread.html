@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>class Thread</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/System/index.html">System Utilities</a> &#x25BA; <a href="Thread.html" tppabs="http://www.c4engine.com/docs/System/Thread.html">class Thread</a></div>
+</td></tr></table>
+<div class="content">
+<h2>class Thread</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Threads.h</code></div>
+The <code>Thread</code> class encapsulates a thread of execution.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">class</span>&nbsp;Thread</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="Thread_GetThreadSignal.html" tppabs="http://www.c4engine.com/docs/System/Thread_GetThreadSignal.html">Thread::GetThreadSignal</a></code></td>
+<td class="tableright1">Returns the signal associated with the thread.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Thread_SetThreadSignal.html" tppabs="http://www.c4engine.com/docs/System/Thread_SetThreadSignal.html">Thread::SetThreadSignal</a></code></td>
+<td class="tableright">Sets the signal associated with the thread.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Thread_SetThreadPriority.html" tppabs="http://www.c4engine.com/docs/System/Thread_SetThreadPriority.html">Thread::SetThreadPriority</a></code></td>
+<td class="tableright">Sets the priority of a thread.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Thread_ThreadComplete.html" tppabs="http://www.c4engine.com/docs/System/Thread_ThreadComplete.html">Thread::ThreadComplete</a></code></td>
+<td class="tableright">Indicates whether a thread has completed execution.
+</td></tr>
+</table>
+<div class="heading">Constructor</div>
+<p><code>Thread(ThreadCallback&nbsp;*callback,&nbsp;<span style="color: #0000FF">void</span>&nbsp;*cookie,&nbsp;<span style="color: #0000FF">uint32</span>&nbsp;stack&nbsp;=&nbsp;0,&nbsp;Signal&nbsp;*signal&nbsp;=&nbsp;<span style="color: #0000FF">nullptr</span>);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>callback</code></td>
+<td class="tableright1">The entry point for the thread.
+</td></tr>
+<tr><td class="tableleft"><code>cookie</code></td>
+<td class="tableright">A pointer to user-defined data that is passed to the thread's entry point.
+</td></tr>
+<tr><td class="tableleft"><code>stack</code></td>
+<td class="tableright">The thread's stack size in bytes. If this is 0, then the default stack size is used.
+</td></tr>
+<tr><td class="tableleft"><code>signal</code></td>
+<td class="tableright">The signal object to assign to the thread.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>Thread</code> class defines a platform-independent thread object that can be used to achieve multithreaded execution. When a new <code>Thread</code> object is constructed, the entry function specified by the <code>callback</code> parameter begins executing immediately. The pointer passed into the <code>cookie</code> parameter is passed to the thread's entry function, which must have the following signature.
+<p><code><span style="color: #0000FF">typedef</span>&nbsp;<span style="color: #0000FF">void</span>&nbsp;ThreadCallback(<span style="color: #0000FF">const</span>&nbsp;Thread&nbsp;*,&nbsp;<span style="color: #0000FF">void</span>&nbsp;*);</code></p>
+If the <code>stack</code> parameter is not zero, then it specifies the size of the stack allocated for the thread. Otherwise, the default stack size, as determined by the operating system, is used.<br/><br/> If the <code>signal</code> parameter is not <code><span style="color: #0000FF">nullptr</span></code>, then it specifies a <code><a href="Signal.html" tppabs="http://www.c4engine.com/docs/System/Signal.html">Signal</a></code> object that is assigned to the thread. When a <code>Thread</code> object is destroyed and it has a <code>Signal</code> object assigned to it, the thread triggers signal 0 to indicate that the thread should exit.
+<div class="heading">See Also</div>
+<p><code><a href="Lock.html" tppabs="http://www.c4engine.com/docs/System/Lock.html">Lock</a></code>
+</p>
+<p><code><a href="Mutex.html" tppabs="http://www.c4engine.com/docs/System/Mutex.html">Mutex</a></code>
+</p>
+<p><code><a href="Signal.html" tppabs="http://www.c4engine.com/docs/System/Signal.html">Signal</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

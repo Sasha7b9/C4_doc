@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>Oscillation Tutorial - C4 Engine Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"Zu8QQXmJK9Y7xO_ah3dGaQAAAIs","wgCSPNonce":false,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Oscillation_Tutorial","wgTitle":"Oscillation Tutorial","wgCurRevisionId":167,"wgRevisionId":167,"wgArticleId":165,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Tutorials"],"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Oscillation_Tutorial","wgRelevantArticleId":165,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"simpleBatchUploadMaxFilesPerBatch":{"*":1000},
+"wgVector2022PreviewPages":[]};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","http://www.c4engine.com/wiki/mediawiki.toc","skins.vector.legacy.js"/*tpa=http://www.c4engine.com/wiki/skins.vector.legacy.js*/];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});});});</script>
+<link rel="stylesheet" href="load.php-lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector.css" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector"/>
+<script async="" src="load.php-lang=en&modules=startup&only=scripts&raw=1&skin=vector.js" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector"></script>
+<meta name="generator" content="MediaWiki 1.40.0"/>
+<meta name="robots" content="max-image-preview:standard"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="viewport" content="width=1000"/>
+<link rel="icon" href="../favicon.ico.css" tppabs="http://www.c4engine.com/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://c4engine.com/wiki/api.php?action=rsd"/>
+<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Oscillation_Tutorial rootpage-Oscillation_Tutorial skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Oscillation Tutorial</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From C4 Engine Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="en" dir="ltr"><div class="mw-parser-output"><p>This tutorial teaches you how to assign an <a href="index.php-title=Oscillation_Controller.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Oscillation_Controller" title="Oscillation Controller">Oscillation Controller</a> to a node in a level. The Oscillation Controller is a specific type of controller that's built into the C4 Engine, and it causes a node to oscillate back and forth between two points with a velocity based on a sine wave.
+</p><p>To follow this tutorial, you need the <code>Data/Tutorial/world/Oscillation.wld</code> file that is included in the <code>C4-xxx-Data.zip</code> distribution.
+</p><p>To enlarge any of the screenshots below, click on the thumbnail icon below the image.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Step_A:_Open_Oscillation.wld"><span class="tocnumber">1</span> <span class="toctext">Step A: Open Oscillation.wld</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Step_B:_Assign_Oscillation_Controller"><span class="tocnumber">2</span> <span class="toctext">Step B: Assign Oscillation Controller</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Step_C:_Create_Start_and_Finish_Connectors"><span class="tocnumber">3</span> <span class="toctext">Step C: Create Start and Finish Connectors</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Step_D:_Add_Markers_to_the_World_and_Connect"><span class="tocnumber">4</span> <span class="toctext">Step D: Add Markers to the World and Connect</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Step_E:_Play_the_Level"><span class="tocnumber">5</span> <span class="toctext">Step E: Play the Level</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#See_Also"><span class="tocnumber">6</span> <span class="toctext">See Also</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Step_A:_Open_Oscillation.wld">Step A: Open Oscillation.wld</span></h2>
+<p>Open <code>Data/Tutorial/world/Oscillation.wld</code> in the <a href="index.php-title=World_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=World_Editor" title="World Editor">World Editor</a> by typing Ctrl-O or by entering <code>world world/Oscillation</code> into the <a href="index.php-title=Command_Console.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Command_Console" title="Command Console">Command Console</a>. The World Editor will display the scene shown in Figure 1 containing a room with two platforms separated by a lava pit.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Oscillation1.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Oscillation1.png" class="mw-file-description"><img src="images/thumb/1/11/Oscillation1.png/960px-Oscillation1.png" tppabs="http://www.c4engine.com/wiki/images/thumb/1/11/Oscillation1.png/960px-Oscillation1.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/1/11/Oscillation1.png/1440px-Oscillation1.png 1.5x, /wiki/images/1/11/Oscillation1.png 2x" /></a><figcaption><b>Figure 1.</b> The oscillation tutorial world looks like this when it's first opened in the <a href="index.php-title=World_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=World_Editor" title="World Editor">World Editor</a>.</figcaption></figure>
+<h2><span class="mw-headline" id="Step_B:_Assign_Oscillation_Controller">Step B: Assign Oscillation Controller</span></h2>
+<p>There is a smaller platform near the center of the scene that sticks out above the lava. We are going to assign an Oscillation Controller to this geometry so that it moves back and forth above the lava pit and allows the player to safely cross to the other side. Click on this platform to select it, as shown in Figure 2.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Oscillation2.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Oscillation2.png" class="mw-file-description"><img src="images/thumb/b/bd/Oscillation2.png/960px-Oscillation2.png" tppabs="http://www.c4engine.com/wiki/images/thumb/b/bd/Oscillation2.png/960px-Oscillation2.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/b/bd/Oscillation2.png/1440px-Oscillation2.png 1.5x, /wiki/images/b/bd/Oscillation2.png 2x" /></a><figcaption><b>Figure 2.</b> The geometry node to which we will assign an Oscillation Controller is selected.</figcaption></figure>
+<p>Once the geometry is selected, type Ctrl-I to open the Node Info window, and then click on the <b>Controller</b> tab. Select the <b>Oscillation Controller</b> from the list.
+</p><p>There are three settings for the Oscillation Controller, a speed and two connectors. The <b>Oscillation speed</b> setting determines how fast the node oscillates back and forth, and it's measured in cycles per second. A value of 0.5 would mean that the node moves halfway through one complete cycle in one second, which corresponds to a period of two seconds for each complete cycle. This is pretty fast, so we'll enter a much smaller number like 0.05, which means it takes 20 seconds for the node to complete one full cycle and return to its starting position.
+</p><p>The connector settings specify the names of the connectors that will be used to specify the starting and finishing positions for the oscillation, as described in the next step. We'll use the default values, so no changes need to be made to these settings.
+</p><p>The controller settings should look like those shown in Figure 3. Leave the Node Info window open because we are going to add connectors in the next step.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Oscillation3.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Oscillation3.png" class="mw-file-description"><img src="images/thumb/9/98/Oscillation3.png/960px-Oscillation3.png" tppabs="http://www.c4engine.com/wiki/images/thumb/9/98/Oscillation3.png/960px-Oscillation3.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/9/98/Oscillation3.png/1440px-Oscillation3.png 1.5x, /wiki/images/9/98/Oscillation3.png 2x" /></a><figcaption><b>Figure 3.</b> These are the settings for the <a href="index.php-title=Oscillation_Controller.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Oscillation_Controller" title="Oscillation Controller">Oscillation Controller</a>.</figcaption></figure>
+<h2><span class="mw-headline" id="Step_C:_Create_Start_and_Finish_Connectors">Step C: Create Start and Finish Connectors</span></h2>
+<p>Click on the <b>Connectors</b> tab in the Node Info window. We need to add two new <a href="index.php-title=Connectors.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Connectors" title="Connectors">connectors</a> to the oscillating node that will be connected to markers in the world that tell the controller how far to move the node. Click the <b>New</b> button at the bottom of the window twice. In the blank fields that appear under the Custom Connectors heading, enter "Start" and "Finish" (without quotes). Connector names are case-sensitive, so be sure to capitalize the first letter. One this has been done, the Node Info window should appear as shown in Figure 4. Click <b>OK</b> to save the node settings and return to the main editor.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Oscillation4.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Oscillation4.png" class="mw-file-description"><img src="images/thumb/4/46/Oscillation4.png/960px-Oscillation4.png" tppabs="http://www.c4engine.com/wiki/images/thumb/4/46/Oscillation4.png/960px-Oscillation4.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/4/46/Oscillation4.png/1440px-Oscillation4.png 1.5x, /wiki/images/4/46/Oscillation4.png 2x" /></a><figcaption><b>Figure 4.</b> Two new <a href="index.php-title=Connectors.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Connectors" title="Connectors">connectors</a> named Start and Finish are added to the node.</figcaption></figure>
+<h2><span class="mw-headline" id="Step_D:_Add_Markers_to_the_World_and_Connect">Step D: Add Markers to the World and Connect</span></h2>
+<p>We now need to add two locator markers to the world that tell the Oscillation Controller how far to move its target node. Scroll down through the tool pages on the left side of the editor window with the mouse wheel until the <b>Markers Page</b> is visible. (Make sure the <b>Object</b> tab is selected.) Then select the <b>Locator Marker</b> tool in the upper-left corner of the <b>Markers Page</b>.
+</p><p>Type Ctrl-1 to make the Top viewport fill the editor window, and zoom in a little with the mouse wheel. Click on the upper edge of the geometry that has the Oscillation Controller assigned to it (which should still be selected before clicking). This will place a new locator marker in the world. Click again on the lower edge of the stone platform on the opposite side of the lava pit. This will place a second locator marker in the world. After both markers have been created, the editor window should look like that shown in Figure 5.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Oscillation5.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Oscillation5.png" class="mw-file-description"><img src="images/thumb/a/a2/Oscillation5.png/960px-Oscillation5.png" tppabs="http://www.c4engine.com/wiki/images/thumb/a/a2/Oscillation5.png/960px-Oscillation5.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/a/a2/Oscillation5.png/1440px-Oscillation5.png 1.5x, /wiki/images/a/a2/Oscillation5.png 2x" /></a><figcaption><b>Figure 5.</b> Two locator markers have been placed in the scene.</figcaption></figure>
+<p>The difference in the position of the two locator markers corresponds to the distance over which the node will move.
+</p><p>The final task is to connect the geometry node to the two locator markers. Select the <b>Connect Tool</b> at the top of the editor window (or use the 5 key as a shortcut), and select the geometry node by clicking on it in the Top viewport. (The ceiling has been hidden in this world so that a click will go through to the platform geometry in the Top viewport.)
+</p><p>You will now see the two connectors named Start and Finish attached to the geometry node. Click on the Start connector, then click on the first locator marker that was placed in the world, and type Ctrl-L to link them together. Repeat this process by clicking on the Finish connector, clicking on the second locator marker, and typing Ctrl-L to link those together. Once this is done, the editor window should appear as shown in Figure 6.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Oscillation6.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Oscillation6.png" class="mw-file-description"><img src="images/thumb/0/0c/Oscillation6.png/960px-Oscillation6.png" tppabs="http://www.c4engine.com/wiki/images/thumb/0/0c/Oscillation6.png/960px-Oscillation6.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/0/0c/Oscillation6.png/1440px-Oscillation6.png 1.5x, /wiki/images/0/0c/Oscillation6.png 2x" /></a><figcaption><b>Figure 6.</b> The Start and Finish connectors have been connected to the two locator markers that were placed in the world.</figcaption></figure>
+<h2><span class="mw-headline" id="Step_E:_Play_the_Level">Step E: Play the Level</span></h2>
+<p>You can now type Ctrl-P to save and play the level. You will see the platform moving back and forth above the lava pit, completing a full cycle every 20 seconds. If you're running the demo game, then you can walk the player onto the moving platform (or jump) when it's close enough to your side of the lava pit. The platform will carry the player to the other side where he can safely step off.
+</p>
+<h2><span class="mw-headline" id="See_Also">See Also</span></h2>
+<ul><li><a href="index.php-title=Oscillation_Controller.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Oscillation_Controller" title="Oscillation Controller">Oscillation Controller</a></li>
+<li><a href="index.php-title=World_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=World_Editor" title="World Editor">World Editor</a></li>
+<li><a href="index.php-title=Connectors.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Connectors" title="Connectors">Connectors</a></li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20240921175421
+Cache expiry: 86400
+Reduced expiry: false
+Complications: [show‐toc, no‐toc‐conversion]
+CPU time usage: 0.032 seconds
+Real time usage: 0.034 seconds
+Preprocessor visited node count: 28/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+
+<!-- Saved in parser cache with key c4_wiki:pcache:idhash:165-0!canonical and timestamp 20240921175421 and revision id 167. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Oscillation_Tutorial&oldid=167  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Oscillation_Tutorial&oldid=167%27" tppabs="https://c4engine.com/wiki/index.php?title=Oscillation_Tutorial&oldid=167">https://c4engine.com/wiki/index.php?title=Oscillation_Tutorial&amp;oldid=167</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="index.php-title=Special-Categories.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="index.php-title=Category-Tutorials.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Category:Tutorials" title="Category:Tutorials">Tutorials</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="vector-menu mw-portlet mw-portlet-personal vector-user-menu-legacy" aria-labelledby="p-personal-label" role="navigation"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="pt-login" class="mw-list-item"><a href="index.php-title=Special-UserLogin&returnto=Oscillation+Tutorial&returntoquery=type=revision.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:UserLogin&returnto=Oscillation+Tutorial&returntoquery=type%3Drevision" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li></ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="vector-menu mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-namespaces-label" role="navigation"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected mw-list-item"><a href="index.php-title=Oscillation_Tutorial.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Oscillation_Tutorial" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Talk:Oscillation_Tutorial  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Talk:Oscillation_Tutorial%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Talk:Oscillation_Tutorial&action=edit&redlink=1" rel="discussion" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="vector-menu mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	/>
+	<label
+		id="p-variants-label"
+		 aria-label="Change language variant"
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="vector-menu mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-views-label" role="navigation"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-view" class="selected mw-list-item"><a href="index.php-title=Oscillation_Tutorial.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Oscillation_Tutorial"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="index.php-title=Oscillation_Tutorial&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Oscillation_Tutorial&action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="index.php-title=Oscillation_Tutorial&action=history.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Oscillation_Tutorial&action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="vector-menu mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown" aria-labelledby="p-cactions-label" role="navigation"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	/>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<div>
+		<form action="http://www.c4engine.com/wiki/index.php" id="searchform"
+			class="vector-search-box-form">
+			<div id="simpleSearch"
+				class="vector-search-box-inner"
+				 data-search-loc="header-navigation">
+				<input class="vector-search-box-input"
+					 type="search" name="search" placeholder="Search C4 Engine Wiki" aria-label="Search C4 Engine Wiki" autocapitalize="sentences" title="Search C4 Engine Wiki [f]" accesskey="f" id="searchInput"
+				>
+				<input type="hidden" name="title" value="Special:Search">
+				<input id="mw-searchButton"
+					 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+				<input id="searchButton"
+					 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+			</div>
+		</form>
+	</div>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="vector-menu mw-portlet mw-portlet-navigation vector-menu-portal portal" aria-labelledby="p-navigation-label" role="navigation"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="n-mainpage-description" class="mw-list-item"><a href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="javascript:if(confirm(%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents%27" tppabs="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="vector-menu mw-portlet mw-portlet-tb vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="t-whatlinkshere" class="mw-list-item"><a href="index.php-title=Special-WhatLinksHere-Oscillation_Tutorial.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:WhatLinksHere/Oscillation_Tutorial" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Oscillation_Tutorial  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Oscillation_Tutorial%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Oscillation_Tutorial" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="index.php-title=Special-SpecialPages.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="index.php-title=Oscillation_Tutorial&oldid=167.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Oscillation_Tutorial&oldid=167" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="index.php-title=Oscillation_Tutorial&action=info.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Oscillation_Tutorial&action=info" title="More information about this page"><span>Page information</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" role="contentinfo" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 15 July 2023, at 11:09.</li>
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About">About C4 Engine Wiki</a></li>
+	<li id="footer-places-disclaimers"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-poweredbyico"><a href="javascript:if(confirm(%27https://www.mediawiki.org/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/%27" tppabs="https://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" tppabs="http://www.c4engine.com/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/></a></li>
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":94,"wgPageParseReport":{"limitreport":{"cputime":"http://www.c4engine.com/wiki/0.032","walltime":"http://www.c4engine.com/wiki/0.034","ppvisitednodes":{"value":28,"limit":1000000},"postexpandincludesize":{"value":0,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":2,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20240921175421","ttl":86400,"transientcontent":false}}});});</script>
+</body>
+</html>

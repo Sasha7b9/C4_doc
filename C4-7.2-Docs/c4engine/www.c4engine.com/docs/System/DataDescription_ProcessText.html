@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>DataDescription::ProcessText</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/System/index.html">System Utilities</a> &#x25BA; <a href="DataDescription.html" tppabs="http://www.c4engine.com/docs/System/DataDescription.html">class DataDescription</a></div>
+</td></tr></table>
+<div class="content">
+<h2>DataDescription::ProcessText</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>TSOpenDDL.h</code></div>
+Parses an OpenDDL file and processes the top-level data structures.
+<div class="heading">Prototype</div>
+<p><code>DataResult&nbsp;ProcessText(<span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;*text);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>text</code></td>
+<td class="tableright1">The full contents of an OpenDDL file with a terminating zero byte.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>ProcessText</code> function parses the entire OpenDDL file specified by the <code>text</code> parameter. If the file is successfully parsed, then the data is processed as described below. If an error occurs during the parsing stage, then the <code>ProcessText</code> function returns one of the following values, and the <code>DataDescription</code> object contains no data.
+During the parsing stage, the <code><a href="DataDescription_CreateStructure.html" tppabs="http://www.c4engine.com/docs/System/DataDescription_CreateStructure.html">DataDescription::CreateStructure</a></code> function is called for each custom data structure that is encountered in order to construct an object whose type is the proper subclass of the <code><a href="Structure.html" tppabs="http://www.c4engine.com/docs/System/Structure.html">Structure</a></code> class. After a successful parse, the <code>ProcessText</code> function iterates through all of the top-level data structures in the file (which are the direct subnodes of the root structure returned by the <code><a href="DataDescription_GetRootStructure.html" tppabs="http://www.c4engine.com/docs/System/DataDescription_GetRootStructure.html">DataDescription::GetRootStructure</a></code> function) and calls the <code><a href="Structure_ProcessData.html" tppabs="http://www.c4engine.com/docs/System/Structure_ProcessData.html">Structure::ProcessData</a></code> function for each one. If an error is returned by any of the calls to the <code><a href="Structure_ProcessData.html" tppabs="http://www.c4engine.com/docs/System/Structure_ProcessData.html">Structure::ProcessData</a></code> function, then the processing stops, and the same error is returned by the <code>DataDescription::ProcessText</code> function. If all of the top-level data structures are processed without error, then the <code>DataDescription::ProcessText</code> function returns <code>kDataOkay</code>. The error returned during the processing stage can be one of the following values or a value defined by a derivative data format.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kDataMissingSubstructure</code></td>
+<td class="tableright1">A structure is missing a substructure of a required type.
+</td></tr>
+<tr><td class="tableleft"><code>kDataExtraneousSubstructure</code></td>
+<td class="tableright">A structure contains too many substructures of a legal type.
+</td></tr>
+<tr><td class="tableleft"><code>kDataInvalidDataFormat</code></td>
+<td class="tableright">The primitive data contained in a structure uses an invalid format (type, element count, subarray size, or state data).
+</td></tr>
+<tr><td class="tableleft"><code>kDataBrokenReference</code></td>
+<td class="tableright">The target of a reference does not exist.
+</td></tr>
+</table>
+If an error is returned for either the parsing stage or the processing stage, then the line number where the error occurred can be retrieved by calling the <code><a href="DataDescription_GetErrorLine.html" tppabs="http://www.c4engine.com/docs/System/DataDescription_GetErrorLine.html">DataDescription::GetErrorLine</a></code> function.<br/><br/> The default implementation of the <code><a href="Structure_ProcessData.html" tppabs="http://www.c4engine.com/docs/System/Structure_ProcessData.html">Structure::ProcessData</a></code> function iterates over the direct subnodes of a data structure and calls the <code>ProcessData</code> function for each one. If all overrides call the base class implementation, then the entire tree of data structures will be visited during the processing stage.<br/><br/> Any implementation of the <code><a href="Structure_ProcessData.html" tppabs="http://www.c4engine.com/docs/System/Structure_ProcessData.html">Structure::ProcessData</a></code> function may make the following assumptions about the data:<br/><br/> 1. The input text is syntactically valid.<br/> 2. If an unrecognized structure was encountered in the input text, then it was removed along with all of its substructures.<br/> 3. Each recognized structure is valid as indicated by the <code><a href="Structure_ValidateSubstructure.html" tppabs="http://www.c4engine.com/docs/System/Structure_ValidateSubstructure.html">Structure::ValidateSubstructure</a></code> function called for its enclosing structure.<br/> 4. If a property was valid as indicated by the <code><a href="Structure_ValidateProperty.html" tppabs="http://www.c4engine.com/docs/System/Structure_ValidateProperty.html">Structure::ValidateProperty</a></code> function called for the associated structure, then it has a value of the proper type assigned to it. Unrecognized properties were ignored.<br/> 5. Any existing subarrays of primitive data have the correct number of elements, matching the number specified in brackets after the primitive type identifier.<br/> 6. Any existing state identifiers associated with primitive data subarrays are valid as indicated by the <code><a href="Structure_GetStateValue.html" tppabs="http://www.c4engine.com/docs/System/Structure_GetStateValue.html">Structure::GetStateValue</a></code> function.
+<div class="heading">See Also</div>
+<p><code><a href="Structure_ProcessData.html" tppabs="http://www.c4engine.com/docs/System/Structure_ProcessData.html">Structure::ProcessData</a></code>
+</p>
+<p><code><a href="DataDescription_GetErrorLine.html" tppabs="http://www.c4engine.com/docs/System/DataDescription_GetErrorLine.html">DataDescription::GetErrorLine</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

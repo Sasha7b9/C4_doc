@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>Teleport Tutorial - C4 Engine Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"Zu8QT3mJK9Y7xO_ah3dGdQAAAIQ","wgCSPNonce":false,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Teleport_Tutorial","wgTitle":"Teleport Tutorial","wgCurRevisionId":187,"wgRevisionId":187,"wgArticleId":185,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Tutorials"],"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Teleport_Tutorial","wgRelevantArticleId":185,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"simpleBatchUploadMaxFilesPerBatch":{"*":1000},
+"wgVector2022PreviewPages":[]};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","http://www.c4engine.com/wiki/mediawiki.toc","skins.vector.legacy.js"/*tpa=http://www.c4engine.com/wiki/skins.vector.legacy.js*/];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});});});</script>
+<link rel="stylesheet" href="load.php-lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector.css" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector"/>
+<script async="" src="load.php-lang=en&modules=startup&only=scripts&raw=1&skin=vector.js" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector"></script>
+<meta name="generator" content="MediaWiki 1.40.0"/>
+<meta name="robots" content="max-image-preview:standard"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="viewport" content="width=1000"/>
+<link rel="icon" href="../favicon.ico.css" tppabs="http://www.c4engine.com/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://c4engine.com/wiki/api.php?action=rsd"/>
+<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Teleport_Tutorial rootpage-Teleport_Tutorial skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Teleport Tutorial</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From C4 Engine Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="en" dir="ltr"><div class="mw-parser-output"><p>This tutorial describes the method used to create an indirect portal that can see another part of a level, apply a material with animated waves to the portal, and make the destination image float up and down. This tutorial doesn't have you modify a world, but instead examines what has been done in a fully functional example.
+</p><p>To follow this tutorial, you need the <code>Data/Tutorial/world/Teleport.wld</code> file that is included in the C4 Engine distribution.
+</p><p>To enlarge any of the screenshots below, click on the thumbnail icon below the image.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Step_A:_Open_Teleport.wld"><span class="tocnumber">1</span> <span class="toctext">Step A: Open Teleport.wld</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Step_B:_Examine_the_Indirect_Portal"><span class="tocnumber">2</span> <span class="toctext">Step B: Examine the Indirect Portal</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Step_C:_Examine_the_Locator_Markers"><span class="tocnumber">3</span> <span class="toctext">Step C: Examine the Locator Markers</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Step_D:_Examine_the_Portal_Material"><span class="tocnumber">4</span> <span class="toctext">Step D: Examine the Portal Material</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#See_Also"><span class="tocnumber">5</span> <span class="toctext">See Also</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Step_A:_Open_Teleport.wld">Step A: Open Teleport.wld</span></h2>
+<p>Open <code>Data/Tutorial/world/Teleport.wld</code> in the <a href="index.php-title=World_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=World_Editor" title="World Editor">World Editor</a> by typing Ctrl-O or by entering <code>world world/Teleport</code> into the <a href="index.php-title=Command_Console.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Command_Console" title="Command Console">Command Console</a>. The World Editor will display the scene shown in Figure 1 where the camera is inside one of two big rooms connected by long hallways. The remote portal is visible right away as a doorway with a wavy greenish material through which you can see the other big room in the level.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Teleport1.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Teleport1.png" class="mw-file-description"><img src="images/thumb/c/c6/Teleport1.png/960px-Teleport1.png" tppabs="http://www.c4engine.com/wiki/images/thumb/c/c6/Teleport1.png/960px-Teleport1.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/c/c6/Teleport1.png/1440px-Teleport1.png 1.5x, /wiki/images/c/c6/Teleport1.png 2x" /></a><figcaption><b>Figure 1.</b> The teleport tutorial world looks like this when it's first opened in the <a href="index.php-title=World_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=World_Editor" title="World Editor">World Editor</a>.</figcaption></figure>
+<p>Take a moment to play the world by typing Ctrl-P in the editor. (You'll need to be running the demo game in order to walk the player through the level.) Walk the player up to the portal using the standard WSAD keys and mouse to move. Notice that the material has a greenish tint and that animated waves are distorting the image of a distant room that can be seen through the portal. The image is also slowly floating up and down because an <a href="index.php-title=Oscillation_Controller.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Oscillation_Controller" title="Oscillation Controller">Oscillation Controller</a> has been assigned to the destination marker (see Step C below).
+</p><p>In the demo game, the player can teleport to the other room by running into the portal. This particular behavior is defined by game-specific code and is not built into the core engine. There are several examples of how to teleport characters and projectiles in the source code for the demo game.
+</p><p>To return to the World Editor, open the console with the tilde key and type Ctrl-Shift-P.
+</p>
+<h2><span class="mw-headline" id="Step_B:_Examine_the_Indirect_Portal">Step B: Examine the Indirect Portal</span></h2>
+<p>The image of the other room is rendered into the refraction buffer through an indirect portal in the world. In this step, we will look at the settings that have been applied to this portal in order to render the image we want.
+</p><p>First, we need to select the indirect portal. It's embedded in the geometry for the doorway, so we need to deselect the geometry type from the current selection mask. The <a href="index.php-title=Node_Management_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Node_Management_Page" title="Node Management Page">Node Management Page</a> can be found under the Editor tab, and it lists all of the various types of nodes. Unchecking the Geometry type indicates that geometries can no longer be selected. Now switch to the Top viewport by typing Ctrl-1, and zoom in a little on the doorway that can be seen on the left wall of the rightmost large room. There is a purple line with arrows pointing to the left. This is the indirect portal. Click on the line to select it, and the editor window should appear as shown in Figure 2.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Teleport2.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Teleport2.png" class="mw-file-description"><img src="images/thumb/0/08/Teleport2.png/960px-Teleport2.png" tppabs="http://www.c4engine.com/wiki/images/thumb/0/08/Teleport2.png/960px-Teleport2.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/0/08/Teleport2.png/1440px-Teleport2.png 1.5x, /wiki/images/0/08/Teleport2.png 2x" /></a><figcaption><b>Figure 2.</b> The indirect portal has been selected in the Top viewport.</figcaption></figure>
+<p>Once the indirect portal has been selected, type Ctrl-I to open the Node Info window. The settings under the Portal tab should appear as shown in Figure 3. All of the settings use the default values except for two. First, the <b>Portal target buffer</b> setting has been set to <b>Refraction</b>. This tells the engine to render the image seen through the portal into a separate frame buffer that holds the image accessed when an ambient refraction color is specified by a material. Second, the <b>Camera uses oblique frustum</b> box has been checked. This tells the engine to use a special projection matrix trick to align the near plane of the indirect camera frustum with the plane of the portal to clip geometry that would otherwise stick out in front of the plane.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Teleport3.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Teleport3.png" class="mw-file-description"><img src="images/thumb/d/d8/Teleport3.png/960px-Teleport3.png" tppabs="http://www.c4engine.com/wiki/images/thumb/d/d8/Teleport3.png/960px-Teleport3.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/d/d8/Teleport3.png/1440px-Teleport3.png 1.5x, /wiki/images/d/d8/Teleport3.png 2x" /></a><figcaption><b>Figure 3.</b> These are the settings under the Portal tab for the indirect portal node.</figcaption></figure>
+<p>Now click on the Connectors tab in the Node Info window, and you will see the settings shown in Figure 4. The indirect portal uses one built-in connector named <code>%Zone</code> and two custom connectors named <b>Local</b> and <b>Remote</b>. The <code>%Zone</code> connector is used to link the portal to the destination zone, and the <b>Local</b> and <b>Remote</b> connectors are linked to markers that define the transform between the portal's local coordinate system and the destination where the image will actually be rendered. These are discussed in the next step.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Teleport4.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Teleport4.png" class="mw-file-description"><img src="images/thumb/2/23/Teleport4.png/960px-Teleport4.png" tppabs="http://www.c4engine.com/wiki/images/thumb/2/23/Teleport4.png/960px-Teleport4.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/2/23/Teleport4.png/1440px-Teleport4.png 1.5x, /wiki/images/2/23/Teleport4.png 2x" /></a><figcaption><b>Figure 4.</b> These are the settings under the Connectors tab for the indirect portal node.</figcaption></figure>
+<h2><span class="mw-headline" id="Step_C:_Examine_the_Locator_Markers">Step C: Examine the Locator Markers</span></h2>
+<p>Close the Node Info window by clicking the Cancel button or hitting the Escape key. Select the Connect Tool by clicking on it at the top of the editor window or using the 5 key as a shortcut. The three connectors attached to the indirect portal will appear along with lines of arrows showing what nodes they are connected to, as shown in Figure 5. Zoom out a little to see all of the connected nodes.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Teleport5.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Teleport5.png" class="mw-file-description"><img src="images/thumb/3/39/Teleport5.png/960px-Teleport5.png" tppabs="http://www.c4engine.com/wiki/images/thumb/3/39/Teleport5.png/960px-Teleport5.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/3/39/Teleport5.png/1440px-Teleport5.png 1.5x, /wiki/images/3/39/Teleport5.png 2x" /></a><figcaption><b>Figure 5.</b> The indirect portal is connected to three other nodes in the level.</figcaption></figure>
+<p>You can double-click on any of the connectors to select the node that it is connected to. The <code>%Zone</code> connector is connected to the zone that contains the big room on the left side of the level. This connection tells the engine that the indirect camera should be placed in this zone when rendering the image that can be seen through the portal. The <b>Local</b> and <b>Remote</b> connectors are connected to locator markers that, taken together as a pair, tell the engine how to transform the main camera into the coordinate system in which the destination image will be rendered. The marker connected to the <b>Local</b> connector specifies a reference point and orientation on the portal itself, and the marker connected to the <b>Remote</b> connector specifies the corresponding point and orientation at the destination. The marker at the destination can be moved or rotated to instantly change the camera transform for the image seen through the portal.
+</p><p>If you select the locator marker connected to the <b>Remote</b> connector by double-clicking on the connector, then you can see that it has two connectors of its own named <b>Start</b> and <b>Finish</b>. These are used in conjunction with an <a href="index.php-title=Oscillation_Controller.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Oscillation_Controller" title="Oscillation Controller">Oscillation Controller</a> that has been assigned to the marker that makes it float up and down for added effect. See the <a href="index.php-title=Oscillation_Tutorial.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Oscillation_Tutorial" title="Oscillation Tutorial">Oscillation Tutorial</a> for more information about oscillating nodes.
+</p>
+<h2><span class="mw-headline" id="Step_D:_Examine_the_Portal_Material">Step D: Examine the Portal Material</span></h2>
+<p>Change the main viewport to the Perspective view by typing Ctrl-4, and switch to the ordinary Select Tool by selecting it at the top of the editor window or using the 1 key as a shortcut. Re-enable geometry node selection by checking the Geometry type in the Node Management Page, and disable portal node selection by unchecking the Portal type. Now click on the geometry covering the interior of the doorway where the indirect portal is. You should now see a rectangular geometry selected as shown in Figure 6.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Teleport6.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Teleport6.png" class="mw-file-description"><img src="images/thumb/0/01/Teleport6.png/960px-Teleport6.png" tppabs="http://www.c4engine.com/wiki/images/thumb/0/01/Teleport6.png/960px-Teleport6.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/0/01/Teleport6.png/1440px-Teleport6.png 1.5x, /wiki/images/0/01/Teleport6.png 2x" /></a><figcaption><b>Figure 6.</b> The geometry covering the indirect portal has been selected.</figcaption></figure>
+<p>Select the Material Pickup tool from the <a href="index.php-title=Material_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Material_Page" title="Material Page">Material Page</a>, and click on the selected geometry to change the current material to the material used by the geometry. (We didn't actually have to select the geometry first, but doing so makes it obvious where to click to grab the material.) The material used on the portal geometry just uses the standard attribute settings and does not require that you use the <a href="index.php-title=Shader_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Shader_Editor" title="Shader Editor">Shader Editor</a>.
+</p><p>Open the <a href="index.php-title=Material_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Material_Editor" title="Material Editor">Material Editor</a> by double-clicking on the selected material.
+</p><p>Under the Diffuse tab, shown in Figure 7, the Diffuse color attribute has been set to the green color that is responsible for the green tint seen in the portal. The Normal map (primary) and Normal map (secondary) attributes have been set to two water wave textures that can be found in the <code>Data/The31st/texture/</code> directory. Notice that the two normal maps use different texture coordinates. These are animated independently so that the normal maps are combined in a random-looking way.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Teleport7.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Teleport7.png" class="mw-file-description"><img src="images/thumb/3/3a/Teleport7.png/960px-Teleport7.png" tppabs="http://www.c4engine.com/wiki/images/thumb/3/3a/Teleport7.png/960px-Teleport7.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/3/3a/Teleport7.png/1440px-Teleport7.png 1.5x, /wiki/images/3/3a/Teleport7.png 2x" /></a><figcaption><b>Figure 7.</b> The Diffuse tab for the portal material shows the diffuse reflection color and normal maps.</figcaption></figure>
+<p>Under the Ambient tab, shown in Figure 8, the Refraction color attribute has been set to a brighter greenish color. This is multiplied by the colors in the refraction image to determine how much light gets through and what color it is. The Refraction offset scale attribute determines how large the distortion caused by the normal maps is. Higher numbers correspond to a more intense distortion effect.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Teleport8.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Teleport8.png" class="mw-file-description"><img src="images/thumb/d/d8/Teleport8.png/960px-Teleport8.png" tppabs="http://www.c4engine.com/wiki/images/thumb/d/d8/Teleport8.png/960px-Teleport8.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/d/d8/Teleport8.png/1440px-Teleport8.png 1.5x, /wiki/images/d/d8/Teleport8.png 2x" /></a><figcaption><b>Figure 8.</b> The Ambient tab for the portal material shows the refraction color and offset scale.</figcaption></figure>
+<p>Under the Texcoords tab, shown in Figure 9, the scales of both sets of texture coordinates has been set to 0.25. Smaller numbers here correspond to larger waves. Animation has been enabled for both sets of texture coordinates, and the direction and speed have been set to different values so that the textures move in different directions. These values can be changed freely to modify the animation of the wavy effect.
+</p>
+<figure class="mw-halign-center" typeof="mw:File/Thumb"><a href="index.php-title=File-Teleport9.png.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=File:Teleport9.png" class="mw-file-description"><img src="images/thumb/9/9e/Teleport9.png/960px-Teleport9.png" tppabs="http://www.c4engine.com/wiki/images/thumb/9/9e/Teleport9.png/960px-Teleport9.png" decoding="async" width="960" height="540" srcset="/wiki/images/thumb/9/9e/Teleport9.png/1440px-Teleport9.png 1.5x, /wiki/images/9/9e/Teleport9.png 2x" /></a><figcaption><b>Figure 9.</b> The Texcoords tab for the portal material shows the texture map animation parameters.</figcaption></figure>
+<h2><span class="mw-headline" id="See_Also">See Also</span></h2>
+<ul><li><a href="index.php-title=Oscillation_Tutorial.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Oscillation_Tutorial" title="Oscillation Tutorial">Oscillation Tutorial</a></li>
+<li><a href="index.php-title=World_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=World_Editor" title="World Editor">World Editor</a></li>
+<li><a href="index.php-title=Material_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Material_Editor" title="Material Editor">Material Editor</a></li>
+<li><a href="index.php-title=Connectors.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Connectors" title="Connectors">Connectors</a></li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20240921175935
+Cache expiry: 86400
+Reduced expiry: false
+Complications: [show‐toc, no‐toc‐conversion]
+CPU time usage: 0.016 seconds
+Real time usage: 0.017 seconds
+Preprocessor visited node count: 33/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+
+<!-- Saved in parser cache with key c4_wiki:pcache:idhash:185-0!canonical and timestamp 20240921175935 and revision id 187. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Teleport_Tutorial&oldid=187  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Teleport_Tutorial&oldid=187%27" tppabs="https://c4engine.com/wiki/index.php?title=Teleport_Tutorial&oldid=187">https://c4engine.com/wiki/index.php?title=Teleport_Tutorial&amp;oldid=187</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="index.php-title=Special-Categories.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="index.php-title=Category-Tutorials.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Category:Tutorials" title="Category:Tutorials">Tutorials</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="vector-menu mw-portlet mw-portlet-personal vector-user-menu-legacy" aria-labelledby="p-personal-label" role="navigation"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="pt-login" class="mw-list-item"><a href="index.php-title=Special-UserLogin&returnto=Teleport+Tutorial&returntoquery=type=revision.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:UserLogin&returnto=Teleport+Tutorial&returntoquery=type%3Drevision" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li></ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="vector-menu mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-namespaces-label" role="navigation"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected mw-list-item"><a href="index.php-title=Teleport_Tutorial.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Teleport_Tutorial" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Talk:Teleport_Tutorial  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Talk:Teleport_Tutorial%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Talk:Teleport_Tutorial&action=edit&redlink=1" rel="discussion" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="vector-menu mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	/>
+	<label
+		id="p-variants-label"
+		 aria-label="Change language variant"
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="vector-menu mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-views-label" role="navigation"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-view" class="selected mw-list-item"><a href="index.php-title=Teleport_Tutorial.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Teleport_Tutorial"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="index.php-title=Teleport_Tutorial&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Teleport_Tutorial&action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="index.php-title=Teleport_Tutorial&action=history.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Teleport_Tutorial&action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="vector-menu mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown" aria-labelledby="p-cactions-label" role="navigation"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	/>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<div>
+		<form action="http://www.c4engine.com/wiki/index.php" id="searchform"
+			class="vector-search-box-form">
+			<div id="simpleSearch"
+				class="vector-search-box-inner"
+				 data-search-loc="header-navigation">
+				<input class="vector-search-box-input"
+					 type="search" name="search" placeholder="Search C4 Engine Wiki" aria-label="Search C4 Engine Wiki" autocapitalize="sentences" title="Search C4 Engine Wiki [f]" accesskey="f" id="searchInput"
+				>
+				<input type="hidden" name="title" value="Special:Search">
+				<input id="mw-searchButton"
+					 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+				<input id="searchButton"
+					 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+			</div>
+		</form>
+	</div>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="vector-menu mw-portlet mw-portlet-navigation vector-menu-portal portal" aria-labelledby="p-navigation-label" role="navigation"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="n-mainpage-description" class="mw-list-item"><a href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="javascript:if(confirm(%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents%27" tppabs="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="vector-menu mw-portlet mw-portlet-tb vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="t-whatlinkshere" class="mw-list-item"><a href="index.php-title=Special-WhatLinksHere-Teleport_Tutorial.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:WhatLinksHere/Teleport_Tutorial" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Teleport_Tutorial  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Teleport_Tutorial%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Teleport_Tutorial" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="index.php-title=Special-SpecialPages.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="index.php-title=Teleport_Tutorial&oldid=187.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Teleport_Tutorial&oldid=187" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="index.php-title=Teleport_Tutorial&action=info.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Teleport_Tutorial&action=info" title="More information about this page"><span>Page information</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" role="contentinfo" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 15 July 2023, at 11:23.</li>
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About">About C4 Engine Wiki</a></li>
+	<li id="footer-places-disclaimers"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-poweredbyico"><a href="javascript:if(confirm(%27https://www.mediawiki.org/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/%27" tppabs="https://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" tppabs="http://www.c4engine.com/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/></a></li>
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":52,"wgPageParseReport":{"limitreport":{"cputime":"http://www.c4engine.com/wiki/0.016","walltime":"http://www.c4engine.com/wiki/0.017","ppvisitednodes":{"value":33,"limit":1000000},"postexpandincludesize":{"value":0,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":2,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20240921175935","ttl":86400,"transientcontent":false}}});});</script>
+</body>
+</html>

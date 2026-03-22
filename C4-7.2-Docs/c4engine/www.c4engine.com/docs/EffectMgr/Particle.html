@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>struct Particle</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/EffectMgr/index.html">Effect Manager</a> &#x25BA; <a href="Particle.html" tppabs="http://www.c4engine.com/docs/EffectMgr/Particle.html">struct Particle</a></div>
+</td></tr></table>
+<div class="content">
+<h2>struct Particle</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Particles.h</code></div>
+The <code>Particle</code> structure contains state information about a particle.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">struct</span>&nbsp;Particle</code></p>
+<div class="heading">Member Functions</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><a href="Particle_GetPreviousParticle.html" tppabs="http://www.c4engine.com/docs/EffectMgr/Particle_GetPreviousParticle.html">Particle::GetPreviousParticle</a></code></td>
+<td class="tableright1">Returns the previous particle in a particle system.
+</td></tr>
+<tr><td class="tableleft"><code><a href="Particle_GetNextParticle.html" tppabs="http://www.c4engine.com/docs/EffectMgr/Particle_GetNextParticle.html">Particle::GetNextParticle</a></code></td>
+<td class="tableright">Returns the next particle in a particle system.
+</td></tr>
+</table>
+<div class="heading">Data Members</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>Particle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*prevParticle;</code></td>
+<td class="tableright1">A pointer to the previous particle in the system. This is <code><span style="color: #0000FF">nullptr</span></code> for the first particle.
+</td></tr>
+<tr><td class="tableleft"><code>Particle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*nextParticle;</code></td>
+<td class="tableright">A pointer to the next particle in the system. This is <code><span style="color: #0000FF">nullptr</span></code> for the last particle.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">uint32</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;particleIndex;</code></td>
+<td class="tableright">The unique index of the particle in the particle pool. This is in the range [0,&#x202F;<i>n</i>&#x202F;&minus;&#x202F;1], where <i>n</i> is the total number of particles in the pool.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">int32</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emitTime;</code></td>
+<td class="tableright">The time remaining before the particle is emitted, in milliseconds.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">int32</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lifeTime;</code></td>
+<td class="tableright">The time remaining (once the particle is emitted) before the particle dies, in milliseconds.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">float</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radius;</code></td>
+<td class="tableright">The radius of the particle.
+</td></tr>
+<tr><td class="tableleft"><code>ColorRGBA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color;</code></td>
+<td class="tableright">The color and transparency of the particle.
+</td></tr>
+<tr><td class="tableleft"><code>ufix32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;orientation;</code></td>
+<td class="tableright">The orientation of the particle as an unsigned 8.24-bit fix32-point angle. The top 8 bits divide the circle into 256 angles of 360/256 degrees. This field is only used for point particles and should not be set for other types of particle systems.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">float</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height;</code></td>
+<td class="tableright">The vertical height of a fire particle. This field is only used for fire particles and should not be set for other types of particle systems.
+</td></tr>
+<tr><td class="tableleft"><code>Point3D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position;</code></td>
+<td class="tableright">The position of the particle. This is normally in world-space coordinates, but can be in object-space coordinates if the <code>kParticleSystemObjectSpace</code> flag is set for the particle system.
+</td></tr>
+<tr><td class="tableleft"><code>Vector3D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;velocity;</code></td>
+<td class="tableright">The velocity of the particle. Like the position, this is in world-space coordinates unless the <code>kParticleSystemObjectSpace</code> flag is set.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="TexcoordParticle.html" tppabs="http://www.c4engine.com/docs/EffectMgr/TexcoordParticle.html">TexcoordParticle</a></code>
+</p>
+<p><code><a href="QuadParticle.html" tppabs="http://www.c4engine.com/docs/EffectMgr/QuadParticle.html">QuadParticle</a></code>
+</p>
+<p><code><a href="PolyParticle.html" tppabs="http://www.c4engine.com/docs/EffectMgr/PolyParticle.html">PolyParticle</a></code>
+</p>
+<p><code><a href="FireParticle.html" tppabs="http://www.c4engine.com/docs/EffectMgr/FireParticle.html">FireParticle</a></code>
+</p>
+<p><code><a href="BlobParticle.html" tppabs="http://www.c4engine.com/docs/EffectMgr/BlobParticle.html">BlobParticle</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

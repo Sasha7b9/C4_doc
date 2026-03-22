@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>VertexBuffer::BeginUpdate</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/index.html">Graphics Manager</a> &#x25BA; <a href="VertexBuffer.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/VertexBuffer.html">class VertexBuffer</a></div>
+</td></tr></table>
+<div class="content">
+<h2>VertexBuffer::BeginUpdate</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Renderable.h</code></div>
+Maps a vertex buffer and returns a pointer to its storage.
+<div class="heading">Prototype</div>
+<p><code><span style="color: #0000FF">template</span>&nbsp;&lt;<span style="color: #0000FF">typename</span>&nbsp;type&gt;&nbsp;<span style="color: #0000FF">volatile</span>&nbsp;type&nbsp;*BeginUpdate(<span style="color: #0000FF">void</span>);</code></p>
+<p><code><span style="color: #0000FF">template</span>&nbsp;&lt;<span style="color: #0000FF">typename</span>&nbsp;type&gt;&nbsp;<span style="color: #0000FF">volatile</span>&nbsp;type&nbsp;*BeginUpdateSync(<span style="color: #0000FF">void</span>);</code></p>
+<div class="heading">Template Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>type</code></td>
+<td class="tableright1">The type to which the return value points.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>BeginUpdate</code> function maps a vertex buffer's storage into CPU-accessible memory and returns a pointer to the storage buffer. This function should only be called after the <code><a href="VertexBuffer_EstablishVertexBuffer.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/VertexBuffer_EstablishVertexBuffer.html">VertexBuffer::EstablishVertexBuffer</a></code> function has been called for the vertex buffer with a nonzero <code>size</code> parameter, and the maximum number of bytes that can be written to the buffer returned by <code>BeginUpdate</code> is the number that was specified by the <code>size</code> parameter.<br/><br/> The <code>BeginUpdateSync</code> variant of the <code>BeginUpdate</code> function should normally be called to ensure that the GPU driver is being accessed properly in multithreaded contexts. The <code>BeginUpdate</code> function should only be called if it's a certainty that it is being called from the main thread. Both functions have the same effect.<br/><br/> When a vertex buffer is mapped into CPU-accessible memory with either the <code>BeginUpdate</code> or <code>BeginUpdateSync</code> function, the data in the vertex buffer is completely destroyed. Any vertex data that will be later read from the vertex buffer by the GPU must be written to the buffer in its entirety. It is thus not possible to update only the texture coordinates for a vertex array without also rewriting the vertex positions, for example. In the case that vertices contain some data that is static and some data that is dynamic, two separate vertex buffers should be used. (The vertex buffer data is destroyed as an optimization that prevents an expensive copy of the existing data into the CPU-accessible buffer.)<br/><br/> Once the data has been written to a vertex buffer, the <code><a href="VertexBuffer_EndUpdate.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/VertexBuffer_EndUpdate.html">VertexBuffer::EndUpdate</a></code> must be called to unmap the storage buffer before any rendering commands referencing the vertex buffer are issued.<br/><br/> For a static vertex buffer, the <code>BeginUpdate</code> function should be called at most one time and only if no buffer data was supplied with the <code><a href="VertexBuffer_EstablishVertexBuffer.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/VertexBuffer_EstablishVertexBuffer.html">VertexBuffer::EstablishVertexBuffer</a></code> function. Otherwise, performance may be degraded. Dynamic vertex buffers can be updated as often as needed without any performance penalty.
+<div class="heading">Special Considerations</div>
+Data should be written to the buffer returned by the <code>BeginUpdate</code> function contiguously and in order. This promotes the most efficient writeback performance for memory that is possibly write-combined. The pointer returned by the <code>BeginUpdate</code> function is declared <code><span style="color: #0000FF">volatile</span></code> to prevent the compiler from changing the program order of individual writes.<br/><br/> Since the vertex buffer cannot be accessed through any pointers other than the one returned by the <code>BeginUpdate</code> function, the variable to which it's assigned should be declared <code><span style="color: #0000FF">restrict</span></code> in order to allow the compiler to perform optimizations that it may not otherwise be able to perform with respect to reads from ordinary program data. For example, the following code should be used to cast the return value of the <code>BeginUpdateSync</code> function, called for a <code>VertexBuffer</code> object named <code>vertexBuffer</code>, to a pointer to <code>Point3D</code> and declare it as restricted.
+<div class="sourcebox"><span style="color: #0000FF">volatile</span>&nbsp;Point3D&nbsp;*<span style="color: #0000FF">restrict</span>&nbsp;vertex&nbsp;=&nbsp;vertexBuffer-&gt;BeginUpdateSync&lt;Point3D&gt;();
+</div>
+<div class="heading">See Also</div>
+<p><code><a href="VertexBuffer_EndUpdate.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/VertexBuffer_EndUpdate.html">VertexBuffer::EndUpdate</a></code>
+</p>
+<p><code><a href="VertexBuffer_UpdateBuffer.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/VertexBuffer_UpdateBuffer.html">VertexBuffer::UpdateBuffer</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

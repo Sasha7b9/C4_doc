@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_1.5&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 1.5 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_1.5&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_1.5&amp;action=history"/>
+	<updated>2024-09-21T18:42:05Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_1.5&amp;diff=58&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' December 27, 2008  * A new voxel terrain system has been added to the engine, along with several terrain editing tools in the World Editor. More information about these can be found in the Editing Terrain article. Support for the old terrain geometry has been removed from the engine, so any old terrain in existing worlds will disappear when opened in the new version of the engine. To preserve the old terrain, select it in the editor unde...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_1.5&amp;diff=58&amp;oldid=prev"/>
+		<updated>2023-07-15T09:57:00Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; December 27, 2008  * A new voxel terrain system has been added to the engine, along with several terrain editing tools in the World Editor. More information about these can be found in the &lt;a href=&quot;/wiki/index.php?title=Editing_Terrain&amp;amp;action=edit&amp;amp;redlink=1&quot; class=&quot;new&quot; title=&quot;Editing Terrain (page does not exist)&quot;&gt;Editing Terrain&lt;/a&gt; article. Support for the old terrain geometry has been removed from the engine, so any old terrain in existing worlds will disappear when opened in the new version of the engine. To preserve the old terrain, select it in the editor unde...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' December 27, 2008&lt;br /&gt;
+&lt;br /&gt;
+* A new voxel terrain system has been added to the engine, along with several terrain editing tools in the World Editor. More information about these can be found in the [[Editing Terrain]] article. Support for the old terrain geometry has been removed from the engine, so any old terrain in existing worlds will disappear when opened in the new version of the engine. To preserve the old terrain, select it in the editor under a previous version and convert it to a generic mesh before opening it in the current version of the engine.&lt;br /&gt;
+&lt;br /&gt;
+* All of the shading systems in the engine have been completely replaced by a new architecture based on shader graphs. Every existing attribute-based material will continue to work just fine, but they are translated into shader graphs internally. The Material Manager still allows materials to be created by configuring a fixed set of material attributes, and this is still the preferred method of creating materials that only use the standard options. Arbitrary custom materials can now be created in the new Shader Editor that's accessible from the Material Manager window.&lt;br /&gt;
+&lt;br /&gt;
+* Both the new Shader Editor and the existing Script Editor have a new tool for creating sections in a graph. A section is simply a rectangular area drawn beneath the graph that can be used to group a set of nodes for organizational purposes&amp;amp;mdash;it has absolutely no effect on the function of the graph itself. Each section has a user-configurable title and background color that can be changed by double-clicking on the title bar or by selecting the section and choosing Get Info from the menu (or hitting Ctrl-I).&lt;br /&gt;
+&lt;br /&gt;
+* Three new script methods have been added that can be used to set scalar, vector, and color parameter values in shader-based materials. These methods allow you to specify a parameter slot number and a new parameter value. When executed, the methods search all of the materials on the target geometry node for Constant Scalar, Constant Vector, and Constant Color processes that use the parameter slot and change the input value for those processes to the new value specified in the script.&lt;br /&gt;
+&lt;br /&gt;
+* A new tool has been added to the Material page in the World Editor that works like the eyedropper in a painting program. When this tool is clicked on a geometry surface in a scene, the current material is set to the material used on that surface.&lt;br /&gt;
+&lt;br /&gt;
+* For transition zones having exactly two outgoing direct portals, the ambient light color is now dynamically calculated. The light color is simply a smooth gradient in between the two portals, blending from one zone's ambient light color to the other's. If either zone's ambient light color changes, then the gradient is automatically updated.&lt;br /&gt;
+&lt;br /&gt;
+* The collision system has been improved in this release. To gain the full benefits of these improvements, it is necessary to rebuild the collision data for geometry nodes in the World Editor. This can be done by selecting all of the geometry nodes, hitting Ctrl-I to open the Node Info window, moving to the Collision tab, and then just clicking OK.&lt;br /&gt;
+&lt;br /&gt;
+* The engine now recognizes the operating system clipboard under Windows and Mac OS X, so it's possible to copy and paste text between other applications and text boxes inside C4.&lt;br /&gt;
+&lt;br /&gt;
+* The project files now have a new build target called Server. When this target is selected, the engine builds without any graphics, sound, or input systems so that it can be run on minimal hardware and used as a dedicated server.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;kWindowMaximize&amp;lt;/code&amp;gt; flag can now be passed to the Window constructor to make it as large as possible upon creation.&lt;br /&gt;
+&lt;br /&gt;
+* If an attempt is made to read strings from a non-existent string table resource, the engine now returns the &amp;quot;&amp;lt;missing&amp;gt;&amp;quot; string in the same way that it already does for missing strings in an existing resource.&lt;br /&gt;
+&lt;br /&gt;
+* The Time Manager has been modified so that it correctly handles frame rates greater than 1000 fps.&lt;br /&gt;
+&lt;br /&gt;
+* The quad effect now has a setting for the blend mode that it's rendered with.&lt;br /&gt;
+&lt;br /&gt;
+* The Panel Controller script functions for getting and setting panel item text now work on editable text items as well as static text items.&lt;br /&gt;
+&lt;br /&gt;
+* New standard Panel Controller script functions have been added to get and set the texture map shown in an image item.&lt;br /&gt;
+&lt;br /&gt;
+* The script expression parser now recognizes the words &amp;quot;true&amp;quot; and &amp;quot;false&amp;quot; as boolean literals. These are now treated as keywords and cannot be used as variable names.&lt;br /&gt;
+&lt;br /&gt;
+* Hexadecimal integer literals using the &amp;lt;code&amp;gt;0x&amp;lt;/code&amp;gt; syntax are now recognized by the script expression parser.&lt;br /&gt;
+&lt;br /&gt;
+* The box select tool in the World Editor has been reimplemented and is now very precise.&lt;br /&gt;
+&lt;br /&gt;
+* In the World Editor, double-clicking on a node in the scene graph now opens the Node Info window.&lt;br /&gt;
+&lt;br /&gt;
+* When importing a geometry node with the Collada Importer, if the transform contains any kind of scale, then the 3&amp;amp;times;3 portion of the transform (containing the scale and rotation) is now baked into the vertices.&lt;br /&gt;
+&lt;br /&gt;
+* A voice chat channel can now be enabled and disabled so that it's possible to switch among chat configurations without having to create and/or delete channels.&lt;br /&gt;
+&lt;br /&gt;
+* A new type of event handler, the &amp;lt;code&amp;gt;WindowEventHandler&amp;lt;/code&amp;gt;, can now be installed in the Interface Manager to receive events pertaining to GUI windows. The types of events posted are (a) a window was added/removed from the GUI, (b) a window's enable or hidden state has changed, and (c) the mouse has moved into or out of a window's content area.&lt;br /&gt;
+&lt;br /&gt;
+* The Input Manager has been modified so that it is possible to receive raw input from only specific classes of devices while still receiving ordinary OS events for mouse and/or keyboard devices. The &amp;lt;code&amp;gt;kInputNormal&amp;lt;/code&amp;gt; mode that could previously be passed to the &amp;lt;code&amp;gt;InputMgr::SetInputMode()&amp;lt;/code&amp;gt; function has been replaced by the three values &amp;lt;code&amp;gt;kInputMouseActive&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;kInputKeyboardActive&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;kInputGameActive&amp;lt;/code&amp;gt;. The &amp;quot;Game&amp;quot; classification includes all devices that are not mice or keyboards. These values can be passed in any combination (through logical OR) to the &amp;lt;code&amp;gt;InputMgr::SetInputMode()&amp;lt;/code&amp;gt; function to set the input mode for those classes of device. If either &amp;lt;code&amp;gt;kInputMouseActive&amp;lt;/code&amp;gt; or &amp;lt;code&amp;gt;kInputKeyboardActive&amp;lt;/code&amp;gt; is not specified, then you continue to receive OS events for those classes of device. The &amp;lt;code&amp;gt;kInputAllActive&amp;lt;/code&amp;gt; value is provided to enable raw input for all devices, equivalent to the old value of &amp;lt;code&amp;gt;kInputNormal&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;SetAudioCaptureProc()&amp;lt;/code&amp;gt; function has been added to the Audio Capture Manager. This function lets you install a callback procedure that is periodically invoked when new audio data has been captured on the local machine, and it provides a way for the application to intercept the raw sample data.&lt;br /&gt;
+&lt;br /&gt;
+* The configuration file &amp;lt;code&amp;gt;Engine/engine.cfg&amp;lt;/code&amp;gt; has been renamed to &amp;lt;code&amp;gt;Engine/input.cfg&amp;lt;/code&amp;gt; since it only includes commands for binding input controls.&lt;br /&gt;
+&lt;br /&gt;
+* In debug mode, the values used to fill newly allocated memory and just-deallocated memory have been changed to &amp;lt;code&amp;gt;0x7FCCCCCC&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;0x7FDDDDDD&amp;lt;/code&amp;gt;, respectively. This was done so that any float-point values read from uninitialized memory would be interpreted as NaNs. In the case that a memory block is not a multiple of four bytes in size, &amp;lt;code&amp;gt;0xCC&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;0xDD&amp;lt;/code&amp;gt; are used to fill in the remainder bytes.&lt;br /&gt;
+&lt;br /&gt;
+* In debug mode under Windows, the engine will now display an error message at startup if the working directory does not point to the location containing the Data directory.&lt;br /&gt;
+&lt;br /&gt;
+* The per-vertex fog option has been removed from the engine. Fog calculations are now always performed at the fragment level.&lt;br /&gt;
+&lt;br /&gt;
+* The separate specular color option has been removed from light objects.&lt;br /&gt;
+&lt;br /&gt;
+* The microfacet rendering variable &amp;lt;code&amp;gt;$renderMicrofacetShading&amp;lt;/code&amp;gt; has been removed from the engine. Microfacet rendering can no longer be turned off through a flag.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

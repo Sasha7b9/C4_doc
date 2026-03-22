@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>struct TextureHeader</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/index.html">Graphics Manager</a> &#x25BA; <a href="TextureHeader.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/TextureHeader.html">struct TextureHeader</a></div>
+</td></tr></table>
+<div class="content">
+<h2>struct TextureHeader</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Textures.h</code></div>
+The <code>TextureHeader</code> structure contains information about a texture map.
+<div class="heading">Definition</div>
+<p><code><span style="color: #0000FF">struct</span>&nbsp;TextureHeader</code></p>
+<div class="heading">Data Members</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>TextureType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textureType;</code></td>
+<td class="tableright1">The texture type (2D, 3D, cube, rectangle, or 2D array).
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">uint32</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textureFlags;</code></td>
+<td class="tableright">The texture image flags.
+</td></tr>
+<tr><td class="tableleft"><code>TextureSemantic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;colorSemantic;</code></td>
+<td class="tableright">The semantic usage for the color channels.
+</td></tr>
+<tr><td class="tableleft"><code>TextureSemantic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alphaSemantic;</code></td>
+<td class="tableright">The semantic usage for the alpha channel.
+</td></tr>
+<tr><td class="tableleft"><code>TextureFormat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textureFormat;</code></td>
+<td class="tableright">The format of the texture image.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">int32</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textureWidth;</code></td>
+<td class="tableright">The width of the texture map.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">int32</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textureHeight;</code></td>
+<td class="tableright">The height of the texture map.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">int32</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textureDepth;</code></td>
+<td class="tableright">The depth of the texture map (value is 1 for a 2D texture).
+</td></tr>
+<tr><td class="tableleft"><code>TextureWrap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wrapMode[3];</code></td>
+<td class="tableright">The wrap mode for each coordinate.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">int32</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mipmapCount;</code></td>
+<td class="tableright">The number of mipmap levels.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">int32</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mipmapDataOffset;</code></td>
+<td class="tableright">The offset to the mipmap data array, in bytes relative to the beginning of the <code>TextureHeader</code> structure. This should be 0 for textures created in memory.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">uint32</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auxiliaryDataSize;</code></td>
+<td class="tableright">The size of the auxiliary data, in bytes. This should be 0 for textures created in memory.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">int32</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auxiliaryDataOffset;</code></td>
+<td class="tableright">The offset to the auxiliary data, in bytes relative to the beginning of the <code>TextureHeader</code> structure. This should be 0 for textures created in memory.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>TextureHeader</code> structure contains information about a texture map and is useful when creating a texture image in memory. A texture header can be filled in and passed to the <code><a href="Texture_GetTexture.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Texture_GetTexture.html">Texture::GetTexture</a></code> function to create a new texture object.<br/><br/> The <code>textureType</code> member can be one of the following constants.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kTextureType2D</code></td>
+<td class="tableright1">2D texture map.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureType3D</code></td>
+<td class="tableright">3D texture map.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureTypeCube</code></td>
+<td class="tableright">Cube texture map.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureTypeRectangle</code></td>
+<td class="tableright">Rectangle texture map.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureTypeArray2D</code></td>
+<td class="tableright">Array 2D texture map.
+</td></tr>
+</table>
+The <code>textureFlags</code> member can be a combination (through logical OR) of the following constants.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kTextureFilterInhibit</code></td>
+<td class="tableright1">Do not filter the texture (bilinear, trilinear, or anisotropic).
+</td></tr>
+<tr><td class="tableleft"><code>kTextureAnisotropicFilterInhibit</code></td>
+<td class="tableright">Do not apply anisotropic filtering to the texture (but still allow ordinary bilinear or trilinear filtering).
+</td></tr>
+<tr><td class="tableleft"><code>kTextureForceHighQuality</code></td>
+<td class="tableright">Always use the highest resolution image available, even if a lower quality level is selected in the Graphics Manager.
+</td></tr>
+</table>
+The <code>colorSemantic</code> and <code>alphaSemantic</code> members denote the type of information that is stored in the color channels and the alpha channel of the texture image, respectively. They can each be one of the following constants.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kTextureSemanticNone</code></td>
+<td class="tableright1">No meaning.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureSemanticData</code></td>
+<td class="tableright">Generic data.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureSemanticDiffuse</code></td>
+<td class="tableright">Diffuse color map.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureSemanticSpecular</code></td>
+<td class="tableright">Specular color map.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureSemanticEmission</code></td>
+<td class="tableright">Emission color map.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureSemanticOpacity</code></td>
+<td class="tableright">Refractive opacity map.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureSemanticEnvironment</code></td>
+<td class="tableright">Environment map.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureSemanticLight</code></td>
+<td class="tableright">Light projection.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureSemanticNormal</code></td>
+<td class="tableright">Normal map.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureSemanticParallax</code></td>
+<td class="tableright">Parallax data.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureSemanticHorizon</code></td>
+<td class="tableright">Horizon map.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureSemanticTransparency</code></td>
+<td class="tableright">Transparency.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureSemanticOcclusion</code></td>
+<td class="tableright">Ambient occlusion.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureSemanticGlow</code></td>
+<td class="tableright">Glow intensity.
+</td></tr>
+</table>
+The <code>textureFormat</code> member can be one of the following constants.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kTextureFormatLinearRGBA</code></td>
+<td class="tableright1">4x8-bit RGBA in linear space with alpha channel.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatLinearRGBX</code></td>
+<td class="tableright">4x8-bit RGB in linear space (alpha unused).
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatGammaRGBA</code></td>
+<td class="tableright">4x8-bit RGBA in sRGB space with alpha channel.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatGammaRGBX</code></td>
+<td class="tableright">4x8-bit RGB in sRGB space (alpha unused).
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatLinearRG</code></td>
+<td class="tableright">2x8-bit RG in linear space.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatLinearR</code></td>
+<td class="tableright">1x8-bit R in linear space.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatSignedRGBA</code></td>
+<td class="tableright">4x8-bit signed normalized RGBA.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatSignedRG</code></td>
+<td class="tableright">2x8-bit signed normalized RG.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatSignedR</code></td>
+<td class="tableright">1x8-bit signed normalized R.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatCompLinearRGBA</code></td>
+<td class="tableright">4x8-bit RGBA in linear space with alpha channel, block compressed.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatCompLinearRGBX</code></td>
+<td class="tableright">4x8-bit RGB in linear space (alpha unused), block compressed.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatCompGammaRGBA</code></td>
+<td class="tableright">4x8-bit RGBA in sRGB space with alpha channel, block compressed.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatCompGammaRGBX</code></td>
+<td class="tableright">4x8-bit RGB in sRGB space (alpha unused), block compressed.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatCompLinearRG</code></td>
+<td class="tableright">2x8-bit RG in linear space, block compressed.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatCompLinearR</code></td>
+<td class="tableright">1x8-bit R in linear space, block compressed.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatCompSignedRG</code></td>
+<td class="tableright">2x8-bit signed normalized RG, block compressed.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatCompSignedR</code></td>
+<td class="tableright">1x8-bit signed normalized R, block compressed.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatHalfRGBA</code></td>
+<td class="tableright">4x16-bit float RGBA.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatHalfRG</code></td>
+<td class="tableright">2x16-bit float RG.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatHalfR</code></td>
+<td class="tableright">1x16-bit float R.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatFloatRGBA</code></td>
+<td class="tableright">4x32-bit float RGBA.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatUint16RGBA</code></td>
+<td class="tableright">4x16-bit unsigned int RGBA.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatUint16RG</code></td>
+<td class="tableright">2x16-bit unsigned int RG.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatUint16R</code></td>
+<td class="tableright">1x16-bit unsigned int R.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatSharedExpRGB</code></td>
+<td class="tableright">3x9-bit RGB with 5-bit shared exponent.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatRGBA4444</code></td>
+<td class="tableright">4x4-bit RGBA in linear space with alpha channel.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatLuminanceAlpha</code></td>
+<td class="tableright">2x8-bit luminance-alpha.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatLuminance</code></td>
+<td class="tableright">8-bit luminance.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureFormatIntensity</code></td>
+<td class="tableright">8-bit intensity.
+</td></tr>
+</table>
+The <code>wrapMode</code> array contains the wrap mode for each of the three texture mapping axes. They can each be one of the following constants unless <code>textureType</code> is <code>kTextureTypeRectangle</code>, in which case the wrap modes must all be <code>kTextureWrapClamp</code>.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kTextureWrapRepeat</code></td>
+<td class="tableright1">Repeat.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureWrapClamp</code></td>
+<td class="tableright">Clamp to edge.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureWrapBorder</code></td>
+<td class="tableright">Clamp to border.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureWrapMirrorRepeat</code></td>
+<td class="tableright">Mirror and repeat.
+</td></tr>
+<tr><td class="tableleft"><code>kTextureWrapMirrorClamp</code></td>
+<td class="tableright">Mirror once and clamp to edge.
+</td></tr>
+</table>
+<div class="heading">See Also</div>
+<p><code><a href="Texture_GetTexture.html" tppabs="http://www.c4engine.com/docs/GraphicsMgr/Texture_GetTexture.html">Texture::GetTexture</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

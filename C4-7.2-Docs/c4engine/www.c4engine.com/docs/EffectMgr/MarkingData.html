@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>struct MarkingData</title>
+<meta http-equiv="Content-Style-Type" content="text/css"><link rel="stylesheet" type="text/css" href="../docs.css" tppabs="http://www.c4engine.com/docs/docs.css" /></meta>
+</head>
+<body>
+<div class="body">
+<table cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: solid 1px black; background-color: #F8F8F8;">
+<tr><td style="width: 140px; padding-left: 12px;"><a href="javascript:if(confirm(%27http://c4engine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://c4engine.com/%27" tppabs="http://c4engine.com/"><img src="../c4.svg" tppabs="http://www.c4engine.com/docs/c4.svg" alt="C4 Engine" style="width: 128px; height: 128px;" /></a></td>
+<td style="vertical-align: top; padding-left: 20px;">
+<div style="font-family: tahoma, arial; font-size: 24pt; font-weight: bold; text-shadow: 0px 1px 2px #888; margin: 20px 0px 20px 0px;">C4 Engine API Documentation</div>
+<div class="apinav"><a href="../index.html" tppabs="http://www.c4engine.com/docs/index.html">Home</a> &#x25BA; <a href="index.html" tppabs="http://www.c4engine.com/docs/EffectMgr/index.html">Effect Manager</a> &#x25BA; <a href="MarkingData.html" tppabs="http://www.c4engine.com/docs/EffectMgr/MarkingData.html">struct MarkingData</a></div>
+</td></tr></table>
+<div class="content">
+<h2>struct MarkingData</h2>
+<div class="file"><b>Defined in:</b>&nbsp;&nbsp;<code>C4Markings.h</code></div>
+The <code>MarkingData</code> structure defines the parameters of a surface marking effect.
+<div class="heading">Constructor</div>
+<p><code>MarkingData(<span style="color: #0000FF">uint32</span>&nbsp;flags&nbsp;=&nbsp;0,&nbsp;MarkingList&nbsp;*list&nbsp;=&nbsp;<span style="color: #0000FF">nullptr</span>);</code></p>
+<p><code>MarkingData(<span style="color: #0000FF">const</span>&nbsp;Vector2D&amp;&nbsp;scale,&nbsp;<span style="color: #0000FF">const</span>&nbsp;Vector2D&amp;&nbsp;offset,&nbsp;<span style="color: #0000FF">uint32</span>&nbsp;flags&nbsp;=&nbsp;0,&nbsp;MarkingList&nbsp;*list&nbsp;=&nbsp;<span style="color: #0000FF">nullptr</span>);</code></p>
+<div class="heading">Parameters</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>flags</code></td>
+<td class="tableright1">The marking effect flags.
+</td></tr>
+<tr><td class="tableleft"><code>list</code></td>
+<td class="tableright">A pointer to the <code><a href="MarkingList.html" tppabs="http://www.c4engine.com/docs/EffectMgr/MarkingList.html">MarkingList</a></code> object into which each <code><a href="MarkingEffect.html" tppabs="http://www.c4engine.com/docs/EffectMgr/MarkingEffect.html">MarkingEffect</a></code> is inserted.
+</td></tr>
+<tr><td class="tableleft"><code>scale</code></td>
+<td class="tableright">A scale to apply to the (<i>s</i>, <i>t</i>) texture coordinates used by the marking.
+</td></tr>
+<tr><td class="tableleft"><code>offset</code></td>
+<td class="tableright">An offset to apply to the (<i>s</i>, <i>t</i>) texture coordinates used by the marking.
+</td></tr>
+</table>
+<div class="heading">Data Members</div>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code><span style="color: #0000FF">uint32</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;markingFlags;</code></td>
+<td class="tableright1">The marking effect flags. This is set to zero by the <code>MarkingData</code> constructors.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">float</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;markingOffset;</code></td>
+<td class="tableright">The depth offset distance used by the marking effect. This is set to 1/128 by the default constructor.
+</td></tr>
+<tr><td class="tableleft"><code>MarkingList&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*markingList;</code></td>
+<td class="tableright">A pointer to a <code><a href="MarkingList.html" tppabs="http://www.c4engine.com/docs/EffectMgr/MarkingList.html">MarkingList</a></code> (or a subclass) to which marking effects are added.
+</td></tr>
+<tr><td class="tableleft"><code>Point3D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;center;</code></td>
+<td class="tableright">The world-space center of the surface marking.
+</td></tr>
+<tr><td class="tableleft"><code>Bivector3D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;normal;</code></td>
+<td class="tableright">The world-space normal direction of the surface marking. This bivector must have unit length.
+</td></tr>
+<tr><td class="tableleft"><code>Vector3D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tangent;</code></td>
+<td class="tableright">The world-space tangent direction of the surface marking. (This determines texture orientation.) This vector does not have to be unit length.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">float</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radius;</code></td>
+<td class="tableright">The radius of the surface marking.
+</td></tr>
+<tr><td class="tableleft"><code>Range&lt;<span style="color: #0000FF">float</span>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clip;</code></td>
+<td class="tableright">The range of depths, with respect to the center and normal direction, to which the marking is clipped if the <code>kMarkingClipRange</code> flag is specified. If <code>kMarkingClipRange</code> is not specified, then the range is [&minus;<i>r</i>,&#x202F;<i>r</i>], where <i>r</i> is the radius of the marking.
+</td></tr>
+<tr><td class="tableleft"><code>Vector2D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;texcoordScale;</code></td>
+<td class="tableright">The (<i>s</i>, <i>t</i>) scale to apply to the texture coordinates of the marking. This is set to (1, 1) by the default constructor.
+</td></tr>
+<tr><td class="tableleft"><code>Vector2D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;texcoordOffset;</code></td>
+<td class="tableright">The (<i>s</i>, <i>t</i>) offset to apply to the texture coordinates of the marking. This is set to (0, 0) by the default constructor.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">const</span>&nbsp;<span style="color: #0000FF">char</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*textureName;</code></td>
+<td class="tableright">A pointer to the name of the texture map used by the surface marking. This occupies the same space as <code>materialObject</code> and should not be specified if the <code>kMarkingLight</code> is set in the <code>markingFlags</code> field.
+</td></tr>
+<tr><td class="tableleft"><code>MaterialObject&nbsp;&nbsp;*materialObject;</code></td>
+<td class="tableright">A pointer to the material object used by the surface marking. This occupies the same space as <code>textureName</code> and should only be specified if the <code>kMarkingLight</code> is set in the <code>markingFlags</code> field.
+</td></tr>
+<tr><td class="tableleft"><code>ColorRGBA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color;</code></td>
+<td class="tableright">The marking color, in linear space. Ignored if a material object containing a <code>DiffuseAttribute</code> is specified.
+</td></tr>
+<tr><td class="tableleft"><code><span style="color: #0000FF">int32</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lifeTime;</code></td>
+<td class="tableright">The time for which the surface marking is rendered. If this is set to -1, then the marking is rendered for exactly one frame.
+</td></tr>
+</table>
+<div class="heading">Description</div>
+The <code>MarkingData</code> structure holds information that is passed to the constructor for the <code><a href="MarkingEffect.html" tppabs="http://www.c4engine.com/docs/EffectMgr/MarkingEffect.html">MarkingEffect</a></code> class. The <code>markingFlags</code> member can be a combination (through logical OR) of the following constants.
+<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px;">
+<tr><td class="tableleft1"><code>kMarkingLight</code></td>
+<td class="tableright1">The marking receives full lighting.
+</td></tr>
+<tr><td class="tableleft"><code>kMarkingBlendLight</code></td>
+<td class="tableright">Alpha blending is applied to a lighted marking (valid only if the <code>kMarkingLight</code> flag is set).
+</td></tr>
+<tr><td class="tableleft"><code>kMarkingDepthWrite</code></td>
+<td class="tableright">The marking writes to the depth buffer (valid only if the <code>kMarkingLight</code> flag is set).
+</td></tr>
+<tr><td class="tableleft"><code>kMarkingTwoSided</code></td>
+<td class="tableright">The marking is rendered two-sided (valid only if the <code>kMarkingLight</code> flag is <i>not</i> set).
+</td></tr>
+<tr><td class="tableleft"><code>kMarkingClipRange</code></td>
+<td class="tableright">The minimum and maximum depths to which the marking is clipped are given by the <code>clip</code> field of the <code><a href="MarkingData.html" tppabs="http://www.c4engine.com/docs/EffectMgr/MarkingData.html">MarkingData</a></code> structure.
+</td></tr>
+<tr><td class="tableleft"><code>kMarkingBlendAdd</code></td>
+<td class="tableright">The blend mode for the marking adds to the color channels and ignores the alpha channel (valid only if the <code>kMarkingLight</code> flag is <i>not</i> set).
+</td></tr>
+</table>
+If the <code>list</code> parameter is not <code><span style="color: #0000FF">nullptr</span></code>, then each <code><a href="MarkingEffect.html" tppabs="http://www.c4engine.com/docs/EffectMgr/MarkingEffect.html">MarkingEffect</a></code> node created during a call to the <code><a href="MarkingEffect_NewMarkingEffect.html" tppabs="http://www.c4engine.com/docs/EffectMgr/MarkingEffect_NewMarkingEffect.html">MarkingEffect::NewMarkingEffect</a></code> function is added to the <code><a href="MarkingList.html" tppabs="http://www.c4engine.com/docs/EffectMgr/MarkingList.html">MarkingList</a></code> object (which can be a subclass of <code>MarkingList</code>).<br/><br/> If the <code>scale</code> and <code>offset</code> parameters are specified, then the <code>texcoordScale</code> and <code>texcoordOffset</code> members of the <code>MarkingData</code> structure are initialized to those values. Otherwise, the scale is initialized to (1, 1), and the offset is initialized to (0, 0) so that the entire texture map is used by the marking.<br/><br/> Polygons belonging to the marking effect are ordinarily created by clipping polygons belonging to a geometry node to the bounding box if the marking effect. If the <code>kMarkingFullPolygon</code> flag is specified, then the geometry's polygons are not clipped but are instead copied so that an exact duplicate appears in the marking effect's mesh. This results in larger polygons being rendered, but it avoids depth testing issues related to offsetting coplanar polygons. In this case, the <code>markingOffset</code> member of the <code>MarkingData</code> structure is ignored, and the marking effect is always offset by the minimum amount possible toward the camera in viewport space.
+<div class="heading">See Also</div>
+<p><code><a href="MarkingEffect.html" tppabs="http://www.c4engine.com/docs/EffectMgr/MarkingEffect.html">MarkingEffect</a></code>
+</p>
+</div>
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 4px 8px 0px 8px;">
+<table class="footer"><tr>
+<td style="width: 100%; text-align: right;">C4 Engine, <b>Version 7.1</b>, 28-Jul-2023, Copyright &copy; Terathon Software LLC</td>
+<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://terathon.com/%27" tppabs="http://terathon.com/"><img src="../terathon.png" tppabs="http://www.c4engine.com/docs/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+</tr></table>
+</div>
+</div>
+</body></html>

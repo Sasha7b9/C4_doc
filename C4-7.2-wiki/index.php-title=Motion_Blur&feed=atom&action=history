@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Motion_Blur&amp;feed=atom&amp;action=history</id>
+	<title>Motion Blur - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Motion_Blur&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Motion_Blur&amp;action=history"/>
+	<updated>2024-09-21T18:21:16Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Motion_Blur&amp;diff=131&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;'''Figure 1.''' Motion blur is visible due to the movement of the camera and the falling debris. The C4 Engine is capable of rendering full-scene motion blur as a post-processing effect. Motion blur in C4 is based on the concept of a velocity buffer, and it employs a sophisticated algorithm that uses information in both the velocity buffer and the structure buffer to apply the correct blur after the entire scene has been rendered. The...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Motion_Blur&amp;diff=131&amp;oldid=prev"/>
+		<updated>2023-07-15T10:55:27Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;&lt;a href=&quot;/wiki/index.php?title=File:Motionblur.jpg&quot; title=&quot;File:Motionblur.jpg&quot;&gt;right|frame|&amp;#039;&amp;#039;&amp;#039;Figure 1.&amp;#039;&amp;#039;&amp;#039; Motion blur is visible due to the movement of the camera and the falling debris.&lt;/a&gt; The C4 Engine is capable of rendering full-scene motion blur as a post-processing effect. Motion blur in C4 is based on the concept of a velocity buffer, and it employs a sophisticated algorithm that uses information in both the velocity buffer and the structure buffer to apply the correct blur after the entire scene has been rendered. The...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;[[File:Motionblur.jpg|right|frame|'''Figure 1.''' Motion blur is visible due to the movement of the camera and the falling debris.]]&lt;br /&gt;
+The C4 Engine is capable of rendering full-scene motion blur as a post-processing effect. Motion blur in C4 is based on the concept of a velocity buffer, and it employs a sophisticated algorithm that uses information in both the velocity buffer and the structure buffer to apply the correct blur after the entire scene has been rendered. The screen-space velocity of a single pixel depends on several factors, including the motion of the geometry occupying that pixel, the motion of the camera, and possibly the motion of different vertices within the geometry (for example, skinned characters and dynamic cloth have moving vertices). The engine takes all of these into account and generates an accurate velocity for all objects in the scene. In Figure 1 to the right, the ground is blurred because the player is moving backward, and the crumbling debris is blurred because is falling to the ground and rolling.&lt;br /&gt;
+&lt;br /&gt;
+== Controlling Motion Blur ==&lt;br /&gt;
+&lt;br /&gt;
+In the demo game that ships with C4, motion blur can be enabled or disabled by the user in the Graphics Settings dialog. This works by setting the value of the &amp;lt;code&amp;gt;$postMotionBlur&amp;lt;/code&amp;gt; system variable to either 0 or 1.&lt;br /&gt;
+&lt;br /&gt;
+Motion blur can be enabled or disabled on a per-geometry basis in the [[World Editor]] by selecting a geometry and opening the Node Info dialog. There is a check box under the Geometry tab called &amp;quot;Apply motion blur&amp;quot;, which is enabled by default. This check box corresponds to the &amp;lt;code&amp;gt;kGeometryMotionBlurInhibit&amp;lt;/code&amp;gt; flag that can be set for a &amp;lt;code&amp;gt;GeometryObject&amp;lt;/code&amp;gt; using the &amp;lt;code&amp;gt;[http://c4engine.com/docs/WorldMgr/GeometryObject_SetGeometryFlags.html GeometryObject::SetGeometryFlags()]&amp;lt;/code&amp;gt; function.&lt;br /&gt;
+&lt;br /&gt;
+It is sometimes necessary to explicitly tell the engine that an object has stopped moving so that motion blur for that object can be reset. (A stopped object is not normally being invalidated in the usual way, so the engine has no way of knowing that it needs attention.) The &amp;lt;code&amp;gt;[http://c4engine.com/docs/WorldMgr/Node_StopMotion.html Node::StopMotion()]&amp;lt;/code&amp;gt; function can be called to update the internal transforms so that an object is correctly recognized as completely stopped.&lt;br /&gt;
+&lt;br /&gt;
+== Further Reading ==&lt;br /&gt;
+&lt;br /&gt;
+* [http://foundationsofgameenginedev.com/ Lengyel, Eric. ''Foundations of Game Engine Development, Volume 2: Rendering'', Terathon Software, 2019. Section 10.6.]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

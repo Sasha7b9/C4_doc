@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.1.1&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 2.1.1 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.1.1&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.1.1&amp;action=history"/>
+	<updated>2024-09-21T18:41:26Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.1.1&amp;diff=66&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' September 20, 2010  == Core Engine ==  === Graphics ===  * A new material flag called &quot;Use alpha multisample coverage&quot; has been added. This turns on transparency antialiasing when a multisampled rendering context is being used. Alpha multisample coverage can be used to soften up the outlines of alpha-tested materials.  * A global light detail level has been added to the engine. Any light source can now specify a detail level, and the light w...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.1.1&amp;diff=66&amp;oldid=prev"/>
+		<updated>2023-07-15T10:03:21Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; September 20, 2010  == Core Engine ==  === Graphics ===  * A new material flag called &amp;quot;Use alpha multisample coverage&amp;quot; has been added. This turns on transparency antialiasing when a multisampled rendering context is being used. Alpha multisample coverage can be used to soften up the outlines of alpha-tested materials.  * A global light detail level has been added to the engine. Any light source can now specify a detail level, and the light w...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' September 20, 2010&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+=== Graphics ===&lt;br /&gt;
+&lt;br /&gt;
+* A new material flag called &amp;quot;Use alpha multisample coverage&amp;quot; has been added. This turns on transparency antialiasing when a multisampled rendering context is being used. Alpha multisample coverage can be used to soften up the outlines of alpha-tested materials.&lt;br /&gt;
+&lt;br /&gt;
+* A global light detail level has been added to the engine. Any light source can now specify a detail level, and the light will only be rendered if the global detail level setting is at least as high as that specified by the light source. This is useful for turning off dynamic lights for things like projectiles on lower-end hardware.&lt;br /&gt;
+&lt;br /&gt;
+* The method for determining the default graphics settings has been rewritten. There are three general initial quality settings, and one is chosen based on the number in the name of the graphics card. If the second digit is 5 or less, then the lowest quality setting is used. If the second digit is 6 or 7, then the normal quality setting is used. If the second digit is 8 or 9, then the highest quality setting is used. All of this only matters if the user hasn't yet changed any graphics settings, creating a new &amp;lt;code&amp;gt;variables.cfg&amp;lt;/code&amp;gt; file.&lt;br /&gt;
+&lt;br /&gt;
+=== Terrain ===&lt;br /&gt;
+&lt;br /&gt;
+* The scale for triplanar texture coordinates has been made an independent parameter in the material object settings. It used to share the scale for texcoord 0, but this interferes with the use of ordinary 2D textures on the terrain. Materials for existing terrains will need to be updated if the texcoord scale is anything other than the default 1/16.&lt;br /&gt;
+&lt;br /&gt;
+=== Physics ===&lt;br /&gt;
+&lt;br /&gt;
+* New code has been added for collision detection between shapes and arbitrary geometry meshes, and the continuous collision detection code has been completely replaced. Performance has improved drastically.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;RigidBodyContact&amp;lt;/code&amp;gt; class contains a new function called &amp;lt;code&amp;gt;[http://c4engine.com/docs/PhysicsMgr/RigidBodyContact_GetWorldContactPosition.html GetWorldContactPosition()]&amp;lt;/code&amp;gt; that can be used to simplify the extraction of world-space contact information in a consistent manner.&lt;br /&gt;
+&lt;br /&gt;
+* A new Truncated Dome shape has been added to the engine. Like the other truncated shapes, this is a dome with its top cut off by a plane parallel to its base.&lt;br /&gt;
+&lt;br /&gt;
+* Problems that arose in previous versions when multiple shapes were used for a single rigid body have been corrected.&lt;br /&gt;
+&lt;br /&gt;
+* The amount of collision data stored in a world file for most types of geometry has been reduced considerably. To update existing worlds, select all and then select Rebuild Geometry from the Geometry menu (or just type Ctrl-A followed by Ctrl-R). Be sure to make a backup copy of your worlds first.&lt;br /&gt;
+&lt;br /&gt;
+=== World Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* A new &amp;lt;code&amp;gt;[http://c4engine.com/c4engine/doco/WorldMgr/Modifier.html Modifier]&amp;lt;/code&amp;gt; class has been added to the engine, and one or more of them can be attached to reference markers in order to modify the appearance or structure of the referenced world in some way. This allows some variation among different instances of a referenced world while still preserving the data-sharing benefits. In this release, there are three built-in modifier types, and a game module can define its own custom modifiers.&lt;br /&gt;
+&lt;br /&gt;
+=== Miscellaneous ===&lt;br /&gt;
+&lt;br /&gt;
+* The variable &amp;lt;code&amp;gt;$applicName&amp;lt;/code&amp;gt; has been removed from the engine as the method for identifying the name of the game module to load. The engine now determines the name of the game module through the following steps, in this order:&lt;br /&gt;
+&lt;br /&gt;
+# If the symbol &amp;lt;code&amp;gt;GAME_MODULE_NAME&amp;lt;/code&amp;gt; is defined (in the project properties), then its value is used as the name of the game module. The symbol should begin and end with double quotes, so to load the SimpleBall game, you would define &amp;lt;code&amp;gt;GAME_MODULE_NAME&amp;lt;/code&amp;gt; to be &amp;lt;code&amp;gt;&amp;quot;SimpleBall&amp;quot;&amp;lt;/code&amp;gt;, with the quotes.&lt;br /&gt;
+# If the symbol &amp;lt;code&amp;gt;GAME_MODULE_NAME&amp;lt;/code&amp;gt; is not defined, then the engine checks to see if the variable &amp;lt;code&amp;gt;$gameModuleName&amp;lt;/code&amp;gt; exists, possibly because it was defined on the command line. If this variable exists, then its value is used as the name of the game module to load.&lt;br /&gt;
+# If the &amp;lt;code&amp;gt;$gameModuleName&amp;lt;/code&amp;gt; doesn't yet exist, then the engine executes the file &amp;lt;code&amp;gt;game.cfg&amp;lt;/code&amp;gt;, which can be stored in any subfolder of the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; folder or in a PAK file. This file should define the variable &amp;lt;code&amp;gt;$gameModuleName&amp;lt;/code&amp;gt; by assigning the name of the game module to it. For example, to load the SimpleBall game, the &amp;lt;code&amp;gt;game.cfg&amp;lt;/code&amp;gt; file would contain the line &amp;lt;code&amp;gt;$gameModuleName = &amp;quot;SimpleBall&amp;quot;;&amp;lt;/code&amp;gt;.&lt;br /&gt;
+# If the &amp;lt;code&amp;gt;$gameModuleName&amp;lt;/code&amp;gt; variable still isn't defined, either because &amp;lt;code&amp;gt;game.cfg&amp;lt;/code&amp;gt; doesn't exist or it didn't define the variable &amp;lt;code&amp;gt;$gameModuleName&amp;lt;/code&amp;gt;, then the name of the game module defaults to &amp;lt;code&amp;gt;Game&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+* A generic lossless data compression algorithm has been added to the engine, and it is now used for all texture resources. Most textures will get smaller if they are re-imported, but all existing textures will continue to work just fine (re-importing is not required).&lt;br /&gt;
+&lt;br /&gt;
+* Backwards compatibility with releases preceding version 1.4.10 has been removed.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	
+<!-- Mirrored from www.terathon.com/wiki/index.php/Lights_and_Shadows by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:25 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.3" />
+		<meta name="keywords" content="Lights and Shadows,Cascaded Shadow Mapping,Lights Page,Shadow Spaces,Transform Page,World Editor" />
+		<link rel="shortcut icon" href="http://www.terathon.com/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="http://www.terathon.com/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)" />
+		<link rel="alternate" type="application/rss+xml" title="C4 Engine Wiki RSS Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom Feed" href="http://www.terathon.com/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>Lights and Shadows - C4 Engine Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "../skins/common/sharedfa7c.css?164";
+			@import "../skins/monobook/mainfa7c.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="../skins/common/commonPrintfa7c.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/wiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/wiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/wiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/wiki/skins";
+var wgArticlePath = "/wiki/index.php/$1";
+var wgScriptPath = "/wiki";
+var wgScript = "http://www.terathon.com/wiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.terathon.com/";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Lights_and_Shadows";
+var wgTitle = "Lights and Shadows";
+var wgAction = "view";
+var wgArticleId = "1847";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "10209";
+var wgVersion = "1.13.3";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="../skins/common/wikibitsfa7c.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="../skins/common/ajaxfa7c.js?164"></script>
+		<script type="text/javascript" src="http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;action=raw&amp;ctype=text/css&amp;smaxage=18000";
+@import "http://www.terathon.com/wiki/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=18000&amp;useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Lights_and_Shadows">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Lights and Shadows</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From C4 Engine Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p>The C4 Engine has four distinct types of light sources that can be used to illuminate a scene. Some of the differences among these types are whether the light is a point source or an infinite directional light and whether the light projects a texture map onto the scene. Lights are placed into a scene by using the tools in the <a href="Lights_Page.html" class="mw-redirect" title="Lights Page">Lights Page</a> in the <a href="World_Editor.html" title="World Editor">World Editor</a>.
+</p>
+<table id="toc" class="toc" summary="Contents"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1"><a href="#Infinite_Light"><span class="tocnumber">1</span> <span class="toctext">Infinite Light</span></a></li>
+<li class="toclevel-1"><a href="#Point_Light"><span class="tocnumber">2</span> <span class="toctext">Point Light</span></a></li>
+<li class="toclevel-1"><a href="#Cube_Light"><span class="tocnumber">3</span> <span class="toctext">Cube Light</span></a></li>
+<li class="toclevel-1"><a href="#Spot_Light"><span class="tocnumber">4</span> <span class="toctext">Spot Light</span></a></li>
+<li class="toclevel-1"><a href="#Optimizations"><span class="tocnumber">5</span> <span class="toctext">Optimizations</span></a></li>
+<li class="toclevel-1"><a href="#See_Also"><span class="tocnumber">6</span> <span class="toctext">See Also</span></a></li>
+</ul>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Infinite_Light"></a><h2> <span class="mw-headline"> Infinite Light </span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:514px;"><a href="Image_Infinitelight.html" class="image" title="Figure 1. Cascaded shadow mapping produced by an infinite light."><img alt="Figure 1. Cascaded shadow mapping produced by an infinite light." src="../images/d/d0/Infinitelight.jpg" width="512" height="328" border="0" class="thumbimage" /></a>  <div class="thumbcaption"><b>Figure 1.</b> Cascaded shadow mapping produced by an infinite light.</div></div></div>
+<p>An infinite light illuminates a scene with a constant brightness from a single direction. When it is placed in a world, only the direction in which it is pointing matters, not its position.
+</p><p>An infinite light uses a technique called <i>cascaded shadow mapping</i> to render shadows into the scene, and an example is shown in Figure 1. Shadow mapping hardware on the GPU is used to perform per-pixel depth comparisons, causing correct shadows to be applied to any objects within the cascade ranges of the camera. The shadow map is completely dynamic and updated every frame.
+</p><p>For more information about setting up cascade ranges, see <a href="Cascaded_Shadow_Mapping.html" title="Cascaded Shadow Mapping">Cascaded Shadow Mapping</a>.
+<br clear="both" />
+</p>
+<a name="Point_Light"></a><h2> <span class="mw-headline"> Point Light </span></h2>
+<p>A point light emits light from a single point in space and influences a spherical region of a given radius. The intensity of the light gradually falls off to zero at the outer boundary of the light's sphere.
+</p><p>To create a point light, select the point light tool from the <a href="Lights_Page.html" class="mw-redirect" title="Lights Page">Lights Page</a> and use it to place a light in your level at the desired position. Hold the mouse button down and drag away from the light position to set the radius for the point light. Alternatively, you could later set the radius manually in the <a href="Transform_Page.html" title="Transform Page">Transform Page</a> by entering a positive value in the <i>X</i> size field.
+</p><p>Point lights cast shadows by rendering a <i>cube shadow map</i>. Up to six two-dimensional texture faces are rendered each frame during which the light is visible in order to produce dynamic shadows. If the center of the light source is not visible to the camera, then at least one of these faces can be skipped by the engine as an optimization.
+</p><p>Points lights can be faded out as they get farther from the camera and ultimately disabled when the camera moves beyond a maximum range. These distances can be specified in the light's settings, and they provide a performance optimization in complex scenes.
+</p>
+<a name="Cube_Light"></a><h2> <span class="mw-headline"> Cube Light </span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:514px;"><a href="Image_Cubelight.html" class="image" title="Figure 2. A projected shadow produced by a cube light."><img alt="Figure 2. A projected shadow produced by a cube light." src="../images/1/1d/Cubelight.jpg" width="512" height="328" border="0" class="thumbimage" /></a>  <div class="thumbcaption"><b>Figure 2.</b> A projected shadow produced by a cube light.</div></div></div>A cube light is a special type of point light that projects an ordinary cube texture map into the environment. The texture can contain grayscale shadows or any kind of full-color projected image. The projected texture works independently of the shadows cast by the light. When the light moves, the projected shadow moves with it, providing a very efficient way of projecting shadows from geometry surrounding a light, such as a cage, onto the environment.
+<p>The texture used by a cube light can be imported or generated by the engine. To generate a cube map for shadow casting, follow these steps:
+</p>
+<ol><li> Create a new world and place the cube light and any geometry that will participate in the projected shadow into this world.
+</li><li> Open the Get Info dialog for the infinite root zone by selecting it in the scene graph view and hitting Ctrl-I. Set the clear color to white (255, 255, 255), and set the ambient color to black (0, 0, 0).
+</li><li> Open the Get Info dialog for the cube light, and set its color to black (0, 0, 0). Also, set the name of the texture that will be generated and its size. Be sure to check the &ldquo;Generate shadow texture&rdquo; box.
+</li><li> Save the world containing the cube light, and then start a new game with that world.
+</li><li> Type <code>gentex</code> in the command console, and a small developer window will appear.
+</li><li> Make sure the &ldquo;Light projections&rdquo; box is checked, and click the Generate button. This will cause the cube light in the world to generate its CUBE texture map and write it to the disk.
+</li></ol>
+<p>Once these steps have been followed, the resulting cube texture map can be used on any cube light to project a shadow texture. When used in conjunction with the original geometry that generated the texture, the projected cube map can be cast onto the geometry that is actually casting the shadows in the map, which doesn't look right. To prevent this from happening, uncheck the &ldquo;Render cube light projection&rdquo; flag under the Geometry pane for each of the geometries surrounding the light.
+<br clear="both" />
+</p>
+<a name="Spot_Light"></a><h2> <span class="mw-headline"> Spot Light </span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:514px;"><a href="Image_Spotlight.html" class="image" title="Figure 3. The flashlight in the demo game uses a spot light with a projected 2D texture."><img alt="Figure 3. The flashlight in the demo game uses a spot light with a projected 2D texture." src="../images/b/b6/Spotlight.jpg" width="512" height="328" border="0" class="thumbimage" /></a>  <div class="thumbcaption"><b>Figure 3.</b> The flashlight in the demo game uses a spot light with a projected 2D texture.</div></div></div>A spot light is a special type of point light that shines light in one primary direction. It has the same type of spherical attenuation that a point light has, but it is also restricted to a pyramid of influence centered on the directional axis. Spot lights always project a 2D texture map which can be imported or generated just like the texture for the cube light. The wrap modes for the texture should be "clamp to border" so that the light intensity falls off to zero at the boundary of the pyramid of influence (because texture border colors are always black in C4).
+<p><br clear="both" />
+</p>
+<a name="Optimizations"></a><h2> <span class="mw-headline"> Optimizations </span></h2>
+<p>Shadows can eat up a lot of rendering time. The C4 Engine uses several advanced techniques to automatically optimize shadows as much as possible, but there are additional design decisions and manual steps that can be taken to increase performance. Here are some tips for getting the best results.
+</p>
+<ul><li> First, it is essential that you use zones and portals to partition large worlds. The engine can use this information to determine which objects really need to cast shadows and eliminate those objects whose shadows couldn't possibly be visible.
+</li><li> Be sure to turn off shadow casting for objects that can't actually cast shadows on anything else. In most rooms, for example, the floor, ceiling, and some walls never cast visible shadows. Turn shadow casting off by unchecking the &ldquo;Render shadow&rdquo; box in the Node Info dialog for a geometry.
+</li><li> Make the range for point, cube, and spot lights as small as possible. This will allow the engine to restrict the screen area covered by shadows cast by those lights. If you need to make a light brighter, try increasing the &ldquo;Brightness scale&rdquo; in its Node Info dialog before increasing the light's range.
+</li><li> Use <a href="Shadow_Spaces.html" title="Shadow Spaces"> shadow spaces</a> when appropriate. These will limit the size of the regions in which shadows need to be rendered.
+</li></ul>
+<a name="See_Also"></a><h2> <span class="mw-headline"> See Also </span></h2>
+<ul><li> <a href="Cascaded_Shadow_Mapping.html" title="Cascaded Shadow Mapping">Cascaded Shadow Mapping</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 11/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key terathon_wiki:pcache:idhash:1847-0!1!0!!en!2!edit=0 and timestamp 20150118180016 -->
+<div class="printfooter">
+Retrieved from "<a href="Lights_and_Shadows.html">http://www.terathon.com/wiki/index.php/Lights_and_Shadows</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="Lights_and_Shadows.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://www.terathon.com/wiki/index.php?title=Talk:Lights_and_Shadows&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://www.terathon.com/wiki/index.php?title=Lights_and_Shadows&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://www.terathon.com/wiki/index.php?title=Lights_and_Shadows&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://www.terathon.com/wiki/index.php?title=Special:UserLogin&amp;returnto=Lights_and_Shadows" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../../image/wikilogo.png);" href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="Main_Page.html" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-All-Pages"><a href="Special_AllPages.html">All Pages</a></li>
+				<li id="n-Sandbox"><a href="Sandbox.html">Sandbox</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://www.terathon.com/wiki/index.php/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search C4 Engine Wiki [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Lights_and_Shadows.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Lights_and_Shadows.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="Special_Upload.html" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://www.terathon.com/wiki/index.php?title=Lights_and_Shadows&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://www.terathon.com/wiki/index.php?title=Lights_and_Shadows&amp;oldid=10209" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 17 October 2014, at 20:23.</li>
+				<li id="viewcount">This page has been accessed 30,084 times.</li>
+				<li id="privacy"><a href="C4_Engine_Wiki_Privacy_policy.html" title="C4 Engine Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="C4_Engine_Wiki_About.html" title="C4 Engine Wiki:About">About C4 Engine Wiki</a></li>
+				<li id="disclaimer"><a href="C4_Engine_Wiki_General_disclaimer.html" title="C4 Engine Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.530 secs. --></body>
+<!-- Mirrored from www.terathon.com/wiki/index.php/Lights_and_Shadows by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Jan 2015 09:46:25 GMT -->
+</html>

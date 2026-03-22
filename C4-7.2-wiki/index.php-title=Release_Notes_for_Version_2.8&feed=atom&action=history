@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.8&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 2.8 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.8&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.8&amp;action=history"/>
+	<updated>2024-09-21T18:40:43Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.8&amp;diff=75&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' April 17, 2012  == Core Engine ==  * The config file &lt;code&gt;variables.cfg&lt;/code&gt; is now named &lt;code&gt;engine.cfg&lt;/code&gt;. This change was made because the file can now store more information than just the values of the system variables.  === Graphics ===  * The velocity-depth-gradient buffer has been given the new name &quot;structure buffer&quot;, and there is a new option in the Graphics Manager called &lt;code&gt;kRenderOptionStructureEffects&lt;/code&gt;. If eith...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.8&amp;diff=75&amp;oldid=prev"/>
+		<updated>2023-07-15T10:09:50Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; April 17, 2012  == Core Engine ==  * The config file &amp;lt;code&amp;gt;variables.cfg&amp;lt;/code&amp;gt; is now named &amp;lt;code&amp;gt;engine.cfg&amp;lt;/code&amp;gt;. This change was made because the file can now store more information than just the values of the system variables.  === Graphics ===  * The velocity-depth-gradient buffer has been given the new name &amp;quot;structure buffer&amp;quot;, and there is a new option in the Graphics Manager called &amp;lt;code&amp;gt;kRenderOptionStructureEffects&amp;lt;/code&amp;gt;. If eith...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' April 17, 2012&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+* The config file &amp;lt;code&amp;gt;variables.cfg&amp;lt;/code&amp;gt; is now named &amp;lt;code&amp;gt;engine.cfg&amp;lt;/code&amp;gt;. This change was made because the file can now store more information than just the values of the system variables.&lt;br /&gt;
+&lt;br /&gt;
+=== Graphics ===&lt;br /&gt;
+&lt;br /&gt;
+* The velocity-depth-gradient buffer has been given the new name &amp;quot;structure buffer&amp;quot;, and there is a new option in the Graphics Manager called &amp;lt;code&amp;gt;kRenderOptionStructureEffects&amp;lt;/code&amp;gt;. If either &amp;lt;code&amp;gt;kRenderOptionStructureEffects&amp;lt;/code&amp;gt; or &amp;lt;code&amp;gt;kRenderOptionMotionBlur&amp;lt;/code&amp;gt; is present, then the structure buffer is available for use by shaders and by post-processing.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new shader process called Delta Depth that can be used to obtain the scaled difference between the linear depth of the pixel being shaded and the linear depth stored in the structure buffer, clamped to [0,1]. This is useful for implementing things like soft particles.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new shader process called Linear Ramp that remaps a range of a given width centered around a specific value to the range [0,1] and saturates.&lt;br /&gt;
+&lt;br /&gt;
+* There are new shader processes called Paint Texcoord and Paint Texture that can be used to sample from the paint space associated with the object being rendered. (See description of paint spaces below.)&lt;br /&gt;
+&lt;br /&gt;
+* A new flag called &amp;quot;Enable per-sample shading&amp;quot; has been added to materials. On hardware that supports it, this turns on the ability to run the fragment shader for each sample position, which can be used to antialias edges produced by the alpha test. If &amp;quot;Enable per-sample shading&amp;quot; and &amp;quot;Use alpha multisample coverage&amp;quot; are both enabled (and the hardware supports sample shading), then alpha multisample coverage is disabled.&lt;br /&gt;
+&lt;br /&gt;
+* Support for the &amp;lt;code&amp;gt;WGL_EXT_swap_control_tear&amp;lt;/code&amp;gt; extension has been implemented. If the display flag &amp;lt;code&amp;gt;kDisplayRefreshSync&amp;lt;/code&amp;gt; (renamed from &amp;lt;code&amp;gt;kDisplayVerticalSync&amp;lt;/code&amp;gt;) is set, then framebuffer swapping is synchronized with the monitor's refresh cycle. If the display flag &amp;lt;code&amp;gt;kDisplaySyncTear&amp;lt;/code&amp;gt; is set in addition, then the synchronization only occurs when the frame rate is high enough to beat the next refresh, and otherwise, an unsynchronized swap takes place immediately after a frame is finished rendering.&lt;br /&gt;
+&lt;br /&gt;
+=== World Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The visibility hierarchy and transform hierarchy have been decoupled. The transform tree still exists in the same form that it always has and corresponds to the node/subnode relationships. The visibility system now uses a new DAG structure on a hierarchical grid with fixed cell sizes inside each zone. Nodes are inserted into this DAG automatically by the engine.&lt;br /&gt;
+&lt;br /&gt;
+* The infinite zone now has a special bounding box that is used to define the maximum extents of the visibility graph with that zone. This box should be resized in worlds with large outdoor areas in the infinite zone so that the box encloses all static nodes other than terrain and water. The default box size is 1&amp;amp;times;1&amp;amp;times;1, but the benefits of the visibility graph don't kick in until it's at least 16&amp;amp;nbsp;m wide in either the ''x'' or ''y'' directions. Nodes outside the box will still be visible, but they won't be part of the visibility DAG. Subzones are not affected by the infinite zone's bounding box.&lt;br /&gt;
+&lt;br /&gt;
+* A new feature called &amp;quot;paint spaces&amp;quot; has been implemented, and these allow 2D painting canvases to be placed in a world. Each painting canvas holds a 1-, 2-, or 4-channel texture map, and this texture is projected onto all of the geometries that are associated with the paint space. A paint space has its own texture coordinate system that is independent of any geometry. The texture coordinates and texture map itself are accessed through the new Paint Texcoord and Paint Texture shader processes. Paint spaces can be used to hand paint details onto geometries for a multitude of purposes. (See description of painting tools below.)&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;ReferenceMarker&amp;lt;/code&amp;gt; class has been renamed to &amp;lt;code&amp;gt;Instance&amp;lt;/code&amp;gt;, and it is now a top-level node type instead of a subtype of marker.&lt;br /&gt;
+&lt;br /&gt;
+* A new modifier called &amp;quot;Replace Material&amp;quot; has been added to the engine. When this is assigned to an instance, it indicates that the material should be replaced for the named node in the instanced world or for all geometry nodes if no name is given. A material object can then be set for the instance node itself in order to specify what material gets applied to the affected geometries in the instanced world.&lt;br /&gt;
+&lt;br /&gt;
+* A new modifier called &amp;quot;Move Connector&amp;quot; has been added to the engine. This modifier takes an incoming connection attached to an instance node and redirects it to a named node in the instanced world.&lt;br /&gt;
+&lt;br /&gt;
+* Occlusion spaces and occlusion portals have been enhanced so that they can cull objects that may not be completely obscured by the occluder, but for which the unoccluded parts are outside the view frustum.&lt;br /&gt;
+&lt;br /&gt;
+* If both stencil shadows and shadow maps are enabled for a geometry node, and the geometry is rendered into the shadow map for a particular light source, then the geometry will no longer cast a stencil shadow for the same light source.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new flag for sound sources that indicates that a sound should start playing from a random position each time it becomes audible. This works with looping, non-streamed sources, and it's useful in places where the same sound can be heard from multiple objects that are close together.&lt;br /&gt;
+&lt;br /&gt;
+* A new setting has been added to remote portals that allows you to specify a focal length multiplier for the camera used to render the scene through the portal. Values higher than 1.0 have a magnifying effect.&lt;br /&gt;
+&lt;br /&gt;
+* Impostors are now rendered with corners clipped off where possible to reduce dead fill. This results in a significant speed increase in scenes that make heavy use of impostors. An impostor's texture maps must be regenerated in order to calculate the clipping data. Corner clipping can be disabled for the top and/or bottom edges of an impostor in the impostor property settings used to generate the texture maps.&lt;br /&gt;
+&lt;br /&gt;
+* Node connectors now have keys that are strings up to 15 bytes in length, and the keys can contain any characters except &amp;lt;code&amp;gt;'$'&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;'%'&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;'&amp;amp;'&amp;lt;/code&amp;gt;, which are reserved for use by the engine. Nodes can advertise built-in connectors, and keys for those always begin with a &amp;lt;code&amp;gt;'%'&amp;lt;/code&amp;gt; character. Connectors no longer carry information about what type of node they are allowed to connect to.&lt;br /&gt;
+&lt;br /&gt;
+* Inter-zone sound flow analysis has been improved significantly in this version.&lt;br /&gt;
+&lt;br /&gt;
+* A new function called &amp;lt;code&amp;gt;QueryProximity()&amp;lt;/code&amp;gt; has been added to the &amp;lt;code&amp;gt;World&amp;lt;/code&amp;gt; class. This function enumerates all geometry nodes and rigid bodies that intersect a given sphere and calls a user-supplied callback function. The &amp;lt;code&amp;gt;QueryProximity()&amp;lt;/code&amp;gt; function replaces all previously existing node enumeration functions.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;World::QueryWorld()&amp;lt;/code&amp;gt; function has been renamed to &amp;lt;code&amp;gt;QueryCollision()&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+=== Effects ===&lt;br /&gt;
+&lt;br /&gt;
+* Particle systems can now specify the &amp;lt;code&amp;gt;kParticleSystemSoftDepth&amp;lt;/code&amp;gt; flag to enable soft geometry intersections.&lt;br /&gt;
+&lt;br /&gt;
+* Quad effects can now have soft geometry intersections enabled in their node settings.&lt;br /&gt;
+&lt;br /&gt;
+=== Physics ===&lt;br /&gt;
+&lt;br /&gt;
+* It is now possible to specify that the convex hull of a geometry be used for collision detection instead of the exact triangle mesh. This can be set under the Collision tab in the Node Info window. Using the convex hull produces much more stable collision detection for objects with small details, and it is much faster for all mesh geometries.&lt;br /&gt;
+&lt;br /&gt;
+=== Interface Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* A new &amp;lt;code&amp;gt;PaintWidget&amp;lt;/code&amp;gt; class has been added. It allows interactive painting on a canvas inside a rectangular viewport, and it exports functions for changing brush size, color, and fuzziness from scripts.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;ImageWidget&amp;lt;/code&amp;gt; class now lets you specify a secondary texture image, and it modulates the primary image. All subclasses of &amp;lt;code&amp;gt;ImageWidget&amp;lt;/code&amp;gt; can also use this functionality, and it is particularly useful for masking camera widgets and movie widgets so they can have any shape you want.&lt;br /&gt;
+&lt;br /&gt;
+* The last visited directory for each type of resource opened with the file picker is now persistent and remembered in subsequent runs of the engine. This information is stored in the user's &amp;lt;code&amp;gt;engine.cfg&amp;lt;/code&amp;gt; file as a series of &amp;lt;code&amp;gt;visit&amp;lt;/code&amp;gt; commands.&lt;br /&gt;
+&lt;br /&gt;
+* File pickers now allow multiple files to be selected. This is enabled by setting the &amp;lt;code&amp;gt;kFilePickerMultipleSelection&amp;lt;/code&amp;gt; flag when the file picker is constructed. The new &amp;lt;code&amp;gt;FilePicker::GetFileNameCount()&amp;lt;/code&amp;gt; function can be used to determine how many files are selected, and the existing &amp;lt;code&amp;gt;FilePicker::GetFileName()&amp;lt;/code&amp;gt; function now takes a file index as a parameter.&lt;br /&gt;
+&lt;br /&gt;
+=== Scripting ===&lt;br /&gt;
+&lt;br /&gt;
+* The execution model for scripts has been improved in this version. It is faster and more robust in cases where complex looping and branching structures are used.&lt;br /&gt;
+&lt;br /&gt;
+=== System Utilities ===&lt;br /&gt;
+&lt;br /&gt;
+* The data serialization system has been largely redesigned, and it no longer needs to call the &amp;lt;code&amp;gt;Pack()&amp;lt;/code&amp;gt; function to determine the size of the data that will be serialized, but only to perform the actual serialization. Also, new functions called &amp;lt;code&amp;gt;BeginSection()&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;EndSection()&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;BeginChunk()&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;EndChunk()&amp;lt;/code&amp;gt; have been added to the &amp;lt;code&amp;gt;Packer&amp;lt;/code&amp;gt; class to assist in the measurement of data sizes that are written to the output stream.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;Packable::UnpackChunkList()&amp;lt;/code&amp;gt; function template no longer takes a pointer to a callback function as its last parameter. Instead, this function always calls the &amp;lt;code&amp;gt;UnpackChunk()&amp;lt;/code&amp;gt; function belonging to the class corresponding to the template parameter.&lt;br /&gt;
+&lt;br /&gt;
+* The term &amp;quot;cookie&amp;quot; is now used throughout the engine in reference to a user-defined pointer that is passed to callback functions.&lt;br /&gt;
+&lt;br /&gt;
+=== Math Library ===&lt;br /&gt;
+&lt;br /&gt;
+* A new &amp;lt;code&amp;gt;Antivector4D&amp;lt;/code&amp;gt; class has been added to the engine, and it is now used to represent all planes.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+=== World Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* A bounding box is now displayed in the perspective viewport around the selected node that currently has the gizmo. (Tab and Shift-Tab can be used to move the gizmo to different selected nodes.) Clicking in a face of the bounding box with the Move tool lets you drag the node along the direction perpendicular to that face. Clicking on an edge of the bounding box with the Rotate tool lets you rotate the node about the axis parallel to that edge through the center of the box.&lt;br /&gt;
+&lt;br /&gt;
+* A new orbit camera tool has been implemented, and it works in the perspective viewport. The orbit camera tool orbits the camera about the center of the selected node that currently has the gizmo. If the Control key is pressed when you left-click in the viewport, then the orbit tool takes effect until you release the mouse button no matter what other tool might be currently selected. If there is no selection, then the center of the orbit is the world-space origin.&lt;br /&gt;
+&lt;br /&gt;
+* A new Paint page has been added to the editor, and it provides tools for painting into the texture maps held by paint spaces. The Paint page contains tools for setting brush color, strength, radius, and fuzziness as well as a channel mask and a popup menu with paint-related commands. The paintbrush tool lets you draw directly onto geometries in the perspective viewport, and this has the effect of altering the texture image belonging to the paint space associated with those geometries. The visual appearance of the paint texture depends on how it is used in the material shaders assigned to the geometries.&lt;br /&gt;
+&lt;br /&gt;
+* A world preview is now displayed when browsing world resources to be specified for a node setting. This is particularly convenient in the settings for the instance node so that you can see each prefab as you're browsing through your &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory. The preview window adds an infinite light source to the world and sets the ambient light to 50%. You can move the camera by clicking and dragging inside the preview.&lt;br /&gt;
+&lt;br /&gt;
+* A sound preview is now available when browsing sound (&amp;lt;code&amp;gt;.wav&amp;lt;/code&amp;gt;) resources to be specified for a node or object setting. Play and stop buttons appear whenever a sound file is selected.&lt;br /&gt;
+&lt;br /&gt;
+* Multiple worlds can now be simultaneously selected in the Worlds page. If more than one world is selected, then one of them is chosen at random each time you click in the scene to place an instance.&lt;br /&gt;
+&lt;br /&gt;
+* A new command called Paste Subnodes has been added to the Edit menu. This command is enabled when exactly one node is selected, and it pastes everything as subnodes of the selected node.&lt;br /&gt;
+&lt;br /&gt;
+* Changes made in the Node Info window can now be undone. This includes settings under all tabs as well as changes made in the Script Editor or Panel Editor.&lt;br /&gt;
+&lt;br /&gt;
+* The settings under the Collision tab in the Node Info window have been reversed so that you specify what kinds of collisions are allowed instead of what kinds of collisions are excluded.&lt;br /&gt;
+&lt;br /&gt;
+* When a material is imported from a &amp;lt;code&amp;gt;.mtl&amp;lt;/code&amp;gt; file, it's name is now automatically set to the file name of the imported material resource, without the extension.&lt;br /&gt;
+&lt;br /&gt;
+* The Connectors pane in the Node Info window has been changed to display a list of built-in connectors available for a node in addition to the list of custom connectors that can be added by the user.&lt;br /&gt;
+&lt;br /&gt;
+* A title, such as &amp;quot;Top&amp;quot;, &amp;quot;Left&amp;quot;, &amp;quot;Perspective&amp;quot;, or &amp;quot;Scene Graph&amp;quot;, is now displayed in each viewport. These can currently be toggled off using the same button in the Grid page that toggles off the axes display.&lt;br /&gt;
+&lt;br /&gt;
+=== Script Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* Output ports have been added to the method boxes in the Script Editor, and new fibers are now created by clicking in an output port and dragging to another method box. The separate fiber tool that previously existed has been removed.&lt;br /&gt;
+&lt;br /&gt;
+* After a new method is placed in a script, the current tool automatically switches back to the select/move tool.&lt;br /&gt;
+&lt;br /&gt;
+=== Shader Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* Output ports have been added to the process boxes in the Shader Editor, and new routes are now created by clicking in an output port and dragging to another process box. The separate route tool that previously existed has been removed.&lt;br /&gt;
+&lt;br /&gt;
+* After a new process is placed in a shader, the current tool automatically switches back to the select/move tool.&lt;br /&gt;
+&lt;br /&gt;
+=== Texture Tool ===&lt;br /&gt;
+&lt;br /&gt;
+* There is now a dialog for generating terrain texture palettes. It can be opened by selecting &amp;quot;Generate Terrain Palette...&amp;quot; from the [[C4 Menu]] or by typing &amp;lt;code&amp;gt;texpal&amp;lt;/code&amp;gt; with no parameters in the [[Command Console]].&lt;br /&gt;
+&lt;br /&gt;
+* The time-consuming operations in the texture importer now get distributed to all available processors, and many textures can be imported ''n'' times faster with ''n'' cores. This applies to horizon map generation, ambient occlusion channel generation, alpha test bleeding, and S3TC compression.&lt;br /&gt;
+&lt;br /&gt;
+=== Collada Importer ===&lt;br /&gt;
+&lt;br /&gt;
+* The Collada import dialog now has a box where a scale factor can be entered.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>View source for Panel Editor - C4 Engine Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":true,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"Zu8RmSLm00ZKy8svL2HrxAAAAAo","wgCSPNonce":false,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Panel_Editor","wgTitle":"Panel Editor","wgCurRevisionId":540,"wgRevisionId":0,"wgArticleId":437,"wgIsArticle":false,"wgIsRedirect":false,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Panel_Editor","wgRelevantArticleId":437,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"simpleBatchUploadMaxFilesPerBatch":{"*":1000},"wgVector2022PreviewPages":[]};RLSTATE={
+"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["mediawiki.action.edit.collapsibleFooter","site","mediawiki.page.ready","skins.vector.legacy.js"/*tpa=http://www.c4engine.com/wiki/skins.vector.legacy.js*/];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});});});</script>
+<link rel="stylesheet" href="load.php-lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector.css" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector"/>
+<script async="" src="load.php-lang=en&modules=startup&only=scripts&raw=1&skin=vector.js" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector"></script>
+<meta name="generator" content="MediaWiki 1.40.0"/>
+<meta name="robots" content="noindex,nofollow,max-image-preview:standard"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="viewport" content="width=1000"/>
+<link rel="icon" href="../favicon.ico.css" tppabs="http://www.c4engine.com/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://c4engine.com/wiki/api.php?action=rsd"/>
+<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Panel_Editor rootpage-Panel_Editor skin-vector action-edit"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading">View source for Panel Editor</h1>
+	<div id="bodyContent" class="vector-body">
+		
+		<div id="contentSub"><div id="mw-content-subtitle">← <a href="index.php-title=Panel_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Panel_Editor" title="Panel Editor">Panel Editor</a></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Users  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Users%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Users&action=edit&redlink=1" class="new" title="C4 Engine Wiki:Users (page does not exist)">Users</a>.
+</p>
+</div><hr />
+<p>You can view and copy the source of this page.
+</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" class="mw-editfont-monospace" lang="en" dir="ltr" name="wpTextbox1">[[File:Paneleditor.png|right|frame|'''Figure 1.''' The Panel Editor window.]]
+The '''Panel Editor''', shown in the image to the right, is a tool included with the C4 Engine that is used to create and edit graphical user interfaces of two different types. First, the panel editor can be used to create windows, dialogs, and heads-up displays that are rendered on top of a game on a two-dimensional desktop, and these interfaces are saved in individual panel resource files. Second, the panel editor can be used to create interactive in-game interface panels that are saved as part of the world in which they exist.
+
+An interface panel is composed of a set of widgets, and many different types of widgets, including simple text and image widgets and more complex widgets like list boxes, are built into the engine. Custom widget subclasses can be defined in the game code and registered with the engine so they appear in the Panel Editor.
+
+Each widget can have one or more ''[[Mutators | mutators]]'' attached to it that produce animations of various kinds. Widgets belonging to in-game interface panels can also have scripts attached to them that get executed when the user interacts with the widgets.
+
+== Creating and Editing Panels ==
+
+=== Desktop Panel Resources ===
+
+New panel resources can be created, and existing panel resources can be edited, by choosing the New Panel or Open Panel commands in the [[C4 Menu]]. The &lt;code>panel&lt;/code> command can also be entered in the [[Command Console]] to open an existing panel resource.
+
+The dimensions, window title, and various flags for a desktop user interface panel are set by choosing Window Settings from the Panel menu.
+
+After saving the panel, the created &lt;code>.pan&lt;/code> file can then be used in your game with the [http://c4engine.com/docs/InterfaceMgr/Window.html Window] class.
+
+=== In-Game Panel Effects ===
+
+An interface panel can be created in the World Editor by using the Panel Effect tool in the [[Effects Page]]. When a panel effect is selected, the Panel Editor can be opened for it by choosing &amp;ldquo;Edit Script or Panel&amp;rdquo; from the Node menu, which has the shortcut Ctrl-E. The Panel Editor is also accessible from the Controller pane in the Node Info window.
+
+The Panel Effect tool draws a rectangular region representing the boundary of the panel. When a panel is first created, it automatically has a Panel Controller assigned to it that can be accessed under the Controller pane in the Node Info window.
+
+An in-game panel possesses both its physical size in the world, as drawn with the Panel Effect tool, and an internal interface resolution. The resolution is adjusted in the properties for the Panel Controller. The interface resolution determines how big the virtual screen is on which items will be placed with the Panel Editor. Whatever resolution is chosen, the entire panel is fit precisely into the physical dimensions determined by the rectangle drawn in the World Editor. Thus, it's usually desirable to match the aspect ratios of both the panel's physical size and its interface resolution to avoid stretching the contents of the panel.
+
+Under the '''Panel''' tab in the Node Info window, there are three check boxes that affect how the panel is rendered.
+
+* The '''Apply depth offset''' flag causes the panel to be rendered with a small depth offset forward. This avoids z-fighting artifacts that could otherwise appear if a panel was drawn in the same plane as background geometry.
+* The '''Render two-sided''' flag causes the panel to be rendered regardless of on which side of the panel's plane the camera currently is. This lets the panel be seen from the back if it's drawn on a transparent surface or floating in mid-air.
+* The '''Render with fog''' flag allows fog to be rendered over a panel. This must be explicitly enabled in order for a panel to be rendered in a fogged environment.
+
+A panel effect can be made interactive by assigning the Interaction property to it under the Properties pane of the Node Info window. An interactive panel can display a cursor on top of the panel while the user is engaged with it. The cursor's texture image is specified in the panel controller's settings in the Node Info window.
+
+== Panel Editor Tools ==
+
+There are eight tool buttons at the top of the Panel Editor window, and they have the following uses. In addition to clicking on the tool button, some of these tools can also be selected by pressing the number key shown in the table.
+
+{| {{Table}}
+{{Tablehead3|Icon|Shortcut|Function}}
+|-
+{{Tablerow3|[[File:Tool_select.png]]|1|'''Select Widgets'''. This tool can be used to safely select items without the possibility of accidentally moving them. To select a single widget inside a group instead of the group itself, hold in the Control key while clicking.}}
+|-
+{{Tablerow3|[[File:Tool_move.png]]|2|'''Move Widgets'''. Selects and moves widgets. Holding down the Shift key while moving constrains the movement to a single axis.}}
+|-
+{{Tablerow3|[[File:Tool_rotate.png]]|3|'''Rotate Widgets'''. Selects and rotates widgets. Click and drag a handle for a selected widget to rotate. Holding down the Shift key while rotating snaps the angle to 45 degree increments.}}
+|-
+{{Tablerow3|[[File:Tool_resize.png]]|4|'''Resize Widgets'''. Selects and resizes widgets. Click and drag a handle for a selected widget to resize. Holding down the Shift key while resizing constrains the proportional width and height.}}
+|-
+{{Tablerow3|[[File:Tool_texoffset.png]]||'''Offset Texture'''. Offsets the texture within the selected image widgets.}}
+|-
+{{Tablerow3|[[File:Tool_texscale.png]]||'''Scale Texture'''. Scales the texture within the selected image widgets.}}
+|-
+{{Tablerow3|[[File:Tool_scroll.png]]|6|'''Scroll'''. Scrolls the panel viewport. Holding down the Alt key temporarily selects the scroll tool.}}
+|-
+{{Tablerow3|[[File:Tool_zoom.png]]|7|'''Zoom'''. Zooms the panel viewport. Dragging vertically with this tool zooms in and out of a viewport. Using the mouse wheel with any other tool also zooms.}}
+|}
+
+== Pages ==
+
+The following table describes the individual pages that are currently available in the Panel Editor.
+
+{| {{Table}}
+{{Tablehead|Page|Description}}
+|-
+{{Tablerow|[[File:Panel_widgets.png]]|'''Widgets'''. To place a new widget in the panel, select a type of widget from the list in this page and drag out a rectangle in the viewport.}}
+|-
+{{Tablerow|[[File:Panel_transform.png]]|'''Transform'''. This page allows you to enter the position, rotation angle, and size of a selected widget. The position and size are measured in pixels, and the rotation angle is measured in degrees.}}
+|-
+{{Tablerow|[[File:Panel_grid.png]]|'''Grid'''. The toggle buttons in this page control grid visibility and whether grid snapping is enabled.}}
+|}
+
+== Widget Settings ==
+
+When one or more widgets are selected, their properties can be edited on the right side of the window. Different properties are shown depending on the types of the selected widgets, but all widgets have an identifier, a color, two flags indicating whether the widget is initially disabled or hidden, and settings for a help balloon. Settings that differ among multiple selected widgets are displayed in an indeterminate state until they are modified.
+
+See the [[Widgets | list of widgets]] for a description of the settings that are specific to each type of widget.
+
+=== Common Settings ===
+
+* The '''Widget identifier''' is a string of up to 15 characters used to identify widgets from C++ code or a script. It can be left blank for widgets that will not be referenced. This identifier does not need to be unique. When a script uses an identifier to operate on widgets in a panel, it affects all widgets within the panel having that same widget identifier.
+
+* The'''Widget color''' is the primary color used by a widget. The exact way in which this color is used depends on the type of the widget.
+
+* The '''Initially disabled''' check box indicates whether the widget is initially disabled so that it can't be clicked.
+
+* The '''Initially hidden''' check box indicates whether the item is initially hidden so that it isn't rendered.
+
+* The '''Balloon type''' menu specifies what kind of help balloon is assigned to the widget.
+
+* The '''Balloon string''' is a string that is interpreted based on the type of balloon. If the balloon type is a text string, then the balloon string is displayed directly in the help balloon for the widget. If the balloon type is a panel resource, then the balloon string is the name of the panel resource that gets loaded and displayed in the balloon.
+
+== Menu Commands ==
+
+=== Panel Menu ===
+
+{| {{Table}}
+{{Tablehead3|Command|Shortcut|Description}}
+|-
+{{Tablerow3|'''Close'''|Ctrl-W|Closes the panel editor window.}}
+|-
+{{Tablerow3|'''Save Panel'''|Ctrl-S|Saves the current panel.}}
+|-
+{{Tablerow3|'''Save Panel As...'''|Ctrl-Shift-S|Saves the current panel after prompting for a file name. (Available only for panel resources, not in-game panel effects.)}}
+|-
+{{Tablerow3|'''Window Settings...'''|Ctrl-P|Opens a dialog in which the window dimensions, its title, and various options can be set. (Panel resources only.)}}
+|}
+
+=== Edit Menu ===
+
+{| {{Table}}
+{{Tablehead3|Command|Shortcut|Description}}
+|-
+{{Tablerow3|'''Undo'''|Ctrl-Z|Undoes the last action. (Supports multiple undo.)}}
+|-
+{{Tablerow3|'''Cut'''|Ctrl-X|Cuts the current selection to the clipboard.}}
+|-
+{{Tablerow3|'''Copy'''|Ctrl-C|Copies the current selection to the clipboard.}}
+|-
+{{Tablerow3|'''Paste'''|Ctrl-V|Pastes the contents of the clipboard to the panel.}}
+|-
+{{Tablerow3|'''Clear'''|Delete|Deletes the current selection.}}
+|-
+{{Tablerow3|'''Select All'''|Ctrl-A|Selects every widget in the panel.}}
+|-
+{{Tablerow3|'''Duplicate'''|Ctrl-D|Duplicates the selected widgets.}}
+|}
+
+=== Widget Menu ===
+
+{| {{Table}}
+{{Tablehead3|Command|Shortcut|Description}}
+|-
+{{Tablerow3|'''Bring to Front'''|Ctrl-Shift-&amp;#93;|Brings the selected widgets to the front so that they are rendered last.}}
+|-
+{{Tablerow3|'''Bring Forward'''|Ctrl-&amp;#93;|Brings each selected widget forward ahead of the next widget that would be rendered.}}
+|-
+{{Tablerow3|'''Send Backward'''|Ctrl-&amp;#91;|Sends each selected widget backward behind the previous widget that would be rendered.}}
+|-
+{{Tablerow3|'''Send to Bac'''k|Ctrl-Shift-&amp;#91;|Sends the selected widgets to the back so that they are rendered first.}}
+|-
+{{Tablerow3|'''Hide Selection'''|Ctrl-H|Hides the selected widgets.}}
+|-
+{{Tablerow3|'''Unhide All'''|Ctrl-Shift-H|Shows all widgets in the panel.}}
+|-
+{{Tablerow3|'''Lock Selection'''|Ctrl-L|Locks the selected widgets so that they can no longer be selected.}}
+|-
+{{Tablerow3|'''Unlock All'''|Ctrl-Shift-L|Unlocks all widgets in the panel.}}
+|-
+{{Tablerow3|'''Group Selection'''|Ctrl-G|Groups the selected widgets. (No groups can be selected.)}}
+|-
+{{Tablerow3|'''Ungroup Selection'''|Ctrl-Shift-G|Ungroups the selected groups.}}
+|-
+{{Tablerow3|'''Reset Rotation'''|Ctrl-R|Removes any rotation from the selected widgets.}}
+|-
+{{Tablerow3|'''Reset Texcoords'''|Ctrl-T|Resets the texture coordinates for selected image widgets to the default values.}}
+|-
+{{Tablerow3|'''Auto-scale Texture'''|Ctrl-F|Scales, or &amp;ldquo;fixes&amp;rdquo;, the texture coordinates of selected image widgets so that the aspect ratio is 1:1.}}
+|-
+{{Tablerow3|'''Edit Script'''|Ctrl-E|Opens the script editor for the selected widget. (Available only for in-game panel effects.)}}
+|-
+{{Tablerow3|'''Delete Script'''||Removes any scripts from the selected widgets.}}
+|}
+
+=== Arrange Menu ===
+
+{| {{Table}}
+{{Tablehead3|Command|Shortcut|Description}}
+|-
+{{Tablerow3|'''Nudge Left'''|Ctrl-Left|Nudges the selected widgets one pixel to the left.}}
+|-
+{{Tablerow3|'''Nudge Right'''|Ctrl-Right|Nudges the selected widgets one pixel to the right.}}
+|-
+{{Tablerow3|'''Nudge Up'''|Ctrl-Up|Nudges the selected widgets one pixel upward.}}
+|-
+{{Tablerow3|'''Nudge Down'''|Ctrl-Down|Nudges the selected widgets one pixel downward.}}
+|-
+{{Tablerow3|'''Align Left Sides'''|Ctrl-Shift-Left|Aligns the left sides of the selected widgets to the leftmost point in the selection.}}
+|-
+{{Tablerow3|'''Align Right Sides'''|Ctrl-Shift-Right|Aligns the right sides of the selected widgets to the rightmost point in the selection.}}
+|-
+{{Tablerow3|'''Align Top Sides'''|Ctrl-Shift-Up|Aligns the top sides of the selected widgets to the topmost point in the selection.}}
+|-
+{{Tablerow3|'''Align Bottom Sides'''|Ctrl-Shift-Down|Aligns the bottom sides of the selected widgets to the bottommost point in the selection.}}
+|-
+{{Tablerow3|'''Align Horizontal Centers'''||Aligns the horizontal centers of the selected widgets to the average between the leftmost and rightmost points in the selection.}}
+|-
+{{Tablerow3|'''Align Vertical Centers'''||Aligns the vertical centers of the selected widgets to the average between the topmost and bottommost points in the selection.}}
+|}
+
+== See Also ==
+
+* [[Widgets]]
+* [[Sprockets]]
+* [[Slug Effects]]
+
+[[Category:Interface]]
+</textarea><div class="templatesUsed"><div class="mw-templatesUsedExplanation"><p>Templates used on this page:
+</p></div><ul>
+<li><a href="index.php-title=Template-Table.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Table" title="Template:Table">Template:Table</a> (<a href="index.php-title=Template-Table&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Table&action=edit" title="Template:Table">view source</a>) </li><li><a href="index.php-title=Template-Tablehead.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablehead" title="Template:Tablehead">Template:Tablehead</a> (<a href="index.php-title=Template-Tablehead&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablehead&action=edit" title="Template:Tablehead">view source</a>) </li><li><a href="index.php-title=Template-Tablehead3.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablehead3" title="Template:Tablehead3">Template:Tablehead3</a> (<a href="index.php-title=Template-Tablehead3&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablehead3&action=edit" title="Template:Tablehead3">view source</a>) </li><li><a href="index.php-title=Template-Tablerow.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablerow" title="Template:Tablerow">Template:Tablerow</a> (<a href="index.php-title=Template-Tablerow&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablerow&action=edit" title="Template:Tablerow">view source</a>) </li><li><a href="index.php-title=Template-Tablerow3.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablerow3" title="Template:Tablerow3">Template:Tablerow3</a> (<a href="index.php-title=Template-Tablerow3&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Template:Tablerow3&action=edit" title="Template:Tablerow3">view source</a>) </li></ul></div><p id="mw-returnto">Return to <a href="index.php-title=Panel_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Panel_Editor" title="Panel Editor">Panel Editor</a>.</p>
+
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Panel_Editor  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Panel_Editor%27" tppabs="https://c4engine.com/wiki/index.php?title=Panel_Editor">https://c4engine.com/wiki/index.php?title=Panel_Editor</a>"</div></div>
+		<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="vector-menu mw-portlet mw-portlet-personal vector-user-menu-legacy" aria-labelledby="p-personal-label" role="navigation"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="pt-login" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:UserLogin&returnto=Panel+Editor&returntoquery=action%3Dedit%26oldid%3D440  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:UserLogin&returnto=Panel+Editor&returntoquery=action%3Dedit%26oldid%3D440%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:UserLogin&returnto=Panel+Editor&returntoquery=action%3Dedit%26oldid%3D440" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li></ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="vector-menu mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-namespaces-label" role="navigation"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected mw-list-item"><a href="index.php-title=Panel_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Panel_Editor" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Talk:Panel_Editor  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Talk:Panel_Editor%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Talk:Panel_Editor&action=edit&redlink=1" rel="discussion" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="vector-menu mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	/>
+	<label
+		id="p-variants-label"
+		 aria-label="Change language variant"
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="vector-menu mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-views-label" role="navigation"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-view" class="mw-list-item"><a href="index.php-title=Panel_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Panel_Editor"><span>Read</span></a></li><li id="ca-viewsource" class="selected mw-list-item"><a href="index.php-title=Panel_Editor&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Panel_Editor&action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="index.php-title=Panel_Editor&action=history.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Panel_Editor&action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="vector-menu mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown" aria-labelledby="p-cactions-label" role="navigation"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	/>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<div>
+		<form action="http://www.c4engine.com/wiki/index.php" id="searchform"
+			class="vector-search-box-form">
+			<div id="simpleSearch"
+				class="vector-search-box-inner"
+				 data-search-loc="header-navigation">
+				<input class="vector-search-box-input"
+					 type="search" name="search" placeholder="Search C4 Engine Wiki" aria-label="Search C4 Engine Wiki" autocapitalize="sentences" title="Search C4 Engine Wiki [f]" accesskey="f" id="searchInput"
+				>
+				<input type="hidden" name="title" value="Special:Search">
+				<input id="mw-searchButton"
+					 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+				<input id="searchButton"
+					 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+			</div>
+		</form>
+	</div>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="vector-menu mw-portlet mw-portlet-navigation vector-menu-portal portal" aria-labelledby="p-navigation-label" role="navigation"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="n-mainpage-description" class="mw-list-item"><a href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="javascript:if(confirm(%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents%27" tppabs="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="vector-menu mw-portlet mw-portlet-tb vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="t-whatlinkshere" class="mw-list-item"><a href="index.php-title=Special-WhatLinksHere-Panel_Editor.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:WhatLinksHere/Panel_Editor" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Panel_Editor  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Panel_Editor%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Panel_Editor" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="index.php-title=Special-SpecialPages.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-info" class="mw-list-item"><a href="index.php-title=Panel_Editor&action=info.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Panel_Editor&action=info" title="More information about this page"><span>Page information</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" role="contentinfo" >
+	<ul id="footer-info">
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About">About C4 Engine Wiki</a></li>
+	<li id="footer-places-disclaimers"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-poweredbyico"><a href="javascript:if(confirm(%27https://www.mediawiki.org/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/%27" tppabs="https://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" tppabs="http://www.c4engine.com/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/></a></li>
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":56,"wgPageParseReport":{"limitreport":{"cputime":"http://www.c4engine.com/wiki/0.001","walltime":"http://www.c4engine.com/wiki/0.001","ppvisitednodes":{"value":8,"limit":1000000},"postexpandincludesize":{"value":15,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":2,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20240921183401","ttl":86400,"transientcontent":false}}});});</script>
+</body>
+</html>

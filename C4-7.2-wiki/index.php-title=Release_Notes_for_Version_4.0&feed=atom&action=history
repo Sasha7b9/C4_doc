@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_4.0&amp;feed=atom&amp;action=history</id>
+	<title>Release Notes for Version 4.0 - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_4.0&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_4.0&amp;action=history"/>
+	<updated>2024-09-21T18:39:53Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_4.0&amp;diff=85&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ '''Release date:''' October 14, 2014  * Note that version 4.0 may not be able to read world, model, panel, and material resources that were saved in versions earlier than version 3.5. Older resources should be updated using the  &lt;code&gt;updateworlds&lt;/code&gt; utility in version 3.5.x before using them in version 4.0.  * Like version 3.5.x, this release contains a utility that updates world and model resources to the current format....&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_4.0&amp;diff=85&amp;oldid=prev"/>
+		<updated>2023-07-15T10:17:08Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ &amp;#039;&amp;#039;&amp;#039;Release date:&amp;#039;&amp;#039;&amp;#039; October 14, 2014  * Note that version 4.0 may not be able to read world, model, panel, and material resources that were saved in versions earlier than version 3.5. Older resources should be updated using the &lt;a href=&quot;/wiki/index.php?title=Release_Notes_for_Version_3.5&quot; title=&quot;Release Notes for Version 3.5&quot;&gt; &amp;lt;code&amp;gt;updateworlds&amp;lt;/code&amp;gt; utility in version 3.5.x&lt;/a&gt; before using them in version 4.0.  * Like version 3.5.x, this release contains a utility that updates world and model resources to the current format....&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+'''Release date:''' October 14, 2014&lt;br /&gt;
+&lt;br /&gt;
+* Note that version 4.0 may not be able to read world, model, panel, and material resources that were saved in versions earlier than version 3.5. Older resources should be updated using the [[Release Notes for Version 3.5 | &amp;lt;code&amp;gt;updateworlds&amp;lt;/code&amp;gt; utility in version 3.5.x]] before using them in version 4.0.&lt;br /&gt;
+&lt;br /&gt;
+* Like version 3.5.x, this release contains a utility that updates world and model resources to the current format. Even though not strictly required, this utility should be run to update worlds and models so that some parts do not need to be converted by the engine on the fly every time the resources are loaded. The utility is run by typing &amp;lt;code&amp;gt;updateworlds&amp;lt;/code&amp;gt; in the command console. '''Note that this will overwrite all existing &amp;lt;code&amp;gt;.wld&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;.mdl&amp;lt;/code&amp;gt; files in the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory. Please make a backup of your entire &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory before using this utility just in case something goes wrong.'''&lt;br /&gt;
+&lt;br /&gt;
+* In this release, the two separate texture resources that were previously used for horizon maps have been consolidated into a single texture resource. Existing horizon maps must be updated before they can be used in version 4.0, and there is a utility function that automatically updates all horizon map texture resources to the new format. The utility is run by typing &amp;lt;code&amp;gt;updatetextures&amp;lt;/code&amp;gt; in the command console. This utility searches the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory hierarchy for all &amp;lt;code&amp;gt;.tex&amp;lt;/code&amp;gt; resources that contain horizon maps and combines the files whose names end in &amp;lt;code&amp;gt;-h1&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;-h2&amp;lt;/code&amp;gt; into a single file. If the file names end in &amp;lt;code&amp;gt;-nrml-h1&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;-nrml-h2&amp;lt;/code&amp;gt;, then the combined file name ends in &amp;lt;code&amp;gt;-hrzn&amp;lt;/code&amp;gt;. Otherwise, the number is removed from the end of the file name so that the combined file name ends in &amp;lt;code&amp;gt;-h&amp;lt;/code&amp;gt;. '''Note that this will delete all existing &amp;lt;code&amp;gt;.tex&amp;lt;/code&amp;gt; files containing horizon maps in the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory and create new replacement files. Please make a backup of your entire &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory before using this utility just in case something goes wrong.'''&lt;br /&gt;
+&lt;br /&gt;
+== Core Engine ==&lt;br /&gt;
+&lt;br /&gt;
+* The Mac version of C4 now requires Mac OS 10.9 Mavericks as the minimum supported operating system. This ensures that OpenGL 3.3 is available on all supported hardware.&lt;br /&gt;
+&lt;br /&gt;
+* The engine includes a new header file called &amp;lt;code&amp;gt;C4Options.h&amp;lt;/code&amp;gt; that contains several switches for controlling compilation options. These include defines for things like legacy resource support, memory leak detection, statistics counters, debug rendering, and resource logging.&lt;br /&gt;
+&lt;br /&gt;
+* In the &amp;lt;code&amp;gt;Tree&amp;lt;/code&amp;gt; class, the functions &amp;lt;code&amp;gt;AddSubnode()&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;AddFirstSubnode()&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;AddSubnodeBefore()&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;AddSubnodeAfter()&amp;lt;/code&amp;gt; have been renamed to &amp;lt;code&amp;gt;AppendSubnode()&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;PrependSubnode()&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;InsertSubnodeBefore()&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;InsertSubnodeAfter()&amp;lt;/code&amp;gt;, respectively, for consistency with similar functions belonging to other types of container classes.&lt;br /&gt;
+&lt;br /&gt;
+* The global constants &amp;lt;code&amp;gt;K::identity_3D&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;K::identity_4D&amp;lt;/code&amp;gt; have been replaced by the special structures &amp;lt;code&amp;gt;Identity3D&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Identity4D&amp;lt;/code&amp;gt;. This is to be consistent with the existing structures &amp;lt;code&amp;gt;Zero2D&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;Zero3D&amp;lt;/code&amp;gt;, etc.&lt;br /&gt;
+&lt;br /&gt;
+=== Graphics Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* On the PlayStation 4, the low-level rendering code has been largely rewritten. It now has minimal external dependencies, and it is much faster.&lt;br /&gt;
+&lt;br /&gt;
+* Stencil shadows have been removed from the engine, and all shadows are now rendered with shadow mapping.&lt;br /&gt;
+&lt;br /&gt;
+* The infinite light, depth light, and landscape light have been merged into a single type of light that uses the name infinite light. Existing lights are automatically converted to the new type where necessary.&lt;br /&gt;
+&lt;br /&gt;
+* The engine can now combine the shaders for ambient light and infinite lights into unified shaders that calculate both of these at once. In complex scenes, this generally provides a speed increase of about 10%&amp;amp;ndash;20% on fast GPUs, and it has the added benefit that only half as many individual shaders need to be compiled for large outdoor areas. In order to use the unified shaders, the new check box &amp;quot;Light can be unified with ambient&amp;quot; must be selected in the settings for an infinite light node. (This box is initially checked for newly created infinite lights.)&lt;br /&gt;
+&lt;br /&gt;
+* There is a new material flag called &amp;lt;code&amp;gt;kMaterialRadiositySpaceInhibit&amp;lt;/code&amp;gt; that prevents radiosity spaces from contributing to the ambient lighting.&lt;br /&gt;
+&lt;br /&gt;
+* Radiosity spaces can now have non-power-of-two dimensions. Higher-quality data is also generated, and most importantly, normal mapping can now affect the radiosity lighting. To use normal-mapped radiosity, the tangent-space normal vector should be routed to the '''N''' input of the Ambient Lighting Output process. (This is done automatically for standard materials.)&lt;br /&gt;
+&lt;br /&gt;
+* The Texture Map and Environment Output shader processes now have an optional &amp;quot;bias&amp;quot; input port. The bias is a scalar quantity that gets added to the mipmap level computed by the hardware during trilinear filtering. Positive bias values cause higher-numbered mipmaps to be sampled, which are blurrier due to their lower resolution. Negative bias values cause lower-numbered mipmaps to be sampled, which sharpens the texture image, but be warned that using negative bias values can impact performance.&lt;br /&gt;
+&lt;br /&gt;
+* The Horizon Map shader process now has a single texture map setting. The eight channels of horizon data has been consolidated into a single texture map as an array of 2D images.&lt;br /&gt;
+&lt;br /&gt;
+* A new shader process called &amp;quot;Primitive Facing&amp;quot; has been added to the engine. It is useful when rendering geometry with two-sided materials, and it always produces the scalar value 1 for front faces and &amp;amp;minus;1 for back faces.&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;GraphicsMgr::DrawRenderList()&amp;lt;/code&amp;gt; function has been renamed to the shorter &amp;lt;code&amp;gt;GraphicsMgr::Draw()&amp;lt;/code&amp;gt;, and it can now take a list of &amp;lt;code&amp;gt;Renderable&amp;lt;/code&amp;gt; objects or an &amp;lt;code&amp;gt;Array&amp;lt;/code&amp;gt; of pointers to &amp;lt;code&amp;gt;Renderable&amp;lt;/code&amp;gt; objects.&lt;br /&gt;
+&lt;br /&gt;
+* The material attribute classes that involve texture maps have been renamed for consistency and clarity. The &amp;lt;code&amp;gt;MapAttribute&amp;lt;/code&amp;gt; base class is now named &amp;lt;code&amp;gt;[http://c4engine.com/docs/GraphicsMgr/TextureAttribute.html TextureAttribute]&amp;lt;/code&amp;gt;, and the specific subclasses are named &amp;lt;code&amp;gt;[http://c4engine.com/docs/GraphicsMgr/DiffuseTextureAttribute.html DiffuseTextureAttribute]&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;[http://c4engine.com/docs/GraphicsMgr/SpecularTextureAttribute.html SpecularTextureAttribute]&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;[http://c4engine.com/docs/GraphicsMgr/EmissionTextureAttribute.html EmissionTextureAttribute]&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;[http://c4engine.com/docs/GraphicsMgr/NormalTextureAttribute.html NormalTextureAttribute]&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;[http://c4engine.com/docs/GraphicsMgr/HorizonTextureAttribute.html HorizonTextureAttribute]&amp;lt;/code&amp;gt;, &amp;lt;code&amp;gt;[http://c4engine.com/docs/GraphicsMgr/OpacityTextureAttribute.html OpacityTextureAttribute]&amp;lt;/code&amp;gt;, and &amp;lt;code&amp;gt;[http://c4engine.com/docs/GraphicsMgr/EnvironmentTextureAttribute.html EnvironmentTextureAttribute]&amp;lt;/code&amp;gt;. One important change is that the term &amp;quot;gloss&amp;quot; is no longer used in conjunction with a specular color texture map.&lt;br /&gt;
+&lt;br /&gt;
+=== Physics Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The constraint solver in the physics system has been largely redesigned and is now considerably more accurate and a lot faster.&lt;br /&gt;
+&lt;br /&gt;
+* Contact graph islands are now solved in separate jobs to take greater advantage of multiple cores.&lt;br /&gt;
+&lt;br /&gt;
+* Rigid bodies have a new sleep box multiplier setting that controls how quickly an object will go to sleep if it's not moving very much.&lt;br /&gt;
+&lt;br /&gt;
+* The friction model has been updated to be more accurate. Friction coefficients should generally be about 25 times greater than before. When old worlds are opened or played, the friction coefficients for all rigid bodies will automatically be multiplied by 25 to match the new code.&lt;br /&gt;
+&lt;br /&gt;
+* Rolling resistance has been implemented in a new way that is a lot more effective. Rolling resistance values should generally be about 2% of their previous values. When old worlds are opened or played, the rolling resistance values for all rigid bodies will automatically be multiplied by 0.02 to match the new code.&lt;br /&gt;
+&lt;br /&gt;
+* Restitution has been updated and now behaves as expected for all rigid bodies. Bouncing objects come to a rest naturally.&lt;br /&gt;
+&lt;br /&gt;
+* A new spin friction feature has been added that applies to objects that are spinning on a single point on the ground like a top. Since there is no tangential motion, ordinary friction does not apply, so the spin friction was added to account for this case.&lt;br /&gt;
+&lt;br /&gt;
+* All joints have been re-implemented and are much more accurate than before.&lt;br /&gt;
+&lt;br /&gt;
+* The universal joint has a new setting that determines whether the twist orientation of the rigid bodies connected to it are locked. This twist constraint can look a little odd for swinging objects, so it's possible to turn it off for objects when the exact orientation doesn't matter.&lt;br /&gt;
+&lt;br /&gt;
+* Joints can now be broken when enough force is applied to them. When a joint is broken, its controller is activated, if it has one, so that a script can be run in response. (Joints can also be explicitly broken by a script as described below.)&lt;br /&gt;
+&lt;br /&gt;
+* Joints can now have distance and angular limits. Distance limits can be applied to the cylindrical and prismatic joints, and angular limits can be applied to the spherical, universal, discal, revolute, and cylindrical joints.&lt;br /&gt;
+&lt;br /&gt;
+* Each joint has a new constraint solver iteration multiplier setting that controls how long the physics system will spend calculating the constraint solution for the island containing the joint. This multiplier can be increased for joints that need extra stability.&lt;br /&gt;
+&lt;br /&gt;
+=== Interface Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* A new widget type called &amp;lt;code&amp;gt;[http://c4engine.com/docs/InterfaceMgr/TreeWidget.html TreeWidget]&amp;lt;/code&amp;gt;, a subclass of &amp;lt;code&amp;gt;[http://c4engine.com/docs/InterfaceMgr/ListWidget.html ListWidget]&amp;lt;/code&amp;gt;, has been added, and it displays a list of items for which sub-items can be shown or hidden by the user as a hierarchical tree.&lt;br /&gt;
+&lt;br /&gt;
+* Some new functionality has been added to the mouse wheel so that it's possible to scroll a widget containing other scrollable widgets without spontaneously switching focus when another scrollable widget happens to move underneath the mouse pointer. Basically, the mouse wheel will stick to the widget on which it was originally used unless the mouse pointer is moved far enough to re-focus.&lt;br /&gt;
+&lt;br /&gt;
+* Some new security features have been added to the &amp;lt;code&amp;gt;[http://c4engine.com/docs/InterfaceMgr/PasswordWidget.html PasswordWidget]&amp;lt;/code&amp;gt; class to prevent things like inadvertent leakage to the swap file.&lt;br /&gt;
+&lt;br /&gt;
+=== World Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The method by which the World Manager keeps track of nodes that need updating has been redesigned, and the new system provides a major performance increase for all worlds. The more nodes there are in a world, the larger the performance benefit. Some of the large worlds in our game ''The 31st'' have had their frame times drop to 40% of their previous values, meaning that they now run more than twice as fast as before.&lt;br /&gt;
+&lt;br /&gt;
+* Point lights now have settings for a minimum and maximum fade-out distance. If these are not zero, then they specify a range of distances from the camera over which the light is faded out. When the camera is beyond the maximum fade-out distance, the light is not rendered at all.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new type of marker node called a ''shader marker'' that specifies a location at which the camera should be placed in order to precompile shaders.&lt;br /&gt;
+&lt;br /&gt;
+* The maximum number of vertices that a portal can have has been reduced from 12 to 8 for performance reasons. Any existing portals that have more than 8 vertices will automatically be reduced in size.&lt;br /&gt;
+&lt;br /&gt;
+* A new flag has been added to remote portals that forces the remote camera to be in the portal's target zone. If this flag is not specified, then the ordinary rules for determine which zone(s) contain the camera apply, but this could cause problems if the target zone is not big enough to contain all of the possible camera locations based on the location of the camera in the original zone. If the flag is specified, then the camera is guaranteed to be able to see the target zone.&lt;br /&gt;
+&lt;br /&gt;
+* Remote portals can now have shadow maps disabled as a performance optimization. When shadow maps are turned off for a remote portal, no lights rendered through the portal cast shadows.&lt;br /&gt;
+&lt;br /&gt;
+* A new flag has been added to the node settings that causes ambient lighting environments for subzones to be prioritized over the ambient lighting environment for the enclosing zone. This is useful when an object straddles the boundary between a subzone and its enclosing zone, but should receive the ambient lighting (including radiosity) from the subzone instead of the enclosing zone.&lt;br /&gt;
+&lt;br /&gt;
+* Two new standard instance modifiers called Enable Nodes and Disable Nodes have been added to the engine.&lt;br /&gt;
+&lt;br /&gt;
+=== Effect Manager ===&lt;br /&gt;
+&lt;br /&gt;
+* The &amp;lt;code&amp;gt;[http://c4engine.com/docs/EffectMgr/Effect_Render.html Effect::Render()]&amp;lt;/code&amp;gt; function has been changed so that the first parameter is a pointer to a &amp;lt;code&amp;gt;FrustumCamera&amp;lt;/code&amp;gt; node instead of a &amp;lt;code&amp;gt;Camera&amp;lt;/code&amp;gt; node.&lt;br /&gt;
+&lt;br /&gt;
+* Flare effects can now be rendered at infinity. (In this case, the rotation radius for the flare occlusion test is not used.)&lt;br /&gt;
+&lt;br /&gt;
+* The projection-based depth offset used by marking effects can now be controlled through a new field named &amp;lt;code&amp;gt;markingOffset&amp;lt;/code&amp;gt; in the &amp;lt;code&amp;gt;[http://c4engine.com/docs/EffectMgr/MarkingData.html MarkingData]&amp;lt;/code&amp;gt; structure.&lt;br /&gt;
+&lt;br /&gt;
+* A marking effect can now be configured so that it doesn't clip polygons belonging to the underlying geometry to which the markings are applied. Instead, exact copies of any polygons intersecting the marking's bounding box are added to the marking effect so that the exact same coordinates are produced in viewport space. In this case, the depth offset parameter is ignored, and the marking effect is always offset by the minimum amount possible toward the camera using hardware-based polygon offset. This can have performance implications, so it should be used only when necessary to avoid Z fighting artifacts. A new flag for geometry nodes can force marking applied to them to use the new full polygon mode, and new terrain geometries will have this flag set by default.&lt;br /&gt;
+&lt;br /&gt;
+=== Scripting ===&lt;br /&gt;
+&lt;br /&gt;
+* Two new script methods called Activate Trigger and Deactivate Trigger have been added to the engine. These activate or deactivate a trigger node as if the script's initiator node had entered or exited the trigger volume, and the same rules apply. The behavior is a little different than simply activating a controller attached to a trigger node.&lt;br /&gt;
+&lt;br /&gt;
+* A new script method called Break Joint has been added to the engine. This simply breaks the built-in connections for a joint node so that it no longer has any influence over the rigid bodies previously attached to it.&lt;br /&gt;
+&lt;br /&gt;
+* A new script method called Remove Modifiers has been added to the engine. The method removes all modifiers of a specific type, or all modifiers regardless of type, from an instance node. This has no immediate effect when a world is running, but it does affect how the instance is reloaded from a saved game. Removing modifiers is useful in cases where an instance is originally modified in some way, but then a script reverses some of those modifications. When a saved game is reloaded, the reversed modifications would no longer be applied when the instance is loaded.&lt;br /&gt;
+&lt;br /&gt;
+* Script variables can now have a new scope called ''controller scope''. Variables with this scope retain their values between runs of the same script, but they are not shared among multiple instances of the script object. Their values are stored in the script controller, and each instance has its own copy.&lt;br /&gt;
+&lt;br /&gt;
+* There is a new type of controller called a ''distribution controller'' through which received messages can be processed by itself, by all controllers belonging to subnodes of its target, and/or all controllers belonging to connected nodes. This allows a single standard script method to effect a large set of nodes that are grouped together in some way.&lt;br /&gt;
+&lt;br /&gt;
+=== Utility Library ===&lt;br /&gt;
+&lt;br /&gt;
+* It is now possible to iterate over the elements of &amp;lt;code&amp;gt;List&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Map&amp;lt;/code&amp;gt; containers using range-based for loops. This functionality had previously been available only for &amp;lt;code&amp;gt;Array&amp;lt;/code&amp;gt; containers.&lt;br /&gt;
+&lt;br /&gt;
+== Tools ==&lt;br /&gt;
+&lt;br /&gt;
+=== World Editor ===&lt;br /&gt;
+&lt;br /&gt;
+* The gizmo has been redesigned and now has better functionality for moving and rotating nodes. As before, a node can be moved along a single axis by dragging the arrowheads with the move tool. The gizmo can now be used to move a node in a plane by dragging inside any of the small squares drawn near the node's origin. When the rotate tool is selected, the gizmo displays arcs that can be dragged to rotate about each of a node's local axes. All controls belonging to the gizmo light up when the cursor hovers over them, and gizmo controls always take precedence over using bounding box faces or edges to move or rotate.&lt;br /&gt;
+&lt;br /&gt;
+* All of the World Editor tool pages are now always visible, and they have been organized into five tabs named Object, Material, Earth, Instance, and Editor. The Page menu has been removed from the editor.&lt;br /&gt;
+&lt;br /&gt;
+* The Selection Mask and Visibility pages have been replaced by a new Node Management page that subsumes the previously existing functionality of both pages. The Node Management page displays a tree of all types of nodes and their subtypes. Check boxes next to each type determine the current selection mask, which now has hierarchical behavior. One or more types may also be selected in the tree, and the Show All, Hide All, and Select All buttons at the bottom of the page affect the group of selected types.&lt;br /&gt;
+&lt;br /&gt;
+* Buttons labelled Copy, Paste, and Reset have been added to the Transform page. These copy the transform, paste the transform, or reset the transform to the identity matrix for the selected node that currently has the gizmo. (The Copy Transform and Paste Transform items previously in the Edit menu have been removed.) There are also radio buttons that control whether the copy, paste, and reset operations are applied to the position only, to the rotation only, or to both.&lt;br /&gt;
+&lt;br /&gt;
+* The angle snap setting now appears in the Grid page.&lt;br /&gt;
+&lt;br /&gt;
+* In the scene graph viewport, all selection tools now behave as box selection when the mouse is clicked in the background and dragged.&lt;br /&gt;
+&lt;br /&gt;
+* In the scene graph viewport, all selection tools can now be used to reparent nodes by clicking inside a node and dragging. (Previously, only the Select and Move tool could be used to reparent nodes.)&lt;br /&gt;
+&lt;br /&gt;
+* In the Paint Page, the menu commands can now be used to associate paint spaces with instance nodes in addition to geometry nodes.&lt;br /&gt;
+&lt;br /&gt;
+* The outlines used for all volume-based objects are drawn nice and crisply in the editor now.&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

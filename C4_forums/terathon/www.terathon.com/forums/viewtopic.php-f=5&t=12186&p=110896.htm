@@ -1,0 +1,1239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View topic - Flipping handedness through quaternion?</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '';
+	var base_url = '';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=18.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=18">C4 Engine Development</a> <strong>&#8249;</strong> <a href="viewforum.php-f=5.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=5">Graphics Programming</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewtopic.php-f=5&t=12186.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=5&t=12186">Flipping handedness through quaternion?</a></h2>
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body --><div style="display: none !important;">Topics about programming 3D graphics in the C4 Engine.<br /></div>
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=5&t=12186  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=5&t=12186%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=5&t=12186" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="search-box">
+			<form method="get" id="topic-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="Search this topic…" onclick="if(this.value=='Search this topic…')this.value='';" onblur="if(this.value=='')this.value='Search this topic…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="t" value="12186" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			18 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+
+</div>
+<div class="clear"></div>
+
+
+	<div id="p110815" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 class="first"><a href="#p110815">Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110815  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110815#p110815%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110815#p110815"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a></strong> &raquo; 08 Sep 2012, 17:57 </p>
+
+			
+
+			<div class="content">Hi there,<br /><br />I have one last problem (I hope) in my algorithm. The quaternion my algorithm produces sometimes switches the handedness of my orthonormal basis (ONB). This is not desired. I want it to keep the right-handedness of the input ONB. <br /><br />So how can I setup a quaternion that simply switches the handedness? I need it to reflect the X-axis, so the equivalent for the matrix ((-1,0,0),(0,1,0),(0,0,1))... Guess what, the algorithm on the page below also fails on this one... So since there seems to be no working Matrix-&gt;Quaternion algorithm out there, and my one needs this last bit to work I am lost. Can somebody please tell me how this quaternion looks like <img src="images/smilies/icon_biggrin.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_biggrin.gif" alt=":D" title="Very Happy" />. Before I start bruteforcing it ^^. It is really a bit annoying that most quaternion algorithms are broken for all except the simple cases.<br /><br />BACKGROUND:<br /><br />I am trying to write my own algorithm for constructing a quaternion from a right-handed ONB. This quat will then be able to transform the standard ONB into the ONB it was created against. The algorithms I found in the net and also the one about SetRotationMatrix in C4 engine seem to be broken. If I put in a right-handed ONB, no matter what, only trash comes out as a quaternion. I guees C4 uses the algorithm here: <!-- m --><a class="postlink" href="javascript:if(confirm(%27http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm%27" tppabs="http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm">http://www.euclideanspace.com/maths/geo ... /index.htm</a><!-- m --><br /><br />This one doesn't work ^^. It is also implemented in OGRE and SlimDX... So I had to come up with my own. Really gets me that nobody has run into issues, because the quaternion produced by these obscure FromMatrix() algorithms, does anything except what they said it should do <img src="images/smilies/icon_biggrin.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_biggrin.gif" alt=":D" title="Very Happy" /></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110815">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 30</dd><dd><strong>Joined:</strong> 16 Aug 2012, 03:32</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110818" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110818">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110818  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110818#p110818%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110818#p110818"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 08 Sep 2012, 19:23 </p>
+
+			
+
+			<div class="content">The quaternion / matrix conversion functions in C4 are not broken. The problem is your assumption that it's possible for a quaternion to represent a reflection using the same operation that one would use for a rotation. It is not. When you try to convert your matrix that flips the x direction, you're causing a division by zero.<br /><br />A properly constructed quaternion (that is, cos(x) + B sin(x), where B is the unit 3D bivector corresponding to the plane of rotation through the origin) will never flip the handedness of a vector when applied as a rotation. It's impossible.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110818">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110820" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110820">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110820  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110820#p110820%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110820#p110820"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a></strong> &raquo; 09 Sep 2012, 02:47 </p>
+
+			
+
+			<div class="content">Dammit... I was messing up the handedness. The code I built my implementation against was not designed for right-hand but for left-hand. And it passed the spherical walkaround where I simply created ONBs rotated in a lot of different positions in the unit sphere, because they were also left handed. Then when I started to do random sampling, I used orthoNormalize(), which produced right-handed ONBs and with them, the Quat did flip handedness back to left...<br /><br />So if you pass in left-handed you get left-handed out but if you pass in right-handed the handedness is flipped...<br /><br />So thanks for your help, it narrowed down the error spots ^^.<br /><br /><br />But still:<br /><br />Why doesn't SetRotationMatrix work if I pass in a 3x3 matrix representing a basis transform from standard ONB to an arbitrarily rotated ONB? The ones I tested are special orthogonal which seems to be the restriction of SetRotationMatrix... The resulting quaternion doesn't work at all in all but the simplest cases, that's the reason why I pulled off my own. Which now thankfully works for 1000 random samples and a spherical walkaround <img src="images/smilies/icon_biggrin.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_biggrin.gif" alt=":D" title="Very Happy" />.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110820">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 30</dd><dd><strong>Joined:</strong> 16 Aug 2012, 03:32</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110822" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110822">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110822  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110822#p110822%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110822#p110822"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1484.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1484" style="color: #8000C0;" class="username-coloured">MACK</a></strong> &raquo; 09 Sep 2012, 03:55 </p>
+
+			
+
+			<div class="content">Considering that you found an error in your original code...<br />can you please re-state your problem?<br /><br />Eric, <br />When converting from a matrix to a Quaternion, is it even possible to retain &quot;handedness&quot;?</div>
+
+			
+				<div class="notice">Last edited by <a href="memberlist.php-mode=viewprofile&u=1484.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1484" style="color: #8000C0;" class="username-coloured">MACK</a> on 09 Sep 2012, 04:13, edited 1 time in total.
+					
+				</div>
+			<div id="sig110822" class="signature"><span style="color: #0000FF"><span style="font-weight: bold"><a href="viewtopic.php-f=30&t=12483.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=30&t=12483" class="postlink">New C4 Book Here!</a></span></span><br /><span style="font-weight: bold"><span style="font-size: 70%; line-height: 116%;">EVGA SR2 Mb @(2.4 to 3.4 Ghz), Intel E5620 dual cpu, 4x4GB ECC RAM, OS ADATA S511 256GB RAID10<br />Nvidia GTX660, Driver 320.49 WHQL Win7 64bit, DX SDK 6-10</span></span><span style="font-weight: bold"> <span style="font-size: 75%; line-height: 116%;">skype ck_mack</span></span></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110822">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1484.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1484" style="color: #8000C0;" class="username-coloured">MACK</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1672</dd><dd><strong>Joined:</strong> 05 Oct 2008, 01:53</dd><dd><strong>Location:</strong> Salisbury, NC USA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.mechstorm.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.mechstorm.com/%27" tppabs="http://www.mechstorm.com/" title="WWW: http://www.mechstorm.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110824" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110824">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110824  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110824#p110824%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110824#p110824"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a></strong> &raquo; 09 Sep 2012, 04:12 </p>
+
+			
+
+			<div class="content">I am not sure what you mean... I wrote the original problem after &quot;But still:&quot; in my previous post <img src="images/smilies/icon_wink.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_wink.gif" alt=";)" title="Wink" />. That's what I tried first but it didn't work. So pulled off my own algorithm which worked after a lot of trial&amp;error... Except for the handedness. But I just thought it didn't because the reason why handedness was flipped was that I just feeded the wrong handedness to it ^^. stupid, but what youre gonna do.<br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>When converting from a matrix to a Quaternion, is it even possible to retain handedness?</code></dd></dl><br /><br />At least it is possible when construction the base transformations with only quaternions. <img src="images/smilies/icon_smile.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_smile.gif" alt=":)" title="Smile" /></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110824">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 30</dd><dd><strong>Joined:</strong> 16 Aug 2012, 03:32</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110825" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110825">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110825  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110825#p110825%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110825#p110825"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1484.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1484" style="color: #8000C0;" class="username-coloured">MACK</a></strong> &raquo; 09 Sep 2012, 04:16 </p>
+
+			
+
+			<div class="content">I am not a math genius like Eric, but the articles I am reading seem to hint that Quaternions don't preserve handedness or even have &quot;handedness&quot;.<br /><br />You might have to fix your problem prior to the conversion to a Quaternion?<br /><br />(My understanding was that you were starting from a Matrix).</div>
+
+			<div id="sig110825" class="signature"><span style="color: #0000FF"><span style="font-weight: bold"><a href="viewtopic.php-f=30&t=12483.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=30&t=12483" class="postlink">New C4 Book Here!</a></span></span><br /><span style="font-weight: bold"><span style="font-size: 70%; line-height: 116%;">EVGA SR2 Mb @(2.4 to 3.4 Ghz), Intel E5620 dual cpu, 4x4GB ECC RAM, OS ADATA S511 256GB RAID10<br />Nvidia GTX660, Driver 320.49 WHQL Win7 64bit, DX SDK 6-10</span></span><span style="font-weight: bold"> <span style="font-size: 75%; line-height: 116%;">skype ck_mack</span></span></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110825">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1484.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1484" style="color: #8000C0;" class="username-coloured">MACK</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1672</dd><dd><strong>Joined:</strong> 05 Oct 2008, 01:53</dd><dd><strong>Location:</strong> Salisbury, NC USA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.mechstorm.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.mechstorm.com/%27" tppabs="http://www.mechstorm.com/" title="WWW: http://www.mechstorm.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110826" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110826">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110826  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110826#p110826%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110826#p110826"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a></strong> &raquo; 09 Sep 2012, 04:24 </p>
+
+			
+
+			<div class="content">I also gathered that Quaternions don't have a handedness. <br /><br />Well yes, I started from a base transformation. And since I am only considering orthonormal basis, they should also represent a fully valid rotation matrix, am I right?  But calling SetRotationMatrix() on such a thing usually yields the type of Quaternion we talked about (bad word)... That is, they are completely screwed up, not just handedness flipping!<br /><br />So now I have a function called &quot;fromOrthoNormalBasis(right, up, forward)&quot; which does what I was trying to do, by relying solely on Quaternion-math and not the Matrix roundtrip. It works for left-handed basis only right now... I am not sure if that's the problem. I will see if I can get it to work in a modified form for right handed basis and then select the algorithm dependent on the input...<br /><br />I learned a lot about Quaternions the last day but I still can't answer your question <img src="images/smilies/icon_wink.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_wink.gif" alt=";)" title="Wink" />. The only thing I do now, is that for left-handed ONB base transformations, Quaternions do keep handedness.<br /><br />PS: In the end I am just generalizing a Quaternion.LookAt() function. It kinda bothers me to be so specialized, so I wanted to support arbitrary base transformations and not just the special case &quot;lookAt&quot;, which is easier to accomplish, since the transformation is quite constrained.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110826">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 30</dd><dd><strong>Joined:</strong> 16 Aug 2012, 03:32</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110827" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110827">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110827  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110827#p110827%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110827#p110827"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a></strong> &raquo; 09 Sep 2012, 04:43 </p>
+
+			
+
+			<div class="content">Here is my code for the left-handed ONB case... Maybe someone has an idea how to make it work for right-handed ONBs in which case it currently flips handedness but otherwise works correctly. This algorithm is also validated against a lot of random samples and handwritten testcases. Yes, it's not C++ but just consider it pseudo-code, should be self-explaining.<br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>&nbsp; <br />&nbsp; static Quaternion fromLeftHandedONB(Vector3 right, Vector3 up, Vector3 forward, &#91;Quaternion out = null&#93;)<br />&nbsp; {<br />&nbsp; &nbsp; _initTemporaries();<br />&nbsp; &nbsp; <br />&nbsp; &nbsp; // face &quot;forward&quot;<br />&nbsp; &nbsp; Quaternion quatAlpha, quatBeta;<br />&nbsp; &nbsp; double alpha = Vector3.angle(new Vector3.forward(), forward);<br />&nbsp; &nbsp; <br />&nbsp; &nbsp; if(alpha &gt; Mathf.ZERO_TOLERANCE)<br />&nbsp; &nbsp; {<br />&nbsp; &nbsp; &nbsp; Vector3 alphaAxis;<br />&nbsp; &nbsp; &nbsp; <br />&nbsp; &nbsp; &nbsp; if(Mathf.abs(alpha - Math.PI) &gt; Mathf.ZERO_TOLERANCE)<br />&nbsp; &nbsp; &nbsp; {<br />&nbsp; &nbsp; &nbsp; &nbsp; alphaAxis = Vector3.crossed(new Vector3.forward(), forward);<br />&nbsp; &nbsp; &nbsp; &nbsp; quatAlpha = Quaternion.fromAxisAngle(alphaAxis, alpha);<br />&nbsp; &nbsp; &nbsp; }<br />&nbsp; &nbsp; &nbsp; else<br />&nbsp; &nbsp; &nbsp; {<br />&nbsp; &nbsp; &nbsp; &nbsp; quatAlpha = Quaternion.fromAxisAngle(new Vector3.right(), Mathf.PI);<br />&nbsp; &nbsp; &nbsp; }<br />&nbsp; &nbsp; }<br />&nbsp; &nbsp; else<br />&nbsp; &nbsp; &nbsp; quatAlpha = new Quaternion.identity();<br />&nbsp; &nbsp; <br />&nbsp; &nbsp; // rotate around &quot;forward&quot; until &quot;up&quot; matches<br />&nbsp; &nbsp; var tmpUp = Quaternion.inverted(quatAlpha).rotateVector(new Vector3.up());<br />&nbsp; &nbsp; alpha = Vector3.angle(tmpUp, up);<br />&nbsp; &nbsp; <br />&nbsp; &nbsp; if(alpha &gt; Mathf.ZERO_TOLERANCE)<br />&nbsp; &nbsp; {<br />&nbsp; &nbsp; &nbsp; if(Mathf.abs(alpha - Math.PI) &gt; Mathf.ZERO_TOLERANCE)<br />&nbsp; &nbsp; &nbsp; {<br />&nbsp; &nbsp; &nbsp; &nbsp; quatAlpha = Quaternion.fromAxisAngle(Vector3.crossed(tmpUp, up), alpha) * quatAlpha;<br />&nbsp; &nbsp; &nbsp; }<br />&nbsp; &nbsp; &nbsp; else<br />&nbsp; &nbsp; &nbsp; {<br />&nbsp; &nbsp; &nbsp; &nbsp; quatAlpha = Quaternion.fromAxisAngle(forward, Mathf.PI) * quatAlpha;<br />&nbsp; &nbsp; &nbsp; }<br />&nbsp; &nbsp; }<br />&nbsp; &nbsp; <br />&nbsp; &nbsp; quatAlpha.invert();<br />&nbsp; &nbsp; <br />&nbsp; &nbsp; return quatAlpha;<br />&nbsp; }</code></dd></dl></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110827">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 30</dd><dd><strong>Joined:</strong> 16 Aug 2012, 03:32</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110830" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110830">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110830  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110830#p110830%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110830#p110830"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 09 Sep 2012, 10:46 </p>
+
+			
+
+			<div class="content">A matrix constructed as (right, up, forward) is left-handed and has a negative determinant. You're asking for trouble if you try to make a quaternion out of that because it contains a reflection.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110830">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110831" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110831">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110831  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110831#p110831%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110831#p110831"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a></strong> &raquo; 09 Sep 2012, 11:19 </p>
+
+			
+
+			<div class="content">Okay I will verify again whether it works with right-handed matricies. But I think I already checked the determinant and I recall it also failed for them...<br /><br />Anyway, any thoughts about why my code above is only working for left-handed systems and flips handedness for right-handed system or better, what would I need to change get a &quot;fromRightHandedONB()&quot;?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110831">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 30</dd><dd><strong>Joined:</strong> 16 Aug 2012, 03:32</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110846" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110846">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110846  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110846#p110846%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110846#p110846"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a></strong> &raquo; 09 Sep 2012, 22:15 </p>
+
+			
+
+			<div class="content"><blockquote class="uncited"><div>The code I built my implementation against was not designed for right-hand but for left-hand.</div></blockquote><br /><br />Math is math. It doesn't care about handedness. Handedness comes *only* when you interpret numbers in a physical context. A rotation matrix that rotates 90 degrees around the X axis will rotate the Y vector to become the Z vector. It doesn't matter if you put in &quot;right-handed&quot; or &quot;left-handed&quot; interpreted data, that same transformation will happen.<br /><br /><blockquote class="uncited"><div>A matrix constructed as (right, up, forward) is left-handed and has a negative determinant. </div></blockquote><br /><br />With all respect for Eric's math skills, I think this is inaccurate communications. Matrices do not have inherent handedness. I cannot look at a rotation matrix and see whether someone will apply it to right-handed or left-handed data. Handedness only exists in interpretations of data in a specific context. As an example: If you use a left-handed coordinate system, where X is right, Y is up, and Z is forward, and construct a matrix in the right-up-forward coordinate system, then the matrix will not have a negative determinant, and will be indistinguishable from a matrix constructed in a right-handed X-right, Y-up, Z-hither coordinate system for the right-handed mirror of the left-handed transform (which is not a mirror transform.)<br /><br />Again, 90 degree positive rotation around X takes Y onto Z, no matter whether you're using a right-handed or left-handed coordinate system in which to interpret your data.<br /><br />I think what you mean to say is that a matrix that has a negative determinant (i e, contains mirroring) will flip the handed-ness of whatever data goes through it. As has already been correctly said, that is not an operation representable through a normalized quaternion used as a rotation. You have to first extract the scale from the matrix (which will be a mirroring scale.)</div>
+
+			<div id="sig110846" class="signature">~~<br />   <a href="viewtopic.php-f=3&t=4689.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=3&t=4689" class="postlink">Z-down For Teh W1n!</a><br />   Core i7 4702HQ, 8GB DDR3L-1600, 3GB NVIDIA GTX 870M, 512 GB SSD</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110846">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187"><img src="download/file.php-avatar=187_1201906842.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=187_1201906842.png" width="62" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1892</dd><dd><strong>Joined:</strong> 30 Jul 2006, 22:29</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.enchantedage.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.enchantedage.com/%27" tppabs="http://www.enchantedage.com/" title="WWW: http://www.enchantedage.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110852" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110852">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110852  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110852#p110852%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110852#p110852"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a></strong> &raquo; 10 Sep 2012, 04:30 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>jwatte wrote:</cite>Math is math. It doesn't care about handedness. Handedness comes *only* when you interpret numbers in a physical context. A rotation matrix that rotates 90 degrees around the X axis will rotate the Y vector to become the Z vector. It doesn't matter if you put in &quot;right-handed&quot; or &quot;left-handed&quot; interpreted data, that same transformation will happen.<br /></div></blockquote><br /><br />You can't say it like that. Because it changes nothing about the fact that the function above flips handedness for right-handed input and doesn't for left-handed input. So in some sense this function REQUIRES the correct handedness to work correctly. And there are quite some examples in 3D programming where you have specific LH and RH versions of functions...<br /><br />Maybe math doesn't care about handedness, but I do care, and thus the math automatically gets responsible for it... Ergo the math now does have to care about handedness, even though you didn't want it to <img src="images/smilies/icon_biggrin.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_biggrin.gif" alt=":D" title="Very Happy" /></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110852">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 30</dd><dd><strong>Joined:</strong> 16 Aug 2012, 03:32</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110854" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110854">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110854  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110854#p110854%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110854#p110854"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a></strong> &raquo; 10 Sep 2012, 12:17 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Eric Lengyel wrote:</cite>A matrix constructed as (right, up, forward) is left-handed and has a negative determinant. You're asking for trouble if you try to make a quaternion out of that because it contains a reflection.</div></blockquote><br /><br />Now this is weird. If I call Quaternion.toRotationMatrix() then it will always give me a non-special orthogonal matrix with a determinant of -1... And if I create a right-handed system like {x=(1,0,0),y=(0,0,1),z=(0,1,0)} then it also yields a determinant -1. <br /><br />Seems rather impossible to setup a right handed system with a determinant of one? I tried about 10000 random orthonormal basis, none of them had a determinant of one, when it was right handed. <br /><br />This is all very weird. <br /><br />Couldn't you give me an example of a right-handed system with a determinant of one, so that I can check the fromRotationMatrix-approach? For right-handed systems with determinant of minus one, the fromRotationMatrix thingy doesn't work. Neither does my algorithm above or at least one coordinate axis is mirrored. Which wouldn't be too bad though. Still it bothers me that the case you were referring to never comes up in random samples...<br /><br />And another thing is that fromRotationMatrix actually works well with determinant -1... Since toRotationMatrix() seems to always convert a normalized quaternion to a matrix with det=-1... And when I call fromRotationMatrix() on this one, the original quaternion comes back out.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110854">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 30</dd><dd><strong>Joined:</strong> 16 Aug 2012, 03:32</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110855" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110855">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110855  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110855#p110855%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110855#p110855"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a></strong> &raquo; 10 Sep 2012, 12:25 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>thesaint wrote:</cite><blockquote><div><cite>jwatte wrote:</cite>Math is math. It doesn't care about handedness. Handedness comes *only* when you interpret numbers in a physical context. A rotation matrix that rotates 90 degrees around the X axis will rotate the Y vector to become the Z vector. It doesn't matter if you put in &quot;right-handed&quot; or &quot;left-handed&quot; interpreted data, that same transformation will happen.<br /></div></blockquote><br /><br />You can't say it like that. Because it changes nothing about the fact that the function above flips handedness for right-handed input and doesn't for left-handed input.<br /><blockquote class="uncited"><div><br />That is a mathematical impossibility. The function cannot possibly know whether you are feeding it right-handed data, or left-handed data that is the mirror of some right-handed data. Given the vector (x,y,z) it will always do the same thing. Given the matrix (m00, m01, ..., m33) the same composed matrix will always come out. That composition may or may not contain mirroring, but for the same input, it will always give the same output.<br /><br /><blockquote class="uncited"><div>So in some sense this function REQUIRES the correct handedness to work correctly. And there are quite some examples in 3D programming where you have specific LH and RH versions of functions...<br /></div></blockquote><br /><br />The only functions that have LH and RH variants, are functions that deal with the physical world. For example, projection matrices that turn transformed data into pixels-in-the-framebuffer can apply the appropriate transform to interpret the transformed incoming data as left-handed, or right-handed. This is one of the physical-interpretation cases that I mentioned in general above.<br /><br /><blockquote class="uncited"><div>Maybe math doesn't care about handedness, but I do care, and thus the math automatically gets responsible for it... Ergo the math now does have to care about handedness, even though you didn't want it to <img src="images/smilies/icon_biggrin.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_biggrin.gif" alt=":D" title="Very Happy" /></div></blockquote><br /></div></blockquote></div></blockquote><br /><br />Then you're doing it wrong, and will suffer the consequences.</div>
+
+			<div id="sig110855" class="signature">~~<br />   <a href="viewtopic.php-f=3&t=4689.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=3&t=4689" class="postlink">Z-down For Teh W1n!</a><br />   Core i7 4702HQ, 8GB DDR3L-1600, 3GB NVIDIA GTX 870M, 512 GB SSD</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110855">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187"><img src="download/file.php-avatar=187_1201906842.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=187_1201906842.png" width="62" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1892</dd><dd><strong>Joined:</strong> 30 Jul 2006, 22:29</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.enchantedage.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.enchantedage.com/%27" tppabs="http://www.enchantedage.com/" title="WWW: http://www.enchantedage.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110856" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110856">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110856  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110856#p110856%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110856#p110856"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a></strong> &raquo; 10 Sep 2012, 12:30 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>thesaint wrote:</cite>Now this is weird. If I call Quaternion.toRotationMatrix() then it will always give me a non-special orthogonal matrix with a determinant of -1... </div></blockquote><br /><br />If Quaternion.toRotationMatrix() creates a mirroring matrix, then that function is broken, or the determinant calculation is broken.<br /><br /><blockquote class="uncited"><div>And if I create a right-handed system like {x=(1,0,0),y=(0,0,1),z=(0,1,0)} then it also yields a determinant -1. <br /></div></blockquote><br /><br />That is not a &quot;right-handed system&quot; -- it's a system with mirroring. Specifically, you have transposed exactly one pair of rows, without negating any of them, and thus end up with a mirroring transform. Clearly, the determinant there is -1.<br /><br /><blockquote class="uncited"><div>Seems rather impossible to setup a right handed system with a determinant of one? I tried about 10000 random orthonormal basis, none of them had a determinant of one, when it was right handed. <br /></div></blockquote><br /><br />What do you mean by a &quot;right-handed basis&quot; -- there is no such thing. There is only &quot;non-mirroring basis&quot; and then the particular interpretation of your data in physical space, which can be right-handed or left-handed. Note that the meaning of your data changes when you choose to interpret it differently (it gets mirrored,) but the data itself DOES NOT CHANGE.<br /><br /><blockquote class="uncited"><div>Couldn't you give me an example of a right-handed system with a determinant of one</div></blockquote><br /><br />right = X<br />up = Y<br />hither = Z<br /><br />The matrix is the identity matrix.<br /><br />Note that also a left-handed system will have a determinant of one:<br /><br />right = X<br />up = Y<br />yon = Z<br /><br />The matrix is still the identity matrix!<br /><br />The only thing that separates &quot;right-handed&quot; from &quot;left-handed&quot; is how you label the basis vectors with physical meaning.</div>
+
+			<div id="sig110856" class="signature">~~<br />   <a href="viewtopic.php-f=3&t=4689.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=3&t=4689" class="postlink">Z-down For Teh W1n!</a><br />   Core i7 4702HQ, 8GB DDR3L-1600, 3GB NVIDIA GTX 870M, 512 GB SSD</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110856">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187"><img src="download/file.php-avatar=187_1201906842.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=187_1201906842.png" width="62" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1892</dd><dd><strong>Joined:</strong> 30 Jul 2006, 22:29</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.enchantedage.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.enchantedage.com/%27" tppabs="http://www.enchantedage.com/" title="WWW: http://www.enchantedage.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110857" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110857">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110857  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110857#p110857%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110857#p110857"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a></strong> &raquo; 10 Sep 2012, 13:28 </p>
+
+			
+
+			<div class="content"><blockquote class="uncited"><div>If Quaternion.toRotationMatrix() creates a mirroring matrix, then that function is broken, or the determinant calculation is broken.</div></blockquote><br /><br />Well actually you may be right. I am trying to be compliant with Unity3D's math functions, and something bothers me all the time with it, specifically that I have to invert my quaternions whenever I deal with rotation-matrix conversion. So maybe they did something different to C4 in there... But the functions behave EXACTLY like the ones used in Unity3D... I don't think that they are stupid, so it must be there for some reason.<br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>That is not a &quot;right-handed system&quot; -- it's a system with mirroring. </code></dd></dl><br /><br />I think we just refer to different things here... Maybe I should define what a right-hand system means in my case:<br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>Vector3.dot(Vector3.crossed(right, forward), up) &gt;= -Mathf.ZERO_TOLERANCE</code></dd></dl><br /><br />Actually I can't find anymore where I got this. But it seems quite reasonable since the cross(right,forward) yield the up vector in a right-handed system, so the dot product is positive...<br /><br />So then something must be wrong here?! <br /><br /><blockquote class="uncited"><div>What do you mean by a &quot;right-handed basis&quot; -- there is no such thing. </div></blockquote><br /><br />A basis where the cross product above yields the &quot;up&quot; vector is right-handed...?! At least that would make sense to me.<br /><br /><blockquote class="uncited"><div>The only thing that separates &quot;right-handed&quot; from &quot;left-handed&quot; is how you label the basis vectors with physical meaning.</div></blockquote><br /><br />Well, the cross product defines them in a mathematical sense, doesn't it?!</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110857">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3065.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3065" style="color: #0060C0;" class="username-coloured">thesaint</a>
+			</dt>
+
+			<dd>Regular User<br /><img src="images/ranks/PlasmaRank.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank.png" alt="Regular User" title="Regular User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 30</dd><dd><strong>Joined:</strong> 16 Aug 2012, 03:32</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110858" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110858">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110858  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110858#p110858%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110858#p110858"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a></strong> &raquo; 10 Sep 2012, 14:54 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>thesaint wrote:</cite>I think we just refer to different things here... Maybe I should define what a right-hand system means in my case:<br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>Vector3.dot(Vector3.crossed(right, forward), up) &gt;= -Mathf.ZERO_TOLERANCE</code></dd></dl></div></blockquote><br /><br />What this really means is that (right, forward, up) is a right-handed basis with respect to a right-handed coordinate system, which is what I was assuming you were talking about from the start (and also why I said the matrix (right, up, forward) is left-handed, because it transforms to a left-handed basis with respect to a right-handed coordinate system). If you were to use a true left-handed coordinate system, none of the math would actually change, as Jon already said, but you would have to know that positive rotations are clockwise instead of counterclockwise.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110858">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2"><img src="download/file.php-avatar=2_1332244757.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=2_1332244757.png" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 19108</dd><dd><strong>Joined:</strong> 09 May 2005, 19:00</dd><dd><strong>Location:</strong> Roseville, CA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/lengyel/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/lengyel/%27" tppabs="http://www.terathon.com/lengyel/" title="WWW: http://www.terathon.com/lengyel/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p110896" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p110896">Re: Flipping handedness through quaternion?</a></h3>
+			<p class="author"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?p=110896  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?p=110896#p110896%27" tppabs="http://www.terathon.com/forums/viewtopic.php?p=110896#p110896"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a></strong> &raquo; 11 Sep 2012, 23:52 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>thesaint wrote:</cite><blockquote class="uncited"><div>If Quaternion.toRotationMatrix() creates a mirroring matrix, then that function is broken, or the determinant calculation is broken.</div></blockquote><br /><br /><br /><dl class="codebox"><dt>Code: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt><dd><code>Vector3.dot(Vector3.crossed(right, forward), up) &gt;= -Mathf.ZERO_TOLERANCE</code></dd></dl><br /><br />Actually I can't find anymore where I got this. But it seems quite reasonable since the cross(right,forward) yield the up vector in a right-handed system, so the dot product is positive...<br /></div></blockquote><br /><br />That makes no sense, because you have not established the relation between the variables &quot;right,&quot; &quot;forward,&quot; and &quot;up&quot; and the coordinates of your basis. If you say &quot;right == X&quot; and &quot;forward == Y&quot; and &quot;up == Z&quot; then, yes, that cross product works out. But that's because of the interpretation between physical reality, and specific numbers -- a specific interpretation that is right-handed.<br /><br /><blockquote class="uncited"><div><blockquote class="uncited"><div>What do you mean by a &quot;right-handed basis&quot; -- there is no such thing. </div></blockquote><br /><br />A basis where the cross product above yields the &quot;up&quot; vector is right-handed...?! At least that would make sense to me.<br /></div></blockquote><br /><br />So by &quot;basis&quot; you mean the physical representation, not the binding to numbers. It is always the case that X cross Y equals Z. Those are numbers. A &quot;basis&quot; in my parlance is the orthonormal basis of the vectors in the matrix (or the inverse, if you think of the matrix as transforming &quot;from&quot; the basis.) It's just math, with no specific binding to real world.<br />If you define a physical representation between numbers (basis vectors) and reality (right, forward, up) such that right cross forward equals up, then your established convention is right-handed. But a basis just &quot;is&quot; -- it either has, or does not have, mirroring, but it does not have handedness.</div>
+
+			<div id="sig110896" class="signature">~~<br />   <a href="viewtopic.php-f=3&t=4689.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=3&t=4689" class="postlink">Z-down For Teh W1n!</a><br />   Core i7 4702HQ, 8GB DDR3L-1600, 3GB NVIDIA GTX 870M, 512 GB SSD</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile110896">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187"><img src="download/file.php-avatar=187_1201906842.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=187_1201906842.png" width="62" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=187.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=187" style="color: #0060C0;" class="username-coloured">jwatte</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1892</dd><dd><strong>Joined:</strong> 30 Jul 2006, 22:29</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.enchantedage.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.enchantedage.com/%27" tppabs="http://www.enchantedage.com/" title="WWW: http://www.enchantedage.com/"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<form id="viewtopic" method="post" action="http://www.terathon.com/forums/viewtopic.php?f=5&t=12186">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		
+		<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+		
+	</fieldset>
+
+	</form>
+	<hr />
+
+
+<div class="topic-actions">
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/posting.php?mode=reply&f=5&t=12186  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/posting.php?mode=reply&f=5&t=12186%27" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=5&t=12186" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="pagination">
+			18 posts
+			 &bull; Page <strong>1</strong> of <strong>1</strong>
+		</div>
+	
+</div>
+
+
+	<p></p><p><a href="viewforum.php-f=5.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=5" class="left-box left" accesskey="r">Return to Graphics Programming</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5" selected="selected">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: <span style="color: #9E8DA7;" class="username-coloured">Google [Bot]</span> and 1 guest</p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

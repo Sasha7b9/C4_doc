@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>Release Notes for Build 112 - C4 Engine Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"Zu8UOlQo4v-YDF-FlaFUtQAAAE0","wgCSPNonce":false,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Release_Notes_for_Build_112","wgTitle":"Release Notes for Build 112","wgCurRevisionId":19,"wgRevisionId":19,"wgArticleId":17,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Release_Notes_for_Build_112","wgRelevantArticleId":17,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"simpleBatchUploadMaxFilesPerBatch":{"*":
+1000},"wgVector2022PreviewPages":[]};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","skins.vector.legacy.js"/*tpa=http://www.c4engine.com/wiki/skins.vector.legacy.js*/];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});});});</script>
+<link rel="stylesheet" href="load.php-lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector.css" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=skins.vector.styles.legacy&only=styles&skin=vector"/>
+<script async="" src="load.php-lang=en&modules=startup&only=scripts&raw=1&skin=vector.js" tppabs="http://www.c4engine.com/wiki/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector"></script>
+<meta name="generator" content="MediaWiki 1.40.0"/>
+<meta name="robots" content="max-image-preview:standard"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="viewport" content="width=1000"/>
+<link rel="icon" href="../favicon.ico.css" tppabs="http://www.c4engine.com/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="C4 Engine Wiki (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://c4engine.com/wiki/api.php?action=rsd"/>
+<link rel="alternate" type="application/atom+xml" title="C4 Engine Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Release_Notes_for_Build_112 rootpage-Release_Notes_for_Build_112 skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Release Notes for Build 112</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From C4 Engine Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="en" dir="ltr"><div class="mw-parser-output"><p><b>Release date:</b> October 19, 2005
+</p>
+<ul><li>This build includes a heavily commented sample game module called "Skeleton" that represents nearly the minimum amount of code that needs to be written to have a working game module. You can tell the engine to load this game module by editing the file <code>Data/CFG/Variables.cfg</code> and changing the value of the variable <code>$applicName</code> to "Skeleton". To get the primary game module back, change <code>$applicName</code> to "Game" again.</li></ul>
+<ul><li>Implemented a large amount of new collision detection functionality. The existing function <code>World::DetectCollision()</code> is still present and should continue to be used for line-of-sight tests and sphere-environment collision tests. There is now a new function for capsule collisions, <code>World::DetectCapsuleCollision()</code>, and it detects collisions between an arbitrary swept capsule and the environment. Both of these functions are precise to the polygon level and are implemented using continuous techniques (as opposed to iterative techniques). This means the collision detection is tunnel-proof.</li></ul>
+<ul><li>For most types of moving objects, it is now best to use the new <code>Collider</code> class for collision detection instead of calling the above functions directly. The <code>Collider</code> class has two subclasses, <code>SphereCollider</code> and <code>CapsuleCollider</code>. Each controller class corresponding to a moving object should inherit from one of these two <code>Collider</code> subclasses. Then the controller's <code>Move()</code> function simply specifies the starting position and delta for the current frame. After all controllers have moved, the collision detection among all colliders is performed, and then the <code>Travel()</code> function of each collider class is called. At this point, the <code>Collider</code> class contains a collision state that indicates whether a collision occurred and, if so, whether it was with the environment or another collider. The implementation of the <code>Travel()</code> function can do whatever it wants in response.</li></ul>
+<ul><li>See the <code>BallController</code> class in the <code>Skeleton.*</code> files for an example showing how to use the new collision system. To see a cool stress test, load the world called "Test" while running the Skeleton application module by entering <code>load test</code> in the command console. (Nothing will happen in this room if running the big game module.)</li></ul>
+<ul><li>The engine module now contains stock controller base classes for basic projectiles and characters. The <code>ProjectileController</code> class is subclassed from <code>SphereCollider</code> and handles the motion of simple projectiles under the influence of gravity and/or through a resistive medium. The <code>CharacterController</code> class is subclassed from <code>CapsuleCollider</code> and handles things like gravity, falling off of things, sliding against walls, and climbing ramps.</li></ul>
+<ul><li>Updated the sample game module to use the new collision system and controller base classes. Projectiles will now hit each other, so it's possible to shoot down rockets, etc. The game module class <code>FighterController</code> is now in a clean state and handles player movement, character collisions, weapon firing, and projectile hits.</li></ul>
+<ul><li>The game module contains a class called <code>FighterController</code> that is a subclass of the <code>CharacterController</code> and handles more details of the player movement. It's pretty functional right now, but is still a work in progress in some ways. In particular, it doesn't currently spend any time trying to detect whether the character is climbing stairs, but some research is being done to determine whether this is practical and worth the extra computational expense. Right now, it's best to cover stairs with an invisible ramp for smooth character movement.</li></ul>
+<ul><li>The <code>FighterController</code> doesn't currently implement client prediction for multiplayer games, but it will soon. The previous code, which was very hacky, has been removed.</li></ul>
+<ul><li>Added shader level of detail for parallax mapping. When enabled, the scale of the parallax effect will gradually decrease to zero at the transition point from level 0 to level 1, and parallax mapping is reduced to ordinary bump mapping in level 1 and above.</li></ul>
+<ul><li>Implemented full support for Cook-Torrance specular reflection via the MicrofacetAttribute material attribute. Both isotropic and anisotropic microfacet distributions are supported, but the geometrical attenuation factor has been omitted because it almost always makes an unnoticeable difference. <b>Note:</b> Microfacet shading has been disabled for all types of lights except infinite lights due to some pending changes in the shader building code. It will be fully functional in the next release.</li></ul>
+<ul><li>Added the <code>$featureDisableMask</code> permanent system variable. This has 1-bits for any graphics features that are explicitly disabled by the user. Updated the graphics settings dialog to allow parallax mapping and microfacet shading to be turned on/off.</li></ul>
+<ul><li>Added the <code>kShaderCubeLightInhibit</code> shader flag that prevents a cube light projection from being rendered on a geometry. This is useful when applied to the geometry surrounding a cube light source (that is actually casting the projected shadow) so that it doesn't receive its own shadow.</li></ul>
+<ul><li>Updated the Sound Player tool. It now displays the wave being played as it used to under the old windowing system, and there is a volume control.</li></ul>
+<ul><li>The sound mixer now supports 22.05 kHz stereo sounds, both streaming and non-streaming. All mono and stereo sounds that are either 22.05 kHz or 44.1 kHz are now supported.</li></ul>
+<ul><li>Modified the free camera tool in both the World Editor and Model Viewer so that the camera accelerates like the spectator camera does.</li></ul>
+<ul><li>Added the <code>PropertyObject</code> class. This serves as a shared container for an arbitrary list of properties, and it can be attached to nodes just like material objects. Thus, changing any of the properties affects all nodes using the property object. There's currently no interface for this in the World Editor, but it will be present in a later release.</li></ul>
+<ul><li>Added the <code>Collection</code> node. This is a container that holds a set of key/node pairs. There's currently no interface for this in the World Editor, but it will be present in a later release.</li></ul>
+<ul><li>There is now a new <code>EnvironmentMapAttribute</code> that can specify a texture map that will override the environment map assigned to the zone containing an object. This attribute should be applied in addition to the <code>EnvironmentAttribute</code> to take effect. It can be specified in the Textures pane in the World Editor's material manager.</li></ul>
+<ul><li>Added a constructor and <code>Set()</code> overload for the <code>Vector4D</code> class that take a <code>Vector3D</code> and a <code>Point3D</code>. These are interpreted as the normal direction of a plane and a point lying in that plane. The normal is copied into the <code>x, y</code>, and <code>z</code> components, and the <code>w</code> component is given the value <code>-Dot(n, p)</code>.</li></ul>
+<ul><li>All of the random number functions have been moved into the <code>Math</code> namespace. This includes <code>Random(), RandomFloat(), RandomUnitVector(), RandomUnitQuaternion(), GetRandomSeed(),</code> and <code>SetRandomSeed()</code>. These functions either need to be qualified with <code>Math::</code> or the statement using namespace <code>C4::Math;</code> needs to appear in any source file that uses them.</li></ul>
+<ul><li>Defined an integer type called <code>natural</code> that corresponds to the natural register width on the target machine. This type should be used for variables which are expected to be kept in CPU registers so that arithmetic is performed on them at the machine's natural size, avoiding extra sign extensions or high-word clears. Defining the natural type is primarily a performance optimization for the 64-bit PowerPC architecture.</li></ul>
+<ul><li>Made lots of various minor additions and improvements to the primary game module.</li></ul>
+<ul><li>The Visual Studio project files have been updated to be easier to move to different machines and easier to convert to later versions.</li></ul>
+<ul><li>This release contains temporary plugins for Maya, but these are going to be replaced by the Collada format in the next release.</li></ul>
+<ul><li>The source texture map for the terrain in the demo is included in this release. It's path is <code>Data/TEX/terrain/Lake.tex</code>.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20240921143701
+Cache expiry: 86400
+Reduced expiry: false
+Complications: [no‐toc‐conversion]
+CPU time usage: 0.004 seconds
+Real time usage: 0.004 seconds
+Preprocessor visited node count: 1/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 1/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+
+<!-- Saved in parser cache with key c4_wiki:pcache:idhash:17-0!canonical and timestamp 20240921143701 and revision id 19. Rendering was triggered because: diff-page
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112&oldid=19  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112&oldid=19%27" tppabs="https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112&oldid=19">https://c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112&amp;oldid=19</a>"</div></div>
+		<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="vector-menu mw-portlet mw-portlet-personal vector-user-menu-legacy" aria-labelledby="p-personal-label" role="navigation"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="pt-login" class="mw-list-item"><a href="index.php-title=Special-UserLogin&returnto=Release+Notes+for+Build+112&returntoquery=type=revision.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:UserLogin&returnto=Release+Notes+for+Build+112&returntoquery=type%3Drevision" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li></ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="vector-menu mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-namespaces-label" role="navigation"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected mw-list-item"><a href="index.php-title=Release_Notes_for_Build_112.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Build_112  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Build_112%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Talk:Release_Notes_for_Build_112&action=edit&redlink=1" rel="discussion" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="vector-menu mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	/>
+	<label
+		id="p-variants-label"
+		 aria-label="Change language variant"
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="vector-menu mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-views-label" role="navigation"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="ca-view" class="selected mw-list-item"><a href="index.php-title=Release_Notes_for_Build_112.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Build_112&action=edit.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112&action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Build_112&action=history.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112&action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li></ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="vector-menu mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown" aria-labelledby="p-cactions-label" role="navigation"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	/>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<div>
+		<form action="http://www.c4engine.com/wiki/index.php" id="searchform"
+			class="vector-search-box-form">
+			<div id="simpleSearch"
+				class="vector-search-box-inner"
+				 data-search-loc="header-navigation">
+				<input class="vector-search-box-input"
+					 type="search" name="search" placeholder="Search C4 Engine Wiki" aria-label="Search C4 Engine Wiki" autocapitalize="sentences" title="Search C4 Engine Wiki [f]" accesskey="f" id="searchInput"
+				>
+				<input type="hidden" name="title" value="Special:Search">
+				<input id="mw-searchButton"
+					 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+				<input id="searchButton"
+					 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+			</div>
+		</form>
+	</div>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="vector-menu mw-portlet mw-portlet-navigation vector-menu-portal portal" aria-labelledby="p-navigation-label" role="navigation"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="n-mainpage-description" class="mw-list-item"><a href="index.php-title=Main_Page.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="javascript:if(confirm(%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://c4engine.com/wiki/index.php?title=Release_Notes_for_Version_2.0%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="javascript:if(confirm(%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents%27" tppabs="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="vector-menu mw-portlet mw-portlet-tb vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list"><li id="t-whatlinkshere" class="mw-list-item"><a href="index.php-title=Special-WhatLinksHere-Release_Notes_for_Build_112.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:WhatLinksHere/Release_Notes_for_Build_112" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Build_112  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Build_112%27" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:RecentChangesLinked/Release_Notes_for_Build_112" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="index.php-title=Special-SpecialPages.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Build_112&oldid=19.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112&oldid=19" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="index.php-title=Release_Notes_for_Build_112&action=info.htm" tppabs="http://www.c4engine.com/wiki/index.php?title=Release_Notes_for_Build_112&action=info" title="More information about this page"><span>Page information</span></a></li></ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" role="contentinfo" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 15 July 2023, at 09:27.</li>
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:Privacy_policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:About">About C4 Engine Wiki</a></li>
+	<li id="footer-places-disclaimers"><a href="javascript:if(confirm(%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer%27" tppabs="http://www.c4engine.com/wiki/index.php?title=C4_Engine_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-poweredbyico"><a href="javascript:if(confirm(%27https://www.mediawiki.org/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.mediawiki.org/%27" tppabs="https://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" tppabs="http://www.c4engine.com/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/></a></li>
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":53,"wgPageParseReport":{"limitreport":{"cputime":"http://www.c4engine.com/wiki/0.004","walltime":"http://www.c4engine.com/wiki/0.004","ppvisitednodes":{"value":1,"limit":1000000},"postexpandincludesize":{"value":0,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":1,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20240921143701","ttl":86400,"transientcontent":false}}});});</script>
+</body>
+</html>

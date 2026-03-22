@@ -1,0 +1,886 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View forum - Editor and Tools</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '8';
+	var per_page = '25';
+	var base_url = './viewforum.php?f=9';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewforum ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=18.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=18">C4 Engine Development</a> <strong>&#8249;</strong> <a href="viewforum.php-f=9.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9">Editor and Tools</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewforum.php-f=9&start=175.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=175">Editor and Tools</a></h2>
+
+
+<div>
+	<!-- NOTE: remove the style="display: none" when you want to have the forum description on the forum body --><div style="display: none !important;">Topics about the World Editor and other C4 Engine tools.<br /></div>
+</div>
+
+	<div class="topic-actions" >
+
+	
+		<div class="buttons">
+			<div class="post-icon" title="Post a new topic"><a href="posting.php-mode=post&f=9.htm" tppabs="http://www.terathon.com/forums/posting.php?mode=post&f=9"><span></span>Post a new topic</a></div>
+		</div>
+	
+		<div class="search-box">
+			<form method="get" id="forum-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny" type="text" name="keywords" id="search_keywords" size="20" value="Search this forum…" onclick="if (this.value == 'Search this forum…') this.value = '';" onblur="if (this.value == '') this.value = 'Search this forum…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="fid[0]" value="9" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			566 topics &bull; <a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Page <strong>8</strong> of <strong>23</strong></a> &bull; <span><a href="viewforum.php-f=9.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9">1</a><span class="page-dots"> ... </span><a href="viewforum.php-f=9&start=100.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=100">5</a><span class="page-sep">, </span><a href="viewforum.php-f=9&start=125.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=125">6</a><span class="page-sep">, </span><a href="viewforum.php-f=9&start=150.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=150">7</a><span class="page-sep">, </span><strong>8</strong><span class="page-sep">, </span><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewforum.php?f=9&start=200  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewforum.php?f=9&start=200%27" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=200">9</a><span class="page-sep">, </span><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewforum.php?f=9&start=225  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewforum.php?f=9&start=225%27" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=225">10</a><span class="page-sep">, </span><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewforum.php?f=9&start=250  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewforum.php?f=9&start=250%27" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=250">11</a><span class="page-dots"> ... </span><a href="viewforum.php-f=9&start=550.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=550">23</a></span>
+		</div>
+	
+
+	</div>
+
+		<div class="forumbg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>Topics</dt>
+					<dd class="posts">Replies</dd>
+					<dd class="views">Views</dd>
+					<dd class="lastpost"><span>Last post</span></dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist topics">
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=6501  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=6501%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=6501" class="topictitle">Spec levels, terrain palette</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a> &raquo; 25 Jan 2009, 22:10
+				</dt>
+				<dd class="posts">10 <dfn>Replies</dfn></dd>
+				<dd class="views">1470 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=6501&p=81219  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=6501&p=81219#p81219%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=6501&p=81219#p81219"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />26 Mar 2010, 11:48</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8934  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8934%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8934" class="topictitle">World is 178MB after importing Heightmap</a>
+					<br />
+					by <a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2141  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2141%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2141" style="color: #C06000;" class="username-coloured">roshanj</a> &raquo; 24 Mar 2010, 19:58
+				</dt>
+				<dd class="posts">4 <dfn>Replies</dfn></dd>
+				<dd class="views">524 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8934&p=81165  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8934&p=81165#p81165%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8934&p=81165#p81165"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />25 Mar 2010, 03:25</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8218  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8218%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8218" class="topictitle">How do I create water in the editor?</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=2033.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2033" style="color: #0060C0;" class="username-coloured">Niteen Hatle</a> &raquo; 03 Nov 2009, 12:44
+				</dt>
+				<dd class="posts">5 <dfn>Replies</dfn></dd>
+				<dd class="views">987 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8218&p=81015  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8218&p=81015#p81015%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8218&p=81015#p81015"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />20 Mar 2010, 13:56</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8906  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8906%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8906" class="topictitle">Fragment program resource overflow logged</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=1031.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1031" style="color: #404040;" class="username-coloured">willy</a> &raquo; 17 Mar 2010, 07:42
+				</dt>
+				<dd class="posts">6 <dfn>Replies</dfn></dd>
+				<dd class="views">513 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=1031.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1031" style="color: #404040;" class="username-coloured">willy</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8906&p=80933  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8906&p=80933#p80933%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8906&p=80933#p80933"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />18 Mar 2010, 05:40</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8846  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8846%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8846" class="topictitle">Mesh import and materials/textures</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a> &raquo; 05 Mar 2010, 15:17
+				</dt>
+				<dd class="posts">12 <dfn>Replies</dfn></dd>
+				<dd class="views">927 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8846&p=80313  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8846&p=80313#p80313%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8846&p=80313#p80313"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />06 Mar 2010, 22:41</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8790  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8790%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8790" class="topictitle">Loading World Crash [wip]</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=980.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=980" style="color: #0060C0;" class="username-coloured">Jonathon Ogden</a> &raquo; 24 Feb 2010, 02:41
+				</dt>
+				<dd class="posts">6 <dfn>Replies</dfn></dd>
+				<dd class="views">562 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=980.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=980" style="color: #0060C0;" class="username-coloured">Jonathon Ogden</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8790&p=79887  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8790&p=79887#p79887%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8790&p=79887#p79887"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />25 Feb 2010, 02:44</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8784  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8784%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8784" class="topictitle">Alpha test with emission glow [SOLVED]</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=1796.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1796" style="color: #8000C0;" class="username-coloured">ca$per</a> &raquo; 23 Feb 2010, 10:19
+				</dt>
+				<dd class="posts">4 <dfn>Replies</dfn></dd>
+				<dd class="views">549 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=1796.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1796" style="color: #8000C0;" class="username-coloured">ca$per</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8784&p=79818  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8784&p=79818#p79818%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8784&p=79818#p79818"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />24 Feb 2010, 04:00</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt style="background-image: url(images/icons/smile/alert.gif)/*tpa=http://www.terathon.com/forums/images/icons/smile/alert.gif*/; background-repeat: no-repeat;" title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8789  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8789%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8789" class="topictitle">Correct Physics Shape Implementation</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=855.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=855">ethanc</a> &raquo; 23 Feb 2010, 23:37
+				</dt>
+				<dd class="posts">6 <dfn>Replies</dfn></dd>
+				<dd class="views">691 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=855.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=855">ethanc</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8789&p=79800  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8789&p=79800#p79800%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8789&p=79800#p79800"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />24 Feb 2010, 01:30</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8730  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8730%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8730" class="topictitle">Arcsin and Arccos in  shader editor</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=1789.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1789" style="color: #0060C0;" class="username-coloured">Twisted Helix</a> &raquo; 13 Feb 2010, 05:22
+				</dt>
+				<dd class="posts">5 <dfn>Replies</dfn></dd>
+				<dd class="views">844 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=1789.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1789" style="color: #0060C0;" class="username-coloured">Twisted Helix</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8730&p=79412  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8730&p=79412#p79412%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8730&p=79412#p79412"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />13 Feb 2010, 23:15</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8663  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8663%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8663" class="topictitle">Troubleshooting geometry occlusion</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=608.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=608" style="color: #8000C0;" class="username-coloured">cboyce</a> &raquo; 01 Feb 2010, 16:37
+				</dt>
+				<dd class="posts">4 <dfn>Replies</dfn></dd>
+				<dd class="views">617 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8663&p=78992  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8663&p=78992#p78992%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8663&p=78992#p78992"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />02 Feb 2010, 15:04</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=6048  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=6048%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=6048" class="topictitle">New terrain and Clif making question</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=1537.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1537" style="color: #0060C0;" class="username-coloured">nikkoid</a> &raquo; 28 Nov 2008, 23:19
+				</dt>
+				<dd class="posts">5 <dfn>Replies</dfn></dd>
+				<dd class="views">867 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2140.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2140" style="color: #0060C0;" class="username-coloured">rauru</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=6048&p=78919  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=6048&p=78919#p78919%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=6048&p=78919#p78919"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />31 Jan 2010, 09:15</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt style="background-image: url(images/icons/smile/mrgreen.gif)/*tpa=http://www.terathon.com/forums/images/icons/smile/mrgreen.gif*/; background-repeat: no-repeat;" title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8633  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8633%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8633" class="topictitle">Switching from spwn to spec state [solved]</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=2269.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2269" style="color: #0060C0;" class="username-coloured">Cajetan.Bouchard</a> &raquo; 25 Jan 2010, 14:12
+				</dt>
+				<dd class="posts">5 <dfn>Replies</dfn></dd>
+				<dd class="views">543 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2269.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2269" style="color: #0060C0;" class="username-coloured">Cajetan.Bouchard</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8633&p=78880  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8633&p=78880#p78880%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8633&p=78880#p78880"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />29 Jan 2010, 08:14</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8643  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8643%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8643" class="topictitle">Script Editor Connector Cent + Axis</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=2269.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2269" style="color: #0060C0;" class="username-coloured">Cajetan.Bouchard</a> &raquo; 27 Jan 2010, 13:40
+				</dt>
+				<dd class="posts">1 <dfn>Replies</dfn></dd>
+				<dd class="views">451 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8643&p=78814  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8643&p=78814#p78814%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8643&p=78814#p78814"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />27 Jan 2010, 15:51</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8631  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8631%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8631" class="topictitle">Mirrors for vehicles</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a> &raquo; 25 Jan 2010, 06:06
+				</dt>
+				<dd class="posts">6 <dfn>Replies</dfn></dd>
+				<dd class="views">608 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=932.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=932" style="color: #0060C0;" class="username-coloured">Amo</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8631&p=78787  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8631&p=78787#p78787%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8631&p=78787#p78787"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />26 Jan 2010, 15:56</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8581  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8581%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8581" class="topictitle">Play Source [Solved]</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=2061.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2061" style="color: #0060C0;" class="username-coloured">Kamikazi Uk</a> &raquo; 13 Jan 2010, 14:27
+				</dt>
+				<dd class="posts">2 <dfn>Replies</dfn></dd>
+				<dd class="views">639 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2061.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2061" style="color: #0060C0;" class="username-coloured">Kamikazi Uk</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8581&p=78394  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8581&p=78394#p78394%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8581&p=78394#p78394"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />14 Jan 2010, 09:03</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8550  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8550%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8550" class="topictitle">controller types</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=844.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=844" style="color: #8000C0;" class="username-coloured">pandora</a> &raquo; 05 Jan 2010, 08:55
+				</dt>
+				<dd class="posts">2 <dfn>Replies</dfn></dd>
+				<dd class="views">526 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=844.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=844" style="color: #8000C0;" class="username-coloured">pandora</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8550&p=78031  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8550&p=78031#p78031%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8550&p=78031#p78031"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />05 Jan 2010, 19:04</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8321  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8321%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8321" class="topictitle">panels</a>
+					<br />
+					by <a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2011  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2011%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2011" style="color: #0060C0;" class="username-coloured">rissa</a> &raquo; 23 Nov 2009, 10:11
+				</dt>
+				<dd class="posts">12 <dfn>Replies</dfn></dd>
+				<dd class="views">1285 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2011  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2011%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2011" style="color: #0060C0;" class="username-coloured">rissa</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8321&p=76447  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8321&p=76447#p76447%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8321&p=76447#p76447"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />01 Dec 2009, 15:03</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8359  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8359%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8359" class="topictitle">Questions about zones and portals.</a>
+					<br />
+					<img src="styles/prosilver/imageset/icon_topic_attach.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_attach.gif" width="7" height="10" alt="Attachment(s)" title="Attachment(s)" /> by <a href="memberlist.php-mode=viewprofile&u=2033.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2033" style="color: #0060C0;" class="username-coloured">Niteen Hatle</a> &raquo; 28 Nov 2009, 23:42
+				</dt>
+				<dd class="posts">7 <dfn>Replies</dfn></dd>
+				<dd class="views">811 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=1031.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1031" style="color: #404040;" class="username-coloured">willy</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8359&p=76429  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8359&p=76429#p76429%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8359&p=76429#p76429"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />01 Dec 2009, 11:54</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read_locked.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read_locked.gif*/; background-repeat: no-repeat;">
+				<dt title="This topic is locked, you cannot edit posts or make further replies."><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8351  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8351%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8351" class="topictitle">C4 World Editor Help</a>
+					<br />
+					by <a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2232  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2232%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2232" style="color: #404040;" class="username-coloured">jeffmorris</a> &raquo; 28 Nov 2009, 06:36
+				</dt>
+				<dd class="posts">6 <dfn>Replies</dfn></dd>
+				<dd class="views">1767 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8351&p=76105  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8351&p=76105#p76105%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8351&p=76105#p76105"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />28 Nov 2009, 17:45</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8334  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8334%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8334" class="topictitle">Some kind of render error?</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=1031.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1031" style="color: #404040;" class="username-coloured">willy</a> &raquo; 26 Nov 2009, 08:04
+				</dt>
+				<dd class="posts">5 <dfn>Replies</dfn></dd>
+				<dd class="views">538 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=9.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=9" style="color: #0060C0;" class="username-coloured">DeRatizator</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8334&p=75977  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8334&p=75977#p75977%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8334&p=75977#p75977"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />26 Nov 2009, 15:53</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8296  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8296%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8296" class="topictitle">Referenced world instances?</a>
+					<br />
+					by <a href="javascript:if(confirm(%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=34  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=34%27" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=34" style="color: #0060C0;" class="username-coloured">mikec</a> &raquo; 19 Nov 2009, 16:01
+				</dt>
+				<dd class="posts">5 <dfn>Replies</dfn></dd>
+				<dd class="views">734 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=282.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=282" style="color: #8000C0;" class="username-coloured">a2k</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8296&p=75609  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8296&p=75609#p75609%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8296&p=75609#p75609"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />20 Nov 2009, 18:32</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8248  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8248%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8248" class="topictitle">How do I remove texture artifacts at the end of the terrain?</a>
+					<br />
+					<img src="styles/prosilver/imageset/icon_topic_attach.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_attach.gif" width="7" height="10" alt="Attachment(s)" title="Attachment(s)" /> by <a href="memberlist.php-mode=viewprofile&u=2033.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2033" style="color: #0060C0;" class="username-coloured">Niteen Hatle</a> &raquo; 09 Nov 2009, 20:56
+				</dt>
+				<dd class="posts">9 <dfn>Replies</dfn></dd>
+				<dd class="views">887 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2033.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2033" style="color: #0060C0;" class="username-coloured">Niteen Hatle</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8248&p=75148  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8248&p=75148#p75148%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8248&p=75148#p75148"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />10 Nov 2009, 13:25</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read_hot.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read_hot.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8219  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8219%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8219" class="topictitle">Strange Poly Bug [Solved]</a>
+					<br />
+					<strong class="pagination"><span><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8219  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8219%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8219">1</a><span class="page-sep">, </span><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8219&start=25  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8219&start=25%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8219&start=25">2</a></span></strong><img src="styles/prosilver/imageset/icon_topic_attach.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_attach.gif" width="7" height="10" alt="Attachment(s)" title="Attachment(s)" /> by <a href="memberlist.php-mode=viewprofile&u=2061.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2061" style="color: #0060C0;" class="username-coloured">Kamikazi Uk</a> &raquo; 03 Nov 2009, 15:54
+				</dt>
+				<dd class="posts">27 <dfn>Replies</dfn></dd>
+				<dd class="views">1952 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2061.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2061" style="color: #0060C0;" class="username-coloured">Kamikazi Uk</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8219&p=75055  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8219&p=75055#p75055%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8219&p=75055#p75055"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />08 Nov 2009, 15:24</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg2">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8224  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8224%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8224" class="topictitle">Difference of simple and shadered material [SOLVED]</a>
+					<br />
+					<img src="styles/prosilver/imageset/icon_topic_attach.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_attach.gif" width="7" height="10" alt="Attachment(s)" title="Attachment(s)" /> by <a href="memberlist.php-mode=viewprofile&u=1796.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1796" style="color: #8000C0;" class="username-coloured">ca$per</a> &raquo; 04 Nov 2009, 06:01
+				</dt>
+				<dd class="posts">8 <dfn>Replies</dfn></dd>
+				<dd class="views">850 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=1796.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1796" style="color: #8000C0;" class="username-coloured">ca$per</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8224&p=74828  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8224&p=74828#p74828%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8224&p=74828#p74828"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />05 Nov 2009, 05:29</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+
+		<li class="row bg1">
+			<dl class="icon" style="background-image: url(styles/prosilver/imageset/topic_read.gif)/*tpa=http://www.terathon.com/forums/styles/prosilver/imageset/topic_read.gif*/; background-repeat: no-repeat;">
+				<dt title="No unread posts"><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8182  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8182%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8182" class="topictitle">Can I load an image in any of the view of the editor?</a>
+					<br />
+					by <a href="memberlist.php-mode=viewprofile&u=2033.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2033" style="color: #0060C0;" class="username-coloured">Niteen Hatle</a> &raquo; 27 Oct 2009, 13:41
+				</dt>
+				<dd class="posts">15 <dfn>Replies</dfn></dd>
+				<dd class="views">1241 <dfn>Views</dfn></dd>
+				<dd class="lastpost"><span><dfn>Last post </dfn>by <a href="memberlist.php-mode=viewprofile&u=2.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2" style="color: #B00000;" class="username-coloured">Eric Lengyel</a>
+					<a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8182&p=74355  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewtopic.php?f=9&t=8182&p=74355#p74355%27" tppabs="http://www.terathon.com/forums/viewtopic.php?f=9&t=8182&p=74355#p74355"><img src="styles/prosilver/imageset/icon_topic_latest.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_topic_latest.gif" width="11" height="9" alt="View the latest post" title="View the latest post" /></a> <br />28 Oct 2009, 22:33</span>
+				</dd>
+			</dl>
+		</li>
+
+	
+			</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	
+	<form method="post" action="http://www.terathon.com/forums/viewforum.php?f=9&start=175">
+		<fieldset class="display-options">
+			<a href="viewforum.php-f=9&start=150.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=150" class="left-box left">Previous</a><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewforum.php?f=9&start=200  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewforum.php?f=9&start=200%27" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=200" class="right-box right">Next</a>
+			<label>Display topics from previous: <select name="st" id="st"><option value="0" selected="selected">All Topics</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+			<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="r">Replies</option><option value="s">Subject</option><option value="v">Views</option></select></label>
+			<label><select name="sd" id="sd"><option value="a">Ascending</option><option value="d" selected="selected">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+	
+		</fieldset>
+	</form>
+	<hr />
+
+	<div class="topic-actions">
+		
+		<div class="buttons">
+			<div class="post-icon" title="Post a new topic"><a href="posting.php-mode=post&f=9.htm" tppabs="http://www.terathon.com/forums/posting.php?mode=post&f=9"><span></span>Post a new topic</a></div>
+		</div>
+		
+		<div class="pagination">
+			 566 topics &bull;  <a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Page <strong>8</strong> of <strong>23</strong></a>
+			 &bull;  <span><a href="viewforum.php-f=9.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9">1</a><span class="page-dots"> ... </span><a href="viewforum.php-f=9&start=100.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=100">5</a><span class="page-sep">, </span><a href="viewforum.php-f=9&start=125.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=125">6</a><span class="page-sep">, </span><a href="viewforum.php-f=9&start=150.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=150">7</a><span class="page-sep">, </span><strong>8</strong><span class="page-sep">, </span><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewforum.php?f=9&start=200  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewforum.php?f=9&start=200%27" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=200">9</a><span class="page-sep">, </span><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewforum.php?f=9&start=225  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewforum.php?f=9&start=225%27" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=225">10</a><span class="page-sep">, </span><a href="javascript:if(confirm(%27http://www.terathon.com/forums/viewforum.php?f=9&start=250  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/forums/viewforum.php?f=9&start=250%27" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=250">11</a><span class="page-dots"> ... </span><a href="viewforum.php-f=9&start=550.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=9&start=550">23</a></span>
+		</div>
+		
+	</div>
+
+	<p></p><p><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" class="left-box left" accesskey="r">Return to Board index</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9" selected="selected">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: <span style="color: #9E8DA7;" class="username-coloured">Yahoo [Bot]</span> and 2 guests</p>
+
+	<h3>Forum permissions</h3>
+	<p>You <strong>cannot</strong> post new topics in this forum<br />You <strong>cannot</strong> reply to topics in this forum<br />You <strong>cannot</strong> edit your posts in this forum<br />You <strong>cannot</strong> delete your posts in this forum<br /></p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Pack_Files_and_Virtual_Directories&amp;feed=atom&amp;action=history</id>
+	<title>Pack Files and Virtual Directories - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Pack_Files_and_Virtual_Directories&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Pack_Files_and_Virtual_Directories&amp;action=history"/>
+	<updated>2024-09-21T18:19:20Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Pack_Files_and_Virtual_Directories&amp;diff=104&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;The Resource Manager supports pack files and a virtual directory hierarchy. All resources are stored inside the &lt;code&gt;Data&lt;/code&gt; folder, where resources can be organized in an arbitrary manner. However, the top-level contents of the &lt;code&gt;Data&lt;/code&gt; folder have special meanings.  All of the top-level sub-folders of the &lt;code&gt;Data&lt;/code&gt; folder behave as if their contents belonged to a single virtual folder at the root of the resource name space. These top-level subfold...&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Pack_Files_and_Virtual_Directories&amp;diff=104&amp;oldid=prev"/>
+		<updated>2023-07-15T10:36:58Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;The Resource Manager supports pack files and a virtual directory hierarchy. All resources are stored inside the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; folder, where resources can be organized in an arbitrary manner. However, the top-level contents of the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; folder have special meanings.  All of the top-level sub-folders of the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; folder behave as if their contents belonged to a single virtual folder at the root of the resource name space. These top-level subfold...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;The Resource Manager supports pack files and a virtual directory hierarchy. All resources are stored inside the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; folder, where resources can be organized in an arbitrary manner. However, the top-level contents of the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; folder have special meanings.&lt;br /&gt;
+&lt;br /&gt;
+All of the top-level sub-folders of the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; folder behave as if their contents belonged to a single virtual folder at the root of the resource name space. These top-level subfolders exist only for external organization and do not participate in the unique identification of any resources.&lt;br /&gt;
+&lt;br /&gt;
+As an example, suppose that there existed two subfolders &amp;lt;code&amp;gt;Data/Interiors/&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Data/Exteriors/&amp;lt;/code&amp;gt;. A resource named &amp;lt;code&amp;gt;Wood.tex&amp;lt;/code&amp;gt; could be stored in either subfolder, but it would still be identified only as &amp;lt;code&amp;gt;Wood&amp;lt;/code&amp;gt; by the Resource Manager. The name of the top-level subfolder is not part of the resource's path. However, if the &amp;lt;code&amp;gt;Wood.tex&amp;lt;/code&amp;gt; resource was placed in an additional subfolder such as &amp;lt;code&amp;gt;Data/Exteriors/Forest/&amp;lt;/code&amp;gt;, then the name of the resource would be &amp;lt;code&amp;gt;Forest/Wood&amp;lt;/code&amp;gt;. All folder names beneath the top-level subfolders of the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory are part of the resource name.&lt;br /&gt;
+&lt;br /&gt;
+The resources that ship with the C4 Engine have been divided into the following subfolders:&lt;br /&gt;
+&lt;br /&gt;
+* A folder named &amp;lt;code&amp;gt;Engine&amp;lt;/code&amp;gt; that contains the resources used by the core engine and required by all applications.&lt;br /&gt;
+* A folder named &amp;lt;code&amp;gt;Tools&amp;lt;/code&amp;gt; that contains the resources used exclusively by the tool plugins.&lt;br /&gt;
+* A folder named &amp;lt;code&amp;gt;Demo&amp;lt;/code&amp;gt; that contains the resources used exclusively by the demo worlds.&lt;br /&gt;
+* A folder named &amp;lt;code&amp;gt;The31st&amp;lt;/code&amp;gt; that contains the resources used by our game [http://the31stgame.com/ ''The 31st''].&lt;br /&gt;
+&lt;br /&gt;
+Pack files, having the extension &amp;lt;code&amp;gt;.pak&amp;lt;/code&amp;gt;, can also be stored at the top level of the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory. A pack file is created by using the [[Resource Packer]] tool to pack the contents of a top-level subfolder into a single file. The console command &amp;lt;code&amp;gt;pack ''name''&amp;lt;/code&amp;gt; is used to create a pack file, where ''name'' is the name of a top-level subfolder. For example, the command &amp;lt;code&amp;gt;pack Demo&amp;lt;/code&amp;gt; will create the file &amp;lt;code&amp;gt;Demo.pak&amp;lt;/code&amp;gt; containing all of the resources used exclusively by the Demo worlds.&lt;br /&gt;
+&lt;br /&gt;
+Once a pack file has been created, the folder from which it was made can be deleted, and the Resource Manager will then fetch resources from the pack file. (The pack file takes precedence over the folder from which it was created.)&lt;br /&gt;
+&lt;br /&gt;
+Folders and pack files are the only items allowed at the top level of the &amp;lt;code&amp;gt;Data&amp;lt;/code&amp;gt; directory. Other types of files in that location are ignored.&lt;br /&gt;
+&lt;br /&gt;
+Because concealment is a benefit provided by pack files, there will not be an unpacking tool that would allow users to easily extract resources from a &amp;lt;code&amp;gt;.pak&amp;lt;/code&amp;gt; file.&lt;br /&gt;
+&lt;br /&gt;
+Pack files take precedence in reverse lexicographical order according to their names. So if a resource with the same name exists in &amp;lt;code&amp;gt;MyPatch1.pak&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;MyPatch2.pak&amp;lt;/code&amp;gt;, then the one in &amp;lt;code&amp;gt;MyPatch2.pak&amp;lt;/code&amp;gt; will always be loaded because the name of the pack file comes later than &amp;lt;code&amp;gt;MyPatch1.pak&amp;lt;/code&amp;gt;.&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[Resource Packer]]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

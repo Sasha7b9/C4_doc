@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>https://c4engine.com/wiki/index.php?title=Interpolant_Shader_Processes&amp;feed=atom&amp;action=history</id>
+	<title>Interpolant Shader Processes - Revision history</title>
+	<link rel="self" type="application/atom+xml" href="https://c4engine.com/wiki/index.php?title=Interpolant_Shader_Processes&amp;feed=atom&amp;action=history"/>
+	<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Interpolant_Shader_Processes&amp;action=history"/>
+	<updated>2024-09-21T18:24:32Z</updated>
+	<subtitle>Revision history for this page on the wiki</subtitle>
+	<generator>MediaWiki 1.40.0</generator>
+	<entry>
+		<id>https://c4engine.com/wiki/index.php?title=Interpolant_Shader_Processes&amp;diff=433&amp;oldid=prev</id>
+		<title>Eric Lengyel: Created page with &quot;__NOTOC__ When the graphics hardware renders a triangle, some values are calculated at each pixel and other values are calculated only at the vertices. The values calculated at the vertices are smoothly varied across the interior of a triangle through a process called perspective-correct interpolation. Hence, these values are called ''interpolants''. The list below describes each of the interpolants available for use in the Shader Editor under the Interpolants tab....&quot;</title>
+		<link rel="alternate" type="text/html" href="https://c4engine.com/wiki/index.php?title=Interpolant_Shader_Processes&amp;diff=433&amp;oldid=prev"/>
+		<updated>2023-07-15T11:59:47Z</updated>
+
+		<summary type="html">&lt;p&gt;Created page with &amp;quot;__NOTOC__ When the graphics hardware renders a triangle, some values are calculated at each pixel and other values are calculated only at the vertices. The values calculated at the vertices are smoothly varied across the interior of a triangle through a process called perspective-correct interpolation. Hence, these values are called &amp;#039;&amp;#039;interpolants&amp;#039;&amp;#039;. The list below describes each of the interpolants available for use in the &lt;a href=&quot;/wiki/index.php?title=Shader_Editor&quot; title=&quot;Shader Editor&quot;&gt;Shader Editor&lt;/a&gt; under the Interpolants tab....&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New page&lt;/b&gt;&lt;/p&gt;&lt;div&gt;__NOTOC__&lt;br /&gt;
+When the graphics hardware renders a triangle, some values are calculated at each pixel and other values are calculated only at the vertices. The values calculated at the vertices are smoothly varied across the interior of a triangle through a process called perspective-correct interpolation. Hence, these values are called ''interpolants''. The list below describes each of the interpolants available for use in the [[Shader Editor]] under the Interpolants tab.&lt;br /&gt;
+&lt;br /&gt;
+== Interpolant Allocation ==&lt;br /&gt;
+&lt;br /&gt;
+The graphics hardware can only handle so many interpolants, so there is a limit to how many can be used in a single shader. (The ambient and light graphs shown in the editor represent distinct shaders, so any interpolants used in one do not count against the other.) The limit is based on the availability of eight 4D vectors that the hardware provides for texture coordinates, or ''texcoords''. We call these the eight texcoord slots. Among these slots, there are a total of exactly 32 scalar values that can be calculated at each vertex and interpolated across a triangle. However, interpolants that need 2, 3, or 4 values cannot be split up, so it may not be possible to pack all of the interpolants into the texcoord slots even though there is enough room for each of the component values. Furthermore, lighting and fog calculations that are not explicitly displayed in the shader graph need some of their own interpolants, so the number of usable texcoord slots is somewhat less than the full eight that exist in the hardware.&lt;br /&gt;
+&lt;br /&gt;
+The shader compiler allocates interpolants to texcoord slots as follows:&lt;br /&gt;
+&lt;br /&gt;
+* For any four-component interpolant, one entire texcoord slot is consumed.&lt;br /&gt;
+* For any three-component interpolant, the first three components of a single texcoord slot are consumed. The fourth component can be used by a different one-component interpolant.&lt;br /&gt;
+* For any two-component interpolant, either the first two or last two components of a single texcoord slot are consumed. If the first half of a texcoord slot is allocated, then the second half can be used by another two-component interpolant, or it can be used by two one-component interpolants.&lt;br /&gt;
+* For any one-component interpolant, the first available unused component of any texcoord slot is consumed.&lt;br /&gt;
+&lt;br /&gt;
+Interpolants are allocated in order of size from largest to smallest so that a bunch of small interpolants can't prevent a large interpolant from being allocated when there should be room.&lt;br /&gt;
+&lt;br /&gt;
+Unless otherwise noted below, each interpolant provided in the Shader Editor requires the number of components in its output value.&lt;br /&gt;
+&lt;br /&gt;
+== Coordinate Spaces ==&lt;br /&gt;
+&lt;br /&gt;
+There are three different coordinate systems that can be used in shaders: tangent-space coordinates, object-space coordinates, and world-space coordinates.&lt;br /&gt;
+&lt;br /&gt;
+''Tangent space'' is a special coordinate system that is required for normal mapping. In tangent space, the ''z'' axis is always aligned with the vertex normal, and the ''x'' axis is always aligned with the vertex tangent (which is aligned with the ''s'' direction of the texture coordinates). In the interior of a triangle, the tangent space is a blend of the tangent spaces at each of the three vertices. By definition, the normal vector in tangent space is always (0,0,1). Similarly, the tangent direction is always (1,0,0), and the bitangent direction is always (0,1,0).&lt;br /&gt;
+&lt;br /&gt;
+''Object space'' is the local coordinate space for an individual object. In object space, the normals and tangents are exactly those that are stored in the vertex arrays for an object. It is unusual for object-space coordinates to be used in a shader. The use of tangent-space coordinates is preferred because it is more efficient.&lt;br /&gt;
+&lt;br /&gt;
+''World space'' is the global coordinate system. The use of world-space coordinates is normally only needed when sampling cube texture maps.&lt;br /&gt;
+&lt;br /&gt;
+== Interpolants ==&lt;br /&gt;
+&lt;br /&gt;
+{| {{Table}}&lt;br /&gt;
+{{Tablehead|Process|Description}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Texcoord 1|Shader_texcoord1.png|None|2D vector|The primary texture coordinates.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Texcoord 2|Shader_texcoord2.png|None|2D vector|The secondary texture coordinates.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Paint Texcoord|Shader_painttexcoord.png|None|2D vector|The paint space texture coordinates. These are determined by the paint space associated with the geometry being rendered. The output of this process is normally fed into a Paint Texture [[Basic Shader Processes|basic process]].}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Vertex Color|Shader_vertexcolor.png|None|RGBA color|The vertex color.&lt;br /&gt;
+&lt;br /&gt;
+The vertex color does not occupy any texcoord slots.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Vertex Geometry|Shader_vertexgeometry.png|None|3D vector|This interpolant can be used with water shaders when land elevation data has been generated for water geometries. The ''z'' component contains the difference in height between the water surface and the land beneath it, and the ''x'' and ''y'' components contain the gradient of the land elevation.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Tangent-Space Light Direction|Shader_tangentlight.png|None|3D vector|The unit-length tangent-space direction to light '''L'''.&lt;br /&gt;
+&lt;br /&gt;
+If the ambient reflection output depends on this process, then the results are undefined.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Tangent-Space View Direction|Shader_tangentview.png|None|3D vector|The unit-length tangent-space direction to viewer '''V'''.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Tangent-Space Halfway Direction|Shader_tangenthalfway.png|None|3D vector|The unit-length tangent-space direction vector '''H'''.&lt;br /&gt;
+&lt;br /&gt;
+The halfway direction does not occupy any texcoord slots by itself, but it implicitly requires the light direction and view direction interpolants.&lt;br /&gt;
+&lt;br /&gt;
+If the ambient reflection output depends on this process, then the results are undefined.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Object-Space Light Direction|Shader_objectlight.png|None|3D vector|The unit-length object-space direction to light '''L'''.&lt;br /&gt;
+&lt;br /&gt;
+If the ambient reflection output depends on this process, then the results are undefined.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Object-Space View Direction|Shader_objectview.png|None|3D vector|The unit-length object-space direction to viewer '''V'''.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Object-Space Halfway Direction|Shader_objecthalfway.png|None|3D vector|The unit-length object-space halfway direction '''H'''.&lt;br /&gt;
+&lt;br /&gt;
+The halfway direction does not occupy any texcoord slots by itself, but it implicitly requires the light direction and view direction interpolants.&lt;br /&gt;
+&lt;br /&gt;
+If the ambient reflection output depends on this process, then the results are undefined.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Object-Space Vertex Position|Shader_objectposition.png|None|3D vector|The object-space vertex position '''P'''.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Object-Space Normal|Shader_objectnormal.png|None|3D vector|The object-space vertex normal '''N'''.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Object-Space Tangent|Shader_objecttangent.png|None|3D vector|The object-space vertex tangent '''T'''.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Object-Space Bitangent|Shader_objectbitangent.png|None|3D vector|The object-space vertex bitangent '''B'''.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|World-Space Vertex Position|Shader_worldposition.png|None|3D vector|The world-space vertex position '''P'''.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|World-Space Normal|Shader_worldnormal.png|None|3D vector|The world-space vertex normal '''N'''.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|World-Space Tangent|Shader_worldtangent.png|None|3D vector|The world-space vertex tangent '''T'''.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|World-Space Bitangent|Shader_worldbitangent.png|None|3D vector|The world-space vertex bitangent '''B'''.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Full Tangent-Space Light Vector|Shader_fulltangentlight.png|None|3D vector|The full-length tangent-space direction to light '''L'''. This is the difference between the light position and vertex position in tangent space.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Full Tangent-Space View Vector|Shader_fulltangentview.png|None|3D vector|The full-length tangent-space direction to viewer '''V'''. This is the difference between the camera position and vertex position in object space.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Full Object-Space Light Vector|Shader_fullobjectlight.png|None|3D vector|The full-length object-space direction to light '''L'''. This is the difference between the light position and vertex position in object space.}}&lt;br /&gt;
+|-&lt;br /&gt;
+{{Process|Full Object-Space View Vector|Shader_fullobjectview.png|None|3D vector|The full-length object-space direction to viewer '''V'''. This is the difference between the camera position and vertex position in object space.}}&lt;br /&gt;
+|}&lt;br /&gt;
+&lt;br /&gt;
+== See Also ==&lt;br /&gt;
+&lt;br /&gt;
+* [[Shader Editor]]&lt;br /&gt;
+* [[Basic Shader Processes]]&lt;br /&gt;
+* [[Mathematical Shader Processes]]&lt;br /&gt;
+* [[Complex Shader Processes]]&lt;br /&gt;
+&lt;br /&gt;
+[[Category:Shaders]]&lt;/div&gt;</summary>
+		<author><name>Eric Lengyel</name></author>
+	</entry>
+</feed>

@@ -1,0 +1,1524 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>C4 Engine Forums &bull; View topic - How to make terrain?</title>
+
+
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = 'Enter the page number you wish to go to:';
+	var on_page = '1';
+	var per_page = '25';
+	var base_url = './viewtopic.php?f=15&amp;t=13574';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = 'http://www.terathon.com/forums/; path=/; domain=.terathon.com';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="styles/prosilver/template/styleswitcher.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/styleswitcher.js"></script>
+<script type="text/javascript" src="styles/prosilver/template/forum_fn.js" tppabs="http://www.terathon.com/forums/styles/prosilver/template/forum_fn.js"></script>
+
+<link href="styles/prosilver/theme/print.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="style.php-id=1&lang=en_us.css" tppabs="http://www.terathon.com/forums/style.php?id=1&lang=en_us" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="styles/prosilver/theme/normal.css" tppabs="http://www.terathon.com/forums/styles/prosilver/theme/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="./styles/prosilver/theme/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="./styles/prosilver/theme/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+
+
+<style type="text/css">
+h1.c4
+{
+	margin: 0px 0px 0px 96px;
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	color: white;
+	font-family: tahoma;
+	font-size: 56px;
+	font-weight: bold;
+}
+
+h1.c4 a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+img
+{
+	border: 0px;
+}
+
+div.c4navbar
+{
+	width: 1200px;
+	height: 32px;
+	position: relative;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	background-color: #555;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#777));
+	background: -webkit-linear-gradient(top, #333, #777);
+	background: -moz-linear-gradient(top, #333, #777);
+	background: -o-linear-gradient(top, #333, #777);
+	background: -ms-linear-gradient(top, #333, #777);
+	background: linear-gradient(to bottom, #333, #777);
+}
+
+td.c4menu
+{
+	position: relative;
+	padding: 0px;
+	text-align: center;
+}
+
+td.c4menu:hover
+{
+	background-color: #6A4;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#253), to(#AF5));
+	background: -webkit-linear-gradient(top, #253, #AF5);
+	background: -moz-linear-gradient(top, #253, #AF5);
+	background: -o-linear-gradient(top, #253, #AF5);
+	background: -ms-linear-gradient(top, #253, #AF5);
+	background: linear-gradient(to bottom, #253, #AF5);
+}
+
+td.c4menu table
+{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	top: 32px;
+}
+
+td.c4menu:hover table
+{
+	display: block;
+}
+
+td.c4menu a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+td.c4menu td
+{
+	padding: 0px;
+	text-align: center;
+	border-bottom: solid 1px #222;
+	background-color: #666;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#777));
+	background: -webkit-linear-gradient(top, #555, #777);
+	background: -moz-linear-gradient(top, #555, #777);
+	background: -o-linear-gradient(top, #555, #777);
+	background: -ms-linear-gradient(top, #555, #777);
+	background: linear-gradient(to bottom, #555, #777);
+}
+
+td.c4menu td:hover
+{
+	background-color: #AAA;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#888), to(#CCC));
+	background: -webkit-linear-gradient(top, #888, #CCC);
+	background: -moz-linear-gradient(top, #888, #CCC);
+	background: -o-linear-gradient(top, #888, #CCC);
+	background: -ms-linear-gradient(top, #888, #CCC);
+	background: linear-gradient(to bottom, #888, #CCC);
+}
+
+td.c4menu td a
+{
+	width: 200px;
+	height: 32px;
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+}
+
+table.c4footer td
+{
+	font-size: 8pt;
+	font-family: helvetica, arial, sans-serif;
+	padding: 0px 20px 8px 0px;
+	vertical-align: middle;
+}
+
+table.c4footer a
+{
+	color: #16D;
+	text-decoration: underline;
+}
+
+div.c4content
+{
+	padding: 24px 16px 8px 16px;
+}
+</style>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr">
+
+<div id="wrap" style="padding: 0px; margin: 0px;">
+	<a id="top" name="top" accesskey="t"></a>
+</div>
+
+
+
+<div style="width: 1200px; margin: 0px auto 0px auto; padding: 0px; background-color: white;">
+
+<div style="padding: 0px; position: relative; height: 96px; background-image: url(../image/banner.jpg)/*tpa=http://www.terathon.com/image/banner.jpg*/; background-position: center 148px;">
+	<div style="padding: 0px; position: absolute; left: 0px; bottom: 0px; width: 1200px; height: 96px; background-color: black; opacity: 0.5;"></div>
+
+	<a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/"><img src="../image/c4.png" tppabs="http://www.terathon.com/image/c4.png" style="position: absolute; left: 16px; bottom: 16px; width: 83px; height: 64px; opacity: 0.5;" /></a>
+
+	<h1 class="c4"><a href="javascript:if(confirm(%27http://www.terathon.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/%27" tppabs="http://www.terathon.com/">C4 Engine</a></h1>
+	
+	<div style="padding: 0px; position: absolute; right: 16px; bottom: 24px;">
+		<a href="javascript:if(confirm(%27http://www.facebook.com/c4engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.facebook.com/c4engine%27" tppabs="http://www.facebook.com/c4engine"><img src="../image/facebook.png" tppabs="http://www.terathon.com/image/facebook.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Facebook" title="C4 Engine page on Facebook" /></a>
+		<a href="javascript:if(confirm(%27https://twitter.com/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://twitter.com/C4Engine%27" tppabs="https://twitter.com/C4Engine"><img src="../image/twitter.png" tppabs="http://www.terathon.com/image/twitter.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Twitter" title="C4 Engine feed on Twitter" /></a>
+		<a href="javascript:if(confirm(%27http://plus.google.com/+Terathon  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://plus.google.com/+Terathon%27" tppabs="http://plus.google.com/+Terathon"><img src="../image/googleplus.png" tppabs="http://www.terathon.com/image/googleplus.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="Google+" title="C4 Engine page on Google+" /></a>
+		<a href="javascript:if(confirm(%27http://www.youtube.com/user/C4Engine  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.youtube.com/user/C4Engine%27" tppabs="http://www.youtube.com/user/C4Engine"><img src="../image/youtube.png" tppabs="http://www.terathon.com/image/youtube.png" style="width: 32px; height: 32px; margin-right: 6px;" alt="YouTube" title="C4 Engine channel on YouTube" /></a>
+		<a href="javascript:if(confirm(%27http://www.indiedb.com/engines/c4-engine/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.indiedb.com/engines/c4-engine/%27" tppabs="http://www.indiedb.com/engines/c4-engine/"><img src="../image/indiedb.png" tppabs="http://www.terathon.com/image/indiedb.png" style="width: 32px; height: 32px;" alt="IndieDB" title="C4 Engine page on IndieDB" /></a>
+	</div>
+</div>
+
+<div class="c4navbar">
+	<table style="margin-left: auto; margin-right: auto; border-spacing: 0px;"><tr>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/news.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/news.php%27" tppabs="http://www.terathon.com/news.php">News</a></td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/explore.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/explore.php%27" tppabs="http://www.terathon.com/explore.php">Explore</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/download.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/download.php%27" tppabs="http://www.terathon.com/download.php">Download&nbsp;Demo</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/features.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/features.php%27" tppabs="http://www.terathon.com/features.php">Feature&nbsp;List</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/licensing.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/licensing.php%27" tppabs="http://www.terathon.com/licensing.php">Licensing&nbsp;Info</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/screenshots.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/screenshots.php%27" tppabs="http://www.terathon.com/screenshots.php">Screenshots</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/video.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/video.php%27" tppabs="http://www.terathon.com/video.php">Video</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27http://www.terathon.com/support.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/support.php%27" tppabs="http://www.terathon.com/support.php">Support</a>
+			<table style="border-spacing: 0px;">
+				<tr><td><a href="index.htm" tppabs="http://www.terathon.com/forums/">Support&nbsp;Forums</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/%27" tppabs="http://www.terathon.com/wiki/">C4&nbsp;Engine&nbsp;Wiki</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/docs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/docs/%27" tppabs="http://www.terathon.com/docs/">API&nbsp;Documentation</a></td></tr>
+				<tr><td><a href="javascript:if(confirm(%27http://www.terathon.com/wiki/index.php/Release_Notes  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/wiki/index.php/Release_Notes%27" tppabs="http://www.terathon.com/wiki/index.php/Release_Notes">Release&nbsp;Notes</a></td></tr>
+			</table>
+		</td>
+		<td class="c4menu"><a href="javascript:if(confirm(%27https://www.terathon.com/account.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.terathon.com/account.php%27" tppabs="https://www.terathon.com/account.php">My&nbsp;Account</a></td>
+	</tr></table>
+</div>
+
+<div class="c4content">
+
+
+
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home">
+					<a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a>  <strong>&#8249;</strong> <a href="viewforum.php-f=18.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=18">C4 Engine Development</a> <strong>&#8249;</strong> <a href="viewforum.php-f=15.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=15">Artist Central</a></li>
+					
+				
+					<li id="search-box">
+						<form action="http://www.terathon.com/forums/search.php" method="post" id="search">
+						<fieldset>
+							<input name="keywords" id="keywords" type="text" maxlength="128" title="Search for keywords" class="inputbox search" value="Search…" onclick="if(this.value=='Search…')this.value='';" onblur="if(this.value=='')this.value='Search…';" /> 
+							<input class="button2" value="Search" type="submit" /><br />
+							<a id="advanced" href="search.php.htm" tppabs="http://www.terathon.com/forums/search.php" title="View the advanced search options">Advanced search</a> 
+						</fieldset>
+						</form>
+					</li>
+				
+			</ul>
+
+			
+
+			<ul class="linklist rightside">
+				<li class="icon-faq"><a href="faq.php.htm" tppabs="http://www.terathon.com/forums/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+				<li class="icon-register"><a href="ucp.php-mode=register.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=register">Register</a></li>
+					<li class="icon-logout"><a href="ucp.php-mode=login.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=login" title="Login" accesskey="l">Login</a></li>
+				
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	<a name="start_here"></a>
+	<div id="page-body">
+		
+<h2><a href="viewtopic.php-f=15&t=13574.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=15&t=13574">How to make terrain?</a></h2>
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body --><div style="display: none !important;">Topics about the art pipeline and external content creation.<br /></div>
+	<div class="rules">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		
+			<strong>Forum rules</strong><br />
+			Advertisements for products and services are <span style="font-weight: bold">not allowed</span> unless you are a licensed user of C4 and you have been given permission to post them.
+		
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="posting.php-mode=reply&f=15&t=13574.htm" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=13574" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="search-box">
+			<form method="get" id="topic-search" action="http://www.terathon.com/forums/search.php">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="Search this topic…" onclick="if(this.value=='Search this topic…')this.value='';" onblur="if(this.value=='')this.value='Search this topic…';" />
+				<input class="button2" type="submit" value="Search" />
+				<input type="hidden" name="t" value="13574" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</fieldset>
+			</form>
+		</div>
+	
+		<div class="pagination">
+			77 posts
+			 &bull; <a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Page <strong>1</strong> of <strong>4</strong></a> &bull; <span><strong>1</strong><span class="page-sep">, </span><a href="viewtopic.php-f=15&t=13574&start=25.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=15&t=13574&start=25">2</a><span class="page-sep">, </span><a href="viewtopic.php-f=15&t=13574&start=50.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=15&t=13574&start=50">3</a><span class="page-sep">, </span><a href="viewtopic.php-f=15&t=13574&start=75.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=15&t=13574&start=75">4</a></span>
+		</div>
+	
+
+</div>
+<div class="clear"></div>
+
+
+	<div id="p123400" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 class="first"><a href="#p123400">How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123400.htm#p123400" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123400#p123400"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a></strong> &raquo; 19 Mar 2014, 21:20 </p>
+
+			
+
+			<div class="content">Ok guys, I'm in serious need of some good advice here. I'm trying to create some terrain in the editor using the terrain tools but no matter how I try, it looks ridiculous. Like toothpaste squeezed out of a tube, scooped ice-cream, you name it. In other worlds it does not resemble terrain at all. <br /><br />How do you guys create decent looking terrain?? I just don't understand how to go about making terrain with a ball and cylinder sculpt tool. If you use the C4 tools, what process do you use? Or are you using third party tools? I'm getting so frustrated by this.</div>
+
+			<div id="sig123400" class="signature"><a href="javascript:if(confirm(%27http://www.codeblender.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.codeblender.com/%27" tppabs="http://www.codeblender.com/" class="postlink">CodeBlender Software</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123400">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265"><img src="download/file.php-avatar=1265_1245652575.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1265_1245652575.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1636</dd><dd><strong>Joined:</strong> 23 Jun 2008, 14:06</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123401" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123401">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123401.htm#p123401" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123401#p123401"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1484.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1484" style="color: #8000C0;" class="username-coloured">MACK</a></strong> &raquo; 19 Mar 2014, 21:31 </p>
+
+			
+
+			<div class="content">We use 3rd party tools.<br /><a href="javascript:if(confirm(%27https://www.google.com/search?q=terrain+generator  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.google.com/search?q=terrain+generator%27" tppabs="https://www.google.com/search?q=terrain+generator" class="postlink">https://www.google.com/search?q=terrain+generator</a><br /><br />Anything that can generate the height map, and then import.<br />You can also create height map textures using Genetica but its not geared specifically toward terrain creation.<br />For a terrain specific tool We have Terragen, and are working toward World Machine.</div>
+
+			
+				<div class="notice">Last edited by <a href="memberlist.php-mode=viewprofile&u=1484.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1484" style="color: #8000C0;" class="username-coloured">MACK</a> on 19 Mar 2014, 21:38, edited 2 times in total.
+					
+				</div>
+			<div id="sig123401" class="signature"><span style="color: #0000FF"><span style="font-weight: bold"><a href="viewtopic.php-f=30&t=12483.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=30&t=12483" class="postlink">New C4 Book Here!</a></span></span><br /><span style="font-weight: bold"><span style="font-size: 70%; line-height: 116%;">EVGA SR2 Mb @(2.4 to 3.4 Ghz), Intel E5620 dual cpu, 4x4GB ECC RAM, OS ADATA S511 256GB RAID10<br />Nvidia GTX660, Driver 320.49 WHQL Win7 64bit, DX SDK 6-10</span></span><span style="font-weight: bold"> <span style="font-size: 75%; line-height: 116%;">skype ck_mack</span></span></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123401">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1484.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1484" style="color: #8000C0;" class="username-coloured">MACK</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1672</dd><dd><strong>Joined:</strong> 05 Oct 2008, 01:53</dd><dd><strong>Location:</strong> Salisbury, NC USA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.mechstorm.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.mechstorm.com/%27" tppabs="http://www.mechstorm.com/" title="WWW: http://www.mechstorm.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123402" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123402">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123402.htm#p123402" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123402#p123402"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a></strong> &raquo; 19 Mar 2014, 21:34 </p>
+
+			
+
+			<div class="content">I use World Machine.</div>
+
+			<div id="sig123402" class="signature">Intel i5-4430<br />Nvidia 660 - Driver 340.43<br />8 Gigs RAM</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123402">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257"><img src="download/file.php-avatar=1257_1365571061.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1257_1365571061.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2883</dd><dd><strong>Joined:</strong> 13 Jun 2008, 15:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123403" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123403">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123403.htm#p123403" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123403#p123403"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1704.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1704" style="color: #0060C0;" class="username-coloured">Meow</a></strong> &raquo; 19 Mar 2014, 21:40 </p>
+
+			
+
+			<div class="content">My personal favorite is World Machine, very powerful and cheap to license(there is also a free version).<br /><br /><a href="javascript:if(confirm(%27http://www.world-machine.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.world-machine.com/%27" tppabs="http://www.world-machine.com/" class="postlink">http://www.world-machine.com/</a><br /><br />You can then go in and use some of C4's tools here and there if you wish, personally I would like to see C4's terrain sculpting tools/brushes work similar to ZBrush in the future so you can really fine-tune and get the full power of Voxel Terrain.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123403">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1704.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1704"><img src="download/file.php-avatar=1704_1393676455.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1704_1393676455.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1704.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1704" style="color: #0060C0;" class="username-coloured">Meow</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 100</dd><dd><strong>Joined:</strong> 18 Jan 2009, 17:16</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123404" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123404">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123404.htm#p123404" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123404#p123404"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=3226.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3226" style="color: #8000C0;" class="username-coloured">naumov91</a></strong> &raquo; 19 Mar 2014, 22:07 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>MACK wrote:</cite>We use 3rd party tools.<br /><a href="javascript:if(confirm(%27https://www.google.com/search?q=terrain+generator  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.google.com/search?q=terrain+generator%27" tppabs="https://www.google.com/search?q=terrain+generator" class="postlink">https://www.google.com/search?q=terrain+generator</a><br /><br />Anything that can generate the height map, and then import.<br />You can also create height map textures using Genetica but its not geared specifically toward terrain creation.<br />For a terrain specific tool We have Terragen, and are working toward World Machine.</div></blockquote><br /><br />But wouldn't that defeat the purpose of voxel-based terrain, since a lot of the benefits are more complicated structures like archs, bridges and natural caves?</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123404">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=3226.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3226"><img src="download/file.php-avatar=3226_1396290901.gif" tppabs="http://www.terathon.com/forums/download/file.php?avatar=3226_1396290901.gif" width="59" height="74" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=3226.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=3226" style="color: #8000C0;" class="username-coloured">naumov91</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 101</dd><dd><strong>Joined:</strong> 17 Apr 2013, 03:38</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123405" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123405">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123405.htm#p123405" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123405#p123405"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a></strong> &raquo; 19 Mar 2014, 22:39 </p>
+
+			
+
+			<div class="content">I have looked at World Machine but isn't that a 100% procedural terrain generator? Meaning you don't really have the control to create game terrain for an FPS type game.<br /><br />I have also looked at Terragen in the past and from what I understand it just renders images. But maybe it can generate a height map too..? But the above about WM would still apply.<br /><br />Acropora uses voxels but looking at the images I don't see much that looks like terrain there, just random weird shapes, so I have my doubts about how useful it might be.<br /><br />Ideally I'd want something that allows you to sculpt a terrain with fine control that can be used as a game level without building a mesh vertex by vertex in some 3D software. I guess generating a height map in some way is pretty much the only way to get a decent starting point. I just wish the terrain tools in C4 were useful. Creating a good terrain with the existing tools is nearly impossible.</div>
+
+			<div id="sig123405" class="signature"><a href="javascript:if(confirm(%27http://www.codeblender.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.codeblender.com/%27" tppabs="http://www.codeblender.com/" class="postlink">CodeBlender Software</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123405">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265"><img src="download/file.php-avatar=1265_1245652575.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1265_1245652575.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1636</dd><dd><strong>Joined:</strong> 23 Jun 2008, 14:06</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123406" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123406">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123406.htm#p123406" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123406#p123406"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1704.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1704" style="color: #0060C0;" class="username-coloured">Meow</a></strong> &raquo; 19 Mar 2014, 22:58 </p>
+
+			
+
+			<div class="content">You can use the layout view to add custom details to the terrain using vector shapes and masks in World Machine.<br /><embed src="../../www.youtube.com/v/aAo0mHZJkAs-1" tppabs="http://www.youtube.com/v/aAo0mHZJkAs" type="application/x-shockwave-flash" wmode="transparent" style="width: 640px; height: 360px;">
+<div style="font-size: 75%;"><a href="javascript:if(confirm(%27http:///youtu.be/aAo0mHZJkAs  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http:///youtu.be/aAo0mHZJkAs%27" tppabs="http:///youtu.be/aAo0mHZJkAs">Watch on YouTube</a></div></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123406">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1704.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1704"><img src="download/file.php-avatar=1704_1393676455.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1704_1393676455.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1704.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1704" style="color: #0060C0;" class="username-coloured">Meow</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 100</dd><dd><strong>Joined:</strong> 18 Jan 2009, 17:16</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123407" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123407">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123407.htm#p123407" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123407#p123407"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a></strong> &raquo; 19 Mar 2014, 23:03 </p>
+
+			
+
+			<div class="content">You can place hand crafted 'layouts' in World Machine and have it do its thing ontop of that. It's surprisingly configurable and has a number of game specific features like exporting 'splat maps' (RGB maps that encode whatever kinds of topological information you're creating in the app), vertex reduction, export heightmaps / obj file w/ UVs, and a few others I'm forgetting.<br /><br />I know DICE utilized World Machine for the battlefield series.</div>
+
+			<div id="sig123407" class="signature">Intel i5-4430<br />Nvidia 660 - Driver 340.43<br />8 Gigs RAM</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123407">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257"><img src="download/file.php-avatar=1257_1365571061.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1257_1365571061.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2883</dd><dd><strong>Joined:</strong> 13 Jun 2008, 15:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123408" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123408">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123408.htm#p123408" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123408#p123408"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 19 Mar 2014, 23:13 </p>
+
+			
+
+			<div class="content">What I'm looking for is something that generates randomly, but also allows you to sculpt using the random generation tools. That way you could make a game level exactly the way you want it.</div>
+
+			
+				<div class="notice">Last edited by <a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a> on 20 Mar 2014, 00:20, edited 1 time in total.
+					
+				</div>
+			<div id="sig123408" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123408">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123409" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123409">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123409.htm#p123409" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123409#p123409"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a></strong> &raquo; 19 Mar 2014, 23:16 </p>
+
+			
+
+			<div class="content">Hmm.. I will have to take a closer look at WM and see what is doable. The texture generation from it could be very useful also.<br />Thanks for the pointers so far!</div>
+
+			<div id="sig123409" class="signature"><a href="javascript:if(confirm(%27http://www.codeblender.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.codeblender.com/%27" tppabs="http://www.codeblender.com/" class="postlink">CodeBlender Software</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123409">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265"><img src="download/file.php-avatar=1265_1245652575.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1265_1245652575.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1636</dd><dd><strong>Joined:</strong> 23 Jun 2008, 14:06</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123410" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123410">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123410.htm#p123410" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123410#p123410"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 19 Mar 2014, 23:18 </p>
+
+			
+
+			<div class="content">Anyone got any pictures of what it looks like in WM and how it looks after its imported into C4?</div>
+
+			<div id="sig123410" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123410">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123411" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123411">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123411.htm#p123411" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123411#p123411"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a></strong> &raquo; 19 Mar 2014, 23:19 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Davaris wrote:</cite>Anyone got any pictures of what it looks like in WM and how it looks after its imported into C4?</div></blockquote><br /><br />Good question! It would be very helpful/interesting to see some before/after images.</div>
+
+			<div id="sig123411" class="signature"><a href="javascript:if(confirm(%27http://www.codeblender.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.codeblender.com/%27" tppabs="http://www.codeblender.com/" class="postlink">CodeBlender Software</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123411">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265"><img src="download/file.php-avatar=1265_1245652575.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1265_1245652575.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1636</dd><dd><strong>Joined:</strong> 23 Jun 2008, 14:06</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123412" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123412">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123412.htm#p123412" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123412#p123412"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a></strong> &raquo; 19 Mar 2014, 23:43 </p>
+
+			
+
+			<div class="content">I'll post some sample before / after shots tomorrow sometime.</div>
+
+			<div id="sig123412" class="signature">Intel i5-4430<br />Nvidia 660 - Driver 340.43<br />8 Gigs RAM</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123412">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257"><img src="download/file.php-avatar=1257_1365571061.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1257_1365571061.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1257.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1257" style="color: #0060C0;" class="username-coloured">Jesse Meyer</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 2883</dd><dd><strong>Joined:</strong> 13 Jun 2008, 15:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123413" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123413">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123413.htm#p123413" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123413#p123413"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a></strong> &raquo; 20 Mar 2014, 00:28 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Jesse Meyer wrote:</cite>I'll post some sample before / after shots tomorrow sometime.</div></blockquote><br /><br />Great, thanks!</div>
+
+			<div id="sig123413" class="signature"><a href="javascript:if(confirm(%27http://www.codeblender.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.codeblender.com/%27" tppabs="http://www.codeblender.com/" class="postlink">CodeBlender Software</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123413">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265"><img src="download/file.php-avatar=1265_1245652575.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1265_1245652575.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1636</dd><dd><strong>Joined:</strong> 23 Jun 2008, 14:06</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123414" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123414">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123414.htm#p123414" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123414#p123414"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=2675.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2675" style="color: #0060C0;" class="username-coloured">Botagar</a></strong> &raquo; 20 Mar 2014, 01:10 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Davaris wrote:</cite>What I'm looking for is something that generates randomly, but also allows you to sculpt using the random generation tools. That way you could make a game level exactly the way you want it.</div></blockquote><br /><br />This is something that I've been looking into (making) for a while now. I've made a few procedural terrains (not in C4) but nothing I'm happy with; It seems a few of my algorithms are flawed. Still being a student however, I don't dedicate a heap of time to this <img src="images/smilies/icon_sad.gif" tppabs="http://www.terathon.com/forums/images/smilies/icon_sad.gif" alt=":(" title="Sad" /><br /><br />I would love to be able to generate random height maps, place lines which indicate mountain ridges/valleys, dictate steepness of slope + roughness, mark out flat areas (eg. for building placement) then rebuild map using the new information. Lastly finish off with voxel editing tools to create the overhangs, land bridges and caves.<br /><br />One can dream for now... &gt;.&lt;</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123414">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=2675.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=2675" style="color: #0060C0;" class="username-coloured">Botagar</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 86</dd><dd><strong>Joined:</strong> 30 Jan 2011, 00:22</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123415" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123415">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123415.htm#p123415" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123415#p123415"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 20 Mar 2014, 01:23 </p>
+
+			
+
+			<div class="content">Well since Acropora has been mentioned. From what I understand you can import geometries into Acropora and it can change them. So I'm wondering if you could block out a cave system in Blender, import it into Acropora and run its algorithms on it to make it look natural.</div>
+
+			<div id="sig123415" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123415">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123416" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123416">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123416.htm#p123416" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123416#p123416"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a></strong> &raquo; 20 Mar 2014, 01:29 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Davaris wrote:</cite>Well since Acropora has been mentioned. From what I understand you can import geometries into Acropora and it can change them. So I'm wondering if you could block out a cave system in Blender, import it into Acropora and run its algorithms on it, to make it look natural.</div></blockquote><br /><br />That is a very interesting idea! In fact, if something like that would work well I could see it being my preferred way of doing it. Not just cave systems though but a full terrain with lakes, valleys, mountains and all that.</div>
+
+			<div id="sig123416" class="signature"><a href="javascript:if(confirm(%27http://www.codeblender.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.codeblender.com/%27" tppabs="http://www.codeblender.com/" class="postlink">CodeBlender Software</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123416">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265"><img src="download/file.php-avatar=1265_1245652575.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1265_1245652575.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1265.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1265" style="color: #8000C0;" class="username-coloured">cbken</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1636</dd><dd><strong>Joined:</strong> 23 Jun 2008, 14:06</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123418" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123418">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123418.htm#p123418" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123418#p123418"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=462.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=462" style="color: #0060C0;" class="username-coloured">ska</a></strong> &raquo; 20 Mar 2014, 08:37 </p>
+
+			
+
+			<div class="content">Hey CbKen<br /><br />In our game, we first make different parts of the terrain in photoshop. The parts are mountains, volcanos, planes and etc. After that we put each part in separated layers. As instance we have several layers of mountains.  Then we import the tga into c4, and start to sculpt.<br /><br />We make several different terrain blocks with different densitys and texture sizes. We let the blocks near the camera more dense and with the texture size smaller.<br /><br />And finally we put a lot of props like rocks, trees, peaces of terrain on top of it.<br /><br />HEre´s a picture<br /><br /><!-- m --><a class="postlink" href="javascript:if(confirm(%27http://1cdd.com.br/producao/wp-content/uploads/2014/02/foto1.jpg  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://1cdd.com.br/producao/wp-content/uploads/2014/02/foto1.jpg%27" tppabs="http://1cdd.com.br/producao/wp-content/uploads/2014/02/foto1.jpg">http://1cdd.com.br/producao/wp-content/ ... /foto1.jpg</a><!-- m --></div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123418">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=462.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=462"><img src="download/file.php-avatar=462_1274814944.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=462_1274814944.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=462.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=462" style="color: #0060C0;" class="username-coloured">ska</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1228</dd><dd><strong>Joined:</strong> 07 Feb 2007, 08:45</dd><dd><strong>Location:</strong> Brazil -São Paulo</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http:///  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http:///%27" tppabs="http:///" title="WWW: http://"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123419" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123419">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123419.htm#p123419" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123419#p123419"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1993.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1993" style="color: #404040;" class="username-coloured">Edocsil</a></strong> &raquo; 20 Mar 2014, 08:52 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>ska wrote:</cite>HEre´s a picture<br /><br /><!-- m --><a class="postlink" href="javascript:if(confirm(%27http://1cdd.com.br/producao/wp-content/uploads/2014/02/foto1.jpg  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://1cdd.com.br/producao/wp-content/uploads/2014/02/foto1.jpg%27" tppabs="http://1cdd.com.br/producao/wp-content/uploads/2014/02/foto1.jpg">http://1cdd.com.br/producao/wp-content/ ... /foto1.jpg</a><!-- m --></div></blockquote><br /><br /><br />That is absolutely WONDERFUL.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123419">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1993.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1993"><img src="download/file.php-avatar=1993_1415717921.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=1993_1415717921.jpg" width="64" height="64" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=1993.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1993" style="color: #404040;" class="username-coloured">Edocsil</a>
+			</dt>
+
+			<dd>Experienced User<br /><img src="images/ranks/PlasmaRank2.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank2.png" alt="Experienced User" title="Experienced User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 52</dd><dd><strong>Joined:</strong> 21 Jun 2009, 18:25</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123421" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123421">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123421.htm#p123421" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123421#p123421"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 20 Mar 2014, 09:31 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>Edocsil wrote:</cite><blockquote><div><cite>ska wrote:</cite>HEre´s a picture<br /><br /><!-- m --><a class="postlink" href="javascript:if(confirm(%27http://1cdd.com.br/producao/wp-content/uploads/2014/02/foto1.jpg  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://1cdd.com.br/producao/wp-content/uploads/2014/02/foto1.jpg%27" tppabs="http://1cdd.com.br/producao/wp-content/uploads/2014/02/foto1.jpg">http://1cdd.com.br/producao/wp-content/ ... /foto1.jpg</a><!-- m --></div></blockquote><br /><br /><br />That is absolutely WONDERFUL.</div></blockquote><br /><br />Indeed. The lighting and colors remind me of a classical painting.</div>
+
+			<div id="sig123421" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123421">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123422" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123422">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123422.htm#p123422" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123422#p123422"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a></strong> &raquo; 20 Mar 2014, 09:40 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>cbken wrote:</cite>That is a very interesting idea! In fact, if something like that would work well I could see it being my preferred way of doing it. Not just cave systems though but a full terrain with lakes, valleys, mountains and all that.</div></blockquote><br /><br />The fastest way to make terrains in Acropora is with height maps. If World Machine also has height map importation, that would be the better option, since it can colorize landscapes as well.<br /><br />Acropora tutorial: Using heightmaps<br /><!-- m --><a class="postlink" href="javascript:if(confirm(%27https://www.youtube.com/watch?v=4Tbd_qzToTI  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.youtube.com/watch?v=4Tbd_qzToTI%27" tppabs="https://www.youtube.com/watch?v=4Tbd_qzToTI">https://www.youtube.com/watch?v=4Tbd_qzToTI</a><!-- m --><br /><br />I think ska is using the same height map importation method to make landscapes in C4.</div>
+
+			<div id="sig123422" class="signature">Phenom II GeForce X3 720, 9800 GTX+, 327.23, Win 7 64 bit</div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123422">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883"><img src="download/file.php-avatar=883_1388394822.png" tppabs="http://www.terathon.com/forums/download/file.php?avatar=883_1388394822.png" width="80" height="60" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=883.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=883" style="color: #8000C0;" class="username-coloured">Davaris</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1793</dd><dd><strong>Joined:</strong> 01 Nov 2007, 03:30</dd>
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123423" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123423">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123423.htm#p123423" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123423#p123423"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=462.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=462" style="color: #0060C0;" class="username-coloured">ska</a></strong> &raquo; 20 Mar 2014, 12:42 </p>
+
+			
+
+			<div class="content">Thx very much guys, I´m doing my best.<br /><br />I´m importing the tgas that I created with photoshop directly inside c4. <br /><br />IF you guys want I can upload the ps files that I made so you can use them too.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123423">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=462.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=462"><img src="download/file.php-avatar=462_1274814944.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=462_1274814944.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=462.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=462" style="color: #0060C0;" class="username-coloured">ska</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1228</dd><dd><strong>Joined:</strong> 07 Feb 2007, 08:45</dd><dd><strong>Location:</strong> Brazil -São Paulo</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http:///  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http:///%27" tppabs="http:///" title="WWW: http://"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123424" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123424">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123424.htm#p123424" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123424#p123424"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=144.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=144" style="color: #8000C0;" class="username-coloured">Javier Moya</a></strong> &raquo; 20 Mar 2014, 12:47 </p>
+
+			
+
+			<div class="content"><blockquote><div><cite>cbken wrote:</cite>How do you guys create decent looking terrain?? I just don't understand how to go about making terrain with a ball and cylinder sculpt tool. If you use the C4 tools, what process do you use? Or are you using third party tools? I'm getting so frustrated by this.</div></blockquote><br /><br />I think that the way to go is to think what part of those brushes will affect the terrain, you have the brush options for that. My advice is simple: test the brushes with different options and check the results.<br />The options that I use the most are: plane, brush radius and brush offset. And I use carefully the smooth tool, it will give you that &quot;like toothpaste squeezed out of a tube&quot; look easily if you use it everywhere.<br /><br />The terrains for The 31st have been created without using external terrain generators, just a simple and general b&amp;w map (based on a previous pen and paper design), and then we went from general to specific level of detail using the current sculpting tools (2/3 passes and then we modify the terrain as we fill the level with stuff). We've used 256x256 maps for 500m2 terrains and 512x256 for 1kmx500m terrains. These values give you 1voxel/2m, roughly. Then, we use a set of instanced worlds with previously modeled boulders for the detailed part of terrains.<br /><br />Some advices:<br /><br />-The first thing to take into account is the resolution of your terrain. I mean, the size in meters of 1 voxel. The units of the terrain tools refer to voxels and not meters. If your terrain has a resolution of 1 voxel/1 meter, a spherical brush with a radius of 1 would have a diameter of 2 meters. If the resolution is 1 voxel/2 meters, the same brush would have a diameter of 4 meters. I had troubles with this when I started to work with terrains, I always ended up having really huge tunnels.<br />-The use of big radius and positive offset values will help when creating a terrain from scratch or for adding/subtracting big details, but you won't want to leave the terrain this way (unless you are creating some kind of happy-hilly-mario style world).<br />-Normally, you will want negative offset values. Also, take into account that an offset value of 0 means that the brush has its lower 50% inside the terrain and the upper 50% outside.<br />-The cylinder brush in horizontal plane is great to create flat platforms (additive brush with an offset of -100%) or to make any part of the terrain a flat platform (subtractive brush with an offset of 100%).<br />-The cylinder brush with camera plane is great to create soft slopes. The camera must be placed parallel to the plane of the slope.<br />-If you have a wall or a very pronounced slope, you can use the spherical brush in follow surface mode with a small radius and a really low offset value (like -75% and below) to add some noise to the surface. You can also do the same substracting small parts of the surface, the offset value should be 75% or more. Notice that an offset value of -100% or 100% respectively do nothing here. You can also do this to add detail to areas where the player can walk, but be careful with the offset value because a small percentage (5% or 10%) could be 1m or more.<br /><br />I don't have any problems with using external tools, quite the contrary, everything that helps and doesn't eat your budget is welcome, but I fully recommend to get used to the sculpting tools. One of the big advantages of using the voxel terrain is that you can modify it whenever you want inside the editor, so you don't need to go outside, modify the terrain and then reimport it again. We still do this even in levels full of stuff.<br /><br />Obviously, all of this will depend on the type of game. I guess that the use of the sculpting tools to add details in a flight simulator will have little to no use.<br /><br />Hope it helps.</div>
+
+			<div id="sig123424" class="signature">Videogame artist - <a href="javascript:if(confirm(%27http://www.javy3d.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.javy3d.com/%27" tppabs="http://www.javy3d.com/" class="postlink">http://www.javy3d.com/</a></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123424">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=144.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=144" style="color: #8000C0;" class="username-coloured">Javier Moya</a>
+			</dt>
+
+			<dd>Terathon Employee<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Terathon Employee" title="Terathon Employee" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 228</dd><dd><strong>Joined:</strong> 05 Jul 2006, 10:57</dd><dd><strong>Location:</strong> Granada (Spain)</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.javy3d.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.javy3d.com/%27" tppabs="http://www.javy3d.com/" title="WWW: http://www.javy3d.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123425" class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123425">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123425.htm#p123425" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123425#p123425"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=1484.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1484" style="color: #8000C0;" class="username-coloured">MACK</a></strong> &raquo; 20 Mar 2014, 12:51 </p>
+
+			
+
+			<div class="content">@Ska, <br />Yea, that does look very very good.<br />What do the ps files do?</div>
+
+			<div id="sig123425" class="signature"><span style="color: #0000FF"><span style="font-weight: bold"><a href="viewtopic.php-f=30&t=12483.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=30&t=12483" class="postlink">New C4 Book Here!</a></span></span><br /><span style="font-weight: bold"><span style="font-size: 70%; line-height: 116%;">EVGA SR2 Mb @(2.4 to 3.4 Ghz), Intel E5620 dual cpu, 4x4GB ECC RAM, OS ADATA S511 256GB RAID10<br />Nvidia GTX660, Driver 320.49 WHQL Win7 64bit, DX SDK 6-10</span></span><span style="font-weight: bold"> <span style="font-size: 75%; line-height: 116%;">skype ck_mack</span></span></div>
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123425">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=1484.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=1484" style="color: #8000C0;" class="username-coloured">MACK</a>
+			</dt>
+
+			<dd>Community Leader<br /><img src="images/ranks/ProtonRank.png" tppabs="http://www.terathon.com/forums/images/ranks/ProtonRank.png" alt="Community Leader" title="Community Leader" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1672</dd><dd><strong>Joined:</strong> 05 Oct 2008, 01:53</dd><dd><strong>Location:</strong> Salisbury, NC USA</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http://www.mechstorm.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.mechstorm.com/%27" tppabs="http://www.mechstorm.com/" title="WWW: http://www.mechstorm.com"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<div id="p123426" class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			
+
+			<h3 ><a href="#p123426">Re: How to make terrain?</a></h3>
+			<p class="author"><a href="viewtopic.php-p=123426.htm#p123426" tppabs="http://www.terathon.com/forums/viewtopic.php?p=123426#p123426"><img src="styles/prosilver/imageset/icon_post_target.gif" tppabs="http://www.terathon.com/forums/styles/prosilver/imageset/icon_post_target.gif" width="11" height="9" alt="Post" title="Post" /></a>by <strong><a href="memberlist.php-mode=viewprofile&u=462.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=462" style="color: #0060C0;" class="username-coloured">ska</a></strong> &raquo; 20 Mar 2014, 12:57 </p>
+
+			
+
+			<div class="content">It´s a lot of separated layers, each layer is different parts of terrains. You just need to assemble the layers in the way you like, and then import them to c4.</div>
+
+			
+
+		</div>
+
+		
+			<dl class="postprofile" id="profile123426">
+			<dt>
+				<a href="memberlist.php-mode=viewprofile&u=462.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=462"><img src="download/file.php-avatar=462_1274814944.jpg" tppabs="http://www.terathon.com/forums/download/file.php?avatar=462_1274814944.jpg" width="80" height="80" alt="User avatar" /></a><br />
+				<a href="memberlist.php-mode=viewprofile&u=462.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=viewprofile&u=462" style="color: #0060C0;" class="username-coloured">ska</a>
+			</dt>
+
+			<dd>Power User<br /><img src="images/ranks/PlasmaRank4.png" tppabs="http://www.terathon.com/forums/images/ranks/PlasmaRank4.png" alt="Power User" title="Power User" /></dd>
+
+		<dd>&nbsp;</dd>
+
+		<dd><strong>Posts:</strong> 1228</dd><dd><strong>Joined:</strong> 07 Feb 2007, 08:45</dd><dd><strong>Location:</strong> Brazil -São Paulo</dd>
+			<dd>
+				<ul class="profile-icons">
+					<li class="web-icon"><a href="javascript:if(confirm(%27http:///  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http:///%27" tppabs="http:///" title="WWW: http://"><span>Website</span></a></li>
+				</ul>
+			</dd>
+		
+
+		</dl>
+	
+
+		<div class="back2top"><a href="#wrap" class="top" title="Top">Top</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+	<form id="viewtopic" method="post" action="http://www.terathon.com/forums/viewtopic.php?f=15&t=13574">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		<a href="viewtopic.php-f=15&t=13574&start=25.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=15&t=13574&start=25" class="right-box right">Next</a>
+		<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select> <input type="submit" name="sort" value="Go" class="button2" /></label>
+		
+	</fieldset>
+
+	</form>
+	<hr />
+
+
+<div class="topic-actions">
+	<div class="buttons">
+	
+		<div class="reply-icon"><a href="posting.php-mode=reply&f=15&t=13574.htm" tppabs="http://www.terathon.com/forums/posting.php?mode=reply&f=15&t=13574" title="Post a reply"><span></span>Post a reply</a></div>
+	
+	</div>
+
+	
+		<div class="pagination">
+			77 posts
+			 &bull; <a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Page <strong>1</strong> of <strong>4</strong></a> &bull; <span><strong>1</strong><span class="page-sep">, </span><a href="viewtopic.php-f=15&t=13574&start=25.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=15&t=13574&start=25">2</a><span class="page-sep">, </span><a href="viewtopic.php-f=15&t=13574&start=50.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=15&t=13574&start=50">3</a><span class="page-sep">, </span><a href="viewtopic.php-f=15&t=13574&start=75.htm" tppabs="http://www.terathon.com/forums/viewtopic.php?f=15&t=13574&start=75">4</a></span>
+		</div>
+	
+</div>
+
+
+	<p></p><p><a href="viewforum.php-f=15.htm" tppabs="http://www.terathon.com/forums/viewforum.php?f=15" class="left-box left" accesskey="r">Return to Artist Central</a></p>
+
+	<form method="post" id="jumpbox" action="http://www.terathon.com/forums/viewforum.php" onsubmit="if(this.f.value == -1){return false;}">
+
+	
+		<fieldset class="jumpbox">
+	
+			<label for="f" accesskey="j">Jump to:</label>
+			<select name="f" id="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+			
+				<option value="-1">Select a forum</option>
+			<option value="-1">------------------</option>
+				<option value="17">General C4 Engine Topics</option>
+			
+				<option value="2">&nbsp; &nbsp;Announcements</option>
+			
+				<option value="12">&nbsp; &nbsp;General Discussion</option>
+			
+				<option value="30">&nbsp; &nbsp;Showcase</option>
+			
+				<option value="13">&nbsp; &nbsp;User Lounge</option>
+			
+				<option value="18">C4 Engine Development</option>
+			
+				<option value="3">&nbsp; &nbsp;Beginners</option>
+			
+				<option value="4">&nbsp; &nbsp;General Programming</option>
+			
+				<option value="5">&nbsp; &nbsp;Graphics Programming</option>
+			
+				<option value="6">&nbsp; &nbsp;Audio Programming</option>
+			
+				<option value="7">&nbsp; &nbsp;Networking and Multiplayer</option>
+			
+				<option value="8">&nbsp; &nbsp;User Interface</option>
+			
+				<option value="9">&nbsp; &nbsp;Editor and Tools</option>
+			
+				<option value="15" selected="selected">&nbsp; &nbsp;Artist Central</option>
+			
+			</select>
+			<input type="submit" value="Go" class="button2" />
+		</fieldset>
+	</form>
+
+
+	<h3>Who is online</h3>
+	<p>Users browsing this forum: No registered users and 1 guest</p>
+</div>
+
+<div id="page-footer">
+
+	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="linklist">
+			<li class="icon-home"><a href="index.php.htm" tppabs="http://www.terathon.com/forums/index.php" accesskey="h">Board index</a></li>
+				
+			<li class="rightside"><a href="memberlist.php-mode=leaders.htm" tppabs="http://www.terathon.com/forums/memberlist.php?mode=leaders">The team</a> &bull; <a href="ucp.php-mode=delete_cookies.htm" tppabs="http://www.terathon.com/forums/ucp.php?mode=delete_cookies">Delete all board cookies</a> &bull; All times are UTC - 6 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</li>
+		</ul>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="copyright">Powered by <a href="javascript:if(confirm(%27http://www.phpbb.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.phpbb.com/%27" tppabs="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+		
+	</div>
+</div>
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	
+</div>
+
+
+</div>
+
+<div style="margin-top: 32px; border-top: solid 1px #888; padding: 2px 8px 0px 8px;">
+	<table class="c4footer"><tr>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php">Company</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/contact.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/contact.php%27" tppabs="http://www.terathon.com/contact.php">Contact</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/privacy.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/privacy.php%27" tppabs="http://www.terathon.com/privacy.php">Privacy&nbsp;Policy</a></td>
+		<td><a href="javascript:if(confirm(%27http://www.terathon.com/sitemap.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/sitemap.php%27" tppabs="http://www.terathon.com/sitemap.php">Site&nbsp;Map</a></td>
+		<td style="width: 100%; text-align: right;">Copyright &copy; 2001&ndash;2015 Terathon Software LLC</td>
+		<td style="padding-right: 0px;"><a href="javascript:if(confirm(%27http://www.terathon.com/terathon.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.terathon.com/terathon.php%27" tppabs="http://www.terathon.com/terathon.php"><img src="../image/terathon.png" tppabs="http://www.terathon.com/image/terathon.png" alt="Terathon Software" style="width: 80px; height: 20px;" /></a></td>
+	</tr></table>
+</div>
+
+</div>
+
+</body>
+</html>
